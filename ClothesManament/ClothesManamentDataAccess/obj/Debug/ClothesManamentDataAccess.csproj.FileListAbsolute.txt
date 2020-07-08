@@ -1,0 +1,10 @@
+D:\Thuy\thuctap\ClothesManament\ClothesManamentDataAccess\bin\Debug\ClothesManamentDataAccess.dll.config
+D:\Thuy\thuctap\ClothesManament\ClothesManamentDataAccess\bin\Debug\ClothesManamentDataAccess.dll
+D:\Thuy\thuctap\ClothesManament\ClothesManamentDataAccess\bin\Debug\ClothesManamentDataAccess.pdb
+D:\Thuy\thuctap\ClothesManament\ClothesManamentDataAccess\bin\Debug\EntityFramework.dll
+D:\Thuy\thuctap\ClothesManament\ClothesManamentDataAccess\bin\Debug\EntityFramework.SqlServer.dll
+D:\Thuy\thuctap\ClothesManament\ClothesManamentDataAccess\bin\Debug\EntityFramework.xml
+D:\Thuy\thuctap\ClothesManament\ClothesManamentDataAccess\bin\Debug\EntityFramework.SqlServer.xml
+D:\Thuy\thuctap\ClothesManament\ClothesManamentDataAccess\obj\Debug\ClothesManamentDataAccess.csprojResolveAssemblyReference.cache
+D:\Thuy\thuctap\ClothesManament\ClothesManamentDataAccess\obj\Debug\ClothesManamentDataAccess.dll
+D:\Thuy\thuctap\ClothesManament\ClothesManamentDataAccess\obj\Debug\ClothesManamentDataAccess.pdb
