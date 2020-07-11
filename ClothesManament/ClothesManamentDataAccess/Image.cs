@@ -12,14 +12,13 @@ namespace ClothesManamentDataAccess
     using System;
     using System.Collections.Generic;
     
-    public partial class Cart
+    public partial class Image
     {
         public int id { get; set; }
+        public string imageUrl { get; set; }
         public Nullable<int> productId { get; set; }
-        public Nullable<int> quantity { get; set; }
-        public Nullable<int> userID { get; set; }
+        public Nullable<int> active { get; set; }
     
-        public virtual Account Account { get; set; }
         public virtual Product Product { get; set; }
     }
 }

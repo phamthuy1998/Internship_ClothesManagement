@@ -16,19 +16,256 @@ using Microsoft.Owin.Security.OAuth;
 using ClothesManament.Models;
 using ClothesManament.Providers;
 using ClothesManament.Results;
+using ClothesManamentDataAccess;
+using System.Linq;
+using System.Data.Entity.Core.Objects;
 
 namespace ClothesManament.Controllers
 {
-    [Authorize]
-    [RoutePrefix("api/Account")]
+
     public class AccountController : ApiController
     {
+
+        private ClothesManamentEntities entities;
+        public AccountController()
+        {
+            entities = new ClothesManamentEntities();
+        }
+
+        [Route("api/logout")]
+        [AcceptVerbs("GET")]
+        [HttpGet]
+        public ResponseObjectModel<string> signOut()
+        {
+            return new ResponseObjectModel<string>()
+            {
+                message = "Logout success!",
+                status = true,
+                code = 200,
+                data = ""
+            };
+        }
+
+        [Route("api/changePassword")]
+        [AcceptVerbs("PUT")]
+        [HttpPut]
+        public ResponseObjectModel<String> changePassword([FromBody] ChangePassParam changePass)
+        {
+            var result = entities.ChangePassword(changePass.userid, changePass.oldpass, changePass.newpassword).FirstOrDefault();
+            if (result.HasValue)
+            {
+                int resultInt = result.Value;
+                if (resultInt == -1)
+                {
+                    return new ResponseObjectModel<String>()
+                    {
+                        message = "Mật khẩu cũ không đúng",
+                        status = false,
+                        code = 200,
+                        data = null
+                    };
+                }
+                else
+                {
+                    return new ResponseObjectModel<String>()
+                    {
+                        message = "Đổi mật khẩu thành công",
+                        status = true,
+                        code = 200,
+                        data = ""
+                    };
+                }
+            }
+
+            return new ResponseObjectModel<String>()
+            {
+                message = "Đăng nhập thất bại ",
+                status = false,
+                code = 200,
+                data = ""
+            };
+
+        }
+
+        [Route("api/login")]
+        [AcceptVerbs("GET")]
+        [HttpGet]
+        public ResponseObjectModel<SPGetAccountInfoByUserId_Result> login([FromBody] LoginParam loginParam)
+        {
+            var result = entities.SP_Login(loginParam.username, loginParam.password).FirstOrDefault();
+            if (result.HasValue)
+            {
+                int resultInt = result.Value;
+                if (resultInt == -1)
+                {
+                    return new ResponseObjectModel<SPGetAccountInfoByUserId_Result>()
+                    {
+                        message = "Username không tồn tại",
+                        status = false,
+                        code = 200,
+                        data = null
+                    };
+                }
+                else if (resultInt == -2)
+                {
+                    return new ResponseObjectModel<SPGetAccountInfoByUserId_Result>()
+                    {
+                        message = "Mật khẩu không đúng",
+                        status = false,
+                        code = 200,
+                        data = null
+                    };
+                }
+                else
+                {
+                    var accountInfo = entities.SPGetAccountInfoByUserId(resultInt).FirstOrDefault(); ;
+
+                    if (accountInfo == null)
+                    {
+                        return new ResponseObjectModel<SPGetAccountInfoByUserId_Result>()
+                        {
+                            message = "Đăng nhập thất bại",
+                            status = false,
+                            code = 200,
+                            data = null
+                        };
+                    }
+
+                    return new ResponseObjectModel<SPGetAccountInfoByUserId_Result>()
+                    {
+                        message = "Đăng nhập thành công",
+                        status = true,
+                        code = 200,
+                        data = accountInfo
+                    };
+                }
+            }
+
+            return new ResponseObjectModel<SPGetAccountInfoByUserId_Result>()
+            {
+                message = "Đăng nhập thất bại ",
+                status = false,
+                code = 200,
+                data = null
+            };
+
+        }
+
+        [Route("api/signUp")]
+        [AcceptVerbs("POST")]
+        [HttpPost]
+        public ResponseObjectModel<SPGetAccountInfoByUsername_Result> signUp([FromBody] Account acc)
+        {
+            try
+            {
+                var result = entities.SP_Register(acc.name, acc.email, acc.phone, acc.gender, acc.roleId, acc.password, acc.username, acc.imageUrl, acc.active).FirstOrDefault();
+                if (result.HasValue)
+                {
+                    int resultInt = result.Value;
+                    if (resultInt == -1)
+                    {
+                        return new ResponseObjectModel<SPGetAccountInfoByUsername_Result>()
+                        {
+                            message = "Username đã tồn tại",
+                            status = false,
+                            code = 200,
+                            data = null
+                        };
+                    }
+                    else if (resultInt == -2)
+                    {
+                        return new ResponseObjectModel<SPGetAccountInfoByUsername_Result>()
+                        {
+                            message = "Email đã tồn tại",
+                            status = false,
+                            code = 200,
+                            data = null
+                        };
+                    }
+                    else if (resultInt == -3)
+                    {
+                        return new ResponseObjectModel<SPGetAccountInfoByUsername_Result>()
+                        {
+                            message = "Số điện thoại đã tồn tại",
+                            status = false,
+                            code = 200,
+                            data = null
+                        };
+                    }
+                    else
+                    {
+                        var accountInfo = entities.SPGetAccountInfoByUsername(acc.username).FirstOrDefault(); ;
+
+                        if (accountInfo == null)
+                        {
+                            return new ResponseObjectModel<SPGetAccountInfoByUsername_Result>()
+                            {
+                                message = "Lỗi đăng ký tài khoản",
+                                status = false,
+                                code = 200,
+                                data = null
+                            };
+                        }
+
+                        return new ResponseObjectModel<SPGetAccountInfoByUsername_Result>()
+                        {
+                            message = "Đăng ký tài khoản thành công",
+                            status = true,
+                            code = 200,
+                            data = accountInfo
+                        };
+                    }
+                }
+                return new ResponseObjectModel<SPGetAccountInfoByUsername_Result>()
+                {
+                    message = "Lỗi tạo tài khoản!",
+                    status = false,
+                    code = 200,
+                    data = null
+                };
+            }
+            catch (Exception e)
+            {
+                return new ResponseObjectModel<SPGetAccountInfoByUsername_Result>()
+                {
+                    message = "Lỗi tạo tài khoản! " + e,
+                    status = false,
+                    code = 200,
+                    data = null
+                };
+            }
+        }
+
+        [Route("api/accountInfo")]
+        [AcceptVerbs("GET")]
+        [HttpGet]
+        public ResponseObjectModel<ObjectResult<SPGetAccountInfoByUserId_Result>> getAccountInfo([FromUri]int userId)
+        {
+            var result = entities.SPGetAccountInfoByUserId(userId);
+
+            if (result == null)
+            {
+                return new ResponseObjectModel<ObjectResult<SPGetAccountInfoByUserId_Result>>()
+                {
+                    message = "Account not exist.",
+                    status = false,
+                    code = 404
+                };
+            }
+
+            return new ResponseObjectModel<ObjectResult<SPGetAccountInfoByUserId_Result>>()
+            {
+                message = "Account info",
+                status = true,
+                code = 200,
+                data = result
+            };
+        }
+
         private const string LocalLoginProvider = "Local";
         private ApplicationUserManager _userManager;
 
-        public AccountController()
-        {
-        }
+
 
         public AccountController(ApplicationUserManager userManager,
             ISecureDataFormat<AuthenticationTicket> accessTokenFormat)
@@ -125,7 +362,7 @@ namespace ClothesManament.Controllers
 
             IdentityResult result = await UserManager.ChangePasswordAsync(User.Identity.GetUserId(), model.OldPassword,
                 model.NewPassword);
-            
+
             if (!result.Succeeded)
             {
                 return GetErrorResult(result);
@@ -258,9 +495,9 @@ namespace ClothesManament.Controllers
             if (hasRegistered)
             {
                 Authentication.SignOut(DefaultAuthenticationTypes.ExternalCookie);
-                
-                 ClaimsIdentity oAuthIdentity = await user.GenerateUserIdentityAsync(UserManager,
-                    OAuthDefaults.AuthenticationType);
+
+                ClaimsIdentity oAuthIdentity = await user.GenerateUserIdentityAsync(UserManager,
+                   OAuthDefaults.AuthenticationType);
                 ClaimsIdentity cookieIdentity = await user.GenerateUserIdentityAsync(UserManager,
                     CookieAuthenticationDefaults.AuthenticationType);
 
@@ -368,7 +605,7 @@ namespace ClothesManament.Controllers
             result = await UserManager.AddLoginAsync(user.Id, info.Login);
             if (!result.Succeeded)
             {
-                return GetErrorResult(result); 
+                return GetErrorResult(result);
             }
             return Ok();
         }

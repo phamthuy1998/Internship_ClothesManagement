@@ -10,16 +10,14 @@
 namespace ClothesManamentDataAccess
 {
     using System;
-    using System.Collections.Generic;
     
-    public partial class Cart
+    public partial class getCategoryByType_Result
     {
         public int id { get; set; }
-        public Nullable<int> productId { get; set; }
-        public Nullable<int> quantity { get; set; }
-        public Nullable<int> userID { get; set; }
-    
-        public virtual Account Account { get; set; }
-        public virtual Product Product { get; set; }
+        public string name { get; set; }
+        public string detail { get; set; }
+        public int typeId { get; set; }
+        public string imageUrl { get; set; }
+        public Nullable<int> active { get; set; }
     }
 }

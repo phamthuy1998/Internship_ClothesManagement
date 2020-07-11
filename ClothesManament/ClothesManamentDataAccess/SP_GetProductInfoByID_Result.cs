@@ -10,15 +10,18 @@
 namespace ClothesManamentDataAccess
 {
     using System;
-    using System.Collections.Generic;
     
-    public partial class User
+    public partial class SP_GetProductInfoByID_Result
     {
         public int id { get; set; }
-        public string firstname { get; set; }
-        public string lastname { get; set; }
-        public string email { get; set; }
-        public string phone { get; set; }
-        public string gender { get; set; }
+        public string title { get; set; }
+        public string detail { get; set; }
+        public Nullable<double> price { get; set; }
+        public Nullable<int> categoryID { get; set; }
+        public Nullable<int> sold { get; set; }
+        public Nullable<int> rating { get; set; }
+        public Nullable<int> active { get; set; }
+        public Nullable<int> brandId { get; set; }
+        public string thumnail { get; set; }
     }
 }

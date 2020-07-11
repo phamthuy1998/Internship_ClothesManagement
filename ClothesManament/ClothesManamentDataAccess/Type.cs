@@ -12,14 +12,19 @@ namespace ClothesManamentDataAccess
     using System;
     using System.Collections.Generic;
     
-    public partial class Cart
+    public partial class Type
     {
-        public int id { get; set; }
-        public Nullable<int> productId { get; set; }
-        public Nullable<int> quantity { get; set; }
-        public Nullable<int> userID { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Type()
+        {
+            this.Categories = new HashSet<Category>();
+        }
     
-        public virtual Account Account { get; set; }
-        public virtual Product Product { get; set; }
+        public int id { get; set; }
+        public string name { get; set; }
+        public Nullable<int> active { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Category> Categories { get; set; }
     }
 }

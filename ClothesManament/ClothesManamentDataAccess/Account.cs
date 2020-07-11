@@ -12,23 +12,30 @@ namespace ClothesManamentDataAccess
     using System;
     using System.Collections.Generic;
     
-    public partial class Category
+    public partial class Account
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Category()
+        public Account()
         {
-            this.Products = new HashSet<Product>();
+            this.Carts = new HashSet<Cart>();
+            this.Orders = new HashSet<Order>();
         }
     
         public int id { get; set; }
         public string name { get; set; }
-        public string detail { get; set; }
-        public int typeId { get; set; }
+        public string email { get; set; }
+        public string phone { get; set; }
+        public Nullable<int> gender { get; set; }
+        public Nullable<int> roleId { get; set; }
+        public string password { get; set; }
+        public string username { get; set; }
         public string imageUrl { get; set; }
         public Nullable<int> active { get; set; }
     
-        public virtual Type Type { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Product> Products { get; set; }
+        public virtual ICollection<Cart> Carts { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Order> Orders { get; set; }
+        public virtual Role Role { get; set; }
     }
 }

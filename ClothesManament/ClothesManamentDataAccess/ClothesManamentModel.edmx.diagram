@@ -4,11 +4,39 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="2c3fe6179fb148e3bce1bc0497f4c721" Name="Diagram1">
-        <EntityTypeShape EntityType="ClothesManamentModel.Cart" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="ClothesManamentModel.Category" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="ClothesManamentModel.Product" Width="1.5" PointX="0.75" PointY="3.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="ClothesManamentModel.User" Width="1.5" PointX="4.75" PointY="0.75" IsExpanded="true" />
+      <Diagram DiagramId="2c3fe6179fb148e3bce1bc0497f4c721" Name="Diagram1" ZoomLevel="20">
+        <EntityTypeShape EntityType="ClothesManamentModel.Account" Width="1.5" PointX="3" PointY="0.75" />
+        <EntityTypeShape EntityType="ClothesManamentModel.Brand" Width="1.5" PointX="3" PointY="5.5" />
+        <EntityTypeShape EntityType="ClothesManamentModel.Cart" Width="1.5" PointX="7.5" PointY="9.375" />
+        <EntityTypeShape EntityType="ClothesManamentModel.Category" Width="1.5" PointX="3" PointY="9.25" />
+        <EntityTypeShape EntityType="ClothesManamentModel.Color" Width="1.5" PointX="5.25" PointY="5" />
+        <EntityTypeShape EntityType="ClothesManamentModel.Image" Width="1.5" PointX="7.5" PointY="21.375" />
+        <EntityTypeShape EntityType="ClothesManamentModel.ItemPromotion" Width="1.5" PointX="10.5" PointY="9.5" />
+        <EntityTypeShape EntityType="ClothesManamentModel.Order" Width="1.5" PointX="5.25" PointY="0.875" />
+        <EntityTypeShape EntityType="ClothesManamentModel.OrderItem" Width="1.5" PointX="7.5" PointY="6.25" />
+        <EntityTypeShape EntityType="ClothesManamentModel.Product" Width="1.5" PointX="5.25" PointY="8.375" />
+        <EntityTypeShape EntityType="ClothesManamentModel.ProductSizeColor" Width="1.5" PointX="7.5" PointY="12.25" />
+        <EntityTypeShape EntityType="ClothesManamentModel.Promotion" Width="1.5" PointX="8.25" PointY="16" />
+        <EntityTypeShape EntityType="ClothesManamentModel.Role" Width="1.5" PointX="0.75" PointY="5" />
+        <EntityTypeShape EntityType="ClothesManamentModel.Size" Width="1.5" PointX="5.25" PointY="19.75" />
+        <EntityTypeShape EntityType="ClothesManamentModel.Type" Width="1.5" PointX="0.75" PointY="9.625" />
+        <EntityTypeShape EntityType="ClothesManamentModel.TypePromotion" Width="1.5" PointX="6" PointY="16.5" />
+        <AssociationConnector Association="ClothesManamentModel.FK_Cart_User" />
+        <AssociationConnector Association="ClothesManamentModel.FK_Order_User" />
+        <AssociationConnector Association="ClothesManamentModel.FK_User_Role" />
+        <AssociationConnector Association="ClothesManamentModel.FK_Product_Brand" />
+        <AssociationConnector Association="ClothesManamentModel.FK_Cart_Product" />
+        <AssociationConnector Association="ClothesManamentModel.FK_Category_Type" />
+        <AssociationConnector Association="ClothesManamentModel.FK_Product_Category" />
+        <AssociationConnector Association="ClothesManamentModel.FK_ProductSizeColor_Color" />
+        <AssociationConnector Association="ClothesManamentModel.FK_Image_Product" />
+        <AssociationConnector Association="ClothesManamentModel.FK_ItemPromotion_Product" />
+        <AssociationConnector Association="ClothesManamentModel.FK_ItemPromotion_Promotion" />
+        <AssociationConnector Association="ClothesManamentModel.FK_OrderItem_Order" />
+        <AssociationConnector Association="ClothesManamentModel.FK_OrderItem_Product" />
+        <AssociationConnector Association="ClothesManamentModel.FK_ProductSizeColor_Product" />
+        <AssociationConnector Association="ClothesManamentModel.FK_ProductSizeColor_Size" />
+        <AssociationConnector Association="ClothesManamentModel.FK_Promotion_TypePromotion" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

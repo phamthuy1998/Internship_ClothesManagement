@@ -10,24 +10,20 @@ namespace ClothesManament.Controllers
 {
     public class ProductAPIController : ApiController
     {
-        ClothesManamentEntities entities = new ClothesManamentEntities();
+        ClothesManamentEntities entities;
 
-
-        ClothesManamentEntities _context;
         public ProductAPIController()
         {
-            _context = new ClothesManamentEntities();
+            entities = new ClothesManamentEntities();
         }
 
-        [Route("api/product")]
+        [Route("api/products")]
         [AcceptVerbs("GET")]
         [HttpGet]
-        public ResponseListModel<Product> GetCustomer([FromUri]PagingParameterModel pagingparametermodel)
+        public ResponseListModel<SP_GetProductCategory_Result> getProductListPaging([FromUri]PagingParameterModel pagingparametermodel, int categoryID)
         {
             // Return List of product  
-            var source = (from product in _context.Products.
-                            OrderBy(a => a.id)
-                          select product).AsQueryable();
+            var source = entities.SP_GetProductCategory(categoryID);
 
             // Get's No of Rows Count   
             int count = source.Count();
@@ -70,40 +66,40 @@ namespace ClothesManament.Controllers
                 pageSize = PageSize,
                 currentPage = CurrentPage,
                 totalPages = TotalPages,
-                previousPage= previousPage,
-                nextPage= nextPage
+                previousPage = previousPage,
+                nextPage = nextPage
             };
 
             // Setting Header  
             HttpContext.Current.Response.Headers.Add("Paging-Headers", JsonConvert.SerializeObject(paginationMetadata));
 
             // Returing List of Customers Collections  
-            return new ResponseListModel<Product>()
+            return new ResponseListModel<SP_GetProductCategory_Result>()
             {
-                message = "Product info",
+                message = "List of product in category",
                 status = true,
                 code = 200,
                 data = items,
-                metadata= metadataValue
+                metadata = metadataValue
             };
         }
-        
-        [Route("api/getAllProduct")]
-        [AcceptVerbs("GET")]
-        [HttpGet]
-        public IHttpActionResult getAllProduct(int page)
-        {
-            var result = entities.SP_GetProducts(page);
 
-            if (result == null)
-            {
-                return NotFound();
-            }
+        //[Route("api/allProducts")]
+        //[AcceptVerbs("GET")]
+        //[HttpGet]
+        //public IHttpActionResult getAllProduct(int page)
+        //{
+        //    var result = entities.SP_GetProducts(page);
 
-            return Ok(result);
-        }
+        //    if (result == null)
+        //    {
+        //        return NotFound();
+        //    }
 
-        [Route("api/getProduct")]
+        //    return Ok(result);
+        //}
+
+        [Route("api/getProductById")]
         [AcceptVerbs("GET")]
         [HttpGet]
         public ResponseObjectModel<Product> getProductInfo([FromUri]int productID)

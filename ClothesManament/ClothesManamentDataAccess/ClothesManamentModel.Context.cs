@@ -27,10 +27,22 @@ namespace ClothesManamentDataAccess
             throw new UnintentionalCodeFirstException();
         }
     
+        public virtual DbSet<Account> Accounts { get; set; }
+        public virtual DbSet<Brand> Brands { get; set; }
         public virtual DbSet<Cart> Carts { get; set; }
         public virtual DbSet<Category> Categories { get; set; }
+        public virtual DbSet<Color> Colors { get; set; }
+        public virtual DbSet<Image> Images { get; set; }
+        public virtual DbSet<ItemPromotion> ItemPromotions { get; set; }
+        public virtual DbSet<Order> Orders { get; set; }
+        public virtual DbSet<OrderItem> OrderItems { get; set; }
         public virtual DbSet<Product> Products { get; set; }
-        public virtual DbSet<User> Users { get; set; }
+        public virtual DbSet<ProductSizeColor> ProductSizeColors { get; set; }
+        public virtual DbSet<Promotion> Promotions { get; set; }
+        public virtual DbSet<Role> Roles { get; set; }
+        public virtual DbSet<Size> Sizes { get; set; }
+        public virtual DbSet<Type> Types { get; set; }
+        public virtual DbSet<TypePromotion> TypePromotions { get; set; }
     
         public virtual int sp_alterdiagram(string diagramname, Nullable<int> owner_id, Nullable<int> version, byte[] definition)
         {
@@ -143,6 +155,176 @@ namespace ClothesManamentDataAccess
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_GetProducts_Result>("SP_GetProducts", pageParameter);
         }
-
+    
+        public virtual ObjectResult<SP_GetProductCategory_Result> SP_GetProductCategory(Nullable<int> categoryId)
+        {
+            var categoryIdParameter = categoryId.HasValue ?
+                new ObjectParameter("categoryId", categoryId) :
+                new ObjectParameter("categoryId", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_GetProductCategory_Result>("SP_GetProductCategory", categoryIdParameter);
+        }
+    
+        public virtual ObjectResult<Nullable<int>> ChangePassword(Nullable<int> userId, string oldPass, string newPass)
+        {
+            var userIdParameter = userId.HasValue ?
+                new ObjectParameter("userId", userId) :
+                new ObjectParameter("userId", typeof(int));
+    
+            var oldPassParameter = oldPass != null ?
+                new ObjectParameter("oldPass", oldPass) :
+                new ObjectParameter("oldPass", typeof(string));
+    
+            var newPassParameter = newPass != null ?
+                new ObjectParameter("newPass", newPass) :
+                new ObjectParameter("newPass", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("ChangePassword", userIdParameter, oldPassParameter, newPassParameter);
+        }
+    
+        public virtual ObjectResult<Nullable<int>> DelAccount(Nullable<int> userId)
+        {
+            var userIdParameter = userId.HasValue ?
+                new ObjectParameter("userId", userId) :
+                new ObjectParameter("userId", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("DelAccount", userIdParameter);
+        }
+    
+        public virtual ObjectResult<getCategoryByType_Result> getCategoryByType(Nullable<int> typeID)
+        {
+            var typeIDParameter = typeID.HasValue ?
+                new ObjectParameter("TypeID", typeID) :
+                new ObjectParameter("TypeID", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<getCategoryByType_Result>("getCategoryByType", typeIDParameter);
+        }
+    
+        public virtual ObjectResult<SP_GetProductInfoByID_Result> SP_GetProductInfoByID(Nullable<int> productID)
+        {
+            var productIDParameter = productID.HasValue ?
+                new ObjectParameter("productID", productID) :
+                new ObjectParameter("productID", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_GetProductInfoByID_Result>("SP_GetProductInfoByID", productIDParameter);
+        }
+    
+        public virtual ObjectResult<Nullable<int>> SP_Register(string name, string email, string phone, Nullable<int> gender, Nullable<int> roleId, string password, string username, string imageUrl, Nullable<int> active)
+        {
+            var nameParameter = name != null ?
+                new ObjectParameter("name", name) :
+                new ObjectParameter("name", typeof(string));
+    
+            var emailParameter = email != null ?
+                new ObjectParameter("email", email) :
+                new ObjectParameter("email", typeof(string));
+    
+            var phoneParameter = phone != null ?
+                new ObjectParameter("phone", phone) :
+                new ObjectParameter("phone", typeof(string));
+    
+            var genderParameter = gender.HasValue ?
+                new ObjectParameter("gender", gender) :
+                new ObjectParameter("gender", typeof(int));
+    
+            var roleIdParameter = roleId.HasValue ?
+                new ObjectParameter("roleId", roleId) :
+                new ObjectParameter("roleId", typeof(int));
+    
+            var passwordParameter = password != null ?
+                new ObjectParameter("password", password) :
+                new ObjectParameter("password", typeof(string));
+    
+            var usernameParameter = username != null ?
+                new ObjectParameter("username", username) :
+                new ObjectParameter("username", typeof(string));
+    
+            var imageUrlParameter = imageUrl != null ?
+                new ObjectParameter("imageUrl", imageUrl) :
+                new ObjectParameter("imageUrl", typeof(string));
+    
+            var activeParameter = active.HasValue ?
+                new ObjectParameter("active", active) :
+                new ObjectParameter("active", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("SP_Register", nameParameter, emailParameter, phoneParameter, genderParameter, roleIdParameter, passwordParameter, usernameParameter, imageUrlParameter, activeParameter);
+        }
+    
+        public virtual ObjectResult<Nullable<int>> SP_UpdateUser(Nullable<int> userId, string name, string email, string phone, Nullable<int> gender, Nullable<int> roleId, string password, string imageUrl)
+        {
+            var userIdParameter = userId.HasValue ?
+                new ObjectParameter("userId", userId) :
+                new ObjectParameter("userId", typeof(int));
+    
+            var nameParameter = name != null ?
+                new ObjectParameter("name", name) :
+                new ObjectParameter("name", typeof(string));
+    
+            var emailParameter = email != null ?
+                new ObjectParameter("email", email) :
+                new ObjectParameter("email", typeof(string));
+    
+            var phoneParameter = phone != null ?
+                new ObjectParameter("phone", phone) :
+                new ObjectParameter("phone", typeof(string));
+    
+            var genderParameter = gender.HasValue ?
+                new ObjectParameter("gender", gender) :
+                new ObjectParameter("gender", typeof(int));
+    
+            var roleIdParameter = roleId.HasValue ?
+                new ObjectParameter("roleId", roleId) :
+                new ObjectParameter("roleId", typeof(int));
+    
+            var passwordParameter = password != null ?
+                new ObjectParameter("password", password) :
+                new ObjectParameter("password", typeof(string));
+    
+            var imageUrlParameter = imageUrl != null ?
+                new ObjectParameter("imageUrl", imageUrl) :
+                new ObjectParameter("imageUrl", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("SP_UpdateUser", userIdParameter, nameParameter, emailParameter, phoneParameter, genderParameter, roleIdParameter, passwordParameter, imageUrlParameter);
+        }
+    
+        public virtual ObjectResult<Nullable<int>> SPGetAccountInfo(string username)
+        {
+            var usernameParameter = username != null ?
+                new ObjectParameter("username", username) :
+                new ObjectParameter("username", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("SPGetAccountInfo", usernameParameter);
+        }
+    
+        public virtual ObjectResult<SPGetAccountInfoByUsername_Result> SPGetAccountInfoByUsername(string username)
+        {
+            var usernameParameter = username != null ?
+                new ObjectParameter("username", username) :
+                new ObjectParameter("username", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SPGetAccountInfoByUsername_Result>("SPGetAccountInfoByUsername", usernameParameter);
+        }
+    
+        public virtual ObjectResult<SPGetAccountInfoByUserId_Result> SPGetAccountInfoByUserId(Nullable<int> userId)
+        {
+            var userIdParameter = userId.HasValue ?
+                new ObjectParameter("userId", userId) :
+                new ObjectParameter("userId", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SPGetAccountInfoByUserId_Result>("SPGetAccountInfoByUserId", userIdParameter);
+        }
+    
+        public virtual ObjectResult<Nullable<int>> SP_Login(string userName, string password)
+        {
+            var userNameParameter = userName != null ?
+                new ObjectParameter("userName", userName) :
+                new ObjectParameter("userName", typeof(string));
+    
+            var passwordParameter = password != null ?
+                new ObjectParameter("password", password) :
+                new ObjectParameter("password", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("SP_Login", userNameParameter, passwordParameter);
+        }
     }
 }

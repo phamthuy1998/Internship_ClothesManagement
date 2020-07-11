@@ -8,3 +8,13 @@ D:\Thuy\thuctap\ClothesManament\ClothesManamentDataAccess\bin\Debug\EntityFramew
 D:\Thuy\thuctap\ClothesManament\ClothesManamentDataAccess\obj\Debug\ClothesManamentDataAccess.csprojResolveAssemblyReference.cache
 D:\Thuy\thuctap\ClothesManament\ClothesManamentDataAccess\obj\Debug\ClothesManamentDataAccess.dll
 D:\Thuy\thuctap\ClothesManament\ClothesManamentDataAccess\obj\Debug\ClothesManamentDataAccess.pdb
+D:\code\intern\Internship_ClothesManament\ClothesManament\ClothesManamentDataAccess\bin\Debug\ClothesManamentDataAccess.dll.config
+D:\code\intern\Internship_ClothesManament\ClothesManament\ClothesManamentDataAccess\bin\Debug\ClothesManamentDataAccess.dll
+D:\code\intern\Internship_ClothesManament\ClothesManament\ClothesManamentDataAccess\bin\Debug\ClothesManamentDataAccess.pdb
+D:\code\intern\Internship_ClothesManament\ClothesManament\ClothesManamentDataAccess\bin\Debug\EntityFramework.dll
+D:\code\intern\Internship_ClothesManament\ClothesManament\ClothesManamentDataAccess\bin\Debug\EntityFramework.SqlServer.dll
+D:\code\intern\Internship_ClothesManament\ClothesManament\ClothesManamentDataAccess\bin\Debug\EntityFramework.xml
+D:\code\intern\Internship_ClothesManament\ClothesManament\ClothesManamentDataAccess\bin\Debug\EntityFramework.SqlServer.xml
+D:\code\intern\Internship_ClothesManament\ClothesManament\ClothesManamentDataAccess\obj\Debug\ClothesManamentDataAccess.dll
+D:\code\intern\Internship_ClothesManament\ClothesManament\ClothesManamentDataAccess\obj\Debug\ClothesManamentDataAccess.pdb
+D:\code\intern\Internship_ClothesManament\ClothesManament\ClothesManamentDataAccess\obj\Debug\ClothesManamentDataAccess.csprojResolveAssemblyReference.cache
