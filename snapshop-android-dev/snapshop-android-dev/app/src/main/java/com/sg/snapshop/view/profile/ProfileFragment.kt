@@ -94,9 +94,12 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>(), View.OnClickList
             glideApp.load(currentProfile?.user?.cover)
                 .placeholder(R.color.white)
                 .centerCrop()
+                .error(R.drawable.bg_login)
                 .into(viewBinding.profileCustomer.cover)
+
             glideApp.load(currentProfile?.user?.photo)
                 .placeholder(R.color.white)
+                .error(R.drawable.bg_login)
                 .into(viewBinding.profileCustomer.avatar)
         }
         setupToolbar()
