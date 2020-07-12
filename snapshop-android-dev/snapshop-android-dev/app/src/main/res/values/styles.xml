@@ -1,0 +1,440 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.MaterialComponents.Light.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/progress_line</item>
+        <item name="colorControlActivated">@color/progress_line</item>
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+
+    <style name="AppTheme.Main" parent="AppTheme">
+<!--        <item name="android:windowBackground">@color/white</item>-->
+        <item name="android:windowBackground">@drawable/bg_splash_new</item>
+
+    </style>
+
+    <style name="AppThemeFullScreen" parent="AppTheme">
+        <item name="android:windowTranslucentStatus">true</item>
+        <item name="android:windowTranslucentNavigation">true</item>
+    </style>
+
+    <style name="normal_text">
+        <item name="android:textColor">@color/black</item>
+        <item name="android:textSize">@dimen/text_size_12sp</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:fontFamily">@font/montserrat_regular</item>
+        <item name="android:textAlignment">center</item>
+    </style>
+
+    <style name="normal_text.bold" parent="normal_text">
+        <item name="android:fontFamily">@font/montserrat_bold</item>
+    </style>
+    <style name="normal_text.bold.size16" parent="normal_text.bold">
+        <item name="android:textSize">@dimen/text_size_16sp</item>
+    </style>
+
+    <style name="normal_text.bold.size18" parent="normal_text.bold">
+        <item name="android:textSize">@dimen/text_size_18sp</item>
+    </style>
+
+    <style name="normal_text.SemiBold" parent="normal_text">
+        <item name="android:fontFamily">@font/montserrat_semi_bold</item>
+    </style>
+
+    <style name="normal_text.Medium" parent="normal_text">
+        <item name="android:fontFamily">@font/montserrat_medium</item>
+    </style>
+
+    <style name="SemiBold.Size14" parent="normal_text.SemiBold">
+        <item name="android:textSize">@dimen/text_size_14sp</item>
+    </style>
+
+    <style name="SemiBold.Size16" parent="normal_text.SemiBold">
+        <item name="android:textSize">@dimen/text_size_16sp</item>
+    </style>
+
+    <style name="SF_SemiBold.Size16" parent="normal_text">
+        <item name="android:fontFamily">@font/sanfrancisco_semi_bold</item>
+        <item name="android:textSize">@dimen/text_size_16sp</item>
+    </style>
+
+    <style name="SF.Size16" parent="normal_text">
+        <item name="android:fontFamily">@font/sanfrancisco</item>
+        <item name="android:textSize">@dimen/text_size_16sp</item>
+    </style>
+
+    <style name="SF.Size18" parent="normal_text">
+        <item name="android:fontFamily">@font/sanfrancisco</item>
+        <item name="android:textSize">@dimen/text_size_18sp</item>
+    </style>
+
+    <style name="SF.Size20" parent="normal_text">
+        <item name="android:fontFamily">@font/sanfrancisco</item>
+        <item name="android:textSize">@dimen/text_size_20sp</item>
+    </style>
+
+    <style name="SF_SemiBold.Size18" parent="normal_text">
+        <item name="android:fontFamily">@font/sanfrancisco_semi_bold</item>
+        <item name="android:textSize">@dimen/text_size_18sp</item>
+    </style>
+
+    <style name="SF_SemiBold.Size20" parent="normal_text">
+        <item name="android:fontFamily">@font/sanfrancisco_semi_bold</item>
+        <item name="android:textSize">@dimen/text_size_20sp</item>
+    </style>
+
+    <style name="SF_Bold.Size18" parent="normal_text">
+        <item name="android:fontFamily">@font/sanfrancisco_bold</item>
+        <item name="android:textSize">@dimen/text_size_18sp</item>
+    </style>
+
+    <style name="SF_Bold.Size20" parent="normal_text">
+        <item name="android:fontFamily">@font/sanfrancisco_bold</item>
+        <item name="android:textSize">@dimen/text_size_20sp</item>
+    </style>
+
+    <style name="SF_Bold.Size16" parent="normal_text">
+        <item name="android:fontFamily">@font/sanfrancisco_bold</item>
+        <item name="android:textSize">@dimen/text_size_16sp</item>
+    </style>
+
+    <style name="normal_text.grey" parent="normal_text">
+        <item name="android:textColor">@color/text_gray</item>
+        <item name="android:textAlignment">viewStart</item>
+    </style>
+
+    <style name="normal_text.toast">
+        <item name="android:textColor">@color/white</item>
+        <item name="android:textAlignment">center</item>
+    </style>
+
+    <style name="normal_text.Shadow" parent="normal_text">
+        <item name="android:shadowRadius">10</item>
+        <item name="android:shadowColor">@color/black_alpha</item>
+    </style>
+
+    <style name="textProfile" parent="normal_text">
+        <item name="android:paddingLeft">@dimen/layout_margin_16dp</item>
+        <item name="android:paddingRight">@dimen/layout_margin_16dp</item>
+        <item name="android:paddingTop">@dimen/layout_margin_32dp</item>
+        <item name="android:paddingBottom">@dimen/layout_margin_32dp</item>
+        <item name="android:background">@color/white</item>
+        <item name="android:textAlignment">textStart</item>
+        <item name="android:fontFamily">@font/montserrat_regular</item>
+        <item name="android:layout_marginTop">0.5dp</item>
+        <item name="android:drawablePadding">@dimen/layout_margin_16dp</item>
+        <item name="android:textColor">@color/black</item>
+
+    </style>
+
+    <style name="normal_text.EditText" parent="normal_text">
+        <item name="android:textColor">@color/black</item>
+        <item name="android:fontFamily">@font/montserrat_medium</item>
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:drawablePadding">@dimen/layout_margin_16dp</item>
+        <item name="android:paddingTop">@dimen/layout_margin_16dp</item>
+        <item name="android:paddingStart">@dimen/layout_margin_16dp</item>
+        <item name="android:paddingBottom">@dimen/layout_margin_16dp</item>
+        <item name="android:paddingEnd">@dimen/layout_margin_16dp</item>
+        <item name="android:background">@drawable/rounded_border_edittext</item>
+        <item name="android:layout_marginTop">@dimen/layout_margin_16dp</item>
+        <item name="android:layout_marginStart">@dimen/layout_margin_16dp</item>
+        <item name="android:layout_marginEnd">@dimen/layout_margin_16dp</item>
+        <item name="android:textAlignment">viewStart</item>
+        <item name="android:imeOptions">actionNext</item>
+        <item name="android:maxLines">1</item>
+        <item name="android:singleLine">true</item>
+        <item name="android:scrollHorizontally">true</item>
+    </style>
+
+    <style name="normal_text.TextInputLayout" parent="normal_text">
+        <item name="android:textColor">@color/black</item>
+        <item name="android:fontFamily">@font/montserrat_medium</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:paddingBottom">@dimen/layout_margin_8dp</item>
+        <item name="android:paddingLeft">@dimen/layout_margin_8dp</item>
+        <item name="android:paddingRight">@dimen/layout_margin_8dp</item>
+        <item name="android:layout_marginTop">@dimen/layout_margin_16dp</item>
+        <item name="android:layout_marginStart">@dimen/layout_margin_32dp</item>
+        <item name="android:layout_marginEnd">@dimen/layout_margin_32dp</item>
+        <item name="android:textAlignment">viewStart</item>
+    </style>
+
+    <style name="normal_text.EditText.Register" parent="normal_text.EditText">
+        <item name="android:textColor">@color/black</item>
+        <item name="android:fontFamily">@font/montserrat_regular</item>
+        <item name="android:textSize">@dimen/text_size_12sp</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:drawablePadding">@dimen/layout_margin_16dp</item>
+        <item name="android:paddingTop">@dimen/layout_margin_16dp</item>
+        <item name="android:paddingBottom">@dimen/layout_margin_16dp</item>
+        <item name="android:paddingStart">@dimen/layout_margin_16dp</item>
+        <item name="android:paddingEnd">@dimen/layout_margin_16dp</item>
+        <item name="android:background">@drawable/rounded_border_edittext</item>
+        <item name="android:layout_marginTop">@dimen/layout_margin_16dp</item>
+        <item name="android:layout_marginStart">@dimen/layout_margin_32dp</item>
+        <item name="android:layout_marginEnd">@dimen/layout_margin_32dp</item>
+        <item name="android:textAlignment">viewStart</item>
+
+    </style>
+
+    <style name="normal_text.Toolbar" parent="normal_text">
+        <item name="android:textSize">@dimen/text_size_13sp</item>
+        <item name="android:fontFamily">@font/montserrat_medium</item>
+        <item name="android:textAllCaps">true</item>
+    </style>
+
+    <style name="normal_text.Toolbar.Regular" parent="normal_text.Toolbar">
+        <item name="android:fontFamily">@font/montserrat_regular</item>
+    </style>
+
+    <style name="normal_text.Toolbar.SemiBold" parent="normal_text.Toolbar">
+        <item name="android:fontFamily">@font/montserrat_semi_bold</item>
+    </style>
+
+    <style name="normal_text.Toolbar.Bold" parent="normal_text.Toolbar">
+        <item name="android:fontFamily">@font/montserrat_bold</item>
+    </style>
+
+    <style name="normal_text.Toolbar.Shadow" parent="normal_text.Toolbar">
+        <item name="android:shadowRadius">15</item>
+        <item name="android:shadowColor">@color/black</item>
+    </style>
+
+    <style name="normal_text.Bold.Shadow" parent="normal_text.SemiBold">
+        <item name="android:fontFamily">@font/montserrat_bold</item>
+        <item name="android:shadowRadius">15</item>
+        <item name="android:shadowColor">@color/black</item>
+    </style>
+
+
+    <style name="normal_text.Toolbar.Collapsing.Expand" parent="normal_text.Toolbar.Shadow">
+        <item name="android:fontFamily">@font/montserrat_bold</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:textSize">@dimen/text_size_19sp</item>
+        <item name="android:maxLines">2</item>
+        <item name="android:shadowRadius">15</item>
+        <item name="android:shadowColor">@color/black</item>
+    </style>
+
+    <style name="normal_text.Toolbar.Collapsing.Collapse" parent="normal_text.Toolbar.Shadow">
+        <item name="android:fontFamily">@font/montserrat_bold</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:shadowRadius">15</item>
+        <item name="android:maxLines">1</item>
+        <item name="android:ellipsize">end</item>
+        <item name="android:shadowColor">@color/black</item>
+    </style>
+
+    <style name="normal_text.TabLayout" parent="normal_text">
+        <item name="android:textSize">@dimen/text_size_13sp</item>
+        <item name="android:fontFamily">@font/montserrat_semi_bold</item>
+    </style>
+
+    <style name="normal_text.all_cap">
+        <item name="android:textAllCaps">true</item>
+        <item name="android:textAlignment">viewStart</item>
+    </style>
+
+    <style name="normal_text.all_cap.color">
+        <item name="android:textColor">#c3fd5f</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:elevation">8dp</item>
+        <item name="android:maxLines">1</item>
+        <item name="android:ellipsize">end</item>
+    </style>
+
+    <style name="divider">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">0.05dp</item>
+        <item name="android:background">@color/line</item>
+    </style>
+
+    <style name="divider.white" parent="divider">
+        <item name="android:background">@color/white</item>
+    </style>
+
+    <style name="navigationBottomStyle">
+        <item name="android:textSize">9sp</item>
+        <item name="android:letterSpacing">0.05</item>
+        <item name="android:listPreferredItemHeightSmall">2dp</item>
+    </style>
+
+    <style name="black_btn">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:background">@drawable/button_bg</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:letterSpacing">0.1</item>
+        <item name="android:textSize">@dimen/text_size_11sp</item>
+        <item name="android:fontFamily">@font/montserrat_regular</item>
+    </style>
+
+    <style name="Button_Borderless_Bold">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:background">@android:color/transparent</item>
+        <item name="android:gravity">start|center_vertical</item>
+        <item name="android:drawableEnd">@drawable/ic_arrow_down_grey</item>
+        <item name="android:textColor">@color/gray</item>
+        <item name="android:fontFamily">@font/montserrat_semi_bold</item>
+        <item name="android:textSize">@dimen/text_size_15sp</item>
+        <item name="android:paddingEnd">@dimen/layout_margin_18dp</item>
+    </style>
+
+    <style name="Button_Corner_Active">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:background">@drawable/bg_button_active</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="android:fontFamily">@font/montserrat_regular</item>
+        <item name="android:textSize">@dimen/text_size_12sp</item>
+        <item name="android:paddingStart">@dimen/layout_margin_15dp</item>
+        <item name="android:paddingTop">@dimen/layout_margin_8dp</item>
+        <item name="android:paddingBottom">@dimen/layout_margin_8dp</item>
+        <item name="android:paddingEnd">@dimen/layout_margin_15dp</item>
+    </style>
+
+    <style name="ButtonSelect">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:padding">@dimen/layout_margin_8dp</item>
+        <item name="android:background">@drawable/bg_btn_select</item>
+        <item name="android:drawablePadding">@dimen/layout_margin_8dp</item>
+        <item name="android:drawableEnd">@drawable/ic_arrow_down_grey</item>
+    </style>
+
+    <style name="CustomBottomSheetDialogTheme" parent="Theme.Design.Light.BottomSheetDialog">
+        <item name="bottomSheetStyle">@style/CustomBottomSheetStyle</item>
+    </style>
+
+    <style name="CustomBottomSheetStyle" parent="Widget.Design.BottomSheet.Modal">
+        <item name="android:background">@android:color/transparent</item>
+    </style>
+
+
+
+
+<!--    WARNING: Vinn's Area. Using these styles and don't say anything. Okay?    -->
+
+    <style name="Size10" parent="normal_text">
+        <item name="android:textSize">@dimen/text_size_10sp</item>
+    </style>
+
+    <style name="Size11" parent="normal_text">
+        <item name="android:textSize">@dimen/text_size_11sp</item>
+    </style>
+
+    <style name="Size11.Gray" parent="Size11">
+        <item name="android:textColor">@color/text_gray</item>
+    </style>
+
+    <style name="Size13" parent="normal_text">
+        <item name="android:textSize">@dimen/text_size_13sp</item>
+        <item name="android:textAlignment">textStart</item>
+    </style>
+
+    <style name="Size13.SemiBold" parent="Size13">
+        <item name="android:fontFamily">@font/montserrat_semi_bold</item>
+    </style>
+
+    <style name="Size13.Gray" parent="Size13">
+        <item name="android:textColor">@color/text_gray</item>
+    </style>
+
+    <style name="SF_Size14.Gray" parent="Size13">
+        <item name="android:textSize">@dimen/text_size_14sp</item>
+        <item name="android:fontFamily">@font/sanfrancisco</item>
+        <item name="android:textColor">@color/text_gray</item>
+    </style>
+
+    <style name="SF_Size15.Gray" parent="Size13">
+        <item name="android:textSize">@dimen/text_size_15sp</item>
+        <item name="android:fontFamily">@font/sanfrancisco</item>
+        <item name="android:textColor">@color/text_gray</item>
+    </style>
+
+    <style name="SF_Size16.Gray" parent="Size13">
+        <item name="android:textSize">@dimen/text_size_16sp</item>
+        <item name="android:fontFamily">@font/sanfrancisco</item>
+        <item name="android:textColor">@color/text_gray</item>
+    </style>
+
+    <style name="Size15" parent="normal_text">
+        <item name="android:textSize">@dimen/text_size_15sp</item>
+    </style>
+
+    <style name="Size16.Medium" parent="normal_text">
+        <item name="android:textSize">@dimen/text_size_16sp</item>
+        <item name="android:fontFamily">@font/montserrat_medium</item>
+
+    </style>
+
+    <style name="Size15.Bold" parent="Size15">
+        <item name="android:fontFamily">@font/montserrat_semi_bold</item>
+    </style>
+
+    <style name="Size15.Medium" parent="Size15">
+        <item name="android:fontFamily">@font/montserrat_medium</item>
+    </style>
+
+    <style name="Size15.Gray" parent="Size15">
+        <item name="android:textColor">@color/text_gray</item>
+    </style>
+
+    <style name="Size15.White" parent="normal_text">
+        <item name="android:textColor">@color/white</item>
+    </style>
+
+    <style name="Size15.White.Bold" parent="Size15.White">
+        <item name="android:fontFamily">@font/montserrat_semi_bold</item>
+    </style>
+
+    <style name="Size15.Blue" parent="Size15">
+        <item name="android:textColor">@color/blue</item>
+    </style>
+
+    <style name="Size15.Blue.Bold" parent="Size15.Blue">
+        <item name="android:fontFamily">@font/montserrat_semi_bold</item>
+    </style>
+
+    <style name="Size17" parent="normal_text">
+        <item name="android:textSize">@dimen/text_size_17sp</item>
+        <item name="android:textAlignment">textStart</item>
+    </style>
+
+    <style name="Size17.Bold" parent="Size17">
+        <item name="android:fontFamily">@font/montserrat_semi_bold</item>
+    </style>
+
+    <style name="Size17.White" parent="Size17">
+        <item name="android:textColor">@color/white</item>
+    </style>
+
+    <style name="Size17.White.Bold" parent="Size17.White">
+        <item name="android:fontFamily">@font/montserrat_semi_bold</item>
+    </style>
+
+    <style name="Size17.Blue" parent="Size17">
+        <item name="android:textColor">@color/blue</item>
+    </style>
+
+    <style name="Size17.Blue.Bold" parent="Size17.Blue">
+        <item name="android:fontFamily">@font/montserrat_semi_bold</item>
+    </style>
+
+    <style name="textTabLayout" parent="normal_text">
+        <item name="android:textAllCaps">true</item>
+        <item name="android:fontFamily">@font/montserrat_medium</item>
+    </style>
+
+</resources>

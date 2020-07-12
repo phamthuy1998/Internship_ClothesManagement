@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_product"
+    app:startDestination="@id/fragment_product_detail">
+
+    <fragment
+        android:id="@+id/fragment_product_detail"
+        android:name="com.sg.snapshop.view.wishlist.ProductDetailFragment"
+        tools:layout="@layout/fragment_product_detail"/>
+
+    <fragment
+        android:id="@+id/fragment_over_view"
+        android:name="com.sg.snapshop.view.wishlist.OverViewFragment"
+        tools:layout="@layout/fragment_over_view"/>
+
+    <include app:graph="@navigation/nav_carousel_detail" />
+
+    <fragment
+        android:id="@+id/sizeGuideFragment"
+        tools:layout="@layout/fragment_size_guide"
+        android:name="com.sg.snapshop.view.sizeguide.SizeGuideFragment"
+        android:label="SizeGuideFragment" />
+
+</navigation>

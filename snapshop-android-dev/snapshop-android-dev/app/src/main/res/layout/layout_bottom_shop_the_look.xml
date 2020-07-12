@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:behavior_hideable="true"
+        app:behavior_peekHeight="?attr/actionBarSize"
+        app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/clShopTheLook"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_marginBottom="@dimen/layout_margin_8dp"
+                app:srcCompat="@drawable/icon_up"
+                app:layout_constraintBottom_toTopOf="@id/tvShopTheLook"
+                app:layout_constraintStart_toStartOf="@id/tvShopTheLook"
+                app:layout_constraintEnd_toEndOf="@id/tvShopTheLook"
+                app:layout_constraintWidth_percent="0.06"
+                app:layout_constraintDimensionRatio="1" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvShopTheLook"
+                style="@style/normal_text"
+                android:textColor="@color/white"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/shop_the_look"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"/>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:layout_marginTop="@dimen/layout_margin_16dp"
+            android:background="@drawable/background_story_vp">
+
+            <TextView
+                android:id="@+id/tvTitle"
+                style="@style/normal_text.bold"
+                android:text="@string/shop_the_look"
+                android:textAllCaps="true"
+                android:layout_marginTop="@dimen/layout_margin_16dp" />
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rvStoryProducts"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/layout_margin_16dp"
+                    android:paddingStart="@dimen/layout_margin_16dp"
+                    android:paddingEnd="@dimen/no_padding"
+                    android:paddingBottom="@dimen/layout_margin_32dp"
+                    tools:listitem="@layout/item_product"/>
+
+            </FrameLayout>
+
+
+        </LinearLayout>
+    </LinearLayout>
+
+</layout>

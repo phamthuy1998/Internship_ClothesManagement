@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="title"
+            type="String" />
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <View
+            android:id="@+id/divider_top"
+            style="@style/divider"
+            android:layout_height="@dimen/layout_margin_1dp"
+            android:background="@android:color/holo_orange_light"
+            app:layout_constraintWidth_percent="0.9"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/ivFireworkLeft"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginTop="@dimen/layout_margin_2dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintDimensionRatio="1"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/divider_top"
+            app:layout_constraintWidth_percent="0.1"
+            app:srcCompat="@drawable/ic_firework_discount" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvDiscountInfo"
+            style="@style/normal_text"
+            android:layout_width="0dp"
+            android:lines="2"
+            android:ellipsize="end"
+            android:text="@{title}"
+            android:textColor="@android:color/holo_orange_light"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@id/ivFireworkLeft"
+            app:layout_constraintEnd_toStartOf="@id/ivFireworkRight"
+            tools:text="@string/discount_info"/>
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/ivFireworkRight"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:srcCompat="@drawable/ic_firework_discount"
+            app:layout_constraintWidth_percent="0.1"
+            app:layout_constraintDimensionRatio="1"
+            app:layout_constraintTop_toTopOf="@id/ivFireworkLeft"
+            app:layout_constraintBottom_toBottomOf="@id/ivFireworkLeft"
+            app:layout_constraintEnd_toEndOf="parent"/>
+
+        <View
+            style="@style/divider"
+            android:layout_height="@dimen/layout_margin_1dp"
+            android:background="@android:color/holo_orange_light"
+            android:layout_marginTop="@dimen/layout_margin_2dp"
+            app:layout_constraintWidth_percent="0.9"
+            app:layout_constraintTop_toBottomOf="@id/ivFireworkRight"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

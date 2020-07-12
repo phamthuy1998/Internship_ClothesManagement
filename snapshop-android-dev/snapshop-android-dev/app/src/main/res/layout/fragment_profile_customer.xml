@@ -1,0 +1,261 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="parentFragment"
+            type="com.sg.snapshop.view.profile.ProfileFragment" />
+
+        <variable
+            name="profile"
+            type="com.sg.core.model.Profile" />
+    </data>
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:overScrollMode="always">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/cover"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:scaleType="centerCrop"
+                android:src="@drawable/bg_login"
+                android:onClick="@{(v) -> parentFragment.onClick(v)}"
+                app:layout_constraintDimensionRatio="2.8"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/avatar"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:scaleType="centerCrop"
+                android:src="@drawable/bg_login"
+                app:civ_border_color="#FFFFFF"
+                app:civ_border_width="2dp"
+                android:onClick="@{(v) -> parentFragment.onClick(v)}"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/cover"
+                app:layout_constraintBottom_toBottomOf="@id/cover"/>
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/textHi"
+                style="@style/normal_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/layout_margin_8dp"
+                android:fontFamily="@font/montserrat_regular"
+                android:gravity="center"
+                android:text="@string/hi"
+                app:layout_constraintTop_toBottomOf="@id/avatar" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/username"
+                style="@style/normal_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/montserrat_bold"
+                android:gravity="center"
+                android:text="@{profile.user.first_name}"
+                app:layout_constraintTop_toBottomOf="@id/textHi"
+                tools:text="vinh" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/details_btn"
+                style="@style/textProfile"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:drawableStart="@drawable/ic_my_detail"
+                android:drawableEnd="@drawable/ic_right_arrow"
+                android:gravity="center_vertical"
+                android:onClick="@{(v) -> parentFragment.onClick(v)}"
+                android:text="@string/my_details"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/username" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.5dp"
+                android:layout_marginStart="16dp"
+                android:background="@color/gray_stroke"
+                app:layout_constraintTop_toBottomOf="@id/details_btn" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/change_pass_btn"
+                style="@style/textProfile"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:drawableStart="@drawable/ic_pass_field_black"
+                android:drawableEnd="@drawable/ic_right_arrow"
+                android:gravity="center_vertical"
+                android:drawablePadding="17dp"
+                android:paddingStart="@dimen/size_18dp"
+                android:onClick="@{(v) -> parentFragment.onClick(v)}"
+                android:text="@string/change_password"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/details_btn" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.5dp"
+                android:layout_marginStart="16dp"
+                android:background="@color/gray_stroke"
+                app:layout_constraintTop_toBottomOf="@id/change_pass_btn" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/address_book_btn"
+                style="@style/textProfile"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:drawableStart="@drawable/ic_booking_address"
+                android:drawableEnd="@drawable/ic_right_arrow"
+                android:gravity="center_vertical"
+                android:onClick="@{(v) -> parentFragment.onClick(v)}"
+                android:text="@string/address_book"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/change_pass_btn" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.5dp"
+                android:layout_marginStart="16dp"
+                android:background="@color/gray_stroke"
+                app:layout_constraintTop_toBottomOf="@id/address_book_btn" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/payment_method_btn"
+                style="@style/textProfile"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:drawableStart="@drawable/ic_payment_method"
+                android:drawableEnd="@drawable/ic_right_arrow"
+                android:gravity="center_vertical"
+                android:onClick="@{(v) -> parentFragment.onClick(v)}"
+                android:text="@string/payment_methods"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/address_book_btn" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.5dp"
+                android:layout_marginStart="16dp"
+                android:background="@color/gray_stroke"
+                app:layout_constraintTop_toBottomOf="@id/payment_method_btn" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/customer_service_btn"
+                style="@style/textProfile"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:drawableStart="@drawable/ic_customer_service"
+                android:drawableEnd="@drawable/ic_right_arrow"
+                android:gravity="center_vertical"
+                android:onClick="@{(v) -> parentFragment.onClick(v)}"
+                android:text="@string/customer_service"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/payment_method_btn" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.5dp"
+                android:layout_marginStart="16dp"
+                android:background="@color/gray_stroke"
+                app:layout_constraintTop_toBottomOf="@id/customer_service_btn" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/delivery_return_btn"
+                style="@style/textProfile"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:drawableStart="@drawable/ic_delivery_return_policy"
+                android:drawableEnd="@drawable/ic_right_arrow"
+                android:gravity="center_vertical"
+                android:onClick="@{(v) -> parentFragment.onClick(v)}"
+                android:text="@string/delivery_and_returns"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/customer_service_btn" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.5dp"
+                android:layout_marginStart="16dp"
+                android:background="@color/gray_stroke"
+                app:layout_constraintTop_toBottomOf="@id/delivery_return_btn" />
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/layout_margin_16dp"
+                android:background="@color/background"
+                app:layout_constraintTop_toBottomOf="@id/delivery_return_btn" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/about_us_btn"
+                style="@style/textProfile"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/layout_margin_16dp"
+                android:drawableStart="@drawable/ic_about_us"
+                android:drawableEnd="@drawable/ic_right_arrow"
+                android:gravity="center_vertical"
+                android:drawablePadding="19dp"
+                android:onClick="@{(v) -> parentFragment.onClick(v)}"
+                android:text="@string/about_us"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/delivery_return_btn" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.5dp"
+                android:layout_marginStart="16dp"
+                android:background="@color/gray_stroke"
+                app:layout_constraintTop_toBottomOf="@id/about_us_btn" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/terms_btn"
+                style="@style/textProfile"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:drawableStart="@drawable/ic_terms_conditions"
+                android:drawableEnd="@drawable/ic_right_arrow"
+                android:gravity="center_vertical"
+                android:onClick="@{(v) -> parentFragment.onClick(v)}"
+                android:text="@string/terms_and_conditions_"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/about_us_btn" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.5dp"
+                android:layout_marginStart="16dp"
+                android:background="@color/gray_stroke"
+                app:layout_constraintTop_toBottomOf="@id/terms_btn" />
+
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/log_out_btn"
+                style="@style/textProfile"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:drawableStart="@drawable/ic_logout"
+                android:drawableEnd="@drawable/ic_right_arrow"
+                android:gravity="center_vertical"
+                android:onClick="@{(v) -> parentFragment.onClick(v)}"
+                android:text="@string/log_out"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/terms_btn" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.core.widget.NestedScrollView>
+</layout>

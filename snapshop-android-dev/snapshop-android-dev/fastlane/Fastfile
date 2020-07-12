@@ -1,0 +1,78 @@
+
+default_platform :android
+
+platform :android do
+  before_all do
+    # ENV["SLACK_URL"] = "https://hooks.slack.com/services/..."
+  end
+
+  desc "Build app"
+  lane :buildApp do 
+     # build app
+     gradle(
+      task: "assemble",
+      flavor: "Staging",
+      build_type: "Release"
+    )
+  end 
+  
+  desc " Deploy to firebase distribution"
+  lane :distribute do |options|
+    puts "Hi there " + options[:flavor]
+
+    flavor = options[:flavor] ? options[:flavor] : "Staging"
+     # build app
+    gradle(
+      task: "clean"
+    )
+     gradle(
+      task: "assemble",
+      flavor: flavor,
+      build_type: "Release"
+    )
+    
+    # deploy app to firebase
+    mailGroup = options[:mailGroup] ?  options[:mailGroup] : 'jay@vinova.sg'
+    releaseNote = options[:releaseMessage] ? options[:releaseMessage] : "Android new build"
+        firebase_app_distribution(
+            app: "1:681050347259:android:f6e9bfc58abd3b5376025e",
+            groups: mailGroup,
+            release_notes: releaseNote,
+          )
+  end
+
+  desc "Send message to slack channel"
+  def sendSlackMessage(slackChannel, msg, isSuccess)
+    slack(
+      message: msg,
+      success: isSuccess,
+      channel: slackChannel,
+      default_payloads: [:git_branch, :last_git_commit_message],
+      use_webhook_configured_username_and_icon: true,
+      attachment_properties: {
+        fields: [{
+          title: "Android Snapshop",
+          short: true
+        }]
+      }
+    )  
+  end
+  
+  after_all do |lane, options| 
+    sendSlackMessage("#{ENV["SLACK_SUCCESS_CHANNEL"]}", options[:releaseMessage], true)
+    # This block is called, only if the executed lane was successful
+    
+    # slack(
+    #   message: "Successfully deployed new App Update."
+    # )
+  end
+
+  error do |lane, exception|
+    sendSlackMessage("#{ENV["SLACK_ERROR_CHANNEL"]}", "Build fail with error:  #{exception}", false)
+
+    # slack(
+    #   message: exception.message,
+    #   success: false
+    # )
+  end
+end

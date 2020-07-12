@@ -1,0 +1,203 @@
+package com.sg.snapshop.view.login
+
+import android.graphics.Typeface
+import android.os.Bundle
+import android.view.KeyEvent
+import android.view.View
+import android.view.WindowManager
+import androidx.core.content.res.ResourcesCompat
+import androidx.core.os.bundleOf
+import androidx.lifecycle.Observer
+import com.sg.core.CoreApplication
+import com.sg.core.param.LogInParam
+import com.sg.snapshop.R
+import com.sg.snapshop.base.BaseActivity
+import com.sg.snapshop.base.BaseFragment
+import com.sg.snapshop.constant.ERROR_CODE_404
+import com.sg.snapshop.constant.FROM_SHOPPING_BAG
+import com.sg.snapshop.databinding.FragmentLoginBinding
+import com.sg.snapshop.ext.*
+import com.sg.snapshop.view.MainActivity
+import com.sg.snapshop.view.home.StoryDetailActivity
+import com.sg.snapshop.viewmodel.AuthenticateViewModel
+import kotlinx.android.synthetic.main.activity_main.*
+import org.koin.androidx.viewmodel.ext.android.viewModel
+
+class LoginFragment : BaseFragment<FragmentLoginBinding>() {
+
+    override val layoutId: Int
+        get() = R.layout.fragment_login
+
+    private var fromRegister = false
+    private var fromShoppingBag = false
+    private val authViewModel: AuthenticateViewModel by viewModel()
+    private var typeface: Typeface? = null
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        (requireActivity() as? BaseActivity<*>)?.apply {
+            window.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE)
+            transparentStatusBar(isFull = false, isBlack = true)
+        }
+
+        val bundle = this.arguments
+        if (bundle != null) {
+            fromRegister = bundle.getBoolean("fromRegister", false)
+            fromShoppingBag = bundle.getBoolean(FROM_SHOPPING_BAG, false)
+        }
+        observeViewModel()
+        typeface = ResourcesCompat.getFont(requireContext(), R.font.montserrat_regular)
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        activity?.btnNav?.gone()
+        setupToolbar()
+    }
+
+
+    private fun observeViewModel() {
+        authViewModel.logInLiveData.observe(this, Observer {
+            if (it != null) {
+                CoreApplication.instance.saveUser(it)
+                (activity as? MainActivity)?.updateUIBottomNav()
+                navController.popBackStack()
+                if (fromShoppingBag) {
+                    return@Observer
+                }
+                if (fromRegister)
+                    navController.popBackStack()
+                activity?.window?.clearFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS)
+                (activity as? MainActivity)?.apply {
+                    viewBinding.btnNav.selectedItemId = R.id.nav_profile
+                }
+            }
+        })
+
+        authViewModel.error.observe(this, Observer {
+            if (it.second == ERROR_CODE_404) {
+                (requireActivity() as? BaseActivity<*>)?.isShowErrorNetwork(true)
+            } else {
+                viewBinding.btnSignIn.isLoading = false
+                messageHandler?.runMessageErrorHandler(it.first)
+            }
+        })
+    }
+
+    override fun bindEvent() {
+        super.bindEvent()
+        setBackPressEvent()
+        viewBinding.fragment = this
+        viewBinding.isShowPassword = false
+        viewBinding.isValid = false
+        viewBinding.edtEmail.setOnFocusChangeListener { _, hasFocus ->
+            if (!hasFocus) {
+                viewBinding.isValid = viewBinding.edtEmail.text.toString().trim().isValidEmail()
+            }
+        }
+        viewBinding.tvDontAccount.setOnClickListener {
+            if (!fromRegister) {
+                val bundle = Bundle()
+                bundle.putBoolean("fromLogin", true)
+                bundle.putBoolean(FROM_SHOPPING_BAG, fromShoppingBag)
+                navController.navigate(R.id.registerFragment, bundle)
+            } else {
+                navController.popBackStack()
+            }
+        }
+
+    }
+
+    fun onClick(v: View?) {
+        when (v?.id) {
+            R.id.btn_close -> {
+                navController.popBackStack()
+                if (fromRegister)
+                    navController.popBackStack()
+                activity?.window?.clearFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS)
+            }
+            R.id.btn_sign_in -> {
+                if (isValidInput()) {
+                    viewBinding.btnSignIn.isLoading = true
+                    authViewModel.logIn(
+                        LogInParam(
+                            viewBinding.edtEmail.text.toString(),
+                            viewBinding.edtPassword.text.toString()
+                        )
+                    )
+                }
+            }
+            R.id.toggle_password -> {
+                viewBinding.isShowPassword = !viewBinding.isShowPassword!!
+                viewBinding.edtPassword.togglePassword(!viewBinding.isShowPassword!!, typeface)
+            }
+            R.id.btn_forgot_pass -> {
+                navController.navigate(
+                    R.id.fragmentForgotPassword,
+                    bundleOf("email" to viewBinding.edtEmail.text.toString())
+                )
+            }
+        }
+    }
+
+
+    private fun setBackPressEvent() {
+        view?.isFocusableInTouchMode = true
+        view?.requestFocus()
+        view?.setOnKeyListener { _, keyCode, _ ->
+            if (keyCode == KeyEvent.KEYCODE_BACK) {
+                activity?.window?.clearFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS)
+            }
+            false
+        }
+    }
+
+    private fun setupToolbar() {
+        (requireActivity() as? MainActivity)?.apply {
+            viewBinding.layoutToolbar.toolbar.gone()
+        }
+        (requireActivity() as? StoryDetailActivity)?.apply {
+            viewBinding.layoutToolbar.toolbar.gone()
+        }
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        (requireActivity() as? MainActivity)?.apply {
+            viewBinding.layoutToolbar.toolbar.visible()
+        }
+        (requireActivity() as? StoryDetailActivity)?.apply {
+            viewBinding.layoutToolbar.toolbar.visible()
+        }
+    }
+
+    private fun isValidInput(): Boolean {
+        val email = viewBinding.edtEmail.text.toString().trim()
+        val password = viewBinding.edtPassword.text.toString().trim()
+        return when {
+            (email.isEmpty()) -> {
+                messageHandler?.runMessageErrorHandler(
+                    getString(
+                        R.string.error_empty, getString(
+                            R.string.email
+                        )
+                    )
+                )
+                false
+            }
+            (password.isEmpty()) -> {
+                messageHandler?.runMessageErrorHandler(      getString(
+                    R.string.error_empty, getString(
+                        R.string.password
+                    )
+                ))
+                false
+            }
+            !(email.isValidEmail()) -> {
+                messageHandler?.runMessageErrorHandler(getString(R.string.invalid_email))
+                false
+            }
+            else -> true
+        }
+    }
+}

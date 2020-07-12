@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_register" app:startDestination="@id/register">
+
+    <fragment
+        android:id="@+id/register"
+        tools:layout="@layout/fragment_register"
+        android:name="com.sg.snapshop.view.register.RegisterFragment"
+        android:label="@string/join_snapshop" >
+        <action
+            android:id="@+id/action_register_to_loginFragment"
+            app:destination="@id/loginFragment"
+            app:popUpTo="@+id/register"
+            app:popUpToInclusive="true" />
+    </fragment>
+    <fragment
+        android:id="@+id/loginFragment"
+        android:name="com.sg.snapshop.view.login.LoginFragment"
+        tools:layout="@layout/fragment_login"
+        android:label="LoginFragment" >
+        <argument
+            android:name="fromRegister"
+            app:argType="boolean"
+            android:defaultValue="true" />
+    </fragment>
+    <fragment
+        android:id="@+id/fragmentForgotPassword"
+        tools:layout="@layout/fragment_forgot_password"
+        android:name="com.sg.snapshop.view.forgotpassword.FragmentForgotPassword"
+        android:label="FragmentForgotPassword" />
+</navigation>

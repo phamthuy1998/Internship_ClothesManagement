@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <import type="android.text.TextUtils" />
+
+        <variable
+            name="creditCard"
+            type="com.sg.core.model.CreditCard" />
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/billingAddressContainer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/layout_margin_16dp"
+        android:background="@color/white"
+        android:padding="@dimen/layout_margin_8dp">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/billingAddressText"
+            style="@style/normal_text.bold"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/layout_margin_8dp"
+            android:text="@string/billing_address"
+            android:textAlignment="viewStart"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/billingAddressLine1"
+            style="@style/normal_text"
+            android:layout_width="0dp"
+            android:text="@{creditCard.address_line1}"
+            android:textAlignment="viewStart"
+            android:visibility="@{TextUtils.isEmpty(creditCard.address_line1) ? View.GONE : View.VISIBLE}"
+            android:layout_marginStart="@dimen/layout_margin_8dp"
+            app:layout_constraintTop_toBottomOf="@id/billingAddressText"
+            app:layout_constraintStart_toStartOf="@id/billingAddressText"
+            app:layout_constraintEnd_toEndOf="@id/billingAddressText"
+            tools:text="flat 7 - 3 queens road" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/emptyBillingAddressText"
+            style="@style/normal_text"
+            android:layout_width="0dp"
+            android:text="@{creditCard == null ? @string/add_a_billing_address : @string/invalid_method}"
+            android:textAlignment="viewStart"
+            android:textColor="#FF0000"
+            android:visibility="@{(TextUtils.isEmpty(creditCard.address_line1) &amp;&amp; TextUtils.isEmpty(creditCard.address_line2) &amp;&amp;TextUtils.isEmpty(creditCard.address_city) &amp;&amp;TextUtils.isEmpty(creditCard.address_state) &amp;&amp;TextUtils.isEmpty(creditCard.address_country) &amp;&amp;TextUtils.isEmpty(creditCard.address_zip) )? View.VISIBLE : View.GONE}"
+            android:layout_marginStart="@dimen/layout_margin_8dp"
+            app:layout_constraintTop_toBottomOf="@id/billingAddressText"
+            app:layout_constraintStart_toStartOf="@id/billingAddressText"
+            app:layout_constraintEnd_toEndOf="@id/billingAddressText"/>
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/billingAddressLine2"
+            style="@style/normal_text"
+            android:layout_width="0dp"
+            android:text="@{TextUtils.isEmpty(creditCard.address_line2) ? @string/empty_option : creditCard.address_line2}"
+            android:textAlignment="viewStart"
+            app:layout_constraintTop_toBottomOf="@id/billingAddressLine1"
+            app:layout_constraintStart_toStartOf="@id/billingAddressLine1"
+            app:layout_constraintEnd_toEndOf="@id/billingAddressLine1"
+            tools:text="2" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/billingAddressTownCity"
+            style="@style/normal_text"
+            android:layout_width="0dp"
+            android:text="@{creditCard.address_city}"
+            android:textAlignment="viewStart"
+            android:visibility="@{TextUtils.isEmpty(creditCard.address_country) ? View.GONE : View.VISIBLE}"
+            app:layout_constraintTop_toBottomOf="@id/billingAddressLine2"
+            app:layout_constraintStart_toStartOf="@id/billingAddressLine2"
+            app:layout_constraintEnd_toEndOf="@id/billingAddressLine2"
+            tools:text="richmond" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/billingAddressCountryArea"
+            style="@style/normal_text"
+            android:layout_width="0dp"
+            android:text="@{creditCard.address_state}"
+            android:textAlignment="viewStart"
+            android:visibility="@{TextUtils.isEmpty(creditCard.address_state) ? View.GONE : View.VISIBLE}"
+            app:layout_constraintTop_toBottomOf="@id/billingAddressTownCity"
+            app:layout_constraintStart_toStartOf="@id/billingAddressTownCity"
+            app:layout_constraintEnd_toEndOf="@id/billingAddressTownCity"
+            tools:text="London" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/billingAddressCountry"
+            style="@style/normal_text"
+            android:layout_width="0dp"
+            android:text="@{creditCard.address_country}"
+            android:textAlignment="viewStart"
+            android:visibility="@{TextUtils.isEmpty(creditCard.address_country) ? View.GONE : View.VISIBLE}"
+            app:layout_constraintTop_toBottomOf="@id/billingAddressCountryArea"
+            app:layout_constraintStart_toStartOf="@id/billingAddressCountryArea"
+            app:layout_constraintEnd_toEndOf="@id/billingAddressCountryArea"
+            tools:text="United Kingdom" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/billingAddressPostCode"
+            style="@style/normal_text"
+            android:layout_width="0dp"
+            android:text="@{creditCard.address_zip}"
+            android:textAlignment="viewStart"
+            android:visibility="@{TextUtils.isEmpty(creditCard.address_zip) ? View.GONE : View.VISIBLE}"
+            app:layout_constraintTop_toBottomOf="@id/billingAddressCountry"
+            app:layout_constraintStart_toStartOf="@id/billingAddressCountry"
+            app:layout_constraintEnd_toEndOf="@id/billingAddressCountry"
+            tools:text="TW10 6JW" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/ic_right_arrow" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

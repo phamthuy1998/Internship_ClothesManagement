@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<network-security-config>
+    <domain-config cleartextTrafficPermitted="true">
+        <domain includeSubdomains="true">api-staging.snapshop.com</domain>
+        <domain includeSubdomains="true">api-staging1.snapshop.com</domain>
+        <domain includeSubdomains="true">api.snapshop.me</domain>
+        <domain includeSubdomains="true">s3-eu-west-1.amazonaws.com</domain>
+        <domain includeSubdomains="true">snapshop-staging.s3.amazonaws.com</domain>
+        <domain includeSubdomains="true">api.stripe.com</domain>
+    </domain-config>
+</network-security-config>

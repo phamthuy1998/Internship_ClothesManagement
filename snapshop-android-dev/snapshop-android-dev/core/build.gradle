@@ -1,0 +1,121 @@
+apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-kapt'
+apply plugin: 'kotlin-android-extensions'
+
+android {
+    compileSdkVersion 29
+    buildToolsVersion "29.0.2"
+
+    defaultConfig {
+        minSdkVersion 24
+        targetSdkVersion 29
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        consumerProguardFiles 'consumer-rules.pro'
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    dataBinding {
+        enabled = true
+    }
+
+    androidExtensions {
+        experimental = true
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled true
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    flavorDimensions "mode"
+
+    productFlavors{
+        staging{
+            buildConfigField "String", "SERVER_URL", '"https://api-staging.snapshop.com"'
+//            buildConfigField "String", "SERVER_URL", '"http://api-staging1.snapshop.com"'
+            buildConfigField "String", "AWS_URL_IMAGE", '"https://snapshop-staging.s3.amazonaws.com/"'
+            buildConfigField "String", "AWS_BUCKET", '"snapshop-staging"'
+            buildConfigField "String", "IDENTITY_POOL_ID", '"eu-west-1:117ec97f-e345-46dc-a919-afa8bded04fd"'
+            buildConfigField "String", "PUBLISHABLE_KEY", '"pk_test_FXlXm7NoEi2SP4FUXBJXkmim"'
+        }
+        prod{
+            buildConfigField "String", "SERVER_URL", '"https://api.snapshop.me"'
+            buildConfigField "String", "AWS_URL_IMAGE", '"https://snapshop-prod.s3.amazonaws.com/"'
+            buildConfigField "String", "AWS_BUCKET", '"snapshop-prod"'
+            buildConfigField "String", "IDENTITY_POOL_ID", '"eu-west-1:61e3de32-80c6-4981-bce5-a5a021db70b5"'
+            buildConfigField "String", "PUBLISHABLE_KEY", '"pk_live_i1zLnfVCs8lLvZlsym7NWVk6"'
+        }
+    }
+
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation 'androidx.appcompat:appcompat:1.1.0'
+    testImplementation 'junit:junit:4.12'
+    androidTestImplementation 'androidx.test:runner:1.2.0'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+    implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
+
+    //stripe sdk for payment method
+    implementation 'com.stripe:stripe-android:11.1.4'
+
+    //retrofit and logging
+    api deps.retrofit.runtime
+    api deps.retrofit.gson
+    api deps.okhttp_logging_interceptor
+
+    //glide
+    api deps.glide.runtime
+    annotationProcessor deps.glide.compiler
+
+    // koin
+    api deps.koin.scope
+    api deps.koin.viewmodel
+
+    //  lifecycle
+    api deps.lifecycle.viewmodel_ktx
+
+    // coroutine
+    api deps.coroutine.core
+    api deps.coroutine.android
+
+    // room
+    api deps.room.ktx
+    kapt deps.room.compiler
+
+    //paging
+    api deps.paging_ktx
+
+    //navigation
+    api deps.navigation.fragment_ktx
+    api deps.navigation.ui_ktx
+
+    //stetho
+    api deps.stetho.common
+    api deps.stetho.okhttp
+
+    // aws
+    api deps.aws.android_sdk
+    api deps.aws.mobile_client
+    api deps.aws.auth_userpools
+
+    debugCompile 'com.readystatesoftware.chuck:library:1.1.0'
+    releaseCompile 'com.readystatesoftware.chuck:library-no-op:1.1.0'
+
+}
+repositories {
+    mavenCentral()
+    google()
+}

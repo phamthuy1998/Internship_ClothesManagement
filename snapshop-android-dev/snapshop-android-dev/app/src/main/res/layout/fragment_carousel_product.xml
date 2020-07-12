@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="count"
+            type="Integer" />
+    </data>
+
+    <FrameLayout
+        android:id="@+id/container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.appcompat.widget.AppCompatImageButton
+            android:id="@+id/btnFab"
+            android:layout_width="@dimen/size_40dp"
+            android:layout_height="@dimen/size_40dp"
+            android:layout_gravity="center_horizontal"
+            android:background="@drawable/background_fab_top"
+            android:backgroundTint="@color/white"
+            android:elevation="3dp"
+            android:layout_margin="@dimen/layout_margin_16dp"
+            android:src="@drawable/ic_up_arrow"
+            android:translationZ="3dp"
+            android:visibility="invisible" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvProducts"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            />
+
+        <LinearLayout
+            android:id="@+id/layoutLoading"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:visibility="gone"
+            android:gravity="center_horizontal"
+            android:background="@color/white">
+
+            <pl.droidsonroids.gif.GifImageView
+                android:id="@+id/progressBar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/loading"
+                android:layout_marginTop="@dimen/layout_margin_32dp"/>
+
+        </LinearLayout>
+
+    </FrameLayout>
+
+</layout>

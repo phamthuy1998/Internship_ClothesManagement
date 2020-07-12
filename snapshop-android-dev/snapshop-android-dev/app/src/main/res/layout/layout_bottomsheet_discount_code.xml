@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <import type="android.view.View" />
+
+        <variable
+            name="discount"
+            type="com.sg.core.model.Discount" />
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:background="@color/white"
+        android:paddingTop="@dimen/layout_margin_32dp"
+        android:paddingBottom="@dimen/size_200dp">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvTitle"
+            style="@style/normal_text.SemiBold"
+            android:textSize="@dimen/text_size_20sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/enter_discount_code"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"/>
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvDesc"
+            style="@style/normal_text.grey"
+            android:text="@string/your_code_must_has_8_alpha_digit_characters"
+            app:layout_constraintTop_toBottomOf="@id/tvTitle"
+            app:layout_constraintStart_toStartOf="@id/tvTitle"
+            app:layout_constraintEnd_toEndOf="@id/tvTitle"/>
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/edtDiscountCode"
+            style="@style/normal_text.EditText"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/layout_margin_8dp"
+            android:text="@{discount.discount_code}"
+            app:layout_constraintWidth_percent="0.75"
+            app:layout_constraintTop_toBottomOf="@id/tvDesc"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"/>
+
+        <com.sg.snapshop.widget.LoadingButton
+            android:id="@+id/btnApply"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/layout_margin_16dp"
+            app:text="Apply"
+            app:loadingText="Processing"
+            app:isShowTextBehind="true"
+            app:layout_constraintTop_toBottomOf="@id/edtDiscountCode"
+            app:layout_constraintStart_toStartOf="@id/tvDesc"
+            app:layout_constraintEnd_toEndOf="@id/tvDesc"/>
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvRemoveDiscount"
+            style="@style/normal_text.grey"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/layout_margin_8dp"
+            android:visibility="@{discount != null ? View.VISIBLE : View.GONE}"
+            app:layout_constraintTop_toBottomOf="@+id/btnApply"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            tools:text="Do not need"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    app:startDestination="@id/fragmentUploadProduct"
+    android:id="@+id/nav_crop_image">
+
+    <fragment
+        android:id="@+id/fragmentUploadProduct"
+        android:name="com.sg.snapshop.view.uploadproduct.UploadProductFragment"
+        tools:layout="@layout/fragment_upload_product">
+
+        <action android:id="@+id/action_upload_preview"
+            app:destination="@id/fragmentUploadPreview"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"/>
+
+        <action android:id="@+id/action_trim_video"
+            app:destination="@id/fragmentTrimVideo"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"/>
+
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/fragmentUploadPreview"
+        android:name="com.sg.snapshop.view.uploadproduct.UploadPreviewFragment"
+        tools:layout="@layout/fragment_upload_product_preview">
+
+        <action android:id="@+id/action_add_product"
+            app:destination="@id/fragmentAddProduct"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"/>
+
+        <action android:id="@+id/action_add_tag"
+            app:destination="@id/fragmentAddTag"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"/>
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/fragmentAddProduct"
+        android:name="com.sg.snapshop.view.uploadproduct.AddProductFragment"
+        tools:layout="@layout/fragment_add_product">
+    </fragment>
+
+    <fragment
+        android:id="@+id/fragmentAddTag"
+        android:name="com.sg.snapshop.view.uploadproduct.AddTagFragment"
+        tools:layout="@layout/fragment_add_tag">
+    </fragment>
+
+    <fragment
+        android:id="@+id/fragmentTrimVideo"
+        android:name="com.sg.snapshop.view.uploadproduct.TrimVideoFragment"
+        tools:layout="@layout/fragment_trim_video">
+
+        <action android:id="@+id/action_upload_preview"
+            app:destination="@id/fragmentUploadPreview"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"/>
+
+    </fragment>
+
+
+
+</navigation>

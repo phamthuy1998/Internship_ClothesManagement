@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="text"
+            type="String" />
+
+        <variable
+            name="isLoading"
+            type="Boolean" />
+
+        <variable
+            name="isOutOfStock"
+            type="Boolean" />
+
+        <variable
+            name="isShowTextBehind"
+            type="Boolean" />
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@{isLoading || isOutOfStock?@drawable/button_bg_gray:@drawable/button_bg}"
+        android:gravity="center"
+        android:padding="@dimen/size_8dp"
+        android:weightSum="1">
+
+        <TextView
+            android:id="@+id/content"
+            style="@style/normal_text"
+            android:layout_width="0dp"
+            android:textSize="@dimen/text_size_14sp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/size_8dp"
+            android:layout_weight="1"
+            android:padding="@dimen/size_8dp"
+            android:text="@{text}"
+            android:textColor="@color/white"
+            android:visibility="@{(isLoading &amp;&amp; !isShowTextBehind)? View.INVISIBLE: View.VISIBLE}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="Save changes" />
+
+        <pl.droidsonroids.gif.GifImageView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:scaleType="fitCenter"
+            android:src="@drawable/loading_view_button"
+            android:visibility="@{isLoading?View.VISIBLE:View.INVISIBLE}"
+            app:layout_constraintBottom_toBottomOf="@id/content"
+            app:layout_constraintTop_toTopOf="@id/content" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

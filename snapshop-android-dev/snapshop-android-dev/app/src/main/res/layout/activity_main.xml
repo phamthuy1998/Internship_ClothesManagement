@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white">
+
+        <include
+            android:id="@+id/layoutToolbar"
+            layout="@layout/layout_toolbar" />
+
+        <androidx.fragment.app.FragmentContainerView
+            android:id="@+id/nav_host_container"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            app:layout_anchor="@+id/constraintLayout"
+            app:layout_anchorGravity="center"
+            app:layout_constraintBottom_toTopOf="@id/btnNav"
+            app:layout_constraintTop_toBottomOf="@id/layoutToolbar" />
+
+        <include
+            android:id="@+id/layoutLoading"
+            layout="@layout/layout_loading"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:visibility="gone"
+            app:layout_constraintBottom_toTopOf="@id/btnNav"
+            app:layout_constraintTop_toBottomOf="@id/layoutToolbar" />
+
+        <include
+            android:id="@+id/layoutLoadingPayment"
+            layout="@layout/layout_loading_payment"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:visibility="gone"
+            app:layout_constraintBottom_toTopOf="@id/btnNav"
+            app:layout_constraintTop_toBottomOf="@id/layoutToolbar" />
+
+        <include
+            android:id="@+id/layoutError"
+            layout="@layout/layout_network_error"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:visibility="gone"
+            app:layout_constraintBottom_toTopOf="@id/btnNav"
+            app:layout_constraintTop_toBottomOf="@id/layoutToolbar" />
+
+        <include
+            android:id="@+id/layout_toast"
+            layout="@layout/layout_toast"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            app:layout_constraintTop_toBottomOf="@id/layoutToolbar" />
+
+        <include
+            android:id="@+id/layout_toast_success"
+            layout="@layout/layout_toast_success"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            app:layout_constraintTop_toBottomOf="@id/layoutToolbar" />
+
+
+        <com.google.android.material.bottomnavigation.BottomNavigationView
+            android:id="@+id/btnNav"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            app:itemIconTint="@drawable/bg_icon_navigation"
+            app:itemTextAppearanceActive="@style/navigationBottomStyle"
+            app:itemTextAppearanceInactive="@style/navigationBottomStyle"
+            app:labelVisibilityMode="labeled"
+            app:itemTextColor="@drawable/bg_icon_navigation"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:menu="@menu/menu_bottom_navigation" />
+
+        <View
+            android:id="@+id/vLine"
+            style="@style/divider"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@id/btnNav" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

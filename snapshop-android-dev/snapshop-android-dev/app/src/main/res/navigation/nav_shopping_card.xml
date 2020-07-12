@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_shopping_card"
+    app:startDestination="@id/fragment_shopping_bag">
+
+    <fragment
+        android:id="@+id/fragment_shopping_bag"
+        android:name="com.sg.snapshop.view.card.ShoppingBagFragment"
+        tools:layout="@layout/fragment_shopping_bag">
+
+        <action android:id="@+id/action_pop_nav_shop"
+            app:popUpTo="@id/fragment_shop"
+            app:enterAnim="@anim/slide_in_up"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_in_down"/>
+
+        <action android:id="@+id/action_pop_nav_designer"
+            app:popUpTo="@id/fragment_designer"
+            app:enterAnim="@anim/slide_in_up"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_in_down"/>
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/fragment_checkout"
+        android:name="com.sg.snapshop.view.card.CheckoutFragment"
+        tools:layout="@layout/fragment_checkout" />
+
+    <fragment
+        android:id="@+id/fragment_brand_term_condition"
+        android:name="com.sg.snapshop.view.card.BrandTermConditionFragment"
+        tools:layout="@layout/fragment_brand_term_condition" />
+
+    <fragment
+        android:id="@+id/fragment_shipping_address"
+        android:name="com.sg.snapshop.view.addressbook.ShippingAddressDetailFragment"
+        tools:layout="@layout/fragment_detail_shipping_address" />
+
+    <fragment
+        android:id="@+id/fragment_payment"
+        android:name="com.sg.snapshop.view.payment.PaymentMethodsFragment"
+        tools:layout="@layout/fragment_payment_method"/>
+
+    <fragment
+        android:id="@+id/creditCardDetailFragment"
+        tools:layout="@layout/fragment_detail_credit_card"
+        android:name="com.sg.snapshop.view.payment.CreditCardDetailFragment"
+        android:label="CreditCardDetailFragment" >
+        <argument
+            android:name="creditCard"
+            app:argType="com.sg.core.model.CreditCard" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/fragment_billing_address"
+        android:name="com.sg.snapshop.view.addressbook.BillingAddressDetailFragment"
+        tools:layout="@layout/fragment_detail_billing_address" />
+
+    <fragment
+        android:id="@+id/fragment_bill_address"
+        android:name="com.sg.snapshop.view.card.BillAddressDetailFragment"
+        tools:layout="@layout/fragment_detail_bill_address" />
+
+    <fragment
+        android:id="@+id/fragment_product_detail"
+        android:name="com.sg.snapshop.view.wishlist.ProductDetailFragment"
+        tools:layout="@layout/fragment_product_detail"/>
+
+    <fragment
+        android:id="@+id/fragment_over_view"
+        android:name="com.sg.snapshop.view.wishlist.OverViewFragment"
+        tools:layout="@layout/fragment_over_view"/>
+
+    <fragment
+        android:id="@+id/sizeGuideFragment"
+        tools:layout="@layout/fragment_size_guide"
+        android:name="com.sg.snapshop.view.sizeguide.SizeGuideFragment"
+        android:label="SizeGuideFragment" />
+
+    <fragment
+        android:id="@+id/fragment_confirm_checkout"
+        android:name="com.sg.snapshop.view.card.ConfirmCheckoutFragment"
+        tools:layout="@layout/fragment_confirm_checkout" />
+
+    <include
+        app:graph="@navigation/nav_login"/>
+
+</navigation>

@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="user"
+            type="com.sg.core.model.User" />
+
+        <import type="android.text.TextUtils" />
+
+        <variable
+            name="fragment"
+            type="com.sg.snapshop.view.addressbook.BillingAddressDetailFragment" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/container"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/white"
+                android:clickable="true"
+                android:focusableInTouchMode="true">
+
+                <androidx.appcompat.widget.AppCompatSpinner
+                    android:id="@+id/spCountry"
+                    style="@style/normal_text.EditText.Register"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:dropDownVerticalOffset="48dp"
+                    android:maxHeight="50dp"
+                    android:minHeight="50dp"
+                    android:paddingStart="6dp"
+                    android:paddingTop="@dimen/layout_margin_8dp"
+                    android:paddingBottom="@dimen/layout_margin_8dp"
+                    android:spinnerMode="dropdown"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/edtAddressLine1"
+                    style="@style/normal_text.EditText.Register"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:hint="@string/address_line_1"
+                    android:text="@{user.billing_address_line_1}"
+                    android:textCursorDrawable="@drawable/gray_cursor"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/spCountry" />
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/edtAddressLine2"
+                    style="@style/normal_text.EditText.Register"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:hint="@string/address_line_2_optional"
+                    android:text="@{user.billing_address_line_2}"
+                    android:textCursorDrawable="@drawable/gray_cursor"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/edtAddressLine1" />
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/edtAddressTownCity"
+                    style="@style/normal_text.EditText.Register"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:hint="@string/city"
+                    android:text="@{user.billing_address_town_city}"
+                    android:textCursorDrawable="@drawable/gray_cursor"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/edtAddressLine2" />
+
+                <androidx.appcompat.widget.AppCompatSpinner
+                    android:id="@+id/spCity"
+                    style="@style/normal_text.EditText.Register"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:dropDownVerticalOffset="48dp"
+                    android:maxHeight="50dp"
+                    android:minHeight="50dp"
+                    android:paddingStart="6dp"
+                    android:paddingTop="@dimen/layout_margin_8dp"
+                    android:paddingBottom="@dimen/layout_margin_8dp"
+                    android:spinnerMode="dropdown"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/edtAddressTownCity" />
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/edtPostCode"
+                    style="@style/normal_text.EditText.Register"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:hint="@string/post_code_zip"
+                    android:text="@{user.billing_address_postcode_zip}"
+                    android:textCursorDrawable="@drawable/gray_cursor"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/spCity" />
+
+                <View
+                    android:id="@+id/view"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/size_150dp"
+                    android:background="@color/white"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/edtPostCode" />
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </ScrollView>
+        <com.sg.snapshop.widget.LoadingButton
+            android:id="@+id/btn_update_address"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/layout_margin_32dp"
+            android:onClick="@{(v) -> fragment.onClick(v)}"
+            android:layout_marginBottom="@dimen/layout_margin_16dp"
+            app:isShowTextBehind="true"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:text="@string/save_and_continue" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

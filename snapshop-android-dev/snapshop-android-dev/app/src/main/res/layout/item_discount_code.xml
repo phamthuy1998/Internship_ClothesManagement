@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:gravity="center"
+    android:padding="@dimen/layout_margin_16dp"
+    android:background="@color/white">
+
+    <androidx.appcompat.widget.AppCompatTextView
+        style="@style/normal_text.bold"
+        android:text="@string/have_a_discount_code"/>
+
+    <androidx.appcompat.widget.AppCompatTextView
+        style="@style/normal_text.grey"
+        android:text="@string/apply_it_here"
+        android:layout_marginTop="@dimen/layout_margin_8dp"
+        />
+</LinearLayout>

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto" android:id="@+id/nav_book_address"
+    app:startDestination="@id/addressBookFragment" >
+
+    <fragment
+        android:id="@+id/addressBookFragment"
+        android:name="com.sg.snapshop.view.addressbook.AddressBookFragment"
+        android:label="AddressBookFragment" />
+    <fragment
+        android:id="@+id/billingAddressDetailFragment"
+        android:name="com.sg.snapshop.view.addressbook.BillingAddressDetailFragment"
+        android:label="BillingAddressDetailFragment" />
+    <fragment
+        android:id="@+id/shippingAddressDetailFragment"
+        android:name="com.sg.snapshop.view.addressbook.ShippingAddressDetailFragment"
+        android:label="ShippingAddressDetailFragment" />
+</navigation>

@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="fragment"
+            type="com.sg.snapshop.view.card.ConfirmCheckoutFragment" />
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/ivConfirm"
+            android:layout_width="@dimen/size_150dp"
+            android:layout_height="@dimen/size_150dp"
+            app:srcCompat="@drawable/bg_confirm_checkout"
+            app:layout_constraintVertical_bias="0.1"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"/>
+
+        <androidx.appcompat.widget.AppCompatTextView
+            style="@style/normal_text"
+            android:textSize="@dimen/text_size_14sp"
+            android:text="@string/confirm_checkout"
+            android:layout_marginTop="@dimen/layout_margin_32dp"
+            android:lineSpacingExtra="@dimen/layout_margin_8dp"
+            app:layout_constraintTop_toBottomOf="@id/ivConfirm"
+            app:layout_constraintStart_toStartOf="@id/ivConfirm"
+            app:layout_constraintEnd_toEndOf="@id/ivConfirm"/>
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btnBackToFeed"
+            style="@style/black_btn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/back_to_feed"
+            android:layout_margin="@dimen/layout_margin_16dp"
+            android:onClick="@{fragment::onClick}"
+            app:layout_constraintBottom_toBottomOf="parent"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

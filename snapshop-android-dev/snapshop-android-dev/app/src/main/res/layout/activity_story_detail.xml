@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="android.view.View"/>
+
+        <variable
+            name="activity"
+            type="com.sg.snapshop.view.home.storydetail.StoryDetailFragment" />
+
+        <variable
+            name="story"
+            type="com.sg.core.model.Stories" />
+
+        <variable
+            name="uploadSize"
+            type="Integer" />
+
+        <variable
+            name="isFromBrandProfile"
+            type="Boolean" />
+    </data>
+
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/black"
+            android:theme="@style/Theme.MaterialComponents">
+
+            <androidx.viewpager.widget.ViewPager
+                android:id="@+id/vpImage"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:background="@drawable/background_story_vp"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintHeight_percent="0.89"/>
+
+            <com.google.android.material.tabs.TabLayout
+                android:id="@+id/indicator"
+                android:layout_width="wrap_content"
+                android:layout_height="8dp"
+                android:layout_marginStart="@dimen/layout_margin_16dp"
+                android:layout_marginEnd="@dimen/layout_margin_16dp"
+                android:layout_marginBottom="@dimen/layout_margin_8dp"
+                android:background="@android:color/transparent"
+                android:visibility="@{uploadSize &lt;= 1 ? View.INVISIBLE : View.VISIBLE }"
+                app:layout_constraintBottom_toBottomOf="@id/vpImage"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:tabBackground="@drawable/indicator_selector"
+                app:tabGravity="center"
+                app:tabIndicatorHeight="0dp"
+                app:tabMaxWidth="15dp"
+                app:tabPadding="0dp" />
+
+            <androidx.appcompat.widget.AppCompatImageButton
+                android:id="@+id/ivClose"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@android:color/transparent"
+                android:src="@drawable/ic_white_close"
+                android:layout_marginStart="@dimen/layout_margin_16dp"
+                android:layout_marginTop="@dimen/layout_margin_32dp"
+                android:onClick="@{activity::onClick}"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"/>
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvStoryTitle"
+                style="@style/normal_text.Toolbar.SemiBold"
+                android:text="@{story.title}"
+                android:textAllCaps="false"
+                android:textColor="@color/white"
+                android:textSize="@dimen/text_size_18sp"
+                android:layout_marginBottom="@dimen/layout_margin_8dp"
+                app:layout_constraintBottom_toTopOf="@id/tvDescription"
+                app:layout_constraintStart_toStartOf="@id/tvDescription"
+                tools:text="New Stories testing"/>
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvDescription"
+                style="@style/normal_text"
+                android:layout_width="@dimen/no_padding"
+                android:textColor="@color/white"
+                android:text="@{story.description}"
+                android:lineSpacingExtra="@dimen/layout_margin_4dp"
+                android:maxLines="4"
+                android:ellipsize="end"
+                android:textAlignment="textStart"
+                android:layout_marginBottom="@dimen/layout_margin_8dp"
+                android:layout_marginEnd="@dimen/layout_margin_8dp"
+                app:layout_constraintBottom_toTopOf="@id/groupTags"
+                app:layout_constraintStart_toStartOf="@id/groupTags"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0"
+                tools:text="All orders over 100 qualify for free"/>
+
+            <com.google.android.flexbox.FlexboxLayout
+                android:id="@+id/groupTags"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/layout_margin_8dp"
+                app:flexWrap="wrap"
+                app:alignItems="flex_start"
+                app:alignContent="flex_start"
+                app:layout_constraintBottom_toTopOf="@+id/divider"
+                app:layout_constraintStart_toStartOf="@id/divider"
+                app:layout_constraintEnd_toEndOf="parent" />
+
+            <View
+                android:id="@+id/divider"
+                style="@style/divider.white"
+                android:layout_marginBottom="@dimen/layout_margin_8dp"
+                app:layout_constraintBottom_toTopOf="@id/tvBrandName"
+                app:layout_constraintStart_toStartOf="@id/tvBrandName"
+                app:layout_constraintEnd_toEndOf="@id/tvBrandName"/>
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvBrandName"
+                style="@style/normal_text.bold"
+                android:textColor="@color/white"
+                android:textSize="@dimen/text_size_12sp"
+                android:paddingTop="@dimen/layout_margin_4dp"
+                android:paddingBottom="@dimen/layout_margin_4dp"
+                android:text="@{story.brand_name}"
+                android:textAllCaps="true"
+                android:onClick="@{activity::onClick}"
+                android:layout_marginStart="@dimen/layout_margin_16dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintBottom_toTopOf="@id/indicator"
+                tools:text="MC LABELS" />
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/ivDelete"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="@{activity::onClick}"
+                android:visibility="@{isFromBrandProfile == true ? View.VISIBLE : View.GONE}"
+                android:layout_marginEnd="@dimen/layout_margin_16dp"
+                app:srcCompat="@drawable/ic_rubbish_bin"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintBottom_toBottomOf="@id/tvBrandName"/>
+
+            <LinearLayout
+                android:id="@+id/backGround"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:background="#80323232"
+                android:onClick="@{activity::onClick}"
+                android:visibility="gone"/>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <include
+            android:id="@+id/includeShopTheLook"
+            layout="@layout/layout_bottom_shop_the_look" />
+
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+
+</layout>

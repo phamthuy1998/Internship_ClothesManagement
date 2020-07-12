@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+    <TextView xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/tvTag"
+        style="@style/normal_text"
+        android:textColor="@color/white"
+        android:textSize="8sp"
+        android:background="@color/color_tag_bg"
+        android:padding="2dp"
+        android:layout_marginBottom="@dimen/layout_margin_8dp"
+        tools:text="Beach wear New In!" />
+</layout>

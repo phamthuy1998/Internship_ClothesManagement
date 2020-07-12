@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/appBarLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:stateListAnimator="@null">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?android:actionBarSize"
+            app:contentInsetEnd="0dp"
+            app:contentInsetStart="0dp"
+            app:popupTheme="@style/ThemeOverlay.MaterialComponents">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    style="@style/normal_text.Toolbar"
+                    android:id="@+id/tvCancelToolbar"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/cancel"
+                    android:fontFamily="@font/montserrat_regular"
+                    android:textSize="14.5sp"
+                    android:layout_marginStart="@dimen/layout_margin_16dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <androidx.appcompat.widget.AppCompatImageButton
+                    android:id="@+id/ivBack"
+                    android:layout_width="@dimen/layout_margin_40dp"
+                    android:layout_height="@dimen/layout_margin_40dp"
+                    android:src="@drawable/ic_back"
+                    android:visibility="gone"
+                    android:background="@drawable/bg_btn_circle_active"
+                    android:layout_marginStart="@dimen/layout_margin_8dp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"/>
+
+                <androidx.appcompat.widget.AppCompatImageButton
+                    android:id="@+id/ivClose"
+                    android:layout_width="@dimen/layout_margin_40dp"
+                    android:layout_height="@dimen/layout_margin_40dp"
+                    android:src="@drawable/ic_black_close"
+                    android:visibility="gone"
+                    android:background="@drawable/bg_btn_circle_active"
+                    android:layout_marginStart="@dimen/layout_margin_8dp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"/>
+
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    style="@style/normal_text.Toolbar"
+                    android:id="@+id/tvTitleToolbar"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/upload"
+                    android:background="@drawable/background_title_selector"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/ivLogo"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:visibility="gone"
+                    app:srcCompat="@drawable/logo_flash"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintWidth_percent="0.5" />
+
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    style="@style/normal_text.Toolbar.Regular"
+                    android:id="@+id/tvRight"
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/layout_margin_40dp"
+                    android:text="@string/clear"
+                    android:layout_marginEnd="@dimen/layout_margin_16dp"
+                    android:gravity="center_vertical"
+                    android:visibility="gone"
+                    android:textAllCaps="false"
+                    android:background="@drawable/bg_btn_circle_active"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"/>
+
+                <View
+                    style="@style/divider"
+                    android:id="@+id/vLine"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"/>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </androidx.appcompat.widget.Toolbar>
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+</layout>

@@ -1,0 +1,284 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+
+        <import type="android.view.View" />
+
+    </data>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/background"
+            android:gravity="center_horizontal"
+            android:orientation="vertical">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                style="@style/SemiBold.Size14"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/size_16dp"
+                android:text="@string/ready_to_wear_size_chart" />
+
+            <ScrollView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:scrollbars="none">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:divider="@drawable/table_divider"
+                    android:gravity="center_horizontal"
+                    android:orientation="horizontal"
+                    android:showDividers="middle">
+
+                    <TableLayout
+                        android:id="@+id/fixed_column"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:divider="@drawable/table_divider"
+                        android:showDividers="middle"
+                        android:stretchColumns="*" />
+
+                    <HorizontalScrollView
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content">
+
+                        <TableLayout
+                            android:id="@+id/scrollable_part"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:divider="@drawable/table_divider"
+                            android:showDividers="middle"
+                            android:stretchColumns="*" />
+                    </HorizontalScrollView>
+                </LinearLayout>
+            </ScrollView>
+            <androidx.appcompat.widget.AppCompatTextView
+                style="@style/SemiBold.Size14"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/size_16dp"
+                android:text="@string/shoe_size_chart" />
+
+            <ScrollView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:scrollbars="none">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:divider="@drawable/table_divider"
+                    android:gravity="center_horizontal"
+                    android:orientation="horizontal"
+                    android:showDividers="middle">
+
+                    <TableLayout
+                        android:id="@+id/fixed_column_shoe"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:divider="@drawable/table_divider"
+                        android:showDividers="middle"
+                        android:stretchColumns="*" />
+
+                    <HorizontalScrollView
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content">
+
+                        <TableLayout
+                            android:id="@+id/scrollable_part_shoe"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:divider="@drawable/table_divider"
+                            android:showDividers="middle"
+                            android:stretchColumns="*" />
+                    </HorizontalScrollView>
+                </LinearLayout>
+            </ScrollView>
+            <androidx.appcompat.widget.AppCompatTextView
+                style="@style/SemiBold.Size14"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/size_16dp"
+                android:text="@string/ring_size_chart" />
+
+            <ScrollView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:scrollbars="none">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:divider="@drawable/table_divider"
+                    android:gravity="center_horizontal"
+                    android:orientation="horizontal"
+                    android:showDividers="middle">
+
+                    <TableLayout
+                        android:id="@+id/fixed_column_ring"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:divider="@drawable/table_divider"
+                        android:showDividers="middle"
+                        android:stretchColumns="*" />
+
+                    <HorizontalScrollView
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content">
+
+                        <TableLayout
+                            android:id="@+id/scrollable_part_ring"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:divider="@drawable/table_divider"
+                            android:showDividers="middle"
+                            android:stretchColumns="*" />
+                    </HorizontalScrollView>
+                </LinearLayout>
+            </ScrollView>
+            <androidx.appcompat.widget.AppCompatTextView
+                style="@style/SemiBold.Size14"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/size_16dp"
+                android:text="@string/glove_size_chart" />
+
+            <ScrollView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:scrollbars="none">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:divider="@drawable/table_divider"
+                    android:gravity="center_horizontal"
+                    android:orientation="horizontal"
+                    android:showDividers="middle">
+
+                    <TableLayout
+                        android:id="@+id/fixed_column_glove"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:divider="@drawable/table_divider"
+                        android:showDividers="middle"
+                        android:stretchColumns="*" />
+
+                    <HorizontalScrollView
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content">
+
+                        <TableLayout
+                            android:id="@+id/scrollable_part_glove"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:divider="@drawable/table_divider"
+                            android:showDividers="middle"
+                            android:stretchColumns="*" />
+                    </HorizontalScrollView>
+                </LinearLayout>
+            </ScrollView>
+            <androidx.appcompat.widget.AppCompatTextView
+                style="@style/SemiBold.Size14"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/size_16dp"
+                android:text="@string/belt_size_chart" />
+
+            <ScrollView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:scrollbars="none">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:divider="@drawable/table_divider"
+                    android:gravity="center_horizontal"
+                    android:orientation="horizontal"
+                    android:showDividers="middle">
+
+                    <TableLayout
+                        android:id="@+id/fixed_column_belt"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:divider="@drawable/table_divider"
+                        android:showDividers="middle"
+                        android:stretchColumns="*" />
+
+                    <HorizontalScrollView
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content">
+
+                        <TableLayout
+                            android:id="@+id/scrollable_part_belt"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:divider="@drawable/table_divider"
+                            android:showDividers="middle"
+                            android:stretchColumns="*" />
+                    </HorizontalScrollView>
+                </LinearLayout>
+            </ScrollView>
+            <androidx.appcompat.widget.AppCompatTextView
+                style="@style/SemiBold.Size14"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/size_16dp"
+                android:text="@string/hat_size_chart" />
+
+            <ScrollView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:scrollbars="none">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:divider="@drawable/table_divider"
+                    android:gravity="center_horizontal"
+                    android:orientation="horizontal"
+                    android:showDividers="middle">
+
+                    <TableLayout
+                        android:id="@+id/fixed_column_hat"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:divider="@drawable/table_divider"
+                        android:showDividers="middle"
+                        android:stretchColumns="*" />
+
+                    <HorizontalScrollView
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content">
+
+                        <TableLayout
+                            android:id="@+id/scrollable_part_hat"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:divider="@drawable/table_divider"
+                            android:showDividers="middle"
+                            android:stretchColumns="*" />
+                    </HorizontalScrollView>
+                </LinearLayout>
+            </ScrollView>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/layout_margin_40dp"/>
+        </LinearLayout>
+    </ScrollView>
+</layout>

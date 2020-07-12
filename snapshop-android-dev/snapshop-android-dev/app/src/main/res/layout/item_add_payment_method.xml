@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout android:id="@+id/container"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/layout_margin_48dp"
+    android:background="@color/white"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:layout_width="0dp"
+        android:id="@+id/imageCard"
+        android:layout_height="match_parent"
+        app:layout_constraintDimensionRatio="1:1"
+        app:layout_constraintStart_toStartOf="parent"
+        android:padding="@dimen/layout_margin_12dp"
+        app:srcCompat="@drawable/ic_add_black_24dp"/>
+    <androidx.appcompat.widget.AppCompatTextView
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:padding="@dimen/layout_margin_8dp"
+        style="@style/normal_text.bold"
+        android:text="@string/add_new_method"
+        android:textSize="@dimen/text_size_14sp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:textAlignment="center"
+        android:gravity="center_vertical"
+        app:layout_constraintLeft_toRightOf="@id/imageCard"/>
+</androidx.constraintlayout.widget.ConstraintLayout>
