@@ -14,6 +14,9 @@
         <variable
             name="profile"
             type="com.sg.core.model.Profile" />
+        <variable
+            name="account"
+            type="com.sg.core.model.Account" />
     </data>
 
     <androidx.core.widget.NestedScrollView
@@ -69,7 +72,7 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/montserrat_bold"
                 android:gravity="center"
-                android:text="@{profile.user.first_name}"
+                android:text="@{account.name}"
                 app:layout_constraintTop_toBottomOf="@id/textHi"
                 tools:text="vinh" />
 

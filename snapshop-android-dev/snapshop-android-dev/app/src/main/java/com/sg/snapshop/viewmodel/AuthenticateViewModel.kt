@@ -4,7 +4,9 @@ import androidx.lifecycle.MediatorLiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.sg.core.model.Account
 import com.sg.core.model.Profile
+import com.sg.core.model.wish.ObjectResponse
 import com.sg.core.param.ForgotPasswordParam
 import com.sg.core.param.LogInParam
 import com.sg.core.param.RegisterParam
@@ -13,7 +15,7 @@ import com.sg.core.vo.Result
 import kotlinx.coroutines.launch
 
 class AuthenticateViewModel(private val repository: AuthRepository) : ViewModel() {
-    val logInLiveData = MediatorLiveData<Profile>()
+    val logInLiveData = MediatorLiveData<ObjectResponse<Account>>()
     val signUpLiveData = MediatorLiveData<Profile>()
     val logOutLiveData = MediatorLiveData<String>()
     val forgotPasswordLiveData = MediatorLiveData<Any>()

@@ -88,11 +88,11 @@ namespace ClothesManament.Controllers
         }
 
         [Route("api/login")]
-        [AcceptVerbs("GET")]
-        [HttpGet]
+        [AcceptVerbs("POST")]
+        [HttpPost]
         public ResponseObjectModel<SPGetAccountInfoByUserId_Result> login([FromBody] LoginParam loginParam)
         {
-            var result = entities.SP_Login(loginParam.username, loginParam.password).FirstOrDefault();
+            var result = entities.SP_Login(loginParam.email, loginParam.password).FirstOrDefault();
             if (result.HasValue)
             {
                 int resultInt = result.Value;

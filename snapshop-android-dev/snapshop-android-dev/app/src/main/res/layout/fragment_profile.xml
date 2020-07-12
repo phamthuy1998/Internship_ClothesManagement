@@ -7,13 +7,20 @@
         <import type="android.view.View" />
 
         <variable
-            name="isLogin" type="Boolean" />
+            name="isLogin"
+            type="Boolean" />
 
         <variable
-            name="isBrand" type="Boolean" />
+            name="isBrand"
+            type="Boolean" />
 
         <variable
-            name="profile" type="com.sg.core.model.Profile" />
+            name="profile"
+            type="com.sg.core.model.Profile" />
+
+        <variable
+            name="account"
+            type="com.sg.core.model.Account" />
 
         <variable
             name="fragment"
@@ -33,17 +40,17 @@
             layout="@layout/fragment_profile_prelogin"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            bind:parentFragment="@{fragment}"
-            android:visibility="@{isLogin? View.GONE : View.VISIBLE}" />
+            android:visibility="@{isLogin? View.GONE : View.VISIBLE}"
+            bind:parentFragment="@{fragment}" />
 
         <include
             android:id="@+id/profile_customer"
             layout="@layout/fragment_profile_customer"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
+            android:visibility="@{(isLogin &amp;&amp; !isBrand)? View.VISIBLE : View.GONE}"
             bind:parentFragment="@{fragment}"
-            bind:profile="@{profile}"
-            android:visibility="@{(isLogin &amp;&amp; !isBrand)? View.VISIBLE : View.GONE}" />
+            bind:account="@{account}" />
     </FrameLayout>
 
 </layout>

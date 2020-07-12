@@ -58,8 +58,9 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>() {
 
     private fun observeViewModel() {
         authViewModel.logInLiveData.observe(this, Observer {
-            if (it != null) {
-                CoreApplication.instance.saveUser(it)
+            if (it != null && it.status==true) {
+                it.data?.let { it1 -> CoreApplication.instance.saveAccount(it1) }
+
                 (activity as? MainActivity)?.updateUIBottomNav()
                 navController.popBackStack()
                 if (fromShoppingBag) {
@@ -71,6 +72,8 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>() {
                 (activity as? MainActivity)?.apply {
                     viewBinding.btnNav.selectedItemId = R.id.nav_profile
                 }
+            }else{
+                messageHandler?.runMessageErrorHandler(it.message?:"")
             }
         })
 
@@ -186,7 +189,7 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>() {
                 false
             }
             (password.isEmpty()) -> {
-                messageHandler?.runMessageErrorHandler(      getString(
+                messageHandler?.runMessageErrorHandler(getString(
                     R.string.error_empty, getString(
                         R.string.password
                     )

@@ -4,10 +4,7 @@ import android.app.Application
 import com.sg.core.di.localModule
 import com.sg.core.di.remoteModule
 import com.sg.core.di.repositoryModule
-import com.sg.core.model.Basket
-import com.sg.core.model.ProductVariant
-import com.sg.core.model.Profile
-import com.sg.core.model.SupportedCurrency
+import com.sg.core.model.*
 import com.sg.core.util.PrefUtil
 import org.koin.android.ext.android.inject
 import org.koin.android.ext.koin.androidContext
@@ -23,6 +20,7 @@ open class CoreApplication : Application(){
     }
 
     var profile: Profile? = null
+    var account: Account? = null
     var currency: SupportedCurrency = SupportedCurrency()
     var basket: Basket? = null
     // wait for login to sync all product variant save in local to BE
@@ -62,6 +60,10 @@ open class CoreApplication : Application(){
     fun saveUser(profile: Profile){
         prefsUtil.profile = profile
         this.profile = profile
+    }
+    fun saveAccount(account: Account){
+        prefsUtil.account = account
+        this.account = account
     }
 
     fun saveCurrency(currency: SupportedCurrency){

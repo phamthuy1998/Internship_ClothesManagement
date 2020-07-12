@@ -7,7 +7,7 @@ namespace ClothesManament.Models
 {
     public class LoginParam
     {
-        public string username { set; get; }
+        public string email { set; get; }
         public string password { set; get; }
     }
 }

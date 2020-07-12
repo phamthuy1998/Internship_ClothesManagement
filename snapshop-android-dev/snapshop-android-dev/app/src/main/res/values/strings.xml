@@ -284,4 +284,5 @@
     <string name="select_payment_method">Please select a payment method to purchase</string>
     <string name="invalid_method">Invalid billing address</string>
     <string name="unknown_credit">Unknown (****)</string>
+    <string name="email_or_username">Email or username</string>
 </resources>

@@ -11,6 +11,7 @@ import com.facebook.stetho.okhttp3.StethoInterceptor
 import com.readystatesoftware.chuck.ChuckInterceptor
 import com.sg.core.BuildConfig
 import com.sg.core.CoreApplication
+import com.sg.core.api.ApiClothesService
 import com.sg.core.api.ApiService
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
@@ -24,12 +25,12 @@ import java.util.concurrent.TimeUnit
 val remoteModule = module {
 
     single {
-        createService<ApiService>(get())
+        createService<ApiService>(get(),BuildConfig.SERVER_URL)
     }
 
-//    single(named("Service")) {
-//        createService<ApiService>()
-//    }
+    single {
+        createServiceClothes<ApiClothesService>(get())
+    }
 
 
     single {
@@ -91,9 +92,29 @@ fun createAmazonS3Client(context: Context): AmazonS3Client {
     return s3Client
 }
 
-inline fun <reified T> createService(okHttpClient: OkHttpClient): T {
+inline fun <reified T> createService(okHttpClient: OkHttpClient, url: String): T {
     val retrofit = Retrofit.Builder()
-        .baseUrl(BuildConfig.SERVER_URL)
+        .baseUrl(url)
+        .client(okHttpClient)
+        .addConverterFactory(GsonConverterFactory.create())
+        .build()
+    return retrofit.create(T::class.java)
+}
+
+inline fun <reified T> createServiceClothes(context: Context): T {
+    val httpLoggingInterceptor = HttpLoggingInterceptor()
+    httpLoggingInterceptor.level = HttpLoggingInterceptor.Level.BODY
+    val okHttpClient=  OkHttpClient.Builder()
+        .readTimeout(30, TimeUnit.SECONDS)
+        .connectTimeout(30, TimeUnit.SECONDS)
+        .writeTimeout(30, TimeUnit.SECONDS)
+        .addInterceptor( ChuckInterceptor(context))
+        .addInterceptor(httpLoggingInterceptor)
+        .addNetworkInterceptor(StethoInterceptor())
+        .build()
+
+    val retrofit = Retrofit.Builder()
+        .baseUrl(BuildConfig.SERVER_CLOTHES_URL)
         .client(okHttpClient)
         .addConverterFactory(GsonConverterFactory.create())
         .build()

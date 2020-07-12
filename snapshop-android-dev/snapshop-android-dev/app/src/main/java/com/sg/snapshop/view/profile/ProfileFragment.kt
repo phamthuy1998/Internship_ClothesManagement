@@ -19,6 +19,7 @@ import com.amazonaws.services.s3.AmazonS3Client
 import com.bumptech.glide.Glide
 import com.sg.core.BuildConfig
 import com.sg.core.CoreApplication
+import com.sg.core.model.Account
 import com.sg.core.model.Carousel
 import com.sg.core.model.Profile
 import com.sg.core.model.TypeCarousel
@@ -55,6 +56,7 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>(), View.OnClickList
     private var photoStoragePath: String? = null
     private var photoType: PhotoType? = null
     private var currentProfile: Profile? = null
+    private var currentAccount: Account? = null
     private val shoppingViewModel: ShoppingViewModel by viewModel()
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -101,10 +103,10 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>(), View.OnClickList
     }
 
     override fun bindEvent() {
-        currentProfile = CoreApplication.instance.profile
+        currentAccount = CoreApplication.instance.account
         viewBinding.fragment = this
-        viewBinding.isLogin = currentProfile != null
-        viewBinding.profile = currentProfile
+        viewBinding.isLogin = currentAccount != null
+        viewBinding.account = currentAccount
         if (ObjectHandler.isLogin()){
             shoppingViewModel.updateBasketFromLocal()
         }

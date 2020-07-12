@@ -2,6 +2,7 @@ package com.sg.core.api
 
 import com.sg.core.model.*
 import com.sg.core.model.Tag
+import com.sg.core.model.wish.ObjectResponse
 import com.sg.core.model.wish.WishResponse
 import com.sg.core.param.*
 import com.sg.core.util.INIT_PAGE

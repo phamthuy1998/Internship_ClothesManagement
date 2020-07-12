@@ -6,15 +6,13 @@ import android.net.ConnectivityManager
 import android.net.NetworkCapabilities
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
-import com.sg.core.model.Basket
-import com.sg.core.model.ProductVariant
-import com.sg.core.model.Profile
-import com.sg.core.model.SupportedCurrency
+import com.sg.core.model.*
 
 //KEY WORD
 const val INIT_PAGE = 1
 const val PAGE_SIZE = 24
 const val USER_PROFILE = "USER_PROFILE"
+const val USER_ACCOUNT = "USER_ACCOUNT"
 const val CURRENCY = "CURRENCY"
 const val BASKET = "BASKET"
 const val BASKET_NOT_LOGIN = "BASKET_NOT_LOGIN"
@@ -58,6 +56,22 @@ class PrefUtil constructor(
         }
         set(value) = prefs.edit().putString(
             USER_PROFILE,
+            gSon.toJson(value)
+        ).apply()
+
+    var account: Account?
+        get() {
+            return try {
+                gSon.fromJson(
+                    prefs.getString(USER_ACCOUNT, null),
+                    Account::class.java
+                )
+            } catch (e: Exception) {
+                null
+            }
+        }
+        set(value) = prefs.edit().putString(
+            USER_ACCOUNT,
             gSon.toJson(value)
         ).apply()
 
