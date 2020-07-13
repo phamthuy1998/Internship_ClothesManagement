@@ -14,6 +14,7 @@ import androidx.core.os.bundleOf
 import androidx.lifecycle.Observer
 import com.google.android.material.textfield.TextInputEditText
 import com.sg.core.CoreApplication
+import com.sg.core.model.Account
 import com.sg.core.param.RegisterParam
 import com.sg.snapshop.R
 import com.sg.snapshop.base.BaseActivity
@@ -23,6 +24,7 @@ import com.sg.snapshop.constant.FROM_SHOPPING_BAG
 import com.sg.snapshop.constant.KEY_ARGUMENT
 import com.sg.snapshop.databinding.FragmentRegisterBinding
 import com.sg.snapshop.ext.*
+import com.sg.snapshop.util.checkPhonevalid
 import com.sg.snapshop.view.MainActivity
 import com.sg.snapshop.view.home.StoryDetailActivity
 import com.sg.snapshop.viewmodel.AuthenticateViewModel
@@ -68,7 +70,10 @@ class RegisterFragment : BaseFragment<FragmentRegisterBinding>() {
 
         viewBinding.btnTermsCons.makeLinks(
             Pair("Terms and Conditions", View.OnClickListener {
-                navController.navigate(R.id.documentFragment, bundleOf(KEY_ARGUMENT to resources.getString(R.string.terms_and_conditions)))
+                navController.navigate(
+                    R.id.documentFragment,
+                    bundleOf(KEY_ARGUMENT to resources.getString(R.string.terms_and_conditions))
+                )
             })
         )
 
@@ -78,12 +83,10 @@ class RegisterFragment : BaseFragment<FragmentRegisterBinding>() {
     private fun observeViewModel() {
         authViewModel.signUpLiveData.observe(this, Observer {
             if (it != null) {
-                CoreApplication.instance.saveUser(it)
+                it.data?.let { it1 -> CoreApplication.instance.saveAccount(it1) }
                 messageHandler?.runMessageHandler(getString(R.string.sign_up_success))
                 viewBinding.btnRegister.isLoading = false
-                Handler().postDelayed({
-                    finishRegister()
-                }, 1000)
+                finishRegister()
             }
         })
 
@@ -106,11 +109,14 @@ class RegisterFragment : BaseFragment<FragmentRegisterBinding>() {
         viewBinding.isValid = false
 
 
-        viewBinding.edtFirstName.onFocusChange { v, _ ->
+        viewBinding.edtName.onFocusChange { v, _ ->
             viewBinding.isFirstNameValid = checkEmpty(v as TextInputEditText)
         }
 
-        viewBinding.edtLastName.onFocusChange { v, _ ->
+        viewBinding.edtPhone.onFocusChange { v, _ ->
+            viewBinding.isLastNameValid = checkValidPhone(viewBinding.edtPhone.text.toString())
+        }
+        viewBinding.edtUsername.onFocusChange { v, _ ->
             viewBinding.isLastNameValid = checkEmpty(v as TextInputEditText)
         }
 
@@ -121,6 +127,7 @@ class RegisterFragment : BaseFragment<FragmentRegisterBinding>() {
         viewBinding.edtPassword.onFocusChange { _, _ ->
             viewBinding.isPasswordValid = isValidPassword(viewBinding.edtPassword.text.toString())
         }
+
         viewBinding.scrollView.setOnTouchListener { _, event ->
             if (event != null && event.action == MotionEvent.ACTION_MOVE) {
                 hideKeyboard()
@@ -135,11 +142,14 @@ class RegisterFragment : BaseFragment<FragmentRegisterBinding>() {
                 if (checkValidUpdate()) {
                     viewBinding.btnRegister.isLoading = true
                     authViewModel.signUp(
-                        RegisterParam(
-                            viewBinding.edtFirstName.text.toString(),
-                            viewBinding.edtLastName.text.toString(),
-                            viewBinding.edtEmail.text.toString(),
-                            viewBinding.edtPassword.text.toString()
+                        Account(
+                            name = viewBinding.edtName.text.toString(),
+                            phone = viewBinding.edtPhone.text.toString(),
+                            email = viewBinding.edtEmail.text.toString(),
+                            password = viewBinding.edtPassword.text.toString(),
+                            username = viewBinding.edtUsername.text.toString(),
+                            roleId = 3,
+                            active = 1
                         )
                     )
                 }
@@ -160,7 +170,7 @@ class RegisterFragment : BaseFragment<FragmentRegisterBinding>() {
                     if (fromLogin)
                         navController.popBackStack()
                 })
-            when(this){
+            when (this) {
                 is MainActivity -> viewBinding.layoutToolbar.ivBack.setImageResource(R.drawable.ic_black_close)
                 is StoryDetailActivity -> viewBinding.layoutToolbar.ivBack.setImageResource(R.drawable.ic_black_close)
             }
@@ -180,20 +190,29 @@ class RegisterFragment : BaseFragment<FragmentRegisterBinding>() {
 
     private fun checkValidUpdate(): Boolean {
         return when {
-            !checkEmpty(viewBinding.edtFirstName) -> {
+            !checkEmpty(viewBinding.edtName) -> {
                 messageHandler?.runMessageErrorHandler(
                     getString(
                         R.string.error_empty,
-                        getString(R.string.first_name)
+                        getString(R.string.name)
                     )
                 )
                 false
             }
-            !checkEmpty(viewBinding.edtLastName) -> {
+            !checkEmpty(viewBinding.edtPhone) -> {
                 messageHandler?.runMessageErrorHandler(
                     getString(
                         R.string.error_empty,
-                        getString(R.string.last_name)
+                        getString(R.string.phone)
+                    )
+                )
+                false
+            }
+            !checkEmpty(viewBinding.edtPhone) -> {
+                messageHandler?.runMessageErrorHandler(
+                    getString(
+                        R.string.error_empty,
+                        getString(R.string.username_text)
                     )
                 )
                 false
@@ -214,6 +233,10 @@ class RegisterFragment : BaseFragment<FragmentRegisterBinding>() {
                         getString(R.string.password)
                     )
                 )
+                false
+            }
+            !checkPhonevalid(viewBinding.edtPhone.text.toString()) -> {
+                messageHandler?.runMessageErrorHandler(getString(R.string.invalid_email))
                 false
             }
             !checkValidEmail(viewBinding.edtEmail.text.toString()) -> {
@@ -278,6 +301,10 @@ class RegisterFragment : BaseFragment<FragmentRegisterBinding>() {
         return android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches()
     }
 
+    private fun checkValidPhone(phone: String): Boolean {
+        return android.util.Patterns.PHONE.matcher(phone).matches()
+    }
+
 
     private fun setBackPressEvent() {
         view?.isFocusableInTouchMode = true
@@ -298,5 +325,4 @@ class RegisterFragment : BaseFragment<FragmentRegisterBinding>() {
             requireActivity().currentFocus?.windowToken, 0
         )
     }
-
 }

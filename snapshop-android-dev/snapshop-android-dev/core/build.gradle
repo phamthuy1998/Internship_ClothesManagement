@@ -42,8 +42,7 @@ android {
     productFlavors{
         staging{
             buildConfigField "String", "SERVER_URL", '"https://api-staging.snapshop.com"'
-            buildConfigField "String", "SERVER_CLOTHES_URL", '"http://192.168.1.2:81/"'
-//            buildConfigField "String", "SERVER_URL", '"http://api-staging1.snapshop.com"'
+            buildConfigField "String", "SERVER_CLOTHES_URL", '"http://192.168.1.19:88/"'
             buildConfigField "String", "AWS_URL_IMAGE", '"https://snapshop-staging.s3.amazonaws.com/"'
             buildConfigField "String", "AWS_BUCKET", '"snapshop-staging"'
             buildConfigField "String", "IDENTITY_POOL_ID", '"eu-west-1:117ec97f-e345-46dc-a919-afa8bded04fd"'

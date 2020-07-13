@@ -17,10 +17,13 @@ import retrofit2.Response
 
 
 class AuthRepositoryImpl(val api: ApiService, val apiClothes: ApiClothesService) : AuthRepository {
-    override suspend fun postForgotPassword(param: ForgotPasswordParam): LiveData<Result<String>> {
-        return object : NetworkBoundResource<ApiResponse<String>, String>() {
-            override fun processResponse(response: ApiResponse<String>): String? = response.detail
-            override suspend fun createCall(): Response<ApiResponse<String>> = api.forgotPassword(param)
+    override suspend fun postForgotPassword(param: ForgotPasswordParam): LiveData<Result<ObjectResponse<String>>> {
+        return object : NetworkBoundResource<ObjectResponse<String>, ObjectResponse<String>>() {
+            override fun processResponse(response: ObjectResponse<String>): ObjectResponse<String>? =
+                response
+
+            override suspend fun createCall(): Response<ObjectResponse<String>> =
+                apiClothes.forgotPassword(param)
         }.build().asLiveData()
     }
 
@@ -31,25 +34,27 @@ class AuthRepositoryImpl(val api: ApiService, val apiClothes: ApiClothesService)
                 return null
             }
 
-            override suspend fun createCall(): Response<Void>  = api.logOut()
+            override suspend fun createCall(): Response<Void> = apiClothes.logOut()
 
         }.build().asLiveData()
     }
 
 
-    override suspend fun postSignUp(param: RegisterParam): LiveData<Result<Profile>> {
-        return object : NetworkBoundResource<Profile, Profile>() {
-            override fun processResponse(response: Profile): Profile? = response
-            override suspend fun createCall(): Response<Profile> = api.signUp(param)
+    override suspend fun postSignUp(param: Account): LiveData<Result<ObjectResponse<Account>>> {
+        return object : NetworkBoundResource<ObjectResponse<Account>, ObjectResponse<Account>>() {
+            override fun processResponse(response: ObjectResponse<Account>): ObjectResponse<Account>? = response
 
+            override suspend fun createCall(): Response<ObjectResponse<Account>> = apiClothes.signUp(param)
         }.build().asLiveData()
     }
 
     override suspend fun postLogIn(param: LogInParam): LiveData<Result<ObjectResponse<Account>>> {
         return object : NetworkBoundResource<ObjectResponse<Account>, ObjectResponse<Account>>() {
-            override fun processResponse(response: ObjectResponse<Account>): ObjectResponse<Account>? = response
+            override fun processResponse(response: ObjectResponse<Account>): ObjectResponse<Account>? =
+                response
 
-            override suspend fun createCall(): Response<ObjectResponse<Account>> = apiClothes.signIn(param)
+            override suspend fun createCall(): Response<ObjectResponse<Account>> =
+                apiClothes.signIn(param)
 
         }.build().asLiveData()
     }

@@ -1,30 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
   <EntityContainerMapping StorageEntityContainer="ClothesManamentModelStoreContainer" CdmEntityContainer="ClothesManamentEntities">
-    <FunctionImportMapping FunctionImportName="sp_alterdiagram" FunctionName="ClothesManamentModel.Store.sp_alterdiagram" />
-    <FunctionImportMapping FunctionImportName="sp_creatediagram" FunctionName="ClothesManamentModel.Store.sp_creatediagram" />
-    <FunctionImportMapping FunctionImportName="sp_dropdiagram" FunctionName="ClothesManamentModel.Store.sp_dropdiagram" />
-    <FunctionImportMapping FunctionImportName="sp_helpdiagramdefinition" FunctionName="ClothesManamentModel.Store.sp_helpdiagramdefinition">
-      <ResultMapping>
-        <ComplexTypeMapping TypeName="ClothesManamentModel.sp_helpdiagramdefinition_Result">
-          <ScalarProperty Name="version" ColumnName="version" />
-          <ScalarProperty Name="definition" ColumnName="definition" />
-        </ComplexTypeMapping>
-      </ResultMapping>
-    </FunctionImportMapping>
-    <FunctionImportMapping FunctionImportName="sp_helpdiagrams" FunctionName="ClothesManamentModel.Store.sp_helpdiagrams">
-      <ResultMapping>
-        <ComplexTypeMapping TypeName="ClothesManamentModel.sp_helpdiagrams_Result">
-          <ScalarProperty Name="Database" ColumnName="Database" />
-          <ScalarProperty Name="Name" ColumnName="Name" />
-          <ScalarProperty Name="ID" ColumnName="ID" />
-          <ScalarProperty Name="Owner" ColumnName="Owner" />
-          <ScalarProperty Name="OwnerID" ColumnName="OwnerID" />
-        </ComplexTypeMapping>
-      </ResultMapping>
-    </FunctionImportMapping>
-    <FunctionImportMapping FunctionImportName="sp_renamediagram" FunctionName="ClothesManamentModel.Store.sp_renamediagram" />
-    <FunctionImportMapping FunctionImportName="sp_upgraddiagrams" FunctionName="ClothesManamentModel.Store.sp_upgraddiagrams" />
     <FunctionImportMapping FunctionImportName="SP_GetProductCategory" FunctionName="ClothesManamentModel.Store.SP_GetProductCategory">
       <ResultMapping>
         <ComplexTypeMapping TypeName="ClothesManamentModel.SP_GetProductCategory_Result">
@@ -67,22 +43,6 @@
     </FunctionImportMapping>
     <FunctionImportMapping FunctionImportName="SP_Register" FunctionName="ClothesManamentModel.Store.SP_Register" />
     <FunctionImportMapping FunctionImportName="SP_UpdateUser" FunctionName="ClothesManamentModel.Store.SP_UpdateUser" />
-    <EntitySetMapping Name="Accounts">
-      <EntityTypeMapping TypeName="ClothesManamentModel.Account">
-        <MappingFragment StoreEntitySet="Account">
-          <ScalarProperty Name="active" ColumnName="active" />
-          <ScalarProperty Name="imageUrl" ColumnName="imageUrl" />
-          <ScalarProperty Name="username" ColumnName="username" />
-          <ScalarProperty Name="password" ColumnName="password" />
-          <ScalarProperty Name="roleId" ColumnName="roleId" />
-          <ScalarProperty Name="gender" ColumnName="gender" />
-          <ScalarProperty Name="phone" ColumnName="phone" />
-          <ScalarProperty Name="email" ColumnName="email" />
-          <ScalarProperty Name="name" ColumnName="name" />
-          <ScalarProperty Name="id" ColumnName="id" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <EntitySetMapping Name="Brands">
       <EntityTypeMapping TypeName="ClothesManamentModel.Brand">
         <MappingFragment StoreEntitySet="Brand">
@@ -196,20 +156,6 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="Promotions">
-      <EntityTypeMapping TypeName="ClothesManamentModel.Promotion">
-        <MappingFragment StoreEntitySet="Promotion">
-          <ScalarProperty Name="active" ColumnName="active" />
-          <ScalarProperty Name="value" ColumnName="value" />
-          <ScalarProperty Name="typePromotionId" ColumnName="typePromotionId" />
-          <ScalarProperty Name="endDate" ColumnName="endDate" />
-          <ScalarProperty Name="beginDate" ColumnName="beginDate" />
-          <ScalarProperty Name="name" ColumnName="name" />
-          <ScalarProperty Name="description" ColumnName="description" />
-          <ScalarProperty Name="id" ColumnName="id" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <EntitySetMapping Name="Roles">
       <EntityTypeMapping TypeName="ClothesManamentModel.Role">
         <MappingFragment StoreEntitySet="Role">
@@ -234,16 +180,6 @@
       <EntityTypeMapping TypeName="ClothesManamentModel.Type">
         <MappingFragment StoreEntitySet="Type">
           <ScalarProperty Name="active" ColumnName="active" />
-          <ScalarProperty Name="name" ColumnName="name" />
-          <ScalarProperty Name="id" ColumnName="id" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="TypePromotions">
-      <EntityTypeMapping TypeName="ClothesManamentModel.TypePromotion">
-        <MappingFragment StoreEntitySet="TypePromotion">
-          <ScalarProperty Name="active" ColumnName="active" />
-          <ScalarProperty Name="code" ColumnName="code" />
           <ScalarProperty Name="name" ColumnName="name" />
           <ScalarProperty Name="id" ColumnName="id" />
         </MappingFragment>
@@ -282,5 +218,48 @@
       </ResultMapping>
     </FunctionImportMapping>
     <FunctionImportMapping FunctionImportName="SP_Login" FunctionName="ClothesManamentModel.Store.SP_Login" />
+    <EntitySetMapping Name="Accounts">
+      <EntityTypeMapping TypeName="ClothesManamentModel.Account">
+        <MappingFragment StoreEntitySet="Account">
+          <ScalarProperty Name="active" ColumnName="active" />
+          <ScalarProperty Name="imageUrl" ColumnName="imageUrl" />
+          <ScalarProperty Name="username" ColumnName="username" />
+          <ScalarProperty Name="password" ColumnName="password" />
+          <ScalarProperty Name="roleId" ColumnName="roleId" />
+          <ScalarProperty Name="phone" ColumnName="phone" />
+          <ScalarProperty Name="email" ColumnName="email" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Promotions">
+      <EntityTypeMapping TypeName="ClothesManamentModel.Promotion">
+        <MappingFragment StoreEntitySet="Promotion">
+          <ScalarProperty Name="active" ColumnName="active" />
+          <ScalarProperty Name="value" ColumnName="value" />
+          <ScalarProperty Name="endDate" ColumnName="endDate" />
+          <ScalarProperty Name="beginDate" ColumnName="beginDate" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="description" ColumnName="description" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="SPGetAccounByUsername" FunctionName="ClothesManamentModel.Store.SPGetAccounByUsername">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ClothesManamentModel.SPGetAccounByUsername_Result">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="email" ColumnName="email" />
+          <ScalarProperty Name="phone" ColumnName="phone" />
+          <ScalarProperty Name="roleId" ColumnName="roleId" />
+          <ScalarProperty Name="password" ColumnName="password" />
+          <ScalarProperty Name="username" ColumnName="username" />
+          <ScalarProperty Name="imageUrl" ColumnName="imageUrl" />
+          <ScalarProperty Name="active" ColumnName="active" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
   </EntityContainerMapping>
 </Mapping>

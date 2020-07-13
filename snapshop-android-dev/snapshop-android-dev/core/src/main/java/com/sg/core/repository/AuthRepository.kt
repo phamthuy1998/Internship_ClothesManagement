@@ -11,7 +11,7 @@ import com.sg.core.vo.Result
 
 interface AuthRepository {
     suspend fun postLogIn(param: LogInParam): LiveData<Result<ObjectResponse<Account>>>
-    suspend fun postSignUp(param: RegisterParam): LiveData<Result<Profile>>
+    suspend fun postSignUp(param: Account): LiveData<Result<ObjectResponse<Account>>>
     suspend fun logOut() : LiveData<Result<Void>>
-    suspend fun postForgotPassword(param: ForgotPasswordParam):LiveData<Result<String>>
+    suspend fun postForgotPassword(param: ForgotPasswordParam):LiveData<Result<ObjectResponse<String>>>
 }

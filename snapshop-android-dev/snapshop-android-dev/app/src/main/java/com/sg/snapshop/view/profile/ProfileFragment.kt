@@ -119,7 +119,7 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>(), View.OnClickList
         authViewModel.logOutLiveData.observe(this, Observer {
             if (it != null) {
                 (requireActivity() as? BaseActivity<*>)?.closePopup()
-                CoreApplication.instance.clearUser()
+                CoreApplication.instance.clearAccount()
                 CoreApplication.instance.clearBasket()
                 viewBinding.isLogin = false
                 viewBinding.isBrand = false

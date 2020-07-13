@@ -16,7 +16,7 @@ import kotlinx.coroutines.launch
 
 class AuthenticateViewModel(private val repository: AuthRepository) : ViewModel() {
     val logInLiveData = MediatorLiveData<ObjectResponse<Account>>()
-    val signUpLiveData = MediatorLiveData<Profile>()
+    val signUpLiveData = MediatorLiveData<ObjectResponse<Account>>()
     val logOutLiveData = MediatorLiveData<String>()
     val forgotPasswordLiveData = MediatorLiveData<Any>()
     val error = MutableLiveData<Pair<String, Int?>>()
@@ -36,9 +36,9 @@ class AuthenticateViewModel(private val repository: AuthRepository) : ViewModel(
         }
     }
 
-    fun signUp(param: RegisterParam) {
+    fun signUp(account: Account) {
         viewModelScope.launch {
-            signUpLiveData.addSource(repository.postSignUp(param)) {
+            signUpLiveData.addSource(repository.postSignUp(account)) {
                 when (it) {
                     is Result.Error -> {
                         error.value = Pair(it.message, it.code)

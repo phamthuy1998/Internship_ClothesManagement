@@ -25,12 +25,10 @@ namespace ClothesManamentDataAccess
         public string name { get; set; }
         public string beginDate { get; set; }
         public string endDate { get; set; }
-        public Nullable<int> typePromotionId { get; set; }
         public Nullable<double> value { get; set; }
-        public Nullable<int> active { get; set; }
+        public int active { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ItemPromotion> ItemPromotions { get; set; }
-        public virtual TypePromotion TypePromotion { get; set; }
     }
 }

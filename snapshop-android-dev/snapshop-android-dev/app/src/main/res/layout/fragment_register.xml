@@ -22,6 +22,13 @@
         <variable
             name="isLastNameValid"
             type="Boolean" />
+        <variable
+            name="isPhoneValid"
+            type="Boolean" />
+
+        <variable
+            name="isUsernameValid"
+            type="Boolean" />
 
         <variable
             name="isPasswordValid"
@@ -45,18 +52,18 @@
             android:layout_height="wrap_content">
 
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/edt_firstName"
+                android:id="@+id/edtName"
                 style="@style/normal_text.EditText.Register"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/layout_margin_40dp"
+                android:capitalize="words"
                 android:drawableStart="@drawable/ic_name_field"
                 android:ellipsize="end"
                 android:gravity="center_vertical"
-                android:hint="@string/first_name"
+                android:hint="@string/name"
                 android:inputType="textCapWords|textCapSentences"
                 android:maxLines="1"
-                android:capitalize="words"
                 android:paddingEnd="@dimen/layout_margin_48dp"
                 android:textCursorDrawable="@drawable/gray_cursor"
                 app:layout_constraintLeft_toLeftOf="parent"
@@ -68,36 +75,63 @@
                 android:layout_marginEnd="@dimen/layout_margin_16dp"
                 android:src="@drawable/ic_checked"
                 android:visibility="@{isFirstNameValid ? View.VISIBLE : View.GONE}"
-                app:layout_constraintBottom_toBottomOf="@id/edt_firstName"
-                app:layout_constraintEnd_toEndOf="@id/edt_firstName"
-                app:layout_constraintTop_toTopOf="@id/edt_firstName" />
+                app:layout_constraintBottom_toBottomOf="@id/edtName"
+                app:layout_constraintEnd_toEndOf="@id/edtName"
+                app:layout_constraintTop_toTopOf="@id/edtName" />
 
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/edt_lastName"
+                android:id="@+id/edtPhone"
                 style="@style/normal_text.EditText.Register"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:capitalize="words"
                 android:drawableStart="@drawable/ic_name_field"
                 android:ellipsize="end"
                 android:gravity="center_vertical"
-                android:hint="@string/last_name"
-                android:inputType="textCapWords|textCapSentences"
-                android:capitalize="words"
+                android:hint="@string/phone_number_text"
+                android:inputType="phone"
                 android:maxLines="1"
                 android:paddingEnd="@dimen/layout_margin_48dp"
                 android:textCursorDrawable="@drawable/gray_cursor"
                 app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/edt_firstName" />
+                app:layout_constraintTop_toBottomOf="@id/edtName" />
 
             <androidx.appcompat.widget.AppCompatImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="@dimen/layout_margin_16dp"
                 android:src="@drawable/ic_checked"
-                android:visibility="@{isLastNameValid ? View.VISIBLE : View.GONE}"
-                app:layout_constraintBottom_toBottomOf="@id/edt_lastName"
-                app:layout_constraintEnd_toEndOf="@id/edt_lastName"
-                app:layout_constraintTop_toTopOf="@id/edt_lastName" />
+                android:visibility="@{isPhoneValid ? View.VISIBLE : View.GONE}"
+                app:layout_constraintBottom_toBottomOf="@id/edtPhone"
+                app:layout_constraintEnd_toEndOf="@id/edtPhone"
+                app:layout_constraintTop_toTopOf="@id/edtPhone" />
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/edtUsername"
+                style="@style/normal_text.EditText.Register"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:capitalize="words"
+                android:drawableStart="@drawable/ic_name_field"
+                android:ellipsize="end"
+                android:gravity="center_vertical"
+                android:hint="@string/username_text"
+                android:inputType="textPersonName"
+                android:maxLines="1"
+                android:paddingEnd="@dimen/layout_margin_48dp"
+                android:textCursorDrawable="@drawable/gray_cursor"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/edtPhone" />
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/layout_margin_16dp"
+                android:src="@drawable/ic_checked"
+                android:visibility="@{isUsernameValid ? View.VISIBLE : View.GONE}"
+                app:layout_constraintBottom_toBottomOf="@id/edtUsername"
+                app:layout_constraintEnd_toEndOf="@id/edtUsername"
+                app:layout_constraintTop_toTopOf="@id/edtUsername" />
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/edt_email"
@@ -112,7 +146,7 @@
                 android:paddingEnd="@dimen/layout_margin_48dp"
                 android:textCursorDrawable="@drawable/gray_cursor"
                 app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/edt_lastName" />
+                app:layout_constraintTop_toBottomOf="@id/edtUsername" />
 
             <androidx.appcompat.widget.AppCompatImageView
                 android:id="@+id/toggle_checked"

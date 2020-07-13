@@ -71,9 +71,9 @@ open class CoreApplication : Application(){
         this.currency = currency
     }
 
-    fun clearUser(){
-        prefsUtil.profile = null
-        this.profile = null
+    fun clearAccount(){
+        prefsUtil.account = null
+        this.account = null
         notLoginBasket.clear()
         removeAllFromWishList()
         clearBasket()

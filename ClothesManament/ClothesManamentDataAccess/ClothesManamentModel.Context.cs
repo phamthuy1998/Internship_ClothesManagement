@@ -27,7 +27,6 @@ namespace ClothesManamentDataAccess
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<Account> Accounts { get; set; }
         public virtual DbSet<Brand> Brands { get; set; }
         public virtual DbSet<Cart> Carts { get; set; }
         public virtual DbSet<Category> Categories { get; set; }
@@ -38,11 +37,11 @@ namespace ClothesManamentDataAccess
         public virtual DbSet<OrderItem> OrderItems { get; set; }
         public virtual DbSet<Product> Products { get; set; }
         public virtual DbSet<ProductSizeColor> ProductSizeColors { get; set; }
-        public virtual DbSet<Promotion> Promotions { get; set; }
         public virtual DbSet<Role> Roles { get; set; }
         public virtual DbSet<Size> Sizes { get; set; }
         public virtual DbSet<Type> Types { get; set; }
-        public virtual DbSet<TypePromotion> TypePromotions { get; set; }
+        public virtual DbSet<Account> Accounts { get; set; }
+        public virtual DbSet<Promotion> Promotions { get; set; }
     
         public virtual int sp_alterdiagram(string diagramname, Nullable<int> owner_id, Nullable<int> version, byte[] definition)
         {
@@ -209,7 +208,7 @@ namespace ClothesManamentDataAccess
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_GetProductInfoByID_Result>("SP_GetProductInfoByID", productIDParameter);
         }
     
-        public virtual ObjectResult<Nullable<int>> SP_Register(string name, string email, string phone, Nullable<int> gender, Nullable<int> roleId, string password, string username, string imageUrl, Nullable<int> active)
+        public virtual ObjectResult<Nullable<int>> SP_Register(string name, string email, string phone, Nullable<int> roleId, string password, string username, string imageUrl, Nullable<int> active)
         {
             var nameParameter = name != null ?
                 new ObjectParameter("name", name) :
@@ -222,10 +221,6 @@ namespace ClothesManamentDataAccess
             var phoneParameter = phone != null ?
                 new ObjectParameter("phone", phone) :
                 new ObjectParameter("phone", typeof(string));
-    
-            var genderParameter = gender.HasValue ?
-                new ObjectParameter("gender", gender) :
-                new ObjectParameter("gender", typeof(int));
     
             var roleIdParameter = roleId.HasValue ?
                 new ObjectParameter("roleId", roleId) :
@@ -247,10 +242,10 @@ namespace ClothesManamentDataAccess
                 new ObjectParameter("active", active) :
                 new ObjectParameter("active", typeof(int));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("SP_Register", nameParameter, emailParameter, phoneParameter, genderParameter, roleIdParameter, passwordParameter, usernameParameter, imageUrlParameter, activeParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("SP_Register", nameParameter, emailParameter, phoneParameter, roleIdParameter, passwordParameter, usernameParameter, imageUrlParameter, activeParameter);
         }
     
-        public virtual ObjectResult<Nullable<int>> SP_UpdateUser(Nullable<int> userId, string name, string email, string phone, Nullable<int> gender, Nullable<int> roleId, string password, string imageUrl)
+        public virtual ObjectResult<Nullable<int>> SP_UpdateUser(Nullable<int> userId, string name, string email, string phone, Nullable<int> roleId, string password, string imageUrl)
         {
             var userIdParameter = userId.HasValue ?
                 new ObjectParameter("userId", userId) :
@@ -268,10 +263,6 @@ namespace ClothesManamentDataAccess
                 new ObjectParameter("phone", phone) :
                 new ObjectParameter("phone", typeof(string));
     
-            var genderParameter = gender.HasValue ?
-                new ObjectParameter("gender", gender) :
-                new ObjectParameter("gender", typeof(int));
-    
             var roleIdParameter = roleId.HasValue ?
                 new ObjectParameter("roleId", roleId) :
                 new ObjectParameter("roleId", typeof(int));
@@ -284,7 +275,7 @@ namespace ClothesManamentDataAccess
                 new ObjectParameter("imageUrl", imageUrl) :
                 new ObjectParameter("imageUrl", typeof(string));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("SP_UpdateUser", userIdParameter, nameParameter, emailParameter, phoneParameter, genderParameter, roleIdParameter, passwordParameter, imageUrlParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("SP_UpdateUser", userIdParameter, nameParameter, emailParameter, phoneParameter, roleIdParameter, passwordParameter, imageUrlParameter);
         }
     
         public virtual ObjectResult<Nullable<int>> SPGetAccountInfo(string username)
@@ -325,6 +316,15 @@ namespace ClothesManamentDataAccess
                 new ObjectParameter("password", typeof(string));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("SP_Login", userNameParameter, passwordParameter);
+        }
+    
+        public virtual ObjectResult<SPGetAccounByUsername_Result> SPGetAccounByUsername(string username)
+        {
+            var usernameParameter = username != null ?
+                new ObjectParameter("username", username) :
+                new ObjectParameter("username", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SPGetAccounByUsername_Result>("SPGetAccounByUsername", usernameParameter);
         }
     }
 }

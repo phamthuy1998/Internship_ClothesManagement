@@ -5,7 +5,6 @@ data class Account(
     val name: String? = "",
     val email: String? = "",
     val phone: String? = "",
-    val gender: Int? = 0,
     val roleId: Int? = 0,
     val password: String? = "",
     val username: String? = "",

@@ -98,7 +98,7 @@ class BrandProfileFragment : BaseFragment<FragmentCarouselDetailBinding>(), View
         })
 
         authViewModel.logOutLiveData.observe(this, Observer {
-            CoreApplication.instance.clearUser()
+            CoreApplication.instance.clearAccount()
             Handler().postDelayed({
                 (requireActivity() as? BaseActivity<*>)?.closePopup()
                 (activity as? MainActivity)?.updateUIBottomNav()

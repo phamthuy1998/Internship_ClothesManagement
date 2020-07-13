@@ -33,18 +33,22 @@ namespace ClothesManament.Controllers
         }
 
         [Route("api/logout")]
-        [AcceptVerbs("GET")]
-        [HttpGet]
-        public ResponseObjectModel<string> signOut()
+        [AcceptVerbs("DELETE")]
+        [HttpDelete]
+        public void signOut()
         {
-            return new ResponseObjectModel<string>()
-            {
-                message = "Logout success!",
-                status = true,
-                code = 200,
-                data = ""
-            };
+           
         }
+        //public ResponseObjectModel<string> signOut()
+        //{
+        //    return new ResponseObjectModel<string>()
+        //    {
+        //        message = "Logout success!",
+        //        status = true,
+        //        code = 200,
+        //        data = ""
+        //    };
+        //}
 
         [Route("api/changePassword")]
         [AcceptVerbs("PUT")]
@@ -80,6 +84,36 @@ namespace ClothesManament.Controllers
             return new ResponseObjectModel<String>()
             {
                 message = "Đăng nhập thất bại ",
+                status = false,
+                code = 200,
+                data = ""
+            };
+
+        }
+
+        [Route("api/forgotPassword")]
+        [AcceptVerbs("POST")]
+        [HttpPost]
+        public ResponseObjectModel<String> forgotPassword([FromBody] String email)
+        {
+            var result = entities.Accounts.FirstOrDefault(x => x.email == email);
+            if (result == null)
+            {
+                return new ResponseObjectModel<String>()
+                {
+                    message = "Email không tồn tại trong hệ thống",
+                    status = false,
+                    code = 200,
+                    data = null
+                };
+            }
+
+            // send mail reset password
+
+
+            return new ResponseObjectModel<String>()
+            {
+                message = "Thay đổi mật khẩu thất bại",
                 status = false,
                 code = 200,
                 data = ""
@@ -154,17 +188,17 @@ namespace ClothesManament.Controllers
         [Route("api/signUp")]
         [AcceptVerbs("POST")]
         [HttpPost]
-        public ResponseObjectModel<SPGetAccountInfoByUsername_Result> signUp([FromBody] Account acc)
+        public ResponseObjectModel<SPGetAccounByUsername_Result> signUp([FromBody] Account acc)
         {
             try
             {
-                var result = entities.SP_Register(acc.name, acc.email, acc.phone, acc.gender, acc.roleId, acc.password, acc.username, acc.imageUrl, acc.active).FirstOrDefault();
+                var result = entities.SP_Register(acc.name, acc.email, acc.phone, acc.roleId, acc.password, acc.username, acc.imageUrl, acc.active).FirstOrDefault();
                 if (result.HasValue)
                 {
                     int resultInt = result.Value;
                     if (resultInt == -1)
                     {
-                        return new ResponseObjectModel<SPGetAccountInfoByUsername_Result>()
+                        return new ResponseObjectModel<SPGetAccounByUsername_Result>()
                         {
                             message = "Username đã tồn tại",
                             status = false,
@@ -174,7 +208,7 @@ namespace ClothesManament.Controllers
                     }
                     else if (resultInt == -2)
                     {
-                        return new ResponseObjectModel<SPGetAccountInfoByUsername_Result>()
+                        return new ResponseObjectModel<SPGetAccounByUsername_Result>()
                         {
                             message = "Email đã tồn tại",
                             status = false,
@@ -184,7 +218,7 @@ namespace ClothesManament.Controllers
                     }
                     else if (resultInt == -3)
                     {
-                        return new ResponseObjectModel<SPGetAccountInfoByUsername_Result>()
+                        return new ResponseObjectModel<SPGetAccounByUsername_Result>()
                         {
                             message = "Số điện thoại đã tồn tại",
                             status = false,
@@ -194,11 +228,12 @@ namespace ClothesManament.Controllers
                     }
                     else
                     {
-                        var accountInfo = entities.SPGetAccountInfoByUsername(acc.username).FirstOrDefault(); ;
+                        //var accountInfo = entities.SPGetAccountInfoByUsername(acc.username).FirstOrDefault();
+                        var accountInfo = entities.SPGetAccounByUsername(acc.username).FirstOrDefault();
 
                         if (accountInfo == null)
                         {
-                            return new ResponseObjectModel<SPGetAccountInfoByUsername_Result>()
+                            return new ResponseObjectModel<SPGetAccounByUsername_Result>()
                             {
                                 message = "Lỗi đăng ký tài khoản",
                                 status = false,
@@ -207,7 +242,7 @@ namespace ClothesManament.Controllers
                             };
                         }
 
-                        return new ResponseObjectModel<SPGetAccountInfoByUsername_Result>()
+                        return new ResponseObjectModel<SPGetAccounByUsername_Result>()
                         {
                             message = "Đăng ký tài khoản thành công",
                             status = true,
@@ -216,7 +251,7 @@ namespace ClothesManament.Controllers
                         };
                     }
                 }
-                return new ResponseObjectModel<SPGetAccountInfoByUsername_Result>()
+                return new ResponseObjectModel<SPGetAccounByUsername_Result>()
                 {
                     message = "Lỗi tạo tài khoản!",
                     status = false,
@@ -226,7 +261,7 @@ namespace ClothesManament.Controllers
             }
             catch (Exception e)
             {
-                return new ResponseObjectModel<SPGetAccountInfoByUsername_Result>()
+                return new ResponseObjectModel<SPGetAccounByUsername_Result>()
                 {
                     message = "Lỗi tạo tài khoản! " + e,
                     status = false,
@@ -234,6 +269,12 @@ namespace ClothesManament.Controllers
                     data = null
                 };
             }
+        }
+
+        private Account getAccount(String username)
+        {
+
+            return entities.Accounts.FirstOrDefault(x => x.username == username);
         }
 
         [Route("api/accountInfo")]
@@ -261,6 +302,8 @@ namespace ClothesManament.Controllers
                 data = result
             };
         }
+
+
 
         private const string LocalLoginProvider = "Local";
         private ApplicationUserManager _userManager;

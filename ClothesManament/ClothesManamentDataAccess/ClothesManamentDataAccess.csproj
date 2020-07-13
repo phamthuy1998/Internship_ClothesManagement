@@ -114,6 +114,9 @@
     <Compile Include="Size.cs">
       <DependentUpon>ClothesManamentModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="SPGetAccounByUsername_Result.cs">
+      <DependentUpon>ClothesManamentModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="SPGetAccountInfoByUserId_Result.cs">
       <DependentUpon>ClothesManamentModel.tt</DependentUpon>
     </Compile>
@@ -136,9 +139,6 @@
       <DependentUpon>ClothesManamentModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Type.cs">
-      <DependentUpon>ClothesManamentModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="TypePromotion.cs">
       <DependentUpon>ClothesManamentModel.tt</DependentUpon>
     </Compile>
   </ItemGroup>

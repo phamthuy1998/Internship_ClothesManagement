@@ -8,7 +8,6 @@
     <Property Name="name" Type="nvarchar" MaxLength="100" />
     <Property Name="email" Type="nvarchar" MaxLength="200" />
     <Property Name="phone" Type="nvarchar" MaxLength="15" />
-    <Property Name="gender" Type="int" />
     <Property Name="roleId" Type="int" />
     <Property Name="password" Type="nvarchar" MaxLength="50" />
     <Property Name="username" Type="nvarchar" MaxLength="50" />
@@ -131,9 +130,8 @@
     <Property Name="name" Type="nvarchar" MaxLength="200" />
     <Property Name="beginDate" Type="nvarchar" MaxLength="50" />
     <Property Name="endDate" Type="nvarchar" MaxLength="50" />
-    <Property Name="typePromotionId" Type="int" />
     <Property Name="value" Type="float" />
-    <Property Name="active" Type="int" />
+    <Property Name="active" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="Role">
     <Key>
@@ -159,15 +157,6 @@
     </Key>
     <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="name" Type="nvarchar" MaxLength="50" />
-    <Property Name="active" Type="int" />
-  </EntityType>
-  <EntityType Name="TypePromotion">
-    <Key>
-      <PropertyRef Name="id" />
-    </Key>
-    <Property Name="id" Type="int" Nullable="false" />
-    <Property Name="name" Type="nvarchar" MaxLength="50" />
-    <Property Name="code" Type="nvarchar" MaxLength="50" />
     <Property Name="active" Type="int" />
   </EntityType>
   <Association Name="FK_Cart_Product">
@@ -338,18 +327,6 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_Promotion_TypePromotion">
-    <End Role="TypePromotion" Type="Self.TypePromotion" Multiplicity="0..1" />
-    <End Role="Promotion" Type="Self.Promotion" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="TypePromotion">
-        <PropertyRef Name="id" />
-      </Principal>
-      <Dependent Role="Promotion">
-        <PropertyRef Name="typePromotionId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
   <Association Name="FK_User_Role">
     <End Role="Role" Type="Self.Role" Multiplicity="0..1" />
     <End Role="Account" Type="Self.Account" Multiplicity="*" />
@@ -370,39 +347,14 @@
   <Function Name="DelAccount" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="userId" Type="int" Mode="In" />
   </Function>
-  <Function Name="fn_diagramobjects" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="int" />
   <Function Name="getCategoryByType" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="TypeID" Type="int" Mode="In" />
-  </Function>
-  <Function Name="sp_alterdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
-    <Parameter Name="owner_id" Type="int" Mode="In" />
-    <Parameter Name="version" Type="int" Mode="In" />
-    <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
-  </Function>
-  <Function Name="sp_creatediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
-    <Parameter Name="owner_id" Type="int" Mode="In" />
-    <Parameter Name="version" Type="int" Mode="In" />
-    <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
-  </Function>
-  <Function Name="sp_dropdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
-    <Parameter Name="owner_id" Type="int" Mode="In" />
   </Function>
   <Function Name="SP_GetProductCategory" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="categoryId" Type="int" Mode="In" />
   </Function>
   <Function Name="SP_GetProductInfoByID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="productID" Type="int" Mode="In" />
-  </Function>
-  <Function Name="sp_helpdiagramdefinition" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
-    <Parameter Name="owner_id" Type="int" Mode="In" />
-  </Function>
-  <Function Name="sp_helpdiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
-    <Parameter Name="owner_id" Type="int" Mode="In" />
   </Function>
   <Function Name="SP_Login" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="userName" Type="nvarchar" Mode="In" />
@@ -412,29 +364,24 @@
     <Parameter Name="name" Type="nvarchar" Mode="In" />
     <Parameter Name="email" Type="nvarchar" Mode="In" />
     <Parameter Name="phone" Type="nvarchar" Mode="In" />
-    <Parameter Name="gender" Type="int" Mode="In" />
     <Parameter Name="roleId" Type="int" Mode="In" />
     <Parameter Name="password" Type="nvarchar" Mode="In" />
     <Parameter Name="username" Type="nvarchar" Mode="In" />
     <Parameter Name="imageUrl" Type="nvarchar" Mode="In" />
     <Parameter Name="active" Type="int" Mode="In" />
   </Function>
-  <Function Name="sp_renamediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
-    <Parameter Name="owner_id" Type="int" Mode="In" />
-    <Parameter Name="new_diagramname" Type="nvarchar" Mode="In" />
-  </Function>
   <Function Name="SP_UpdateUser" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="userId" Type="int" Mode="In" />
     <Parameter Name="name" Type="nvarchar" Mode="In" />
     <Parameter Name="email" Type="nvarchar" Mode="In" />
     <Parameter Name="phone" Type="nvarchar" Mode="In" />
-    <Parameter Name="gender" Type="int" Mode="In" />
     <Parameter Name="roleId" Type="int" Mode="In" />
     <Parameter Name="password" Type="nvarchar" Mode="In" />
     <Parameter Name="imageUrl" Type="nvarchar" Mode="In" />
   </Function>
-  <Function Name="sp_upgraddiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="SPGetAccounByUsername" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="username" Type="nvarchar" Mode="In" />
+  </Function>
   <Function Name="SPGetAccountInfoByUserId" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="userId" Type="int" Mode="In" />
   </Function>
@@ -457,7 +404,6 @@
     <EntitySet Name="Role" EntityType="Self.Role" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Size" EntityType="Self.Size" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Type" EntityType="Self.Type" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="TypePromotion" EntityType="Self.TypePromotion" Schema="dbo" store:Type="Tables" />
     <AssociationSet Name="FK_Cart_Product" Association="Self.FK_Cart_Product">
       <End Role="Product" EntitySet="Product" />
       <End Role="Cart" EntitySet="Cart" />
@@ -513,10 +459,6 @@
     <AssociationSet Name="FK_ProductSizeColor_Size" Association="Self.FK_ProductSizeColor_Size">
       <End Role="Size" EntitySet="Size" />
       <End Role="ProductSizeColor" EntitySet="ProductSizeColor" />
-    </AssociationSet>
-    <AssociationSet Name="FK_Promotion_TypePromotion" Association="Self.FK_Promotion_TypePromotion">
-      <End Role="TypePromotion" EntitySet="TypePromotion" />
-      <End Role="Promotion" EntitySet="Promotion" />
     </AssociationSet>
     <AssociationSet Name="FK_User_Role" Association="Self.FK_User_Role">
       <End Role="Role" EntitySet="Role" />
