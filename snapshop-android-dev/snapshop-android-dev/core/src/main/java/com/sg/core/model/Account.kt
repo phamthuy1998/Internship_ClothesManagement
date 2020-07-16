@@ -1,13 +1,13 @@
 package com.sg.core.model
 
 data class Account(
-    val id: Int? = 0,
-    val name: String? = "",
-    val email: String? = "",
-    val phone: String? = "",
-    val roleId: Int? = 0,
-    val password: String? = "",
-    val username: String? = "",
-    val imageUrl: String? = "",
-    val active: Int? = 0
+    var id: Int? = 0,
+    var name: String? = "",
+    var email: String? = "",
+    var phone: String? = "",
+    var roleId: Int? = 0,
+    var password: String? = "",
+    var username: String? = "",
+    var imageUrl: String? = "",
+    var active: Int? = 0
 )

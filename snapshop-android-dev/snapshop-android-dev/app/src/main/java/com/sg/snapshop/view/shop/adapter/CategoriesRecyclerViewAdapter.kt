@@ -7,7 +7,7 @@ import androidx.core.view.marginRight
 import androidx.core.view.marginStart
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
-import com.sg.core.model.Categories
+import com.sg.core.model.Category
 import com.sg.core.model.Gender
 import com.sg.core.model.ImageCategories
 import com.sg.snapshop.R
@@ -16,9 +16,9 @@ import com.sg.snapshop.databinding.ItemSectionBinding
 import org.jetbrains.anko.windowManager
 
 class CategoriesRecyclerViewAdapter(
-    private var categories: ArrayList<Categories>?,
+    private var categories: ArrayList<Category>?,
     private var type: Gender,
-    private val listener : (categories : Categories?) -> Unit
+    private val listener : (category: Category?) -> Unit
 ) :
     RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
@@ -27,13 +27,13 @@ class CategoriesRecyclerViewAdapter(
         private const val ITEM_SECTION = 1
     }
 
-    fun setCategories(categories: ArrayList<Categories>?, type: Gender) {
+    fun setCategories(categories: ArrayList<Category>?, type: Gender) {
         this.categories = categories
         this.type = type
         notifyDataSetChanged()
     }
 
-    fun getCategories() : ArrayList<Categories>? = this.categories
+    fun getCategories() : ArrayList<Category>? = this.categories
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
@@ -79,14 +79,13 @@ class CategoriesRecyclerViewAdapter(
     inner class CategoriesViewHolder(private val viewBinding: ItemMainCategoryBinding) :
         RecyclerView.ViewHolder(viewBinding.root) {
 
-        fun bind(category: Categories?) {
+        fun bind(category: Category?) {
             val displayMetrics = DisplayMetrics()
             viewBinding.root.context.windowManager.defaultDisplay.getMetrics(displayMetrics)
             val width = displayMetrics.widthPixels
             viewBinding.ivImage.layoutParams.width = (width - viewBinding.ivImage.marginStart - viewBinding.ivImage.marginRight) / 3
             viewBinding.ivImage.layoutParams.height = (viewBinding.ivImage.layoutParams.width * 0.5).toInt()
             viewBinding.category = category
-            viewBinding.image = filter(category?.images ?: arrayListOf(), type)
         }
 
         private fun filter(images: ArrayList<ImageCategories>, type: Gender): ImageCategories {

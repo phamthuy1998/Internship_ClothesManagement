@@ -44,7 +44,7 @@ abstract class BaseAllCategoriesFragment : BaseFragment<FragmentBaseAllCategorie
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         viewModel.requestAllCategories(getTypeGender())
-        viewModelCategories.getMainCategories(getTypeGender())
+        viewModelCategories.getMainCategories(getTypeGender().value)
     }
 
     override fun bindEvent() {
@@ -61,7 +61,7 @@ abstract class BaseAllCategoriesFragment : BaseFragment<FragmentBaseAllCategorie
 
         viewModelCategories.categoriesLiveData.observe(this, Observer {
             categories = arrayListOf()
-            categories?.addAll(it)
+//            categories?.addAll(it)
         })
 
         viewModel.error.observe(this, Observer {

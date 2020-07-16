@@ -96,11 +96,13 @@
     <string name="logout_me_out">Log me out</string>
     <string name="error_empty">%s can\'t be empty</string>
     <string name="invalid_email">Invalid email</string>
+    <string name="invalid_phone">Invalid phone</string>
     <string name="password_size">%s must be at least 8 characters</string>
     <string name="password_upper_case">%s must be at least 1 Uppercase character</string>
     <string name="password_digit">%s must be at least 1 digit</string>
     <string name="sign_up_success">Successfully Registration</string>
     <string name="update_detail_success">Update successfully</string>
+    <string name="changePass_success">Update password successfully</string>
     <string name="address_line_1">Address Line 1*</string>
     <string name="address_line_2_optional">Address Line 2 (optional)</string>
     <string name="country_area">Country Area</string>

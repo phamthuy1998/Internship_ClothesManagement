@@ -1,17 +1,14 @@
 package com.sg.core.api
 
 import com.sg.core.model.Account
-import com.sg.core.model.Profile
+import com.sg.core.model.Category
 import com.sg.core.model.wish.ObjectResponse
+import com.sg.core.param.ChangePassParam
+import com.sg.core.param.EditAccountParam
 import com.sg.core.param.ForgotPasswordParam
 import com.sg.core.param.LogInParam
-import com.sg.core.param.RegisterParam
-import com.sg.core.vo.ApiResponse
 import retrofit2.Response
-import retrofit2.http.Body
-import retrofit2.http.DELETE
-import retrofit2.http.GET
-import retrofit2.http.POST
+import retrofit2.http.*
 
 interface ApiClothesService {
     @POST("/api/login")
@@ -25,4 +22,14 @@ interface ApiClothesService {
 
     @POST("/api/signUp")
     suspend fun signUp(@Body acc: Account): Response<ObjectResponse<Account>>
+
+    @PUT("/api/changePassword")
+    suspend fun changePassword(@Body param: ChangePassParam): Response<ObjectResponse<Account>>
+
+    @PUT("/api/changeAccInfo")
+    suspend fun updateProfile(@Body param: EditAccountParam): Response<ObjectResponse<Account>>
+
+    @GET("/api/categories")
+    suspend fun getMainCategories(@Query("genderID")  genderID: Int): Response<ArrayList<Category>>
 }
+

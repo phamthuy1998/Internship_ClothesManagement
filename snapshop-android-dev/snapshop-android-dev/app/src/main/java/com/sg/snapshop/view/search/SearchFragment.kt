@@ -63,7 +63,7 @@ class SearchFragment : BaseFragment<FragmentSearchBinding>(),
                 this::clickCategoryListener,
                 this::clickSportListener
             )
-        shopViewModel.getMainCategories(Gender.NONE)
+        shopViewModel.getMainCategories()
     }
 
     override fun onResume() {
@@ -95,7 +95,7 @@ class SearchFragment : BaseFragment<FragmentSearchBinding>(),
         })
         shopViewModel.categoriesLiveData.observe(this, Observer {
             if (it != null) {
-                baseMainCategories = it
+//                baseMainCategories = it
             }
         })
     }

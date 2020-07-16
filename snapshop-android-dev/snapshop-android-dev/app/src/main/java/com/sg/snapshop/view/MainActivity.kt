@@ -1,10 +1,7 @@
 package com.sg.snapshop.view
 
-import android.app.Dialog
 import android.content.pm.PackageManager
-import android.graphics.Color
 import android.os.Bundle
-import android.os.Handler
 import android.view.WindowManager
 import android.widget.Toast
 import androidx.lifecycle.LiveData
@@ -30,7 +27,6 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
     override val layoutId: Int = R.layout.activity_main
     private val viewModel: ProductFilterViewModel by viewModel()
     private val brandViewModel: BrandsViewModel by viewModel()
-    private val currencyViewModel: CurrencyViewModel by viewModel()
     private val homeViewModel: HomeViewModel by viewModel()
     val shoppingViewModel: ShoppingViewModel by viewModel()
     val wishListViewModel: WishListViewModel by viewModel()
@@ -56,7 +52,6 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
         brandViewModel.getBrands()
         brandViewModel.getStories()
         viewModel.getProductFilter()
-        currencyViewModel.getSupportedCurrency()
         homeViewModel.getAllTags()
     }
 

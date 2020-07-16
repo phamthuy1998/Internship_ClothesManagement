@@ -4,7 +4,10 @@ import android.graphics.Color
 import android.view.View
 import android.view.WindowManager
 import androidx.appcompat.app.AppCompatActivity
-import androidx.appcompat.widget.*
+import androidx.appcompat.widget.AppCompatImageButton
+import androidx.appcompat.widget.AppCompatImageView
+import androidx.appcompat.widget.AppCompatTextView
+import androidx.appcompat.widget.Toolbar
 import com.sg.core.CoreApplication
 import com.sg.core.util.ObjectHandler
 import com.sg.snapshop.R
@@ -21,9 +24,6 @@ fun initToolBar(
         if (hasBack) this.visible() else this.gone()
     }
     toolbar?.findViewById<AppCompatTextView>(R.id.tvBackRight)?.apply {
-        if (hasBackRight) this.visible() else this.gone()
-    }
-    toolbar?.findViewById<AppCompatSpinner>(R.id.spCurrency)?.apply {
         if (hasBackRight) this.visible() else this.gone()
     }
     toolbar?.findViewById<AppCompatImageButton>(R.id.ivLeft)?.apply {

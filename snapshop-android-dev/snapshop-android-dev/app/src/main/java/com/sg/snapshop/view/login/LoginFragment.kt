@@ -74,6 +74,7 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>() {
                 }
             }else{
                 messageHandler?.runMessageErrorHandler(it.message?:"")
+                viewBinding.btnSignIn.isLoading = false
             }
         })
 

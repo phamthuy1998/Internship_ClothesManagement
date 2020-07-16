@@ -106,7 +106,7 @@
                 android:drawableStart="@drawable/ic_password_field_gray"
                 android:ellipsize="end"
                 android:hint="@string/password"
-                android:text="123"
+                android:text="thuythuy"
                 android:imeOptions="actionGo"
                 android:inputType="textPassword"
                 android:paddingStart="@dimen/layout_margin_16dp"

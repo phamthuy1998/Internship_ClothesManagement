@@ -22,6 +22,7 @@ namespace ClothesManamentDataAccess
             this.ItemPromotions = new HashSet<ItemPromotion>();
             this.OrderItems = new HashSet<OrderItem>();
             this.ProductSizeColors = new HashSet<ProductSizeColor>();
+            this.Accounts = new HashSet<Account>();
         }
     
         public int id { get; set; }
@@ -47,5 +48,7 @@ namespace ClothesManamentDataAccess
         public virtual ICollection<OrderItem> OrderItems { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ProductSizeColor> ProductSizeColors { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Account> Accounts { get; set; }
     }
 }

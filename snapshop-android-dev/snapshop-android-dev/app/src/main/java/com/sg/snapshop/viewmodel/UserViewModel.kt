@@ -4,22 +4,24 @@ import androidx.lifecycle.MediatorLiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.sg.core.model.Account
 import com.sg.core.model.User
-import com.sg.core.param.ChangePasswordParam
+import com.sg.core.model.wish.ObjectResponse
+import com.sg.core.param.ChangePassParam
+import com.sg.core.param.EditAccountParam
 import com.sg.core.param.UpdateAddressParam
-import com.sg.core.param.UpdateDetailParam
 import com.sg.core.repository.UserRepository
 import com.sg.core.vo.Result
 import kotlinx.coroutines.launch
 
 class UserViewModel(private val repository: UserRepository) : ViewModel() {
-    val updateDetailLiveData = MediatorLiveData<User>()
-    val changePasswordLiveData = MediatorLiveData<User>()
+    val updateDetailLiveData = MediatorLiveData<ObjectResponse<Account>>()
+    val changePasswordLiveData = MediatorLiveData<ObjectResponse<Account>>()
     val updateAddressBookLiveData = MediatorLiveData<User>()
     val getProfileLiveData = MediatorLiveData<User>()
     val error = MutableLiveData<Pair<String, Int?>>()
 
-    fun updateProfile(param: UpdateDetailParam) {
+    fun updateProfile(param: EditAccountParam) {
         viewModelScope.launch {
             updateDetailLiveData.addSource(repository.updateProfile(param)) {
                 when (it) {
@@ -50,7 +52,7 @@ class UserViewModel(private val repository: UserRepository) : ViewModel() {
         }
     }
 
-    fun changePassword(param: ChangePasswordParam) {
+    fun changePassword(param: ChangePassParam) {
         viewModelScope.launch {
             changePasswordLiveData.addSource(repository.changePassword(param)) {
                 when (it) {

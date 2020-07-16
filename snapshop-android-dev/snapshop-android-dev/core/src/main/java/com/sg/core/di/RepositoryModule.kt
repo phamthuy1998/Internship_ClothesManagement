@@ -7,8 +7,8 @@ import org.koin.dsl.module
 val repositoryModule = module {
     single<WishListRepository> { WishListRepositoryImpl(get()) }
     single<AuthRepository> { AuthRepositoryImpl(get(), get()) }
-    single<UserRepository> { UserRepositoryImpl(get()) }
-    single<ShopRepository> { ShopRepositoryImpl(get()) }
+    single<UserRepository> { UserRepositoryImpl(get(),get()) }
+    single<ShopRepository> { ShopRepositoryImpl(get(),get()) }
     single<ProductFilterRepository> { ProductFilterRepositoryImpl(get()) }
     single<HomeRepository> { HomeRepositoryImpl(get()) }
     single <PaymentRepository>{PaymentRepositoryImpl(get())}

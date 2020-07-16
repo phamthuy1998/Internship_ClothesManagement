@@ -14,7 +14,6 @@ val appModule = module {
     viewModel { HomeViewModel(get()) }
     viewModel { PaymentViewModel(get()) }
     viewModel { CarouselDetailViewModel(get()) }
-    viewModel { CurrencyViewModel(get()) }
     viewModel { DesignerViewModel(get()) }
     viewModel { RefineViewModel() }
     viewModel { BrandsViewModel(get()) }

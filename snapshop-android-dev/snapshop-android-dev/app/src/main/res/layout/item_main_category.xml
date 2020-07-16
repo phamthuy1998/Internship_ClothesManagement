@@ -4,28 +4,21 @@
 
     <data>
 
-        <import type="android.view.View" />
-
         <variable
             name="category"
-            type="com.sg.core.model.Categories" />
-
-        <variable
-            name="image"
-            type="com.sg.core.model.ImageCategories" />
+            type="com.sg.core.model.Category" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:visibility="@{category.name.isEmpty() == true ? View.INVISIBLE : View.VISIBLE}">
+        android:layout_height="wrap_content">
 
         <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/ivImage"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@drawable/ic_place_holder"
-            app:imageUrl="@{image.icon_image_url}"
+            app:imageUrl="@{category.imageUrl}"
             android:scaleType="fitCenter"
             app:placeHolder="@{@drawable/ic_place_holder}"
             app:layout_constraintTop_toTopOf="parent"

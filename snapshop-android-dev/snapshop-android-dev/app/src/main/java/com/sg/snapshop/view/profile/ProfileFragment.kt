@@ -427,6 +427,6 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>(), View.OnClickList
             cover = currentProfile?.user?.cover ?: "",
             photo = currentProfile?.user?.photo ?: ""
         )
-        userViewModel.updateProfile(param)
+//        userViewModel.updateProfile(param)
     }
 }

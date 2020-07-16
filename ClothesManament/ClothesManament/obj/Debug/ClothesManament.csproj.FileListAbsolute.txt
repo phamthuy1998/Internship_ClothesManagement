@@ -274,3 +274,5 @@ D:\Thuy\thuctap\Internship_ClothesManament\ClothesManament\ClothesManament\bin\C
 D:\Thuy\thuctap\Internship_ClothesManament\ClothesManament\ClothesManament\bin\ClothesManagement.pdb
 D:\Thuy\thuctap\Internship_ClothesManament\ClothesManament\ClothesManament\obj\Debug\ClothesManagement.dll
 D:\Thuy\thuctap\Internship_ClothesManament\ClothesManament\ClothesManament\obj\Debug\ClothesManagement.pdb
+D:\Thuy\thuctap\Internship_ClothesManament\ClothesManament\ClothesManament\bin\Swashbuckle.Core.dll
+D:\Thuy\thuctap\Internship_ClothesManament\ClothesManament\ClothesManament\bin\WebActivatorEx.dll

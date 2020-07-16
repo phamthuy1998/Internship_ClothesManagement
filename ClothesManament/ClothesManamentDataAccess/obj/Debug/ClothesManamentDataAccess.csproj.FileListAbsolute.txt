@@ -28,3 +28,14 @@ D:\Thuy\thuctap\Internship_ClothesManament\ClothesManament\ClothesManamentDataAc
 D:\Thuy\thuctap\Internship_ClothesManament\ClothesManament\ClothesManamentDataAccess\obj\Debug\ClothesManamentDataAccess.csprojResolveAssemblyReference.cache
 D:\Thuy\thuctap\Internship_ClothesManament\ClothesManament\ClothesManamentDataAccess\obj\Debug\ClothesManamentDataAccess.dll
 D:\Thuy\thuctap\Internship_ClothesManament\ClothesManament\ClothesManamentDataAccess\obj\Debug\ClothesManamentDataAccess.pdb
+D:\Thuy\thuctap\Internship_ClothesManament\ClothesManament\ClothesManamentDataAccess\bin\Debug\Microsoft.Web.Infrastructure.dll
+D:\Thuy\thuctap\Internship_ClothesManament\ClothesManament\ClothesManamentDataAccess\bin\Debug\Newtonsoft.Json.dll
+D:\Thuy\thuctap\Internship_ClothesManament\ClothesManament\ClothesManamentDataAccess\bin\Debug\Swashbuckle.Core.dll
+D:\Thuy\thuctap\Internship_ClothesManament\ClothesManament\ClothesManamentDataAccess\bin\Debug\System.Net.Http.Formatting.dll
+D:\Thuy\thuctap\Internship_ClothesManament\ClothesManament\ClothesManamentDataAccess\bin\Debug\System.Web.Http.dll
+D:\Thuy\thuctap\Internship_ClothesManament\ClothesManament\ClothesManamentDataAccess\bin\Debug\System.Web.Http.WebHost.dll
+D:\Thuy\thuctap\Internship_ClothesManament\ClothesManament\ClothesManamentDataAccess\bin\Debug\WebActivatorEx.dll
+D:\Thuy\thuctap\Internship_ClothesManament\ClothesManament\ClothesManamentDataAccess\bin\Debug\Newtonsoft.Json.xml
+D:\Thuy\thuctap\Internship_ClothesManament\ClothesManament\ClothesManamentDataAccess\bin\Debug\System.Net.Http.Formatting.xml
+D:\Thuy\thuctap\Internship_ClothesManament\ClothesManament\ClothesManamentDataAccess\bin\Debug\System.Web.Http.xml
+D:\Thuy\thuctap\Internship_ClothesManament\ClothesManament\ClothesManamentDataAccess\bin\Debug\System.Web.Http.WebHost.xml

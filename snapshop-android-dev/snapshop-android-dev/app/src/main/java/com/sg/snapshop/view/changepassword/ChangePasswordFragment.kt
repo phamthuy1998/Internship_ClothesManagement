@@ -8,18 +8,23 @@ import android.view.MotionEvent
 import android.view.View
 import android.view.inputmethod.InputMethodManager
 import androidx.core.content.res.ResourcesCompat
+import androidx.databinding.ViewDataBinding
 import androidx.lifecycle.Observer
 import com.google.android.material.textfield.TextInputEditText
-import com.sg.core.param.ChangePasswordParam
+import com.sg.core.CoreApplication
+import com.sg.core.param.ChangePassParam
 import com.sg.core.util.capitalize
 import com.sg.snapshop.R
+import com.sg.snapshop.base.BaseActivity
 import com.sg.snapshop.base.BaseFragment
 import com.sg.snapshop.constant.ERROR_CODE_404
 import com.sg.snapshop.databinding.FragmentChangePasswordBinding
+import com.sg.snapshop.databinding.LayoutPopUpBinding
 import com.sg.snapshop.ext.initToolBar
 import com.sg.snapshop.ext.isShowErrorNetwork
 import com.sg.snapshop.ext.setupToolbar
 import com.sg.snapshop.ext.togglePassword
+import com.sg.snapshop.util.PopUp
 import com.sg.snapshop.view.MainActivity
 import com.sg.snapshop.viewmodel.UserViewModel
 import kotlinx.android.synthetic.main.activity_main.*
@@ -42,9 +47,19 @@ class ChangePasswordFragment : BaseFragment<FragmentChangePasswordBinding>() {
 
     private fun observeViewModel() {
         userViewModel.changePasswordLiveData.observe(this, Observer {
-            changeStatusButton(false)
-            messageHandler?.runMessageHandler(getString(R.string.update_detail_success))
-            navController.popBackStack()
+            if (it != null && it.status == true) {
+                changeStatusButton(false)
+                messageHandler?.runMessageHandler(getString(R.string.changePass_success))
+                (requireActivity() as? BaseActivity<*>)?.showPopup(
+                    PopUp(
+                        R.layout.layout_pop_up,
+                        messageQueue = this::popEvent
+                    )
+                )
+            } else {
+                messageHandler?.runMessageErrorHandler(it.message ?: "")
+                viewBinding.btnChange.isLoading = false
+            }
         })
         userViewModel.error.observe(this, Observer {
             if (it.second == ERROR_CODE_404) {
@@ -54,6 +69,19 @@ class ChangePasswordFragment : BaseFragment<FragmentChangePasswordBinding>() {
                 messageHandler?.runMessageErrorHandler(it.first)
             }
         })
+    }
+
+    private fun popEvent(popupBinding: ViewDataBinding?) {
+        (popupBinding as? LayoutPopUpBinding)?.apply {
+            title = getString(R.string.changePass_success)
+            left = getString(R.string.ok)
+            right = getString(R.string.cancel)
+            btnOk.visibility = View.GONE
+            btnCancel.setOnClickListener{
+                (requireActivity() as? BaseActivity<*>)?.closePopup()
+                navController.popBackStack()
+            }
+        }
     }
 
     @SuppressLint("ClickableViewAccessibility")
@@ -77,9 +105,10 @@ class ChangePasswordFragment : BaseFragment<FragmentChangePasswordBinding>() {
                 changeStatusButton(true)
                 if (checkValidUpdate()) {
                     userViewModel.changePassword(
-                        ChangePasswordParam(
-                            viewBinding.edtOldPassword.text.toString(),
-                            viewBinding.edtNewPassword.text.toString()
+                        ChangePassParam(
+                            userid = CoreApplication.instance.account?.id,
+                            oldpass = viewBinding.edtOldPassword.text.toString(),
+                            newpassword = viewBinding.edtNewPassword.text.toString()
                         )
                     )
                 } else {

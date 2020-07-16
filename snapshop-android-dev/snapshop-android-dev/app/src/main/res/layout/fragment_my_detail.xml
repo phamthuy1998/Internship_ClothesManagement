@@ -7,8 +7,8 @@
         <import type="android.view.View" />
 
         <variable
-            name="profile"
-            type="com.sg.core.model.Profile" />
+            name="account"
+            type="com.sg.core.model.Account" />
 
         <variable
             name="fragment"
@@ -21,7 +21,7 @@
         android:background="@color/white">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/edt_firstName"
+            android:id="@+id/edtName"
             style="@style/normal_text.EditText.Register"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -29,23 +29,24 @@
             android:textCursorDrawable="@drawable/gray_cursor"
             android:drawableStart="@drawable/ic_name_field"
             android:gravity="center_vertical"
-            android:hint="@string/first_name"
-            android:text="@{profile.user.first_name}"
+            android:hint="@string/name"
+            android:text="@{account.name}"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/edt_lastName"
+            android:id="@+id/edtPhone"
             style="@style/normal_text.EditText.Register"
             android:textCursorDrawable="@drawable/gray_cursor"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:drawableStart="@drawable/ic_name_field"
             android:gravity="center_vertical"
-            android:hint="@string/last_name"
-            android:text="@{profile.user.last_name}"
+            android:hint="@string/phone"
+            android:inputType="phone"
+            android:text="@{account.phone}"
             app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/edt_firstName" />
+            app:layout_constraintTop_toBottomOf="@id/edtName" />
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/edt_email"
@@ -55,10 +56,10 @@
             android:drawableStart="@drawable/ic_email"
             android:gravity="center_vertical"
             android:textCursorDrawable="@drawable/gray_cursor"
-            android:text="@{profile.user.email}"
+            android:text="@{account.email}"
             android:hint="@string/email"
             app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/edt_lastName" />
+            app:layout_constraintTop_toBottomOf="@id/edtPhone" />
 
         <com.sg.snapshop.widget.LoadingButton
             android:id="@+id/btn_update"
@@ -71,10 +72,6 @@
             app:text="@string/save_changes"
             android:layout_marginBottom="@dimen/layout_margin_64dp"
             app:layout_constraintBottom_toBottomOf="parent" />
-
-
-
-
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

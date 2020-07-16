@@ -4,7 +4,6 @@ import android.annotation.SuppressLint
 import android.app.Activity
 import android.graphics.Typeface
 import android.os.Bundle
-import android.os.Handler
 import android.view.KeyEvent
 import android.view.MotionEvent
 import android.view.View
@@ -13,9 +12,7 @@ import androidx.core.content.res.ResourcesCompat
 import androidx.core.os.bundleOf
 import androidx.lifecycle.Observer
 import com.google.android.material.textfield.TextInputEditText
-import com.sg.core.CoreApplication
 import com.sg.core.model.Account
-import com.sg.core.param.RegisterParam
 import com.sg.snapshop.R
 import com.sg.snapshop.base.BaseActivity
 import com.sg.snapshop.base.BaseFragment
@@ -25,6 +22,7 @@ import com.sg.snapshop.constant.KEY_ARGUMENT
 import com.sg.snapshop.databinding.FragmentRegisterBinding
 import com.sg.snapshop.ext.*
 import com.sg.snapshop.util.checkPhonevalid
+import com.sg.snapshop.util.checkValidEmail
 import com.sg.snapshop.view.MainActivity
 import com.sg.snapshop.view.home.StoryDetailActivity
 import com.sg.snapshop.viewmodel.AuthenticateViewModel
@@ -83,10 +81,15 @@ class RegisterFragment : BaseFragment<FragmentRegisterBinding>() {
     private fun observeViewModel() {
         authViewModel.signUpLiveData.observe(this, Observer {
             if (it != null) {
-                it.data?.let { it1 -> CoreApplication.instance.saveAccount(it1) }
-                messageHandler?.runMessageHandler(getString(R.string.sign_up_success))
-                viewBinding.btnRegister.isLoading = false
-                finishRegister()
+                if (it.status == true) {
+//                    it.data?.let { it1 -> CoreApplication.instance.saveAccount(it1) }
+                    messageHandler?.runMessageHandler(getString(R.string.sign_up_success))
+                    viewBinding.btnRegister.isLoading = false
+                    finishRegister()
+                }else{
+                    messageHandler?.runMessageErrorHandler(it.message?:"")
+                    viewBinding.btnRegister.isLoading = false
+                }
             }
         })
 
@@ -192,7 +195,7 @@ class RegisterFragment : BaseFragment<FragmentRegisterBinding>() {
         return when {
             !checkEmpty(viewBinding.edtName) -> {
                 messageHandler?.runMessageErrorHandler(
-                    getString(
+                      getString(
                         R.string.error_empty,
                         getString(R.string.name)
                     )
@@ -236,7 +239,7 @@ class RegisterFragment : BaseFragment<FragmentRegisterBinding>() {
                 false
             }
             !checkPhonevalid(viewBinding.edtPhone.text.toString()) -> {
-                messageHandler?.runMessageErrorHandler(getString(R.string.invalid_email))
+                messageHandler?.runMessageErrorHandler(getString(R.string.invalid_phone))
                 false
             }
             !checkValidEmail(viewBinding.edtEmail.text.toString()) -> {
@@ -295,10 +298,6 @@ class RegisterFragment : BaseFragment<FragmentRegisterBinding>() {
 
             return passwordMatcher.find(password) != null
         } ?: return false
-    }
-
-    private fun checkValidEmail(email: String): Boolean {
-        return android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches()
     }
 
     private fun checkValidPhone(phone: String): Boolean {

@@ -23,11 +23,11 @@ namespace ClothesManamentDataAccess
         public int id { get; set; }
         public string name { get; set; }
         public string detail { get; set; }
-        public int typeId { get; set; }
+        public int genderID { get; set; }
         public string imageUrl { get; set; }
         public Nullable<int> active { get; set; }
     
-        public virtual Type Type { get; set; }
+        public virtual Gender Gender { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Product> Products { get; set; }
     }

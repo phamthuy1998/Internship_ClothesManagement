@@ -53,7 +53,7 @@ namespace ClothesManament.Controllers
         [Route("api/changePassword")]
         [AcceptVerbs("PUT")]
         [HttpPut]
-        public ResponseObjectModel<String> changePassword([FromBody] ChangePassParam changePass)
+        public ResponseObjectModel<SPGetAccountInfoUserID_Result> changePassword([FromBody] ChangePassParam changePass)
         {
             var result = entities.ChangePassword(changePass.userid, changePass.oldpass, changePass.newpassword).FirstOrDefault();
             if (result.HasValue)
@@ -61,7 +61,7 @@ namespace ClothesManament.Controllers
                 int resultInt = result.Value;
                 if (resultInt == -1)
                 {
-                    return new ResponseObjectModel<String>()
+                    return new ResponseObjectModel<SPGetAccountInfoUserID_Result>()
                     {
                         message = "Mật khẩu cũ không đúng",
                         status = false,
@@ -71,25 +71,70 @@ namespace ClothesManament.Controllers
                 }
                 else
                 {
-                    return new ResponseObjectModel<String>()
+                    var accountInfo = entities.SPGetAccountInfoUserID(resultInt).FirstOrDefault(); ;
+                    return new ResponseObjectModel<SPGetAccountInfoUserID_Result>()
                     {
                         message = "Đổi mật khẩu thành công",
                         status = true,
                         code = 200,
-                        data = ""
+                        data = accountInfo
                     };
                 }
             }
 
-            return new ResponseObjectModel<String>()
+            return new ResponseObjectModel<SPGetAccountInfoUserID_Result>()
             {
-                message = "Đăng nhập thất bại ",
+                message = "Đổi mật khẩu thất bại ",
                 status = false,
                 code = 200,
-                data = ""
+                data = null
             };
 
         }
+
+
+        [Route("api/changeAccInfo")]
+        [AcceptVerbs("PUT")]
+        [HttpPut]
+        public ResponseObjectModel<SPGetAccountInfoUserID_Result> changeAccInfo([FromBody] ChangeAccountInfoParam param)
+        {
+            var result = entities.SP_UpdateAccInfo(param.userid, param.name, param.phone, param.email).FirstOrDefault();
+            if (result.HasValue)
+            {
+                int resultInt = result.Value;
+                if (resultInt == -1)
+                {
+                    return new ResponseObjectModel<SPGetAccountInfoUserID_Result>()
+                    {
+                        message = "Tài khoản không tồn tại",
+                        status = false,
+                        code = 200,
+                        data = null
+                    };
+                }
+                else
+                {
+                    var accountInfo = entities.SPGetAccountInfoUserID(resultInt).FirstOrDefault(); ;
+                    return new ResponseObjectModel<SPGetAccountInfoUserID_Result>()
+                    {
+                        message = "Cập nhật thông tin thành công",
+                        status = true,
+                        code = 200,
+                        data = accountInfo
+                    };
+                }
+            }
+
+            return new ResponseObjectModel<SPGetAccountInfoUserID_Result>()
+            {
+                message = "Tài khoản không tồn tại",
+                status = false,
+                code = 200,
+                data = null
+            };
+
+        }
+
 
         [Route("api/forgotPassword")]
         [AcceptVerbs("POST")]
@@ -124,7 +169,7 @@ namespace ClothesManament.Controllers
         [Route("api/login")]
         [AcceptVerbs("POST")]
         [HttpPost]
-        public ResponseObjectModel<SPGetAccountInfoByUserId_Result> login([FromBody] LoginParam loginParam)
+        public ResponseObjectModel<SPGetAccountInfoUserID_Result> login([FromBody] LoginParam loginParam)
         {
             var result = entities.SP_Login(loginParam.email, loginParam.password).FirstOrDefault();
             if (result.HasValue)
@@ -132,7 +177,7 @@ namespace ClothesManament.Controllers
                 int resultInt = result.Value;
                 if (resultInt == -1)
                 {
-                    return new ResponseObjectModel<SPGetAccountInfoByUserId_Result>()
+                    return new ResponseObjectModel<SPGetAccountInfoUserID_Result>()
                     {
                         message = "Username không tồn tại",
                         status = false,
@@ -142,7 +187,7 @@ namespace ClothesManament.Controllers
                 }
                 else if (resultInt == -2)
                 {
-                    return new ResponseObjectModel<SPGetAccountInfoByUserId_Result>()
+                    return new ResponseObjectModel<SPGetAccountInfoUserID_Result>()
                     {
                         message = "Mật khẩu không đúng",
                         status = false,
@@ -152,11 +197,11 @@ namespace ClothesManament.Controllers
                 }
                 else
                 {
-                    var accountInfo = entities.SPGetAccountInfoByUserId(resultInt).FirstOrDefault(); ;
+                    var accountInfo = entities.SPGetAccountInfoUserID(resultInt).FirstOrDefault(); ;
 
                     if (accountInfo == null)
                     {
-                        return new ResponseObjectModel<SPGetAccountInfoByUserId_Result>()
+                        return new ResponseObjectModel<SPGetAccountInfoUserID_Result>()
                         {
                             message = "Đăng nhập thất bại",
                             status = false,
@@ -165,7 +210,7 @@ namespace ClothesManament.Controllers
                         };
                     }
 
-                    return new ResponseObjectModel<SPGetAccountInfoByUserId_Result>()
+                    return new ResponseObjectModel<SPGetAccountInfoUserID_Result>()
                     {
                         message = "Đăng nhập thành công",
                         status = true,
@@ -175,7 +220,7 @@ namespace ClothesManament.Controllers
                 }
             }
 
-            return new ResponseObjectModel<SPGetAccountInfoByUserId_Result>()
+            return new ResponseObjectModel<SPGetAccountInfoUserID_Result>()
             {
                 message = "Đăng nhập thất bại ",
                 status = false,

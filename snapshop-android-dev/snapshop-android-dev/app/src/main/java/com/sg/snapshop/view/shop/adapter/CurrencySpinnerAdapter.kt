@@ -9,9 +9,13 @@ import androidx.appcompat.widget.AppCompatTextView
 import com.sg.core.model.SupportedCurrency
 import com.sg.snapshop.R
 
-class CurrencySpinnerAdapter(context: Context, private val layoutId: Int = R.layout.item_currency, private var currencies : ArrayList<SupportedCurrency>) : ArrayAdapter<SupportedCurrency>(context, layoutId, currencies){
+class CurrencySpinnerAdapter(
+    context: Context,
+    private val layoutId: Int = R.layout.item_currency,
+    private var currencies: ArrayList<SupportedCurrency>
+) : ArrayAdapter<SupportedCurrency>(context, layoutId, currencies) {
 
-    fun setCurrencies(currencies: ArrayList<SupportedCurrency>){
+    fun setCurrencies(currencies: ArrayList<SupportedCurrency>) {
         this.currencies.addAll(currencies)
         notifyDataSetChanged()
     }
@@ -21,7 +25,8 @@ class CurrencySpinnerAdapter(context: Context, private val layoutId: Int = R.lay
     }
 
     override fun getDropDownView(position: Int, convertView: View?, parent: ViewGroup): View {
-        val view: View = convertView ?: LayoutInflater.from(context).inflate(layoutId, parent, false)
+        val view: View =
+            convertView ?: LayoutInflater.from(context).inflate(layoutId, parent, false)
         val currency = getItem(position)
         view.findViewById<AppCompatTextView>(R.id.tvCurrency).text = currency?.name?.toValue()
         return view

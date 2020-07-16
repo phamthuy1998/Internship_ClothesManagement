@@ -8,3 +8,7 @@ fun checkPhonevalid(phone: String): Boolean {
     val matcher = pattern.matcher(phone)
     return matcher.matches()
 }
+
+fun checkValidEmail(email: String): Boolean {
+    return android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches()
+}

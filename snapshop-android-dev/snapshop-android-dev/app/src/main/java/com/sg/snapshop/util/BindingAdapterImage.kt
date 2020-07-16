@@ -7,6 +7,7 @@ import androidx.appcompat.widget.AppCompatButton
 import androidx.appcompat.widget.AppCompatImageView
 import androidx.databinding.BindingAdapter
 import com.bumptech.glide.Glide
+import java.io.File
 
 object BindingAdapterImage {
 
@@ -18,7 +19,7 @@ object BindingAdapterImage {
         } else {
             Glide
                 .with(imageView.context)
-                .load(url)
+                .load(File(url))
                 .thumbnail(Glide.with(imageView.context).load(url))
                 .placeholder(placeHolder)
                 .into(imageView)
