@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_search"
+    app:startDestination="@id/fragment_search">
+
+    <fragment
+        android:id="@+id/fragment_search"
+        android:name="com.ptithcm.ptshop.view.search.SearchFragment"
+        android:label="SearchFragment"
+        tools:layout="@layout/fragment_search" />
+
+    <fragment
+        android:id="@+id/fragment_search_result"
+        android:name="com.ptithcm.ptshop.view.search.SearchResultFragment"
+        android:label="SearchResultFragment"
+        tools:layout="@layout/fragment_search_result" />
+
+    <include app:graph="@navigation/nav_refine" />
+
+    <fragment
+        android:id="@+id/fragment_product_detail"
+        android:name="com.ptithcm.ptshop.view.wishlist.ProductDetailFragment"
+        tools:layout="@layout/fragment_product_detail" />
+
+    <fragment
+        android:id="@+id/fragment_over_view"
+        android:name="com.ptithcm.ptshop.view.wishlist.OverViewFragment"
+        tools:layout="@layout/fragment_over_view" />
+
+    <fragment
+        android:id="@+id/fragment_carousel_detail"
+        android:name="com.ptithcm.ptshop.view.carousel.CarouselDetailFragment"
+        tools:layout="@layout/fragment_carousel_detail" />
+
+    <fragment
+        android:id="@+id/sizeGuideFragment"
+        android:name="com.ptithcm.ptshop.view.sizeguide.SizeGuideFragment"
+        android:label="SizeGuideFragment"
+        tools:layout="@layout/fragment_size_guide" />
+
+    <include app:graph="@navigation/nav_shopping_card" />
+
+</navigation>

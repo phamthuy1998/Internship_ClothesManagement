@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_wish"
+    app:startDestination="@id/fragment_wishlist">
+
+    <include app:graph="@navigation/nav_carousel_detail" />
+    <include app:graph="@navigation/nav_categories_detail" />
+    <fragment android:id="@+id/fragment_wishlist"
+        tools:layout="@layout/fragment_wish_list"
+        android:name="com.ptithcm.ptshop.view.wishlist.WishListFragment">
+        <action
+            android:id="@+id/wishList_to_detail"
+            app:destination="@id/fragment_product_detail"/>
+    </fragment>
+
+    <include app:graph="@navigation/nav_login"/>
+
+    <include app:graph="@navigation/nav_shopping_card" />
+
+    <include app:graph="@navigation/nav_product" />
+    <include app:graph="@navigation/nav_register" />
+    <include app:graph="@navigation/nav_search" />
+
+
+</navigation>

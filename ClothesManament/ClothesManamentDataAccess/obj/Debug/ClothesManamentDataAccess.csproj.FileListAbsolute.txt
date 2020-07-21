@@ -25,7 +25,6 @@ D:\Thuy\thuctap\Internship_ClothesManament\ClothesManament\ClothesManamentDataAc
 D:\Thuy\thuctap\Internship_ClothesManament\ClothesManament\ClothesManamentDataAccess\bin\Debug\EntityFramework.SqlServer.dll
 D:\Thuy\thuctap\Internship_ClothesManament\ClothesManament\ClothesManamentDataAccess\bin\Debug\EntityFramework.xml
 D:\Thuy\thuctap\Internship_ClothesManament\ClothesManament\ClothesManamentDataAccess\bin\Debug\EntityFramework.SqlServer.xml
-D:\Thuy\thuctap\Internship_ClothesManament\ClothesManament\ClothesManamentDataAccess\obj\Debug\ClothesManamentDataAccess.csprojResolveAssemblyReference.cache
 D:\Thuy\thuctap\Internship_ClothesManament\ClothesManament\ClothesManamentDataAccess\obj\Debug\ClothesManamentDataAccess.dll
 D:\Thuy\thuctap\Internship_ClothesManament\ClothesManament\ClothesManamentDataAccess\obj\Debug\ClothesManamentDataAccess.pdb
 D:\Thuy\thuctap\Internship_ClothesManament\ClothesManament\ClothesManamentDataAccess\bin\Debug\Microsoft.Web.Infrastructure.dll
@@ -39,3 +38,16 @@ D:\Thuy\thuctap\Internship_ClothesManament\ClothesManament\ClothesManamentDataAc
 D:\Thuy\thuctap\Internship_ClothesManament\ClothesManament\ClothesManamentDataAccess\bin\Debug\System.Net.Http.Formatting.xml
 D:\Thuy\thuctap\Internship_ClothesManament\ClothesManament\ClothesManamentDataAccess\bin\Debug\System.Web.Http.xml
 D:\Thuy\thuctap\Internship_ClothesManament\ClothesManament\ClothesManamentDataAccess\bin\Debug\System.Web.Http.WebHost.xml
+D:\Thuy\thuctap\Internship_ClothesManament\ClothesManament\ClothesManamentDataAccess\bin\Debug\System.Web.Helpers.dll
+D:\Thuy\thuctap\Internship_ClothesManament\ClothesManament\ClothesManamentDataAccess\bin\Debug\System.Web.Mvc.dll
+D:\Thuy\thuctap\Internship_ClothesManament\ClothesManament\ClothesManamentDataAccess\bin\Debug\System.Web.Razor.dll
+D:\Thuy\thuctap\Internship_ClothesManament\ClothesManament\ClothesManamentDataAccess\bin\Debug\System.Web.WebPages.Deployment.dll
+D:\Thuy\thuctap\Internship_ClothesManament\ClothesManament\ClothesManamentDataAccess\bin\Debug\System.Web.WebPages.dll
+D:\Thuy\thuctap\Internship_ClothesManament\ClothesManament\ClothesManamentDataAccess\bin\Debug\System.Web.WebPages.Razor.dll
+D:\Thuy\thuctap\Internship_ClothesManament\ClothesManament\ClothesManamentDataAccess\bin\Debug\System.Web.Helpers.xml
+D:\Thuy\thuctap\Internship_ClothesManament\ClothesManament\ClothesManamentDataAccess\bin\Debug\System.Web.Mvc.xml
+D:\Thuy\thuctap\Internship_ClothesManament\ClothesManament\ClothesManamentDataAccess\bin\Debug\System.Web.Razor.xml
+D:\Thuy\thuctap\Internship_ClothesManament\ClothesManament\ClothesManamentDataAccess\bin\Debug\System.Web.WebPages.xml
+D:\Thuy\thuctap\Internship_ClothesManament\ClothesManament\ClothesManamentDataAccess\bin\Debug\System.Web.WebPages.Deployment.xml
+D:\Thuy\thuctap\Internship_ClothesManament\ClothesManament\ClothesManamentDataAccess\bin\Debug\System.Web.WebPages.Razor.xml
+D:\Thuy\thuctap\Internship_ClothesManament\ClothesManament\ClothesManamentDataAccess\obj\Debug\ClothesManamentDataAccess.csprojResolveAssemblyReference.cache

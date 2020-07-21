@@ -36,6 +36,9 @@
     </FunctionImport>
     <FunctionImport Name="SP_GetProductCategory" ReturnType="Collection(ClothesManamentModel.SP_GetProductCategory_Result)">
       <Parameter Name="categoryId" Mode="In" Type="Int32" />
+      <Parameter Name="currentPage" Mode="In" Type="Int32" />
+      <Parameter Name="PageSize" Mode="In" Type="Int32" />
+      <Parameter Name="AccountID" Mode="In" Type="Int32" />
     </FunctionImport>
     <FunctionImport Name="ChangePassword" ReturnType="Collection(Int32)">
       <Parameter Name="userId" Mode="In" Type="Int32" />
@@ -128,6 +131,9 @@
       <Parameter Name="new_diagramname" Mode="In" Type="String" />
     </FunctionImport>
     <FunctionImport Name="sp_upgraddiagrams1" />
+    <FunctionImport Name="SP_GetBranch" ReturnType="Collection(ClothesManamentModel.SP_GetBranch_Result)">
+      <Parameter Name="GenderID" Mode="In" Type="Int32" />
+    </FunctionImport>
     <EntitySet Name="Accounts" EntityType="ClothesManamentModel.Account" />
     <EntitySet Name="Brands" EntityType="ClothesManamentModel.Brand" />
     <EntitySet Name="Carts" EntityType="ClothesManamentModel.Cart" />
@@ -135,7 +141,6 @@
     <EntitySet Name="Colors" EntityType="ClothesManamentModel.Color" />
     <EntitySet Name="Genders" EntityType="ClothesManamentModel.Gender" />
     <EntitySet Name="Images" EntityType="ClothesManamentModel.Image" />
-    <EntitySet Name="ItemPromotions" EntityType="ClothesManamentModel.ItemPromotion" />
     <EntitySet Name="Orders" EntityType="ClothesManamentModel.Order" />
     <EntitySet Name="OrderItems" EntityType="ClothesManamentModel.OrderItem" />
     <EntitySet Name="Products" EntityType="ClothesManamentModel.Product" />
@@ -180,14 +185,6 @@
       <End Role="Product" EntitySet="Products" />
       <End Role="Image" EntitySet="Images" />
     </AssociationSet>
-    <AssociationSet Name="FK_ItemPromotion_Product" Association="ClothesManamentModel.FK_ItemPromotion_Product">
-      <End Role="Product" EntitySet="Products" />
-      <End Role="ItemPromotion" EntitySet="ItemPromotions" />
-    </AssociationSet>
-    <AssociationSet Name="FK_ItemPromotion_Promotion" Association="ClothesManamentModel.FK_ItemPromotion_Promotion">
-      <End Role="Promotion" EntitySet="Promotions" />
-      <End Role="ItemPromotion" EntitySet="ItemPromotions" />
-    </AssociationSet>
     <AssociationSet Name="FK_OrderItem_Order" Association="ClothesManamentModel.FK_OrderItem_Order">
       <End Role="Order" EntitySet="Orders" />
       <End Role="OrderItem" EntitySet="OrderItems" />
@@ -195,6 +192,10 @@
     <AssociationSet Name="FK_OrderItem_Product" Association="ClothesManamentModel.FK_OrderItem_Product">
       <End Role="Product" EntitySet="Products" />
       <End Role="OrderItem" EntitySet="OrderItems" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Product_Promotion" Association="ClothesManamentModel.FK_Product_Promotion">
+      <End Role="Promotion" EntitySet="Promotions" />
+      <End Role="Product" EntitySet="Products" />
     </AssociationSet>
     <AssociationSet Name="FK_ProductSizeColor_Product" Association="ClothesManamentModel.FK_ProductSizeColor_Product">
       <End Role="Product" EntitySet="Products" />
@@ -208,6 +209,18 @@
       <End Role="Account" EntitySet="Accounts" />
       <End Role="Product" EntitySet="Products" />
     </AssociationSet>
+    <FunctionImport Name="SP_GetProducts1" ReturnType="Collection(ClothesManamentModel.SP_GetProducts1_Result)">
+      <Parameter Name="categoryId" Mode="In" Type="Int32" />
+      <Parameter Name="currentPage" Mode="In" Type="Int32" />
+      <Parameter Name="PageSize" Mode="In" Type="Int32" />
+      <Parameter Name="AccountID" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="SP_GetProductOfCategory" ReturnType="Collection(ClothesManamentModel.SP_GetProductOfCategory_Result)">
+      <Parameter Name="categoryId" Mode="In" Type="Int32" />
+      <Parameter Name="currentPage" Mode="In" Type="Int32" />
+      <Parameter Name="PageSize" Mode="In" Type="Int32" />
+      <Parameter Name="AccountID" Mode="In" Type="Int32" />
+    </FunctionImport>
   </EntityContainer>
   <ComplexType Name="sp_helpdiagramdefinition_Result">
     <Property Type="Int32" Name="version" Nullable="true" />
@@ -315,6 +328,11 @@
     <Property Type="String" Name="Owner" Nullable="true" MaxLength="128" />
     <Property Type="Int32" Name="OwnerID" Nullable="false" />
   </ComplexType>
+  <ComplexType Name="SP_GetBranch_Result">
+    <Property Type="Int32" Name="id" Nullable="false" />
+    <Property Type="String" Name="brandName" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="infomation" Nullable="true" />
+  </ComplexType>
   <EntityType Name="Account">
     <Key>
       <PropertyRef Name="id" />
@@ -363,6 +381,7 @@
     <Property Name="detail" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
     <Property Name="genderID" Type="Int32" Nullable="false" />
     <Property Name="imageUrl" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="thumnail" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
     <Property Name="active" Type="Int32" />
     <NavigationProperty Name="Gender" Relationship="ClothesManamentModel.FK_Category_Type" FromRole="Category" ToRole="Gender" />
     <NavigationProperty Name="Products" Relationship="ClothesManamentModel.FK_Product_Category" FromRole="Category" ToRole="Product" />
@@ -395,17 +414,6 @@
     <Property Name="productId" Type="Int32" />
     <Property Name="active" Type="Int32" />
     <NavigationProperty Name="Product" Relationship="ClothesManamentModel.FK_Image_Product" FromRole="Image" ToRole="Product" />
-  </EntityType>
-  <EntityType Name="ItemPromotion">
-    <Key>
-      <PropertyRef Name="idProduct" />
-      <PropertyRef Name="idPromotion" />
-    </Key>
-    <Property Name="idProduct" Type="Int32" Nullable="false" />
-    <Property Name="idPromotion" Type="Int32" Nullable="false" />
-    <Property Name="active" Type="Int32" />
-    <NavigationProperty Name="Product" Relationship="ClothesManamentModel.FK_ItemPromotion_Product" FromRole="ItemPromotion" ToRole="Product" />
-    <NavigationProperty Name="Promotion" Relationship="ClothesManamentModel.FK_ItemPromotion_Promotion" FromRole="ItemPromotion" ToRole="Promotion" />
   </EntityType>
   <EntityType Name="Order">
     <Key>
@@ -449,13 +457,14 @@
     <Property Name="rating" Type="Int32" />
     <Property Name="active" Type="Int32" />
     <Property Name="brandId" Type="Int32" />
+    <Property Name="idPromotion" Type="Int32" />
     <Property Name="thumnail" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
     <NavigationProperty Name="Brand" Relationship="ClothesManamentModel.FK_Product_Brand" FromRole="Product" ToRole="Brand" />
     <NavigationProperty Name="Carts" Relationship="ClothesManamentModel.FK_Cart_Product" FromRole="Product" ToRole="Cart" />
     <NavigationProperty Name="Category" Relationship="ClothesManamentModel.FK_Product_Category" FromRole="Product" ToRole="Category" />
     <NavigationProperty Name="Images" Relationship="ClothesManamentModel.FK_Image_Product" FromRole="Product" ToRole="Image" />
-    <NavigationProperty Name="ItemPromotions" Relationship="ClothesManamentModel.FK_ItemPromotion_Product" FromRole="Product" ToRole="ItemPromotion" />
     <NavigationProperty Name="OrderItems" Relationship="ClothesManamentModel.FK_OrderItem_Product" FromRole="Product" ToRole="OrderItem" />
+    <NavigationProperty Name="Promotion" Relationship="ClothesManamentModel.FK_Product_Promotion" FromRole="Product" ToRole="Promotion" />
     <NavigationProperty Name="ProductSizeColors" Relationship="ClothesManamentModel.FK_ProductSizeColor_Product" FromRole="Product" ToRole="ProductSizeColor" />
     <NavigationProperty Name="Accounts" Relationship="ClothesManamentModel.FavoriteProduct" FromRole="Product" ToRole="Account" />
   </EntityType>
@@ -477,7 +486,7 @@
     <Key>
       <PropertyRef Name="id" />
     </Key>
-    <Property Name="id" Type="Int32" Nullable="false" />
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="description" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
     <Property Name="name" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
     <Property Name="beginDate" Type="DateTime" Precision="3" />
@@ -485,7 +494,7 @@
     <Property Name="value" Type="Double" />
     <Property Name="imageUrl" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
     <Property Name="active" Type="Int32" Nullable="false" />
-    <NavigationProperty Name="ItemPromotions" Relationship="ClothesManamentModel.FK_ItemPromotion_Promotion" FromRole="Promotion" ToRole="ItemPromotion" />
+    <NavigationProperty Name="Products" Relationship="ClothesManamentModel.FK_Product_Promotion" FromRole="Promotion" ToRole="Product" />
   </EntityType>
   <EntityType Name="Role">
     <Key>
@@ -625,30 +634,6 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_ItemPromotion_Product">
-    <End Type="ClothesManamentModel.Product" Role="Product" Multiplicity="1" />
-    <End Type="ClothesManamentModel.ItemPromotion" Role="ItemPromotion" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Product">
-        <PropertyRef Name="id" />
-      </Principal>
-      <Dependent Role="ItemPromotion">
-        <PropertyRef Name="idProduct" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_ItemPromotion_Promotion">
-    <End Type="ClothesManamentModel.Promotion" Role="Promotion" Multiplicity="1" />
-    <End Type="ClothesManamentModel.ItemPromotion" Role="ItemPromotion" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Promotion">
-        <PropertyRef Name="id" />
-      </Principal>
-      <Dependent Role="ItemPromotion">
-        <PropertyRef Name="idPromotion" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
   <Association Name="FK_OrderItem_Order">
     <End Type="ClothesManamentModel.Order" Role="Order" Multiplicity="1" />
     <End Type="ClothesManamentModel.OrderItem" Role="OrderItem" Multiplicity="*" />
@@ -670,6 +655,18 @@
       </Principal>
       <Dependent Role="OrderItem">
         <PropertyRef Name="productId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Product_Promotion">
+    <End Type="ClothesManamentModel.Promotion" Role="Promotion" Multiplicity="0..1" />
+    <End Type="ClothesManamentModel.Product" Role="Product" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Promotion">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Product">
+        <PropertyRef Name="idPromotion" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -701,4 +698,20 @@
     <End Type="ClothesManamentModel.Account" Role="Account" Multiplicity="*" />
     <End Type="ClothesManamentModel.Product" Role="Product" Multiplicity="*" />
   </Association>
+  <ComplexType Name="SP_GetProducts1_Result">
+    <Property Type="Int32" Name="id" Nullable="false" />
+    <Property Type="String" Name="title" Nullable="true" MaxLength="200" />
+    <Property Type="Double" Name="price" Nullable="true" />
+    <Property Type="String" Name="thumnail" Nullable="true" MaxLength="200" />
+    <Property Type="Int32" Name="isLike" Nullable="false" />
+    <Property Type="Double" Name="promotion" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="SP_GetProductOfCategory_Result">
+    <Property Type="Int32" Name="id" Nullable="false" />
+    <Property Type="String" Name="title" Nullable="true" MaxLength="200" />
+    <Property Type="Double" Name="price" Nullable="true" />
+    <Property Type="String" Name="thumnail" Nullable="true" MaxLength="200" />
+    <Property Type="Int32" Name="isLike" Nullable="false" />
+    <Property Type="Double" Name="promotion" Nullable="true" />
+  </ComplexType>
 </Schema>

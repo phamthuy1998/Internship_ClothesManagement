@@ -1,6 +1,6 @@
 using System;
 
-namespace ClothesManament.Areas.HelpPage.ModelDescriptions
+namespace ClothesManagement.Areas.HelpPage.ModelDescriptions
 {
     /// <summary>
     /// Describes a type model.

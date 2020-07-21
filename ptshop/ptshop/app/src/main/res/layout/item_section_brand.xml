@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <import type="android.view.View"/>
+
+        <variable
+            name="data"
+            type="com.ptithcm.core.model.Designer" />
+    </data>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/gray_section">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            style="@style/normal_text.Toolbar.SemiBold"
+            android:id="@+id/tvName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@{data.name}"
+            android:textAlignment="textStart"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            android:paddingStart="@dimen/layout_margin_16dp"
+            android:paddingEnd="@dimen/layout_margin_16dp"
+            android:paddingTop="@dimen/layout_margin_8dp"
+            android:paddingBottom="@dimen/layout_margin_8dp" />
+
+    </FrameLayout>
+</layout>

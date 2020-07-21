@@ -19,7 +19,6 @@ namespace ClothesManamentDataAccess
         {
             this.Carts = new HashSet<Cart>();
             this.Images = new HashSet<Image>();
-            this.ItemPromotions = new HashSet<ItemPromotion>();
             this.OrderItems = new HashSet<OrderItem>();
             this.ProductSizeColors = new HashSet<ProductSizeColor>();
             this.Accounts = new HashSet<Account>();
@@ -34,6 +33,7 @@ namespace ClothesManamentDataAccess
         public Nullable<int> rating { get; set; }
         public Nullable<int> active { get; set; }
         public Nullable<int> brandId { get; set; }
+        public Nullable<int> idPromotion { get; set; }
         public string thumnail { get; set; }
     
         public virtual Brand Brand { get; set; }
@@ -43,9 +43,8 @@ namespace ClothesManamentDataAccess
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Image> Images { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<ItemPromotion> ItemPromotions { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<OrderItem> OrderItems { get; set; }
+        public virtual Promotion Promotion { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ProductSizeColor> ProductSizeColors { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

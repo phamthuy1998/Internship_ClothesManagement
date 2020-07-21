@@ -25,6 +25,7 @@ namespace ClothesManamentDataAccess
         public string detail { get; set; }
         public int genderID { get; set; }
         public string imageUrl { get; set; }
+        public string thumnail { get; set; }
         public Nullable<int> active { get; set; }
     
         public virtual Gender Gender { get; set; }

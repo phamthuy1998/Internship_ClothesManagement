@@ -1,10 +1,10 @@
 using System;
 using System.Web.Http;
 using System.Web.Mvc;
-using ClothesManament.Areas.HelpPage.ModelDescriptions;
-using ClothesManament.Areas.HelpPage.Models;
+using ClothesManagement.Areas.HelpPage.ModelDescriptions;
+using ClothesManagement.Areas.HelpPage.Models;
 
-namespace ClothesManament.Areas.HelpPage.Controllers
+namespace ClothesManagement.Areas.HelpPage.Controllers
 {
     /// <summary>
     /// The controller that will handle requests for the help page.

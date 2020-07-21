@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <import type="android.view.View"/>
+        <import type="com.ptithcm.core.util.StringUtilKt"/>
+        <variable
+            name="item"
+            type="com.ptithcm.core.model.Tag" />
+    </data>
+
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/rlAddTag"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvBags"
+            style="@style/normal_text"
+            android:layout_width="match_parent"
+            android:padding="@dimen/layout_margin_16dp"
+            android:text="@{StringUtilKt.capitalize(item.name)}"
+            tools:text="Bags"
+            android:textAlignment="textStart" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/ivNotSelected"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@id/tvBags"
+            android:layout_alignEnd="@id/tvBags"
+            android:visibility="@{item.obserIsSelected.get() == true ? View.GONE : View.VISIBLE}"
+            android:layout_alignBottom="@id/tvBags"
+            android:layout_marginEnd="@dimen/layout_margin_16dp"
+            android:src="@drawable/ic_not_selected" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/ivSelected"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@id/tvBags"
+            android:visibility="@{item.obserIsSelected.get() == true ? View.VISIBLE : View.GONE}"
+            android:layout_alignEnd="@id/tvBags"
+            android:layout_alignBottom="@id/tvBags"
+            android:layout_marginEnd="@dimen/layout_margin_16dp"
+            android:src="@drawable/ic_selected" />
+
+
+        <View
+            android:id="@+id/vLineBags"
+            style="@style/divider"
+            android:layout_width="match_parent"
+            android:layout_alignStart="@id/tvBags"
+            android:layout_alignEnd="@id/tvBags"
+            android:layout_alignBottom="@id/tvBags" />
+
+    </RelativeLayout>
+
+
+</layout>

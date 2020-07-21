@@ -1,0 +1,380 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="fragment"
+            type="com.ptithcm.ptshop.view.payment.CreditCardDetailFragment" />
+
+        <variable
+            name="isEditable"
+            type="Boolean" />
+
+        <variable
+            name="creditCard"
+            type="com.ptithcm.core.model.CreditCard" />
+
+        <import type="android.text.TextUtils" />
+
+        <variable
+            name="isValidCardNumer"
+            type="Boolean" />
+
+        <variable
+            name="isValidForm"
+            type="Boolean" />
+
+        <variable
+            name="isValidName"
+            type="Boolean" />
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/background">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/container"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/white"
+                android:clickable="true"
+                android:focusableInTouchMode="true">
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/textView"
+                    style="@style/normal_text.bold"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/layout_margin_16dp"
+                    android:padding="@dimen/layout_margin_16dp"
+                    android:text="@string/your_credit_card_details"
+                    android:textAlignment="viewStart"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <com.stripe.android.view.CardNumberEditText
+                    android:id="@+id/et_card_number"
+                    style="@style/normal_text.EditText.Register"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="start"
+                    android:layout_marginTop="0dp"
+                    android:enabled="@{isEditable? true: false}"
+                    android:focusable="true"
+                    android:focusableInTouchMode="true"
+                    android:hint="@string/card_number"
+                    android:imeOptions="actionNext"
+                    android:inputType="number"
+                    android:maxLength="19"
+                    android:textCursorDrawable="@drawable/gray_cursor"
+                    android:visibility="visible"
+                    app:layout_constraintTop_toBottomOf="@id/textView"
+                    tools:ignore="UnusedAttribute"
+                    tools:importantForAccessibility="yes" />
+
+                <androidx.constraintlayout.widget.Guideline
+                    android:id="@+id/guideline1"
+                    android:layout_width="@dimen/layout_margin_1dp"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    app:layout_constraintGuide_percent="0.75" />
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/mCardIconImageView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/ic_visa"
+                    app:layout_constraintBottom_toBottomOf="@id/et_card_number"
+                    app:layout_constraintLeft_toLeftOf="@id/guideline1"
+                    app:layout_constraintRight_toRightOf="@id/guideline1"
+                    app:layout_constraintTop_toTopOf="@id/et_card_number" />
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/layout_margin_8dp"
+                    android:src="@drawable/ic_checked"
+                    android:visibility="@{isValidCardNumer ? View.VISIBLE : View.GONE}"
+                    app:layout_constraintBottom_toBottomOf="@id/et_card_number"
+                    app:layout_constraintEnd_toEndOf="@id/et_card_number"
+                    app:layout_constraintTop_toTopOf="@id/et_card_number" />
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/edt_Name"
+                    style="@style/normal_text.EditText.Register"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ellipsize="end"
+                    android:enabled="@{isEditable? true: false}"
+                    android:gravity="center_vertical"
+                    android:hint="@string/name_on_card"
+                    android:inputType="textCapCharacters"
+                    android:maxLines="1"
+                    android:paddingRight="@dimen/layout_margin_48dp"
+                    android:textCursorDrawable="@drawable/gray_cursor"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/et_card_number" />
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/layout_margin_8dp"
+                    android:src="@drawable/ic_checked"
+                    android:visibility="@{isValidName?View.VISIBLE:View.GONE}"
+                    app:layout_constraintBottom_toBottomOf="@id/edt_Name"
+                    app:layout_constraintEnd_toEndOf="@id/edt_Name"
+                    app:layout_constraintTop_toTopOf="@id/edt_Name" />
+
+                <androidx.constraintlayout.widget.Guideline
+                    android:id="@+id/guideline2"
+                    android:layout_width="@dimen/layout_margin_1dp"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    app:layout_constraintGuide_percent="0.5" />
+
+                <androidx.appcompat.widget.AppCompatSpinner
+                    android:id="@+id/spExpiryDate"
+                    style="@style/ButtonSelect"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/layout_margin_32dp"
+                    android:layout_marginTop="@dimen/layout_margin_16dp"
+                    android:layout_marginEnd="@dimen/layout_margin_16dp"
+                    android:background="@drawable/background_spinner"
+                    android:dropDownVerticalOffset="48dp"
+                    android:enabled="@{isEditable? true: false}"
+                    android:minHeight="@dimen/layout_margin_48dp"
+                    app:layout_constraintEnd_toStartOf="@id/guideline2"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/edt_Name" />
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/edt_CVV"
+                    style="@style/normal_text.EditText.Register"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/layout_margin_16dp"
+                    android:ellipsize="end"
+                    android:enabled="@{isEditable? true: false}"
+                    android:gravity="center_vertical"
+                    android:hint="@string/cvv"
+                    android:inputType="number"
+                    android:maxLength="3"
+                    android:maxLines="1"
+                    android:textCursorDrawable="@drawable/gray_cursor"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/guideline2"
+                    app:layout_constraintTop_toBottomOf="@id/edt_Name" />
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/imgCheckCVV"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/layout_margin_8dp"
+                    android:src="@drawable/ic_checked"
+                    app:layout_constraintBottom_toBottomOf="@id/edt_CVV"
+                    app:layout_constraintEnd_toEndOf="@id/edt_CVV"
+                    app:layout_constraintTop_toTopOf="@id/edt_CVV" />
+
+                <View
+                    android:id="@+id/divider1"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/layout_margin_1dp"
+                    android:layout_marginTop="@dimen/layout_margin_16dp"
+                    android:background="@color/gray"
+                    app:layout_constraintTop_toBottomOf="@id/spExpiryDate" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/textView1"
+                    style="@style/normal_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/layout_margin_32dp"
+                    android:layout_marginTop="@dimen/layout_margin_16dp"
+                    android:text="@string/set_card_as_default_payment"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/divider1" />
+
+                <com.suke.widget.SwitchButton
+                    android:id="@+id/swCheckDefault"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:sb_show_indicator="false"
+                    app:sb_checked_color="@color/black"
+                    android:layout_marginEnd="@dimen/layout_margin_32dp"
+                    app:sb_uncheck_color="@color/gray"
+                    app:layout_constraintBottom_toBottomOf="@id/textView1"
+                    app:layout_constraintTop_toTopOf="@id/textView1"
+                    app:layout_constraintEnd_toEndOf="parent"/>
+
+                <View
+                    android:id="@+id/divider2"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/layout_margin_1dp"
+                    android:layout_marginTop="@dimen/layout_margin_16dp"
+                    android:background="@color/gray"
+                    app:layout_constraintTop_toBottomOf="@id/textView1" />
+
+                <View
+                    android:id="@+id/divider3"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/layout_margin_32dp"
+                    android:background="@color/background"
+                    app:layout_constraintTop_toBottomOf="@id/divider2" />
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/billingAddressContainer"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/layout_margin_16dp"
+                    android:layout_marginEnd="@dimen/layout_margin_32dp"
+                    android:background="@color/white"
+                    android:onClick="@{(v) -> fragment.onClick(v)}"
+                    android:padding="@dimen/layout_margin_8dp"
+                    app:layout_constraintTop_toBottomOf="@id/divider3">
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/billingAddressText"
+                        style="@style/normal_text.bold"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="@dimen/layout_margin_8dp"
+                        android:text="@string/billing_address"
+                        android:textAlignment="viewStart"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/emptyBillingAddressText"
+                        style="@style/normal_text"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingLeft="@dimen/layout_margin_8dp"
+                        android:paddingTop="@dimen/layout_margin_1dp"
+                        android:paddingBottom="@dimen/layout_margin_1dp"
+                        android:text="Add a billing address"
+                        android:textAlignment="viewStart"
+                        android:textColor="#FF0000"
+                        android:visibility="@{(TextUtils.isEmpty(creditCard.address_line1) &amp;&amp; TextUtils.isEmpty(creditCard.address_line2) &amp;&amp;TextUtils.isEmpty(creditCard.address_city) &amp;&amp;TextUtils.isEmpty(creditCard.address_state) &amp;&amp;TextUtils.isEmpty(creditCard.address_country) &amp;&amp;TextUtils.isEmpty(creditCard.address_zip) )? View.VISIBLE : View.GONE}"
+                        app:layout_constraintTop_toBottomOf="@id/billingAddressText" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/billingAddressLine1"
+                        style="@style/normal_text"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingStart="@dimen/layout_margin_8dp"
+                        android:paddingTop="@dimen/layout_margin_1dp"
+                        android:paddingBottom="@dimen/layout_margin_1dp"
+                        android:text="@{creditCard.address_line1}"
+                        android:textAlignment="viewStart"
+                        android:visibility="@{TextUtils.isEmpty(creditCard.address_line1) ? View.GONE : View.VISIBLE}"
+                        app:layout_constraintTop_toBottomOf="@id/billingAddressText"
+                        tools:text="flat 7 - 3 queens road" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/billingAddressLine2"
+                        style="@style/normal_text"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingStart="@dimen/layout_margin_8dp"
+                        android:paddingTop="@dimen/layout_margin_1dp"
+                        android:paddingBottom="@dimen/layout_margin_1dp"
+                        android:text="@{!TextUtils.isEmpty(creditCard.address_line2) ? creditCard.address_line2 : `-`}"
+                        android:textAlignment="viewStart"
+                        app:layout_constraintTop_toBottomOf="@id/billingAddressLine1"
+                        tools:text="2" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/billingAddressTownCity"
+                        style="@style/normal_text"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingLeft="@dimen/layout_margin_8dp"
+                        android:paddingTop="@dimen/layout_margin_1dp"
+                        android:paddingBottom="@dimen/layout_margin_1dp"
+                        android:text="@{creditCard.address_city}"
+                        android:textAlignment="viewStart"
+                        android:visibility="@{TextUtils.isEmpty(creditCard.address_country) ? View.GONE : View.VISIBLE}"
+                        app:layout_constraintTop_toBottomOf="@id/billingAddressLine2"
+                        tools:text="richmond" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/billingAddressCountryArea"
+                        style="@style/normal_text"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingLeft="@dimen/layout_margin_8dp"
+                        android:paddingTop="@dimen/layout_margin_1dp"
+                        android:paddingBottom="@dimen/layout_margin_1dp"
+                        android:text="@{creditCard.address_state}"
+                        android:textAlignment="viewStart"
+                        android:visibility="@{TextUtils.isEmpty(creditCard.address_state) ? View.GONE : View.VISIBLE}"
+                        app:layout_constraintTop_toBottomOf="@id/billingAddressTownCity"
+                        tools:text="London" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/billingAddressCountry"
+                        style="@style/normal_text"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingLeft="@dimen/layout_margin_8dp"
+                        android:paddingTop="@dimen/layout_margin_1dp"
+                        android:paddingBottom="@dimen/layout_margin_1dp"
+                        android:text="@{creditCard.address_country}"
+                        android:textAlignment="viewStart"
+                        android:visibility="@{TextUtils.isEmpty(creditCard.address_country) ? View.GONE : View.VISIBLE}"
+                        app:layout_constraintTop_toBottomOf="@id/billingAddressCountryArea"
+                        tools:text="United Kingdom" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/billingAddressPostCode"
+                        style="@style/normal_text"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingLeft="@dimen/layout_margin_8dp"
+                        android:paddingTop="@dimen/layout_margin_1dp"
+                        android:paddingBottom="@dimen/layout_margin_1dp"
+                        android:text="@{creditCard.address_zip}"
+                        android:textAlignment="viewStart"
+                        android:visibility="@{TextUtils.isEmpty(creditCard.address_zip) ? View.GONE : View.VISIBLE}"
+                        app:layout_constraintTop_toBottomOf="@id/billingAddressCountry"
+                        tools:text="TW10 6JW" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <View
+                    android:id="@+id/view"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/size_150dp"
+                    android:background="@color/background"
+                    app:layout_constraintTop_toBottomOf="@id/billingAddressContainer" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </ScrollView>
+
+        <com.ptithcm.ptshop.widget.LoadingButton
+            android:id="@+id/btnAddPayment"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/layout_margin_32dp"
+            android:alpha="@{isValidForm?1f:0.5f}"
+            android:enabled="@{isValidForm}"
+            android:onClick="@{(v) -> fragment.onClick(v)}"
+            app:isShowTextBehind="true"
+            android:layout_marginBottom="@dimen/layout_margin_16dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:text="@string/save_and_continue" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

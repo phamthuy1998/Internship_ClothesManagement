@@ -5,9 +5,11 @@ using System.Web.Http;
 using ClothesManament.Models;
 using System.Web;
 using Newtonsoft.Json;
+using System.Threading.Tasks;
 
 namespace ClothesManament.Controllers
 {
+    [Authorize]
     public class ProductAPIController : ApiController
     {
         ClothesManamentEntities entities;
@@ -18,78 +20,13 @@ namespace ClothesManament.Controllers
         }
 
         [Route("api/products")]
-        [AcceptVerbs("POST")]
-        [HttpPost]
-        public ResponseListModel<SP_GetProductCategory_Result> getProductListPaging(int pageSize, int pageNumber, int categoryID)
+        [AcceptVerbs("GET")]
+        [HttpGet]
+        public async Task<IHttpActionResult> getProductListPaging(int pageSize, int pageNumber, int categoryID, int accountId)
         {
-            // Return List of product  
-            var source = entities.SP_GetProductCategory(categoryID);
-
-            // Get's No of Rows Count  
-            int count;
-            if (source != null) count = source.Count();
-            else count = 0;
-
-            int CurrentPage;
-            // Parameter is passed from Query string if it is null then it default Value will be pageNumber:1  
-            if (pageNumber > 0) CurrentPage = pageNumber;
-            else CurrentPage = 1;
-
-            // Parameter is passed from Query string if it is null then it default Value will be pageSize:20 
-            int PageSize;
-            if (pageSize > 0) PageSize = pageSize;
-            else PageSize = 20;
-
-            // Display TotalCount to Records to User  
-            int TotalCount = count;
-
-            // Calculating Totalpage by Dividing (No of Records / Pagesize)  
-            int TotalPages = (int)Math.Ceiling(count / (double)PageSize);
-
-            // Returns List of Customer after applying Paging   
-
-            var items = source.Skip((CurrentPage - 1) * PageSize).Take(PageSize).ToList();
-
-            // if CurrentPage is greater than 1 means it has previousPage  
-            var previousPage = CurrentPage > 1 ? "Yes" : "No";
-
-            // if TotalPages is greater than CurrentPage means it has nextPage  
-            var nextPage = CurrentPage < TotalPages ? "Yes" : "No";
-
-            // Object which we are going to send in header   
-            var paginationMetadata = new
-            {
-                totalCount = TotalCount,
-                pageSize = PageSize,
-                currentPage = CurrentPage,
-                totalPages = TotalPages,
-                previousPage,
-                nextPage
-            };
-
-
-            var metadataValue = new Metadata()
-            {
-                totalCount = TotalCount,
-                pageSize = PageSize,
-                currentPage = CurrentPage,
-                totalPages = TotalPages,
-                previousPage = previousPage,
-                nextPage = nextPage
-            };
-
-            // Setting Header  
-            HttpContext.Current.Response.Headers.Add("Paging-Headers", JsonConvert.SerializeObject(paginationMetadata));
-
-            // Returing List of Customers Collections  
-            return new ResponseListModel<SP_GetProductCategory_Result>()
-            {
-                message = "List of product in category",
-                status = true,
-                code = 200,
-                data = items,
-                metadata = metadataValue
-            };
+            if (pageSize <= 0 || pageSize > 100) pageSize = 20;
+            if (pageNumber <= 0) pageNumber = 1;
+            return Ok(await Task.Run(() => entities.SP_GetProductOfCategory(categoryID, pageNumber, pageSize, accountId)));
         }
 
         //[Route("api/allProducts")]

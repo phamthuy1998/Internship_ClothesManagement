@@ -1,4 +1,4 @@
-namespace ClothesManament.Areas.HelpPage.ModelDescriptions
+namespace ClothesManagement.Areas.HelpPage.ModelDescriptions
 {
     public class DictionaryModelDescription : KeyValuePairModelDescription
     {

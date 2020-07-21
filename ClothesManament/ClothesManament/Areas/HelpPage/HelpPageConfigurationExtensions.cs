@@ -11,10 +11,10 @@ using System.Net.Http.Headers;
 using System.Web.Http;
 using System.Web.Http.Controllers;
 using System.Web.Http.Description;
-using ClothesManament.Areas.HelpPage.ModelDescriptions;
-using ClothesManament.Areas.HelpPage.Models;
+using ClothesManagement.Areas.HelpPage.ModelDescriptions;
+using ClothesManagement.Areas.HelpPage.Models;
 
-namespace ClothesManament.Areas.HelpPage
+namespace ClothesManagement.Areas.HelpPage
 {
     public static class HelpPageConfigurationExtensions
     {

@@ -130,6 +130,15 @@
     </FunctionImportMapping>
     <FunctionImportMapping FunctionImportName="sp_renamediagram1" FunctionName="ClothesManamentModel.Store.sp_renamediagram" />
     <FunctionImportMapping FunctionImportName="sp_upgraddiagrams1" FunctionName="ClothesManamentModel.Store.sp_upgraddiagrams" />
+    <FunctionImportMapping FunctionImportName="SP_GetBranch" FunctionName="ClothesManamentModel.Store.SP_GetBranch">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ClothesManamentModel.SP_GetBranch_Result">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="brandName" ColumnName="brandName" />
+          <ScalarProperty Name="infomation" ColumnName="infomation" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
     <EntitySetMapping Name="Accounts">
       <EntityTypeMapping TypeName="ClothesManamentModel.Account">
         <MappingFragment StoreEntitySet="Account">
@@ -169,6 +178,7 @@
       <EntityTypeMapping TypeName="ClothesManamentModel.Category">
         <MappingFragment StoreEntitySet="Category">
           <ScalarProperty Name="active" ColumnName="active" />
+          <ScalarProperty Name="thumnail" ColumnName="thumnail" />
           <ScalarProperty Name="imageUrl" ColumnName="imageUrl" />
           <ScalarProperty Name="genderID" ColumnName="genderID" />
           <ScalarProperty Name="detail" ColumnName="detail" />
@@ -206,15 +216,6 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="ItemPromotions">
-      <EntityTypeMapping TypeName="ClothesManamentModel.ItemPromotion">
-        <MappingFragment StoreEntitySet="ItemPromotion">
-          <ScalarProperty Name="active" ColumnName="active" />
-          <ScalarProperty Name="idPromotion" ColumnName="idPromotion" />
-          <ScalarProperty Name="idProduct" ColumnName="idProduct" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <EntitySetMapping Name="Orders">
       <EntityTypeMapping TypeName="ClothesManamentModel.Order">
         <MappingFragment StoreEntitySet="Order">
@@ -245,6 +246,7 @@
       <EntityTypeMapping TypeName="ClothesManamentModel.Product">
         <MappingFragment StoreEntitySet="Product">
           <ScalarProperty Name="thumnail" ColumnName="thumnail" />
+          <ScalarProperty Name="idPromotion" ColumnName="idPromotion" />
           <ScalarProperty Name="brandId" ColumnName="brandId" />
           <ScalarProperty Name="active" ColumnName="active" />
           <ScalarProperty Name="rating" ColumnName="rating" />
@@ -320,5 +322,29 @@
         <ScalarProperty Name="id" ColumnName="idAccount" />
       </EndProperty>
     </AssociationSetMapping>
+    <FunctionImportMapping FunctionImportName="SP_GetProducts1" FunctionName="ClothesManamentModel.Store.SP_GetProducts">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ClothesManamentModel.SP_GetProducts1_Result">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="title" ColumnName="title" />
+          <ScalarProperty Name="price" ColumnName="price" />
+          <ScalarProperty Name="thumnail" ColumnName="thumnail" />
+          <ScalarProperty Name="isLike" ColumnName="isLike" />
+          <ScalarProperty Name="promotion" ColumnName="promotion" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="SP_GetProductOfCategory" FunctionName="ClothesManamentModel.Store.SP_GetProductOfCategory">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ClothesManamentModel.SP_GetProductOfCategory_Result">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="title" ColumnName="title" />
+          <ScalarProperty Name="price" ColumnName="price" />
+          <ScalarProperty Name="thumnail" ColumnName="thumnail" />
+          <ScalarProperty Name="isLike" ColumnName="isLike" />
+          <ScalarProperty Name="promotion" ColumnName="promotion" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
   </EntityContainerMapping>
 </Mapping>

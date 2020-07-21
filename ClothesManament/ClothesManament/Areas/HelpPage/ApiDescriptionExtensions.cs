@@ -3,7 +3,7 @@ using System.Text;
 using System.Web;
 using System.Web.Http.Description;
 
-namespace ClothesManament.Areas.HelpPage
+namespace ClothesManagement.Areas.HelpPage
 {
     public static class ApiDescriptionExtensions
     {

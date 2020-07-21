@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <variable
+            name="tag"
+            type="com.ptithcm.core.model.Tag" />
+    </data>
+
+    <RelativeLayout
+        android:id="@+id/rlBags"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvTagName"
+            style="@style/normal_text"
+            android:layout_width="match_parent"
+            android:padding="@dimen/layout_margin_16dp"
+            android:textAlignment="textStart"
+            android:textSize="@dimen/text_size_13sp"
+            app:capText="@{tag.name}"
+            tools:text="Bags"/>
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/ivTag"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/layout_margin_16dp"
+            android:layout_alignTop="@id/tvTagName"
+            android:layout_alignEnd="@id/tvTagName"
+            android:layout_alignBottom="@id/tvTagName"
+            android:src="@drawable/bg_refine_active"/>
+
+        <View
+            android:id="@+id/vLine"
+            style="@style/divider"
+            android:layout_width="match_parent"
+            android:layout_alignStart="@id/tvTagName"
+            android:layout_alignEnd="@id/tvTagName"
+            android:layout_alignBottom="@id/tvTagName" />
+
+    </RelativeLayout>
+
+</layout>

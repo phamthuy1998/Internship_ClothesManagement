@@ -5,9 +5,9 @@ using System.Reflection;
 using System.Web.Http.Controllers;
 using System.Web.Http.Description;
 using System.Xml.XPath;
-using ClothesManament.Areas.HelpPage.ModelDescriptions;
+using ClothesManagement.Areas.HelpPage.ModelDescriptions;
 
-namespace ClothesManament.Areas.HelpPage
+namespace ClothesManagement.Areas.HelpPage
 {
     /// <summary>
     /// A custom <see cref="IDocumentationProvider"/> that reads the API documentation from an XML documentation file.

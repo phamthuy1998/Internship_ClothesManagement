@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_profile"
+    app:startDestination="@id/fragment_profile">
+
+    <fragment
+        android:id="@+id/registerFragment"
+        android:name="com.ptithcm.ptshop.view.register.RegisterFragment"
+        android:label="@string/join_snapshop"
+        tools:layout="@layout/fragment_register">
+        <action
+            android:id="@+id/action_register_to_loginFragment"
+            app:destination="@id/loginFragment"
+            app:popUpTo="@+id/register"
+            app:popUpToInclusive="true" />
+    </fragment>
+    <fragment
+        android:id="@+id/loginFragment"
+        android:name="com.ptithcm.ptshop.view.login.LoginFragment"
+        android:label="LoginFragment"
+        tools:layout="@layout/fragment_login">
+    </fragment>
+    <include app:graph="@navigation/nav_categories_detail" />
+    <fragment
+        android:id="@+id/fragment_profile"
+        android:name="com.ptithcm.ptshop.view.profile.ProfileFragment"
+        tools:layout="@layout/fragment_profile" >
+    </fragment>
+
+    <fragment
+        android:id="@+id/fragmentForgotPassword"
+        android:name="com.ptithcm.ptshop.view.forgotpassword.FragmentForgotPassword"
+        android:label="FragmentForgotPassword"
+        tools:layout="@layout/fragment_forgot_password" />
+
+    <fragment
+        android:id="@+id/myDetailFragment"
+        android:name="com.ptithcm.ptshop.view.mydetail.MyDetailFragment"
+        android:label="MyDetailFragment"
+        tools:layout="@layout/fragment_my_detail" />
+
+    <fragment
+        android:id="@+id/changePasswordFragment"
+        android:name="com.ptithcm.ptshop.view.changepassword.ChangePasswordFragment"
+        android:label="ChangePasswordFragment"
+        tools:layout="@layout/fragment_change_password" />
+
+    <fragment
+        android:id="@+id/profileEditPhotoFragment"
+        android:name="com.ptithcm.ptshop.view.profile.ProfileCropImageFragment"
+        android:label="ProfileEditPhotoFragment"
+        tools:layout="@layout/fragment_profile_crop_image">
+
+
+    </fragment>
+
+    <include app:graph="@navigation/nav_book_address" />
+
+    <include app:graph="@navigation/nav_payment_methods" />
+    <fragment
+        android:id="@+id/brandProfileFragment"
+        android:name="com.ptithcm.ptshop.view.profile.BrandProfileFragment"
+        android:label="BrandProfileFragment"
+        tools:layout="@layout/fragment_carousel_detail">
+        <action
+            android:id="@+id/action_refine"
+            app:destination="@id/nav_refine"
+            app:enterAnim="@anim/slide_in_up"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_in_down" />
+        <action android:id="@+id/action_product_detail"
+            app:destination="@id/fragment_product_detail"
+            app:enterAnim="@anim/slide_in_up"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_in_down" />
+    </fragment>
+    <fragment
+        android:id="@+id/fragment_product_detail"
+        android:name="com.ptithcm.ptshop.view.wishlist.ProductDetailFragment"
+        tools:layout="@layout/fragment_product_detail" />
+    <include app:graph="@navigation/nav_carousel_detail"/>
+    <include app:graph="@navigation/nav_refine" />
+    <fragment
+        android:id="@+id/sizeGuideFragment"
+        tools:layout="@layout/fragment_size_guide"
+        android:name="com.ptithcm.ptshop.view.sizeguide.SizeGuideFragment"
+        android:label="SizeGuideFragment" />
+    <include app:graph="@navigation/nav_shopping_card" />
+    <fragment
+        android:id="@+id/fragment_over_view"
+        android:name="com.ptithcm.ptshop.view.wishlist.OverViewFragment"
+        android:label="OverViewFragment" />
+    <include app:graph="@navigation/nav_search" />
+    <fragment
+        android:id="@+id/fragment_story_detail"
+        android:name="com.ptithcm.ptshop.view.home.storydetail.StoryDetailFragment"
+        tools:layout="@layout/activity_story_detail" />
+
+    <include app:graph="@navigation/nav_product" />
+    <fragment
+        android:id="@+id/documentFragment"
+        android:name="com.ptithcm.ptshop.view.document.DocumentFragment"
+        tools:layout="@layout/fragment_document"
+        android:label="DocumentFragment" />
+</navigation>

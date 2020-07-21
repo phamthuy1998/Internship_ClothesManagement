@@ -1,7 +1,7 @@
 using System;
 using System.Reflection;
 
-namespace ClothesManament.Areas.HelpPage.ModelDescriptions
+namespace ClothesManagement.Areas.HelpPage.ModelDescriptions
 {
     public interface IModelDocumentationProvider
     {

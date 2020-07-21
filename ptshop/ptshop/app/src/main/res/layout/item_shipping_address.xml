@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <import type="android.text.TextUtils" />
+
+        <variable
+            name="basket"
+            type="com.ptithcm.core.model.User" />
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/shippingAddressContainer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:padding="@dimen/layout_margin_8dp">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/shippingAddressText"
+            style="@style/normal_text.bold"
+            android:layout_width="0dp"
+            android:layout_marginTop="@dimen/layout_margin_8dp"
+            android:layout_marginStart="@dimen/layout_margin_8dp"
+            android:text="@string/shipping_address"
+            android:textAlignment="viewStart"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"/>
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/emptyShippingAddressText"
+            style="@style/normal_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/add_a_shipping_address"
+            android:textAlignment="viewStart"
+            android:textColor="#FF0000"
+            android:visibility="@{(TextUtils.isEmpty(basket.shipping_address_line_1) &amp;&amp; TextUtils.isEmpty(basket.shipping_address_line_2) &amp;&amp;TextUtils.isEmpty(basket.shipping_address_town_city) &amp;&amp;TextUtils.isEmpty(basket.shipping_address_county_area) &amp;&amp;TextUtils.isEmpty(basket.shipping_address_country) &amp;&amp;TextUtils.isEmpty(basket.shipping_address_postcode_zip) &amp;&amp; TextUtils.isEmpty(basket.shipping_telephone) )? View.VISIBLE : View.GONE}"
+            android:layout_marginStart="@dimen/layout_margin_8dp"
+            android:layout_marginTop="@dimen/layout_margin_8dp"
+            android:layout_marginBottom="@dimen/layout_margin_8dp"
+            app:layout_constraintStart_toStartOf="@id/shippingAddressText"
+            app:layout_constraintEnd_toEndOf="@id/shippingAddressText"
+            app:layout_constraintTop_toBottomOf="@id/shippingAddressText"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintVertical_bias="0"/>
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/shippingAddressLine1"
+            style="@style/normal_text"
+            android:layout_width="0dp"
+            android:layout_marginTop="@dimen/layout_margin_8dp"
+            android:text="@{basket.shipping_address_line_1}"
+            android:textAlignment="viewStart"
+            android:visibility="@{TextUtils.isEmpty(basket.shipping_address_line_1) ?  (basket.shipping_address_line_1 == null ? View.GONE : View.INVISIBLE) :  View.VISIBLE}"
+            app:layout_constraintTop_toBottomOf="@id/shippingAddressText"
+            app:layout_constraintStart_toStartOf="@id/shippingAddressText"
+            app:layout_constraintEnd_toEndOf="@id/shippingAddressText"
+            tools:text="flat 7 - 3 queens road" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/shippingAddressLine2"
+            style="@style/normal_text"
+            android:layout_width="0dp"
+            android:text="@{basket.shipping_address_line_2}"
+            android:textAlignment="viewStart"
+            android:visibility="@{TextUtils.isEmpty(basket.shipping_address_line_2) ? (basket.shipping_address_line_2 == null ? View.GONE : View.INVISIBLE) : View.VISIBLE}"
+            app:layout_constraintTop_toBottomOf="@id/shippingAddressLine1"
+            app:layout_constraintStart_toStartOf="@id/shippingAddressLine1"
+            app:layout_constraintEnd_toEndOf="@id/shippingAddressLine1"
+            tools:text="2" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/shippingAddressTownCity"
+            style="@style/normal_text"
+            android:layout_width="0dp"
+            android:text="@{basket.shipping_address_town_city}"
+            android:textAlignment="viewStart"
+            android:visibility="@{TextUtils.isEmpty(basket.shipping_address_town_city) ? (basket.shipping_address_town_city == null ? View.GONE : View.INVISIBLE) : View.VISIBLE}"
+            app:layout_constraintTop_toBottomOf="@id/shippingAddressLine2"
+            app:layout_constraintStart_toStartOf="@id/shippingAddressLine2"
+            app:layout_constraintEnd_toEndOf="@id/shippingAddressLine2"
+            tools:text="richmond" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/shippingAddressCountryArea"
+            style="@style/normal_text"
+            android:layout_width="0dp"
+            android:text="@{basket.shipping_address_county_area}"
+            android:textAlignment="viewStart"
+            android:visibility="@{TextUtils.isEmpty(basket.shipping_address_county_area) ? View.GONE : View.VISIBLE}"
+            app:layout_constraintTop_toBottomOf="@id/shippingAddressTownCity"
+            app:layout_constraintStart_toStartOf="@id/shippingAddressTownCity"
+            app:layout_constraintEnd_toEndOf="@id/shippingAddressTownCity"
+            tools:text="London" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/shippingAddressCountry"
+            style="@style/normal_text"
+            android:layout_width="0dp"
+            android:text="@{basket.shipping_address_country}"
+            android:textAlignment="viewStart"
+            android:visibility="@{TextUtils.isEmpty(basket.shipping_address_country) ? View.GONE : View.VISIBLE}"
+            app:layout_constraintTop_toBottomOf="@id/shippingAddressCountryArea"
+            app:layout_constraintStart_toStartOf="@id/shippingAddressCountryArea"
+            app:layout_constraintEnd_toEndOf="@id/shippingAddressCountryArea"
+            tools:text="United Kingdom" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/shippingAddressPostCode"
+            style="@style/normal_text"
+            android:layout_width="0dp"
+            android:text="@{basket.shipping_address_postcode_zip}"
+            android:textAlignment="viewStart"
+            android:visibility="@{TextUtils.isEmpty(basket.shipping_address_postcode_zip) ? View.GONE : View.VISIBLE}"
+            app:layout_constraintTop_toBottomOf="@id/shippingAddressCountry"
+            app:layout_constraintStart_toStartOf="@id/shippingAddressCountry"
+            app:layout_constraintEnd_toEndOf="@id/shippingAddressCountry"
+            tools:text="TW10 6JW" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/shippingAddressPhone"
+            style="@style/normal_text"
+            android:layout_width="0dp"
+            android:text="@{basket.shipping_telephone}"
+            android:textAlignment="viewStart"
+            android:visibility="@{TextUtils.isEmpty(basket.shipping_telephone) ? View.GONE : View.VISIBLE}"
+            app:layout_constraintTop_toBottomOf="@id/shippingAddressPostCode"
+            app:layout_constraintStart_toStartOf="@id/shippingAddressPostCode"
+            app:layout_constraintEnd_toEndOf="@id/shippingAddressPostCode"
+            tools:text="7411188787" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/ic_right_arrow" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

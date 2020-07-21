@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_login" app:startDestination="@id/login">
+
+    <fragment
+        android:id="@+id/login"
+        tools:layout="@layout/fragment_login"
+        android:name="com.ptithcm.ptshop.view.login.LoginFragment"
+        android:label="Login" >
+        <action
+            android:id="@+id/action_login_to_registerFragment"
+            app:destination="@id/registerFragment"
+            app:popUpTo="@+id/login"
+            app:popUpToInclusive="true" />
+    </fragment>
+    <fragment
+        android:id="@+id/registerFragment"
+        tools:layout="@layout/fragment_register"
+        android:name="com.ptithcm.ptshop.view.register.RegisterFragment"
+        android:label="RegisterFragment">
+        <argument
+            android:name="fromLogin"
+            app:argType="boolean"
+            android:defaultValue="true" />
+    </fragment>
+    <fragment
+        android:id="@+id/fragmentForgotPassword"
+        tools:layout="@layout/fragment_forgot_password"
+        android:name="com.ptithcm.ptshop.view.forgotpassword.FragmentForgotPassword"
+        android:label="FragmentForgotPassword" />
+</navigation>

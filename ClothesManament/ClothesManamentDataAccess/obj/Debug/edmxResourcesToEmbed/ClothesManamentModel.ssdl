@@ -41,6 +41,7 @@
     <Property Name="detail" Type="nvarchar" MaxLength="200" />
     <Property Name="genderID" Type="int" Nullable="false" />
     <Property Name="imageUrl" Type="nvarchar" MaxLength="200" />
+    <Property Name="thumnail" Type="nvarchar" MaxLength="200" />
     <Property Name="active" Type="int" />
   </EntityType>
   <EntityType Name="Color">
@@ -75,15 +76,6 @@
     <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="imageUrl" Type="nvarchar" MaxLength="200" />
     <Property Name="productId" Type="int" />
-    <Property Name="active" Type="int" />
-  </EntityType>
-  <EntityType Name="ItemPromotion">
-    <Key>
-      <PropertyRef Name="idProduct" />
-      <PropertyRef Name="idPromotion" />
-    </Key>
-    <Property Name="idProduct" Type="int" Nullable="false" />
-    <Property Name="idPromotion" Type="int" Nullable="false" />
     <Property Name="active" Type="int" />
   </EntityType>
   <EntityType Name="Order">
@@ -124,6 +116,7 @@
     <Property Name="rating" Type="int" />
     <Property Name="active" Type="int" />
     <Property Name="brandId" Type="int" />
+    <Property Name="idPromotion" Type="int" />
     <Property Name="thumnail" Type="nvarchar" MaxLength="200" />
   </EntityType>
   <EntityType Name="ProductSizeColor">
@@ -141,7 +134,7 @@
     <Key>
       <PropertyRef Name="id" />
     </Key>
-    <Property Name="id" Type="int" Nullable="false" />
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="description" Type="nvarchar" MaxLength="200" />
     <Property Name="name" Type="nvarchar" MaxLength="200" />
     <Property Name="beginDate" Type="datetime" />
@@ -250,30 +243,6 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_ItemPromotion_Product">
-    <End Role="Product" Type="Self.Product" Multiplicity="1" />
-    <End Role="ItemPromotion" Type="Self.ItemPromotion" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Product">
-        <PropertyRef Name="id" />
-      </Principal>
-      <Dependent Role="ItemPromotion">
-        <PropertyRef Name="idProduct" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_ItemPromotion_Promotion">
-    <End Role="Promotion" Type="Self.Promotion" Multiplicity="1" />
-    <End Role="ItemPromotion" Type="Self.ItemPromotion" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Promotion">
-        <PropertyRef Name="id" />
-      </Principal>
-      <Dependent Role="ItemPromotion">
-        <PropertyRef Name="idPromotion" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
   <Association Name="FK_Order_User">
     <End Role="Account" Type="Self.Account" Multiplicity="0..1" />
     <End Role="Order" Type="Self.Order" Multiplicity="*" />
@@ -334,6 +303,18 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_Product_Promotion">
+    <End Role="Promotion" Type="Self.Promotion" Multiplicity="0..1" />
+    <End Role="Product" Type="Self.Product" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Promotion">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Product">
+        <PropertyRef Name="idPromotion" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_ProductSizeColor_Color">
     <End Role="Color" Type="Self.Color" Multiplicity="1" />
     <End Role="ProductSizeColor" Type="Self.ProductSizeColor" Multiplicity="*" />
@@ -387,12 +368,18 @@
     <Parameter Name="oldPass" Type="varchar" Mode="In" />
     <Parameter Name="newPass" Type="varchar" Mode="In" />
   </Function>
+  <Function Name="checkMH" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="varchar">
+    <Parameter Name="maMH" Type="nchar" Mode="In" />
+  </Function>
   <Function Name="DelAccount" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="userId" Type="int" Mode="In" />
   </Function>
   <Function Name="fn_diagramobjects" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="int" />
   <Function Name="getCategoryByGender" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="GenderID" Type="int" Mode="In" />
+  </Function>
+  <Function Name="Num2Text" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="nvarchar">
+    <Parameter Name="Number" Type="float" Mode="In" />
   </Function>
   <Function Name="sp_alterdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
@@ -410,11 +397,29 @@
     <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
     <Parameter Name="owner_id" Type="int" Mode="In" />
   </Function>
+  <Function Name="SP_GetBranch" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="GenderID" Type="int" Mode="In" />
+  </Function>
   <Function Name="SP_GetProductCategory" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="categoryId" Type="int" Mode="In" />
+    <Parameter Name="currentPage" Type="int" Mode="In" />
+    <Parameter Name="PageSize" Type="int" Mode="In" />
+    <Parameter Name="AccountID" Type="int" Mode="In" />
   </Function>
   <Function Name="SP_GetProductInfoByID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="productID" Type="int" Mode="In" />
+  </Function>
+  <Function Name="SP_GetProductOfCategory" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="categoryId" Type="int" Mode="In" />
+    <Parameter Name="currentPage" Type="int" Mode="In" />
+    <Parameter Name="PageSize" Type="int" Mode="In" />
+    <Parameter Name="AccountID" Type="int" Mode="In" />
+  </Function>
+  <Function Name="SP_GetProducts" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="categoryId" Type="int" Mode="In" />
+    <Parameter Name="currentPage" Type="int" Mode="In" />
+    <Parameter Name="PageSize" Type="int" Mode="In" />
+    <Parameter Name="AccountID" Type="int" Mode="In" />
   </Function>
   <Function Name="sp_helpdiagramdefinition" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
@@ -480,7 +485,6 @@
     <EntitySet Name="FavoriteProduct" EntityType="Self.FavoriteProduct" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Gender" EntityType="Self.Gender" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Image" EntityType="Self.Image" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="ItemPromotion" EntityType="Self.ItemPromotion" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Order" EntityType="Self.Order" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="OrderItem" EntityType="Self.OrderItem" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Product" EntityType="Self.Product" Schema="dbo" store:Type="Tables" />
@@ -513,14 +517,6 @@
       <End Role="Product" EntitySet="Product" />
       <End Role="Image" EntitySet="Image" />
     </AssociationSet>
-    <AssociationSet Name="FK_ItemPromotion_Product" Association="Self.FK_ItemPromotion_Product">
-      <End Role="Product" EntitySet="Product" />
-      <End Role="ItemPromotion" EntitySet="ItemPromotion" />
-    </AssociationSet>
-    <AssociationSet Name="FK_ItemPromotion_Promotion" Association="Self.FK_ItemPromotion_Promotion">
-      <End Role="Promotion" EntitySet="Promotion" />
-      <End Role="ItemPromotion" EntitySet="ItemPromotion" />
-    </AssociationSet>
     <AssociationSet Name="FK_Order_User" Association="Self.FK_Order_User">
       <End Role="Account" EntitySet="Account" />
       <End Role="Order" EntitySet="Order" />
@@ -539,6 +535,10 @@
     </AssociationSet>
     <AssociationSet Name="FK_Product_Category" Association="Self.FK_Product_Category">
       <End Role="Category" EntitySet="Category" />
+      <End Role="Product" EntitySet="Product" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Product_Promotion" Association="Self.FK_Product_Promotion">
+      <End Role="Promotion" EntitySet="Promotion" />
       <End Role="Product" EntitySet="Product" />
     </AssociationSet>
     <AssociationSet Name="FK_ProductSizeColor_Color" Association="Self.FK_ProductSizeColor_Color">

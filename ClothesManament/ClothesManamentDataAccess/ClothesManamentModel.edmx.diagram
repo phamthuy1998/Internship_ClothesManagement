@@ -5,22 +5,21 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="2c3fe6179fb148e3bce1bc0497f4c721" Name="Diagram1" ZoomLevel="63">
-        <EntityTypeShape EntityType="ClothesManamentModel.Account" Width="1.5" PointX="3" PointY="11" />
-        <EntityTypeShape EntityType="ClothesManamentModel.Brand" Width="1.5" PointX="3" PointY="4.375" />
-        <EntityTypeShape EntityType="ClothesManamentModel.Cart" Width="1.5" PointX="7.5" PointY="4.375" />
-        <EntityTypeShape EntityType="ClothesManamentModel.Category" Width="1.5" PointX="3" PointY="7.125" />
-        <EntityTypeShape EntityType="ClothesManamentModel.Color" Width="1.5" PointX="8.25" PointY="13.875" />
-        <EntityTypeShape EntityType="ClothesManamentModel.Gender" Width="1.5" PointX="0.75" PointY="7.5" />
-        <EntityTypeShape EntityType="ClothesManamentModel.Image" Width="1.5" PointX="7.5" PointY="19.375" />
-        <EntityTypeShape EntityType="ClothesManamentModel.ItemPromotion" Width="1.5" PointX="7.5" PointY="10.5" />
-        <EntityTypeShape EntityType="ClothesManamentModel.Order" Width="1.5" PointX="5.25" PointY="1.875" />
-        <EntityTypeShape EntityType="ClothesManamentModel.OrderItem" Width="1.5" PointX="7.5" PointY="7.25" />
-        <EntityTypeShape EntityType="ClothesManamentModel.Product" Width="1.5" PointX="5.25" PointY="6.25" />
-        <EntityTypeShape EntityType="ClothesManamentModel.ProductSizeColor" Width="1.5" PointX="10.5" PointY="7.25" />
-        <EntityTypeShape EntityType="ClothesManamentModel.Promotion" Width="1.5" PointX="5.25" PointY="12.125" />
-        <EntityTypeShape EntityType="ClothesManamentModel.Role" Width="1.5" PointX="0.75" PointY="11.875" />
-        <EntityTypeShape EntityType="ClothesManamentModel.Size" Width="1.5" PointX="8.25" PointY="1" />
-        <EntityTypeShape EntityType="ClothesManamentModel.sysdiagram" Width="1.5" PointX="0.75" PointY="0.75" />
+        <EntityTypeShape EntityType="ClothesManamentModel.Account" Width="1.5" PointX="3" PointY="6.5" />
+        <EntityTypeShape EntityType="ClothesManamentModel.Brand" Width="1.5" PointX="3" PointY="14.75" />
+        <EntityTypeShape EntityType="ClothesManamentModel.Cart" Width="1.5" PointX="7.5" PointY="7.125" />
+        <EntityTypeShape EntityType="ClothesManamentModel.Category" Width="1.5" PointX="3" PointY="11.25" />
+        <EntityTypeShape EntityType="ClothesManamentModel.Color" Width="1.5" PointX="8.25" PointY="14.625" />
+        <EntityTypeShape EntityType="ClothesManamentModel.Gender" Width="1.5" PointX="0.75" PointY="11.75" />
+        <EntityTypeShape EntityType="ClothesManamentModel.Image" Width="1.5" PointX="7.5" PointY="4.25" />
+        <EntityTypeShape EntityType="ClothesManamentModel.Order" Width="1.5" PointX="5.25" PointY="15" />
+        <EntityTypeShape EntityType="ClothesManamentModel.OrderItem" Width="1.5" PointX="7.5" PointY="10.75" />
+        <EntityTypeShape EntityType="ClothesManamentModel.Product" Width="1.5" PointX="5.25" PointY="5.875" />
+        <EntityTypeShape EntityType="ClothesManamentModel.ProductSizeColor" Width="1.5" PointX="10.5" PointY="7" />
+        <EntityTypeShape EntityType="ClothesManamentModel.Promotion" Width="1.5" PointX="3" PointY="2.75" />
+        <EntityTypeShape EntityType="ClothesManamentModel.Role" Width="1.5" PointX="0.75" PointY="7.25" />
+        <EntityTypeShape EntityType="ClothesManamentModel.Size" Width="1.5" PointX="8.25" PointY="0.75" />
+        <EntityTypeShape EntityType="ClothesManamentModel.sysdiagram" Width="1.5" PointX="9.75" PointY="10.625" />
         <AssociationConnector Association="ClothesManamentModel.FK_Cart_User" />
         <AssociationConnector Association="ClothesManamentModel.FK_Order_User" />
         <AssociationConnector Association="ClothesManamentModel.FK_User_Role" />
@@ -30,10 +29,9 @@
         <AssociationConnector Association="ClothesManamentModel.FK_Product_Category" />
         <AssociationConnector Association="ClothesManamentModel.FK_ProductSizeColor_Color" />
         <AssociationConnector Association="ClothesManamentModel.FK_Image_Product" />
-        <AssociationConnector Association="ClothesManamentModel.FK_ItemPromotion_Product" />
-        <AssociationConnector Association="ClothesManamentModel.FK_ItemPromotion_Promotion" />
         <AssociationConnector Association="ClothesManamentModel.FK_OrderItem_Order" />
         <AssociationConnector Association="ClothesManamentModel.FK_OrderItem_Product" />
+        <AssociationConnector Association="ClothesManamentModel.FK_Product_Promotion" />
         <AssociationConnector Association="ClothesManamentModel.FK_ProductSizeColor_Product" />
         <AssociationConnector Association="ClothesManamentModel.FK_ProductSizeColor_Size" />
         <AssociationConnector Association="ClothesManamentModel.FavoriteProduct" />

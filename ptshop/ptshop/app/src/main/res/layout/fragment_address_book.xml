@@ -1,0 +1,309 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="user"
+            type="com.ptithcm.core.model.User" />
+        <variable
+            name="cardDefault"
+            type="com.ptithcm.core.model.CreditCard" />
+
+        <import type="android.text.TextUtils" />
+
+        <variable
+            name="fragment"
+            type="com.ptithcm.ptshop.view.addressbook.AddressBookFragment" />
+    </data>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:background="@color/background"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/colorBackground"
+            android:orientation="vertical">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/billingAddressContainer"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/layout_margin_16dp"
+                android:background="@color/white"
+                android:onClick="@{(v) -> fragment.onClick(v)}"
+                android:padding="@dimen/layout_margin_8dp">
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/billingAddressText"
+                    style="@style/normal_text.bold"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="@dimen/layout_margin_8dp"
+                    android:text="@string/billing_address"
+                    android:textAlignment="viewStart"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/billingAddressLine1"
+                    style="@style/normal_text"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="@dimen/layout_margin_8dp"
+                    android:paddingTop="@dimen/layout_margin_1dp"
+                    android:paddingBottom="@dimen/layout_margin_1dp"
+                    android:text="@{TextUtils.isEmpty(cardDefault.address_line1) ? (!TextUtils.isEmpty(user.billing_address_line_1) ? user.billing_address_line_1 : `` ):cardDefault.address_line1}"
+                    android:textAlignment="viewStart"
+                    android:visibility="@{( TextUtils.isEmpty(cardDefault.address_line1) &amp;&amp; TextUtils.isEmpty(user.billing_address_line_1) ) ? View.GONE : View.VISIBLE}"
+                    app:layout_constraintTop_toBottomOf="@id/billingAddressText"
+                    tools:text="flat 7 - 3 queens road" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/emptyBillingAddressText"
+                    style="@style/normal_text"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="@dimen/layout_margin_8dp"
+                    android:paddingTop="@dimen/layout_margin_1dp"
+                    android:paddingBottom="@dimen/layout_margin_1dp"
+                    android:text="Add a billing address"
+                    android:textAlignment="viewStart"
+                    android:textColor="#FF0000"
+                    android:visibility="@{(TextUtils.isEmpty(cardDefault.address_line1) &amp;&amp; TextUtils.isEmpty(cardDefault.address_line2) &amp;&amp;TextUtils.isEmpty(cardDefault.address_city) &amp;&amp;TextUtils.isEmpty(cardDefault.address_state) &amp;&amp;TextUtils.isEmpty(cardDefault.country) &amp;&amp;TextUtils.isEmpty(cardDefault.address_zip) &amp;&amp; TextUtils.isEmpty(user.billing_address_line_1) &amp;&amp; TextUtils.isEmpty(user.billing_address_line_2) &amp;&amp;TextUtils.isEmpty(user.billing_address_town_city) &amp;&amp;TextUtils.isEmpty(user.billing_address_county_area) &amp;&amp;TextUtils.isEmpty(user.billing_address_country) &amp;&amp;TextUtils.isEmpty(user.billing_address_postcode_zip) )? View.VISIBLE : View.GONE}"
+                    app:layout_constraintTop_toBottomOf="@id/billingAddressText" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/billingAddressLine2"
+                    style="@style/normal_text"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="@dimen/layout_margin_8dp"
+                    android:paddingTop="@dimen/layout_margin_1dp"
+                    android:paddingBottom="@dimen/layout_margin_1dp"
+                    android:text="@{TextUtils.isEmpty(cardDefault.address_line2) ? (!TextUtils.isEmpty(user.billing_address_line_2) ? user.billing_address_line_2 : `` ):cardDefault.address_line2}"
+                    android:textAlignment="viewStart"
+                    android:visibility="@{(TextUtils.isEmpty(cardDefault.address_line2) &amp;&amp; TextUtils.isEmpty(user.billing_address_line_2)) ? View.GONE : View.VISIBLE}"
+                    app:layout_constraintTop_toBottomOf="@id/billingAddressLine1"
+                    tools:text="2" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/billingAddressTownCity"
+                    style="@style/normal_text"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="@dimen/layout_margin_8dp"
+                    android:paddingTop="@dimen/layout_margin_1dp"
+                    android:paddingBottom="@dimen/layout_margin_1dp"
+                    android:text="@{TextUtils.isEmpty(cardDefault.address_city) ? (!TextUtils.isEmpty(user.billing_address_town_city) ? user.billing_address_town_city : `` ):cardDefault.address_city}"
+                    android:textAlignment="viewStart"
+                    android:visibility="@{(TextUtils.isEmpty(cardDefault.address_city) &amp;&amp; TextUtils.isEmpty(user.billing_address_town_city)) ? View.GONE : View.VISIBLE}"
+                    app:layout_constraintTop_toBottomOf="@id/billingAddressLine2"
+                    tools:text="richmond" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/billingAddressCountryArea"
+                    style="@style/normal_text"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="@dimen/layout_margin_8dp"
+                    android:paddingTop="@dimen/layout_margin_1dp"
+                    android:paddingBottom="@dimen/layout_margin_1dp"
+                    android:text="@{TextUtils.isEmpty(cardDefault.address_state) ? (!TextUtils.isEmpty(user.billing_address_county_area) ? user.billing_address_county_area : `` ) : cardDefault.address_state}"
+                    android:textAlignment="viewStart"
+                    android:visibility="@{(TextUtils.isEmpty(cardDefault.address_state) &amp;&amp; TextUtils.isEmpty(user.billing_address_county_area)) ? View.GONE : View.VISIBLE}"
+                    app:layout_constraintTop_toBottomOf="@id/billingAddressTownCity"
+                    tools:text="London" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/billingAddressCountry"
+                    style="@style/normal_text"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="@dimen/layout_margin_8dp"
+                    android:paddingTop="@dimen/layout_margin_1dp"
+                    android:paddingBottom="@dimen/layout_margin_1dp"
+                    android:text="@{TextUtils.isEmpty(cardDefault.address_country) ? (!TextUtils.isEmpty(user.billing_address_country) ? user.billing_address_country : `` ) : cardDefault.address_country}"
+                    android:textAlignment="viewStart"
+                    android:visibility="@{(TextUtils.isEmpty(cardDefault.address_country) &amp;&amp; TextUtils.isEmpty(user.billing_address_country)) ? View.GONE : View.VISIBLE}"
+                    app:layout_constraintTop_toBottomOf="@id/billingAddressCountryArea"
+                    tools:text="United Kingdom" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/billingAddressPostCode"
+                    style="@style/normal_text"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="@dimen/layout_margin_8dp"
+                    android:paddingTop="@dimen/layout_margin_1dp"
+                    android:paddingBottom="@dimen/layout_margin_1dp"
+                    android:text="@{TextUtils.isEmpty(cardDefault.address_zip) ? (!TextUtils.isEmpty(user.billing_address_postcode_zip) ? user.billing_address_town_city : `` ):cardDefault.address_zip}"
+                    android:textAlignment="viewStart"
+                    android:visibility="@{(TextUtils.isEmpty(cardDefault.address_zip) &amp;&amp; TextUtils.isEmpty(user.billing_address_postcode_zip)) ? View.GONE : View.VISIBLE}"
+                    app:layout_constraintTop_toBottomOf="@id/billingAddressCountry"
+                    tools:text="TW10 6JW" />
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:srcCompat="@drawable/ic_right_arrow" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/shippingAddressContainer"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/layout_margin_16dp"
+                android:background="@color/white"
+                android:onClick="@{(v) -> fragment.onClick(v)}"
+                android:padding="@dimen/layout_margin_8dp">
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/shippingAddressText"
+                    style="@style/normal_text.bold"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="@dimen/layout_margin_8dp"
+                    android:text="@string/shipping_address"
+                    android:textAlignment="viewStart"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/shippingAddressLine1"
+                    style="@style/normal_text"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="@dimen/layout_margin_8dp"
+                    android:paddingTop="@dimen/layout_margin_1dp"
+                    android:paddingBottom="@dimen/layout_margin_1dp"
+                    android:text="@{user.shipping_address_line_1}"
+                    android:textAlignment="viewStart"
+                    android:visibility="@{TextUtils.isEmpty(user.shipping_address_line_1) ? View.GONE : View.VISIBLE}"
+                    app:layout_constraintTop_toBottomOf="@id/shippingAddressText"
+                    tools:text="flat 7 - 3 queens road" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/emptyShippingAddressText"
+                    style="@style/normal_text"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="@dimen/layout_margin_8dp"
+                    android:paddingTop="@dimen/layout_margin_1dp"
+                    android:paddingBottom="@dimen/layout_margin_1dp"
+                    android:text="Add a shipping address"
+                    android:textAlignment="viewStart"
+                    android:textColor="#FF0000"
+                    android:visibility="@{(TextUtils.isEmpty(user.shipping_address_line_1) &amp;&amp; TextUtils.isEmpty(user.shipping_address_line_2) &amp;&amp;TextUtils.isEmpty(user.shipping_address_town_city) &amp;&amp;TextUtils.isEmpty(user.shipping_address_county_area) &amp;&amp;TextUtils.isEmpty(user.shipping_address_country) &amp;&amp;TextUtils.isEmpty(user.shipping_address_postcode_zip) &amp;&amp; TextUtils.isEmpty(user.shipping_telephone) )? View.VISIBLE : View.GONE}"
+                    app:layout_constraintTop_toBottomOf="@id/shippingAddressText" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/shippingAddressLine2"
+                    style="@style/normal_text"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="@dimen/layout_margin_8dp"
+                    android:paddingTop="@dimen/layout_margin_1dp"
+                    android:paddingBottom="@dimen/layout_margin_1dp"
+                    android:text="@{user.shipping_address_line_2}"
+                    android:textAlignment="viewStart"
+                    android:visibility="@{TextUtils.isEmpty(user.shipping_address_line_2) ? View.GONE : View.VISIBLE}"
+                    app:layout_constraintTop_toBottomOf="@id/shippingAddressLine1"
+                    tools:text="2" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/shippingAddressTownCity"
+                    style="@style/normal_text"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="@dimen/layout_margin_8dp"
+                    android:paddingTop="@dimen/layout_margin_1dp"
+                    android:paddingBottom="@dimen/layout_margin_1dp"
+                    android:text="@{user.shipping_address_town_city}"
+                    android:textAlignment="viewStart"
+                    android:visibility="@{TextUtils.isEmpty(user.shipping_address_town_city) ? View.GONE : View.VISIBLE}"
+                    app:layout_constraintTop_toBottomOf="@id/shippingAddressLine2"
+                    tools:text="richmond" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/shippingAddressCountryArea"
+                    style="@style/normal_text"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="@dimen/layout_margin_8dp"
+                    android:paddingTop="@dimen/layout_margin_1dp"
+                    android:paddingBottom="@dimen/layout_margin_1dp"
+                    android:text="@{user.shipping_address_county_area}"
+                    android:textAlignment="viewStart"
+                    android:visibility="@{TextUtils.isEmpty(user.shipping_address_county_area) ? View.GONE : View.VISIBLE}"
+                    app:layout_constraintTop_toBottomOf="@id/shippingAddressTownCity"
+                    tools:text="London" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/shippingAddressCountry"
+                    style="@style/normal_text"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="@dimen/layout_margin_8dp"
+                    android:paddingTop="@dimen/layout_margin_1dp"
+                    android:paddingBottom="@dimen/layout_margin_1dp"
+                    android:text="@{user.shipping_address_country}"
+                    android:textAlignment="viewStart"
+                    android:visibility="@{TextUtils.isEmpty(user.shipping_address_country) ? View.GONE : View.VISIBLE}"
+                    app:layout_constraintTop_toBottomOf="@id/shippingAddressCountryArea"
+                    tools:text="United Kingdom" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/shippingAddressPostCode"
+                    style="@style/normal_text"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="@dimen/layout_margin_8dp"
+                    android:paddingTop="@dimen/layout_margin_1dp"
+                    android:paddingBottom="@dimen/layout_margin_1dp"
+                    android:text="@{user.shipping_address_postcode_zip}"
+                    android:textAlignment="viewStart"
+                    android:visibility="@{TextUtils.isEmpty(user.shipping_address_postcode_zip) ? View.GONE : View.VISIBLE}"
+                    app:layout_constraintTop_toBottomOf="@id/shippingAddressCountry"
+                    tools:text="TW10 6JW" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/shippingAddressPhone"
+                    style="@style/normal_text"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="@dimen/layout_margin_8dp"
+                    android:paddingTop="@dimen/layout_margin_1dp"
+                    android:paddingBottom="@dimen/layout_margin_1dp"
+                    android:text="@{user.shipping_telephone}"
+                    android:textAlignment="viewStart"
+                    android:visibility="@{TextUtils.isEmpty(user.shipping_telephone) ? View.GONE : View.VISIBLE}"
+                    app:layout_constraintTop_toBottomOf="@id/shippingAddressPostCode"
+                    tools:text="7411188787" />
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:srcCompat="@drawable/ic_right_arrow" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/size_150dp"/>
+
+
+        </LinearLayout>
+    </ScrollView>
+</layout>
