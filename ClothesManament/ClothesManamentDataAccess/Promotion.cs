@@ -27,7 +27,8 @@ namespace ClothesManamentDataAccess
         public Nullable<System.DateTime> endDate { get; set; }
         public Nullable<double> value { get; set; }
         public string imageUrl { get; set; }
-        public int active { get; set; }
+        public Nullable<int> active { get; set; }
+        public string type { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Product> Products { get; set; }

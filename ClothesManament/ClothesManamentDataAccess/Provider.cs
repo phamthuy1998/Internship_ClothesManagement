@@ -12,26 +12,21 @@ namespace ClothesManamentDataAccess
     using System;
     using System.Collections.Generic;
     
-    public partial class Order
+    public partial class Provider
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Order()
+        public Provider()
         {
-            this.OrderItems = new HashSet<OrderItem>();
+            this.Products = new HashSet<Product>();
         }
     
         public int id { get; set; }
-        public Nullable<System.DateTime> buyDate { get; set; }
-        public string name { get; set; }
-        public string phone { get; set; }
-        public string email { get; set; }
-        public string address { get; set; }
-        public string note { get; set; }
-        public Nullable<int> userID { get; set; }
-        public Nullable<int> statusOrderId { get; set; }
+        public string imageUrl { get; set; }
+        public string brandName { get; set; }
+        public string infomation { get; set; }
+        public Nullable<int> active { get; set; }
     
-        public virtual Account Account { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<OrderItem> OrderItems { get; set; }
+        public virtual ICollection<Product> Products { get; set; }
     }
 }

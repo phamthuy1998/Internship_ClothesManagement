@@ -25,7 +25,7 @@ namespace ClothesManagement.Controllers
         [HttpGet]
         public async Task<IHttpActionResult> getAllCategories(int genderID)
         {
-            return Ok(await Task.Run(() => entities.getCategoryByGender(genderID)));
+            return Ok(await Task.Run(() => entities.getCategoryGender(genderID)));
         }
 
     }

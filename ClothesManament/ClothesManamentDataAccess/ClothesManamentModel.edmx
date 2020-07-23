@@ -17,25 +17,8 @@
           <Property Name="password" Type="nvarchar" MaxLength="50" />
           <Property Name="username" Type="nvarchar" MaxLength="50" />
           <Property Name="imageUrl" Type="nvarchar" MaxLength="150" />
+          <Property Name="employeeID" Type="int" />
           <Property Name="active" Type="int" />
-        </EntityType>
-        <EntityType Name="Brand">
-          <Key>
-            <PropertyRef Name="id" />
-          </Key>
-          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="brandName" Type="nvarchar" MaxLength="50" />
-          <Property Name="infomation" Type="nvarchar(max)" />
-          <Property Name="active" Type="int" />
-        </EntityType>
-        <EntityType Name="Cart">
-          <Key>
-            <PropertyRef Name="id" />
-          </Key>
-          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="productId" Type="int" />
-          <Property Name="quantity" Type="int" />
-          <Property Name="userID" Type="int" />
         </EntityType>
         <EntityType Name="Category">
           <Key>
@@ -47,6 +30,7 @@
           <Property Name="genderID" Type="int" Nullable="false" />
           <Property Name="imageUrl" Type="nvarchar" MaxLength="200" />
           <Property Name="thumnail" Type="nvarchar" MaxLength="200" />
+          <Property Name="sex" Type="tinyint" />
           <Property Name="active" Type="int" />
         </EntityType>
         <EntityType Name="Color">
@@ -57,6 +41,17 @@
           <Property Name="colorName" Type="nvarchar" MaxLength="50" />
           <Property Name="colorHex" Type="nvarchar" MaxLength="50" />
           <Property Name="active" Type="int" />
+        </EntityType>
+        <EntityType Name="Employee">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" />
+          <Property Name="firstName" Type="nvarchar" MaxLength="50" />
+          <Property Name="lastName" Type="nvarchar" MaxLength="50" />
+          <Property Name="address" Type="nvarchar" MaxLength="200" />
+          <Property Name="birthday" Type="date" />
+          <Property Name="isWorking" Type="int" />
         </EntityType>
         <EntityType Name="FavoriteProduct">
           <Key>
@@ -83,11 +78,12 @@
           <Property Name="productId" Type="int" />
           <Property Name="active" Type="int" />
         </EntityType>
-        <EntityType Name="Order">
+        <EntityType Name="Invoice">
           <Key>
             <PropertyRef Name="id" />
           </Key>
           <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="updateDate" Type="date" />
           <Property Name="buyDate" Type="date" />
           <Property Name="name" Type="nvarchar" MaxLength="50" />
           <Property Name="phone" Type="nvarchar" MaxLength="15" />
@@ -96,8 +92,9 @@
           <Property Name="note" Type="nvarchar" MaxLength="200" />
           <Property Name="userID" Type="int" />
           <Property Name="statusOrderId" Type="int" />
+          <Property Name="active" Type="int" />
         </EntityType>
-        <EntityType Name="OrderItem">
+        <EntityType Name="InvoiceItem">
           <Key>
             <PropertyRef Name="orderId" />
             <PropertyRef Name="productId" />
@@ -106,7 +103,6 @@
           <Property Name="productId" Type="int" Nullable="false" />
           <Property Name="unitPrice" Type="float" />
           <Property Name="quantity" Type="int" />
-          <Property Name="sale" Type="nchar" MaxLength="10" />
         </EntityType>
         <EntityType Name="Product">
           <Key>
@@ -117,12 +113,13 @@
           <Property Name="detail" Type="nvarchar" MaxLength="500" />
           <Property Name="price" Type="float" />
           <Property Name="categoryID" Type="int" />
-          <Property Name="sold" Type="int" />
           <Property Name="rating" Type="int" />
           <Property Name="active" Type="int" />
-          <Property Name="brandId" Type="int" />
-          <Property Name="idPromotion" Type="int" />
+          <Property Name="providerId" Type="int" />
           <Property Name="thumnail" Type="nvarchar" MaxLength="200" />
+          <Property Name="isNew" Type="int" />
+          <Property Name="addDate" Type="date" />
+          <Property Name="sold" Type="int" />
         </EntityType>
         <EntityType Name="ProductSizeColor">
           <Key>
@@ -134,6 +131,7 @@
           <Property Name="sizeId" Type="int" Nullable="false" />
           <Property Name="colorID" Type="int" Nullable="false" />
           <Property Name="quantity" Type="int" />
+          <Property Name="imageUrl" Type="int" />
         </EntityType>
         <EntityType Name="Promotion">
           <Key>
@@ -146,7 +144,26 @@
           <Property Name="endDate" Type="datetime" />
           <Property Name="value" Type="float" />
           <Property Name="imageUrl" Type="nvarchar" MaxLength="200" />
-          <Property Name="active" Type="int" Nullable="false" />
+          <Property Name="active" Type="int" />
+          <Property Name="type" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="PromotionItem">
+          <Key>
+            <PropertyRef Name="idProduct" />
+            <PropertyRef Name="idPromo" />
+          </Key>
+          <Property Name="idProduct" Type="int" Nullable="false" />
+          <Property Name="idPromo" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Provider">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="imageUrl" Type="nvarchar" MaxLength="200" />
+          <Property Name="brandName" Type="nvarchar" MaxLength="50" />
+          <Property Name="infomation" Type="nvarchar(max)" />
+          <Property Name="active" Type="int" />
         </EntityType>
         <EntityType Name="Role">
           <Key>
@@ -166,37 +183,15 @@
           <Property Name="description" Type="nvarchar" MaxLength="200" />
           <Property Name="active" Type="int" />
         </EntityType>
-        <EntityType Name="sysdiagrams">
-          <Key>
-            <PropertyRef Name="diagram_id" />
-          </Key>
-          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
-          <Property Name="principal_id" Type="int" Nullable="false" />
-          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="version" Type="int" />
-          <Property Name="definition" Type="varbinary(max)" />
-        </EntityType>
-        <Association Name="FK_Cart_Product">
-          <End Role="Product" Type="Self.Product" Multiplicity="0..1" />
-          <End Role="Cart" Type="Self.Cart" Multiplicity="*" />
+        <Association Name="FK_Account_Employee">
+          <End Role="Employee" Type="Self.Employee" Multiplicity="0..1" />
+          <End Role="Account" Type="Self.Account" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Product">
+            <Principal Role="Employee">
               <PropertyRef Name="id" />
             </Principal>
-            <Dependent Role="Cart">
-              <PropertyRef Name="productId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Cart_User">
-          <End Role="Account" Type="Self.Account" Multiplicity="0..1" />
-          <End Role="Cart" Type="Self.Cart" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Account">
-              <PropertyRef Name="id" />
-            </Principal>
-            <Dependent Role="Cart">
-              <PropertyRef Name="userID" />
+            <Dependent Role="Account">
+              <PropertyRef Name="employeeID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -248,51 +243,51 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Order_User">
+        <Association Name="FK_Invoice_Account">
           <End Role="Account" Type="Self.Account" Multiplicity="0..1" />
-          <End Role="Order" Type="Self.Order" Multiplicity="*" />
+          <End Role="Invoice" Type="Self.Invoice" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Account">
               <PropertyRef Name="id" />
             </Principal>
-            <Dependent Role="Order">
+            <Dependent Role="Invoice">
               <PropertyRef Name="userID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_OrderItem_Order">
-          <End Role="Order" Type="Self.Order" Multiplicity="1" />
-          <End Role="OrderItem" Type="Self.OrderItem" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Order">
-              <PropertyRef Name="id" />
-            </Principal>
-            <Dependent Role="OrderItem">
-              <PropertyRef Name="orderId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_OrderItem_Product">
+        <Association Name="FK_InvoiceItem_Product">
           <End Role="Product" Type="Self.Product" Multiplicity="1" />
-          <End Role="OrderItem" Type="Self.OrderItem" Multiplicity="*" />
+          <End Role="InvoiceItem" Type="Self.InvoiceItem" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Product">
               <PropertyRef Name="id" />
             </Principal>
-            <Dependent Role="OrderItem">
+            <Dependent Role="InvoiceItem">
               <PropertyRef Name="productId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_OrderItem_Order">
+          <End Role="Invoice" Type="Self.Invoice" Multiplicity="1" />
+          <End Role="InvoiceItem" Type="Self.InvoiceItem" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Invoice">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="InvoiceItem">
+              <PropertyRef Name="orderId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Product_Brand">
-          <End Role="Brand" Type="Self.Brand" Multiplicity="0..1" />
+          <End Role="Provider" Type="Self.Provider" Multiplicity="0..1" />
           <End Role="Product" Type="Self.Product" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Brand">
+            <Principal Role="Provider">
               <PropertyRef Name="id" />
             </Principal>
             <Dependent Role="Product">
-              <PropertyRef Name="brandId" />
+              <PropertyRef Name="providerId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -305,18 +300,6 @@
             </Principal>
             <Dependent Role="Product">
               <PropertyRef Name="categoryID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Product_Promotion">
-          <End Role="Promotion" Type="Self.Promotion" Multiplicity="0..1" />
-          <End Role="Product" Type="Self.Product" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Promotion">
-              <PropertyRef Name="id" />
-            </Principal>
-            <Dependent Role="Product">
-              <PropertyRef Name="idPromotion" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -356,6 +339,30 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_PromotionItem_Product">
+          <End Role="Product" Type="Self.Product" Multiplicity="1" />
+          <End Role="PromotionItem" Type="Self.PromotionItem" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Product">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="PromotionItem">
+              <PropertyRef Name="idProduct" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PromotionItem_Promotion">
+          <End Role="Promotion" Type="Self.Promotion" Multiplicity="1" />
+          <End Role="PromotionItem" Type="Self.PromotionItem" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Promotion">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="PromotionItem">
+              <PropertyRef Name="idPromo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_User_Role">
           <End Role="Role" Type="Self.Role" Multiplicity="0..1" />
           <End Role="Account" Type="Self.Account" Multiplicity="*" />
@@ -383,6 +390,9 @@
         <Function Name="getCategoryByGender" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="GenderID" Type="int" Mode="In" />
         </Function>
+        <Function Name="getCategoryGender" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="GenderID" Type="int" Mode="In" />
+        </Function>
         <Function Name="Num2Text" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="nvarchar">
           <Parameter Name="Number" Type="float" Mode="In" />
         </Function>
@@ -391,6 +401,10 @@
           <Parameter Name="owner_id" Type="int" Mode="In" />
           <Parameter Name="version" Type="int" Mode="In" />
           <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
+        </Function>
+        <Function Name="SP_CheckFavoriteProduct" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="accountId" Type="int" Mode="In" />
+          <Parameter Name="productId" Type="int" Mode="In" />
         </Function>
         <Function Name="sp_creatediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
@@ -402,17 +416,14 @@
           <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
           <Parameter Name="owner_id" Type="int" Mode="In" />
         </Function>
-        <Function Name="SP_GetBranch" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="GenderID" Type="int" Mode="In" />
-        </Function>
-        <Function Name="SP_GetProductCategory" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="categoryId" Type="int" Mode="In" />
+        <Function Name="SP_GetFavoriteProducts" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="currentPage" Type="int" Mode="In" />
           <Parameter Name="PageSize" Type="int" Mode="In" />
           <Parameter Name="AccountID" Type="int" Mode="In" />
         </Function>
-        <Function Name="SP_GetProductInfoByID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+        <Function Name="SP_GetProductDetail" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="productID" Type="int" Mode="In" />
+          <Parameter Name="AccountID" Type="int" Mode="In" />
         </Function>
         <Function Name="SP_GetProductOfCategory" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="categoryId" Type="int" Mode="In" />
@@ -420,12 +431,16 @@
           <Parameter Name="PageSize" Type="int" Mode="In" />
           <Parameter Name="AccountID" Type="int" Mode="In" />
         </Function>
-        <Function Name="SP_GetProducts" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="categoryId" Type="int" Mode="In" />
+        <Function Name="SP_GetProductsOfProvider" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="providerId" Type="int" Mode="In" />
           <Parameter Name="currentPage" Type="int" Mode="In" />
           <Parameter Name="PageSize" Type="int" Mode="In" />
           <Parameter Name="AccountID" Type="int" Mode="In" />
         </Function>
+        <Function Name="SP_GetProviderDetail" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="providerId" Type="int" Mode="In" />
+        </Function>
+        <Function Name="SP_GetProviders" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="sp_helpdiagramdefinition" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
           <Parameter Name="owner_id" Type="int" Mode="In" />
@@ -433,6 +448,9 @@
         <Function Name="sp_helpdiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
           <Parameter Name="owner_id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="SP_ImagesOfProduct" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="productID" Type="int" Mode="In" />
         </Function>
         <Function Name="SP_Login" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="userName" Type="nvarchar" Mode="In" />
@@ -472,6 +490,9 @@
         <Function Name="SPGetAccounByUsername" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="username" Type="nvarchar" Mode="In" />
         </Function>
+        <Function Name="SPGetAccount" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="userId" Type="int" Mode="In" />
+        </Function>
         <Function Name="SPGetAccountInfoByUserId" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="userId" Type="int" Mode="In" />
         </Function>
@@ -483,28 +504,24 @@
         </Function>
         <EntityContainer Name="ClothesManamentModelStoreContainer">
           <EntitySet Name="Account" EntityType="Self.Account" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Brand" EntityType="Self.Brand" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Cart" EntityType="Self.Cart" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Category" EntityType="Self.Category" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Color" EntityType="Self.Color" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Employee" EntityType="Self.Employee" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="FavoriteProduct" EntityType="Self.FavoriteProduct" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Gender" EntityType="Self.Gender" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Image" EntityType="Self.Image" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Order" EntityType="Self.Order" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="OrderItem" EntityType="Self.OrderItem" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Invoice" EntityType="Self.Invoice" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="InvoiceItem" EntityType="Self.InvoiceItem" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Product" EntityType="Self.Product" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ProductSizeColor" EntityType="Self.ProductSizeColor" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Promotion" EntityType="Self.Promotion" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PromotionItem" EntityType="Self.PromotionItem" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Provider" EntityType="Self.Provider" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Role" EntityType="Self.Role" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Size" EntityType="Self.Size" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
-          <AssociationSet Name="FK_Cart_Product" Association="Self.FK_Cart_Product">
-            <End Role="Product" EntitySet="Product" />
-            <End Role="Cart" EntitySet="Cart" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Cart_User" Association="Self.FK_Cart_User">
+          <AssociationSet Name="FK_Account_Employee" Association="Self.FK_Account_Employee">
+            <End Role="Employee" EntitySet="Employee" />
             <End Role="Account" EntitySet="Account" />
-            <End Role="Cart" EntitySet="Cart" />
           </AssociationSet>
           <AssociationSet Name="FK_Category_Type" Association="Self.FK_Category_Type">
             <End Role="Gender" EntitySet="Gender" />
@@ -522,28 +539,24 @@
             <End Role="Product" EntitySet="Product" />
             <End Role="Image" EntitySet="Image" />
           </AssociationSet>
-          <AssociationSet Name="FK_Order_User" Association="Self.FK_Order_User">
+          <AssociationSet Name="FK_Invoice_Account" Association="Self.FK_Invoice_Account">
             <End Role="Account" EntitySet="Account" />
-            <End Role="Order" EntitySet="Order" />
+            <End Role="Invoice" EntitySet="Invoice" />
+          </AssociationSet>
+          <AssociationSet Name="FK_InvoiceItem_Product" Association="Self.FK_InvoiceItem_Product">
+            <End Role="Product" EntitySet="Product" />
+            <End Role="InvoiceItem" EntitySet="InvoiceItem" />
           </AssociationSet>
           <AssociationSet Name="FK_OrderItem_Order" Association="Self.FK_OrderItem_Order">
-            <End Role="Order" EntitySet="Order" />
-            <End Role="OrderItem" EntitySet="OrderItem" />
-          </AssociationSet>
-          <AssociationSet Name="FK_OrderItem_Product" Association="Self.FK_OrderItem_Product">
-            <End Role="Product" EntitySet="Product" />
-            <End Role="OrderItem" EntitySet="OrderItem" />
+            <End Role="Invoice" EntitySet="Invoice" />
+            <End Role="InvoiceItem" EntitySet="InvoiceItem" />
           </AssociationSet>
           <AssociationSet Name="FK_Product_Brand" Association="Self.FK_Product_Brand">
-            <End Role="Brand" EntitySet="Brand" />
+            <End Role="Provider" EntitySet="Provider" />
             <End Role="Product" EntitySet="Product" />
           </AssociationSet>
           <AssociationSet Name="FK_Product_Category" Association="Self.FK_Product_Category">
             <End Role="Category" EntitySet="Category" />
-            <End Role="Product" EntitySet="Product" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Product_Promotion" Association="Self.FK_Product_Promotion">
-            <End Role="Promotion" EntitySet="Promotion" />
             <End Role="Product" EntitySet="Product" />
           </AssociationSet>
           <AssociationSet Name="FK_ProductSizeColor_Color" Association="Self.FK_ProductSizeColor_Color">
@@ -557,6 +570,14 @@
           <AssociationSet Name="FK_ProductSizeColor_Size" Association="Self.FK_ProductSizeColor_Size">
             <End Role="Size" EntitySet="Size" />
             <End Role="ProductSizeColor" EntitySet="ProductSizeColor" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PromotionItem_Product" Association="Self.FK_PromotionItem_Product">
+            <End Role="Product" EntitySet="Product" />
+            <End Role="PromotionItem" EntitySet="PromotionItem" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PromotionItem_Promotion" Association="Self.FK_PromotionItem_Promotion">
+            <End Role="Promotion" EntitySet="Promotion" />
+            <End Role="PromotionItem" EntitySet="PromotionItem" />
           </AssociationSet>
           <AssociationSet Name="FK_User_Role" Association="Self.FK_User_Role">
             <End Role="Role" EntitySet="Role" />
@@ -701,40 +722,67 @@
           <FunctionImport Name="SP_GetBranch" ReturnType="Collection(ClothesManamentModel.SP_GetBranch_Result)">
           <Parameter Name="GenderID" Mode="In" Type="Int32" />
           </FunctionImport>
+          <FunctionImport Name="SP_GetProducts1" ReturnType="Collection(ClothesManamentModel.SP_GetProducts1_Result)">
+            <Parameter Name="categoryId" Mode="In" Type="Int32" />
+            <Parameter Name="currentPage" Mode="In" Type="Int32" />
+            <Parameter Name="PageSize" Mode="In" Type="Int32" />
+            <Parameter Name="AccountID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="SP_GetProductOfCategory" ReturnType="Collection(ClothesManamentModel.SP_GetProductOfCategory_Result)">
+            <Parameter Name="categoryId" Mode="In" Type="Int32" />
+            <Parameter Name="currentPage" Mode="In" Type="Int32" />
+            <Parameter Name="PageSize" Mode="In" Type="Int32" />
+            <Parameter Name="AccountID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="SPGetAccount" ReturnType="Collection(ClothesManamentModel.SPGetAccount_Result)">
+          <Parameter Name="userId" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="getCategoryGender" ReturnType="Collection(ClothesManamentModel.getCategoryGender_Result)">
+          <Parameter Name="GenderID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="SP_GetProductsCategory">
+            <Parameter Name="categoryId" Mode="In" Type="Int32" />
+            <Parameter Name="currentPage" Mode="In" Type="Int32" />
+            <Parameter Name="PageSize" Mode="In" Type="Int32" />
+            <Parameter Name="AccountID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="SP_GetProductDetail" ReturnType="Collection(ClothesManamentModel.SP_GetProductDetail_Result)">
+            <Parameter Name="productID" Mode="In" Type="Int32" />
+            <Parameter Name="AccountID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="SP_ImagesOfProduct" ReturnType="Collection(String)">
+          <Parameter Name="productID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="SP_GetProviderDetail" ReturnType="Collection(ClothesManamentModel.SP_GetProviderDetail_Result1)">
+          <Parameter Name="providerId" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="SP_GetProviders" ReturnType="Collection(ClothesManamentModel.SP_GetProviders_Result)">
+          </FunctionImport>
           <EntitySet Name="Accounts" EntityType="ClothesManamentModel.Account" />
-          <EntitySet Name="Brands" EntityType="ClothesManamentModel.Brand" />
-          <EntitySet Name="Carts" EntityType="ClothesManamentModel.Cart" />
           <EntitySet Name="Categories" EntityType="ClothesManamentModel.Category" />
           <EntitySet Name="Colors" EntityType="ClothesManamentModel.Color" />
+          <EntitySet Name="Employees" EntityType="ClothesManamentModel.Employee" />
           <EntitySet Name="Genders" EntityType="ClothesManamentModel.Gender" />
           <EntitySet Name="Images" EntityType="ClothesManamentModel.Image" />
-          <EntitySet Name="Orders" EntityType="ClothesManamentModel.Order" />
-          <EntitySet Name="OrderItems" EntityType="ClothesManamentModel.OrderItem" />
+          <EntitySet Name="Invoices" EntityType="ClothesManamentModel.Invoice" />
+          <EntitySet Name="InvoiceItems" EntityType="ClothesManamentModel.InvoiceItem" />
           <EntitySet Name="Products" EntityType="ClothesManamentModel.Product" />
           <EntitySet Name="ProductSizeColors" EntityType="ClothesManamentModel.ProductSizeColor" />
           <EntitySet Name="Promotions" EntityType="ClothesManamentModel.Promotion" />
+          <EntitySet Name="Providers" EntityType="ClothesManamentModel.Provider" />
           <EntitySet Name="Roles" EntityType="ClothesManamentModel.Role" />
           <EntitySet Name="Sizes" EntityType="ClothesManamentModel.Size" />
-          <EntitySet Name="sysdiagrams" EntityType="ClothesManamentModel.sysdiagram" />
-          <AssociationSet Name="FK_Cart_User" Association="ClothesManamentModel.FK_Cart_User">
+          <AssociationSet Name="FK_Account_Employee" Association="ClothesManamentModel.FK_Account_Employee">
+            <End Role="Employee" EntitySet="Employees" />
             <End Role="Account" EntitySet="Accounts" />
-            <End Role="Cart" EntitySet="Carts" />
           </AssociationSet>
-          <AssociationSet Name="FK_Order_User" Association="ClothesManamentModel.FK_Order_User">
+          <AssociationSet Name="FK_Invoice_Account" Association="ClothesManamentModel.FK_Invoice_Account">
             <End Role="Account" EntitySet="Accounts" />
-            <End Role="Order" EntitySet="Orders" />
+            <End Role="Invoice" EntitySet="Invoices" />
           </AssociationSet>
           <AssociationSet Name="FK_User_Role" Association="ClothesManamentModel.FK_User_Role">
             <End Role="Role" EntitySet="Roles" />
             <End Role="Account" EntitySet="Accounts" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Product_Brand" Association="ClothesManamentModel.FK_Product_Brand">
-            <End Role="Brand" EntitySet="Brands" />
-            <End Role="Product" EntitySet="Products" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Cart_Product" Association="ClothesManamentModel.FK_Cart_Product">
-            <End Role="Product" EntitySet="Products" />
-            <End Role="Cart" EntitySet="Carts" />
           </AssociationSet>
           <AssociationSet Name="FK_Category_Type" Association="ClothesManamentModel.FK_Category_Type">
             <End Role="Gender" EntitySet="Genders" />
@@ -753,15 +801,15 @@
             <End Role="Image" EntitySet="Images" />
           </AssociationSet>
           <AssociationSet Name="FK_OrderItem_Order" Association="ClothesManamentModel.FK_OrderItem_Order">
-            <End Role="Order" EntitySet="Orders" />
-            <End Role="OrderItem" EntitySet="OrderItems" />
+            <End Role="Invoice" EntitySet="Invoices" />
+            <End Role="InvoiceItem" EntitySet="InvoiceItems" />
           </AssociationSet>
-          <AssociationSet Name="FK_OrderItem_Product" Association="ClothesManamentModel.FK_OrderItem_Product">
+          <AssociationSet Name="FK_InvoiceItem_Product" Association="ClothesManamentModel.FK_InvoiceItem_Product">
             <End Role="Product" EntitySet="Products" />
-            <End Role="OrderItem" EntitySet="OrderItems" />
+            <End Role="InvoiceItem" EntitySet="InvoiceItems" />
           </AssociationSet>
-          <AssociationSet Name="FK_Product_Promotion" Association="ClothesManamentModel.FK_Product_Promotion">
-            <End Role="Promotion" EntitySet="Promotions" />
+          <AssociationSet Name="FK_Product_Brand" Association="ClothesManamentModel.FK_Product_Brand">
+            <End Role="Provider" EntitySet="Providers" />
             <End Role="Product" EntitySet="Products" />
           </AssociationSet>
           <AssociationSet Name="FK_ProductSizeColor_Product" Association="ClothesManamentModel.FK_ProductSizeColor_Product">
@@ -776,14 +824,21 @@
             <End Role="Account" EntitySet="Accounts" />
             <End Role="Product" EntitySet="Products" />
           </AssociationSet>
-          <FunctionImport Name="SP_GetProducts1" ReturnType="Collection(ClothesManamentModel.SP_GetProducts1_Result)">
-            <Parameter Name="categoryId" Mode="In" Type="Int32" />
+          <AssociationSet Name="PromotionItem" Association="ClothesManamentModel.PromotionItem">
+            <End Role="Product" EntitySet="Products" />
+            <End Role="Promotion" EntitySet="Promotions" />
+          </AssociationSet>
+          <FunctionImport Name="SP_GetProductsOfProvider" ReturnType="Collection(ClothesManamentModel.SP_GetProductOfCategory_Result)">
+            <Parameter Name="providerId" Mode="In" Type="Int32" />
             <Parameter Name="currentPage" Mode="In" Type="Int32" />
             <Parameter Name="PageSize" Mode="In" Type="Int32" />
             <Parameter Name="AccountID" Mode="In" Type="Int32" />
           </FunctionImport>
-          <FunctionImport Name="SP_GetProductOfCategory" ReturnType="Collection(ClothesManamentModel.SP_GetProductOfCategory_Result)">
-            <Parameter Name="categoryId" Mode="In" Type="Int32" />
+          <FunctionImport Name="SP_CheckFavoriteProduct" ReturnType="Collection(Int32)">
+            <Parameter Name="accountId" Mode="In" Type="Int32" />
+            <Parameter Name="productId" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="SP_GetFavoriteProducts" ReturnType="Collection(ClothesManamentModel.SP_GetProductOfCategory_Result)">
             <Parameter Name="currentPage" Mode="In" Type="Int32" />
             <Parameter Name="PageSize" Mode="In" Type="Int32" />
             <Parameter Name="AccountID" Mode="In" Type="Int32" />
@@ -900,6 +955,66 @@
           <Property Type="String" Name="brandName" Nullable="true" MaxLength="50" />
           <Property Type="String" Name="infomation" Nullable="true" />
         </ComplexType>
+        <ComplexType Name="SP_GetProducts1_Result">
+          <Property Type="Int32" Name="id" Nullable="false" />
+          <Property Type="String" Name="title" Nullable="true" MaxLength="200" />
+          <Property Type="Double" Name="price" Nullable="true" />
+          <Property Type="String" Name="thumnail" Nullable="true" MaxLength="200" />
+          <Property Type="Int32" Name="isLike" Nullable="false" />
+          <Property Type="Double" Name="promotion" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="SP_GetProductOfCategory_Result">
+          <Property Type="Int32" Name="id" Nullable="false" />
+          <Property Type="String" Name="title" Nullable="true" MaxLength="200" />
+          <Property Type="Double" Name="price" Nullable="true" />
+          <Property Type="String" Name="thumnail" Nullable="true" MaxLength="200" />
+          <Property Type="Int32" Name="isLike" Nullable="false" />
+          <Property Type="Double" Name="promotion" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="SPGetAccount_Result">
+          <Property Type="Int32" Name="id" Nullable="false" />
+          <Property Type="String" Name="name" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="email" Nullable="true" MaxLength="200" />
+          <Property Type="String" Name="phone" Nullable="true" MaxLength="15" />
+          <Property Type="Int32" Name="roleId" Nullable="true" />
+          <Property Type="String" Name="password" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="username" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="imageUrl" Nullable="true" MaxLength="150" />
+          <Property Type="Int32" Name="active" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="getCategoryGender_Result">
+          <Property Type="Int32" Name="id" Nullable="false" />
+          <Property Type="String" Name="name" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="detail" Nullable="true" MaxLength="200" />
+          <Property Type="Int32" Name="genderID" Nullable="false" />
+          <Property Type="String" Name="imageUrl" Nullable="true" MaxLength="200" />
+          <Property Type="String" Name="thumnail" Nullable="true" MaxLength="200" />
+        </ComplexType>
+        <ComplexType Name="SP_GetProductDetail_Result">
+          <Property Type="Int32" Name="id" Nullable="false" />
+          <Property Type="String" Name="title" Nullable="true" MaxLength="200" />
+          <Property Type="String" Name="detail" Nullable="true" MaxLength="500" />
+          <Property Type="Double" Name="price" Nullable="true" />
+          <Property Type="Int32" Name="categoryID" Nullable="true" />
+          <Property Type="Int32" Name="sold" Nullable="true" />
+          <Property Type="Int32" Name="rating" Nullable="true" />
+          <Property Type="Int32" Name="active" Nullable="true" />
+          <Property Type="String" Name="thumnail" Nullable="true" MaxLength="200" />
+          <Property Type="Int32" Name="isNew" Nullable="true" />
+          <Property Type="DateTime" Name="addDate" Nullable="true" />
+          <Property Type="Int32" Name="isLike" Nullable="false" />
+          <Property Type="Int32" Name="providerId" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="SP_GetProviderDetail_Result">
+          <Property Type="Int32" Name="id" Nullable="false" />
+          <Property Type="String" Name="brandName" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="infomation" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="SP_GetProviders_Result">
+          <Property Type="Int32" Name="id" Nullable="false" />
+          <Property Type="String" Name="brandName" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="imageUrl" Nullable="true" MaxLength="200" />
+        </ComplexType>
         <EntityType Name="Account">
           <Key>
             <PropertyRef Name="id" />
@@ -912,32 +1027,12 @@
           <Property Name="password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="username" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="imageUrl" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="employeeID" Type="Int32" />
           <Property Name="active" Type="Int32" />
-          <NavigationProperty Name="Carts" Relationship="ClothesManamentModel.FK_Cart_User" FromRole="Account" ToRole="Cart" />
-          <NavigationProperty Name="Orders" Relationship="ClothesManamentModel.FK_Order_User" FromRole="Account" ToRole="Order" />
+          <NavigationProperty Name="Employee" Relationship="ClothesManamentModel.FK_Account_Employee" FromRole="Account" ToRole="Employee" />
+          <NavigationProperty Name="Invoices" Relationship="ClothesManamentModel.FK_Invoice_Account" FromRole="Account" ToRole="Invoice" />
           <NavigationProperty Name="Role" Relationship="ClothesManamentModel.FK_User_Role" FromRole="Account" ToRole="Role" />
           <NavigationProperty Name="Products" Relationship="ClothesManamentModel.FavoriteProduct" FromRole="Account" ToRole="Product" />
-        </EntityType>
-        <EntityType Name="Brand">
-          <Key>
-            <PropertyRef Name="id" />
-          </Key>
-          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="brandName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="infomation" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="active" Type="Int32" />
-          <NavigationProperty Name="Products" Relationship="ClothesManamentModel.FK_Product_Brand" FromRole="Brand" ToRole="Product" />
-        </EntityType>
-        <EntityType Name="Cart">
-          <Key>
-            <PropertyRef Name="id" />
-          </Key>
-          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="productId" Type="Int32" />
-          <Property Name="quantity" Type="Int32" />
-          <Property Name="userID" Type="Int32" />
-          <NavigationProperty Name="Account" Relationship="ClothesManamentModel.FK_Cart_User" FromRole="Cart" ToRole="Account" />
-          <NavigationProperty Name="Product" Relationship="ClothesManamentModel.FK_Cart_Product" FromRole="Cart" ToRole="Product" />
         </EntityType>
         <EntityType Name="Category">
           <Key>
@@ -949,6 +1044,7 @@
           <Property Name="genderID" Type="Int32" Nullable="false" />
           <Property Name="imageUrl" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
           <Property Name="thumnail" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="sex" Type="Byte" />
           <Property Name="active" Type="Int32" />
           <NavigationProperty Name="Gender" Relationship="ClothesManamentModel.FK_Category_Type" FromRole="Category" ToRole="Gender" />
           <NavigationProperty Name="Products" Relationship="ClothesManamentModel.FK_Product_Category" FromRole="Category" ToRole="Product" />
@@ -962,6 +1058,18 @@
           <Property Name="colorHex" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="active" Type="Int32" />
           <NavigationProperty Name="ProductSizeColors" Relationship="ClothesManamentModel.FK_ProductSizeColor_Color" FromRole="Color" ToRole="ProductSizeColor" />
+        </EntityType>
+        <EntityType Name="Employee">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" />
+          <Property Name="firstName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="lastName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="address" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="birthday" Type="DateTime" Precision="0" />
+          <Property Name="isWorking" Type="Int32" />
+          <NavigationProperty Name="Accounts" Relationship="ClothesManamentModel.FK_Account_Employee" FromRole="Employee" ToRole="Account" />
         </EntityType>
         <EntityType Name="Gender">
           <Key>
@@ -982,11 +1090,12 @@
           <Property Name="active" Type="Int32" />
           <NavigationProperty Name="Product" Relationship="ClothesManamentModel.FK_Image_Product" FromRole="Image" ToRole="Product" />
         </EntityType>
-        <EntityType Name="Order">
+        <EntityType Name="Invoice">
           <Key>
             <PropertyRef Name="id" />
           </Key>
           <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="updateDate" Type="DateTime" Precision="0" />
           <Property Name="buyDate" Type="DateTime" Precision="0" />
           <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="phone" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
@@ -995,10 +1104,11 @@
           <Property Name="note" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
           <Property Name="userID" Type="Int32" />
           <Property Name="statusOrderId" Type="Int32" />
-          <NavigationProperty Name="Account" Relationship="ClothesManamentModel.FK_Order_User" FromRole="Order" ToRole="Account" />
-          <NavigationProperty Name="OrderItems" Relationship="ClothesManamentModel.FK_OrderItem_Order" FromRole="Order" ToRole="OrderItem" />
+          <Property Name="active" Type="Int32" />
+          <NavigationProperty Name="Account" Relationship="ClothesManamentModel.FK_Invoice_Account" FromRole="Invoice" ToRole="Account" />
+          <NavigationProperty Name="InvoiceItems" Relationship="ClothesManamentModel.FK_OrderItem_Order" FromRole="Invoice" ToRole="InvoiceItem" />
         </EntityType>
-        <EntityType Name="OrderItem">
+        <EntityType Name="InvoiceItem">
           <Key>
             <PropertyRef Name="orderId" />
             <PropertyRef Name="productId" />
@@ -1007,9 +1117,8 @@
           <Property Name="productId" Type="Int32" Nullable="false" />
           <Property Name="unitPrice" Type="Double" />
           <Property Name="quantity" Type="Int32" />
-          <Property Name="sale" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
-          <NavigationProperty Name="Order" Relationship="ClothesManamentModel.FK_OrderItem_Order" FromRole="OrderItem" ToRole="Order" />
-          <NavigationProperty Name="Product" Relationship="ClothesManamentModel.FK_OrderItem_Product" FromRole="OrderItem" ToRole="Product" />
+          <NavigationProperty Name="Invoice" Relationship="ClothesManamentModel.FK_OrderItem_Order" FromRole="InvoiceItem" ToRole="Invoice" />
+          <NavigationProperty Name="Product" Relationship="ClothesManamentModel.FK_InvoiceItem_Product" FromRole="InvoiceItem" ToRole="Product" />
         </EntityType>
         <EntityType Name="Product">
           <Key>
@@ -1020,20 +1129,20 @@
           <Property Name="detail" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
           <Property Name="price" Type="Double" />
           <Property Name="categoryID" Type="Int32" />
-          <Property Name="sold" Type="Int32" />
           <Property Name="rating" Type="Int32" />
           <Property Name="active" Type="Int32" />
-          <Property Name="brandId" Type="Int32" />
-          <Property Name="idPromotion" Type="Int32" />
+          <Property Name="providerId" Type="Int32" />
           <Property Name="thumnail" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Brand" Relationship="ClothesManamentModel.FK_Product_Brand" FromRole="Product" ToRole="Brand" />
-          <NavigationProperty Name="Carts" Relationship="ClothesManamentModel.FK_Cart_Product" FromRole="Product" ToRole="Cart" />
+          <Property Name="isNew" Type="Int32" />
+          <Property Name="addDate" Type="DateTime" Precision="0" />
+          <Property Name="sold" Type="Int32" />
           <NavigationProperty Name="Category" Relationship="ClothesManamentModel.FK_Product_Category" FromRole="Product" ToRole="Category" />
           <NavigationProperty Name="Images" Relationship="ClothesManamentModel.FK_Image_Product" FromRole="Product" ToRole="Image" />
-          <NavigationProperty Name="OrderItems" Relationship="ClothesManamentModel.FK_OrderItem_Product" FromRole="Product" ToRole="OrderItem" />
-          <NavigationProperty Name="Promotion" Relationship="ClothesManamentModel.FK_Product_Promotion" FromRole="Product" ToRole="Promotion" />
+          <NavigationProperty Name="InvoiceItems" Relationship="ClothesManamentModel.FK_InvoiceItem_Product" FromRole="Product" ToRole="InvoiceItem" />
+          <NavigationProperty Name="Provider" Relationship="ClothesManamentModel.FK_Product_Brand" FromRole="Product" ToRole="Provider" />
           <NavigationProperty Name="ProductSizeColors" Relationship="ClothesManamentModel.FK_ProductSizeColor_Product" FromRole="Product" ToRole="ProductSizeColor" />
           <NavigationProperty Name="Accounts" Relationship="ClothesManamentModel.FavoriteProduct" FromRole="Product" ToRole="Account" />
+          <NavigationProperty Name="Promotions" Relationship="ClothesManamentModel.PromotionItem" FromRole="Product" ToRole="Promotion" />
         </EntityType>
         <EntityType Name="ProductSizeColor">
           <Key>
@@ -1045,6 +1154,7 @@
           <Property Name="sizeId" Type="Int32" Nullable="false" />
           <Property Name="colorID" Type="Int32" Nullable="false" />
           <Property Name="quantity" Type="Int32" />
+          <Property Name="imageUrl" Type="Int32" />
           <NavigationProperty Name="Color" Relationship="ClothesManamentModel.FK_ProductSizeColor_Color" FromRole="ProductSizeColor" ToRole="Color" />
           <NavigationProperty Name="Product" Relationship="ClothesManamentModel.FK_ProductSizeColor_Product" FromRole="ProductSizeColor" ToRole="Product" />
           <NavigationProperty Name="Size" Relationship="ClothesManamentModel.FK_ProductSizeColor_Size" FromRole="ProductSizeColor" ToRole="Size" />
@@ -1060,8 +1170,20 @@
           <Property Name="endDate" Type="DateTime" Precision="3" />
           <Property Name="value" Type="Double" />
           <Property Name="imageUrl" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
-          <Property Name="active" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Products" Relationship="ClothesManamentModel.FK_Product_Promotion" FromRole="Promotion" ToRole="Product" />
+          <Property Name="active" Type="Int32" />
+          <Property Name="type" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Products" Relationship="ClothesManamentModel.PromotionItem" FromRole="Promotion" ToRole="Product" />
+        </EntityType>
+        <EntityType Name="Provider">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="imageUrl" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="brandName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="infomation" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="active" Type="Int32" />
+          <NavigationProperty Name="Products" Relationship="ClothesManamentModel.FK_Product_Brand" FromRole="Provider" ToRole="Product" />
         </EntityType>
         <EntityType Name="Role">
           <Key>
@@ -1083,36 +1205,26 @@
           <Property Name="active" Type="Int32" />
           <NavigationProperty Name="ProductSizeColors" Relationship="ClothesManamentModel.FK_ProductSizeColor_Size" FromRole="Size" ToRole="ProductSizeColor" />
         </EntityType>
-        <EntityType Name="sysdiagram">
-          <Key>
-            <PropertyRef Name="diagram_id" />
-          </Key>
-          <Property Name="name" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
-          <Property Name="principal_id" Type="Int32" Nullable="false" />
-          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="version" Type="Int32" />
-          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
-        </EntityType>
-        <Association Name="FK_Cart_User">
-          <End Type="ClothesManamentModel.Account" Role="Account" Multiplicity="0..1" />
-          <End Type="ClothesManamentModel.Cart" Role="Cart" Multiplicity="*" />
+        <Association Name="FK_Account_Employee">
+          <End Type="ClothesManamentModel.Employee" Role="Employee" Multiplicity="0..1" />
+          <End Type="ClothesManamentModel.Account" Role="Account" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Account">
+            <Principal Role="Employee">
               <PropertyRef Name="id" />
             </Principal>
-            <Dependent Role="Cart">
-              <PropertyRef Name="userID" />
+            <Dependent Role="Account">
+              <PropertyRef Name="employeeID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Order_User">
+        <Association Name="FK_Invoice_Account">
           <End Type="ClothesManamentModel.Account" Role="Account" Multiplicity="0..1" />
-          <End Type="ClothesManamentModel.Order" Role="Order" Multiplicity="*" />
+          <End Type="ClothesManamentModel.Invoice" Role="Invoice" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Account">
               <PropertyRef Name="id" />
             </Principal>
-            <Dependent Role="Order">
+            <Dependent Role="Invoice">
               <PropertyRef Name="userID" />
             </Dependent>
           </ReferentialConstraint>
@@ -1126,30 +1238,6 @@
             </Principal>
             <Dependent Role="Account">
               <PropertyRef Name="roleId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Product_Brand">
-          <End Type="ClothesManamentModel.Brand" Role="Brand" Multiplicity="0..1" />
-          <End Type="ClothesManamentModel.Product" Role="Product" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Brand">
-              <PropertyRef Name="id" />
-            </Principal>
-            <Dependent Role="Product">
-              <PropertyRef Name="brandId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Cart_Product">
-          <End Type="ClothesManamentModel.Product" Role="Product" Multiplicity="0..1" />
-          <End Type="ClothesManamentModel.Cart" Role="Cart" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Product">
-              <PropertyRef Name="id" />
-            </Principal>
-            <Dependent Role="Cart">
-              <PropertyRef Name="productId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1202,38 +1290,38 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_OrderItem_Order">
-          <End Type="ClothesManamentModel.Order" Role="Order" Multiplicity="1" />
-          <End Type="ClothesManamentModel.OrderItem" Role="OrderItem" Multiplicity="*" />
+          <End Type="ClothesManamentModel.Invoice" Role="Invoice" Multiplicity="1" />
+          <End Type="ClothesManamentModel.InvoiceItem" Role="InvoiceItem" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Order">
+            <Principal Role="Invoice">
               <PropertyRef Name="id" />
             </Principal>
-            <Dependent Role="OrderItem">
+            <Dependent Role="InvoiceItem">
               <PropertyRef Name="orderId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_OrderItem_Product">
+        <Association Name="FK_InvoiceItem_Product">
           <End Type="ClothesManamentModel.Product" Role="Product" Multiplicity="1" />
-          <End Type="ClothesManamentModel.OrderItem" Role="OrderItem" Multiplicity="*" />
+          <End Type="ClothesManamentModel.InvoiceItem" Role="InvoiceItem" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Product">
               <PropertyRef Name="id" />
             </Principal>
-            <Dependent Role="OrderItem">
+            <Dependent Role="InvoiceItem">
               <PropertyRef Name="productId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Product_Promotion">
-          <End Type="ClothesManamentModel.Promotion" Role="Promotion" Multiplicity="0..1" />
+        <Association Name="FK_Product_Brand">
+          <End Type="ClothesManamentModel.Provider" Role="Provider" Multiplicity="0..1" />
           <End Type="ClothesManamentModel.Product" Role="Product" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Promotion">
+            <Principal Role="Provider">
               <PropertyRef Name="id" />
             </Principal>
             <Dependent Role="Product">
-              <PropertyRef Name="idPromotion" />
+              <PropertyRef Name="providerId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1265,21 +1353,15 @@
           <End Type="ClothesManamentModel.Account" Role="Account" Multiplicity="*" />
           <End Type="ClothesManamentModel.Product" Role="Product" Multiplicity="*" />
         </Association>
-        <ComplexType Name="SP_GetProducts1_Result">
+        <Association Name="PromotionItem">
+          <End Type="ClothesManamentModel.Product" Role="Product" Multiplicity="*" />
+          <End Type="ClothesManamentModel.Promotion" Role="Promotion" Multiplicity="*" />
+        </Association>
+        <ComplexType Name="SP_GetProviderDetail_Result1">
           <Property Type="Int32" Name="id" Nullable="false" />
-          <Property Type="String" Name="title" Nullable="true" MaxLength="200" />
-          <Property Type="Double" Name="price" Nullable="true" />
-          <Property Type="String" Name="thumnail" Nullable="true" MaxLength="200" />
-          <Property Type="Int32" Name="isLike" Nullable="false" />
-          <Property Type="Double" Name="promotion" Nullable="true" />
-        </ComplexType>
-        <ComplexType Name="SP_GetProductOfCategory_Result">
-          <Property Type="Int32" Name="id" Nullable="false" />
-          <Property Type="String" Name="title" Nullable="true" MaxLength="200" />
-          <Property Type="Double" Name="price" Nullable="true" />
-          <Property Type="String" Name="thumnail" Nullable="true" MaxLength="200" />
-          <Property Type="Int32" Name="isLike" Nullable="false" />
-          <Property Type="Double" Name="promotion" Nullable="true" />
+          <Property Type="String" Name="brandName" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="infomation" Nullable="true" />
+          <Property Type="String" Name="imageUrl" Nullable="true" MaxLength="200" />
         </ComplexType>
         </Schema>
     </edmx:ConceptualModels>
@@ -1287,34 +1369,8 @@
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="ClothesManamentModelStoreContainer" CdmEntityContainer="ClothesManamentEntities">
-          <FunctionImportMapping FunctionImportName="SP_GetProductCategory" FunctionName="ClothesManamentModel.Store.SP_GetProductCategory">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="ClothesManamentModel.SP_GetProductCategory_Result">
-                <ScalarProperty Name="id" ColumnName="id" />
-                <ScalarProperty Name="title" ColumnName="title" />
-                <ScalarProperty Name="price" ColumnName="price" />
-                <ScalarProperty Name="thumnail" ColumnName="thumnail" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="ChangePassword" FunctionName="ClothesManamentModel.Store.ChangePassword" />
           <FunctionImportMapping FunctionImportName="DelAccount" FunctionName="ClothesManamentModel.Store.DelAccount" />
-          <FunctionImportMapping FunctionImportName="SP_GetProductInfoByID" FunctionName="ClothesManamentModel.Store.SP_GetProductInfoByID">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="ClothesManamentModel.SP_GetProductInfoByID_Result">
-                <ScalarProperty Name="id" ColumnName="id" />
-                <ScalarProperty Name="title" ColumnName="title" />
-                <ScalarProperty Name="detail" ColumnName="detail" />
-                <ScalarProperty Name="price" ColumnName="price" />
-                <ScalarProperty Name="categoryID" ColumnName="categoryID" />
-                <ScalarProperty Name="sold" ColumnName="sold" />
-                <ScalarProperty Name="rating" ColumnName="rating" />
-                <ScalarProperty Name="active" ColumnName="active" />
-                <ScalarProperty Name="brandId" ColumnName="brandId" />
-                <ScalarProperty Name="thumnail" ColumnName="thumnail" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="SP_Register" FunctionName="ClothesManamentModel.Store.SP_Register" />
           <FunctionImportMapping FunctionImportName="SP_UpdateUser" FunctionName="ClothesManamentModel.Store.SP_UpdateUser" />
           <FunctionImportMapping FunctionImportName="SPGetAccountInfoByUsername" FunctionName="ClothesManamentModel.Store.SPGetAccountInfoByUsername">
@@ -1416,12 +1472,81 @@
           </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="sp_renamediagram1" FunctionName="ClothesManamentModel.Store.sp_renamediagram" />
           <FunctionImportMapping FunctionImportName="sp_upgraddiagrams1" FunctionName="ClothesManamentModel.Store.sp_upgraddiagrams" />
-          <FunctionImportMapping FunctionImportName="SP_GetBranch" FunctionName="ClothesManamentModel.Store.SP_GetBranch">
+          <FunctionImportMapping FunctionImportName="SP_GetProductOfCategory" FunctionName="ClothesManamentModel.Store.SP_GetProductOfCategory">
             <ResultMapping>
-              <ComplexTypeMapping TypeName="ClothesManamentModel.SP_GetBranch_Result">
+              <ComplexTypeMapping TypeName="ClothesManamentModel.SP_GetProductOfCategory_Result">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="title" ColumnName="title" />
+                <ScalarProperty Name="price" ColumnName="price" />
+                <ScalarProperty Name="thumnail" ColumnName="thumnail" />
+                <ScalarProperty Name="isLike" ColumnName="isLike" />
+                <ScalarProperty Name="promotion" ColumnName="promotion" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SPGetAccount" FunctionName="ClothesManamentModel.Store.SPGetAccount">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ClothesManamentModel.SPGetAccount_Result">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="phone" ColumnName="phone" />
+                <ScalarProperty Name="roleId" ColumnName="roleId" />
+                <ScalarProperty Name="password" ColumnName="password" />
+                <ScalarProperty Name="username" ColumnName="username" />
+                <ScalarProperty Name="imageUrl" ColumnName="imageUrl" />
+                <ScalarProperty Name="active" ColumnName="active" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="getCategoryGender" FunctionName="ClothesManamentModel.Store.getCategoryGender">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ClothesManamentModel.getCategoryGender_Result">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="detail" ColumnName="detail" />
+                <ScalarProperty Name="genderID" ColumnName="genderID" />
+                <ScalarProperty Name="imageUrl" ColumnName="imageUrl" />
+                <ScalarProperty Name="thumnail" ColumnName="thumnail" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SP_GetProductDetail" FunctionName="ClothesManamentModel.Store.SP_GetProductDetail">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ClothesManamentModel.SP_GetProductDetail_Result">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="title" ColumnName="title" />
+                <ScalarProperty Name="detail" ColumnName="detail" />
+                <ScalarProperty Name="price" ColumnName="price" />
+                <ScalarProperty Name="categoryID" ColumnName="categoryID" />
+                <ScalarProperty Name="sold" ColumnName="sold" />
+                <ScalarProperty Name="rating" ColumnName="rating" />
+                <ScalarProperty Name="active" ColumnName="active" />
+                <ScalarProperty Name="thumnail" ColumnName="thumnail" />
+                <ScalarProperty Name="isNew" ColumnName="isNew" />
+                <ScalarProperty Name="addDate" ColumnName="addDate" />
+                <ScalarProperty Name="isLike" ColumnName="isLike" />
+                <ScalarProperty Name="providerId" ColumnName="providerId" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SP_ImagesOfProduct" FunctionName="ClothesManamentModel.Store.SP_ImagesOfProduct" />
+          <FunctionImportMapping FunctionImportName="SP_GetProviderDetail" FunctionName="ClothesManamentModel.Store.SP_GetProviderDetail">
+          <ResultMapping>
+              <ComplexTypeMapping TypeName="ClothesManamentModel.SP_GetProviderDetail_Result1">
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="brandName" ColumnName="brandName" />
                 <ScalarProperty Name="infomation" ColumnName="infomation" />
+                <ScalarProperty Name="imageUrl" ColumnName="imageUrl" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SP_GetProviders" FunctionName="ClothesManamentModel.Store.SP_GetProviders">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ClothesManamentModel.SP_GetProviders_Result">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="brandName" ColumnName="brandName" />
+                <ScalarProperty Name="imageUrl" ColumnName="imageUrl" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
@@ -1429,6 +1554,7 @@
             <EntityTypeMapping TypeName="ClothesManamentModel.Account">
               <MappingFragment StoreEntitySet="Account">
                 <ScalarProperty Name="active" ColumnName="active" />
+                <ScalarProperty Name="employeeID" ColumnName="employeeID" />
                 <ScalarProperty Name="imageUrl" ColumnName="imageUrl" />
                 <ScalarProperty Name="username" ColumnName="username" />
                 <ScalarProperty Name="password" ColumnName="password" />
@@ -1440,30 +1566,11 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Brands">
-            <EntityTypeMapping TypeName="ClothesManamentModel.Brand">
-              <MappingFragment StoreEntitySet="Brand">
-                <ScalarProperty Name="active" ColumnName="active" />
-                <ScalarProperty Name="infomation" ColumnName="infomation" />
-                <ScalarProperty Name="brandName" ColumnName="brandName" />
-                <ScalarProperty Name="id" ColumnName="id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Carts">
-            <EntityTypeMapping TypeName="ClothesManamentModel.Cart">
-              <MappingFragment StoreEntitySet="Cart">
-                <ScalarProperty Name="userID" ColumnName="userID" />
-                <ScalarProperty Name="quantity" ColumnName="quantity" />
-                <ScalarProperty Name="productId" ColumnName="productId" />
-                <ScalarProperty Name="id" ColumnName="id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="Categories">
             <EntityTypeMapping TypeName="ClothesManamentModel.Category">
               <MappingFragment StoreEntitySet="Category">
                 <ScalarProperty Name="active" ColumnName="active" />
+                <ScalarProperty Name="sex" ColumnName="sex" />
                 <ScalarProperty Name="thumnail" ColumnName="thumnail" />
                 <ScalarProperty Name="imageUrl" ColumnName="imageUrl" />
                 <ScalarProperty Name="genderID" ColumnName="genderID" />
@@ -1479,6 +1586,18 @@
                 <ScalarProperty Name="active" ColumnName="active" />
                 <ScalarProperty Name="colorHex" ColumnName="colorHex" />
                 <ScalarProperty Name="colorName" ColumnName="colorName" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Employees">
+            <EntityTypeMapping TypeName="ClothesManamentModel.Employee">
+              <MappingFragment StoreEntitySet="Employee">
+                <ScalarProperty Name="isWorking" ColumnName="isWorking" />
+                <ScalarProperty Name="birthday" ColumnName="birthday" />
+                <ScalarProperty Name="address" ColumnName="address" />
+                <ScalarProperty Name="lastName" ColumnName="lastName" />
+                <ScalarProperty Name="firstName" ColumnName="firstName" />
                 <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -1502,9 +1621,10 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Orders">
-            <EntityTypeMapping TypeName="ClothesManamentModel.Order">
-              <MappingFragment StoreEntitySet="Order">
+          <EntitySetMapping Name="Invoices">
+            <EntityTypeMapping TypeName="ClothesManamentModel.Invoice">
+              <MappingFragment StoreEntitySet="Invoice">
+                <ScalarProperty Name="active" ColumnName="active" />
                 <ScalarProperty Name="statusOrderId" ColumnName="statusOrderId" />
                 <ScalarProperty Name="userID" ColumnName="userID" />
                 <ScalarProperty Name="note" ColumnName="note" />
@@ -1513,14 +1633,14 @@
                 <ScalarProperty Name="phone" ColumnName="phone" />
                 <ScalarProperty Name="name" ColumnName="name" />
                 <ScalarProperty Name="buyDate" ColumnName="buyDate" />
+                <ScalarProperty Name="updateDate" ColumnName="updateDate" />
                 <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="OrderItems">
-            <EntityTypeMapping TypeName="ClothesManamentModel.OrderItem">
-              <MappingFragment StoreEntitySet="OrderItem">
-                <ScalarProperty Name="sale" ColumnName="sale" />
+          <EntitySetMapping Name="InvoiceItems">
+            <EntityTypeMapping TypeName="ClothesManamentModel.InvoiceItem">
+              <MappingFragment StoreEntitySet="InvoiceItem">
                 <ScalarProperty Name="quantity" ColumnName="quantity" />
                 <ScalarProperty Name="unitPrice" ColumnName="unitPrice" />
                 <ScalarProperty Name="productId" ColumnName="productId" />
@@ -1531,12 +1651,13 @@
           <EntitySetMapping Name="Products">
             <EntityTypeMapping TypeName="ClothesManamentModel.Product">
               <MappingFragment StoreEntitySet="Product">
+                <ScalarProperty Name="sold" ColumnName="sold" />
+                <ScalarProperty Name="addDate" ColumnName="addDate" />
+                <ScalarProperty Name="isNew" ColumnName="isNew" />
                 <ScalarProperty Name="thumnail" ColumnName="thumnail" />
-                <ScalarProperty Name="idPromotion" ColumnName="idPromotion" />
-                <ScalarProperty Name="brandId" ColumnName="brandId" />
+                <ScalarProperty Name="providerId" ColumnName="providerId" />
                 <ScalarProperty Name="active" ColumnName="active" />
                 <ScalarProperty Name="rating" ColumnName="rating" />
-                <ScalarProperty Name="sold" ColumnName="sold" />
                 <ScalarProperty Name="categoryID" ColumnName="categoryID" />
                 <ScalarProperty Name="price" ColumnName="price" />
                 <ScalarProperty Name="detail" ColumnName="detail" />
@@ -1548,6 +1669,7 @@
           <EntitySetMapping Name="ProductSizeColors">
             <EntityTypeMapping TypeName="ClothesManamentModel.ProductSizeColor">
               <MappingFragment StoreEntitySet="ProductSizeColor">
+                <ScalarProperty Name="imageUrl" ColumnName="imageUrl" />
                 <ScalarProperty Name="quantity" ColumnName="quantity" />
                 <ScalarProperty Name="colorID" ColumnName="colorID" />
                 <ScalarProperty Name="sizeId" ColumnName="sizeId" />
@@ -1558,6 +1680,7 @@
           <EntitySetMapping Name="Promotions">
             <EntityTypeMapping TypeName="ClothesManamentModel.Promotion">
               <MappingFragment StoreEntitySet="Promotion">
+                <ScalarProperty Name="type" ColumnName="type" />
                 <ScalarProperty Name="active" ColumnName="active" />
                 <ScalarProperty Name="imageUrl" ColumnName="imageUrl" />
                 <ScalarProperty Name="value" ColumnName="value" />
@@ -1565,6 +1688,17 @@
                 <ScalarProperty Name="beginDate" ColumnName="beginDate" />
                 <ScalarProperty Name="name" ColumnName="name" />
                 <ScalarProperty Name="description" ColumnName="description" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Providers">
+            <EntityTypeMapping TypeName="ClothesManamentModel.Provider">
+              <MappingFragment StoreEntitySet="Provider">
+                <ScalarProperty Name="active" ColumnName="active" />
+                <ScalarProperty Name="infomation" ColumnName="infomation" />
+                <ScalarProperty Name="brandName" ColumnName="brandName" />
+                <ScalarProperty Name="imageUrl" ColumnName="imageUrl" />
                 <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -1589,17 +1723,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="sysdiagrams">
-            <EntityTypeMapping TypeName="ClothesManamentModel.sysdiagram">
-              <MappingFragment StoreEntitySet="sysdiagrams">
-                <ScalarProperty Name="definition" ColumnName="definition" />
-                <ScalarProperty Name="version" ColumnName="version" />
-                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
-                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
-                <ScalarProperty Name="name" ColumnName="name" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <AssociationSetMapping Name="FavoriteProduct" TypeName="ClothesManamentModel.FavoriteProduct" StoreEntitySet="FavoriteProduct">
             <EndProperty Name="Product">
               <ScalarProperty Name="id" ColumnName="idProduct" />
@@ -1608,9 +1731,17 @@
               <ScalarProperty Name="id" ColumnName="idAccount" />
             </EndProperty>
           </AssociationSetMapping>
-          <FunctionImportMapping FunctionImportName="SP_GetProducts1" FunctionName="ClothesManamentModel.Store.SP_GetProducts">
+          <AssociationSetMapping Name="PromotionItem" TypeName="ClothesManamentModel.PromotionItem" StoreEntitySet="PromotionItem">
+            <EndProperty Name="Promotion">
+              <ScalarProperty Name="id" ColumnName="idPromo" />
+            </EndProperty>
+            <EndProperty Name="Product">
+              <ScalarProperty Name="id" ColumnName="idProduct" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <FunctionImportMapping FunctionImportName="SP_GetProductsOfProvider" FunctionName="ClothesManamentModel.Store.SP_GetProductsOfProvider" >
             <ResultMapping>
-              <ComplexTypeMapping TypeName="ClothesManamentModel.SP_GetProducts1_Result">
+              <ComplexTypeMapping TypeName="ClothesManamentModel.SP_GetProductOfCategory_Result">
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="title" ColumnName="title" />
                 <ScalarProperty Name="price" ColumnName="price" />
@@ -1620,8 +1751,9 @@
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="SP_GetProductOfCategory" FunctionName="ClothesManamentModel.Store.SP_GetProductOfCategory">
-            <ResultMapping>
+          <FunctionImportMapping FunctionImportName="SP_CheckFavoriteProduct" FunctionName="ClothesManamentModel.Store.SP_CheckFavoriteProduct" />
+          <FunctionImportMapping FunctionImportName="SP_GetFavoriteProducts" FunctionName="ClothesManamentModel.Store.SP_GetFavoriteProducts" >
+          <ResultMapping>
               <ComplexTypeMapping TypeName="ClothesManamentModel.SP_GetProductOfCategory_Result">
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="title" ColumnName="title" />

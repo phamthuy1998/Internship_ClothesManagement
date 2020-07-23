@@ -250,6 +250,7 @@
     <Compile Include="Controllers\CategoryApiController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ProductAPIController.cs" />
+    <Compile Include="Controllers\ProviderController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -259,6 +260,7 @@
     <Compile Include="Models\ChangeAccountInfoParam.cs" />
     <Compile Include="Models\ChangePassParam.cs" />
     <Compile Include="Models\IdentityModels.cs" />
+    <Compile Include="Models\ProductDetail.cs" />
     <Compile Include="Models\LoginParam.cs" />
     <Compile Include="Models\Metadata.cs" />
     <Compile Include="Models\PagingParameterModel.cs" />

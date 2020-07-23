@@ -10,17 +10,11 @@
 namespace ClothesManamentDataAccess
 {
     using System;
-    using System.Collections.Generic;
     
-    public partial class OrderItem
+    public partial class SP_GetProviderDetail_Result
     {
-        public int orderId { get; set; }
-        public int productId { get; set; }
-        public Nullable<double> unitPrice { get; set; }
-        public Nullable<int> quantity { get; set; }
-        public string sale { get; set; }
-    
-        public virtual Order Order { get; set; }
-        public virtual Product Product { get; set; }
+        public int id { get; set; }
+        public string brandName { get; set; }
+        public string infomation { get; set; }
     }
 }

@@ -17,11 +17,11 @@ namespace ClothesManamentDataAccess
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Product()
         {
-            this.Carts = new HashSet<Cart>();
             this.Images = new HashSet<Image>();
-            this.OrderItems = new HashSet<OrderItem>();
+            this.InvoiceItems = new HashSet<InvoiceItem>();
             this.ProductSizeColors = new HashSet<ProductSizeColor>();
             this.Accounts = new HashSet<Account>();
+            this.Promotions = new HashSet<Promotion>();
         }
     
         public int id { get; set; }
@@ -29,25 +29,25 @@ namespace ClothesManamentDataAccess
         public string detail { get; set; }
         public Nullable<double> price { get; set; }
         public Nullable<int> categoryID { get; set; }
-        public Nullable<int> sold { get; set; }
         public Nullable<int> rating { get; set; }
         public Nullable<int> active { get; set; }
-        public Nullable<int> brandId { get; set; }
-        public Nullable<int> idPromotion { get; set; }
+        public Nullable<int> providerId { get; set; }
         public string thumnail { get; set; }
+        public Nullable<int> isNew { get; set; }
+        public Nullable<System.DateTime> addDate { get; set; }
+        public Nullable<int> sold { get; set; }
     
-        public virtual Brand Brand { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Cart> Carts { get; set; }
         public virtual Category Category { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Image> Images { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<OrderItem> OrderItems { get; set; }
-        public virtual Promotion Promotion { get; set; }
+        public virtual ICollection<InvoiceItem> InvoiceItems { get; set; }
+        public virtual Provider Provider { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ProductSizeColor> ProductSizeColors { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Account> Accounts { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Promotion> Promotions { get; set; }
     }
 }

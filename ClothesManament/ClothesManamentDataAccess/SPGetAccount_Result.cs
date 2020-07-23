@@ -10,16 +10,17 @@
 namespace ClothesManamentDataAccess
 {
     using System;
-    using System.Collections.Generic;
     
-    public partial class Cart
+    public partial class SPGetAccount_Result
     {
         public int id { get; set; }
-        public Nullable<int> productId { get; set; }
-        public Nullable<int> quantity { get; set; }
-        public Nullable<int> userID { get; set; }
-    
-        public virtual Account Account { get; set; }
-        public virtual Product Product { get; set; }
+        public string name { get; set; }
+        public string email { get; set; }
+        public string phone { get; set; }
+        public Nullable<int> roleId { get; set; }
+        public string password { get; set; }
+        public string username { get; set; }
+        public string imageUrl { get; set; }
+        public Nullable<int> active { get; set; }
     }
 }

@@ -12,25 +12,8 @@
     <Property Name="password" Type="nvarchar" MaxLength="50" />
     <Property Name="username" Type="nvarchar" MaxLength="50" />
     <Property Name="imageUrl" Type="nvarchar" MaxLength="150" />
+    <Property Name="employeeID" Type="int" />
     <Property Name="active" Type="int" />
-  </EntityType>
-  <EntityType Name="Brand">
-    <Key>
-      <PropertyRef Name="id" />
-    </Key>
-    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="brandName" Type="nvarchar" MaxLength="50" />
-    <Property Name="infomation" Type="nvarchar(max)" />
-    <Property Name="active" Type="int" />
-  </EntityType>
-  <EntityType Name="Cart">
-    <Key>
-      <PropertyRef Name="id" />
-    </Key>
-    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="productId" Type="int" />
-    <Property Name="quantity" Type="int" />
-    <Property Name="userID" Type="int" />
   </EntityType>
   <EntityType Name="Category">
     <Key>
@@ -42,6 +25,7 @@
     <Property Name="genderID" Type="int" Nullable="false" />
     <Property Name="imageUrl" Type="nvarchar" MaxLength="200" />
     <Property Name="thumnail" Type="nvarchar" MaxLength="200" />
+    <Property Name="sex" Type="tinyint" />
     <Property Name="active" Type="int" />
   </EntityType>
   <EntityType Name="Color">
@@ -52,6 +36,17 @@
     <Property Name="colorName" Type="nvarchar" MaxLength="50" />
     <Property Name="colorHex" Type="nvarchar" MaxLength="50" />
     <Property Name="active" Type="int" />
+  </EntityType>
+  <EntityType Name="Employee">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" Nullable="false" />
+    <Property Name="firstName" Type="nvarchar" MaxLength="50" />
+    <Property Name="lastName" Type="nvarchar" MaxLength="50" />
+    <Property Name="address" Type="nvarchar" MaxLength="200" />
+    <Property Name="birthday" Type="date" />
+    <Property Name="isWorking" Type="int" />
   </EntityType>
   <EntityType Name="FavoriteProduct">
     <Key>
@@ -78,11 +73,12 @@
     <Property Name="productId" Type="int" />
     <Property Name="active" Type="int" />
   </EntityType>
-  <EntityType Name="Order">
+  <EntityType Name="Invoice">
     <Key>
       <PropertyRef Name="id" />
     </Key>
     <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="updateDate" Type="date" />
     <Property Name="buyDate" Type="date" />
     <Property Name="name" Type="nvarchar" MaxLength="50" />
     <Property Name="phone" Type="nvarchar" MaxLength="15" />
@@ -91,8 +87,9 @@
     <Property Name="note" Type="nvarchar" MaxLength="200" />
     <Property Name="userID" Type="int" />
     <Property Name="statusOrderId" Type="int" />
+    <Property Name="active" Type="int" />
   </EntityType>
-  <EntityType Name="OrderItem">
+  <EntityType Name="InvoiceItem">
     <Key>
       <PropertyRef Name="orderId" />
       <PropertyRef Name="productId" />
@@ -101,7 +98,6 @@
     <Property Name="productId" Type="int" Nullable="false" />
     <Property Name="unitPrice" Type="float" />
     <Property Name="quantity" Type="int" />
-    <Property Name="sale" Type="nchar" MaxLength="10" />
   </EntityType>
   <EntityType Name="Product">
     <Key>
@@ -112,12 +108,13 @@
     <Property Name="detail" Type="nvarchar" MaxLength="500" />
     <Property Name="price" Type="float" />
     <Property Name="categoryID" Type="int" />
-    <Property Name="sold" Type="int" />
     <Property Name="rating" Type="int" />
     <Property Name="active" Type="int" />
-    <Property Name="brandId" Type="int" />
-    <Property Name="idPromotion" Type="int" />
+    <Property Name="providerId" Type="int" />
     <Property Name="thumnail" Type="nvarchar" MaxLength="200" />
+    <Property Name="isNew" Type="int" />
+    <Property Name="addDate" Type="date" />
+    <Property Name="sold" Type="int" />
   </EntityType>
   <EntityType Name="ProductSizeColor">
     <Key>
@@ -129,6 +126,7 @@
     <Property Name="sizeId" Type="int" Nullable="false" />
     <Property Name="colorID" Type="int" Nullable="false" />
     <Property Name="quantity" Type="int" />
+    <Property Name="imageUrl" Type="int" />
   </EntityType>
   <EntityType Name="Promotion">
     <Key>
@@ -141,7 +139,26 @@
     <Property Name="endDate" Type="datetime" />
     <Property Name="value" Type="float" />
     <Property Name="imageUrl" Type="nvarchar" MaxLength="200" />
-    <Property Name="active" Type="int" Nullable="false" />
+    <Property Name="active" Type="int" />
+    <Property Name="type" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="PromotionItem">
+    <Key>
+      <PropertyRef Name="idProduct" />
+      <PropertyRef Name="idPromo" />
+    </Key>
+    <Property Name="idProduct" Type="int" Nullable="false" />
+    <Property Name="idPromo" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Provider">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="imageUrl" Type="nvarchar" MaxLength="200" />
+    <Property Name="brandName" Type="nvarchar" MaxLength="50" />
+    <Property Name="infomation" Type="nvarchar(max)" />
+    <Property Name="active" Type="int" />
   </EntityType>
   <EntityType Name="Role">
     <Key>
@@ -161,37 +178,15 @@
     <Property Name="description" Type="nvarchar" MaxLength="200" />
     <Property Name="active" Type="int" />
   </EntityType>
-  <EntityType Name="sysdiagrams">
-    <Key>
-      <PropertyRef Name="diagram_id" />
-    </Key>
-    <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
-    <Property Name="principal_id" Type="int" Nullable="false" />
-    <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="version" Type="int" />
-    <Property Name="definition" Type="varbinary(max)" />
-  </EntityType>
-  <Association Name="FK_Cart_Product">
-    <End Role="Product" Type="Self.Product" Multiplicity="0..1" />
-    <End Role="Cart" Type="Self.Cart" Multiplicity="*" />
+  <Association Name="FK_Account_Employee">
+    <End Role="Employee" Type="Self.Employee" Multiplicity="0..1" />
+    <End Role="Account" Type="Self.Account" Multiplicity="*" />
     <ReferentialConstraint>
-      <Principal Role="Product">
+      <Principal Role="Employee">
         <PropertyRef Name="id" />
       </Principal>
-      <Dependent Role="Cart">
-        <PropertyRef Name="productId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_Cart_User">
-    <End Role="Account" Type="Self.Account" Multiplicity="0..1" />
-    <End Role="Cart" Type="Self.Cart" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Account">
-        <PropertyRef Name="id" />
-      </Principal>
-      <Dependent Role="Cart">
-        <PropertyRef Name="userID" />
+      <Dependent Role="Account">
+        <PropertyRef Name="employeeID" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -243,51 +238,51 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_Order_User">
+  <Association Name="FK_Invoice_Account">
     <End Role="Account" Type="Self.Account" Multiplicity="0..1" />
-    <End Role="Order" Type="Self.Order" Multiplicity="*" />
+    <End Role="Invoice" Type="Self.Invoice" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Account">
         <PropertyRef Name="id" />
       </Principal>
-      <Dependent Role="Order">
+      <Dependent Role="Invoice">
         <PropertyRef Name="userID" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_OrderItem_Order">
-    <End Role="Order" Type="Self.Order" Multiplicity="1" />
-    <End Role="OrderItem" Type="Self.OrderItem" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Order">
-        <PropertyRef Name="id" />
-      </Principal>
-      <Dependent Role="OrderItem">
-        <PropertyRef Name="orderId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_OrderItem_Product">
+  <Association Name="FK_InvoiceItem_Product">
     <End Role="Product" Type="Self.Product" Multiplicity="1" />
-    <End Role="OrderItem" Type="Self.OrderItem" Multiplicity="*" />
+    <End Role="InvoiceItem" Type="Self.InvoiceItem" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Product">
         <PropertyRef Name="id" />
       </Principal>
-      <Dependent Role="OrderItem">
+      <Dependent Role="InvoiceItem">
         <PropertyRef Name="productId" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_OrderItem_Order">
+    <End Role="Invoice" Type="Self.Invoice" Multiplicity="1" />
+    <End Role="InvoiceItem" Type="Self.InvoiceItem" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Invoice">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="InvoiceItem">
+        <PropertyRef Name="orderId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_Product_Brand">
-    <End Role="Brand" Type="Self.Brand" Multiplicity="0..1" />
+    <End Role="Provider" Type="Self.Provider" Multiplicity="0..1" />
     <End Role="Product" Type="Self.Product" Multiplicity="*" />
     <ReferentialConstraint>
-      <Principal Role="Brand">
+      <Principal Role="Provider">
         <PropertyRef Name="id" />
       </Principal>
       <Dependent Role="Product">
-        <PropertyRef Name="brandId" />
+        <PropertyRef Name="providerId" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -300,18 +295,6 @@
       </Principal>
       <Dependent Role="Product">
         <PropertyRef Name="categoryID" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_Product_Promotion">
-    <End Role="Promotion" Type="Self.Promotion" Multiplicity="0..1" />
-    <End Role="Product" Type="Self.Product" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Promotion">
-        <PropertyRef Name="id" />
-      </Principal>
-      <Dependent Role="Product">
-        <PropertyRef Name="idPromotion" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -351,6 +334,30 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_PromotionItem_Product">
+    <End Role="Product" Type="Self.Product" Multiplicity="1" />
+    <End Role="PromotionItem" Type="Self.PromotionItem" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Product">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="PromotionItem">
+        <PropertyRef Name="idProduct" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PromotionItem_Promotion">
+    <End Role="Promotion" Type="Self.Promotion" Multiplicity="1" />
+    <End Role="PromotionItem" Type="Self.PromotionItem" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Promotion">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="PromotionItem">
+        <PropertyRef Name="idPromo" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_User_Role">
     <End Role="Role" Type="Self.Role" Multiplicity="0..1" />
     <End Role="Account" Type="Self.Account" Multiplicity="*" />
@@ -378,6 +385,9 @@
   <Function Name="getCategoryByGender" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="GenderID" Type="int" Mode="In" />
   </Function>
+  <Function Name="getCategoryGender" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="GenderID" Type="int" Mode="In" />
+  </Function>
   <Function Name="Num2Text" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="nvarchar">
     <Parameter Name="Number" Type="float" Mode="In" />
   </Function>
@@ -386,6 +396,10 @@
     <Parameter Name="owner_id" Type="int" Mode="In" />
     <Parameter Name="version" Type="int" Mode="In" />
     <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
+  </Function>
+  <Function Name="SP_CheckFavoriteProduct" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="accountId" Type="int" Mode="In" />
+    <Parameter Name="productId" Type="int" Mode="In" />
   </Function>
   <Function Name="sp_creatediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
@@ -397,17 +411,14 @@
     <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
     <Parameter Name="owner_id" Type="int" Mode="In" />
   </Function>
-  <Function Name="SP_GetBranch" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-    <Parameter Name="GenderID" Type="int" Mode="In" />
-  </Function>
-  <Function Name="SP_GetProductCategory" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-    <Parameter Name="categoryId" Type="int" Mode="In" />
+  <Function Name="SP_GetFavoriteProducts" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="currentPage" Type="int" Mode="In" />
     <Parameter Name="PageSize" Type="int" Mode="In" />
     <Parameter Name="AccountID" Type="int" Mode="In" />
   </Function>
-  <Function Name="SP_GetProductInfoByID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+  <Function Name="SP_GetProductDetail" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="productID" Type="int" Mode="In" />
+    <Parameter Name="AccountID" Type="int" Mode="In" />
   </Function>
   <Function Name="SP_GetProductOfCategory" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="categoryId" Type="int" Mode="In" />
@@ -415,12 +426,16 @@
     <Parameter Name="PageSize" Type="int" Mode="In" />
     <Parameter Name="AccountID" Type="int" Mode="In" />
   </Function>
-  <Function Name="SP_GetProducts" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-    <Parameter Name="categoryId" Type="int" Mode="In" />
+  <Function Name="SP_GetProductsOfProvider" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="providerId" Type="int" Mode="In" />
     <Parameter Name="currentPage" Type="int" Mode="In" />
     <Parameter Name="PageSize" Type="int" Mode="In" />
     <Parameter Name="AccountID" Type="int" Mode="In" />
   </Function>
+  <Function Name="SP_GetProviderDetail" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="providerId" Type="int" Mode="In" />
+  </Function>
+  <Function Name="SP_GetProviders" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
   <Function Name="sp_helpdiagramdefinition" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
     <Parameter Name="owner_id" Type="int" Mode="In" />
@@ -428,6 +443,9 @@
   <Function Name="sp_helpdiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
     <Parameter Name="owner_id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="SP_ImagesOfProduct" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="productID" Type="int" Mode="In" />
   </Function>
   <Function Name="SP_Login" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="userName" Type="nvarchar" Mode="In" />
@@ -467,6 +485,9 @@
   <Function Name="SPGetAccounByUsername" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="username" Type="nvarchar" Mode="In" />
   </Function>
+  <Function Name="SPGetAccount" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="userId" Type="int" Mode="In" />
+  </Function>
   <Function Name="SPGetAccountInfoByUserId" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="userId" Type="int" Mode="In" />
   </Function>
@@ -478,28 +499,24 @@
   </Function>
   <EntityContainer Name="ClothesManamentModelStoreContainer">
     <EntitySet Name="Account" EntityType="Self.Account" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="Brand" EntityType="Self.Brand" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="Cart" EntityType="Self.Cart" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Category" EntityType="Self.Category" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Color" EntityType="Self.Color" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Employee" EntityType="Self.Employee" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="FavoriteProduct" EntityType="Self.FavoriteProduct" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Gender" EntityType="Self.Gender" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Image" EntityType="Self.Image" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="Order" EntityType="Self.Order" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="OrderItem" EntityType="Self.OrderItem" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Invoice" EntityType="Self.Invoice" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="InvoiceItem" EntityType="Self.InvoiceItem" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Product" EntityType="Self.Product" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="ProductSizeColor" EntityType="Self.ProductSizeColor" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Promotion" EntityType="Self.Promotion" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="PromotionItem" EntityType="Self.PromotionItem" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Provider" EntityType="Self.Provider" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Role" EntityType="Self.Role" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Size" EntityType="Self.Size" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
-    <AssociationSet Name="FK_Cart_Product" Association="Self.FK_Cart_Product">
-      <End Role="Product" EntitySet="Product" />
-      <End Role="Cart" EntitySet="Cart" />
-    </AssociationSet>
-    <AssociationSet Name="FK_Cart_User" Association="Self.FK_Cart_User">
+    <AssociationSet Name="FK_Account_Employee" Association="Self.FK_Account_Employee">
+      <End Role="Employee" EntitySet="Employee" />
       <End Role="Account" EntitySet="Account" />
-      <End Role="Cart" EntitySet="Cart" />
     </AssociationSet>
     <AssociationSet Name="FK_Category_Type" Association="Self.FK_Category_Type">
       <End Role="Gender" EntitySet="Gender" />
@@ -517,28 +534,24 @@
       <End Role="Product" EntitySet="Product" />
       <End Role="Image" EntitySet="Image" />
     </AssociationSet>
-    <AssociationSet Name="FK_Order_User" Association="Self.FK_Order_User">
+    <AssociationSet Name="FK_Invoice_Account" Association="Self.FK_Invoice_Account">
       <End Role="Account" EntitySet="Account" />
-      <End Role="Order" EntitySet="Order" />
+      <End Role="Invoice" EntitySet="Invoice" />
+    </AssociationSet>
+    <AssociationSet Name="FK_InvoiceItem_Product" Association="Self.FK_InvoiceItem_Product">
+      <End Role="Product" EntitySet="Product" />
+      <End Role="InvoiceItem" EntitySet="InvoiceItem" />
     </AssociationSet>
     <AssociationSet Name="FK_OrderItem_Order" Association="Self.FK_OrderItem_Order">
-      <End Role="Order" EntitySet="Order" />
-      <End Role="OrderItem" EntitySet="OrderItem" />
-    </AssociationSet>
-    <AssociationSet Name="FK_OrderItem_Product" Association="Self.FK_OrderItem_Product">
-      <End Role="Product" EntitySet="Product" />
-      <End Role="OrderItem" EntitySet="OrderItem" />
+      <End Role="Invoice" EntitySet="Invoice" />
+      <End Role="InvoiceItem" EntitySet="InvoiceItem" />
     </AssociationSet>
     <AssociationSet Name="FK_Product_Brand" Association="Self.FK_Product_Brand">
-      <End Role="Brand" EntitySet="Brand" />
+      <End Role="Provider" EntitySet="Provider" />
       <End Role="Product" EntitySet="Product" />
     </AssociationSet>
     <AssociationSet Name="FK_Product_Category" Association="Self.FK_Product_Category">
       <End Role="Category" EntitySet="Category" />
-      <End Role="Product" EntitySet="Product" />
-    </AssociationSet>
-    <AssociationSet Name="FK_Product_Promotion" Association="Self.FK_Product_Promotion">
-      <End Role="Promotion" EntitySet="Promotion" />
       <End Role="Product" EntitySet="Product" />
     </AssociationSet>
     <AssociationSet Name="FK_ProductSizeColor_Color" Association="Self.FK_ProductSizeColor_Color">
@@ -552,6 +565,14 @@
     <AssociationSet Name="FK_ProductSizeColor_Size" Association="Self.FK_ProductSizeColor_Size">
       <End Role="Size" EntitySet="Size" />
       <End Role="ProductSizeColor" EntitySet="ProductSizeColor" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PromotionItem_Product" Association="Self.FK_PromotionItem_Product">
+      <End Role="Product" EntitySet="Product" />
+      <End Role="PromotionItem" EntitySet="PromotionItem" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PromotionItem_Promotion" Association="Self.FK_PromotionItem_Promotion">
+      <End Role="Promotion" EntitySet="Promotion" />
+      <End Role="PromotionItem" EntitySet="PromotionItem" />
     </AssociationSet>
     <AssociationSet Name="FK_User_Role" Association="Self.FK_User_Role">
       <End Role="Role" EntitySet="Role" />

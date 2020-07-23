@@ -28,20 +28,19 @@ namespace ClothesManamentDataAccess
         }
     
         public virtual DbSet<Account> Accounts { get; set; }
-        public virtual DbSet<Brand> Brands { get; set; }
-        public virtual DbSet<Cart> Carts { get; set; }
         public virtual DbSet<Category> Categories { get; set; }
         public virtual DbSet<Color> Colors { get; set; }
+        public virtual DbSet<Employee> Employees { get; set; }
         public virtual DbSet<Gender> Genders { get; set; }
         public virtual DbSet<Image> Images { get; set; }
-        public virtual DbSet<Order> Orders { get; set; }
-        public virtual DbSet<OrderItem> OrderItems { get; set; }
+        public virtual DbSet<Invoice> Invoices { get; set; }
+        public virtual DbSet<InvoiceItem> InvoiceItems { get; set; }
         public virtual DbSet<Product> Products { get; set; }
         public virtual DbSet<ProductSizeColor> ProductSizeColors { get; set; }
         public virtual DbSet<Promotion> Promotions { get; set; }
+        public virtual DbSet<Provider> Providers { get; set; }
         public virtual DbSet<Role> Roles { get; set; }
         public virtual DbSet<Size> Sizes { get; set; }
-        public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
     
         public virtual int sp_alterdiagram(string diagramname, Nullable<int> owner_id, Nullable<int> version, byte[] definition)
         {
@@ -530,6 +529,132 @@ namespace ClothesManamentDataAccess
                 new ObjectParameter("AccountID", typeof(int));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_GetProductOfCategory_Result>("SP_GetProductOfCategory", categoryIdParameter, currentPageParameter, pageSizeParameter, accountIDParameter);
+        }
+    
+        public virtual ObjectResult<SPGetAccount_Result> SPGetAccount(Nullable<int> userId)
+        {
+            var userIdParameter = userId.HasValue ?
+                new ObjectParameter("userId", userId) :
+                new ObjectParameter("userId", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SPGetAccount_Result>("SPGetAccount", userIdParameter);
+        }
+    
+        public virtual ObjectResult<getCategoryGender_Result> getCategoryGender(Nullable<int> genderID)
+        {
+            var genderIDParameter = genderID.HasValue ?
+                new ObjectParameter("GenderID", genderID) :
+                new ObjectParameter("GenderID", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<getCategoryGender_Result>("getCategoryGender", genderIDParameter);
+        }
+    
+        public virtual int SP_GetProductsCategory(Nullable<int> categoryId, Nullable<int> currentPage, Nullable<int> pageSize, Nullable<int> accountID)
+        {
+            var categoryIdParameter = categoryId.HasValue ?
+                new ObjectParameter("categoryId", categoryId) :
+                new ObjectParameter("categoryId", typeof(int));
+    
+            var currentPageParameter = currentPage.HasValue ?
+                new ObjectParameter("currentPage", currentPage) :
+                new ObjectParameter("currentPage", typeof(int));
+    
+            var pageSizeParameter = pageSize.HasValue ?
+                new ObjectParameter("PageSize", pageSize) :
+                new ObjectParameter("PageSize", typeof(int));
+    
+            var accountIDParameter = accountID.HasValue ?
+                new ObjectParameter("AccountID", accountID) :
+                new ObjectParameter("AccountID", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("SP_GetProductsCategory", categoryIdParameter, currentPageParameter, pageSizeParameter, accountIDParameter);
+        }
+    
+        public virtual ObjectResult<SP_GetProductDetail_Result> SP_GetProductDetail(Nullable<int> productID, Nullable<int> accountID)
+        {
+            var productIDParameter = productID.HasValue ?
+                new ObjectParameter("productID", productID) :
+                new ObjectParameter("productID", typeof(int));
+    
+            var accountIDParameter = accountID.HasValue ?
+                new ObjectParameter("AccountID", accountID) :
+                new ObjectParameter("AccountID", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_GetProductDetail_Result>("SP_GetProductDetail", productIDParameter, accountIDParameter);
+        }
+    
+        public virtual ObjectResult<string> SP_ImagesOfProduct(Nullable<int> productID)
+        {
+            var productIDParameter = productID.HasValue ?
+                new ObjectParameter("productID", productID) :
+                new ObjectParameter("productID", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<string>("SP_ImagesOfProduct", productIDParameter);
+        }
+    
+        public virtual ObjectResult<SP_GetProviderDetail_Result1> SP_GetProviderDetail(Nullable<int> providerId)
+        {
+            var providerIdParameter = providerId.HasValue ?
+                new ObjectParameter("providerId", providerId) :
+                new ObjectParameter("providerId", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_GetProviderDetail_Result1>("SP_GetProviderDetail", providerIdParameter);
+        }
+    
+        public virtual ObjectResult<SP_GetProviders_Result> SP_GetProviders()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_GetProviders_Result>("SP_GetProviders");
+        }
+    
+        public virtual ObjectResult<SP_GetProductOfCategory_Result> SP_GetProductsOfProvider(Nullable<int> providerId, Nullable<int> currentPage, Nullable<int> pageSize, Nullable<int> accountID)
+        {
+            var providerIdParameter = providerId.HasValue ?
+                new ObjectParameter("providerId", providerId) :
+                new ObjectParameter("providerId", typeof(int));
+    
+            var currentPageParameter = currentPage.HasValue ?
+                new ObjectParameter("currentPage", currentPage) :
+                new ObjectParameter("currentPage", typeof(int));
+    
+            var pageSizeParameter = pageSize.HasValue ?
+                new ObjectParameter("PageSize", pageSize) :
+                new ObjectParameter("PageSize", typeof(int));
+    
+            var accountIDParameter = accountID.HasValue ?
+                new ObjectParameter("AccountID", accountID) :
+                new ObjectParameter("AccountID", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_GetProductOfCategory_Result>("SP_GetProductsOfProvider", providerIdParameter, currentPageParameter, pageSizeParameter, accountIDParameter);
+        }
+    
+        public virtual ObjectResult<Nullable<int>> SP_CheckFavoriteProduct(Nullable<int> accountId, Nullable<int> productId)
+        {
+            var accountIdParameter = accountId.HasValue ?
+                new ObjectParameter("accountId", accountId) :
+                new ObjectParameter("accountId", typeof(int));
+    
+            var productIdParameter = productId.HasValue ?
+                new ObjectParameter("productId", productId) :
+                new ObjectParameter("productId", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("SP_CheckFavoriteProduct", accountIdParameter, productIdParameter);
+        }
+    
+        public virtual ObjectResult<SP_GetProductOfCategory_Result> SP_GetFavoriteProducts(Nullable<int> currentPage, Nullable<int> pageSize, Nullable<int> accountID)
+        {
+            var currentPageParameter = currentPage.HasValue ?
+                new ObjectParameter("currentPage", currentPage) :
+                new ObjectParameter("currentPage", typeof(int));
+    
+            var pageSizeParameter = pageSize.HasValue ?
+                new ObjectParameter("PageSize", pageSize) :
+                new ObjectParameter("PageSize", typeof(int));
+    
+            var accountIDParameter = accountID.HasValue ?
+                new ObjectParameter("AccountID", accountID) :
+                new ObjectParameter("AccountID", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_GetProductOfCategory_Result>("SP_GetFavoriteProducts", currentPageParameter, pageSizeParameter, accountIDParameter);
         }
     }
 }

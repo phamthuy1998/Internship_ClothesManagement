@@ -10,27 +10,14 @@
 namespace ClothesManamentDataAccess
 {
     using System;
-    using System.Collections.Generic;
     
-    public partial class Category
+    public partial class getCategoryGender_Result
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Category()
-        {
-            this.Products = new HashSet<Product>();
-        }
-    
         public int id { get; set; }
         public string name { get; set; }
         public string detail { get; set; }
         public int genderID { get; set; }
         public string imageUrl { get; set; }
         public string thumnail { get; set; }
-        public Nullable<byte> sex { get; set; }
-        public Nullable<int> active { get; set; }
-    
-        public virtual Gender Gender { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Product> Products { get; set; }
     }
 }

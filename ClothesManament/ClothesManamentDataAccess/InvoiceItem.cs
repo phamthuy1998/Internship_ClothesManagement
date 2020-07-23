@@ -12,16 +12,14 @@ namespace ClothesManamentDataAccess
     using System;
     using System.Collections.Generic;
     
-    public partial class ProductSizeColor
+    public partial class InvoiceItem
     {
-        public int productID { get; set; }
-        public int sizeId { get; set; }
-        public int colorID { get; set; }
+        public int orderId { get; set; }
+        public int productId { get; set; }
+        public Nullable<double> unitPrice { get; set; }
         public Nullable<int> quantity { get; set; }
-        public Nullable<int> imageUrl { get; set; }
     
-        public virtual Color Color { get; set; }
+        public virtual Invoice Invoice { get; set; }
         public virtual Product Product { get; set; }
-        public virtual Size Size { get; set; }
     }
 }

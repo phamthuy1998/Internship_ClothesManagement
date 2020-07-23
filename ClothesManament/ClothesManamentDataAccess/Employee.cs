@@ -12,20 +12,22 @@ namespace ClothesManamentDataAccess
     using System;
     using System.Collections.Generic;
     
-    public partial class Brand
+    public partial class Employee
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Brand()
+        public Employee()
         {
-            this.Products = new HashSet<Product>();
+            this.Accounts = new HashSet<Account>();
         }
     
         public int id { get; set; }
-        public string brandName { get; set; }
-        public string infomation { get; set; }
-        public Nullable<int> active { get; set; }
+        public string firstName { get; set; }
+        public string lastName { get; set; }
+        public string address { get; set; }
+        public Nullable<System.DateTime> birthday { get; set; }
+        public Nullable<int> isWorking { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Product> Products { get; set; }
+        public virtual ICollection<Account> Accounts { get; set; }
     }
 }
