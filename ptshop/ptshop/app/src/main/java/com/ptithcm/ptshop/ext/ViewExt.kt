@@ -213,29 +213,29 @@ fun FragmentRefineBinding.chooseView(
 }
 
 fun BottomNavigationView.updateItem(isBrand: Boolean) {
-    if (isBrand) {
-        this.menu.apply {
-            removeItem(R.id.nav_shop)
-            removeItem(MENU_ADD_PRODUCT_ID)
-            add(Menu.NONE, MENU_ADD_PRODUCT_ID, 4, KEY_EMPTY).setIcon(R.drawable.ic_add_product)
-        }
-        val menuView = this.getChildAt(0) as BottomNavigationMenuView
-        val iconView =
-            menuView.getChildAt(2).findViewById<View>(com.google.android.material.R.id.icon)
-        val layoutParam = iconView.layoutParams
-        val displayMetrics = resources.displayMetrics
-        layoutParam.height =
-            TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 42f, displayMetrics).toInt()
-        layoutParam.width =
-            TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 42f, displayMetrics).toInt()
-        iconView.layoutParams = layoutParam
-    } else {
-        this.menu.apply {
-            removeItem(MENU_ADD_PRODUCT_ID)
-            removeItem(R.id.nav_shop)
-            add(Menu.NONE, R.id.nav_shop, 2, this@updateItem.context.getString(R.string.clothing)).setIcon(R.drawable.clothing_selector)
-        }
-    }
+//    if (isBrand) {
+//        this.menu.apply {
+//            removeItem(R.id.nav_shop)
+//            removeItem(MENU_ADD_PRODUCT_ID)
+//            add(Menu.NONE, MENU_ADD_PRODUCT_ID, 4, KEY_EMPTY).setIcon(R.drawable.ic_add_product)
+//        }
+//        val menuView = this.getChildAt(0) as BottomNavigationMenuView
+//        val iconView =
+//            menuView.getChildAt(2).findViewById<View>(com.google.android.material.R.id.icon)
+//        val layoutParam = iconView.layoutParams
+//        val displayMetrics = resources.displayMetrics
+//        layoutParam.height =
+//            TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 42f, displayMetrics).toInt()
+//        layoutParam.width =
+//            TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 42f, displayMetrics).toInt()
+//        iconView.layoutParams = layoutParam
+//    } else {
+//        this.menu.apply {
+//            removeItem(MENU_ADD_PRODUCT_ID)
+//            removeItem(R.id.nav_shop)
+//            add(Menu.NONE, R.id.nav_shop, 1, this@updateItem.context.getString(R.string.clothing)).setIcon(R.drawable.clothing_selector)
+//        }
+//    }
 }
 
 fun BottomNavigationView.disableLongClick() {

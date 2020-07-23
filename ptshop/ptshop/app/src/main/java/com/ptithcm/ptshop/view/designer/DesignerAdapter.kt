@@ -112,9 +112,9 @@ class DesignerAdapter(
     inner class HeaderViewHolder(val binding: LayoutDesignerHeaderBinding) :
         RecyclerView.ViewHolder(binding.root) {
         fun bind() {
-            binding.tvViewAllDesigners.setOnClickListener {
-                listenerViewAll()
-            }
+//            binding.tvViewAllDesigners.setOnClickListener {
+//                listenerViewAll()
+//            }
         }
     }
 

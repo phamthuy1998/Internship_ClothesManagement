@@ -11,14 +11,14 @@ import com.ptithcm.ptshop.view.shop.ShopWomenFragment
 class ShopViewPagerAdapter(fm: FragmentManager) : FragmentPagerAdapter(fm, BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT) {
 
     companion object {
-        const val PAGE_NUMBER = 4
+        const val PAGE_NUMBER = 3
     }
 
     override fun getItem(position: Int): Fragment {
         return when(position){
             0 -> ShopWomenFragment.newInstance()
             1 -> ShopMenFragment.newInstance()
-            2 -> ShopKidsFragment.newInstance()
+//            2 -> ShopKidsFragment.newInstance()
             else -> ShopUnisexFragment.newInstance()
         }
     }

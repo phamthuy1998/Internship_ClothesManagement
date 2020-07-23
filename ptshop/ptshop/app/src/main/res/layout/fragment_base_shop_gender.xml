@@ -35,6 +35,7 @@
                 android:clipToPadding="false"
                 android:paddingStart="@dimen/layout_margin_8dp"
                 android:paddingEnd="@dimen/layout_margin_8dp"
+                android:visibility="gone"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <ProgressBar
@@ -44,6 +45,7 @@
                 android:layout_height="@dimen/layout_margin_2dp"
                 android:layout_margin="@dimen/layout_margin_16dp"
                 android:indeterminate="false"
+                android:visibility="gone"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/rvCarousel" />
 
@@ -66,7 +68,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/layout_margin_16dp"
                 android:layout_marginTop="4dp"
-                android:text="@string/popular_categories"
+                android:text="@string/all_categories"
                 android:textAllCaps="true"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/tvCountPager" />
