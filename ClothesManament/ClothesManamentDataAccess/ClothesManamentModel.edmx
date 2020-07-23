@@ -118,7 +118,7 @@
           <Property Name="providerId" Type="int" />
           <Property Name="thumnail" Type="nvarchar" MaxLength="200" />
           <Property Name="isNew" Type="int" />
-          <Property Name="addDate" Type="date" />
+          <Property Name="addDate" Type="date" Nullable="false" />
           <Property Name="sold" Type="int" />
         </EntityType>
         <EntityType Name="ProductSizeColor">
@@ -131,7 +131,8 @@
           <Property Name="sizeId" Type="int" Nullable="false" />
           <Property Name="colorID" Type="int" Nullable="false" />
           <Property Name="quantity" Type="int" />
-          <Property Name="imageUrl" Type="int" />
+          <Property Name="imageUrl" Type="nvarchar" MaxLength="200" />
+          <Property Name="active" Type="int" />
         </EntityType>
         <EntityType Name="Promotion">
           <Key>
@@ -179,9 +180,18 @@
           </Key>
           <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="sizeName" Type="nvarchar" MaxLength="50" />
-          <Property Name="categoryId" Type="int" />
           <Property Name="description" Type="nvarchar" MaxLength="200" />
           <Property Name="active" Type="int" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
         </EntityType>
         <Association Name="FK_Account_Employee">
           <End Role="Employee" Type="Self.Employee" Multiplicity="0..1" />
@@ -416,6 +426,9 @@
           <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
           <Parameter Name="owner_id" Type="int" Mode="In" />
         </Function>
+        <Function Name="SP_GetColorsOfProduct" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="productId" Type="int" Mode="In" />
+        </Function>
         <Function Name="SP_GetFavoriteProducts" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="currentPage" Type="int" Mode="In" />
           <Parameter Name="PageSize" Type="int" Mode="In" />
@@ -441,6 +454,12 @@
           <Parameter Name="providerId" Type="int" Mode="In" />
         </Function>
         <Function Name="SP_GetProviders" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="SP_GetSizesColorsOfProduct" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="productId" Type="int" Mode="In" />
+        </Function>
+        <Function Name="SP_GetSizesOfProduct" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="productId" Type="int" Mode="In" />
+        </Function>
         <Function Name="sp_helpdiagramdefinition" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
           <Parameter Name="owner_id" Type="int" Mode="In" />
@@ -519,6 +538,7 @@
           <EntitySet Name="Provider" EntityType="Self.Provider" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Role" EntityType="Self.Role" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Size" EntityType="Self.Size" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK_Account_Employee" Association="Self.FK_Account_Employee">
             <End Role="Employee" EntitySet="Employee" />
             <End Role="Account" EntitySet="Account" />
@@ -758,6 +778,30 @@
           </FunctionImport>
           <FunctionImport Name="SP_GetProviders" ReturnType="Collection(ClothesManamentModel.SP_GetProviders_Result)">
           </FunctionImport>
+          <FunctionImport Name="SP_GetProductsOfProvider" ReturnType="Collection(ClothesManamentModel.SP_GetProductOfCategory_Result)">
+            <Parameter Name="providerId" Mode="In" Type="Int32" />
+            <Parameter Name="currentPage" Mode="In" Type="Int32" />
+            <Parameter Name="PageSize" Mode="In" Type="Int32" />
+            <Parameter Name="AccountID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="SP_CheckFavoriteProduct" ReturnType="Collection(Int32)">
+            <Parameter Name="accountId" Mode="In" Type="Int32" />
+            <Parameter Name="productId" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="SP_GetFavoriteProducts" ReturnType="Collection(ClothesManamentModel.SP_GetProductOfCategory_Result)">
+            <Parameter Name="currentPage" Mode="In" Type="Int32" />
+            <Parameter Name="PageSize" Mode="In" Type="Int32" />
+            <Parameter Name="AccountID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="SP_GetColorsOfProduct" ReturnType="Collection(ClothesManamentModel.SP_GetColorsOfProduct_Result)">
+          <Parameter Name="productId" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="SP_GetSizesColorsOfProduct" ReturnType="Collection(ClothesManamentModel.SP_GetSizesColorsOfProduct_Result)">
+          <Parameter Name="productId" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="SP_GetSizesOfProduct" ReturnType="Collection(ClothesManamentModel.SP_GetSizesOfProduct_Result)">
+          <Parameter Name="productId" Mode="In" Type="Int32" />
+          </FunctionImport>
           <EntitySet Name="Accounts" EntityType="ClothesManamentModel.Account" />
           <EntitySet Name="Categories" EntityType="ClothesManamentModel.Category" />
           <EntitySet Name="Colors" EntityType="ClothesManamentModel.Color" />
@@ -772,6 +816,7 @@
           <EntitySet Name="Providers" EntityType="ClothesManamentModel.Provider" />
           <EntitySet Name="Roles" EntityType="ClothesManamentModel.Role" />
           <EntitySet Name="Sizes" EntityType="ClothesManamentModel.Size" />
+          <EntitySet Name="sysdiagrams" EntityType="ClothesManamentModel.sysdiagram" />
           <AssociationSet Name="FK_Account_Employee" Association="ClothesManamentModel.FK_Account_Employee">
             <End Role="Employee" EntitySet="Employees" />
             <End Role="Account" EntitySet="Accounts" />
@@ -828,21 +873,6 @@
             <End Role="Product" EntitySet="Products" />
             <End Role="Promotion" EntitySet="Promotions" />
           </AssociationSet>
-          <FunctionImport Name="SP_GetProductsOfProvider" ReturnType="Collection(ClothesManamentModel.SP_GetProductOfCategory_Result)">
-            <Parameter Name="providerId" Mode="In" Type="Int32" />
-            <Parameter Name="currentPage" Mode="In" Type="Int32" />
-            <Parameter Name="PageSize" Mode="In" Type="Int32" />
-            <Parameter Name="AccountID" Mode="In" Type="Int32" />
-          </FunctionImport>
-          <FunctionImport Name="SP_CheckFavoriteProduct" ReturnType="Collection(Int32)">
-            <Parameter Name="accountId" Mode="In" Type="Int32" />
-            <Parameter Name="productId" Mode="In" Type="Int32" />
-          </FunctionImport>
-          <FunctionImport Name="SP_GetFavoriteProducts" ReturnType="Collection(ClothesManamentModel.SP_GetProductOfCategory_Result)">
-            <Parameter Name="currentPage" Mode="In" Type="Int32" />
-            <Parameter Name="PageSize" Mode="In" Type="Int32" />
-            <Parameter Name="AccountID" Mode="In" Type="Int32" />
-          </FunctionImport>
           </EntityContainer>
         <ComplexType Name="sp_helpdiagramdefinition_Result">
           <Property Type="Int32" Name="version" Nullable="true" />
@@ -1015,6 +1045,30 @@
           <Property Type="String" Name="brandName" Nullable="true" MaxLength="50" />
           <Property Type="String" Name="imageUrl" Nullable="true" MaxLength="200" />
         </ComplexType>
+        <ComplexType Name="SP_GetProviderDetail_Result1">
+          <Property Type="Int32" Name="id" Nullable="false" />
+          <Property Type="String" Name="brandName" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="infomation" Nullable="true" />
+          <Property Type="String" Name="imageUrl" Nullable="true" MaxLength="200" />
+        </ComplexType>
+        <ComplexType Name="SP_GetColorsOfProduct_Result">
+          <Property Type="Int32" Name="id" Nullable="false" />
+          <Property Type="String" Name="colorName" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="colorHex" Nullable="true" MaxLength="50" />
+        </ComplexType>
+        <ComplexType Name="SP_GetSizesColorsOfProduct_Result">
+          <Property Type="Int32" Name="productID" Nullable="false" />
+          <Property Type="Int32" Name="sizeId" Nullable="false" />
+          <Property Type="String" Name="sizeName" Nullable="true" MaxLength="50" />
+          <Property Type="Int32" Name="colorID" Nullable="false" />
+          <Property Type="String" Name="colorName" Nullable="true" MaxLength="50" />
+          <Property Type="Int32" Name="quantity" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="SP_GetSizesOfProduct_Result">
+          <Property Type="Int32" Name="id" Nullable="false" />
+          <Property Type="String" Name="sizeName" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="description" Nullable="true" MaxLength="200" />
+        </ComplexType>
         <EntityType Name="Account">
           <Key>
             <PropertyRef Name="id" />
@@ -1134,7 +1188,7 @@
           <Property Name="providerId" Type="Int32" />
           <Property Name="thumnail" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
           <Property Name="isNew" Type="Int32" />
-          <Property Name="addDate" Type="DateTime" Precision="0" />
+          <Property Name="addDate" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="sold" Type="Int32" />
           <NavigationProperty Name="Category" Relationship="ClothesManamentModel.FK_Product_Category" FromRole="Product" ToRole="Category" />
           <NavigationProperty Name="Images" Relationship="ClothesManamentModel.FK_Image_Product" FromRole="Product" ToRole="Image" />
@@ -1154,7 +1208,8 @@
           <Property Name="sizeId" Type="Int32" Nullable="false" />
           <Property Name="colorID" Type="Int32" Nullable="false" />
           <Property Name="quantity" Type="Int32" />
-          <Property Name="imageUrl" Type="Int32" />
+          <Property Name="imageUrl" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="active" Type="Int32" />
           <NavigationProperty Name="Color" Relationship="ClothesManamentModel.FK_ProductSizeColor_Color" FromRole="ProductSizeColor" ToRole="Color" />
           <NavigationProperty Name="Product" Relationship="ClothesManamentModel.FK_ProductSizeColor_Product" FromRole="ProductSizeColor" ToRole="Product" />
           <NavigationProperty Name="Size" Relationship="ClothesManamentModel.FK_ProductSizeColor_Size" FromRole="ProductSizeColor" ToRole="Size" />
@@ -1200,10 +1255,19 @@
           </Key>
           <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="sizeName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="categoryId" Type="Int32" />
           <Property Name="description" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
           <Property Name="active" Type="Int32" />
           <NavigationProperty Name="ProductSizeColors" Relationship="ClothesManamentModel.FK_ProductSizeColor_Size" FromRole="Size" ToRole="ProductSizeColor" />
+        </EntityType>
+        <EntityType Name="sysdiagram">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
         </EntityType>
         <Association Name="FK_Account_Employee">
           <End Type="ClothesManamentModel.Employee" Role="Employee" Multiplicity="0..1" />
@@ -1357,12 +1421,6 @@
           <End Type="ClothesManamentModel.Product" Role="Product" Multiplicity="*" />
           <End Type="ClothesManamentModel.Promotion" Role="Promotion" Multiplicity="*" />
         </Association>
-        <ComplexType Name="SP_GetProviderDetail_Result1">
-          <Property Type="Int32" Name="id" Nullable="false" />
-          <Property Type="String" Name="brandName" Nullable="true" MaxLength="50" />
-          <Property Type="String" Name="infomation" Nullable="true" />
-          <Property Type="String" Name="imageUrl" Nullable="true" MaxLength="200" />
-        </ComplexType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1550,6 +1608,61 @@
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SP_GetProductsOfProvider" FunctionName="ClothesManamentModel.Store.SP_GetProductsOfProvider" >
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ClothesManamentModel.SP_GetProductOfCategory_Result">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="title" ColumnName="title" />
+                <ScalarProperty Name="price" ColumnName="price" />
+                <ScalarProperty Name="thumnail" ColumnName="thumnail" />
+                <ScalarProperty Name="isLike" ColumnName="isLike" />
+                <ScalarProperty Name="promotion" ColumnName="promotion" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SP_CheckFavoriteProduct" FunctionName="ClothesManamentModel.Store.SP_CheckFavoriteProduct" />
+          <FunctionImportMapping FunctionImportName="SP_GetFavoriteProducts" FunctionName="ClothesManamentModel.Store.SP_GetFavoriteProducts" >
+          <ResultMapping>
+              <ComplexTypeMapping TypeName="ClothesManamentModel.SP_GetProductOfCategory_Result">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="title" ColumnName="title" />
+                <ScalarProperty Name="price" ColumnName="price" />
+                <ScalarProperty Name="thumnail" ColumnName="thumnail" />
+                <ScalarProperty Name="isLike" ColumnName="isLike" />
+                <ScalarProperty Name="promotion" ColumnName="promotion" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SP_GetColorsOfProduct" FunctionName="ClothesManamentModel.Store.SP_GetColorsOfProduct">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ClothesManamentModel.SP_GetColorsOfProduct_Result">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="colorName" ColumnName="colorName" />
+                <ScalarProperty Name="colorHex" ColumnName="colorHex" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SP_GetSizesColorsOfProduct" FunctionName="ClothesManamentModel.Store.SP_GetSizesColorsOfProduct">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ClothesManamentModel.SP_GetSizesColorsOfProduct_Result">
+                <ScalarProperty Name="productID" ColumnName="productID" />
+                <ScalarProperty Name="sizeId" ColumnName="sizeId" />
+                <ScalarProperty Name="sizeName" ColumnName="sizeName" />
+                <ScalarProperty Name="colorID" ColumnName="colorID" />
+                <ScalarProperty Name="colorName" ColumnName="colorName" />
+                <ScalarProperty Name="quantity" ColumnName="quantity" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SP_GetSizesOfProduct" FunctionName="ClothesManamentModel.Store.SP_GetSizesOfProduct">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ClothesManamentModel.SP_GetSizesOfProduct_Result">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="sizeName" ColumnName="sizeName" />
+                <ScalarProperty Name="description" ColumnName="description" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
           <EntitySetMapping Name="Accounts">
             <EntityTypeMapping TypeName="ClothesManamentModel.Account">
               <MappingFragment StoreEntitySet="Account">
@@ -1669,6 +1782,7 @@
           <EntitySetMapping Name="ProductSizeColors">
             <EntityTypeMapping TypeName="ClothesManamentModel.ProductSizeColor">
               <MappingFragment StoreEntitySet="ProductSizeColor">
+                <ScalarProperty Name="active" ColumnName="active" />
                 <ScalarProperty Name="imageUrl" ColumnName="imageUrl" />
                 <ScalarProperty Name="quantity" ColumnName="quantity" />
                 <ScalarProperty Name="colorID" ColumnName="colorID" />
@@ -1717,9 +1831,19 @@
               <MappingFragment StoreEntitySet="Size">
                 <ScalarProperty Name="active" ColumnName="active" />
                 <ScalarProperty Name="description" ColumnName="description" />
-                <ScalarProperty Name="categoryId" ColumnName="categoryId" />
                 <ScalarProperty Name="sizeName" ColumnName="sizeName" />
                 <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="ClothesManamentModel.sysdiagram">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="definition" ColumnName="definition" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="name" ColumnName="name" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -1739,31 +1863,6 @@
               <ScalarProperty Name="id" ColumnName="idProduct" />
             </EndProperty>
           </AssociationSetMapping>
-          <FunctionImportMapping FunctionImportName="SP_GetProductsOfProvider" FunctionName="ClothesManamentModel.Store.SP_GetProductsOfProvider" >
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="ClothesManamentModel.SP_GetProductOfCategory_Result">
-                <ScalarProperty Name="id" ColumnName="id" />
-                <ScalarProperty Name="title" ColumnName="title" />
-                <ScalarProperty Name="price" ColumnName="price" />
-                <ScalarProperty Name="thumnail" ColumnName="thumnail" />
-                <ScalarProperty Name="isLike" ColumnName="isLike" />
-                <ScalarProperty Name="promotion" ColumnName="promotion" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="SP_CheckFavoriteProduct" FunctionName="ClothesManamentModel.Store.SP_CheckFavoriteProduct" />
-          <FunctionImportMapping FunctionImportName="SP_GetFavoriteProducts" FunctionName="ClothesManamentModel.Store.SP_GetFavoriteProducts" >
-          <ResultMapping>
-              <ComplexTypeMapping TypeName="ClothesManamentModel.SP_GetProductOfCategory_Result">
-                <ScalarProperty Name="id" ColumnName="id" />
-                <ScalarProperty Name="title" ColumnName="title" />
-                <ScalarProperty Name="price" ColumnName="price" />
-                <ScalarProperty Name="thumnail" ColumnName="thumnail" />
-                <ScalarProperty Name="isLike" ColumnName="isLike" />
-                <ScalarProperty Name="promotion" ColumnName="promotion" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
           </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

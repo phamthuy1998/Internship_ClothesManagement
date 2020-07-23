@@ -220,6 +220,9 @@
     <Compile Include="SP_GetBranch_Result.cs">
       <DependentUpon>ClothesManamentModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="SP_GetColorsOfProduct_Result.cs">
+      <DependentUpon>ClothesManamentModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="SP_GetProductCategory_Result.cs">
       <DependentUpon>ClothesManamentModel.tt</DependentUpon>
     </Compile>
@@ -247,6 +250,12 @@
     <Compile Include="SP_GetProviders_Result.cs">
       <DependentUpon>ClothesManamentModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="SP_GetSizesColorsOfProduct_Result.cs">
+      <DependentUpon>ClothesManamentModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SP_GetSizesOfProduct_Result.cs">
+      <DependentUpon>ClothesManamentModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="sp_helpdiagramdefinition1_Result.cs">
       <DependentUpon>ClothesManamentModel.tt</DependentUpon>
     </Compile>
@@ -257,6 +266,9 @@
       <DependentUpon>ClothesManamentModel.tt</DependentUpon>
     </Compile>
     <Compile Include="sp_helpdiagrams_Result.cs">
+      <DependentUpon>ClothesManamentModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="sysdiagram.cs">
       <DependentUpon>ClothesManamentModel.tt</DependentUpon>
     </Compile>
   </ItemGroup>

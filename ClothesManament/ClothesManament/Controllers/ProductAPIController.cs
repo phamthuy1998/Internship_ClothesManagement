@@ -137,6 +137,9 @@ namespace ClothesManament.Controllers
             var productDetail = await Task.Run(() => entities.SP_GetProductDetail(productID, accountId).FirstOrDefault());
             var listImage = await Task.Run(() => entities.SP_ImagesOfProduct(productID).ToList());
             var providerDetail = await Task.Run(() => entities.SP_GetProviderDetail(productDetail.providerId).FirstOrDefault());
+            var colors = await Task.Run(() => entities.SP_GetColorsOfProduct(productDetail.providerId).ToList());
+            var sizes = await Task.Run(() => entities.SP_GetSizesOfProduct(productDetail.providerId).ToList());
+            var colorsSizes = await Task.Run(() => entities.SP_GetSizesColorsOfProduct(productDetail.providerId).ToList());
 
             return new ResponseObjectModel<ProductDetail>()
             {
@@ -159,8 +162,10 @@ namespace ClothesManament.Controllers
                     addDate = productDetail.addDate,
                     isLike = productDetail.isLike,
                     provider = providerDetail,
-                    images = listImage
-
+                    images = listImage,
+                    colors = colors,
+                    sizes = sizes,
+                    sizesColors = colorsSizes
                 }
             };
         }

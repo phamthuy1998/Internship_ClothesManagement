@@ -25,5 +25,9 @@ namespace ClothesManament.Models
         public SP_GetProviderDetail_Result1 provider { get; set; }
 
         public List<String> images { set; get; }
+        public List<SP_GetColorsOfProduct_Result> colors { set; get; }
+        public List<SP_GetSizesOfProduct_Result> sizes { set; get; }
+        public List<SP_GetSizesColorsOfProduct_Result> sizesColors { set; get; }
+
     }
 }

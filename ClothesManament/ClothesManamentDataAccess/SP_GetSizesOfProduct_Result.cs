@@ -10,22 +10,11 @@
 namespace ClothesManamentDataAccess
 {
     using System;
-    using System.Collections.Generic;
     
-    public partial class Size
+    public partial class SP_GetSizesOfProduct_Result
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Size()
-        {
-            this.ProductSizeColors = new HashSet<ProductSizeColor>();
-        }
-    
         public int id { get; set; }
         public string sizeName { get; set; }
         public string description { get; set; }
-        public Nullable<int> active { get; set; }
-    
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<ProductSizeColor> ProductSizeColors { get; set; }
     }
 }

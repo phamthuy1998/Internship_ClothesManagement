@@ -12,17 +12,12 @@ namespace ClothesManamentDataAccess
     using System;
     using System.Collections.Generic;
     
-    public partial class ProductSizeColor
+    public partial class sysdiagram
     {
-        public int productID { get; set; }
-        public int sizeId { get; set; }
-        public int colorID { get; set; }
-        public Nullable<int> quantity { get; set; }
-        public string imageUrl { get; set; }
-        public Nullable<int> active { get; set; }
-    
-        public virtual Color Color { get; set; }
-        public virtual Product Product { get; set; }
-        public virtual Size Size { get; set; }
+        public string name { get; set; }
+        public int principal_id { get; set; }
+        public int diagram_id { get; set; }
+        public Nullable<int> version { get; set; }
+        public byte[] definition { get; set; }
     }
 }

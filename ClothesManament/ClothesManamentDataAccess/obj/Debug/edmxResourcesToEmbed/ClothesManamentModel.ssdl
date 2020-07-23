@@ -113,7 +113,7 @@
     <Property Name="providerId" Type="int" />
     <Property Name="thumnail" Type="nvarchar" MaxLength="200" />
     <Property Name="isNew" Type="int" />
-    <Property Name="addDate" Type="date" />
+    <Property Name="addDate" Type="date" Nullable="false" />
     <Property Name="sold" Type="int" />
   </EntityType>
   <EntityType Name="ProductSizeColor">
@@ -126,7 +126,8 @@
     <Property Name="sizeId" Type="int" Nullable="false" />
     <Property Name="colorID" Type="int" Nullable="false" />
     <Property Name="quantity" Type="int" />
-    <Property Name="imageUrl" Type="int" />
+    <Property Name="imageUrl" Type="nvarchar" MaxLength="200" />
+    <Property Name="active" Type="int" />
   </EntityType>
   <EntityType Name="Promotion">
     <Key>
@@ -174,9 +175,18 @@
     </Key>
     <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="sizeName" Type="nvarchar" MaxLength="50" />
-    <Property Name="categoryId" Type="int" />
     <Property Name="description" Type="nvarchar" MaxLength="200" />
     <Property Name="active" Type="int" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="principal_id" Type="int" Nullable="false" />
+    <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="version" Type="int" />
+    <Property Name="definition" Type="varbinary(max)" />
   </EntityType>
   <Association Name="FK_Account_Employee">
     <End Role="Employee" Type="Self.Employee" Multiplicity="0..1" />
@@ -411,6 +421,9 @@
     <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
     <Parameter Name="owner_id" Type="int" Mode="In" />
   </Function>
+  <Function Name="SP_GetColorsOfProduct" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="productId" Type="int" Mode="In" />
+  </Function>
   <Function Name="SP_GetFavoriteProducts" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="currentPage" Type="int" Mode="In" />
     <Parameter Name="PageSize" Type="int" Mode="In" />
@@ -436,6 +449,12 @@
     <Parameter Name="providerId" Type="int" Mode="In" />
   </Function>
   <Function Name="SP_GetProviders" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="SP_GetSizesColorsOfProduct" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="productId" Type="int" Mode="In" />
+  </Function>
+  <Function Name="SP_GetSizesOfProduct" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="productId" Type="int" Mode="In" />
+  </Function>
   <Function Name="sp_helpdiagramdefinition" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
     <Parameter Name="owner_id" Type="int" Mode="In" />
@@ -514,6 +533,7 @@
     <EntitySet Name="Provider" EntityType="Self.Provider" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Role" EntityType="Self.Role" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Size" EntityType="Self.Size" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
     <AssociationSet Name="FK_Account_Employee" Association="Self.FK_Account_Employee">
       <End Role="Employee" EntitySet="Employee" />
       <End Role="Account" EntitySet="Account" />

@@ -41,6 +41,7 @@ namespace ClothesManamentDataAccess
         public virtual DbSet<Provider> Providers { get; set; }
         public virtual DbSet<Role> Roles { get; set; }
         public virtual DbSet<Size> Sizes { get; set; }
+        public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
     
         public virtual int sp_alterdiagram(string diagramname, Nullable<int> owner_id, Nullable<int> version, byte[] definition)
         {
@@ -655,6 +656,33 @@ namespace ClothesManamentDataAccess
                 new ObjectParameter("AccountID", typeof(int));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_GetProductOfCategory_Result>("SP_GetFavoriteProducts", currentPageParameter, pageSizeParameter, accountIDParameter);
+        }
+    
+        public virtual ObjectResult<SP_GetColorsOfProduct_Result> SP_GetColorsOfProduct(Nullable<int> productId)
+        {
+            var productIdParameter = productId.HasValue ?
+                new ObjectParameter("productId", productId) :
+                new ObjectParameter("productId", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_GetColorsOfProduct_Result>("SP_GetColorsOfProduct", productIdParameter);
+        }
+    
+        public virtual ObjectResult<SP_GetSizesColorsOfProduct_Result> SP_GetSizesColorsOfProduct(Nullable<int> productId)
+        {
+            var productIdParameter = productId.HasValue ?
+                new ObjectParameter("productId", productId) :
+                new ObjectParameter("productId", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_GetSizesColorsOfProduct_Result>("SP_GetSizesColorsOfProduct", productIdParameter);
+        }
+    
+        public virtual ObjectResult<SP_GetSizesOfProduct_Result> SP_GetSizesOfProduct(Nullable<int> productId)
+        {
+            var productIdParameter = productId.HasValue ?
+                new ObjectParameter("productId", productId) :
+                new ObjectParameter("productId", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_GetSizesOfProduct_Result>("SP_GetSizesOfProduct", productIdParameter);
         }
     }
 }

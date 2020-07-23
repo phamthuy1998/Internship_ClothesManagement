@@ -10,19 +10,14 @@
 namespace ClothesManamentDataAccess
 {
     using System;
-    using System.Collections.Generic;
     
-    public partial class ProductSizeColor
+    public partial class SP_GetSizesColorsOfProduct_Result
     {
         public int productID { get; set; }
         public int sizeId { get; set; }
+        public string sizeName { get; set; }
         public int colorID { get; set; }
+        public string colorName { get; set; }
         public Nullable<int> quantity { get; set; }
-        public string imageUrl { get; set; }
-        public Nullable<int> active { get; set; }
-    
-        public virtual Color Color { get; set; }
-        public virtual Product Product { get; set; }
-        public virtual Size Size { get; set; }
     }
 }

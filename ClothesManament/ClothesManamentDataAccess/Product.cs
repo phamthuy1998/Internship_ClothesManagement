@@ -34,7 +34,7 @@ namespace ClothesManamentDataAccess
         public Nullable<int> providerId { get; set; }
         public string thumnail { get; set; }
         public Nullable<int> isNew { get; set; }
-        public Nullable<System.DateTime> addDate { get; set; }
+        public System.DateTime addDate { get; set; }
         public Nullable<int> sold { get; set; }
     
         public virtual Category Category { get; set; }
