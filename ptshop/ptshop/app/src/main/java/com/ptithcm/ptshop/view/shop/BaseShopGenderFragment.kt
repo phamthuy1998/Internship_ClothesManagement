@@ -57,10 +57,10 @@ abstract class BaseShopGenderFragment : BaseFragment<FragmentBaseShopGenderBindi
 
     override fun bindViewModel() {
         super.bindViewModel()
-        carouselViewModel.carouselLiveData.observe(this, Observer {
-            initProgressLine(it.count)
-            carouselsAdapter.setCarousels(it.results)
-        })
+//        carouselViewModel.carouselLiveData.observe(this, Observer {
+//            initProgressLine(it.count)
+//            carouselsAdapter.setCarousels(it.results)
+//        })
 
         viewModel.networkState.observe(this, Observer {
             when (it) {
@@ -85,19 +85,19 @@ abstract class BaseShopGenderFragment : BaseFragment<FragmentBaseShopGenderBindi
     }
 
     private fun initAdapter() {
-        carouselsAdapter = CarouselRecyclerViewAdapter(arrayListOf(), this::listenerCarousel)
-        viewBinding.rvCarousel.layoutManager =
-            LinearLayoutManager(requireContext(), RecyclerView.HORIZONTAL, false)
-        viewBinding.rvCarousel.adapter = carouselsAdapter
-        val snapHelperCenter = LinearSnapHelper()
-        snapHelperCenter.attachToRecyclerView(viewBinding.rvCarousel)
-        viewBinding.rvCarousel.addOnScrollListener(object : RecyclerView.OnScrollListener() {
-
-            override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
-                super.onScrollStateChanged(recyclerView, newState)
-                handleProgressLine(recyclerView, snapHelperCenter)
-            }
-        })
+//        carouselsAdapter = CarouselRecyclerViewAdapter(arrayListOf(), this::listenerCarousel)
+//        viewBinding.rvCarousel.layoutManager =
+//            LinearLayoutManager(requireContext(), RecyclerView.HORIZONTAL, false)
+//        viewBinding.rvCarousel.adapter = carouselsAdapter
+//        val snapHelperCenter = LinearSnapHelper()
+//        snapHelperCenter.attachToRecyclerView(viewBinding.rvCarousel)
+//        viewBinding.rvCarousel.addOnScrollListener(object : RecyclerView.OnScrollListener() {
+//
+//            override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
+//                super.onScrollStateChanged(recyclerView, newState)
+//                handleProgressLine(recyclerView, snapHelperCenter)
+//            }
+//        })
     }
 
     private fun initCategoriesAdapter() {

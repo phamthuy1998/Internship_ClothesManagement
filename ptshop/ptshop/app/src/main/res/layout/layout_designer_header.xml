@@ -18,20 +18,20 @@
             app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@drawable/designer_banner" />
 
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/tvViewAllDesigners"
-            style="@style/Size13.SemiBold"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@drawable/bg_border_top_bot"
-            android:drawableEnd="@drawable/ic_right_black_24dp"
-            android:gravity="center_vertical"
-            android:padding="@dimen/layout_margin_16dp"
-            android:text="@string/view_all_designers"
-            android:textAlignment="textStart"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/ivHeader"
-            tools:ignore="AllCaps,RtlCompat" />
+<!--        <androidx.appcompat.widget.AppCompatTextView-->
+<!--            android:id="@+id/tvViewAllDesigners"-->
+<!--            style="@style/Size13.SemiBold"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:background="@drawable/bg_border_top_bot"-->
+<!--            android:drawableEnd="@drawable/ic_right_black_24dp"-->
+<!--            android:gravity="center_vertical"-->
+<!--            android:padding="@dimen/layout_margin_16dp"-->
+<!--            android:text="@string/view_all_designers"-->
+<!--            android:textAlignment="textStart"-->
+<!--            app:layout_constraintStart_toStartOf="parent"-->
+<!--            app:layout_constraintTop_toBottomOf="@id/ivHeader"-->
+<!--            tools:ignore="AllCaps,RtlCompat" />-->
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

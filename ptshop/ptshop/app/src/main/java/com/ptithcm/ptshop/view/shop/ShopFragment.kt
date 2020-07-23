@@ -48,8 +48,8 @@ class ShopFragment : BaseFragment<FragmentShopBinding>(){
         viewBinding.tabLayout.setupWithViewPager(viewBinding.viewPager)
         viewBinding.tabLayout.getTabAt(0)?.text = getString(R.string.women)
         viewBinding.tabLayout.getTabAt(1)?.text = getString(R.string.men)
-        viewBinding.tabLayout.getTabAt(2)?.text = getString(R.string.kids)
-        viewBinding.tabLayout.getTabAt(3)?.text = getString(R.string.unisex)
+//        viewBinding.tabLayout.getTabAt(2)?.text = getString(R.string.kids)
+        viewBinding.tabLayout.getTabAt(2)?.text = getString(R.string.unisex)
     }
 
     private fun setupToolbar() {

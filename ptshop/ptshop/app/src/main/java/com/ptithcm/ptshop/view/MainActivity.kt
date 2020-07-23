@@ -84,7 +84,7 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
         val bottomNavigationView = findViewById<BottomNavigationView>(R.id.btnNav)
 
         val navGraphIds = listOf(
-            R.navigation.nav_home,
+//            R.navigation.nav_home,
             R.navigation.nav_shop,
             R.navigation.nav_designer,
             R.navigation.nav_wish,
