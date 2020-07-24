@@ -13,6 +13,9 @@ bin/
 gen/
 out/
 obj/
+/.vs/ClothesManament
+/.vs/config
+
 
 # Gradle files
 .gradle/
@@ -69,5 +72,3 @@ fastlane/Preview.html
 fastlane/screenshots
 fastlane/test_output
 fastlane/readme.md
-
-App.config
