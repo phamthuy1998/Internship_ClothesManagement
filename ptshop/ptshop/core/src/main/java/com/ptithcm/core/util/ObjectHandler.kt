@@ -10,7 +10,7 @@ object ObjectHandler {
         CoreApplication.instance.prodWishList
     }
 
-    fun isLogin() = CoreApplication.instance.profile != null
+    fun isLogin() = CoreApplication.instance.account != null
 
     // start section shopping bag
 

@@ -109,17 +109,6 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
     }
 
     fun updateUIBottomNav() {
-        val isBrandProfile = CoreApplication.instance.profile?.user?.brand != null
-        viewBinding.btnNav.updateItem(isBrandProfile)
-        if (isBrandProfile) {
-            viewBinding.btnNav.itemIconTintList = null
-            viewBinding.btnNav.menu.apply {
-                getItem(2).setOnMenuItemClickListener {
-                    checkPermission()
-                    true
-                }
-            }
-        }
         viewBinding.btnNav.disableLongClick()
     }
 

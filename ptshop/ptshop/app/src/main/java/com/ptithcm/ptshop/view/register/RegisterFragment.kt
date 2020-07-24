@@ -12,6 +12,7 @@ import androidx.core.content.res.ResourcesCompat
 import androidx.core.os.bundleOf
 import androidx.lifecycle.Observer
 import com.google.android.material.textfield.TextInputEditText
+import com.ptithcm.core.CoreApplication
 import com.ptithcm.core.model.Account
 import com.ptithcm.ptshop.R
 import com.ptithcm.ptshop.base.BaseActivity
@@ -82,7 +83,7 @@ class RegisterFragment : BaseFragment<FragmentRegisterBinding>() {
         authViewModel.signUpLiveData.observe(this, Observer {
             if (it != null) {
                 if (it.status == true) {
-//                    it.data?.let { it1 -> CoreApplication.instance.saveAccount(it1) }
+                    it.data?.let { it1 -> CoreApplication.instance.saveAccount(it1) }
                     messageHandler?.runMessageHandler(getString(R.string.sign_up_success))
                     viewBinding.btnRegister.isLoading = false
                     finishRegister()

@@ -27,10 +27,10 @@ fun initToolBar(
         if (hasBackRight) this.visible() else this.gone()
     }
     toolbar?.findViewById<AppCompatImageButton>(R.id.ivLeft)?.apply {
-        if (hasLeft && CoreApplication.instance.profile?.user?.brand == null) this.visible() else this.gone()
+        if (hasLeft) this.visible() else this.gone()
     }
     toolbar?.findViewById<AppCompatImageButton>(R.id.ivRight)?.apply {
-        if ((hasRight && CoreApplication.instance.profile?.user?.brand == null) or isProductPage) this.visible() else this.gone()
+        if ((hasRight) or isProductPage) this.visible() else this.gone()
     }
     toolbar?.findViewById<AppCompatTextView>(R.id.tvCancelToolbar)?.apply {
         if (hasTextLeft) this.visible() else this.gone()
@@ -42,9 +42,7 @@ fun initToolBar(
         if (hasCloseButton) this.visible() else this.gone()
     }
     toolbar?.findViewById<AppCompatTextView>(R.id.tvCount)?.apply {
-        if (CoreApplication.instance.profile?.user?.brand != null) this.gone() else this.visible()
         when {
-            CoreApplication.instance.profile?.user?.brand != null -> gone() // if account is a brand
             // rest for account is user
             !hasCount || hasCount && !hasRight -> gone()
             hasCount -> visible()

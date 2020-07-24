@@ -40,6 +40,7 @@ open class CoreApplication : Application(){
 
         instance = this
         profile = prefsUtil.profile
+        account = prefsUtil.account
         currency = prefsUtil.currency.checkType()
         basket = prefsUtil.basket
         notLoginBasket = prefsUtil.notLoginBasket ?: arrayListOf()

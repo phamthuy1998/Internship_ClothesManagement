@@ -180,7 +180,7 @@ class SearchResultFragment : BaseFragment<FragmentSearchResultBinding>() {
 //    }
 
     private fun listenerAddProduct(product: Product?) {
-        if (CoreApplication.instance.profile != null) {
+        if (CoreApplication.instance.account != null) {
             wishListViewModel.addToWishList(product?.id)
         } else {
             messageHandler?.runMessageErrorHandler(getString(R.string.error_add_product))

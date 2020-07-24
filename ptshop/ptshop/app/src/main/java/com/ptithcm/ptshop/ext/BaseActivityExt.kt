@@ -100,28 +100,11 @@ fun BaseActivity<*>.goToShop() {
         setResult(Activity.RESULT_OK)
         finish()
     }
-    (this as? MainActivity)?.apply {
-        val user = CoreApplication.instance.profile?.user
-        if (user?.brand != null) {
-            // for brand account
-            this.viewBinding.btnNav.selectedItemId = R.id.nav_designer
-        } else {
-            // for normal user account
-            this.viewBinding.btnNav.selectedItemId = R.id.nav_shop
-        }
-    }
+    (this as? MainActivity)?.viewBinding?.btnNav?.selectedItemId = R.id.nav_shop
 }
 
 fun MainActivity.goToShopFromWishList() {
-    // temporary
-    val user = CoreApplication.instance.profile?.user
-    if (user?.brand != null) {
-        // for brand account
-        btnNav.selectedItemId = R.id.nav_designer
-    } else {
-        // for normal user account
-        btnNav.selectedItemId = R.id.nav_shop
-    }
+    btnNav.selectedItemId = R.id.nav_designer
 }
 
 fun MainActivity.removeFromWishListAfterCheckout(isGetWishList: Boolean) {
