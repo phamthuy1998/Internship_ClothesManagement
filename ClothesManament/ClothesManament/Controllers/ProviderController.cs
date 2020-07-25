@@ -12,11 +12,11 @@ namespace ClothesManagement.Controllers
     public class ProviderController : ApiController
     {
 
-        ClothesManamentEntities entities;
+        ClothesEntities entities;
 
         public ProviderController()
         {
-            entities = new ClothesManamentEntities();
+            entities = new ClothesEntities();
         }
 
         [Route("api/providers")]
@@ -32,7 +32,7 @@ namespace ClothesManagement.Controllers
         [HttpGet]
         public async Task<IHttpActionResult> getProviderDetail(int providerId)
         {
-            return Ok(await Task.Run(() => entities.SP_GetProviderDetail(providerId)));
+            return Ok(await Task.Run(() => entities.SP_GetProviderDetail(providerId).FirstOrDefault()));
         }
     }
 }

@@ -11,9 +11,7 @@ namespace ClothesManamentDataAccess
 {
     using System;
     
-    public partial class sp_helpdiagramdefinition1_Result
+    public partial class ProductDetail
     {
-        public Nullable<int> version { get; set; }
-        public byte[] definition { get; set; }
     }
 }

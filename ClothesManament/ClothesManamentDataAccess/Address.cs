@@ -10,11 +10,17 @@
 namespace ClothesManamentDataAccess
 {
     using System;
+    using System.Collections.Generic;
     
-    public partial class SP_GetBranch_Result
+    public partial class Address
     {
         public int id { get; set; }
-        public string brandName { get; set; }
-        public string infomation { get; set; }
+        public Nullable<int> accountId { get; set; }
+        public string address1 { get; set; }
+        public string name { get; set; }
+        public string phone { get; set; }
+        public Nullable<int> active { get; set; }
+    
+        public virtual Account Account { get; set; }
     }
 }

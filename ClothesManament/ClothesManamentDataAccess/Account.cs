@@ -17,6 +17,7 @@ namespace ClothesManamentDataAccess
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Account()
         {
+            this.Addresses = new HashSet<Address>();
             this.Invoices = new HashSet<Invoice>();
             this.Products = new HashSet<Product>();
         }
@@ -33,6 +34,8 @@ namespace ClothesManamentDataAccess
         public Nullable<int> active { get; set; }
     
         public virtual Employee Employee { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Address> Addresses { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Invoice> Invoices { get; set; }
         public virtual Role Role { get; set; }

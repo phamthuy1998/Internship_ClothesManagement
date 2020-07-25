@@ -11,48 +11,61 @@ namespace ClothesManament.Controllers
 {
     public class ProductAPIController : ApiController
     {
-        ClothesManamentEntities entities;
+        ClothesEntities entities;
 
         public ProductAPIController()
         {
-            entities = new ClothesManamentEntities();
+            entities = new ClothesEntities();
         }
 
         [Route("api/allProductsOfCategory")]
         [AcceptVerbs("GET")]
         [HttpGet]
-        public async Task<IHttpActionResult> getProductListPaging(int pageSize, int pageNumber, int categoryID, int? accountId = null)
+        public async Task<ListResponse<SP_GetProductOfCategory_Result>> getProductListPaging(int pageSize, int pageNumber, int categoryID, int? accountId = null)
         {
             if (pageSize <= 0 || pageSize > 100) pageSize = 20;
             if (pageNumber <= 0) pageNumber = 1;
-            return Ok(await Task.Run(() => entities.SP_GetProductOfCategory(categoryID, pageNumber, pageSize, accountId)));
+            var listResponse = (await Task.Run(() => entities.SP_GetProductOfCategory(categoryID, pageNumber, pageSize, accountId).ToList()));
+            var count = (await Task.Run(() => entities.SP_GetProductOfCategoryCount(categoryID).FirstOrDefault()));
+            return new ListResponse<SP_GetProductOfCategory_Result>() {
+                count = count,
+                results = listResponse
+            };
+
         }
 
         [Route("api/allProductsOfProvider")]
         [AcceptVerbs("GET")]
         [HttpGet]
-        public async Task<IHttpActionResult> getProductProviderListPaging(int? pageSize = null, int? pageNumber = null, int? providerId = null, int? accountId = null)
+        public async Task<ListResponse<SP_GetProductsOfProvider_Result>> getProductProviderListPaging(int? pageSize = null, int? pageNumber = null, int? providerId = null, int? accountId = null)
         {
             if (pageSize <= 0 || pageSize > 100 || pageSize == null) pageSize = 20;
             if (pageNumber <= 0 || pageNumber == null) pageNumber = 1;
             if (providerId == null) providerId = 1;
-            return Ok(await Task.Run(() => entities.SP_GetProductsOfProvider(providerId, pageNumber, pageSize, accountId)));
+
+            var listResponse = (await Task.Run(() => entities.SP_GetProductsOfProvider(providerId, pageNumber, pageSize, accountId).ToList()));
+            var count = (await Task.Run(() => entities.SP_GetProductsOfProviderCount(providerId).FirstOrDefault()));
+            return new ListResponse<SP_GetProductsOfProvider_Result>()
+            {
+                count = count,
+                results = listResponse
+            };
         }
 
         [Route("api/favoriteProducts")]
         [AcceptVerbs("GET")]
         [HttpGet]
-        public async Task<ResponseListModel<SP_GetProductOfCategory_Result>> getPagingFavoriteProduct(int? pageSize = null, int? pageNumber = null, int? accountId = null)
+        public async Task<ResponseListModel<SP_GetFavoriteProducts_Result>> getPagingFavoriteProduct(int? pageSize = null, int? pageNumber = null, int? accountId = null)
         {
             if (pageSize <= 0 || pageSize > 100 || pageSize == null) pageSize = 20;
             if (pageNumber <= 0 || pageNumber == null) pageNumber = 1;
 
             if (accountId == null)
             {
-                return new ResponseListModel<SP_GetProductOfCategory_Result>()
+                return new ResponseListModel<SP_GetFavoriteProducts_Result>()
                 {
-                    message = "Danh sách sản phẩm yêu thích!",
-                    status = true,
+                    message = "Vui lòng đăng nhập để sử dụng tính năng này!",
+                    status = false,
                     code = 200,
                     data = null
                 };
@@ -60,9 +73,9 @@ namespace ClothesManament.Controllers
             else
             {
                 var products = await Task.Run(() => entities.SP_GetFavoriteProducts(pageNumber, pageSize, accountId).ToList());
-                return new ResponseListModel<SP_GetProductOfCategory_Result>()
+                return new ResponseListModel<SP_GetFavoriteProducts_Result>()
                 {
-                    message = "Danh sách sản phẩm yêu thích!",
+                    message = "Danh sách sản phẩm yêu thích",
                     status = true,
                     code = 200,
                     data = products
@@ -119,34 +132,31 @@ namespace ClothesManament.Controllers
         [Route("api/productDetail")]
         [AcceptVerbs("GET")]
         [HttpGet]
-        public async Task<ResponseObjectModel<ProductDetail>> getProductInfo([FromUri]int productID, int? accountId = null)
+        public async Task<ResponseObjectModel<Models.ProductDetail>> getProductInfo([FromUri]int productID, int? accountId = null)
         {
-            //return entities.Products.FirstOrDefault(x => x.id == productID);
-            var result = entities.Products.FirstOrDefault(x => x.id == productID);
-
-            if (result == null)
+            var productDetail = entities.SP_GetProductInfoDetail(productID, accountId).FirstOrDefault();
+            if (productDetail == null)
             {
-                return new ResponseObjectModel<ProductDetail>()
+                return new ResponseObjectModel<Models.ProductDetail>()
                 {
-                    message = "Product not found.",
+                    message = "Product info",
                     status = false,
-                    code = 404
+                    code = 200,
+                    data = null
                 };
             }
-
-            var productDetail = await Task.Run(() => entities.SP_GetProductDetail(productID, accountId).FirstOrDefault());
             var listImage = await Task.Run(() => entities.SP_ImagesOfProduct(productID).ToList());
             var providerDetail = await Task.Run(() => entities.SP_GetProviderDetail(productDetail.providerId).FirstOrDefault());
             var colors = await Task.Run(() => entities.SP_GetColorsOfProduct(productDetail.providerId).ToList());
             var sizes = await Task.Run(() => entities.SP_GetSizesOfProduct(productDetail.providerId).ToList());
             var colorsSizes = await Task.Run(() => entities.SP_GetSizesColorsOfProduct(productDetail.providerId).ToList());
 
-            return new ResponseObjectModel<ProductDetail>()
+            return new ResponseObjectModel<Models.ProductDetail>()
             {
                 message = "Product info",
                 status = true,
                 code = 200,
-                data = new ProductDetail()
+                data = new Models.ProductDetail()
                 {
                     id = productDetail.id,
                     title = productDetail.title,
@@ -161,6 +171,7 @@ namespace ClothesManament.Controllers
                     isNew = productDetail.isNew,
                     addDate = productDetail.addDate,
                     isLike = productDetail.isLike,
+                    promotion = productDetail.promotion,
                     provider = providerDetail,
                     images = listImage,
                     colors = colors,

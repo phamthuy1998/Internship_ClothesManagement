@@ -10,21 +10,13 @@
 namespace ClothesManamentDataAccess
 {
     using System;
-    using System.Collections.Generic;
     
-    public partial class Gender
+    public partial class SP_GetAllAddress_Result
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Gender()
-        {
-            this.Categories = new HashSet<Category>();
-        }
-    
         public int id { get; set; }
+        public Nullable<int> accountId { get; set; }
+        public string address { get; set; }
         public string name { get; set; }
-        public Nullable<int> active { get; set; }
-    
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Category> Categories { get; set; }
+        public string phone { get; set; }
     }
 }

@@ -25,7 +25,6 @@ namespace ClothesManamentDataAccess
         public Nullable<System.DateTime> buyDate { get; set; }
         public string name { get; set; }
         public string phone { get; set; }
-        public string email { get; set; }
         public string address { get; set; }
         public string note { get; set; }
         public Nullable<int> userID { get; set; }

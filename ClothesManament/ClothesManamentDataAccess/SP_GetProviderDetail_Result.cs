@@ -16,5 +16,6 @@ namespace ClothesManamentDataAccess
         public int id { get; set; }
         public string brandName { get; set; }
         public string infomation { get; set; }
+        public string imageUrl { get; set; }
     }
 }

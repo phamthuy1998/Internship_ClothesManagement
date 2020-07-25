@@ -11,7 +11,7 @@ namespace ClothesManamentDataAccess
 {
     using System;
     
-    public partial class SP_GetProductInfoByID_Result
+    public partial class SP_GetProductInfoDetail_Result
     {
         public int id { get; set; }
         public string title { get; set; }
@@ -21,7 +21,11 @@ namespace ClothesManamentDataAccess
         public Nullable<int> sold { get; set; }
         public Nullable<int> rating { get; set; }
         public Nullable<int> active { get; set; }
-        public Nullable<int> brandId { get; set; }
+        public Nullable<int> providerId { get; set; }
         public string thumnail { get; set; }
+        public Nullable<int> isNew { get; set; }
+        public System.DateTime addDate { get; set; }
+        public int isLike { get; set; }
+        public Nullable<double> promotion { get; set; }
     }
 }

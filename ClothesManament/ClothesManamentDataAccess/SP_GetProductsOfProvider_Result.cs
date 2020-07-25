@@ -11,20 +11,16 @@ namespace ClothesManamentDataAccess
 {
     using System;
     
-    public partial class SP_GetProductDetail_Result
+    public partial class SP_GetProductsOfProvider_Result
     {
         public int id { get; set; }
         public string title { get; set; }
         public string detail { get; set; }
-        public Nullable<double> price { get; set; }
-        public Nullable<int> categoryID { get; set; }
-        public Nullable<int> sold { get; set; }
         public Nullable<int> rating { get; set; }
-        public Nullable<int> active { get; set; }
+        public Nullable<int> sold { get; set; }
+        public Nullable<double> price { get; set; }
         public string thumnail { get; set; }
-        public Nullable<int> isNew { get; set; }
-        public Nullable<System.DateTime> addDate { get; set; }
         public int isLike { get; set; }
-        public Nullable<int> providerId { get; set; }
+        public Nullable<double> promotion { get; set; }
     }
 }

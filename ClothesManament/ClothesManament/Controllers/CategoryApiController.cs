@@ -13,10 +13,10 @@ namespace ClothesManagement.Controllers
     public class CategoryApiController : ApiController
     {
 
-        private ClothesManamentEntities entities;
+        private ClothesEntities entities;
         public CategoryApiController()
         {
-            entities = new ClothesManamentEntities();
+            entities = new ClothesEntities();
         }
 
         // GET api/Account/ManageInfo?returnUrl=%2F&generateState=true

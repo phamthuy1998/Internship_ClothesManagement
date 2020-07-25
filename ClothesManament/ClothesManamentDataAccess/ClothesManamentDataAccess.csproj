@@ -54,6 +54,7 @@
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Data.Entity" />
     <Reference Include="System.Net.Http.Formatting, Version=5.2.7.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.5.2.7\lib\net45\System.Net.Http.Formatting.dll</HintPath>
       <Private>True</Private>
@@ -107,7 +108,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Account.cs">
-      <DependentUpon>ClothesManamentModel.tt</DependentUpon>
+      <DependentUpon>ClothesEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Address.cs">
+      <DependentUpon>ClothesEntity.tt</DependentUpon>
     </Compile>
     <Compile Include="Areas\HelpPage\ApiDescriptionExtensions.cs" />
     <Compile Include="Areas\HelpPage\App_Start\HelpPageConfig.cs" />
@@ -138,145 +142,118 @@
     <Compile Include="Areas\HelpPage\SampleGeneration\TextSample.cs" />
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
     <Compile Include="Category.cs">
-      <DependentUpon>ClothesManamentModel.tt</DependentUpon>
+      <DependentUpon>ClothesEntity.tt</DependentUpon>
     </Compile>
     <Compile Include="Class1.cs" />
-    <Compile Include="ClothesManamentModel.Context.cs">
+    <Compile Include="ClothesEntity.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>ClothesManamentModel.Context.tt</DependentUpon>
+      <DependentUpon>ClothesEntity.Context.tt</DependentUpon>
     </Compile>
-    <Compile Include="ClothesManamentModel.cs">
+    <Compile Include="ClothesEntity.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>ClothesManamentModel.tt</DependentUpon>
+      <DependentUpon>ClothesEntity.tt</DependentUpon>
     </Compile>
-    <Compile Include="ClothesManamentModel.Designer.cs">
+    <Compile Include="ClothesEntity.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>ClothesManamentModel.edmx</DependentUpon>
+      <DependentUpon>ClothesEntity.edmx</DependentUpon>
     </Compile>
     <Compile Include="Color.cs">
-      <DependentUpon>ClothesManamentModel.tt</DependentUpon>
+      <DependentUpon>ClothesEntity.tt</DependentUpon>
     </Compile>
     <Compile Include="Employee.cs">
-      <DependentUpon>ClothesManamentModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Gender.cs">
-      <DependentUpon>ClothesManamentModel.tt</DependentUpon>
+      <DependentUpon>ClothesEntity.tt</DependentUpon>
     </Compile>
     <Compile Include="getCategoryByGender_Result.cs">
-      <DependentUpon>ClothesManamentModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="getCategoryByType_Result.cs">
-      <DependentUpon>ClothesManamentModel.tt</DependentUpon>
+      <DependentUpon>ClothesEntity.tt</DependentUpon>
     </Compile>
     <Compile Include="getCategoryGender_Result.cs">
-      <DependentUpon>ClothesManamentModel.tt</DependentUpon>
+      <DependentUpon>ClothesEntity.tt</DependentUpon>
     </Compile>
     <Compile Include="Image.cs">
-      <DependentUpon>ClothesManamentModel.tt</DependentUpon>
+      <DependentUpon>ClothesEntity.tt</DependentUpon>
     </Compile>
     <Compile Include="Invoice.cs">
-      <DependentUpon>ClothesManamentModel.tt</DependentUpon>
+      <DependentUpon>ClothesEntity.tt</DependentUpon>
     </Compile>
     <Compile Include="InvoiceItem.cs">
-      <DependentUpon>ClothesManamentModel.tt</DependentUpon>
+      <DependentUpon>ClothesEntity.tt</DependentUpon>
     </Compile>
     <Compile Include="Product.cs">
-      <DependentUpon>ClothesManamentModel.tt</DependentUpon>
+      <DependentUpon>ClothesEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ProductDetail.cs">
+      <DependentUpon>ClothesEntity.tt</DependentUpon>
     </Compile>
     <Compile Include="ProductSizeColor.cs">
-      <DependentUpon>ClothesManamentModel.tt</DependentUpon>
+      <DependentUpon>ClothesEntity.tt</DependentUpon>
     </Compile>
     <Compile Include="Promotion.cs">
-      <DependentUpon>ClothesManamentModel.tt</DependentUpon>
+      <DependentUpon>ClothesEntity.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Provider.cs">
-      <DependentUpon>ClothesManamentModel.tt</DependentUpon>
+      <DependentUpon>ClothesEntity.tt</DependentUpon>
     </Compile>
     <Compile Include="Role.cs">
-      <DependentUpon>ClothesManamentModel.tt</DependentUpon>
+      <DependentUpon>ClothesEntity.tt</DependentUpon>
     </Compile>
     <Compile Include="Size.cs">
-      <DependentUpon>ClothesManamentModel.tt</DependentUpon>
+      <DependentUpon>ClothesEntity.tt</DependentUpon>
     </Compile>
     <Compile Include="SPGetAccounByUsername_Result.cs">
-      <DependentUpon>ClothesManamentModel.tt</DependentUpon>
+      <DependentUpon>ClothesEntity.tt</DependentUpon>
     </Compile>
     <Compile Include="SPGetAccountInfoByUserId_Result.cs">
-      <DependentUpon>ClothesManamentModel.tt</DependentUpon>
+      <DependentUpon>ClothesEntity.tt</DependentUpon>
     </Compile>
     <Compile Include="SPGetAccountInfoByUsername_Result.cs">
-      <DependentUpon>ClothesManamentModel.tt</DependentUpon>
+      <DependentUpon>ClothesEntity.tt</DependentUpon>
     </Compile>
     <Compile Include="SPGetAccountInfoUserID_Result.cs">
-      <DependentUpon>ClothesManamentModel.tt</DependentUpon>
+      <DependentUpon>ClothesEntity.tt</DependentUpon>
     </Compile>
     <Compile Include="SPGetAccount_Result.cs">
-      <DependentUpon>ClothesManamentModel.tt</DependentUpon>
+      <DependentUpon>ClothesEntity.tt</DependentUpon>
     </Compile>
-    <Compile Include="SP_GetBranch_Result.cs">
-      <DependentUpon>ClothesManamentModel.tt</DependentUpon>
+    <Compile Include="SP_GetAllAddress_Result.cs">
+      <DependentUpon>ClothesEntity.tt</DependentUpon>
     </Compile>
     <Compile Include="SP_GetColorsOfProduct_Result.cs">
-      <DependentUpon>ClothesManamentModel.tt</DependentUpon>
+      <DependentUpon>ClothesEntity.tt</DependentUpon>
     </Compile>
-    <Compile Include="SP_GetProductCategory_Result.cs">
-      <DependentUpon>ClothesManamentModel.tt</DependentUpon>
+    <Compile Include="SP_GetFavoriteProducts_Result.cs">
+      <DependentUpon>ClothesEntity.tt</DependentUpon>
     </Compile>
-    <Compile Include="SP_GetProductDetail_Result.cs">
-      <DependentUpon>ClothesManamentModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="SP_GetProductInfoByID_Result.cs">
-      <DependentUpon>ClothesManamentModel.tt</DependentUpon>
+    <Compile Include="SP_GetProductInfoDetail_Result.cs">
+      <DependentUpon>ClothesEntity.tt</DependentUpon>
     </Compile>
     <Compile Include="SP_GetProductOfCategory_Result.cs">
-      <DependentUpon>ClothesManamentModel.tt</DependentUpon>
+      <DependentUpon>ClothesEntity.tt</DependentUpon>
     </Compile>
-    <Compile Include="SP_GetProducts1_Result.cs">
-      <DependentUpon>ClothesManamentModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="SP_GetProducts_Result.cs">
-      <DependentUpon>ClothesManamentModel.tt</DependentUpon>
+    <Compile Include="SP_GetProductsOfProvider_Result.cs">
+      <DependentUpon>ClothesEntity.tt</DependentUpon>
     </Compile>
     <Compile Include="SP_GetProviderDetail_Result.cs">
-      <DependentUpon>ClothesManamentModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="SP_GetProviderDetail_Result1.cs">
-      <DependentUpon>ClothesManamentModel.tt</DependentUpon>
+      <DependentUpon>ClothesEntity.tt</DependentUpon>
     </Compile>
     <Compile Include="SP_GetProviders_Result.cs">
-      <DependentUpon>ClothesManamentModel.tt</DependentUpon>
+      <DependentUpon>ClothesEntity.tt</DependentUpon>
     </Compile>
     <Compile Include="SP_GetSizesColorsOfProduct_Result.cs">
-      <DependentUpon>ClothesManamentModel.tt</DependentUpon>
+      <DependentUpon>ClothesEntity.tt</DependentUpon>
     </Compile>
     <Compile Include="SP_GetSizesOfProduct_Result.cs">
-      <DependentUpon>ClothesManamentModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="sp_helpdiagramdefinition1_Result.cs">
-      <DependentUpon>ClothesManamentModel.tt</DependentUpon>
+      <DependentUpon>ClothesEntity.tt</DependentUpon>
     </Compile>
     <Compile Include="sp_helpdiagramdefinition_Result.cs">
-      <DependentUpon>ClothesManamentModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="sp_helpdiagrams1_Result.cs">
-      <DependentUpon>ClothesManamentModel.tt</DependentUpon>
+      <DependentUpon>ClothesEntity.tt</DependentUpon>
     </Compile>
     <Compile Include="sp_helpdiagrams_Result.cs">
-      <DependentUpon>ClothesManamentModel.tt</DependentUpon>
+      <DependentUpon>ClothesEntity.tt</DependentUpon>
     </Compile>
-    <Compile Include="sysdiagram.cs">
-      <DependentUpon>ClothesManamentModel.tt</DependentUpon>
-    </Compile>
-  </ItemGroup>
-  <ItemGroup>
-    <EntityDeploy Include="ClothesManamentModel.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>ClothesManamentModel.Designer.cs</LastGenOutput>
-    </EntityDeploy>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.Config" />
@@ -299,22 +276,26 @@
     <None Include="Areas\HelpPage\Views\Help\ResourceModel.cshtml" />
     <None Include="Areas\HelpPage\Views\Shared\_Layout.cshtml" />
     <None Include="Areas\HelpPage\Views\_ViewStart.cshtml" />
-    <None Include="ClothesManamentModel.edmx.diagram">
-      <DependentUpon>ClothesManamentModel.edmx</DependentUpon>
+    <EntityDeploy Include="ClothesEntity.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>ClothesEntity.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="ClothesEntity.edmx.diagram">
+      <DependentUpon>ClothesEntity.edmx</DependentUpon>
     </None>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Areas\HelpPage\HelpPage.css" />
-    <Content Include="ClothesManamentModel.Context.tt">
+    <Content Include="ClothesEntity.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>ClothesManamentModel.edmx</DependentUpon>
-      <LastGenOutput>ClothesManamentModel.Context.cs</LastGenOutput>
+      <DependentUpon>ClothesEntity.edmx</DependentUpon>
+      <LastGenOutput>ClothesEntity.Context.cs</LastGenOutput>
     </Content>
-    <Content Include="ClothesManamentModel.tt">
+    <Content Include="ClothesEntity.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>ClothesManamentModel.edmx</DependentUpon>
-      <LastGenOutput>ClothesManamentModel.cs</LastGenOutput>
+      <DependentUpon>ClothesEntity.edmx</DependentUpon>
+      <LastGenOutput>ClothesEntity.cs</LastGenOutput>
     </Content>
   </ItemGroup>
   <ItemGroup>

@@ -11,10 +11,13 @@ namespace ClothesManamentDataAccess
 {
     using System;
     
-    public partial class SP_GetProducts1_Result
+    public partial class SP_GetFavoriteProducts_Result
     {
         public int id { get; set; }
         public string title { get; set; }
+        public string detail { get; set; }
+        public Nullable<int> rating { get; set; }
+        public Nullable<int> sold { get; set; }
         public Nullable<double> price { get; set; }
         public string thumnail { get; set; }
         public int isLike { get; set; }

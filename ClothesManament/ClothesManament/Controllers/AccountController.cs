@@ -26,10 +26,10 @@ namespace ClothesManament.Controllers
     public class AccountController : ApiController
     {
 
-        private ClothesManamentEntities entities;
+        private ClothesEntities entities;
         public AccountController()
         {
-            entities = new ClothesManamentEntities();
+            entities = new ClothesEntities();
         }
 
         [Route("api/logout")]
@@ -37,18 +37,8 @@ namespace ClothesManament.Controllers
         [HttpDelete]
         public void signOut()
         {
-           
+
         }
-        //public ResponseObjectModel<string> signOut()
-        //{
-        //    return new ResponseObjectModel<string>()
-        //    {
-        //        message = "Logout success!",
-        //        status = true,
-        //        code = 200,
-        //        data = ""
-        //    };
-        //}
 
         [Route("api/changePassword")]
         [AcceptVerbs("PUT")]
@@ -237,7 +227,7 @@ namespace ClothesManament.Controllers
         {
             try
             {
-                var result = entities.SP_Register(acc.name, acc.email, acc.phone, 3, acc.password, acc.username,null, 1).FirstOrDefault();
+                var result = entities.SP_Register(acc.name, acc.email, acc.phone, 3, acc.password, acc.username, null, 1).FirstOrDefault();
                 if (result.HasValue)
                 {
                     int resultInt = result.Value;
@@ -346,6 +336,14 @@ namespace ClothesManament.Controllers
                 code = 200,
                 data = result
             };
+        }
+
+        [Route("api/address")]
+        [AcceptVerbs("GET")]
+        [HttpGet]
+        public async Task<IHttpActionResult> getAddress([FromUri]int accountId)
+        {
+            return Ok(await Task.Run(() => entities.SP_GetAllAddress(accountId)));
         }
     }
 }

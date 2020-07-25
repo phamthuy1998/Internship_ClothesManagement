@@ -21,8 +21,8 @@ namespace ClothesManament.Models
         public Nullable<int> isNew { get; set; }
         public Nullable<System.DateTime> addDate { get; set; }
         public int isLike { get; set; }
-
-        public SP_GetProviderDetail_Result1 provider { get; set; }
+        public Nullable<Double> promotion { get; set; }
+        public SP_GetProviderDetail_Result provider { get; set; }
 
         public List<String> images { set; get; }
         public List<SP_GetColorsOfProduct_Result> colors { set; get; }
