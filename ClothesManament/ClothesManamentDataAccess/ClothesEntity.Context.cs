@@ -223,7 +223,7 @@ namespace ClothesManamentDataAccess
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_GetColorsOfProduct_Result>("SP_GetColorsOfProduct", productIdParameter);
         }
     
-        public virtual ObjectResult<SP_GetFavoriteProducts_Result> SP_GetFavoriteProducts(Nullable<int> currentPage, Nullable<int> pageSize, Nullable<int> accountID)
+        public virtual ObjectResult<SP_GetFavoriteProducts_Result1> SP_GetFavoriteProducts(Nullable<int> currentPage, Nullable<int> pageSize, Nullable<int> accountID)
         {
             var currentPageParameter = currentPage.HasValue ?
                 new ObjectParameter("currentPage", currentPage) :
@@ -237,7 +237,7 @@ namespace ClothesManamentDataAccess
                 new ObjectParameter("AccountID", accountID) :
                 new ObjectParameter("AccountID", typeof(int));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_GetFavoriteProducts_Result>("SP_GetFavoriteProducts", currentPageParameter, pageSizeParameter, accountIDParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_GetFavoriteProducts_Result1>("SP_GetFavoriteProducts", currentPageParameter, pageSizeParameter, accountIDParameter);
         }
     
         public virtual ObjectResult<Nullable<int>> SP_GetFavoriteProductsCount(Nullable<int> accountId)
@@ -262,7 +262,7 @@ namespace ClothesManamentDataAccess
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<ProductDetail>("SP_GetProductInfo", productIDParameter, accountIDParameter);
         }
     
-        public virtual ObjectResult<SP_GetProductInfoDetail_Result> SP_GetProductInfoDetail(Nullable<int> productID, Nullable<int> accountID)
+        public virtual ObjectResult<SP_GetProductInfoDetail_Result1> SP_GetProductInfoDetail(Nullable<int> productID, Nullable<int> accountID)
         {
             var productIDParameter = productID.HasValue ?
                 new ObjectParameter("productID", productID) :
@@ -272,10 +272,10 @@ namespace ClothesManamentDataAccess
                 new ObjectParameter("AccountID", accountID) :
                 new ObjectParameter("AccountID", typeof(int));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_GetProductInfoDetail_Result>("SP_GetProductInfoDetail", productIDParameter, accountIDParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_GetProductInfoDetail_Result1>("SP_GetProductInfoDetail", productIDParameter, accountIDParameter);
         }
     
-        public virtual ObjectResult<SP_GetProductOfCategory_Result> SP_GetProductOfCategory(Nullable<int> categoryId, Nullable<int> currentPage, Nullable<int> pageSize, Nullable<int> accountID)
+        public virtual ObjectResult<SP_GetProductOfCategory_Result1> SP_GetProductOfCategory(Nullable<int> categoryId, Nullable<int> currentPage, Nullable<int> pageSize, Nullable<int> accountID)
         {
             var categoryIdParameter = categoryId.HasValue ?
                 new ObjectParameter("categoryId", categoryId) :
@@ -293,7 +293,7 @@ namespace ClothesManamentDataAccess
                 new ObjectParameter("AccountID", accountID) :
                 new ObjectParameter("AccountID", typeof(int));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_GetProductOfCategory_Result>("SP_GetProductOfCategory", categoryIdParameter, currentPageParameter, pageSizeParameter, accountIDParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_GetProductOfCategory_Result1>("SP_GetProductOfCategory", categoryIdParameter, currentPageParameter, pageSizeParameter, accountIDParameter);
         }
     
         public virtual ObjectResult<Nullable<int>> SP_GetProductOfCategoryCount(Nullable<int> categoryId)
@@ -305,7 +305,7 @@ namespace ClothesManamentDataAccess
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("SP_GetProductOfCategoryCount", categoryIdParameter);
         }
     
-        public virtual ObjectResult<SP_GetProductsOfProvider_Result> SP_GetProductsOfProvider(Nullable<int> providerId, Nullable<int> currentPage, Nullable<int> pageSize, Nullable<int> accountID)
+        public virtual ObjectResult<SP_GetProductsOfProvider_Result1> SP_GetProductsOfProvider(Nullable<int> providerId, Nullable<int> currentPage, Nullable<int> pageSize, Nullable<int> accountID)
         {
             var providerIdParameter = providerId.HasValue ?
                 new ObjectParameter("providerId", providerId) :
@@ -323,7 +323,7 @@ namespace ClothesManamentDataAccess
                 new ObjectParameter("AccountID", accountID) :
                 new ObjectParameter("AccountID", typeof(int));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_GetProductsOfProvider_Result>("SP_GetProductsOfProvider", providerIdParameter, currentPageParameter, pageSizeParameter, accountIDParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_GetProductsOfProvider_Result1>("SP_GetProductsOfProvider", providerIdParameter, currentPageParameter, pageSizeParameter, accountIDParameter);
         }
     
         public virtual ObjectResult<Nullable<int>> SP_GetProductsOfProviderCount(Nullable<int> provderId)

@@ -21,13 +21,13 @@ namespace ClothesManament.Controllers
         [Route("api/allProductsOfCategory")]
         [AcceptVerbs("GET")]
         [HttpGet]
-        public async Task<ListResponse<SP_GetProductOfCategory_Result>> getProductListPaging(int pageSize, int pageNumber, int categoryID, int? accountId = null)
+        public async Task<ListResponse<SP_GetProductOfCategory_Result1>> getProductListPaging(int pageSize, int pageNumber, int categoryID, int? accountId = null)
         {
             if (pageSize <= 0 || pageSize > 100) pageSize = 20;
             if (pageNumber <= 0) pageNumber = 1;
             var listResponse = (await Task.Run(() => entities.SP_GetProductOfCategory(categoryID, pageNumber, pageSize, accountId).ToList()));
             var count = (await Task.Run(() => entities.SP_GetProductOfCategoryCount(categoryID).FirstOrDefault()));
-            return new ListResponse<SP_GetProductOfCategory_Result>() {
+            return new ListResponse<SP_GetProductOfCategory_Result1>() {
                 count = count,
                 results = listResponse
             };
@@ -37,7 +37,7 @@ namespace ClothesManament.Controllers
         [Route("api/allProductsOfProvider")]
         [AcceptVerbs("GET")]
         [HttpGet]
-        public async Task<ListResponse<SP_GetProductsOfProvider_Result>> getProductProviderListPaging(int? pageSize = null, int? pageNumber = null, int? providerId = null, int? accountId = null)
+        public async Task<ListResponse<SP_GetProductsOfProvider_Result1>> getProductProviderListPaging(int? pageSize = null, int? pageNumber = null, int? providerId = null, int? accountId = null)
         {
             if (pageSize <= 0 || pageSize > 100 || pageSize == null) pageSize = 20;
             if (pageNumber <= 0 || pageNumber == null) pageNumber = 1;
@@ -45,7 +45,7 @@ namespace ClothesManament.Controllers
 
             var listResponse = (await Task.Run(() => entities.SP_GetProductsOfProvider(providerId, pageNumber, pageSize, accountId).ToList()));
             var count = (await Task.Run(() => entities.SP_GetProductsOfProviderCount(providerId).FirstOrDefault()));
-            return new ListResponse<SP_GetProductsOfProvider_Result>()
+            return new ListResponse<SP_GetProductsOfProvider_Result1>()
             {
                 count = count,
                 results = listResponse
@@ -55,14 +55,14 @@ namespace ClothesManament.Controllers
         [Route("api/favoriteProducts")]
         [AcceptVerbs("GET")]
         [HttpGet]
-        public async Task<ResponseListModel<SP_GetFavoriteProducts_Result>> getPagingFavoriteProduct(int? pageSize = null, int? pageNumber = null, int? accountId = null)
+        public async Task<ResponseListModel<SP_GetFavoriteProducts_Result1>> getPagingFavoriteProduct(int? pageSize = null, int? pageNumber = null, int? accountId = null)
         {
             if (pageSize <= 0 || pageSize > 100 || pageSize == null) pageSize = 20;
             if (pageNumber <= 0 || pageNumber == null) pageNumber = 1;
 
             if (accountId == null)
             {
-                return new ResponseListModel<SP_GetFavoriteProducts_Result>()
+                return new ResponseListModel<SP_GetFavoriteProducts_Result1>()
                 {
                     message = "Vui lòng đăng nhập để sử dụng tính năng này!",
                     status = false,
@@ -73,7 +73,7 @@ namespace ClothesManament.Controllers
             else
             {
                 var products = await Task.Run(() => entities.SP_GetFavoriteProducts(pageNumber, pageSize, accountId).ToList());
-                return new ResponseListModel<SP_GetFavoriteProducts_Result>()
+                return new ResponseListModel<SP_GetFavoriteProducts_Result1>()
                 {
                     message = "Danh sách sản phẩm yêu thích",
                     status = true,
@@ -171,7 +171,8 @@ namespace ClothesManament.Controllers
                     isNew = productDetail.isNew,
                     addDate = productDetail.addDate,
                     isLike = productDetail.isLike,
-                    promotion = productDetail.promotion,
+                    valuePromotion = productDetail.promotion,
+                    typePromotion = productDetail.typePromotion,
                     provider = providerDetail,
                     images = listImage,
                     colors = colors,

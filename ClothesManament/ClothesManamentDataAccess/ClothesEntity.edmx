@@ -447,10 +447,6 @@
         <Function Name="SP_GetFavoriteProductsCount" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="accountId" Type="int" Mode="In" />
         </Function>
-        <Function Name="SP_GetProductInfo" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="productID" Type="int" Mode="In" />
-          <Parameter Name="AccountID" Type="int" Mode="In" />
-        </Function>
         <Function Name="SP_GetProductInfoDetail" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="productID" Type="int" Mode="In" />
           <Parameter Name="AccountID" Type="int" Mode="In" />
@@ -1101,7 +1097,7 @@
           <FunctionImport Name="SP_GetColorsOfProduct" ReturnType="Collection(ClothesManamentModel1.SP_GetColorsOfProduct_Result)">
             <Parameter Name="productId" Mode="In" Type="Int32" />
           </FunctionImport>
-          <FunctionImport Name="SP_GetFavoriteProducts" ReturnType="Collection(ClothesManamentModel1.SP_GetFavoriteProducts_Result)">
+          <FunctionImport Name="SP_GetFavoriteProducts" ReturnType="Collection(ClothesManamentModel1.SP_GetFavoriteProducts_Result1)">
             <Parameter Name="currentPage" Mode="In" Type="Int32" />
             <Parameter Name="PageSize" Mode="In" Type="Int32" />
             <Parameter Name="AccountID" Mode="In" Type="Int32" />
@@ -1113,11 +1109,11 @@
             <Parameter Name="productID" Mode="In" Type="Int32" />
             <Parameter Name="AccountID" Mode="In" Type="Int32" />
           </FunctionImport>
-          <FunctionImport Name="SP_GetProductInfoDetail" ReturnType="Collection(ClothesManamentModel1.SP_GetProductInfoDetail_Result)">
+          <FunctionImport Name="SP_GetProductInfoDetail" ReturnType="Collection(ClothesManamentModel1.SP_GetProductInfoDetail_Result1)">
             <Parameter Name="productID" Mode="In" Type="Int32" />
             <Parameter Name="AccountID" Mode="In" Type="Int32" />
           </FunctionImport>
-          <FunctionImport Name="SP_GetProductOfCategory" ReturnType="Collection(ClothesManamentModel1.SP_GetProductOfCategory_Result)">
+          <FunctionImport Name="SP_GetProductOfCategory" ReturnType="Collection(ClothesManamentModel1.SP_GetProductOfCategory_Result1)">
             <Parameter Name="categoryId" Mode="In" Type="Int32" />
             <Parameter Name="currentPage" Mode="In" Type="Int32" />
             <Parameter Name="PageSize" Mode="In" Type="Int32" />
@@ -1126,7 +1122,7 @@
           <FunctionImport Name="SP_GetProductOfCategoryCount" ReturnType="Collection(Int32)">
             <Parameter Name="categoryId" Mode="In" Type="Int32" />
           </FunctionImport>
-          <FunctionImport Name="SP_GetProductsOfProvider" ReturnType="Collection(ClothesManamentModel1.SP_GetProductsOfProvider_Result)">
+          <FunctionImport Name="SP_GetProductsOfProvider" ReturnType="Collection(ClothesManamentModel1.SP_GetProductsOfProvider_Result1)">
             <Parameter Name="providerId" Mode="In" Type="Int32" />
             <Parameter Name="currentPage" Mode="In" Type="Int32" />
             <Parameter Name="PageSize" Mode="In" Type="Int32" />
@@ -1374,6 +1370,59 @@
           <Property Type="String" Name="thumnail" Nullable="true" MaxLength="200" />
           <Property Type="Int32" Name="isLike" Nullable="false" />
           <Property Type="Double" Name="promotion" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="SP_GetProductInfoDetail_Result1">
+          <Property Type="Int32" Name="id" Nullable="false" />
+          <Property Type="String" Name="title" Nullable="true" MaxLength="200" />
+          <Property Type="String" Name="detail" Nullable="true" MaxLength="500" />
+          <Property Type="Double" Name="price" Nullable="true" />
+          <Property Type="Int32" Name="categoryID" Nullable="true" />
+          <Property Type="Int32" Name="sold" Nullable="true" />
+          <Property Type="Int32" Name="rating" Nullable="true" />
+          <Property Type="Int32" Name="active" Nullable="true" />
+          <Property Type="Int32" Name="providerId" Nullable="true" />
+          <Property Type="String" Name="thumnail" Nullable="true" MaxLength="200" />
+          <Property Type="Int32" Name="isNew" Nullable="true" />
+          <Property Type="DateTime" Name="addDate" Nullable="false" />
+          <Property Type="Int32" Name="isLike" Nullable="false" />
+          <Property Type="Double" Name="promotion" Nullable="true" />
+          <Property Type="String" Name="typePromotion" Nullable="true" MaxLength="50" />
+        </ComplexType>
+        <ComplexType Name="SP_GetProductsOfProvider_Result1">
+          <Property Type="Int32" Name="id" Nullable="false" />
+          <Property Type="String" Name="title" Nullable="true" MaxLength="200" />
+          <Property Type="String" Name="detail" Nullable="true" MaxLength="500" />
+          <Property Type="Int32" Name="rating" Nullable="true" />
+          <Property Type="Int32" Name="sold" Nullable="true" />
+          <Property Type="Double" Name="price" Nullable="true" />
+          <Property Type="String" Name="thumnail" Nullable="true" MaxLength="200" />
+          <Property Type="Int32" Name="isLike" Nullable="false" />
+          <Property Type="Double" Name="promotion" Nullable="true" />
+          <Property Type="String" Name="typePromotion" Nullable="true" MaxLength="50" />
+        </ComplexType>
+        <ComplexType Name="SP_GetProductOfCategory_Result1">
+          <Property Type="Int32" Name="id" Nullable="false" />
+          <Property Type="String" Name="title" Nullable="true" MaxLength="200" />
+          <Property Type="String" Name="detail" Nullable="true" MaxLength="500" />
+          <Property Type="Int32" Name="rating" Nullable="true" />
+          <Property Type="Int32" Name="sold" Nullable="true" />
+          <Property Type="Double" Name="price" Nullable="true" />
+          <Property Type="String" Name="thumnail" Nullable="true" MaxLength="200" />
+          <Property Type="Int32" Name="isLike" Nullable="false" />
+          <Property Type="Double" Name="promotion" Nullable="true" />
+          <Property Type="String" Name="typePromotion" Nullable="true" MaxLength="50" />
+        </ComplexType>
+        <ComplexType Name="SP_GetFavoriteProducts_Result1">
+          <Property Type="Int32" Name="id" Nullable="false" />
+          <Property Type="String" Name="title" Nullable="true" MaxLength="200" />
+          <Property Type="String" Name="detail" Nullable="true" MaxLength="500" />
+          <Property Type="Int32" Name="rating" Nullable="true" />
+          <Property Type="Int32" Name="sold" Nullable="true" />
+          <Property Type="Double" Name="price" Nullable="true" />
+          <Property Type="String" Name="thumnail" Nullable="true" MaxLength="200" />
+          <Property Type="Int32" Name="isLike" Nullable="false" />
+          <Property Type="Double" Name="promotion" Nullable="true" />
+          <Property Type="String" Name="typePromotion" Nullable="true" MaxLength="50" />
         </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
@@ -1627,8 +1676,8 @@
             </ResultMapping>
           </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="SP_GetFavoriteProducts" FunctionName="ClothesManamentModel1.Store.SP_GetFavoriteProducts" >
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="ClothesManamentModel1.SP_GetFavoriteProducts_Result">
+          <ResultMapping>
+              <ComplexTypeMapping TypeName="ClothesManamentModel1.SP_GetFavoriteProducts_Result1">
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="title" ColumnName="title" />
                 <ScalarProperty Name="detail" ColumnName="detail" />
@@ -1638,18 +1687,14 @@
                 <ScalarProperty Name="thumnail" ColumnName="thumnail" />
                 <ScalarProperty Name="isLike" ColumnName="isLike" />
                 <ScalarProperty Name="promotion" ColumnName="promotion" />
+                <ScalarProperty Name="typePromotion" ColumnName="typePromotion" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="SP_GetFavoriteProductsCount" FunctionName="ClothesManamentModel1.Store.SP_GetFavoriteProductsCount" />
-          <FunctionImportMapping FunctionImportName="SP_GetProductInfo" FunctionName="ClothesManamentModel1.Store.SP_GetProductInfo" >
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="ClothesManamentModel1.ProductDetail" />
-            </ResultMapping>
-          </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="SP_GetProductInfoDetail" FunctionName="ClothesManamentModel1.Store.SP_GetProductInfoDetail" >
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="ClothesManamentModel1.SP_GetProductInfoDetail_Result">
+          <ResultMapping>
+              <ComplexTypeMapping TypeName="ClothesManamentModel1.SP_GetProductInfoDetail_Result1">
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="title" ColumnName="title" />
                 <ScalarProperty Name="detail" ColumnName="detail" />
@@ -1664,12 +1709,13 @@
                 <ScalarProperty Name="addDate" ColumnName="addDate" />
                 <ScalarProperty Name="isLike" ColumnName="isLike" />
                 <ScalarProperty Name="promotion" ColumnName="promotion" />
+                <ScalarProperty Name="typePromotion" ColumnName="typePromotion" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="SP_GetProductOfCategory" FunctionName="ClothesManamentModel1.Store.SP_GetProductOfCategory" >
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="ClothesManamentModel1.SP_GetProductOfCategory_Result">
+          <ResultMapping>
+              <ComplexTypeMapping TypeName="ClothesManamentModel1.SP_GetProductOfCategory_Result1">
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="title" ColumnName="title" />
                 <ScalarProperty Name="detail" ColumnName="detail" />
@@ -1679,13 +1725,14 @@
                 <ScalarProperty Name="thumnail" ColumnName="thumnail" />
                 <ScalarProperty Name="isLike" ColumnName="isLike" />
                 <ScalarProperty Name="promotion" ColumnName="promotion" />
+                <ScalarProperty Name="typePromotion" ColumnName="typePromotion" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="SP_GetProductOfCategoryCount" FunctionName="ClothesManamentModel1.Store.SP_GetProductOfCategoryCount" />
           <FunctionImportMapping FunctionImportName="SP_GetProductsOfProvider" FunctionName="ClothesManamentModel1.Store.SP_GetProductsOfProvider" >
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="ClothesManamentModel1.SP_GetProductsOfProvider_Result">
+          <ResultMapping>
+              <ComplexTypeMapping TypeName="ClothesManamentModel1.SP_GetProductsOfProvider_Result1">
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="title" ColumnName="title" />
                 <ScalarProperty Name="detail" ColumnName="detail" />
@@ -1695,6 +1742,7 @@
                 <ScalarProperty Name="thumnail" ColumnName="thumnail" />
                 <ScalarProperty Name="isLike" ColumnName="isLike" />
                 <ScalarProperty Name="promotion" ColumnName="promotion" />
+                <ScalarProperty Name="typePromotion" ColumnName="typePromotion" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>

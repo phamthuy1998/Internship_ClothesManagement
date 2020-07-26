@@ -60,7 +60,7 @@ namespace ClothesManagement.Controllers
             }
             else
             {
-                Nullable< int> orderId = entities.SP_AddOrder(orderParam.accountID, orderParam.address, orderParam.phone, orderParam.name, orderParam.note).FirstOrDefault();
+                var orderId = entities.SP_AddOrder(orderParam.accountID, orderParam.address, orderParam.phone, orderParam.name, orderParam.note).FirstOrDefault();
                 ProductOrder product = new ProductOrder();
                 for (int i = 0; i < orderParam.products.Count; i++)
                 {
@@ -69,10 +69,10 @@ namespace ClothesManagement.Controllers
                 }
                 return new ResponseObjectModel<int>()
                 {
-                    message = "Danh sách sản phẩm yêu thích!",
+                    message = "Đặt hàng thàng công",
                     status = true,
                     code = 200,
-                    data = 0
+                    data = 1
                 };
             }
         }
