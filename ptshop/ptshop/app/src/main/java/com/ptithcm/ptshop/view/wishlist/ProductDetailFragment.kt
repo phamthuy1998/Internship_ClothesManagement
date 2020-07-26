@@ -47,6 +47,7 @@ class ProductDetailFragment : BaseFragment<FragmentProductDetailBinding>() {
     }
     private var productVariant: Variant? = null
     private var product: Product? = null
+    private var productDetail: ProductClothesDetail? = null
     private var quality = 0
     private val isLogin = ObjectHandler.isLogin()
     private var firstSizeSelection = -1
@@ -82,7 +83,7 @@ class ProductDetailFragment : BaseFragment<FragmentProductDetailBinding>() {
         })
 
         shoppingViewModel.detailResult.observe(this, Observer {
-            product = it
+            productDetail = it
             setUpToolBar()
             bindProduct()
         })
@@ -196,7 +197,7 @@ class ProductDetailFragment : BaseFragment<FragmentProductDetailBinding>() {
     }
 
     private fun bindProduct() {
-        product?.let {
+        productDetail?.let {
             viewBinding.item = it
 
             viewBinding.isAvailable = checkQuantity()
@@ -242,7 +243,10 @@ class ProductDetailFragment : BaseFragment<FragmentProductDetailBinding>() {
             }
             initToolbar(hasBackRight = false, hasLeft = false, hasCount = false, isProductPage = true)
             toolbar?.isSelected = true
-            setupToolbar(product?.brand?.brand_name ?: "", isBackPress = false, messageQueue = {
+            setupToolbar(
+                productDetail?.provider?.brandName ?: "",
+                isBackPress = false,
+                messageQueue = {
                     onClick(it)
                 })
             toolbar?.findViewById<AppCompatImageButton>(R.id.ivRight)?.apply {
@@ -262,12 +266,12 @@ class ProductDetailFragment : BaseFragment<FragmentProductDetailBinding>() {
             if (viewBinding.btnColorVisible == false){
                 return@apply
             }
-            val colorOption = options?.colorOption()?.values
+            val colorOption = options.colorOption().values
 
             adapter = ArrayAdapter(
                 context,
                 R.layout.item_spinner,
-                colorOption?.checkProdAvailable(hasQuantity, isAvailable) ?: listOf()
+                colorOption.checkProdAvailable(hasQuantity, isAvailable) ?: listOf()
             )
             var iCurrentSelection = this.selectedItemPosition
 
@@ -298,12 +302,12 @@ class ProductDetailFragment : BaseFragment<FragmentProductDetailBinding>() {
                 return@apply
             }
 
-            val sizeOption = options?.sizeOption()?.values
+            val sizeOption = options.sizeOption().values
 
             adapter = ArrayAdapter(
                 context,
                 R.layout.item_spinner,
-                sizeOption?.checkProdAvailable(hasQuantity, isAvailable) ?: listOf()
+                sizeOption.checkProdAvailable(hasQuantity, isAvailable) ?: listOf()
             )
 
             var iCurrentSelection = this.selectedItemPosition
@@ -406,6 +410,10 @@ class ProductDetailFragment : BaseFragment<FragmentProductDetailBinding>() {
        - The first valid variant is the first on has field inventory_quantity > 0 (usually variant with field position = 1)
        - Field variant already been sort by position */
     private fun checkQuantity(): Boolean {
+        productDetail?.run {
+//            viewBinding.hasQuantity = sizesColors?.map { it.quantity ?: 0 }?.max() ?: 0 > 0
+
+        }
         val item = viewBinding.item?.variants
         val sizeOption = product?.options?.sizeOption()
         val colorOptions = product?.options?.colorOption()
@@ -413,15 +421,16 @@ class ProductDetailFragment : BaseFragment<FragmentProductDetailBinding>() {
         viewBinding.btnSizeVisible = sizeOption != null
         viewBinding.btnColorVisible = colorOptions != null
 
-        item?.forEach {
-            val variantSizeOption = it.options?.sizeOption()?.value
-            val variantColorOption = it.options?.colorOption()?.value
+        item.forEach {
+            val variantSizeOption = it.options.sizeOption().value
+            val variantColorOption = it.options.colorOption().value
             val hasOptionColor = colorOptions.containValue(variantColorOption ?: "")
             val hasOptionSize = sizeOption.containValue(variantSizeOption ?: "")
-            arrBoolean.add(hasOptionColor&&hasOptionSize)
+            arrBoolean.add(hasOptionColor && hasOptionSize)
             if (hasOptionSize
-                && hasOptionColor){
-                if (it.inventory_quantity ?: 0 > 0){
+                && hasOptionColor
+            ) {
+                if (it.inventory_quantity ?: 0 > 0) {
                     firstSizeSelection = sizeOption?.values?.indexOf(variantSizeOption) ?: -1
                     firstColorSelection = colorOptions?.values?.indexOf(variantColorOption) ?: -1
                     productVariant = it.checkIfWrongPrice()
@@ -435,10 +444,10 @@ class ProductDetailFragment : BaseFragment<FragmentProductDetailBinding>() {
         if (viewBinding.hasQuantity == null) {
             viewBinding.hasQuantity = sizeOption == null && colorOptions == null
         }
-        if (item?.size ?: 0 > 0) {
-            productVariant = item?.first()?.checkIfWrongPrice()
+        if (item.size ?: 0 > 0) {
+            productVariant = item.first().checkIfWrongPrice()
         }
-        if (sizeOption == null && colorOptions == null){
+        if (sizeOption == null && colorOptions == null) {
             return true
         }
         return arrBoolean.finalBoolean()

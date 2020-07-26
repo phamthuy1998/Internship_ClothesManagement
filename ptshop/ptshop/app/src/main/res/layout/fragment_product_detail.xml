@@ -9,7 +9,7 @@
 
         <variable
             name="item"
-            type="com.ptithcm.core.model.Product" />
+            type="com.ptithcm.core.model.ProductClothesDetail" />
 
         <variable
             name="fragment"
@@ -80,8 +80,11 @@
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/tvVendor"
                     style="@style/normal_text.SemiBold"
-                    android:onClick="@{fragment::onClick}"
-                    android:text="@{item.vendor.toUpperCase()}"
+                    android:layout_width="0dp"
+                    android:layout_marginEnd="@dimen/layout_margin_16dp"
+                    android:text="@{item.title.toUpperCase()}"
+                    android:textAlignment="textStart"
+                    app:layout_constraintEnd_toStartOf="@id/tvPrice"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/indicator"
                     tool:text="BALENCIAGA" />
@@ -90,39 +93,37 @@
                     android:id="@+id/tvDesc"
                     style="@style/normal_text.grey"
                     android:layout_marginTop="@dimen/layout_margin_8dp"
-                    android:text="@{item.title}"
+                    android:layout_width="0dp"
+                    android:layout_marginEnd="@dimen/layout_margin_16dp"
+                    android:text="@{item.provider.brandName}"
+                    app:layout_constraintEnd_toStartOf="@id/tvPrice"
                     app:layout_constraintStart_toStartOf="@id/tvVendor"
                     app:layout_constraintTop_toBottomOf="@id/tvVendor"
                     tool:text="Street Jacket" />
 
                 <androidx.appcompat.widget.AppCompatTextView
-                    android:id="@+id/tvPriceOrigin"
+                    android:id="@+id/tvPrice"
                     style="@style/normal_text.SemiBold"
+                    price="@{item.price}"
+                    promo="@{item.valuePromotion}"
+                    promoType="@{item.typePromotion}"
+                    setVisible="@{item.valuePromotion != 0.0}"
+                    android:textColor="@color/colorTextDiscount"
                     android:textSize="@dimen/text_size_16sp"
-                    android:visibility="@{item.variants[0].compare_at_price_after_tax != null ? View.GONE : View.VISIBLE}"
                     app:layout_constraintBaseline_toBaselineOf="@id/tvVendor"
                     app:layout_constraintEnd_toEndOf="@id/vpImage"
                     app:layout_constraintTop_toTopOf="@id/tvVendor"
                     tool:text="$72.14" />
 
                 <androidx.appcompat.widget.AppCompatTextView
-                    android:id="@+id/tvAfterTaxPrice"
-                    style="@style/normal_text.SemiBold"
-                    android:textColor="@color/colorTextDiscount"
-                    android:textSize="@dimen/text_size_16sp"
-                    android:visibility="@{item.variants[0].compare_at_price_after_tax != null ? View.VISIBLE : View.GONE}"
-                    app:layout_constraintBaseline_toBaselineOf="@id/tvVendor"
-                    app:layout_constraintEnd_toEndOf="@id/tvPriceOrigin"
-                    app:layout_constraintTop_toBottomOf="@id/vpImage"
-                    tool:text="$120.00" />
-
-                <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/tvOriginPrice"
                     style="@style/normal_text"
-                    android:visibility="@{item.variants[0].compare_at_price_after_tax != null ? View.VISIBLE : View.GONE}"
+                    price="@{item.price}"
+                    setPaintFlagsStrike="@{true}"
+                    setVisible="@{item.valuePromotion != 0.0}"
                     app:layout_constraintBaseline_toBaselineOf="@id/tvDesc"
-                    app:layout_constraintEnd_toEndOf="@id/tvAfterTaxPrice"
-                    app:layout_constraintTop_toBottomOf="@id/tvAfterTaxPrice"
+                    app:layout_constraintEnd_toEndOf="@id/tvPrice"
+                    app:layout_constraintTop_toBottomOf="@id/tvPrice"
                     tool:text="$220.00" />
 
                 <androidx.appcompat.widget.AppCompatTextView
@@ -149,7 +150,7 @@
                         android:background="@drawable/background_spinner"
                         android:overlapAnchor="false"
                         android:spinnerMode="dropdown"
-                        android:visibility="@{btnColorVisible == true ? View.VISIBLE : View.GONE}"
+                        setVisible="@{btnColorVisible}"
                         app:layout_constraintEnd_toStartOf="@+id/btnSize"
                         app:layout_constraintHorizontal_weight="2"
                         app:layout_constraintStart_toStartOf="parent"
@@ -163,7 +164,7 @@
                         android:background="@drawable/background_spinner"
                         android:overlapAnchor="false"
                         android:spinnerMode="dropdown"
-                        android:visibility="@{btnSizeVisible == true ? View.VISIBLE : View.GONE}"
+                        setVisible="@{btnSizeVisible}"
                         app:layout_constraintEnd_toStartOf="@+id/btnQuantity"
                         app:layout_constraintHorizontal_weight="2"
                         app:layout_constraintStart_toEndOf="@id/btnColor"
@@ -220,29 +221,7 @@
                         android:lineSpacingExtra="@dimen/size_8dp"
                         android:onClick="@{fragment::onClick}"
                         android:paddingBottom="@dimen/layout_margin_16dp"
-                        android:text="@{item.descHtml}"
-                        android:textAlignment="viewStart"
-                        android:visibility="gone" />
-
-                    <View
-                        style="@style/divider"
-                        android:layout_width="match_parent" />
-
-                    <androidx.appcompat.widget.AppCompatButton
-                        android:id="@+id/btnDeliveryReturn"
-                        style="@style/Button_Borderless_Bold"
-                        android:onClick="@{(v) -> fragment.onClick(v)}"
-                        android:text="@string/delivery_returns"
-                        android:textSize="@dimen/text_size_12sp" />
-
-                    <androidx.appcompat.widget.AppCompatTextView
-                        android:id="@+id/tvDeliveryReturn"
-                        style="@style/normal_text"
-                        android:layout_width="match_parent"
-                        android:lineSpacingExtra="@dimen/size_8dp"
-                        android:onClick="@{fragment::onClick}"
-                        android:paddingBottom="@dimen/layout_margin_16dp"
-                        android:text="@{item.brand.return_policy}"
+                        setTextHtml="@{item.detail}"
                         android:textAlignment="viewStart"
                         android:visibility="gone" />
 
@@ -264,32 +243,11 @@
                         android:lineSpacingExtra="@dimen/size_8dp"
                         android:onClick="@{fragment::onClick}"
                         android:paddingBottom="@dimen/layout_margin_16dp"
-                        android:text="@{item.brand.bio}"
+                        android:text="@{item.provider.infomation}"
                         android:textAlignment="viewStart"
                         android:visibility="gone" />
 
                 </LinearLayout>
-
-                <androidx.appcompat.widget.AppCompatTextView
-                    android:id="@+id/tvMoreFromBoutique"
-                    style="@style/normal_text.grey"
-                    android:layout_marginTop="@dimen/layout_margin_16dp"
-                    android:onClick="@{fragment::onClick}"
-                    android:text="@string/more_from_this_boutique"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/lnScript" />
-
-                <androidx.appcompat.widget.AppCompatTextView
-                    android:id="@+id/tvMoreFromVendor"
-                    style="@style/Size16.Medium"
-                    android:layout_margin="@dimen/layout_margin_16dp"
-                    android:background="@drawable/background_text_title"
-                    android:onClick="@{fragment::onClick}"
-                    android:text='@{"More from " + item.vendor}'
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/tvMoreFromBoutique" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 

@@ -32,7 +32,8 @@ abstract class BasePageKeyedDataSource<I, O>(
     ) {
         if (CoreApplication.instance.isNetworkConnected()) {
             runBlocking {
-                fetchFromNetwork(initialCallback = callback)            }
+                fetchFromNetwork(initialCallback = callback)
+            }
         } else {
             AppEvent.onNoInternet()
             setValue(Result.Error("", 404))

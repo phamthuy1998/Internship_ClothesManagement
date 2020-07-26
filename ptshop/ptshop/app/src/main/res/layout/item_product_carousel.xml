@@ -53,13 +53,12 @@
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/tvPriceBase"
             style="@style/normal_text.SemiBold"
-            price="@{product.price}"
-            promo="@{product.promotion}"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="@dimen/layout_margin_4dp"
             android:textSize="@dimen/text_size_11sp"
-            android:visibility="@{product.promotion == 0.0 ? View.GONE : View.VISIBLE}"
+            price="@{product.price}"
+            setVisible="@{product.promotion == 0.0}"
             app:layout_constraintTop_toBottomOf="@id/tvName" />
 
         <androidx.appcompat.widget.AppCompatTextView
@@ -67,13 +66,14 @@
             style="@style/normal_text.SemiBold"
             price="@{product.price}"
             promo="@{product.promotion}"
+            promoType="@{product.typePromotion}"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:padding="@dimen/layout_margin_4dp"
             android:textAlignment="viewEnd"
             android:textColor="@color/colorTextDiscount"
             android:textSize="@dimen/text_size_11sp"
-            android:visibility="@{product.promotion != 0.0 ? View.VISIBLE : View.GONE}"
+            setVisible="@{product.promotion != 0.0}"
             app:layout_constraintEnd_toStartOf="@id/tvPriceCash"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tvPriceBase" />
@@ -82,13 +82,13 @@
             android:id="@+id/tvPriceCash"
             style="@style/normal_text.SemiBold"
             price="@{product.price}"
-            promo="@{0.0}"
+            setPaintFlagsStrike="@{true}"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            setVisible="@{product.promotion != 0.0}"
             android:padding="@dimen/layout_margin_4dp"
             android:textAlignment="viewStart"
             android:textSize="@dimen/text_size_11sp"
-            android:visibility="@{product.promotion != 0.0 ? View.VISIBLE : View.GONE}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@id/tvPrice"
             app:layout_constraintTop_toBottomOf="@id/tvPriceBase" />

@@ -24,4 +24,5 @@ val appModule = module {
     viewModel { AddProductViewModel(get()) }
     viewModel { UploadViewModel(get()) }
     viewModel { ListenerViewModel() }
+    viewModel { ProvidersViewModel(get()) }
 }

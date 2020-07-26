@@ -3,8 +3,11 @@ package com.ptithcm.ptshop.util
 import android.graphics.Color
 import android.graphics.drawable.Drawable
 import android.graphics.drawable.GradientDrawable
+import android.view.View
 import androidx.appcompat.widget.AppCompatButton
 import androidx.appcompat.widget.AppCompatImageView
+import androidx.core.view.isInvisible
+import androidx.core.view.isVisible
 import androidx.databinding.BindingAdapter
 import com.bumptech.glide.Glide
 import java.io.File
@@ -38,6 +41,18 @@ object BindingAdapterImage {
         val drawable = button.background as? GradientDrawable
         drawable?.setColor(Color.parseColor(strColorTint))
         button.background = drawable
+    }
+
+    @JvmStatic
+    @BindingAdapter("setVisible")
+    fun setVisible(view: View, isVisible: Boolean?) {
+        view.isVisible = isVisible ?: false
+    }
+
+    @JvmStatic
+    @BindingAdapter("setInvisible")
+    fun setInvisible(view: View, isVisibleInvisible: Boolean?) {
+        view.isInvisible = isVisibleInvisible ?: false
     }
 
 }

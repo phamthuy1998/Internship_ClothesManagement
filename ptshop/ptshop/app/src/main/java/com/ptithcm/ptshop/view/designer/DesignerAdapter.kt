@@ -6,20 +6,18 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.ptithcm.core.model.Brand
+import com.ptithcm.core.model.Provider
 import com.ptithcm.ptshop.R
 import com.ptithcm.ptshop.databinding.ItemDesignerBinding
 import com.ptithcm.ptshop.databinding.LayoutDesignerHeaderBinding
 
 class DesignerAdapter(
-    val listener: ((item: Brand) -> Unit),
-    val listenerViewAll: (() -> Unit)
+    val listener: ((item: Provider) -> Unit)
 ) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
-    private var data = arrayListOf(Brand())
-    private var needLoadMore = true
+    private var data = arrayListOf<Provider>()
 
-    fun setList(list: ArrayList<Brand>) {
+    fun setList(list: ArrayList<Provider>) {
         this.data.apply {
             clear()
             addAll(size, list)
@@ -27,23 +25,11 @@ class DesignerAdapter(
         }
     }
 
-    fun addAll(list: ArrayList<Brand>) {
-        this.data.addAll(itemCount - 1,list)
-        notifyDataSetChanged()
-    }
-
-    override fun getItemCount(): Int = data.size
-
-    fun hideLoadMore() {
-        needLoadMore = false
-        this.data.removeAt(itemCount - 1)
-        notifyItemChanged(itemCount - 1)
-    }
+    override fun getItemCount(): Int = data.size + 1
 
     override fun getItemViewType(position: Int): Int {
-        return when {
-            position == 0 -> R.layout.layout_designer_header
-            needLoadMore && position == itemCount - 1 -> R.layout.layout_load_more
+        return when (position) {
+            0 -> R.layout.layout_designer_header
             else -> R.layout.item_designer
         }
     }
@@ -81,11 +67,9 @@ class DesignerAdapter(
     }
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
-        if (needLoadMore && position == itemCount -1)
-            return
-        val item = data[position]
         when (holder) {
             is ItemViewHolder -> {
+                val item = data[position - 1]
                 holder.bind(item)
             }
             is HeaderViewHolder -> {
@@ -97,11 +81,13 @@ class DesignerAdapter(
 
     inner class ItemViewHolder(val binding: ItemDesignerBinding) :
         RecyclerView.ViewHolder(binding.root) {
-        fun bind(item: Brand) {
+        fun bind(item: Provider) {
             Glide.with(binding.root)
-                .load(if (item.avatar_image.isNullOrEmpty()) item.image_url else item.avatar_image)
+                .load(item.imageUrl)
                 .placeholder(R.drawable.ic_place_holder)
                 .into(binding.ivImage)
+
+            binding.tvName.text = item.brandName
 
             binding.ctlItemBrandContainer.setOnClickListener {
                 listener(item)
@@ -111,11 +97,7 @@ class DesignerAdapter(
 
     inner class HeaderViewHolder(val binding: LayoutDesignerHeaderBinding) :
         RecyclerView.ViewHolder(binding.root) {
-        fun bind() {
-//            binding.tvViewAllDesigners.setOnClickListener {
-//                listenerViewAll()
-//            }
-        }
+        fun bind() {}
     }
 
     inner class LoadingViewHolder(view: View) : RecyclerView.ViewHolder(view)

@@ -7,7 +7,7 @@ import androidx.lifecycle.viewModelScope
 import com.ptithcm.core.CoreApplication
 import com.ptithcm.core.model.Basket
 import com.ptithcm.core.model.Brand
-import com.ptithcm.core.model.Product
+import com.ptithcm.core.model.ProductClothesDetail
 import com.ptithcm.core.param.AddProductParam
 import com.ptithcm.core.param.ProductVariantParam
 import com.ptithcm.core.repository.ShoppingCardRepository
@@ -22,7 +22,7 @@ class ShoppingViewModel(val repo: ShoppingCardRepository): ViewModel() {
     val updateResult = MediatorLiveData<Basket>()
     val cardResult = MediatorLiveData<Basket>()
     val removeResult = MediatorLiveData<MessageResponse>()
-    val detailResult = MediatorLiveData<Product>()
+    val detailResult = MediatorLiveData<ProductClothesDetail>()
     val brandDetailResult = MediatorLiveData<Brand>()
 
     val error = MutableLiveData<Pair<String, Int?>>()

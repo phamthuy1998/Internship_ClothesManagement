@@ -2,23 +2,20 @@ package com.ptithcm.ptshop.view.carousel
 
 import android.os.Bundle
 import android.view.View
-import androidx.lifecycle.Observer
-import com.ptithcm.core.CoreApplication
-import com.ptithcm.core.model.Brand
-import com.ptithcm.core.model.Carousel
-import com.ptithcm.core.model.Gender
-import com.ptithcm.core.model.TypeCarousel
+import com.ptithcm.core.model.Provider
 import com.ptithcm.core.util.ObjectHandler
 import com.ptithcm.ptshop.R
-import com.ptithcm.ptshop.base.BaseActivity
 import com.ptithcm.ptshop.base.BaseFragment
 import com.ptithcm.ptshop.constant.KEY_ARGUMENT
 import com.ptithcm.ptshop.databinding.FragmentCarouselDetailBinding
-import com.ptithcm.ptshop.ext.*
+import com.ptithcm.ptshop.ext.gone
+import com.ptithcm.ptshop.ext.navigateAnimation
+import com.ptithcm.ptshop.ext.transparentStatusBar
+import com.ptithcm.ptshop.ext.visible
 import com.ptithcm.ptshop.view.MainActivity
 import com.ptithcm.ptshop.view.carousel.adapter.CarouselViewPagerAdapter
 import com.ptithcm.ptshop.view.home.StoryDetailActivity
-import com.ptithcm.ptshop.viewmodel.CarouselDetailViewModel
+import com.ptithcm.ptshop.viewmodel.ProvidersViewModel
 import kotlinx.android.synthetic.main.fragment_carousel_detail.view.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import java.util.*
@@ -27,48 +24,38 @@ class CarouselDetailFragment : BaseFragment<FragmentCarouselDetailBinding>(), Vi
 
     override val layoutId: Int = R.layout.fragment_carousel_detail
 
-    private val viewModel: CarouselDetailViewModel by viewModel()
-    private var carousel: Carousel? = null
-    private var brand: Brand? = null
+    private val providersViewModel: ProvidersViewModel by viewModel()
+    private var provider: Provider? = null
     private var adapter: CarouselViewPagerAdapter? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        carousel = arguments?.getParcelable(KEY_ARGUMENT)
-        requestBrand()
-        initBindViewModel()
+        provider = arguments?.getParcelable(KEY_ARGUMENT)
+        providersViewModel.provider = provider
     }
 
     override fun bindEvent() {
         super.bindEvent()
-        viewBinding.brand = brand
-        viewBinding.isStore = carousel?.type == TypeCarousel.STORE.value
+
+        (requireActivity() as? MainActivity)?.apply {
+            viewBinding.layoutToolbar.toolbar.gone()
+            transparentStatusBar(true)
+        }
+        (requireActivity() as? StoryDetailActivity)?.apply {
+            viewBinding.layoutToolbar.toolbar.gone()
+            transparentStatusBar(true)
+        }
+
+        viewBinding.provider = provider
+        providersViewModel.getDetailProvider(providerId = provider?.id)
         setupToolbar()
         initViewPager()
-        initTabLayout(carousel?.type)
+        initTabLayout()
         initEvent()
     }
 
-    override fun bindViewModel() {
-        super.bindViewModel()
-
-        viewModel.networkState.observe(this, Observer {
-            (requireActivity() as? BaseActivity<*>)?.isShowLoading(it)
-            if (!it) {
-                (requireActivity() as? MainActivity)?.apply {
-                    viewBinding.layoutToolbar.toolbar.gone()
-                    transparentStatusBar(true)
-                }
-                (requireActivity() as? StoryDetailActivity)?.apply {
-                    viewBinding.layoutToolbar.toolbar.gone()
-                    transparentStatusBar(true)
-                }
-            }
-        })
-
-        viewModel.error.observe(this, Observer {
-                (requireActivity() as? BaseActivity<*>)?.isShowErrorNetwork(true)
-        })
+    override fun bindViewModelOnce() {
+        providersViewModel.providerDetailResult.observe(this, androidx.lifecycle.Observer {})
     }
 
     override fun onClick(view: View?) {
@@ -82,20 +69,16 @@ class CarouselDetailFragment : BaseFragment<FragmentCarouselDetailBinding>(), Vi
             R.id.ivRight -> {
                 navController.navigateAnimation(R.id.nav_shopping_card, isBotToTop = true)
             }
-
         }
     }
 
     private fun setupToolbar() {
         (requireActivity() as? MainActivity)?.viewBinding?.btnNav?.gone()
-        if (carousel?.type == TypeCarousel.BRAND.value) {
-            viewBinding.collapsingToolbarLayout.title = brand?.name
-        } else {
-            viewBinding.collapsingToolbarLayout.title = brand?.brand_name?.toUpperCase(Locale.ROOT)
-        }
-        val countBags =ObjectHandler.getNumberItem()
+
+        viewBinding.collapsingToolbarLayout.title = provider?.brandName?.toUpperCase(Locale.ROOT)
+
+        val countBags = ObjectHandler.getNumberItem()
         viewBinding.toolbar.tvCount?.apply {
-            if (CoreApplication.instance.profile?.user?.brand != null) this.gone()
             when {
                 countBags > 0 -> text = countBags.toString()
                 else -> this.gone()
@@ -105,72 +88,21 @@ class CarouselDetailFragment : BaseFragment<FragmentCarouselDetailBinding>(), Vi
 
     private fun initEvent() {
         viewBinding.ivBack.setOnClickListener(this)
-        if (CoreApplication.instance.profile?.user?.brand != null) {
-            viewBinding.ivLeft.gone()
-            viewBinding.ivRight.gone()
-        } else {
-            viewBinding.ivLeft.visible()
-            viewBinding.ivRight.visible()
-            viewBinding.ivLeft.setOnClickListener(this)
-            viewBinding.ivRight.setOnClickListener(this)
-        }
-
-    }
-
-    private fun initBindViewModel() {
-        viewModel.vendorBrandLiveData.observe(this, Observer {
-            it?.let {
-                this.brand = it
-                viewBinding.collapsingToolbarLayout.title = it.name
-                viewModel.brandLiveData.postValue(
-                    Triple(
-                        it,
-                        if (carousel?.isDesigner == true) Gender.NONE else switchGender(carousel?.gender),
-                        switchTypeCarousel(carousel?.type)
-                    )
-                )
-            }
-        })
-
-        viewModel.storeBrandLiveData.observe(this, Observer {
-            it?.let {
-                viewBinding.collapsingToolbarLayout.title = it.brand_name?.toUpperCase(Locale.ROOT)
-                viewBinding.brand = it
-                this.brand = it
-                it.store_id = carousel?.storeId
-                it.id = carousel?.brand_id
-                it.name = carousel?.name
-                viewModel.storiesLiveData.postValue(
-                    Triple(it, switchGender(carousel?.gender), TypeCarousel.STORE)
-                )
-            }
-        })
-    }
-
-    private fun requestBrand() {
-        if (carousel?.type == TypeCarousel.BRAND.value) {
-            viewModel.getVendorBrand(carousel?.brand_id)
-        } else if (carousel?.type == TypeCarousel.STORE.value) {
-            viewModel.getStoreBrand(carousel?.storeId)
-        }
+        viewBinding.ivLeft.visible()
+        viewBinding.ivRight.visible()
+        viewBinding.ivLeft.setOnClickListener(this)
+        viewBinding.ivRight.setOnClickListener(this)
     }
 
     private fun initViewPager() {
-        adapter = CarouselViewPagerAdapter(carousel?.type, childFragmentManager)
+        adapter = CarouselViewPagerAdapter(childFragmentManager)
         viewBinding.viewPager.offscreenPageLimit = CarouselViewPagerAdapter.PAGE_ALL_NUMBER
         viewBinding.viewPager.adapter = adapter
     }
 
-    private fun initTabLayout(type: String?) {
+    private fun initTabLayout() {
         viewBinding.tabLayout.setupWithViewPager(viewBinding.viewPager)
         viewBinding.tabLayout.getTabAt(0)?.text = getString(R.string.product)
-        viewBinding.tabLayout.getTabAt(1)?.text = getString(R.string.stories)
-        viewBinding.tabLayout.getTabAt(2)?.text = getString(R.string.about)
-        when (type) {
-            TypeCarousel.BRAND.value -> {
-                viewBinding.tabLayout.setSelectedTabIndicatorHeight(0)
-            }
-        }
+        viewBinding.tabLayout.getTabAt(1)?.text = getString(R.string.about)
     }
-
 }

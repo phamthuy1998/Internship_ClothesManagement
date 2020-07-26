@@ -8,17 +8,17 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.ptithcm.core.CoreApplication
 import com.ptithcm.core.model.Category
-import com.ptithcm.core.model.Product
 import com.ptithcm.core.model.ProductClothes
-import com.ptithcm.core.model.TypeCategories
 import com.ptithcm.core.param.CategoriesParam
 import com.ptithcm.core.param.ProductsParam
 import com.ptithcm.core.param.RefineParam
 import com.ptithcm.core.param.StoriesRefine
-import com.ptithcm.core.vo.Result
 import com.ptithcm.ptshop.R
 import com.ptithcm.ptshop.base.BaseFragment
-import com.ptithcm.ptshop.constant.*
+import com.ptithcm.ptshop.constant.IS_PRODUCT
+import com.ptithcm.ptshop.constant.KEY_ARGUMENT
+import com.ptithcm.ptshop.constant.KEY_ARGUMENT_REFINE
+import com.ptithcm.ptshop.constant.KEY_EMPTY
 import com.ptithcm.ptshop.databinding.FragmentCategoriesDetailBinding
 import com.ptithcm.ptshop.ext.*
 import com.ptithcm.ptshop.util.ScrollHandler
@@ -84,11 +84,11 @@ class CategoriesDetailFragment : BaseFragment<FragmentCategoriesDetailBinding>()
 //            }
 //        })
 //
-//        viewModelProduct.productsCategoriesLiveData.observe(this, Observer {
+        viewModelProduct.productsCategoriesLiveData.observe(this, Observer {
 //            if (!isRequestRefine) {
-//                adapter.submitList(it)
+            adapter.submitList(it)
 //            }
-//        })
+        })
 //
 //        viewModelProduct.productLoadStatusX.observe(this, Observer {
 //            adapter.setNetworkState(it)
@@ -111,9 +111,9 @@ class CategoriesDetailFragment : BaseFragment<FragmentCategoriesDetailBinding>()
 //            (requireActivity() as? MainActivity)?.isShowErrorNetwork(true)
 //        })
 
-        viewModelProduct.refineProductLiveData.observe(this, Observer {
-            adapter.submitList(it)
-        })
+//        viewModelProduct.refineProductLiveData.observe(this, Observer {
+//            adapter.submitList(it)
+//        })
     }
 
     override fun onClick(view: View?) {
@@ -163,7 +163,7 @@ class CategoriesDetailFragment : BaseFragment<FragmentCategoriesDetailBinding>()
 
     private fun initView() {
         category = arguments?.getParcelable(KEY_ARGUMENT) ?: Category()
-        viewModelProduct.getProducts(
+        viewModelProduct.getPagingProductsCategories(
             category.id ?: 1,
             20,
             1,
@@ -246,39 +246,39 @@ class CategoriesDetailFragment : BaseFragment<FragmentCategoriesDetailBinding>()
     }
 
     private fun eventListener(product: ProductClothes?, isRefine: Boolean) {
-        if (isRefine) {
-            when (arguments?.getBoolean(IS_PRODUCT)) {
-                true -> {
-                    refineParam?.gender = arrayListOf(switchGender(productCategory.gender))
-                    navController.navigateAnimation(
-                        R.id.nav_refine,
-                        bundle = bundleOf(KEY_ARGUMENT to refineParam, IS_PRODUCT to true)
-                    )
-                }
-                else -> {
-                    if (!this.isInitRefine) {
-                        initRefineParam()
-                    }
-                    viewModelRefine.categoriesParamLiveData.value =
-                        Pair(categoriesParam, switchGender(categoriesParam.gender))
-                    viewModelRefine.sizeType.value = sizeType
-                    navController.navigateAnimation(
-                        R.id.nav_refine,
-                        bundle = bundleOf(
-                            KEY_ARGUMENT to refineParam,
-                            IS_PRODUCT to false,
-                            KEY_MAIN_CATEGORIES to (categoriesParam.typeCategories == TypeCategories.MAIN_CATEGORIES)
-                        )
-                    )
-                }
-            }
-            this.isInitRefine = true
-        } else {
-            navController.navigateAnimation(
-                R.id.fragment_product_detail,
-                bundle = bundleOf(KEY_ARGUMENT to product, KEY_ARGUMENT_REFINE to refineParam)
-            )
-        }
+//        if (isRefine) {
+//            when (arguments?.getBoolean(IS_PRODUCT)) {
+//                true -> {
+//                    refineParam?.gender = arrayListOf(switchGender(productCategory.gender))
+//                    navController.navigateAnimation(
+//                        R.id.nav_refine,
+//                        bundle = bundleOf(KEY_ARGUMENT to refineParam, IS_PRODUCT to true)
+//                    )
+//                }
+//                else -> {
+//                    if (!this.isInitRefine) {
+//                        initRefineParam()
+//                    }
+//                    viewModelRefine.categoriesParamLiveData.value =
+//                        Pair(categoriesParam, switchGender(categoriesParam.gender))
+//                    viewModelRefine.sizeType.value = sizeType
+//                    navController.navigateAnimation(
+//                        R.id.nav_refine,
+//                        bundle = bundleOf(
+//                            KEY_ARGUMENT to refineParam,
+//                            IS_PRODUCT to false,
+//                            KEY_MAIN_CATEGORIES to (categoriesParam.typeCategories == TypeCategories.MAIN_CATEGORIES)
+//                        )
+//                    )
+//                }
+//            }
+//            this.isInitRefine = true
+//        } else {
+        navController.navigateAnimation(
+            R.id.fragment_product_detail,
+            bundle = bundleOf(KEY_ARGUMENT to product, KEY_ARGUMENT_REFINE to refineParam)
+        )
+//        }
     }
 
     private fun listenerAddProduct(product: ProductClothes?) {
