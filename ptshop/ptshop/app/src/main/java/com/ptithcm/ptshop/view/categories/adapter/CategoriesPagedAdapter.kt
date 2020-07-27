@@ -9,15 +9,13 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.ptithcm.core.CoreApplication
 import com.ptithcm.core.model.CountViewModel
-import com.ptithcm.core.model.Product
 import com.ptithcm.core.model.ProductClothes
-import com.ptithcm.core.util.ObjectHandler
 import com.ptithcm.core.vo.ItemViewModel
 import com.ptithcm.core.vo.Result
 import com.ptithcm.ptshop.R
+import com.ptithcm.ptshop.base.NetworkStateItemViewHolder
 import com.ptithcm.ptshop.databinding.ItemProductCarouselBinding
 import com.ptithcm.ptshop.databinding.LayoutCountItemCategoryBinding
-import com.ptithcm.ptshop.base.NetworkStateItemViewHolder
 
 class CategoriesPagedAdapter(
     private val banner: String? = null,
@@ -103,7 +101,7 @@ class CategoriesPagedAdapter(
         }
     }
 
-    private fun hasExtraRow() =
+    fun hasExtraRow() =
         networkState != null && networkState != Result.Success<ItemViewModel>()
 
     override fun getItemViewType(position: Int): Int {
@@ -111,7 +109,7 @@ class CategoriesPagedAdapter(
             R.layout.layout_load_more
         } else {
             when (getItem(position)) {
-                is Product -> R.layout.item_product_carousel
+                is ProductClothes -> R.layout.item_product_carousel
                 else -> R.layout.layout_count_item_category
             }
         }

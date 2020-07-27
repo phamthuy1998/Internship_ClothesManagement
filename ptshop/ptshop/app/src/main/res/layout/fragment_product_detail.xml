@@ -51,6 +51,8 @@
                 android:paddingTop="@dimen/layout_margin_32dp"
                 android:paddingEnd="@dimen/layout_margin_32dp">
 
+                product
+
                 <androidx.viewpager.widget.ViewPager
                     android:id="@+id/vpImage"
                     android:layout_width="match_parent"
@@ -160,7 +162,7 @@
                         android:id="@+id/btnSize"
                         android:layout_width="@dimen/no_padding"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="@{btnColorVisible == true ? @dimen/layout_margin_8dp : @dimen/no_padding}"
+                        android:layout_marginStart="@dimen/layout_margin_8dp"
                         android:background="@drawable/background_spinner"
                         android:overlapAnchor="false"
                         android:spinnerMode="dropdown"
@@ -174,7 +176,7 @@
                         android:id="@+id/btnQuantity"
                         android:layout_width="@dimen/no_padding"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="@{btnSizeVisible == true ? @dimen/layout_margin_8dp : @dimen/no_padding}"
+                        android:layout_marginStart="@dimen/layout_margin_8dp"
                         android:background="@drawable/background_spinner"
                         android:overlapAnchor="false"
                         android:spinnerMode="dropdown"

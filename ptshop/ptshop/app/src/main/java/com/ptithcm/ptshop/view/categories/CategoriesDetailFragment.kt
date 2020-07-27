@@ -214,8 +214,8 @@ class CategoriesDetailFragment : BaseFragment<FragmentCategoriesDetailBinding>()
         viewBinding.rvCategories.addOnScrollListener(scrollListener)
         layoutManager.spanSizeLookup = object : GridLayoutManager.SpanSizeLookup() {
             override fun getSpanSize(position: Int): Int {
-                return when (position) {
-                    0, layoutManager.itemCount - 1 -> 2
+                return when {
+                    position == 0 || (position == layoutManager.itemCount - 1 && adapter.hasExtraRow()) -> 2
                     else -> 1
                 }
             }

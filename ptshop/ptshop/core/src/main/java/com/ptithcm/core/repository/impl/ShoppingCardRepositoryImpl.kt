@@ -7,6 +7,7 @@ import com.ptithcm.core.data.remote.NetworkBoundResource
 import com.ptithcm.core.model.Basket
 import com.ptithcm.core.model.Brand
 import com.ptithcm.core.model.ProductClothesDetail
+import com.ptithcm.core.model.wish.ObjectResponse
 import com.ptithcm.core.param.AddProductParam
 import com.ptithcm.core.repository.ShoppingCardRepository
 import com.ptithcm.core.util.ObjectHandler
@@ -57,12 +58,13 @@ class ShoppingCardRepositoryImpl(val api: ApiService, val apiClothesService: Api
         }.build().asLiveData()
     }
 
-    override suspend fun getProductDetail(id: Int?): LiveData<Result<ProductClothesDetail>> {
-        return object : NetworkBoundResource<ProductClothesDetail, ProductClothesDetail>() {
-            override suspend fun createCall(): Response<ProductClothesDetail> =
+    override suspend fun getProductDetail(id: Int?): LiveData<Result<ObjectResponse<ProductClothesDetail>>> {
+        return object :
+            NetworkBoundResource<ObjectResponse<ProductClothesDetail>, ObjectResponse<ProductClothesDetail>>() {
+            override suspend fun createCall(): Response<ObjectResponse<ProductClothesDetail>> =
                 apiClothesService.getProductDetail(id ?: 0)
 
-            override fun processResponse(response: ProductClothesDetail): ProductClothesDetail? {
+            override fun processResponse(response: ObjectResponse<ProductClothesDetail>): ObjectResponse<ProductClothesDetail>? {
                 return response
             }
         }.build().asLiveData()

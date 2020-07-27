@@ -59,7 +59,7 @@ interface ApiClothesService {
     suspend fun getProductDetail(
         @Query("productID") providerId: Int,
         @Query("accountId") accountId: Int? = CoreApplication.instance.account?.id
-    ): Response<ProductClothesDetail>
+    ): Response<ObjectResponse<ProductClothesDetail>>
 
     /*-----------------------------*/
     /* Providers*/
