@@ -572,5 +572,48 @@ namespace ClothesManamentDataAccess
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SPGetAccountInfoUserID_Result>("SPGetAccountInfoUserID", userIdParameter);
         }
+    
+        public virtual ObjectResult<string> SP_GetEmail(Nullable<int> userId)
+        {
+            var userIdParameter = userId.HasValue ?
+                new ObjectParameter("userId", userId) :
+                new ObjectParameter("userId", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<string>("SP_GetEmail", userIdParameter);
+        }
+    
+        public virtual ObjectResult<SP_GetAllInvoice_Result> SP_GetAllInvoice(Nullable<int> statusId, Nullable<int> currentPage, Nullable<int> pageSize, Nullable<int> accountID)
+        {
+            var statusIdParameter = statusId.HasValue ?
+                new ObjectParameter("statusId", statusId) :
+                new ObjectParameter("statusId", typeof(int));
+    
+            var currentPageParameter = currentPage.HasValue ?
+                new ObjectParameter("currentPage", currentPage) :
+                new ObjectParameter("currentPage", typeof(int));
+    
+            var pageSizeParameter = pageSize.HasValue ?
+                new ObjectParameter("PageSize", pageSize) :
+                new ObjectParameter("PageSize", typeof(int));
+    
+            var accountIDParameter = accountID.HasValue ?
+                new ObjectParameter("AccountID", accountID) :
+                new ObjectParameter("AccountID", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_GetAllInvoice_Result>("SP_GetAllInvoice", statusIdParameter, currentPageParameter, pageSizeParameter, accountIDParameter);
+        }
+    
+        public virtual ObjectResult<Nullable<int>> SP_GetAllInvoiceCount(Nullable<int> statusId, Nullable<int> accountID)
+        {
+            var statusIdParameter = statusId.HasValue ?
+                new ObjectParameter("statusId", statusId) :
+                new ObjectParameter("statusId", typeof(int));
+    
+            var accountIDParameter = accountID.HasValue ?
+                new ObjectParameter("AccountID", accountID) :
+                new ObjectParameter("AccountID", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("SP_GetAllInvoiceCount", statusIdParameter, accountIDParameter);
+        }
     }
 }

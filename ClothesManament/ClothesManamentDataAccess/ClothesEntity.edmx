@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="ClothesManamentModel1.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="ClothesManamentModel1.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Account">
           <Key>
             <PropertyRef Name="id" />
@@ -88,12 +88,13 @@
           <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="updateDate" Type="date" />
           <Property Name="buyDate" Type="date" />
-          <Property Name="name" Type="nvarchar" MaxLength="50" />
-          <Property Name="phone" Type="nvarchar" MaxLength="15" />
-          <Property Name="address" Type="nvarchar" MaxLength="50" />
+          <Property Name="name" Type="nvarchar" MaxLength="100" />
+          <Property Name="phone" Type="nvarchar" MaxLength="20" />
+          <Property Name="address" Type="nvarchar" MaxLength="200" />
           <Property Name="note" Type="nvarchar" MaxLength="200" />
           <Property Name="userID" Type="int" />
           <Property Name="statusOrderId" Type="int" />
+          <Property Name="deliveryDate" Type="date" />
           <Property Name="active" Type="int" />
         </EntityType>
         <EntityType Name="InvoiceItem">
@@ -436,8 +437,21 @@
         <Function Name="SP_GetAllAddress" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="userId" Type="int" Mode="In" />
         </Function>
+        <Function Name="SP_GetAllInvoice" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="statusId" Type="int" Mode="In" />
+          <Parameter Name="currentPage" Type="int" Mode="In" />
+          <Parameter Name="PageSize" Type="int" Mode="In" />
+          <Parameter Name="AccountID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="SP_GetAllInvoiceCount" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="statusId" Type="int" Mode="In" />
+          <Parameter Name="AccountID" Type="int" Mode="In" />
+        </Function>
         <Function Name="SP_GetColorsOfProduct" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="productId" Type="int" Mode="In" />
+        </Function>
+        <Function Name="SP_GetEmail" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="userId" Type="int" Mode="In" />
         </Function>
         <Function Name="SP_GetFavoriteProducts" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="currentPage" Type="int" Mode="In" />
@@ -622,8 +636,7 @@
             <End Role="Account" EntitySet="Account" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="ClothesManamentModel1" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -712,15 +725,16 @@
           <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="updateDate" Type="DateTime" Precision="0" />
           <Property Name="buyDate" Type="DateTime" Precision="0" />
-          <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="phone" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
-          <Property Name="address" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="phone" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="address" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
           <Property Name="note" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
           <Property Name="userID" Type="Int32" />
           <Property Name="statusOrderId" Type="Int32" />
           <Property Name="active" Type="Int32" />
           <NavigationProperty Name="Account" Relationship="Self.FK_Invoice_Account" FromRole="Invoice" ToRole="Account" />
           <NavigationProperty Name="InvoiceItems" Relationship="Self.FK_OrderItem_Order" FromRole="Invoice" ToRole="InvoiceItem" />
+          <Property Name="deliveryDate" Type="DateTime" Precision="0" />
         </EntityType>
         <EntityType Name="InvoiceItem">
           <Key>
@@ -733,6 +747,7 @@
           <Property Name="quantity" Type="Int32" />
           <NavigationProperty Name="Invoice" Relationship="Self.FK_OrderItem_Order" FromRole="InvoiceItem" ToRole="Invoice" />
           <NavigationProperty Name="Product" Relationship="Self.FK_InvoiceItem_Product" FromRole="InvoiceItem" ToRole="Product" />
+          <Property Name="sale" Type="Double" />
         </EntityType>
         <EntityType Name="Product">
           <Key>
@@ -1048,13 +1063,13 @@
             <Parameter Name="newPass" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="DelAccount" ReturnType="Collection(Int32)">
-            <Parameter Name="userId" Mode="In" Type="Int32" />
+          <Parameter Name="userId" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="getCategoryByGender" ReturnType="Collection(ClothesManamentModel1.getCategoryByGender_Result)">
-            <Parameter Name="GenderID" Mode="In" Type="Int32" />
+          <Parameter Name="GenderID" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="getCategoryGender" ReturnType="Collection(ClothesManamentModel1.getCategoryGender_Result)">
-            <Parameter Name="GenderID" Mode="In" Type="Int32" />
+          <Parameter Name="GenderID" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="SP_AddOrder" ReturnType="Collection(Int32)">
             <Parameter Name="userId" Mode="In" Type="Int32" />
@@ -1079,7 +1094,7 @@
             <Parameter Name="productId" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="SP_CheckUserExist" ReturnType="Collection(Int32)">
-            <Parameter Name="userID" Mode="In" Type="Int32" />
+          <Parameter Name="userID" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="sp_creatediagram">
             <Parameter Name="diagramname" Mode="In" Type="String" />
@@ -1092,10 +1107,10 @@
             <Parameter Name="owner_id" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="SP_GetAllAddress" ReturnType="Collection(ClothesManamentModel1.SP_GetAllAddress_Result)">
-            <Parameter Name="userId" Mode="In" Type="Int32" />
+          <Parameter Name="userId" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="SP_GetColorsOfProduct" ReturnType="Collection(ClothesManamentModel1.SP_GetColorsOfProduct_Result)">
-            <Parameter Name="productId" Mode="In" Type="Int32" />
+          <Parameter Name="productId" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="SP_GetFavoriteProducts" ReturnType="Collection(ClothesManamentModel1.SP_GetFavoriteProducts_Result1)">
             <Parameter Name="currentPage" Mode="In" Type="Int32" />
@@ -1103,7 +1118,7 @@
             <Parameter Name="AccountID" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="SP_GetFavoriteProductsCount" ReturnType="Collection(Int32)">
-            <Parameter Name="accountId" Mode="In" Type="Int32" />
+          <Parameter Name="accountId" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="SP_GetProductInfo" ReturnType="Collection(ClothesManamentModel1.ProductDetail)">
             <Parameter Name="productID" Mode="In" Type="Int32" />
@@ -1120,7 +1135,7 @@
             <Parameter Name="AccountID" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="SP_GetProductOfCategoryCount" ReturnType="Collection(Int32)">
-            <Parameter Name="categoryId" Mode="In" Type="Int32" />
+          <Parameter Name="categoryId" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="SP_GetProductsOfProvider" ReturnType="Collection(ClothesManamentModel1.SP_GetProductsOfProvider_Result1)">
             <Parameter Name="providerId" Mode="In" Type="Int32" />
@@ -1129,17 +1144,17 @@
             <Parameter Name="AccountID" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="SP_GetProductsOfProviderCount" ReturnType="Collection(Int32)">
-            <Parameter Name="provderId" Mode="In" Type="Int32" />
+          <Parameter Name="provderId" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="SP_GetProviderDetail" ReturnType="Collection(ClothesManamentModel1.SP_GetProviderDetail_Result)">
-            <Parameter Name="providerId" Mode="In" Type="Int32" />
+          <Parameter Name="providerId" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="SP_GetProviders" ReturnType="Collection(ClothesManamentModel1.SP_GetProviders_Result)" />
           <FunctionImport Name="SP_GetSizesColorsOfProduct" ReturnType="Collection(ClothesManamentModel1.SP_GetSizesColorsOfProduct_Result)">
-            <Parameter Name="productId" Mode="In" Type="Int32" />
+          <Parameter Name="productId" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="SP_GetSizesOfProduct" ReturnType="Collection(ClothesManamentModel1.SP_GetSizesOfProduct_Result)">
-            <Parameter Name="productId" Mode="In" Type="Int32" />
+          <Parameter Name="productId" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="sp_helpdiagramdefinition" ReturnType="Collection(ClothesManamentModel1.sp_helpdiagramdefinition_Result)">
             <Parameter Name="diagramname" Mode="In" Type="String" />
@@ -1150,7 +1165,7 @@
             <Parameter Name="owner_id" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="SP_ImagesOfProduct" ReturnType="Collection(String)">
-            <Parameter Name="productID" Mode="In" Type="Int32" />
+          <Parameter Name="productID" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="SP_Login" ReturnType="Collection(Int32)">
             <Parameter Name="userName" Mode="In" Type="String" />
@@ -1188,19 +1203,32 @@
           </FunctionImport>
           <FunctionImport Name="sp_upgraddiagrams" />
           <FunctionImport Name="SPGetAccounByUsername" ReturnType="Collection(ClothesManamentModel1.SPGetAccounByUsername_Result)">
-            <Parameter Name="username" Mode="In" Type="String" />
+          <Parameter Name="username" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="SPGetAccount" ReturnType="Collection(ClothesManamentModel1.SPGetAccount_Result)">
-            <Parameter Name="userId" Mode="In" Type="Int32" />
+          <Parameter Name="userId" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="SPGetAccountInfoByUserId" ReturnType="Collection(ClothesManamentModel1.SPGetAccountInfoByUserId_Result)">
-            <Parameter Name="userId" Mode="In" Type="Int32" />
+          <Parameter Name="userId" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="SPGetAccountInfoByUsername" ReturnType="Collection(ClothesManamentModel1.SPGetAccountInfoByUsername_Result)">
-            <Parameter Name="username" Mode="In" Type="String" />
+          <Parameter Name="username" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="SPGetAccountInfoUserID" ReturnType="Collection(ClothesManamentModel1.SPGetAccountInfoUserID_Result)">
-            <Parameter Name="userId" Mode="In" Type="Int32" />
+          <Parameter Name="userId" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="SP_GetEmail" ReturnType="Collection(String)">
+          <Parameter Name="userId" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="SP_GetAllInvoice" ReturnType="Collection(ClothesManamentModel1.SP_GetAllInvoice_Result)">
+            <Parameter Name="statusId" Mode="In" Type="Int32" />
+            <Parameter Name="currentPage" Mode="In" Type="Int32" />
+            <Parameter Name="PageSize" Mode="In" Type="Int32" />
+            <Parameter Name="AccountID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="SP_GetAllInvoiceCount" ReturnType="Collection(Int32)">
+            <Parameter Name="statusId" Mode="In" Type="Int32" />
+            <Parameter Name="AccountID" Mode="In" Type="Int32" />
           </FunctionImport>
         </EntityContainer>
         <ComplexType Name="getCategoryByGender_Result">
@@ -1424,6 +1452,18 @@
           <Property Type="Double" Name="promotion" Nullable="true" />
           <Property Type="String" Name="typePromotion" Nullable="true" MaxLength="50" />
         </ComplexType>
+        <ComplexType Name="SP_GetAllInvoice_Result">
+          <Property Type="Int32" Name="id" Nullable="false" />
+          <Property Type="DateTime" Name="updateDate" Nullable="true" />
+          <Property Type="DateTime" Name="buyDate" Nullable="true" />
+          <Property Type="String" Name="name" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="phone" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="address" Nullable="true" MaxLength="200" />
+          <Property Type="DateTime" Name="deliveryDate" Nullable="true" />
+          <Property Type="Double" Name="price" Nullable="true" />
+          <Property Type="Int32" Name="statusOrderId" Nullable="true" />
+          <Property Type="String" Name="statusInvoice" Nullable="false" MaxLength="12" />
+        </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1507,6 +1547,7 @@
           <EntitySetMapping Name="Invoices">
             <EntityTypeMapping TypeName="ClothesManamentModel1.Invoice">
               <MappingFragment StoreEntitySet="Invoice">
+                <ScalarProperty Name="deliveryDate" ColumnName="deliveryDate" />
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="updateDate" ColumnName="updateDate" />
                 <ScalarProperty Name="buyDate" ColumnName="buyDate" />
@@ -1888,6 +1929,25 @@
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SP_GetEmail" FunctionName="ClothesManamentModel1.Store.SP_GetEmail">
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SP_GetAllInvoice" FunctionName="ClothesManamentModel1.Store.SP_GetAllInvoice">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ClothesManamentModel1.SP_GetAllInvoice_Result">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="updateDate" ColumnName="updateDate" />
+                <ScalarProperty Name="buyDate" ColumnName="buyDate" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="phone" ColumnName="phone" />
+                <ScalarProperty Name="address" ColumnName="address" />
+                <ScalarProperty Name="deliveryDate" ColumnName="deliveryDate" />
+                <ScalarProperty Name="price" ColumnName="price" />
+                <ScalarProperty Name="statusOrderId" ColumnName="statusOrderId" />
+                <ScalarProperty Name="statusInvoice" ColumnName="statusInvoice" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SP_GetAllInvoiceCount" FunctionName="ClothesManamentModel1.Store.SP_GetAllInvoiceCount" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

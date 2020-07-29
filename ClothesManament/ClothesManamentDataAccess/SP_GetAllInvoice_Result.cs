@@ -10,30 +10,18 @@
 namespace ClothesManamentDataAccess
 {
     using System;
-    using System.Collections.Generic;
     
-    public partial class Invoice
+    public partial class SP_GetAllInvoice_Result
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Invoice()
-        {
-            this.InvoiceItems = new HashSet<InvoiceItem>();
-        }
-    
         public int id { get; set; }
         public Nullable<System.DateTime> updateDate { get; set; }
         public Nullable<System.DateTime> buyDate { get; set; }
         public string name { get; set; }
         public string phone { get; set; }
         public string address { get; set; }
-        public string note { get; set; }
-        public Nullable<int> userID { get; set; }
-        public Nullable<int> statusOrderId { get; set; }
-        public Nullable<int> active { get; set; }
         public Nullable<System.DateTime> deliveryDate { get; set; }
-    
-        public virtual Account Account { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<InvoiceItem> InvoiceItems { get; set; }
+        public Nullable<double> price { get; set; }
+        public Nullable<int> statusOrderId { get; set; }
+        public string statusInvoice { get; set; }
     }
 }

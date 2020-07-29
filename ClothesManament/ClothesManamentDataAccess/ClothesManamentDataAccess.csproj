@@ -229,6 +229,9 @@
     <Compile Include="SP_GetAllAddress_Result.cs">
       <DependentUpon>ClothesEntity.tt</DependentUpon>
     </Compile>
+    <Compile Include="SP_GetAllInvoice_Result.cs">
+      <DependentUpon>ClothesEntity.tt</DependentUpon>
+    </Compile>
     <Compile Include="SP_GetColorsOfProduct_Result.cs">
       <DependentUpon>ClothesEntity.tt</DependentUpon>
     </Compile>

@@ -31,7 +31,6 @@ namespace ClothesManament.Controllers
                 count = count,
                 results = listResponse
             };
-
         }
 
         [Route("api/allProductsOfProvider")]
@@ -132,7 +131,7 @@ namespace ClothesManament.Controllers
         [Route("api/productDetail")]
         [AcceptVerbs("GET")]
         [HttpGet]
-        public async Task<ResponseObjectModel<Models.ProductDetail>> getProductInfo([FromUri]int productID, int? accountId = null)
+        public async Task<ResponseObjectModel<Models.ProductDetail>> getProductInfo([FromUri]int productID, Nullable<int> accountId = null)
         {
             var productDetail = entities.SP_GetProductInfoDetail(productID, accountId).FirstOrDefault();
             if (productDetail == null)
