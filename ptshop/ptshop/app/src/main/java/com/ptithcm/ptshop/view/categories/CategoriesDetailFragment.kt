@@ -282,16 +282,16 @@ class CategoriesDetailFragment : BaseFragment<FragmentCategoriesDetailBinding>()
     }
 
     private fun listenerAddProduct(product: ProductClothes?) {
-//        if (CoreApplication.instance.profile != null) {
-//            product?.isAddProduct = !(product?.isAddProduct ?: false)
-//            if (product?.isAddProduct == true) {
-//                wishListViewModel.addToWishList(product.id)
-//            } else {
-//                wishListViewModel.removeFromWishList(product?.id)
-//            }
-//        } else {
-//            messageHandler?.runMessageErrorHandler(getString(R.string.error_add_product))
-//        }
+        if (CoreApplication.instance.account != null) {
+            if (product?.isLike == 0)
+                product.isLike = 1
+            else
+                product?.isLike = 0
+
+            wishListViewModel.addAndRemoveToWishList(product?.id)
+        } else {
+            messageHandler?.runMessageErrorHandler(getString(R.string.error_add_product))
+        }
     }
 
     private fun initRefineParam() {

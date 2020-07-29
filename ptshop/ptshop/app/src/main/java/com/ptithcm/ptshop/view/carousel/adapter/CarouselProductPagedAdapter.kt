@@ -6,6 +6,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.paging.PagedListAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
+import com.ptithcm.core.CoreApplication
 import com.ptithcm.core.model.CountViewModel
 import com.ptithcm.core.model.ProductClothes
 import com.ptithcm.core.vo.ItemViewModel
@@ -78,9 +79,9 @@ class CarouselProductPagedAdapter(
                     listener.invoke(item, false)
                 }
                 holder.viewBinding.ivStar.setOnClickListener {
-//                    if (CoreApplication.instance.profile != null) {
-//                        it.isSelected = !item.isAddProduct
-//                    }
+                    if (CoreApplication.instance.account != null) {
+                        it.isSelected = item.isLike == 0
+                    }
                     listenerAddProduct?.invoke(item, position)
                 }
             }

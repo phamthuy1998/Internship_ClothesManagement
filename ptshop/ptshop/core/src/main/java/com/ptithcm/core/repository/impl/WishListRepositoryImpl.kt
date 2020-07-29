@@ -1,45 +1,33 @@
 package com.ptithcm.core.repository.impl
 
 import androidx.lifecycle.LiveData
-import com.ptithcm.core.api.ApiService
+import com.ptithcm.core.api.ApiClothesService
 import com.ptithcm.core.data.remote.NetworkBoundResource
-import com.ptithcm.core.model.Product
-import com.ptithcm.core.model.wish.WishResponse
-import com.ptithcm.core.param.WishListParam
+import com.ptithcm.core.model.ProductClothes
+import com.ptithcm.core.model.wish.ObjectResponse
 import com.ptithcm.core.repository.WishListRepository
 import com.ptithcm.core.vo.Result
 import retrofit2.Response
 
-class WishListRepositoryImpl(val api: ApiService): WishListRepository {
+class WishListRepositoryImpl(val apiClothes: ApiClothesService) : WishListRepository {
 
-    override suspend fun getWishList(): LiveData<Result<ArrayList<Product>>> {
-        return object : NetworkBoundResource<ArrayList<Product>, ArrayList<Product>>(){
-            override suspend fun createCall(): Response<ArrayList<Product>> = api.getAllWishList()
+    override suspend fun getWishList(): LiveData<Result<ObjectResponse<ArrayList<ProductClothes>>>> {
+        return object :
+            NetworkBoundResource<ObjectResponse<ArrayList<ProductClothes>>, ObjectResponse<ArrayList<ProductClothes>>>() {
+            override suspend fun createCall(): Response<ObjectResponse<ArrayList<ProductClothes>>> =
+                apiClothes.getAllWishList()
 
-            override fun processResponse(response: ArrayList<Product>): ArrayList<Product>? {
-                return response.map {
-                    it.apply {
-                        variants?.sortBy { variant -> variant.position }
-                        checkVariantWrongPrice()
-                        isAddProduct = true
-                    }
-                    it
-                } as ArrayList<Product>
+            override fun processResponse(response: ObjectResponse<ArrayList<ProductClothes>>): ObjectResponse<ArrayList<ProductClothes>>? {
+                return response
             }
         }.build().asLiveData()
     }
 
-    override suspend fun addToWishList(id: Int?): LiveData<Result<WishResponse>> {
-        return object : NetworkBoundResource<WishResponse, WishResponse>(){
-            override fun processResponse(response: WishResponse) = response
-            override suspend fun createCall(): Response<WishResponse> = api.addToWishList(WishListParam(id))
-        }.build().asLiveData()
-    }
-
-    override suspend fun removeFromWishList(id: Int?): LiveData<Result<WishResponse>> {
-        return object : NetworkBoundResource<WishResponse, WishResponse>(){
-            override fun processResponse(response: WishResponse) = response
-            override suspend fun createCall(): Response<WishResponse> = api.removeFromWishList(id)
+    override suspend fun addAndRemoveToWishList(id: Int?): LiveData<Result<ObjectResponse<Int>>> {
+        return object : NetworkBoundResource<ObjectResponse<Int>, ObjectResponse<Int>>() {
+            override fun processResponse(response: ObjectResponse<Int>) = response
+            override suspend fun createCall(): Response<ObjectResponse<Int>> =
+                apiClothes.addAndRemoveToWishList(id)
         }.build().asLiveData()
     }
 }

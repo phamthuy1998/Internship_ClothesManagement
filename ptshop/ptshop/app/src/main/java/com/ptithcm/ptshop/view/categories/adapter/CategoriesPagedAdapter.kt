@@ -81,8 +81,8 @@ class CategoriesPagedAdapter(
                     listener.invoke(item, false)
                 }
                 holder.viewBinding.ivStar.setOnClickListener {
-                    if (CoreApplication.instance.profile != null) {
-                        it.isSelected = !it.isSelected
+                    if (CoreApplication.instance.account != null) {
+                        it.isSelected = item.isLike == 0
                     }
                     listenerAddProduct?.invoke(item)
                 }

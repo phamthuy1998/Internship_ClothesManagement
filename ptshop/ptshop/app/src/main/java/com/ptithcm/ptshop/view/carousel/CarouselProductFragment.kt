@@ -153,8 +153,7 @@ class CarouselProductFragment : BaseFragment<FragmentCarouselProductBinding>(),
             }
         })
 
-        wishListViewModel.addResult.observe(this, Observer {})
-        wishListViewModel.removeResult.observe(this, Observer {})
+        wishListViewModel.addAndRemoveResult.observe(this, Observer {})
         wishListViewModel.error.observe(this, Observer {
             (requireActivity() as? BaseActivity<*>)?.isShowErrorNetwork(true)
         })
@@ -229,16 +228,16 @@ class CarouselProductFragment : BaseFragment<FragmentCarouselProductBinding>(),
     }
 
     private fun listenerAddProduct(product: ProductClothes?, position: Int) {
-//        if (CoreApplication.instance.profile != null) {
-//            product?.isAddProduct = !(product?.isAddProduct ?: false)
-//            if (product?.isAddProduct == true) {
-//                wishListViewModel.addToWishList(product.id)
-//            } else {
-//                wishListViewModel.removeFromWishList(product?.id)
-//            }
-//        } else {
-//            messageHandler?.runMessageErrorHandler(getString(R.string.error_add_product))
-//        }
+        if (CoreApplication.instance.account != null) {
+            if (product?.isLike == 0)
+                product.isLike = 1
+            else
+                product?.isLike = 0
+
+            wishListViewModel.addAndRemoveToWishList(product?.id)
+        } else {
+            messageHandler?.runMessageErrorHandler(getString(R.string.error_add_product))
+        }
     }
 
 //    private fun initRefineParam(brands: ArrayList<BrandsRefine>): RefineParam {

@@ -6,8 +6,8 @@
         <import type="android.view.View"/>
 
         <variable
-            name="item"
-            type="com.ptithcm.core.model.Product" />
+            name="product"
+            type="com.ptithcm.core.model.ProductClothes" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -21,6 +21,8 @@
             android:id="@+id/ivWishList"
             android:layout_width="match_parent"
             android:layout_height="0dp"
+            app:imageUrl="@{product.thumnail}"
+            app:placeHolder="@{@drawable/ic_place_holder}"
             android:adjustViewBounds="true"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -30,7 +32,7 @@
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/tvTitleWishList"
             style="@style/normal_text.bold"
-            android:text="@{item.vendor}"
+            android:text="@{product.title}"
             android:textAlignment="center"
             android:layout_marginTop="@dimen/layout_margin_8dp"
             android:textAllCaps="true"
@@ -47,7 +49,7 @@
             android:textAlignment="center"
             android:ellipsize="end"
             android:maxLines="1"
-            android:text="@{item.title}"
+            android:visibility="gone"
             app:layout_constraintTop_toBottomOf="@id/tvTitleWishList"
             app:layout_constraintStart_toStartOf="@id/ivWishList"
             app:layout_constraintEnd_toEndOf="@id/ivWishList"
@@ -56,20 +58,24 @@
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/tvPrice"
             style="@style/normal_text.bold"
-            android:visibility="@{item.variants[0].compare_at_price_after_tax == null ? View.VISIBLE : View.GONE}"
+            price="@{product.price}"
+            setVisible="@{product.promotion == 0.0}"
             android:layout_marginTop="@dimen/layout_margin_8dp"
             android:textSize="@dimen/text_size_13sp"
             app:layout_constraintTop_toBottomOf="@+id/tvDescWishList"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            tool:text="$72.20"/>
+            tool:text="$72.20" />
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/tvDiscountPrice"
             style="@style/normal_text.SemiBold"
-            android:visibility="@{item.variants[0].compare_at_price_after_tax != null ? View.VISIBLE : View.GONE}"
+            price="@{product.price}"
+            promo="@{product.promotion}"
+            promoType="@{product.typePromotion}"
             android:textColor="@color/colorTextDiscount"
             android:textSize="@dimen/text_size_13sp"
+            setVisible="@{product.promotion != 0.0}"
             android:layout_marginTop="@dimen/layout_margin_8dp"
             app:layout_constraintStart_toStartOf="@id/tvPrice"
             app:layout_constraintEnd_toStartOf="@id/tvOriginPrice"
@@ -79,13 +85,15 @@
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/tvOriginPrice"
             style="@style/normal_text.SemiBold"
-            android:visibility="@{item.variants[0].compare_at_price_after_tax != null ? View.VISIBLE : View.GONE}"
+            price="@{product.price}"
+            setPaintFlagsStrike="@{true}"
+            setVisible="@{product.promotion != 0.0}"
             android:layout_marginStart="@dimen/layout_margin_8dp"
             android:textSize="@dimen/text_size_13sp"
             app:layout_constraintTop_toTopOf="@id/tvDiscountPrice"
             app:layout_constraintStart_toEndOf="@id/tvDiscountPrice"
             app:layout_constraintEnd_toEndOf="@id/tvPrice"
-            tool:text="$70.54"/>
+            tool:text="$70.54" />
 
         <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/ivClose"

@@ -14,4 +14,6 @@ data class ProductClothes(
     var isLike: Int? = null,
     var promotion: Double? = null,
     var typePromotion: PromotionType? = null
-) : ItemViewModel, Parcelable
+) : ItemViewModel, Parcelable {
+    fun getIsFavorite() = isLike == 1
+}

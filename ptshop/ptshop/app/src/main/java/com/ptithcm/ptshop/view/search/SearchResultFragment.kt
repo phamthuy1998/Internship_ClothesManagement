@@ -2,17 +2,17 @@ package com.ptithcm.ptshop.view.search
 
 import android.os.Bundle
 import android.view.View
-import androidx.core.os.bundleOf
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.ptithcm.core.CoreApplication
-import com.ptithcm.core.model.Product
+import com.ptithcm.core.model.ProductClothes
 import com.ptithcm.core.param.RefineParam
 import com.ptithcm.core.vo.Result
 import com.ptithcm.ptshop.R
 import com.ptithcm.ptshop.base.BaseFragment
-import com.ptithcm.ptshop.constant.*
+import com.ptithcm.ptshop.constant.KEY_EMPTY
+import com.ptithcm.ptshop.constant.KEY_SEARCH
 import com.ptithcm.ptshop.databinding.FragmentSearchResultBinding
 import com.ptithcm.ptshop.ext.*
 import com.ptithcm.ptshop.view.MainActivity
@@ -179,9 +179,9 @@ class SearchResultFragment : BaseFragment<FragmentSearchResultBinding>() {
 //        this.isInitRefine = isRefine
 //    }
 
-    private fun listenerAddProduct(product: Product?) {
+    private fun listenerAddProduct(product: ProductClothes?) {
         if (CoreApplication.instance.account != null) {
-            wishListViewModel.addToWishList(product?.id)
+            wishListViewModel.addAndRemoveToWishList(product?.id)
         } else {
             messageHandler?.runMessageErrorHandler(getString(R.string.error_add_product))
         }

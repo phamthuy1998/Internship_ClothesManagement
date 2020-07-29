@@ -10,10 +10,6 @@
             name="fragment"
             type="com.ptithcm.ptshop.view.shop.BaseShopGenderFragment" />
 
-        <variable
-            name="carousels_size"
-            type="String" />
-
     </data>
 
     <androidx.core.widget.NestedScrollView
@@ -27,17 +23,6 @@
             android:layout_height="wrap_content"
             android:paddingBottom="@dimen/layout_margin_16dp">
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/rvCarousel"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/layout_margin_16dp"
-                android:clipToPadding="false"
-                android:paddingStart="@dimen/layout_margin_8dp"
-                android:paddingEnd="@dimen/layout_margin_8dp"
-                android:visibility="gone"
-                app:layout_constraintTop_toTopOf="parent" />
-
             <ProgressBar
                 android:id="@+id/progressBarLine"
                 style="?android:attr/progressBarStyleHorizontal"
@@ -47,19 +32,7 @@
                 android:indeterminate="false"
                 android:visibility="gone"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/rvCarousel" />
-
-            <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/tvCountPager"
-                style="@style/normal_text"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/layout_margin_8dp"
-                android:textColor="@color/gray_stroke"
-                app:curPage="@{fragment.curCarousel}"
-                app:layout_constraintEnd_toEndOf="@id/progressBarLine"
-                app:layout_constraintTop_toBottomOf="@id/progressBarLine"
-                app:pageSize="@{carousels_size}" />
+                app:layout_constraintTop_toTopOf="parent" />
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/tvPopularCategories"
@@ -67,11 +40,11 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/layout_margin_16dp"
-                android:layout_marginTop="4dp"
+                android:layout_marginTop="@dimen/layout_margin_16dp"
                 android:text="@string/all_categories"
                 android:textAllCaps="true"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/tvCountPager" />
+                app:layout_constraintTop_toTopOf="parent" />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rvPopularCategories"

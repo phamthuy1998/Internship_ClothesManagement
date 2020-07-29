@@ -16,14 +16,14 @@
     <string name="home">HOME</string>
     <string name="clothing">SHOP</string>
     <string name="designer">DESIGNERS</string>
-    <string name="wishlist">WISHLIST</string>
+    <string name="wishlist">FAVOURITES</string>
     <string name="profile">PROFILE</string>
     <string name="email">Email</string>
     <string name="password">Password</string>
     <string name="don_t_have_an_account">Don\'t have an account?</string>
     <string name="sign_in">SIGN IN</string>
     <string name="join_us">Join Us</string>
-    <string name="empty_wish_list">Your wishlist is \n currently empty</string>
+    <string name="empty_wish_list">Your favourite is \n currently empty</string>
     <string name="wish_list_login">Login to create \n your Wishlist</string>
     <string name="start_shopping">Start Shopping</string>
     <string name="add_to_cart">add to cart</string>

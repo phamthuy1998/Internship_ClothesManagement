@@ -4,23 +4,22 @@ import androidx.lifecycle.MediatorLiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.ptithcm.core.model.Product
+import com.ptithcm.core.model.ProductClothes
+import com.ptithcm.core.model.wish.ObjectResponse
 import com.ptithcm.core.repository.WishListRepository
-import com.ptithcm.core.util.ObjectHandler
 import com.ptithcm.core.vo.Result
 import kotlinx.coroutines.launch
 
-class WishListViewModel(val repo: WishListRepository): ViewModel(){
-    val wishListResult = MediatorLiveData<ArrayList<Product>>()
-    val removeResult = MediatorLiveData<String>()
-    val addResult = MediatorLiveData<String>()
+class WishListViewModel(val repo: WishListRepository): ViewModel() {
+    val wishListResult = MediatorLiveData<ArrayList<ProductClothes>>()
+    val addAndRemoveResult = MediatorLiveData<ObjectResponse<Int>>()
     val error = MutableLiveData<Pair<String, Int?>>()
     val networkState = MutableLiveData<Boolean>()
 
-    fun getWishList(){
-        viewModelScope.launch{
-            wishListResult.addSource(repo.getWishList()){
-                when(it){
+    fun getWishList() {
+        viewModelScope.launch {
+            wishListResult.addSource(repo.getWishList()) {
+                when (it) {
                     is Result.Loading -> {
                         networkState.value = true
                     }
@@ -30,47 +29,32 @@ class WishListViewModel(val repo: WishListRepository): ViewModel(){
                     }
                     is Result.Success -> {
                         networkState.value = false
-                       ObjectHandler.addAllToWishListLocal(it.data?.map { it.id } as ArrayList<Int>)
-                        wishListResult.value = it.data
+                        wishListResult.value = it.data?.data
                     }
                 }
             }
         }
     }
 
-    fun removeFromWishList(id: Int?){
+    fun addAndRemoveToWishList(id: Int?) {
         viewModelScope.launch {
-            removeResult.addSource(repo.removeFromWishList(id)){
-                when(it){
+            addAndRemoveResult.addSource(repo.addAndRemoveToWishList(id)) {
+                when (it) {
                     is Result.Loading -> {
-
                     }
                     is Result.Error -> {
                         error.value = Pair(it.message, it.code)
                     }
                     is Result.Success -> {
-                        ObjectHandler.removeFromWishListLocal(id ?: return@addSource)
-                        removeResult.value = it.data?.result
-                        val arr = ArrayList<Product>(wishListResult.value?.toMutableList() ?: return@addSource)
-                        arr.removeIf { prod -> prod.id == id }
-                        wishListResult.value  = arr
-                    }
-                }
-            }
-        }
-    }
-
-    fun addToWishList(id: Int?){
-        viewModelScope.launch {
-            addResult.addSource(repo.addToWishList(id)){
-                when(it){
-                    is Result.Loading -> {}
-                    is Result.Error -> {
-                        error.value = Pair(it.message, it.code)
-                    }
-                    is Result.Success -> {
-                        ObjectHandler.addToWishListLocal(id ?: return@addSource)
-                        addResult.value = it.data?.result
+                        if (it.data?.data != 1) {
+                            val arr = ArrayList<ProductClothes>(
+                                wishListResult.value?.toMutableList() ?: return@addSource
+                            )
+                            arr.removeIf { prod -> prod.id == id }
+                            wishListResult.value = arr
+                        }
+                        addAndRemoveResult.value = it.data
+//                        ObjectHandler.addToWishListLocal(id ?: return@addSource)
                     }
                 }
             }

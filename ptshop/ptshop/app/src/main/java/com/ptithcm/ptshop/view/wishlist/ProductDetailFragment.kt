@@ -6,6 +6,7 @@ import android.view.View
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import androidx.appcompat.widget.AppCompatImageButton
+import androidx.core.content.ContextCompat
 import androidx.core.os.bundleOf
 import androidx.lifecycle.Observer
 import com.ptithcm.core.CoreApplication
@@ -86,8 +87,7 @@ class ProductDetailFragment : BaseFragment<FragmentProductDetailBinding>() {
     }
 
     override fun bindViewModel() {
-        wishListViewModel.addResult.observe(this, Observer {})
-        wishListViewModel.removeResult.observe(this, Observer {})
+        wishListViewModel.addAndRemoveResult.observe(this, Observer {})
 
         shoppingViewModel.isLoading.observe(this, Observer {
             viewBinding.btnAddToCard.isLoading = it
@@ -180,11 +180,7 @@ class ProductDetailFragment : BaseFragment<FragmentProductDetailBinding>() {
                 v.apply {
                     if (isLogin) {
                         isSelected = isSelected.not()
-                        if (isSelected) {
-                            wishListViewModel.addToWishList(this@ProductDetailFragment.viewBinding.item?.id)
-                        } else {
-                            wishListViewModel.removeFromWishList(this@ProductDetailFragment.viewBinding.item?.id)
-                        }
+                        wishListViewModel.addAndRemoveToWishList(productDetail?.id)
                     } else {
                         messageHandler?.runMessageErrorHandler(getString(R.string.login_to_add_wish_list))
                     }
@@ -242,10 +238,10 @@ class ProductDetailFragment : BaseFragment<FragmentProductDetailBinding>() {
                     onClick(it)
                 })
             toolbar?.findViewById<AppCompatImageButton>(R.id.ivRight)?.apply {
-//                isSelected = product?.isAddProduct ?: false
-//                setImageDrawable(
-//                    ContextCompat.getDrawable(requireContext(), R.drawable.wished_selector)
-//                )
+                isSelected = product?.getIsFavorite() ?: false
+                setImageDrawable(
+                    ContextCompat.getDrawable(requireContext(), R.drawable.wished_selector)
+                )
             }
         }
     }
@@ -274,17 +270,6 @@ class ProductDetailFragment : BaseFragment<FragmentProductDetailBinding>() {
                         viewBinding.btnQuantity.setSelection(0)
                     }
                     handleSelectOption()
-
-//                    val value = getItemAtPosition(p2) as String
-//                    productVariant = if (viewBinding.btnSize.visibility != View.GONE) {
-//                        findVariant(
-//                            Pair(viewBinding.btnSize.selectedItem.toString(), value),
-//                            viewBinding.item?.variants
-//                        )?.checkIfWrongPrice()
-//                    } else {
-//                        findVariant(Pair(null, value), viewBinding.item?.variants)?.checkIfWrongPrice()
-//                    }
-//                    handleSelectOption()
                 }
             }
         }
@@ -308,20 +293,7 @@ class ProductDetailFragment : BaseFragment<FragmentProductDetailBinding>() {
                         iCurrentSelection = p2
                         viewBinding.btnQuantity.setSelection(0)
                     }
-
                     handleSelectOption()
-//                    val value = getItemAtPosition(p2) as String
-//
-//                    productVariant = if (viewBinding.btnColor.visibility != View.GONE) {
-//                        findVariant(
-//                            Pair(value, viewBinding.btnColor.selectedItem.toString()),
-//                            viewBinding.item?.variants
-//                        )?.checkIfWrongPrice()
-//                    } else {
-//                        findVariant(Pair(value, null), viewBinding.item?.variants)?.checkIfWrongPrice()
-//                    }
-//
-//                    handleSelectOption()
                 }
             }
         }
@@ -332,6 +304,9 @@ class ProductDetailFragment : BaseFragment<FragmentProductDetailBinding>() {
     }
 
     private fun handleSelectOption() {
+        if (viewBinding.btnSizeVisible == false || viewBinding.btnSizeVisible == false)
+            return
+
         val colorOption =
             productDetail?.colors?.getOrNull(viewBinding.btnColor.selectedItemPosition)
         val sizeOption = productDetail?.sizes?.getOrNull(viewBinding.btnSize.selectedItemPosition)

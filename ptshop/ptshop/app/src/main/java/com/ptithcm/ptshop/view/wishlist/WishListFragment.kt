@@ -8,7 +8,6 @@ import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.SimpleItemAnimator
-import com.ptithcm.core.CoreApplication
 import com.ptithcm.core.model.Product
 import com.ptithcm.core.util.ObjectHandler
 import com.ptithcm.ptshop.R
@@ -24,7 +23,6 @@ import com.ptithcm.ptshop.viewmodel.WishListViewModel
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.layout_toolbar.view.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
-import java.util.*
 
 class WishListFragment : BaseFragment<FragmentWishListBinding>() {
 
@@ -35,9 +33,7 @@ class WishListFragment : BaseFragment<FragmentWishListBinding>() {
 
     private var position: Int? = null
 
-    private val adapter = WishListAdapter(
-        CoreApplication.instance.currency.getLocale() ?: Locale.UK
-    ) { it: Any?, pos: Int? ->
+    private val adapter = WishListAdapter { it: Any?, pos: Int? ->
         when (it) {
             // click to see detail
             is Product -> {
@@ -48,7 +44,7 @@ class WishListFragment : BaseFragment<FragmentWishListBinding>() {
             }
             // remove an item wish list
             is Int -> {
-                wishListViewModel.removeFromWishList(it)
+                wishListViewModel.addAndRemoveToWishList(it)
                 this.position = pos
             }
         }
@@ -100,7 +96,7 @@ class WishListFragment : BaseFragment<FragmentWishListBinding>() {
             }
         })
 
-        wishListViewModel.removeResult.observe(this, Observer {})
+        wishListViewModel.addAndRemoveResult.observe(this, Observer {})
     }
 
     private fun setUpToolBar() {

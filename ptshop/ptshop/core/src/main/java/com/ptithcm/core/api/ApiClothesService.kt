@@ -62,6 +62,21 @@ interface ApiClothesService {
     ): Response<ObjectResponse<ProductClothesDetail>>
 
     /*-----------------------------*/
+    /* Wish Product*/
+    @GET("/api/favoriteProducts")
+    suspend fun getAllWishList(
+        @Query("pageSize") pageSize: Int? = 100,
+        @Query("accountId") accountId: Int? = CoreApplication.instance.account?.id
+    ): Response<ObjectResponse<ArrayList<ProductClothes>>>
+
+    @PUT("/api/checkFavoriteProduct")
+    suspend fun addAndRemoveToWishList(
+        @Query("productId") providerId: Int?,
+        @Query("accountId") accountId: Int? = CoreApplication.instance.account?.id
+    ): Response<ObjectResponse<Int>>
+
+
+    /*-----------------------------*/
     /* Providers*/
     @GET("/api/providers")
     suspend fun getProviders(): Response<ArrayList<Provider>>

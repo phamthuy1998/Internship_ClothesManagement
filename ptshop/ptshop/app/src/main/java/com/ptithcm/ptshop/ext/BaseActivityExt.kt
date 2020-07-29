@@ -2,8 +2,6 @@ package com.ptithcm.ptshop.ext
 
 import android.app.Activity
 import android.view.View
-import com.ptithcm.core.CoreApplication
-import com.ptithcm.core.util.ObjectHandler
 import com.ptithcm.ptshop.R
 import com.ptithcm.ptshop.base.BaseActivity
 import com.ptithcm.ptshop.databinding.ActivityMainBinding
@@ -104,18 +102,13 @@ fun BaseActivity<*>.goToShop() {
 }
 
 fun MainActivity.goToShopFromWishList() {
-    btnNav.selectedItemId = R.id.nav_designer
+    btnNav.selectedItemId = R.id.nav_shop
 }
 
 fun MainActivity.removeFromWishListAfterCheckout(isGetWishList: Boolean) {
     if (isGetWishList.not()) {
         wishListViewModel.getWishList()
     } else {
-        CoreApplication.instance.basket?.toProductId()?.forEach {
-            if (ObjectHandler.isInWishList(it)) {
-                wishListViewModel.removeFromWishList(it)
-            }
-        }
         refreshBashKet()
     }
 }
