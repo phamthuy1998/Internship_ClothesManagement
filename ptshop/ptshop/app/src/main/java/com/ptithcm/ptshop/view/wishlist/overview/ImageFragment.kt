@@ -45,7 +45,11 @@ class ImageFragment(var listener: (() -> Unit)? = null) : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         val glideApp = Glide.with(context!!)
-        glideApp.load(image).into(ivProductionOverView)
+        glideApp
+            .load(image)
+            .error(R.drawable.ic_place_holder)
+            .placeholder(R.drawable.ic_place_holder)
+            .into(ivProductionOverView)
         ivProductionOverView.setOnClickListener {
             listener?.invoke()
         }

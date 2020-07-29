@@ -1,9 +1,7 @@
 package com.ptithcm.core.api
 
-import com.ptithcm.core.model.Account
-import com.ptithcm.core.model.Category
-import com.ptithcm.core.model.Product
-import com.ptithcm.core.model.ProductClothes
+import com.ptithcm.core.CoreApplication
+import com.ptithcm.core.model.*
 import com.ptithcm.core.model.wish.ObjectResponse
 import com.ptithcm.core.param.ChangePassParam
 import com.ptithcm.core.param.EditAccountParam
@@ -40,8 +38,8 @@ interface ApiClothesService {
     suspend fun getMainCategories(@Query("genderID") genderID: Int): Response<ArrayList<Category>>
 
     /*-----------------------------*/
-    /* Produtc*/
-    @GET("/api/products")
+    /* Product*/
+    @GET("/api/allProductsOfCategory")
     suspend fun getProducts(
         @Query("categoryID") categoryID: Int,
         @Query("pageSize") pageSize: Int = 20,
@@ -49,6 +47,28 @@ interface ApiClothesService {
         @Query("accountId") accountId: Int
     ): Response<ListResponse<ProductClothes>>
 
+    @GET("/api/allProductsOfProvider")
+    suspend fun getProductsProvider(
+        @Query("providerId") providerId: Int,
+        @Query("pageSize") pageSize: Int = 20,
+        @Query("pageNumber") pageNumber: Int = 1,
+        @Query("accountId") accountId: Int
+    ): Response<ListResponse<ProductClothes>>
 
+    @GET("/api/productDetail")
+    suspend fun getProductDetail(
+        @Query("productID") providerId: Int,
+        @Query("accountId") accountId: Int? = CoreApplication.instance.account?.id
+    ): Response<ObjectResponse<ProductClothesDetail>>
+
+    /*-----------------------------*/
+    /* Providers*/
+    @GET("/api/providers")
+    suspend fun getProviders(): Response<ArrayList<Provider>>
+
+    @GET("/api/providerDetail")
+    suspend fun getDetailProvider(
+        @Query("providerId") providerId: Int?
+    ): Response<Provider>
 }
 

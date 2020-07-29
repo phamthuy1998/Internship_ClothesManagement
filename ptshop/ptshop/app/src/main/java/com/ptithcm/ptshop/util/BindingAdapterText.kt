@@ -1,14 +1,17 @@
 package com.ptithcm.ptshop.util
 
+import android.graphics.Paint
+import android.text.Html
 import android.view.ViewGroup
+import android.widget.TextView
 import androidx.appcompat.widget.AppCompatSpinner
 import androidx.appcompat.widget.AppCompatTextView
 import androidx.core.text.HtmlCompat
 import androidx.databinding.BindingAdapter
+import com.ptithcm.core.model.PromotionType
+import com.ptithcm.core.util.PriceFormat
 import com.ptithcm.ptshop.R
 import com.ptithcm.ptshop.ext.roundPrice
-import java.math.RoundingMode
-import java.text.DecimalFormat
 import java.util.*
 
 object BindingAdapterText {
@@ -41,15 +44,31 @@ object BindingAdapterText {
     }
 
     @JvmStatic
-    @BindingAdapter(value = ["price", "promo"], requireAll = true)
-    fun setTextPrice(textView: AppCompatTextView, price: Double?, promo: Double?) {
+    @BindingAdapter("price", "promo", "promoType", requireAll = false)
+    fun setTextPrice(
+        textView: AppCompatTextView,
+        price: Double?,
+        promo: Double?,
+        promoType: PromotionType?
+    ) {
         if (price == null) {
             textView.text = textView.context.getString(R.string.no_price)
         } else {
-            val df = DecimalFormat("#.###.###")
-            df.roundingMode = RoundingMode.CEILING
-            val priceSelling = df.format(price - price * (promo ?: 0.0)) + " đ"
-            textView.text = priceSelling
+            textView.text =
+                when (promoType) {
+                    PromotionType.ABSOLUTE -> textView.context.getString(
+                        R.string.price_format,
+                        PriceFormat.currencyFormat(price - (promo ?: 0.0))
+                    )
+                    PromotionType.PERCENT -> textView.context.getString(
+                        R.string.price_format,
+                        PriceFormat.currencyFormat(price * (1 - (promo ?: 0.0)))
+                    )
+                    else -> textView.context.getString(
+                        R.string.price_format,
+                        PriceFormat.currencyFormat(price)
+                    )
+                }
         }
     }
 
@@ -64,5 +83,23 @@ object BindingAdapterText {
     @BindingAdapter("capText", requireAll = false)
     fun setTextCap(textView: AppCompatTextView, text: String) {
         textView.text = text.toLowerCase().split(" ").joinToString(" ") { it.capitalize() }
+    }
+
+    @JvmStatic
+    @BindingAdapter("setTextHtml")
+    fun setTextHtml(view: TextView, text: String?) {
+        text ?: return
+
+        if (text.isNullOrEmpty())
+            return
+
+        view.text = Html.fromHtml(text)
+    }
+
+    @JvmStatic
+    @BindingAdapter("setPaintFlagsStrike")
+    fun setPaintFlagsStrike(view: TextView, boolean: Boolean) {
+        if (boolean)
+            view.paintFlags = (Paint.STRIKE_THRU_TEXT_FLAG)
     }
 }

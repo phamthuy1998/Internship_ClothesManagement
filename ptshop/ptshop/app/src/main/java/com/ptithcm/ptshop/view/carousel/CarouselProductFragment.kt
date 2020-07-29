@@ -8,17 +8,13 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.ptithcm.core.CoreApplication
 import com.ptithcm.core.model.Brand
-import com.ptithcm.core.model.Gender
-import com.ptithcm.core.model.Product
+import com.ptithcm.core.model.ProductClothes
 import com.ptithcm.core.model.TypeCarousel
-import com.ptithcm.core.param.BrandsRefine
 import com.ptithcm.core.param.RefineParam
-import com.ptithcm.core.param.StoriesRefine
 import com.ptithcm.core.vo.Result
 import com.ptithcm.ptshop.R
 import com.ptithcm.ptshop.base.BaseActivity
 import com.ptithcm.ptshop.base.BaseFragment
-import com.ptithcm.ptshop.constant.IS_PRODUCT
 import com.ptithcm.ptshop.constant.KEY_ARGUMENT
 import com.ptithcm.ptshop.constant.KEY_ARGUMENT_REFINE
 import com.ptithcm.ptshop.databinding.FragmentCarouselProductBinding
@@ -26,6 +22,7 @@ import com.ptithcm.ptshop.ext.*
 import com.ptithcm.ptshop.util.ScrollHandler
 import com.ptithcm.ptshop.view.carousel.adapter.CarouselProductPagedAdapter
 import com.ptithcm.ptshop.viewmodel.CarouselDetailViewModel
+import com.ptithcm.ptshop.viewmodel.ProvidersViewModel
 import com.ptithcm.ptshop.viewmodel.RefineViewModel
 import com.ptithcm.ptshop.viewmodel.WishListViewModel
 import org.koin.androidx.viewmodel.ext.android.sharedViewModel
@@ -36,9 +33,11 @@ class CarouselProductFragment : BaseFragment<FragmentCarouselProductBinding>(),
 
     override val layoutId: Int = R.layout.fragment_carousel_product
 
+    private val providersViewModel: ProvidersViewModel by sharedViewModel(from = { requireParentFragment() })
     private val viewModel: CarouselDetailViewModel by sharedViewModel(from = { requireParentFragment() })
     private val refineViewModel: RefineViewModel by sharedViewModel(from = { requireActivity() })
     private val wishListViewModel: WishListViewModel by viewModel()
+
     private lateinit var productAdapter: CarouselProductPagedAdapter
     private var vendorBrand: Brand? = null
     private lateinit var scrollListener: RecyclerView.OnScrollListener
@@ -63,10 +62,8 @@ class CarouselProductFragment : BaseFragment<FragmentCarouselProductBinding>(),
 
     override fun bindViewModel() {
         super.bindViewModel()
-        viewModel.brandsProductDetailLiveData.observe(this, Observer {
-            if (!isRequestRefine) {
-                productAdapter.submitList(it)
-            }
+        viewModel.productsProviderLiveData.observe(this, Observer {
+            productAdapter.submitList(it)
         })
 
         viewModel.productLoadStatusX.observe(this, Observer {
@@ -105,6 +102,13 @@ class CarouselProductFragment : BaseFragment<FragmentCarouselProductBinding>(),
     }
 
     private fun initBindViewModel() {
+        viewModel.getPagingProductsProvider(
+            providersViewModel.provider?.id ?: 0,
+            20,
+            1,
+            CoreApplication.instance.account?.id ?: 0
+        )
+
         observeRefineData()
 
         viewModel.brandLiveData.observe(this, Observer {
@@ -161,14 +165,16 @@ class CarouselProductFragment : BaseFragment<FragmentCarouselProductBinding>(),
             this::eventListener,
             this::listenerAddProduct
         )
+
         val layoutManager = GridLayoutManager(requireContext(), 2)
         viewBinding.rvProducts.adapter = productAdapter
         viewBinding.rvProducts.layoutManager = layoutManager
         viewBinding.rvProducts.addOnScrollListener(scrollListener)
+
         layoutManager.spanSizeLookup = object : GridLayoutManager.SpanSizeLookup() {
             override fun getSpanSize(position: Int): Int {
-                return when (position) {
-                    0, layoutManager.itemCount - 1 -> 2
+                return when {
+                    position == 0 || (position == layoutManager.itemCount - 1 && productAdapter.hasExtraRow()) -> 2
                     else -> 1
                 }
             }
@@ -198,88 +204,90 @@ class CarouselProductFragment : BaseFragment<FragmentCarouselProductBinding>(),
         }
     }
 
-    private fun eventListener(product: Product?, isRefine: Boolean) {
-        if (isRefine) {
-            refineParam = if (!this.isInitRefine) {
-                initRefineParam(initBrandRefine() ?: arrayListOf())
-            } else {
-                refineParam ?: RefineParam()
-            }
-            refineViewModel.sizeType.value = 0
-            navController.navigateAnimation(
-                R.id.nav_refine,
-                bundle = bundleOf(IS_PRODUCT to true, KEY_ARGUMENT to refineParam)
+    private fun eventListener(product: ProductClothes?, isRefine: Boolean) {
+//        if (isRefine) {
+//            refineParam = if (!this.isInitRefine) {
+//                initRefineParam(initBrandRefine() ?: arrayListOf())
+//            } else {
+//                refineParam ?: RefineParam()
+//            }
+//            refineViewModel.sizeType.value = 0
+//            navController.navigateAnimation(
+//                R.id.nav_refine,
+//                bundle = bundleOf(IS_PRODUCT to true, KEY_ARGUMENT to refineParam)
+//            )
+//            this.isInitRefine = true
+//        } else {
+        navController.navigateAnimation(
+            R.id.fragment_product_detail,
+            bundle = bundleOf(
+                KEY_ARGUMENT to product,
+                KEY_ARGUMENT_REFINE to refineParam
             )
-            this.isInitRefine = true
-        } else {
-            navController.navigateAnimation(
-                R.id.fragment_product_detail,
-                bundle = bundleOf(KEY_ARGUMENT to product,
-                    KEY_ARGUMENT_REFINE to refineParam)
-            )
-        }
-    }
-
-    private fun listenerAddProduct(product: Product?, position: Int) {
-        if (CoreApplication.instance.profile != null) {
-            product?.isAddProduct = !(product?.isAddProduct ?: false)
-            if (product?.isAddProduct == true) {
-                wishListViewModel.addToWishList(product.id)
-            } else {
-                wishListViewModel.removeFromWishList(product?.id)
-            }
-        } else {
-            messageHandler?.runMessageErrorHandler(getString(R.string.error_add_product))
-        }
-    }
-
-    private fun initRefineParam(brands: ArrayList<BrandsRefine>): RefineParam {
-        val genders = arrayListOf<Gender>()
-        if (viewModel.brandLiveData.value?.second != null) {
-            genders.add(viewModel.brandLiveData.value?.second ?: Gender.NONE)
-        }
-        val storiesRefine = if (typeCarousel == TypeCarousel.STORE) {
-            StoriesRefine(true, viewModel.storiesLiveData.value?.first?.store_id)
-        } else StoriesRefine()
-        return RefineParam(
-            newItems = false, ourPicks = false, priceLow = false, priceHigh = false,
-            gender = genders, brands = brands, storiesRefine = storiesRefine
         )
+//        }
     }
 
-    private fun initBrandRefine(): ArrayList<BrandsRefine>? {
-        val brandRefines = arrayListOf<BrandsRefine>()
-        when (typeCarousel) {
-            TypeCarousel.BRAND -> {
-                if (vendorBrand?.stores?.isNotEmpty() == true) {
-                    vendorBrand?.stores?.forEach { item ->
-                        val brandRefine = BrandsRefine()
-                        brandRefine.brandId = vendorBrand?.id
-                        brandRefine.storeId = item.id
-                        brandRefine.name =
-                            "${vendorBrand?.name} (${item.brand_name})"
-                        brandRefines.add(brandRefine)
-                    }
-                }
-
-            }
-            else -> {
-                val brandRefine = BrandsRefine()
-                brandRefine.brandId = vendorBrand?.id
-                brandRefine.storeId = vendorBrand?.store_id
-                if (vendorBrand?.name?.isNotEmpty() == true) {
-                    if (vendorBrand?.name?.contains("${vendorBrand?.brand_name}") == false) {
-                        brandRefine.name = "${vendorBrand?.name} (${vendorBrand?.brand_name})"
-                    } else {
-                        brandRefine.name = vendorBrand?.name
-                    }
-                } else {
-                    brandRefine.name = vendorBrand?.brand_name
-                }
-                brandRefines.add(brandRefine)
-            }
-        }
-        return brandRefines
+    private fun listenerAddProduct(product: ProductClothes?, position: Int) {
+//        if (CoreApplication.instance.profile != null) {
+//            product?.isAddProduct = !(product?.isAddProduct ?: false)
+//            if (product?.isAddProduct == true) {
+//                wishListViewModel.addToWishList(product.id)
+//            } else {
+//                wishListViewModel.removeFromWishList(product?.id)
+//            }
+//        } else {
+//            messageHandler?.runMessageErrorHandler(getString(R.string.error_add_product))
+//        }
     }
+
+//    private fun initRefineParam(brands: ArrayList<BrandsRefine>): RefineParam {
+//        val genders = arrayListOf<Gender>()
+//        if (viewModel.brandLiveData.value?.second != null) {
+//            genders.add(viewModel.brandLiveData.value?.second ?: Gender.NONE)
+//        }
+//        val storiesRefine = if (typeCarousel == TypeCarousel.STORE) {
+//            StoriesRefine(true, viewModel.storiesLiveData.value?.first?.store_id)
+//        } else StoriesRefine()
+//        return RefineParam(
+//            newItems = false, ourPicks = false, priceLow = false, priceHigh = false,
+//            gender = genders, brands = brands, storiesRefine = storiesRefine
+//        )
+//    }
+
+//    private fun initBrandRefine(): ArrayList<BrandsRefine>? {
+//        val brandRefines = arrayListOf<BrandsRefine>()
+//        when (typeCarousel) {
+//            TypeCarousel.BRAND -> {
+//                if (vendorBrand?.stores?.isNotEmpty() == true) {
+//                    vendorBrand?.stores?.forEach { item ->
+//                        val brandRefine = BrandsRefine()
+//                        brandRefine.brandId = vendorBrand?.id
+//                        brandRefine.storeId = item.id
+//                        brandRefine.name =
+//                            "${vendorBrand?.name} (${item.brand_name})"
+//                        brandRefines.add(brandRefine)
+//                    }
+//                }
+//
+//            }
+//            else -> {
+//                val brandRefine = BrandsRefine()
+//                brandRefine.brandId = vendorBrand?.id
+//                brandRefine.storeId = vendorBrand?.store_id
+//                if (vendorBrand?.name?.isNotEmpty() == true) {
+//                    if (vendorBrand?.name?.contains("${vendorBrand?.brand_name}") == false) {
+//                        brandRefine.name = "${vendorBrand?.name} (${vendorBrand?.brand_name})"
+//                    } else {
+//                        brandRefine.name = vendorBrand?.name
+//                    }
+//                } else {
+//                    brandRefine.name = vendorBrand?.brand_name
+//                }
+//                brandRefines.add(brandRefine)
+//            }
+//        }
+//        return brandRefines
+//    }
 
 }

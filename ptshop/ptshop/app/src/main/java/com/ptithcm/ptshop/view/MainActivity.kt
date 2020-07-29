@@ -8,7 +8,6 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.Observer
 import androidx.navigation.NavController
 import com.google.android.material.bottomnavigation.BottomNavigationView
-import com.ptithcm.core.CoreApplication
 import com.ptithcm.ptshop.R
 import com.ptithcm.ptshop.base.BaseActivity
 import com.ptithcm.ptshop.constant.PERMISSION_CAMERA
@@ -45,7 +44,7 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
 //        splashDialog.show()
 ////
 //        Handler().postDelayed({
-//            window.decorView.setBackgroundColor(Color.WHITE)
+//            window.decorView.setBackgroundColor(com.ptithcm.core.model.Color.WHITE)
 //            splashDialog.dismiss()
 //        }, 2500)
 ////

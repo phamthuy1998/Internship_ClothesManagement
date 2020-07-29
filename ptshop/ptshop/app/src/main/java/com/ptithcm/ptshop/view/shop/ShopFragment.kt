@@ -13,7 +13,7 @@ import com.ptithcm.ptshop.viewmodel.CarouselViewModel
 import kotlinx.android.synthetic.main.layout_toolbar.view.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
-class ShopFragment : BaseFragment<FragmentShopBinding>(){
+class ShopFragment : BaseFragment<FragmentShopBinding>() {
 
     override val layoutId: Int = R.layout.fragment_shop
 
@@ -61,11 +61,12 @@ class ShopFragment : BaseFragment<FragmentShopBinding>(){
                 messageQueue = {
                     when (it.id) {
                         R.id.ivRight, R.id.tvCount -> {
-                            navController.navigateAnimation(R.id.nav_shopping_card,
+                            navController.navigateAnimation(
+                                R.id.nav_shopping_card,
                                 isBotToTop = true
                             )
                         }
-                        R.id.ivLeft->{
+                        R.id.ivLeft -> {
                             navController.navigateAnimation(R.id.nav_search)
                         }
                     }

@@ -68,6 +68,7 @@ class AddressBookFragment : BaseFragment<FragmentAddressBookBinding>() {
     }
 
     private fun updateBillingAddress(card: CreditCard) {
+        CoreApplication.instance.profile?.copy()
         CoreApplication.instance.saveUser(
             Profile(
                 CoreApplication.instance.profile?.token,

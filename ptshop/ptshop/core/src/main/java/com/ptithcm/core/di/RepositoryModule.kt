@@ -16,9 +16,10 @@ val repositoryModule = module {
     single<CurrencyRepository> { CurrencyRepositoryImpl(get()) }
     single<DesignerRepository> { DesignerRepositoryImpl(get()) }
     single<BrandsRepository> { BrandsRepositoryImpl(get()) }
-    single<ShoppingCardRepository> { ShoppingCardRepositoryImpl(get()) }
+    single<ShoppingCardRepository> { ShoppingCardRepositoryImpl(get(), get()) }
     single<CheckoutRepository> { CheckoutRepositoryImpl(get()) }
     single<SearchRepository> { SearchRepositoryImpl(get()) }
     single<ShareDataRepository> { ShareDataRepositoryImpl(get()) }
     single<UploadRepository> { UploadRepositoryImpl(get()) }
+    single<ProvidersRepository> { ProvidersRepositoryImpl(get()) }
 }

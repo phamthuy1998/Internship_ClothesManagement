@@ -9,7 +9,6 @@ import com.ptithcm.core.model.Brand
 import com.ptithcm.core.model.Gender
 import com.ptithcm.core.model.Stories
 import com.ptithcm.core.model.TypeCarousel
-import com.ptithcm.core.param.RefineParam
 import com.ptithcm.core.repository.CarouselDetailRepository
 import com.ptithcm.core.vo.ItemViewModel
 import com.ptithcm.core.vo.Result
@@ -108,29 +107,29 @@ class CarouselDetailViewModel(private val repository: CarouselDetailRepository) 
         }
     }
 
+//    fun getPagingProductsCategories(
+//        mainCategories: ArrayList<Int>?, categories: ArrayList<Int>?,
+//        filters: ArrayList<Int>?, gender: Int?
+//    ) {
+//        viewModelScope.launch {
+//            val request =
+//                repository.getPagingProductsCarousel(mainCategories, categories, filters, gender)
+//            productsCategoriesLiveData.addSource(request.result) {
+//                productsCategoriesLiveData.value = it
+//            }
+//            productsCategoriesLiveData.addSource(request.status) {
+//                productLoadStatusX.value = it
+//                when (it) {
+//                    is Result.Loading -> networkStateRefine.value = true
+//                    is Result.Error -> networkStateRefine.value = false
+//                    is Result.Success -> networkStateRefine.value = false
+//                }
+//            }
+//
+//        }
+//    }
+
     fun getPagingProductsCategories(
-        mainCategories: ArrayList<Int>?, categories: ArrayList<Int>?,
-        filters: ArrayList<Int>?, gender: Int?
-    ) {
-        viewModelScope.launch {
-            val request =
-                repository.getPagingProductsCarousel(mainCategories, categories, filters, gender)
-            productsCategoriesLiveData.addSource(request.result) {
-                productsCategoriesLiveData.value = it
-            }
-            productsCategoriesLiveData.addSource(request.status) {
-                productLoadStatusX.value = it
-                when (it) {
-                    is Result.Loading -> networkStateRefine.value = true
-                    is Result.Error -> networkStateRefine.value = false
-                    is Result.Success -> networkStateRefine.value = false
-                }
-            }
-
-        }
-    }
-
-    fun getProducts(
         categoryID: Int,
         pageSize: Int,
         pageNumber: Int,
@@ -138,21 +137,51 @@ class CarouselDetailViewModel(private val repository: CarouselDetailRepository) 
     ) {
         viewModelScope.launch {
             val request =
-                repository.getPagingRefineProduct(categoryID, pageSize, pageNumber, accountId)
-            refineProductLiveData.addSource(request.result) {
-                refineProductLiveData.value = it
+                repository.getPagingProductsCarousel(categoryID, pageSize, pageNumber, accountId)
+            productsCategoriesLiveData.addSource(request.result) {
+                productsCategoriesLiveData.value = it
             }
-            refineProductLiveData.addSource(request.status) {
+            productsCategoriesLiveData.addSource(request.status) {
                 productLoadStatusX.value = it
                 when (it) {
                     is Result.Loading -> {
-                        networkStateRefine.value = true
+                        networkState.value = true
                     }
                     is Result.Error -> {
-                        networkStateRefine.value = false
+                        networkState.value = false
                     }
                     is Result.Success -> {
-                        networkStateRefine.value = false
+                        networkState.value = false
+                    }
+                }
+            }
+        }
+    }
+
+    val productsProviderLiveData = MediatorLiveData<PagedList<ItemViewModel>>()
+    fun getPagingProductsProvider(
+        providerId: Int,
+        pageSize: Int,
+        pageNumber: Int,
+        accountId: Int
+    ) {
+        viewModelScope.launch {
+            val request =
+                repository.getPagingProductsProvider(providerId, pageSize, pageNumber, accountId)
+            productsProviderLiveData.addSource(request.result) {
+                productsProviderLiveData.value = it
+            }
+            productsProviderLiveData.addSource(request.status) {
+                productLoadStatusX.value = it
+                when (it) {
+                    is Result.Loading -> {
+                        networkState.value = true
+                    }
+                    is Result.Error -> {
+                        networkState.value = false
+                    }
+                    is Result.Success -> {
+                        networkState.value = false
                     }
                 }
             }

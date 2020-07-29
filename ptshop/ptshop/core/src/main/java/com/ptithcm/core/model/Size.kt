@@ -9,5 +9,9 @@ data class Size(
     var value: String? = "",
     var text: String? = "",
     var size_type: Int? = 0,
-    var isChoose: Boolean = false
+    var isChoose: Boolean = false,
+
+    var description: String?,
+    var id: Int?,
+    var sizeName: String?
 ) : Parcelable

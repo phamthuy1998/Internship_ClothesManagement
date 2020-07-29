@@ -7,7 +7,7 @@ import androidx.lifecycle.viewModelScope
 import com.ptithcm.core.CoreApplication
 import com.ptithcm.core.model.Basket
 import com.ptithcm.core.model.Brand
-import com.ptithcm.core.model.Product
+import com.ptithcm.core.model.ProductClothesDetail
 import com.ptithcm.core.param.AddProductParam
 import com.ptithcm.core.param.ProductVariantParam
 import com.ptithcm.core.repository.ShoppingCardRepository
@@ -17,21 +17,21 @@ import com.ptithcm.core.vo.Result
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
 
-class ShoppingViewModel(val repo: ShoppingCardRepository): ViewModel() {
+class ShoppingViewModel(val repo: ShoppingCardRepository) : ViewModel() {
 
     val updateResult = MediatorLiveData<Basket>()
     val cardResult = MediatorLiveData<Basket>()
     val removeResult = MediatorLiveData<MessageResponse>()
-    val detailResult = MediatorLiveData<Product>()
+    val detailResult = MediatorLiveData<ProductClothesDetail>()
     val brandDetailResult = MediatorLiveData<Brand>()
 
     val error = MutableLiveData<Pair<String, Int?>>()
     val isLoading = MutableLiveData<Boolean>()
 
-    fun updateBasket(param: AddProductParam){
+    fun updateBasket(param: AddProductParam) {
         viewModelScope.launch {
-            updateResult.addSource(repo.updateBasket(param)){
-                when(it){
+            updateResult.addSource(repo.updateBasket(param)) {
+                when (it) {
                     Result.Loading -> {
                         isLoading.value = true
                     }
@@ -49,13 +49,15 @@ class ShoppingViewModel(val repo: ShoppingCardRepository): ViewModel() {
         }
     }
 
-    fun getBasket(){
+    fun getBasket() {
         viewModelScope.launch {
-            cardResult.addSource(repo.getAllCard()){
-                when(it){
-                    Result.Loading -> {}
-                    is Result.Error -> {}
-                    is Result.Success ->{
+            cardResult.addSource(repo.getAllCard()) {
+                when (it) {
+                    Result.Loading -> {
+                    }
+                    is Result.Error -> {
+                    }
+                    is Result.Success -> {
                         CoreApplication.instance.saveBasket(it.data ?: return@addSource)
                         cardResult.value = it.data
                     }
@@ -64,11 +66,12 @@ class ShoppingViewModel(val repo: ShoppingCardRepository): ViewModel() {
         }
     }
 
-    fun removeFromBasket(id: Long){
+    fun removeFromBasket(id: Long) {
         viewModelScope.launch {
-            removeResult.addSource(repo.removeFromBasket(id)){
-                when(it){
-                    Result.Loading -> {}
+            removeResult.addSource(repo.removeFromBasket(id)) {
+                when (it) {
+                    Result.Loading -> {
+                    }
                     is Result.Error -> {
                         error.value = Pair(it.message, it.code)
                     }
@@ -81,26 +84,27 @@ class ShoppingViewModel(val repo: ShoppingCardRepository): ViewModel() {
         }
     }
 
-    fun getProdDetail(id: Int){
+    fun getProdDetail(id: Int) {
         viewModelScope.launch {
-            detailResult.addSource(repo.getProductDetail(id)){
-                when(it){
-                    Result.Loading -> {}
-                    is Result.Error ->{
+            detailResult.addSource(repo.getProductDetail(id)) {
+                when (it) {
+                    Result.Loading -> {
+                    }
+                    is Result.Error -> {
                         error.value = Pair(it.message, it.code)
                     }
                     is Result.Success -> {
-                        detailResult.value = it.data
+                        detailResult.value = it.data?.data
                     }
                 }
             }
         }
     }
 
-    fun getBrandDetail(id: Int?){
+    fun getBrandDetail(id: Int?) {
         viewModelScope.launch {
-            brandDetailResult.addSource(repo.getShopDetail(id)){
-                when(it){
+            brandDetailResult.addSource(repo.getShopDetail(id)) {
+                when (it) {
                     Result.Loading -> {
                         isLoading.value = true
                     }
@@ -112,15 +116,16 @@ class ShoppingViewModel(val repo: ShoppingCardRepository): ViewModel() {
                         isLoading.value = false
                         brandDetailResult.value = it.data
                     }
-                }            }
+                }
+            }
         }
     }
 
-    fun updateBasketFromLocal(){
+    fun updateBasketFromLocal() {
         runBlocking {
             launch {
                 //just call this when first time login, after that no need
-                if (CoreApplication.instance.basket != null){
+                if (CoreApplication.instance.basket != null) {
                     return@launch
                 }
                 val listProdVariant = ObjectHandler.notLoginBasket
@@ -130,10 +135,11 @@ class ShoppingViewModel(val repo: ShoppingCardRepository): ViewModel() {
                         product_variant = it.product_variant.id ?: 0
                     )
                 }
-                val addProductParam = AddProductParam(listProductParam as ArrayList<ProductVariantParam>)
+                val addProductParam =
+                    AddProductParam(listProductParam as ArrayList<ProductVariantParam>)
                 viewModelScope.launch {
-                    updateResult.addSource(repo.updateBasket(addProductParam)){
-                        when(it){
+                    updateResult.addSource(repo.updateBasket(addProductParam)) {
+                        when (it) {
                             Result.Loading -> {
                                 isLoading.value = true
                             }

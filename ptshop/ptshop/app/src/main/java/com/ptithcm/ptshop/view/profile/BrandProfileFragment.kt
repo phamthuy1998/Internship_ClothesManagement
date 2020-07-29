@@ -48,7 +48,7 @@ class BrandProfileFragment : BaseFragment<FragmentCarouselDetailBinding>(), View
             it?.let {
                 brandName = it.brand_name ?: ""
                 viewBinding.collapsingToolbarLayout.title = it.brand_name
-                viewBinding.brand = it
+//                viewBinding.brand = it
                 viewModel.brandLiveData.postValue(
                     Triple(it, switchGender(carousel?.gender), switchTypeCarousel(carousel?.type))
                 )
@@ -58,7 +58,7 @@ class BrandProfileFragment : BaseFragment<FragmentCarouselDetailBinding>(), View
         viewModel.storeBrandLiveData.observe(this, Observer {
             it?.let {
                 viewBinding.collapsingToolbarLayout.title = it.brand_name?.toUpperCase(Locale.ROOT)
-                viewBinding.brand = it
+//                viewBinding.brand = it
                 brandName = it.brand_name ?: ""
                 it.store_id = carousel?.storeId
                 it.id = carousel?.brand_id
@@ -82,9 +82,9 @@ class BrandProfileFragment : BaseFragment<FragmentCarouselDetailBinding>(), View
         viewBinding.ivRight.setImageResource(R.drawable.ic_more)
         viewBinding.ivRight.setOnClickListener(this)
         viewBinding.collapsingToolbarLayout.title = brandName
-        if (carousel?.type == TypeCarousel.STORE.value) {
-            viewBinding.isStore = true
-        }
+//        if (carousel?.type == TypeCarousel.STORE.value) {
+//            viewBinding.isStore = true
+//        }
         initViewPager()
         initTabLayout(carousel?.type)
     }
@@ -159,7 +159,7 @@ class BrandProfileFragment : BaseFragment<FragmentCarouselDetailBinding>(), View
     }
 
     private fun initViewPager() {
-        adapter = CarouselViewPagerAdapter(carousel?.type, childFragmentManager, isFromBrandProfile = true)
+//        adapter = CarouselViewPagerAdapter(carousel?.type, childFragmentManager, isFromBrandProfile = true)
         viewBinding.viewPager.offscreenPageLimit = CarouselViewPagerAdapter.PAGE_ALL_NUMBER
         viewBinding.viewPager.adapter = adapter
     }

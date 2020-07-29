@@ -8,8 +8,6 @@ import com.ptithcm.core.api.ApiService
 import com.ptithcm.core.data.remote.BaseDataSourceFactory
 import com.ptithcm.core.data.remote.NetworkBoundResource
 import com.ptithcm.core.model.*
-import com.ptithcm.core.param.RefineParam
-import com.ptithcm.core.param.RefineRequestParam
 import com.ptithcm.core.repository.CarouselDetailRepository
 import com.ptithcm.core.util.PAGE_SIZE
 import com.ptithcm.core.vo.ItemViewModel
@@ -140,21 +138,62 @@ class CarouselDetailRepositoryImpl(
         )
     }
 
+//    override suspend fun getPagingProductsCarousel(
+//        mainCategories: ArrayList<Int>?, categories: ArrayList<Int>?,
+//        filters: ArrayList<Int>?, gender: Int?
+//    ): Listing<ItemViewModel> {
+//        val sourceFactory =
+//            object : BaseDataSourceFactory<Product, ItemViewModel>(status = MutableLiveData()) {
+//                override suspend fun createXCall(page: Int): Response<ListResponse<Product>> {
+//                    return api.getProductCarousel(
+//                        mainCategories, if (gender == Gender.NONE.value) null else gender,
+//                        page, categories, filters
+//                    )
+//                }
+//
+//                override suspend fun handleXResponse(
+//                    items: ListResponse<Product>, firstLoad: Boolean
+//                ): List<ItemViewModel> {
+//                    val result = arrayListOf<ItemViewModel>()
+//
+//                    if (firstLoad) {
+//                        val countView = CountViewModel(items.count, 0x0, null)
+//                        result.add(countView)
+//                    }
+//
+//                    result.addAll(items.results)
+//                    return result
+//                }
+//            }
+//
+//        val pagedLiveData = sourceFactory.toLiveData(pageSize = PAGE_SIZE)
+//
+//        return Listing(
+//            result = pagedLiveData,
+//            status = sourceFactory.status,
+//            refresh = {
+//                sourceFactory.sourceLiveData.value?.invalidate()
+//            }
+//        )
+//    }
+
     override suspend fun getPagingProductsCarousel(
-        mainCategories: ArrayList<Int>?, categories: ArrayList<Int>?,
-        filters: ArrayList<Int>?, gender: Int?
+        categoryID: Int,
+        pageSize: Int,
+        pageNumber: Int,
+        accountId: Int
     ): Listing<ItemViewModel> {
         val sourceFactory =
-            object : BaseDataSourceFactory<Product, ItemViewModel>(status = MutableLiveData()) {
-                override suspend fun createXCall(page: Int): Response<ListResponse<Product>> {
-                    return api.getProductCarousel(
-                        mainCategories, if (gender == Gender.NONE.value) null else gender,
-                        page, categories, filters
+            object :
+                BaseDataSourceFactory<ProductClothes, ItemViewModel>(status = MutableLiveData()) {
+                override suspend fun createXCall(page: Int): Response<ListResponse<ProductClothes>> {
+                    return clothesApi.getProducts(
+                        categoryID, pageSize, page, accountId
                     )
                 }
 
                 override suspend fun handleXResponse(
-                    items: ListResponse<Product>, firstLoad: Boolean
+                    items: ListResponse<ProductClothes>, firstLoad: Boolean
                 ): List<ItemViewModel> {
                     val result = arrayListOf<ItemViewModel>()
 
@@ -179,17 +218,18 @@ class CarouselDetailRepositoryImpl(
         )
     }
 
-    override suspend fun getPagingRefineProduct(
-        categoryID: Int,
+    override suspend fun getPagingProductsProvider(
+        providerId: Int,
         pageSize: Int,
         pageNumber: Int,
         accountId: Int
     ): Listing<ItemViewModel> {
         val sourceFactory =
-            object : BaseDataSourceFactory<ProductClothes, ItemViewModel>(status = MutableLiveData()) {
+            object :
+                BaseDataSourceFactory<ProductClothes, ItemViewModel>(status = MutableLiveData()) {
                 override suspend fun createXCall(page: Int): Response<ListResponse<ProductClothes>> {
-                    return clothesApi.getProducts(
-                        categoryID, pageSize, pageNumber, accountId
+                    return clothesApi.getProductsProvider(
+                        providerId, pageSize, page, accountId
                     )
                 }
 

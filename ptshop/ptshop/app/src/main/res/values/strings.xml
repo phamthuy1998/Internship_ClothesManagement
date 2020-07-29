@@ -288,4 +288,5 @@
     <string name="unknown_credit">Unknown (****)</string>
     <string name="email_or_username">Email or username</string>
     <string name="name">Name</string>
+    <string name="price_format">%s &#x20AB;</string>
 </resources>
