@@ -273,6 +273,7 @@
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ListResponse.cs" />
     <Compile Include="Models\MemoryCacheHelper.cs" />
+    <Compile Include="Models\OrderDetail.cs" />
     <Compile Include="Models\ProductOrder.cs" />
     <Compile Include="Models\OrderParam.cs" />
     <Compile Include="Models\ProductDetail.cs" />

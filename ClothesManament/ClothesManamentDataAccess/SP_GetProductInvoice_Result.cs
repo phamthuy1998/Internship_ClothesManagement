@@ -10,16 +10,14 @@
 namespace ClothesManamentDataAccess
 {
     using System;
-    using System.Collections.Generic;
     
-    public partial class InvoiceItem
+    public partial class SP_GetProductInvoice_Result
     {
-        public int orderId { get; set; }
-        public int productId { get; set; }
+        public int id { get; set; }
+        public string title { get; set; }
+        public string detail { get; set; }
         public Nullable<double> unitPrice { get; set; }
         public Nullable<int> quantity { get; set; }
-    
-        public virtual Invoice Invoice { get; set; }
-        public virtual Product Product { get; set; }
+        public string thumnail { get; set; }
     }
 }

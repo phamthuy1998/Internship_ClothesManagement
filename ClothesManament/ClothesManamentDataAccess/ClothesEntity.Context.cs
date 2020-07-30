@@ -41,6 +41,7 @@ namespace ClothesManamentDataAccess
         public virtual DbSet<Provider> Providers { get; set; }
         public virtual DbSet<Role> Roles { get; set; }
         public virtual DbSet<Size> Sizes { get; set; }
+        public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
     
         public virtual ObjectResult<Nullable<int>> ChangePassword(Nullable<int> userId, string oldPass, string newPass)
         {
@@ -614,6 +615,33 @@ namespace ClothesManamentDataAccess
                 new ObjectParameter("AccountID", typeof(int));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("SP_GetAllInvoiceCount", statusIdParameter, accountIDParameter);
+        }
+    
+        public virtual ObjectResult<SP_GetInvoiceDetail_Result> SP_GetInvoiceDetail(Nullable<int> inovoiceId)
+        {
+            var inovoiceIdParameter = inovoiceId.HasValue ?
+                new ObjectParameter("inovoiceId", inovoiceId) :
+                new ObjectParameter("inovoiceId", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_GetInvoiceDetail_Result>("SP_GetInvoiceDetail", inovoiceIdParameter);
+        }
+    
+        public virtual ObjectResult<SP_GetProductInvoice_Result> SP_GetProductInvoice(Nullable<int> inovoiceId)
+        {
+            var inovoiceIdParameter = inovoiceId.HasValue ?
+                new ObjectParameter("inovoiceId", inovoiceId) :
+                new ObjectParameter("inovoiceId", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_GetProductInvoice_Result>("SP_GetProductInvoice", inovoiceIdParameter);
+        }
+    
+        public virtual ObjectResult<Nullable<int>> SP_CheckInvoiceExist(Nullable<int> inovoiceId)
+        {
+            var inovoiceIdParameter = inovoiceId.HasValue ?
+                new ObjectParameter("inovoiceId", inovoiceId) :
+                new ObjectParameter("inovoiceId", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("SP_CheckInvoiceExist", inovoiceIdParameter);
         }
     }
 }
