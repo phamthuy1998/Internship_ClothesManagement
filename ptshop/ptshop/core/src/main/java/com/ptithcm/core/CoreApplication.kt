@@ -23,8 +23,10 @@ open class CoreApplication : Application(){
     var account: Account? = null
     var currency: SupportedCurrency = SupportedCurrency()
     var basket: Basket? = null
+    var cart: Cart? = null
     // wait for login to sync all product variant save in local to BE
     var notLoginBasket: ArrayList<ProductVariant> = arrayListOf()
+    var notLoginCart: ArrayList<ProductClothesDetail> = arrayListOf()
 
     var prodWishList = arrayListOf<Int>()
 
@@ -43,6 +45,7 @@ open class CoreApplication : Application(){
         account = prefsUtil.account
         currency = prefsUtil.currency.checkType()
         basket = prefsUtil.basket
+        cart = prefsUtil.cart
         notLoginBasket = prefsUtil.notLoginBasket ?: arrayListOf()
         prodWishList = prefsUtil.prodInWishList ?: arrayListOf()
     }
@@ -104,6 +107,10 @@ open class CoreApplication : Application(){
 
     fun saveBasketToPref(notLoginBasket: ArrayList<ProductVariant>){
         prefsUtil.notLoginBasket = notLoginBasket
+    }
+
+    fun saveCartToPref(cart: Cart?){
+        prefsUtil.cart = cart
     }
 
     fun saveWishListToPref(list: ArrayList<Int>){

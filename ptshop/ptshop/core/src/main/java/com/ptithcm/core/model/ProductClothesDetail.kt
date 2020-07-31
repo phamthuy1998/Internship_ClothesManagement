@@ -24,5 +24,6 @@ data class ProductClothesDetail(
     var thumnail: String?,
     var title: String?,
     var typePromotion: PromotionType?,
-    var valuePromotion: Double?
+    var valuePromotion: Double?,
+    var quantityInCart: SizesColor?
 ) : Parcelable

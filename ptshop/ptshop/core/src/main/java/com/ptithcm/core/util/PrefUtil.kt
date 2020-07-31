@@ -17,6 +17,7 @@ const val CATEGORY = "CATEGORY"
 const val USER_ACCOUNT = "USER_ACCOUNT"
 const val CURRENCY = "CURRENCY"
 const val BASKET = "BASKET"
+const val CART = "CART"
 const val BASKET_NOT_LOGIN = "BASKET_NOT_LOGIN"
 const val PRODUCT_IN_WISH_LIST = "PRODUCT_IN_WISH_LIST"
 const val SETTINGS = "SETTINGS"
@@ -106,6 +107,22 @@ class PrefUtil constructor(
         }
         set(value) = prefs.edit().putString(
             BASKET,
+            gSon.toJson(value)
+        ).apply()
+
+    var cart: Cart?
+        get() {
+            return try {
+                gSon.fromJson<Cart>(
+                    prefs.getString(CART, null)
+                    , Basket::class.java
+                )
+            } catch (e: Exception) {
+                null
+            }
+        }
+        set(value) = prefs.edit().putString(
+            CART,
             gSon.toJson(value)
         ).apply()
 
