@@ -25,5 +25,23 @@ data class ProductClothesDetail(
     var title: String?,
     var typePromotion: PromotionType?,
     var valuePromotion: Double?,
+
+    var selectedSize: Size?,
+    var selectedColor: Color?,
     var quantityInCart: SizesColor?
-) : Parcelable
+) : Parcelable {
+
+    fun getFinalPrice() : Double {
+        var finalPrice = price ?: 0.0
+        if (valuePromotion != 0.0) {
+            if (typePromotion == PromotionType.ABSOLUTE) {
+                finalPrice -= (valuePromotion ?: 0.0)
+            } else if (typePromotion == PromotionType.PERCENT) {
+                finalPrice *= (1 - (valuePromotion ?: 0.0))
+            }
+        }
+        return finalPrice.coerceIn(0.0..Double.MAX_VALUE)
+    }
+
+    fun findQuantityOfSizeAndColor(sizeId: Int?, colorId: Int?): SizesColor? = sizesColors?.firstOrNull { it.sizeId == sizeId && it.colorID == colorId }
+}

@@ -170,7 +170,7 @@
     <string name="shopping_bag_tittle"> My Shopping Bag</string>
     <string name="shopping_bag_tittle_s"> My Shopping Bag (%s)</string>
     <string name="basket_total"><![CDATA[
-    %d items: Total (excluding delivery) <font face="montserrat_bold"><big><b>%s</b></big></font>
+    %d items: Total (excluding delivery) <font face="montserrat_bold"><big><b>%s &#x20AB;</b></big></font>
     ]]></string>
     <string name="remove_from_basket_warning">Are you sure you want to remove this \n item from basket?</string>
     <string name="yes">YES</string>

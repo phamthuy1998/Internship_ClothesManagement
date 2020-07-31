@@ -359,5 +359,4 @@ class ProductDetailFragment : BaseFragment<FragmentProductDetailBinding>() {
         ObjectHandler.addToCart(product)
         messageHandler?.runMessageHandler(getString(R.string.add_to_basket_success))
     }
-
 }

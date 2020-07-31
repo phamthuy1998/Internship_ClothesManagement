@@ -240,6 +240,8 @@ fun ArrayList<ProductVariant>.calculatePriceAfterTax(): Double = this.fold(0.0, 
     (variant.product_variant.price_after_tax?.toDouble() ?: 0.0) * variant.quantity + sum
 })
 
+fun ArrayList<ProductClothesDetail>?.calculateFinalPrice(): Double = this?.fold(0.0, {sum, prod -> sum + (prod.getFinalPrice() * (prod.quantityInCart?.quantity ?: 1))}) ?: 0.0
+
 fun ArrayList<Boolean>.finalBoolean() = if (this.size == 0)
     false else this.fold(true, {result, nextBoolean ->
     result && nextBoolean

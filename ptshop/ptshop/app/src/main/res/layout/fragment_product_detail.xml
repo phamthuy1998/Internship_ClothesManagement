@@ -51,8 +51,6 @@
                 android:paddingTop="@dimen/layout_margin_32dp"
                 android:paddingEnd="@dimen/layout_margin_32dp">
 
-                product
-
                 <androidx.viewpager.widget.ViewPager
                     android:id="@+id/vpImage"
                     android:layout_width="match_parent"

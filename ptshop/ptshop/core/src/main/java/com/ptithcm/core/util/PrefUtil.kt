@@ -11,16 +11,10 @@ import com.ptithcm.core.model.*
 
 //KEY WORD
 const val INIT_PAGE = 1
-const val PAGE_SIZE = 24
+const val PAGE_SIZE = 20
 const val USER_PROFILE = "USER_PROFILE"
-const val CATEGORY = "CATEGORY"
 const val USER_ACCOUNT = "USER_ACCOUNT"
-const val CURRENCY = "CURRENCY"
-const val BASKET = "BASKET"
 const val CART = "CART"
-const val BASKET_NOT_LOGIN = "BASKET_NOT_LOGIN"
-const val PRODUCT_IN_WISH_LIST = "PRODUCT_IN_WISH_LIST"
-const val SETTINGS = "SETTINGS"
 const val ORDERING_HIGH = "-price_range_ordering"
 const val ORDERING_LOW = "price_range_ordering"
 
@@ -78,44 +72,12 @@ class PrefUtil constructor(
             gSon.toJson(value)
         ).apply()
 
-    var currency: SupportedCurrency
-        get() {
-            return try {
-                gSon.fromJson(
-                    prefs.getString(CURRENCY, null),
-                    SupportedCurrency::class.java
-                )
-            } catch (e: Exception) {
-                SupportedCurrency()
-            }
-        }
-        set(value) = prefs.edit().putString(
-            CURRENCY,
-            gSon.toJson(value)
-        ).apply()
-
-    var basket: Basket?
-        get() {
-            return try {
-                gSon.fromJson<Basket>(
-                    prefs.getString(BASKET, null)
-                    , Basket::class.java
-                )
-            } catch (e: Exception) {
-                null
-            }
-        }
-        set(value) = prefs.edit().putString(
-            BASKET,
-            gSon.toJson(value)
-        ).apply()
-
     var cart: Cart?
         get() {
             return try {
                 gSon.fromJson<Cart>(
                     prefs.getString(CART, null)
-                    , Basket::class.java
+                    , Cart::class.java
                 )
             } catch (e: Exception) {
                 null
@@ -123,40 +85,6 @@ class PrefUtil constructor(
         }
         set(value) = prefs.edit().putString(
             CART,
-            gSon.toJson(value)
-        ).apply()
-
-    var notLoginBasket: ArrayList<ProductVariant>?
-        get() {
-            val type = object : TypeToken<ArrayList<ProductVariant>>() {}.type
-            return try {
-                gSon.fromJson<ArrayList<ProductVariant>>(
-                    prefs.getString(BASKET_NOT_LOGIN, null),
-                    type
-                )
-            } catch (e: Exception) {
-                null
-            }
-        }
-        set(value) = prefs.edit().putString(
-            BASKET_NOT_LOGIN,
-            gSon.toJson(value)
-        ).apply()
-
-    var prodInWishList: ArrayList<Int>?
-        get() {
-            val type = object : TypeToken<ArrayList<Int>>() {}.type
-            return try {
-                gSon.fromJson<ArrayList<Int>>(
-                    prefs.getString(PRODUCT_IN_WISH_LIST, null),
-                    type
-                )
-            } catch (e: Exception) {
-                null
-            }
-        }
-        set(value) = prefs.edit().putString(
-            PRODUCT_IN_WISH_LIST,
             gSon.toJson(value)
         ).apply()
 }
