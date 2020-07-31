@@ -28,11 +28,11 @@ namespace ClothesManagement.Controllers
         [Route("api/allInvoice")]
         [AcceptVerbs("GET")]
         [HttpGet]
-        public async Task<ListResponse<SP_GetAllInvoice_Result>> getInvoicePaging(Nullable<int> pageSize=20, Nullable<int> pageNumber=1, Nullable<int> statusId = null, int? accountId = null)
+        public async Task<ListResponse<SP_GetAllInvoice_Result>> getInvoicePaging(Nullable<int> pageSize = 20, Nullable<int> pageNumber = 1, Nullable<int> statusId = null, int? accountId = null)
         {
             if (pageSize <= 0 || pageSize > 100) pageSize = 20;
             if (pageNumber <= 0) pageNumber = 1;
-           
+
             var listResponse = (await Task.Run(() => entities.SP_GetAllInvoice(statusId, pageNumber, pageSize, accountId).ToList()));
             var count = (await Task.Run(() => entities.SP_GetAllInvoiceCount(statusId, accountId).FirstOrDefault()));
             return new ListResponse<SP_GetAllInvoice_Result>()
@@ -42,20 +42,51 @@ namespace ClothesManagement.Controllers
             };
         }
 
-        //[Route("api/invoice-detail")]
-        //[AcceptVerbs("GET")]
-        //[HttpGet]
-        //public async Task<ListResponse<SP_GetAllInvoice_Result>> getAllItemInvoice(Nullable<int> pageSize = 20)
-        //{
-          
-        //    var listResponse = (await Task.Run(() => entities.SP_GetAllInvoice(statusId, pageNumber, pageSize, accountId).ToList()));
-        //    var count = (await Task.Run(() => entities.SP_GetAllInvoiceCount(statusId, accountId).FirstOrDefault()));
-        //    return new ListResponse<SP_GetAllInvoice_Result>()
-        //    {
-        //        count = count,
-        //        results = listResponse
-        //    };
-        //}
+        [Route("api/invoice-detail")]
+        [AcceptVerbs("GET")]
+        [HttpGet]
+        public async Task<ResponseObjectModel<OrderDetail>> getInvoiceDetail(Nullable<int> invoicecId = null)
+        {
+            var checkExist = (await Task.Run(() => entities.SP_CheckInvoiceExist(invoicecId).FirstOrDefault()));
+            if (checkExist == 1)
+            {
+
+                var invoiceDeatail = (await Task.Run(() => entities.SP_GetInvoiceDetail(invoicecId).FirstOrDefault()));
+                var listProducts = (await Task.Run(() => entities.SP_GetProductInvoice(invoicecId).ToList()));
+                return new ResponseObjectModel<OrderDetail>
+                {
+                    message = "Invoice detail",
+                    status = true,
+                    code = 200,
+                    data = new OrderDetail()
+                    {
+                        id = invoiceDeatail.id,
+                        updateDate = invoiceDeatail.updateDate,
+                        buyDate = invoiceDeatail.buyDate,
+                        name = invoiceDeatail.name,
+                        phone = invoiceDeatail.phone,
+                        address = invoiceDeatail.address,
+                        note = invoiceDeatail.note,
+                        deliveryDate = invoiceDeatail.deliveryDate,
+                        price = invoiceDeatail.price,
+                        statusOrderId = invoiceDeatail.statusOrderId,
+                        statusInvoice = invoiceDeatail.statusInvoice,
+                        products = listProducts
+
+                    }
+                };
+            }
+            else
+            {
+                return new ResponseObjectModel<OrderDetail>
+                {
+                    message = "Invoice id không tồn tại trong hệ thống, vui lòng kiểm tra lại",
+                    status = false,
+                    code = 200,
+                    data = null
+                };
+            }
+        }
 
         private string createEmailBody(string userName, string title, string message)
 

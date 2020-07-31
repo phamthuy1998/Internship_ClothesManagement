@@ -241,10 +241,16 @@
     <Compile Include="SP_GetFavoriteProducts_Result1.cs">
       <DependentUpon>ClothesEntity.tt</DependentUpon>
     </Compile>
+    <Compile Include="SP_GetInvoiceDetail_Result.cs">
+      <DependentUpon>ClothesEntity.tt</DependentUpon>
+    </Compile>
     <Compile Include="SP_GetProductInfoDetail_Result.cs">
       <DependentUpon>ClothesEntity.tt</DependentUpon>
     </Compile>
     <Compile Include="SP_GetProductInfoDetail_Result1.cs">
+      <DependentUpon>ClothesEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SP_GetProductInvoice_Result.cs">
       <DependentUpon>ClothesEntity.tt</DependentUpon>
     </Compile>
     <Compile Include="SP_GetProductOfCategory_Result.cs">
@@ -275,6 +281,9 @@
       <DependentUpon>ClothesEntity.tt</DependentUpon>
     </Compile>
     <Compile Include="sp_helpdiagrams_Result.cs">
+      <DependentUpon>ClothesEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="sysdiagram.cs">
       <DependentUpon>ClothesEntity.tt</DependentUpon>
     </Compile>
   </ItemGroup>
