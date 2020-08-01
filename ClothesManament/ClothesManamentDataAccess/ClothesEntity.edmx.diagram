@@ -4,24 +4,24 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="7465031262264eee92d4e6d51a70c7ac" Name="Diagram1" ZoomLevel="74">
-        <EntityTypeShape EntityType="ClothesManamentModel1.Account" Width="1.5" PointX="3" PointY="8" />
-        <EntityTypeShape EntityType="ClothesManamentModel1.Address" Width="1.5" PointX="5.25" PointY="13" />
-        <EntityTypeShape EntityType="ClothesManamentModel1.Category" Width="1.5" PointX="3" PointY="13" />
-        <EntityTypeShape EntityType="ClothesManamentModel1.Color" Width="1.5" PointX="5.25" PointY="1.25" />
-        <EntityTypeShape EntityType="ClothesManamentModel1.Employee" Width="1.5" PointX="0.75" PointY="5.75" />
-        <EntityTypeShape EntityType="ClothesManamentModel1.Image" Width="1.5" PointX="7.5" PointY="9.625" />
-        <EntityTypeShape EntityType="ClothesManamentModel1.Invoice" Width="1.5" PointX="5.25" PointY="16.125" />
-        <EntityTypeShape EntityType="ClothesManamentModel1.InvoiceItem" Width="1.5" PointX="7.5" PointY="12.5" />
-        <EntityTypeShape EntityType="ClothesManamentModel1.Product" Width="1.5" PointX="5.25" PointY="7.625" />
-        <EntityTypeShape EntityType="ClothesManamentModel1.ProductSizeColor" Width="1.5" PointX="7.5" PointY="5.5" />
-        <EntityTypeShape EntityType="ClothesManamentModel1.Promotion" Width="1.5" PointX="7.5" PointY="16.375" />
-        <EntityTypeShape EntityType="ClothesManamentModel1.Provider" Width="1.5" PointX="3" PointY="4.125" />
-        <EntityTypeShape EntityType="ClothesManamentModel1.Role" Width="1.5" PointX="0.75" PointY="9" />
-        <EntityTypeShape EntityType="ClothesManamentModel1.Size" Width="1.5" PointX="5.25" PointY="4.625" />
+      <Diagram DiagramId="7465031262264eee92d4e6d51a70c7ac" Name="Diagram1" ZoomLevel="81">
+        <EntityTypeShape EntityType="ClothesManamentModel1.Account" Width="1.5" PointX="3" PointY="10.5" />
+        <EntityTypeShape EntityType="ClothesManamentModel1.Address" Width="1.5" PointX="5.25" PointY="6.75" />
+        <EntityTypeShape EntityType="ClothesManamentModel1.Category" Width="1.5" PointX="6" PointY="2.375" />
+        <EntityTypeShape EntityType="ClothesManamentModel1.Color" Width="1.5" PointX="11.25" PointY="2.5" />
+        <EntityTypeShape EntityType="ClothesManamentModel1.Employee" Width="1.5" PointX="5.25" PointY="9.875" />
+        <EntityTypeShape EntityType="ClothesManamentModel1.Image" Width="1.5" PointX="10.5" PointY="19.375" />
+        <EntityTypeShape EntityType="ClothesManamentModel1.Invoice" Width="1.5" PointX="5.25" PointY="20.25" />
+        <EntityTypeShape EntityType="ClothesManamentModel1.InvoiceItem" Width="1.5" PointX="10.5" PointY="15.625" />
+        <EntityTypeShape EntityType="ClothesManamentModel1.Product" Width="1.5" PointX="8.25" PointY="9.75" />
+        <EntityTypeShape EntityType="ClothesManamentModel1.ProductSizeColor" Width="1.5" PointX="13.5" PointY="10.75" />
+        <EntityTypeShape EntityType="ClothesManamentModel1.Promotion" Width="1.5" PointX="10.5" PointY="9.25" />
+        <EntityTypeShape EntityType="ClothesManamentModel1.Provider" Width="1.5" PointX="6" PointY="14" />
+        <EntityTypeShape EntityType="ClothesManamentModel1.Role" Width="1.5" PointX="0.75" PointY="11.125" />
+        <EntityTypeShape EntityType="ClothesManamentModel1.Size" Width="1.5" PointX="11.25" PointY="5.75" />
         <EntityTypeShape EntityType="ClothesManamentModel1.sysdiagram" Width="1.5" PointX="0.75" PointY="0.75" />
-        <AssociationConnector Association="ClothesManamentModel1.FK_Account_Employee" />
-        <AssociationConnector Association="ClothesManamentModel1.FK_Address_Account" />
+        <AssociationConnector Association="ClothesManamentModel1.FK_Address_Account1" />
+        <AssociationConnector Association="ClothesManamentModel1.FK_Employee_Account" />
         <AssociationConnector Association="ClothesManamentModel1.FK_Invoice_Account" />
         <AssociationConnector Association="ClothesManamentModel1.FK_User_Role" />
         <AssociationConnector Association="ClothesManamentModel1.FK_Product_Category" />
@@ -34,6 +34,8 @@
         <AssociationConnector Association="ClothesManamentModel1.FK_ProductSizeColor_Size" />
         <AssociationConnector Association="ClothesManamentModel1.FavoriteProduct" />
         <AssociationConnector Association="ClothesManamentModel1.PromotionItem" />
+        <EntityTypeShape EntityType="ClothesManamentModel1.Customer" Width="1.5" PointX="0.875" PointY="6.625" />
+        <AssociationConnector Association="ClothesManamentModel1.FK_Customer_Account" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

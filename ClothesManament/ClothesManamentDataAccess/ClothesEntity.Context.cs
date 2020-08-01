@@ -42,6 +42,7 @@ namespace ClothesManamentDataAccess
         public virtual DbSet<Role> Roles { get; set; }
         public virtual DbSet<Size> Sizes { get; set; }
         public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
+        public virtual DbSet<Customer> Customers { get; set; }
     
         public virtual ObjectResult<Nullable<int>> ChangePassword(Nullable<int> userId, string oldPass, string newPass)
         {
@@ -336,13 +337,13 @@ namespace ClothesManamentDataAccess
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("SP_GetProductsOfProviderCount", provderIdParameter);
         }
     
-        public virtual ObjectResult<SP_GetProviderDetail_Result> SP_GetProviderDetail(Nullable<int> providerId)
+        public virtual ObjectResult<SP_GetProviderDetail_Result1> SP_GetProviderDetail(Nullable<int> providerId)
         {
             var providerIdParameter = providerId.HasValue ?
                 new ObjectParameter("providerId", providerId) :
                 new ObjectParameter("providerId", typeof(int));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_GetProviderDetail_Result>("SP_GetProviderDetail", providerIdParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_GetProviderDetail_Result1>("SP_GetProviderDetail", providerIdParameter);
         }
     
         public virtual ObjectResult<SP_GetProviders_Result> SP_GetProviders()
@@ -547,31 +548,31 @@ namespace ClothesManamentDataAccess
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SPGetAccount_Result>("SPGetAccount", userIdParameter);
         }
     
-        public virtual ObjectResult<SPGetAccountInfoByUserId_Result> SPGetAccountInfoByUserId(Nullable<int> userId)
+        public virtual ObjectResult<SPGetAccountInfoByUserId_Result1> SPGetAccountInfoByUserId(Nullable<int> userId)
         {
             var userIdParameter = userId.HasValue ?
                 new ObjectParameter("userId", userId) :
                 new ObjectParameter("userId", typeof(int));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SPGetAccountInfoByUserId_Result>("SPGetAccountInfoByUserId", userIdParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SPGetAccountInfoByUserId_Result1>("SPGetAccountInfoByUserId", userIdParameter);
         }
     
-        public virtual ObjectResult<SPGetAccountInfoByUsername_Result> SPGetAccountInfoByUsername(string username)
+        public virtual ObjectResult<SPGetAccountInfoByUsername_Result1> SPGetAccountInfoByUsername(string username)
         {
             var usernameParameter = username != null ?
                 new ObjectParameter("username", username) :
                 new ObjectParameter("username", typeof(string));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SPGetAccountInfoByUsername_Result>("SPGetAccountInfoByUsername", usernameParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SPGetAccountInfoByUsername_Result1>("SPGetAccountInfoByUsername", usernameParameter);
         }
     
-        public virtual ObjectResult<SPGetAccountInfoUserID_Result> SPGetAccountInfoUserID(Nullable<int> userId)
+        public virtual ObjectResult<SPGetAccountInfoUserID_Result1> SPGetAccountInfoUserID(Nullable<int> userId)
         {
             var userIdParameter = userId.HasValue ?
                 new ObjectParameter("userId", userId) :
                 new ObjectParameter("userId", typeof(int));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SPGetAccountInfoUserID_Result>("SPGetAccountInfoUserID", userIdParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SPGetAccountInfoUserID_Result1>("SPGetAccountInfoUserID", userIdParameter);
         }
     
         public virtual ObjectResult<string> SP_GetEmail(Nullable<int> userId)
@@ -642,6 +643,36 @@ namespace ClothesManamentDataAccess
                 new ObjectParameter("inovoiceId", typeof(int));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("SP_CheckInvoiceExist", inovoiceIdParameter);
+        }
+    
+        public virtual ObjectResult<Nullable<int>> SP_AddAddress(Nullable<int> userId, string address, string name, string phone)
+        {
+            var userIdParameter = userId.HasValue ?
+                new ObjectParameter("userId", userId) :
+                new ObjectParameter("userId", typeof(int));
+    
+            var addressParameter = address != null ?
+                new ObjectParameter("address", address) :
+                new ObjectParameter("address", typeof(string));
+    
+            var nameParameter = name != null ?
+                new ObjectParameter("name", name) :
+                new ObjectParameter("name", typeof(string));
+    
+            var phoneParameter = phone != null ?
+                new ObjectParameter("phone", phone) :
+                new ObjectParameter("phone", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("SP_AddAddress", userIdParameter, addressParameter, nameParameter, phoneParameter);
+        }
+    
+        public virtual ObjectResult<Nullable<int>> SP_DelAddress(Nullable<int> addressId)
+        {
+            var addressIdParameter = addressId.HasValue ?
+                new ObjectParameter("addressId", addressId) :
+                new ObjectParameter("addressId", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("SP_DelAddress", addressIdParameter);
         }
     }
 }

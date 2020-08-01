@@ -272,6 +272,7 @@
     <Compile Include="Models\EmailModel.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ListResponse.cs" />
+    <Compile Include="Models\AccountInfo.cs" />
     <Compile Include="Models\MemoryCacheHelper.cs" />
     <Compile Include="Models\OrderDetail.cs" />
     <Compile Include="Models\ProductOrder.cs" />

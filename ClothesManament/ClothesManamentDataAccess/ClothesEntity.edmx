@@ -10,14 +10,10 @@
             <PropertyRef Name="id" />
           </Key>
           <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="name" Type="nvarchar" MaxLength="100" />
           <Property Name="email" Type="nvarchar" MaxLength="200" />
-          <Property Name="phone" Type="nvarchar" MaxLength="15" />
           <Property Name="roleId" Type="int" />
           <Property Name="password" Type="nvarchar" MaxLength="50" />
           <Property Name="username" Type="nvarchar" MaxLength="50" />
-          <Property Name="imageUrl" Type="nvarchar" MaxLength="150" />
-          <Property Name="employeeID" Type="int" />
           <Property Name="active" Type="int" />
         </EntityType>
         <EntityType Name="Address">
@@ -53,6 +49,16 @@
           <Property Name="colorHex" Type="nvarchar" MaxLength="50" />
           <Property Name="active" Type="int" />
         </EntityType>
+        <EntityType Name="Customer">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="nvarchar" MaxLength="100" />
+          <Property Name="phone" Type="nvarchar" MaxLength="50" />
+          <Property Name="imageUrl" Type="nchar" MaxLength="10" />
+          <Property Name="idAccount" Type="int" />
+        </EntityType>
         <EntityType Name="Employee">
           <Key>
             <PropertyRef Name="id" />
@@ -60,9 +66,13 @@
           <Property Name="id" Type="int" Nullable="false" />
           <Property Name="firstName" Type="nvarchar" MaxLength="50" />
           <Property Name="lastName" Type="nvarchar" MaxLength="50" />
+          <Property Name="phone" Type="nvarchar" MaxLength="20" />
           <Property Name="address" Type="nvarchar" MaxLength="200" />
+          <Property Name="dateEnd" Type="date" />
+          <Property Name="dateBegin" Type="date" />
           <Property Name="birthday" Type="date" />
           <Property Name="isWorking" Type="int" />
+          <Property Name="idAccount" Type="int" />
         </EntityType>
         <EntityType Name="FavoriteProduct">
           <Key>
@@ -167,6 +177,8 @@
           <Property Name="imageUrl" Type="nvarchar" MaxLength="200" />
           <Property Name="brandName" Type="nvarchar" MaxLength="50" />
           <Property Name="infomation" Type="nvarchar(max)" />
+          <Property Name="phone" Type="nvarchar" MaxLength="20" />
+          <Property Name="address" Type="nvarchar" MaxLength="200" />
           <Property Name="active" Type="int" />
         </EntityType>
         <EntityType Name="Role">
@@ -196,19 +208,7 @@
           <Property Name="version" Type="int" />
           <Property Name="definition" Type="varbinary(max)" />
         </EntityType>
-        <Association Name="FK_Account_Employee">
-          <End Role="Employee" Type="Self.Employee" Multiplicity="0..1" />
-          <End Role="Account" Type="Self.Account" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Employee">
-              <PropertyRef Name="id" />
-            </Principal>
-            <Dependent Role="Account">
-              <PropertyRef Name="employeeID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Address_Account">
+        <Association Name="FK_Address_Account1">
           <End Role="Account" Type="Self.Account" Multiplicity="0..1" />
           <End Role="Address" Type="Self.Address" Multiplicity="*" />
           <ReferentialConstraint>
@@ -217,6 +217,30 @@
             </Principal>
             <Dependent Role="Address">
               <PropertyRef Name="accountId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Customer_Account">
+          <End Role="Account" Type="Self.Account" Multiplicity="0..1" />
+          <End Role="Customer" Type="Self.Customer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Account">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Customer">
+              <PropertyRef Name="idAccount" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Employee_Account">
+          <End Role="Account" Type="Self.Account" Multiplicity="0..1" />
+          <End Role="Employee" Type="Self.Employee" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Account">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Employee">
+              <PropertyRef Name="idAccount" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -409,6 +433,12 @@
         <Function Name="Num2Text" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="nvarchar">
           <Parameter Name="Number" Type="float" Mode="In" />
         </Function>
+        <Function Name="SP_AddAddress" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="userId" Type="int" Mode="In" />
+          <Parameter Name="address" Type="nvarchar" Mode="In" />
+          <Parameter Name="name" Type="nvarchar" Mode="In" />
+          <Parameter Name="phone" Type="nvarchar" Mode="In" />
+        </Function>
         <Function Name="SP_AddOrder" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="userId" Type="int" Mode="In" />
           <Parameter Name="address" Type="nvarchar" Mode="In" />
@@ -442,6 +472,9 @@
           <Parameter Name="owner_id" Type="int" Mode="In" />
           <Parameter Name="version" Type="int" Mode="In" />
           <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
+        </Function>
+        <Function Name="SP_DelAddress" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="addressId" Type="int" Mode="In" />
         </Function>
         <Function Name="sp_dropdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
@@ -578,6 +611,7 @@
           <EntitySet Name="Address" EntityType="Self.Address" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Category" EntityType="Self.Category" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Color" EntityType="Self.Color" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Customer" EntityType="Self.Customer" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Employee" EntityType="Self.Employee" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="FavoriteProduct" EntityType="Self.FavoriteProduct" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Image" EntityType="Self.Image" Schema="dbo" store:Type="Tables" />
@@ -591,13 +625,17 @@
           <EntitySet Name="Role" EntityType="Self.Role" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Size" EntityType="Self.Size" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
-          <AssociationSet Name="FK_Account_Employee" Association="Self.FK_Account_Employee">
-            <End Role="Employee" EntitySet="Employee" />
-            <End Role="Account" EntitySet="Account" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Address_Account" Association="Self.FK_Address_Account">
+          <AssociationSet Name="FK_Address_Account1" Association="Self.FK_Address_Account1">
             <End Role="Account" EntitySet="Account" />
             <End Role="Address" EntitySet="Address" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Customer_Account" Association="Self.FK_Customer_Account">
+            <End Role="Account" EntitySet="Account" />
+            <End Role="Customer" EntitySet="Customer" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Employee_Account" Association="Self.FK_Employee_Account">
+            <End Role="Account" EntitySet="Account" />
+            <End Role="Employee" EntitySet="Employee" />
           </AssociationSet>
           <AssociationSet Name="FK_FavoriteProduct_Account" Association="Self.FK_FavoriteProduct_Account">
             <End Role="Account" EntitySet="Account" />
@@ -750,7 +788,7 @@
           <FunctionImport Name="SP_GetProductsOfProviderCount" ReturnType="Collection(Int32)">
           <Parameter Name="provderId" Mode="In" Type="Int32" />
           </FunctionImport>
-          <FunctionImport Name="SP_GetProviderDetail" ReturnType="Collection(ClothesManamentModel1.SP_GetProviderDetail_Result)">
+          <FunctionImport Name="SP_GetProviderDetail" ReturnType="Collection(ClothesManamentModel1.SP_GetProviderDetail_Result1)">
           <Parameter Name="providerId" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="SP_GetProviders" ReturnType="Collection(ClothesManamentModel1.SP_GetProviders_Result)" />
@@ -812,13 +850,13 @@
           <FunctionImport Name="SPGetAccount" ReturnType="Collection(ClothesManamentModel1.SPGetAccount_Result)">
           <Parameter Name="userId" Mode="In" Type="Int32" />
           </FunctionImport>
-          <FunctionImport Name="SPGetAccountInfoByUserId" ReturnType="Collection(ClothesManamentModel1.SPGetAccountInfoByUserId_Result)">
+          <FunctionImport Name="SPGetAccountInfoByUserId" ReturnType="Collection(ClothesManamentModel1.SPGetAccountInfoByUserId_Result1)">
           <Parameter Name="userId" Mode="In" Type="Int32" />
           </FunctionImport>
-          <FunctionImport Name="SPGetAccountInfoByUsername" ReturnType="Collection(ClothesManamentModel1.SPGetAccountInfoByUsername_Result)">
+          <FunctionImport Name="SPGetAccountInfoByUsername" ReturnType="Collection(ClothesManamentModel1.SPGetAccountInfoByUsername_Result1)">
           <Parameter Name="username" Mode="In" Type="String" />
           </FunctionImport>
-          <FunctionImport Name="SPGetAccountInfoUserID" ReturnType="Collection(ClothesManamentModel1.SPGetAccountInfoUserID_Result)">
+          <FunctionImport Name="SPGetAccountInfoUserID" ReturnType="Collection(ClothesManamentModel1.SPGetAccountInfoUserID_Result1)">
           <Parameter Name="userId" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="SP_GetEmail" ReturnType="Collection(String)">
@@ -840,6 +878,9 @@
           <FunctionImport Name="SP_GetProductInvoice" ReturnType="Collection(ClothesManamentModel1.SP_GetProductInvoice_Result)">
           <Parameter Name="inovoiceId" Mode="In" Type="Int32" />
           </FunctionImport>
+          <FunctionImport Name="SP_CheckInvoiceExist" ReturnType="Collection(Int32)">
+          <Parameter Name="inovoiceId" Mode="In" Type="Int32" />
+          </FunctionImport>
           <EntitySet Name="Accounts" EntityType="ClothesManamentModel1.Account" />
           <EntitySet Name="Addresses" EntityType="ClothesManamentModel1.Address" />
           <EntitySet Name="Categories" EntityType="ClothesManamentModel1.Category" />
@@ -855,13 +896,13 @@
           <EntitySet Name="Roles" EntityType="ClothesManamentModel1.Role" />
           <EntitySet Name="Sizes" EntityType="ClothesManamentModel1.Size" />
           <EntitySet Name="sysdiagrams" EntityType="ClothesManamentModel1.sysdiagram" />
-          <AssociationSet Name="FK_Account_Employee" Association="ClothesManamentModel1.FK_Account_Employee">
-            <End Role="Employee" EntitySet="Employees" />
-            <End Role="Account" EntitySet="Accounts" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Address_Account" Association="ClothesManamentModel1.FK_Address_Account">
+          <AssociationSet Name="FK_Address_Account1" Association="ClothesManamentModel1.FK_Address_Account1">
             <End Role="Account" EntitySet="Accounts" />
             <End Role="Address" EntitySet="Addresses" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Employee_Account" Association="ClothesManamentModel1.FK_Employee_Account">
+            <End Role="Account" EntitySet="Accounts" />
+            <End Role="Employee" EntitySet="Employees" />
           </AssociationSet>
           <AssociationSet Name="FK_Invoice_Account" Association="ClothesManamentModel1.FK_Invoice_Account">
             <End Role="Account" EntitySet="Accounts" />
@@ -911,10 +952,21 @@
             <End Role="Product" EntitySet="Products" />
             <End Role="Promotion" EntitySet="Promotions" />
           </AssociationSet>
-          <FunctionImport Name="SP_CheckInvoiceExist" ReturnType="Collection(Int32)">
-            <Parameter Name="inovoiceId" Mode="In" Type="Int32" />
+          <EntitySet Name="Customers" EntityType="ClothesManamentModel1.Customer" />
+          <AssociationSet Name="FK_Customer_Account" Association="ClothesManamentModel1.FK_Customer_Account">
+            <End Role="Account" EntitySet="Accounts" />
+            <End Role="Customer" EntitySet="Customers" />
+          </AssociationSet>
+          <FunctionImport Name="SP_AddAddress" ReturnType="Collection(Int32)">
+            <Parameter Name="userId" Mode="In" Type="Int32" />
+            <Parameter Name="address" Mode="In" Type="String" />
+            <Parameter Name="name" Mode="In" Type="String" />
+            <Parameter Name="phone" Mode="In" Type="String" />
           </FunctionImport>
-        </EntityContainer>
+          <FunctionImport Name="SP_DelAddress" ReturnType="Collection(Int32)">
+            <Parameter Name="addressId" Mode="In" Type="Int32" />
+          </FunctionImport>
+          </EntityContainer>
         <ComplexType Name="getCategoryByGender_Result">
           <Property Type="Int32" Name="id" Nullable="false" />
           <Property Type="String" Name="name" Nullable="true" MaxLength="50" />
@@ -1169,25 +1221,55 @@
           <Property Type="Int32" Name="quantity" Nullable="true" />
           <Property Type="String" Name="thumnail" Nullable="true" MaxLength="200" />
         </ComplexType>
+        <ComplexType Name="SPGetAccountInfoByUsername_Result1">
+          <Property Type="Int32" Name="id" Nullable="false" />
+          <Property Type="String" Name="name" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="email" Nullable="true" MaxLength="200" />
+          <Property Type="String" Name="phone" Nullable="true" MaxLength="50" />
+          <Property Type="Int32" Name="roleId" Nullable="true" />
+          <Property Type="String" Name="password" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="username" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="imageUrl" Nullable="true" MaxLength="10" />
+          <Property Type="Int32" Name="active" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="SPGetAccountInfoByUserId_Result1">
+          <Property Type="Int32" Name="id" Nullable="false" />
+          <Property Type="String" Name="name" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="email" Nullable="true" MaxLength="200" />
+          <Property Type="String" Name="phone" Nullable="true" MaxLength="50" />
+          <Property Type="Int32" Name="roleId" Nullable="true" />
+          <Property Type="String" Name="password" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="username" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="imageUrl" Nullable="true" MaxLength="10" />
+          <Property Type="Int32" Name="active" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="SPGetAccountInfoUserID_Result1">
+          <Property Type="Int32" Name="id" Nullable="false" />
+          <Property Type="String" Name="name" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="email" Nullable="true" MaxLength="200" />
+          <Property Type="String" Name="phone" Nullable="true" MaxLength="50" />
+          <Property Type="Int32" Name="roleId" Nullable="true" />
+          <Property Type="String" Name="password" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="username" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="imageUrl" Nullable="true" MaxLength="10" />
+          <Property Type="Int32" Name="active" Nullable="true" />
+        </ComplexType>
         <EntityType Name="Account">
           <Key>
             <PropertyRef Name="id" />
           </Key>
           <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="email" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
-          <Property Name="phone" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
           <Property Name="roleId" Type="Int32" />
           <Property Name="password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="username" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="imageUrl" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
-          <Property Name="employeeID" Type="Int32" />
           <Property Name="active" Type="Int32" />
-          <NavigationProperty Name="Employee" Relationship="ClothesManamentModel1.FK_Account_Employee" FromRole="Account" ToRole="Employee" />
-          <NavigationProperty Name="Addresses" Relationship="ClothesManamentModel1.FK_Address_Account" FromRole="Account" ToRole="Address" />
+          <NavigationProperty Name="Addresses" Relationship="ClothesManamentModel1.FK_Address_Account1" FromRole="Account" ToRole="Address" />
+          <NavigationProperty Name="Employees" Relationship="ClothesManamentModel1.FK_Employee_Account" FromRole="Account" ToRole="Employee" />
           <NavigationProperty Name="Invoices" Relationship="ClothesManamentModel1.FK_Invoice_Account" FromRole="Account" ToRole="Invoice" />
           <NavigationProperty Name="Role" Relationship="ClothesManamentModel1.FK_User_Role" FromRole="Account" ToRole="Role" />
           <NavigationProperty Name="Products" Relationship="ClothesManamentModel1.FavoriteProduct" FromRole="Account" ToRole="Product" />
+          <NavigationProperty Name="Customers" Relationship="ClothesManamentModel1.FK_Customer_Account" FromRole="Account" ToRole="Customer" />
         </EntityType>
         <EntityType Name="Address">
           <Key>
@@ -1199,7 +1281,7 @@
           <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="phone" Type="String" MaxLength="16" FixedLength="false" Unicode="true" />
           <Property Name="active" Type="Int32" />
-          <NavigationProperty Name="Account" Relationship="ClothesManamentModel1.FK_Address_Account" FromRole="Address" ToRole="Account" />
+          <NavigationProperty Name="Account" Relationship="ClothesManamentModel1.FK_Address_Account1" FromRole="Address" ToRole="Account" />
         </EntityType>
         <EntityType Name="Category">
           <Key>
@@ -1232,10 +1314,14 @@
           <Property Name="id" Type="Int32" Nullable="false" />
           <Property Name="firstName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="lastName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="phone" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
           <Property Name="address" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="dateEnd" Type="DateTime" Precision="0" />
+          <Property Name="dateBegin" Type="DateTime" Precision="0" />
           <Property Name="birthday" Type="DateTime" Precision="0" />
           <Property Name="isWorking" Type="Int32" />
-          <NavigationProperty Name="Accounts" Relationship="ClothesManamentModel1.FK_Account_Employee" FromRole="Employee" ToRole="Account" />
+          <Property Name="idAccount" Type="Int32" />
+          <NavigationProperty Name="Account" Relationship="ClothesManamentModel1.FK_Employee_Account" FromRole="Employee" ToRole="Account" />
         </EntityType>
         <EntityType Name="Image">
           <Key>
@@ -1340,6 +1426,8 @@
           <Property Name="imageUrl" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
           <Property Name="brandName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="infomation" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="phone" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="address" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
           <Property Name="active" Type="Int32" />
           <NavigationProperty Name="Products" Relationship="ClothesManamentModel1.FK_Product_Brand" FromRole="Provider" ToRole="Product" />
         </EntityType>
@@ -1372,19 +1460,7 @@
           <Property Name="version" Type="Int32" />
           <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
         </EntityType>
-        <Association Name="FK_Account_Employee">
-          <End Type="ClothesManamentModel1.Employee" Role="Employee" Multiplicity="0..1" />
-          <End Type="ClothesManamentModel1.Account" Role="Account" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Employee">
-              <PropertyRef Name="id" />
-            </Principal>
-            <Dependent Role="Account">
-              <PropertyRef Name="employeeID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Address_Account">
+        <Association Name="FK_Address_Account1">
           <End Type="ClothesManamentModel1.Account" Role="Account" Multiplicity="0..1" />
           <End Type="ClothesManamentModel1.Address" Role="Address" Multiplicity="*" />
           <ReferentialConstraint>
@@ -1393,6 +1469,18 @@
             </Principal>
             <Dependent Role="Address">
               <PropertyRef Name="accountId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Employee_Account">
+          <End Type="ClothesManamentModel1.Account" Role="Account" Multiplicity="0..1" />
+          <End Type="ClothesManamentModel1.Employee" Role="Employee" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Account">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Employee">
+              <PropertyRef Name="idAccount" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1524,7 +1612,38 @@
           <End Type="ClothesManamentModel1.Product" Role="Product" Multiplicity="*" />
           <End Type="ClothesManamentModel1.Promotion" Role="Promotion" Multiplicity="*" />
         </Association>
-      </Schema>
+        <EntityType Name="Customer">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="phone" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="imageUrl" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="idAccount" Type="Int32" />
+          <NavigationProperty Name="Account" Relationship="ClothesManamentModel1.FK_Customer_Account" FromRole="Customer" ToRole="Account" />
+        </EntityType>
+        <Association Name="FK_Customer_Account">
+          <End Type="ClothesManamentModel1.Account" Role="Account" Multiplicity="0..1" />
+          <End Type="ClothesManamentModel1.Customer" Role="Customer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Account">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Customer">
+              <PropertyRef Name="idAccount" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <ComplexType Name="SP_GetProviderDetail_Result1">
+          <Property Type="Int32" Name="id" Nullable="false" />
+          <Property Type="String" Name="brandName" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="infomation" Nullable="true" />
+          <Property Type="String" Name="phone" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="address" Nullable="true" MaxLength="200" />
+          <Property Type="String" Name="imageUrl" Nullable="true" MaxLength="200" />
+        </ComplexType>
+        </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
@@ -1657,11 +1776,13 @@
           </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="SP_GetProductsOfProviderCount" FunctionName="ClothesManamentModel1.Store.SP_GetProductsOfProviderCount" />
           <FunctionImportMapping FunctionImportName="SP_GetProviderDetail" FunctionName="ClothesManamentModel1.Store.SP_GetProviderDetail">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="ClothesManamentModel1.SP_GetProviderDetail_Result">
+          <ResultMapping>
+              <ComplexTypeMapping TypeName="ClothesManamentModel1.SP_GetProviderDetail_Result1">
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="brandName" ColumnName="brandName" />
                 <ScalarProperty Name="infomation" ColumnName="infomation" />
+                <ScalarProperty Name="phone" ColumnName="phone" />
+                <ScalarProperty Name="address" ColumnName="address" />
                 <ScalarProperty Name="imageUrl" ColumnName="imageUrl" />
               </ComplexTypeMapping>
             </ResultMapping>
@@ -1753,8 +1874,8 @@
             </ResultMapping>
           </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="SPGetAccountInfoByUserId" FunctionName="ClothesManamentModel1.Store.SPGetAccountInfoByUserId">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="ClothesManamentModel1.SPGetAccountInfoByUserId_Result">
+          <ResultMapping>
+              <ComplexTypeMapping TypeName="ClothesManamentModel1.SPGetAccountInfoByUserId_Result1">
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="name" ColumnName="name" />
                 <ScalarProperty Name="email" ColumnName="email" />
@@ -1768,8 +1889,8 @@
             </ResultMapping>
           </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="SPGetAccountInfoByUsername" FunctionName="ClothesManamentModel1.Store.SPGetAccountInfoByUsername">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="ClothesManamentModel1.SPGetAccountInfoByUsername_Result">
+          <ResultMapping>
+              <ComplexTypeMapping TypeName="ClothesManamentModel1.SPGetAccountInfoByUsername_Result1">
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="name" ColumnName="name" />
                 <ScalarProperty Name="email" ColumnName="email" />
@@ -1783,8 +1904,8 @@
             </ResultMapping>
           </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="SPGetAccountInfoUserID" FunctionName="ClothesManamentModel1.Store.SPGetAccountInfoUserID">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="ClothesManamentModel1.SPGetAccountInfoUserID_Result">
+          <ResultMapping>
+              <ComplexTypeMapping TypeName="ClothesManamentModel1.SPGetAccountInfoUserID_Result1">
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="name" ColumnName="name" />
                 <ScalarProperty Name="email" ColumnName="email" />
@@ -1845,18 +1966,15 @@
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SP_CheckInvoiceExist" FunctionName="ClothesManamentModel1.Store.SP_CheckInvoiceExist" />
           <EntitySetMapping Name="Accounts">
             <EntityTypeMapping TypeName="ClothesManamentModel1.Account">
               <MappingFragment StoreEntitySet="Account">
                 <ScalarProperty Name="active" ColumnName="active" />
-                <ScalarProperty Name="employeeID" ColumnName="employeeID" />
-                <ScalarProperty Name="imageUrl" ColumnName="imageUrl" />
                 <ScalarProperty Name="username" ColumnName="username" />
                 <ScalarProperty Name="password" ColumnName="password" />
                 <ScalarProperty Name="roleId" ColumnName="roleId" />
-                <ScalarProperty Name="phone" ColumnName="phone" />
                 <ScalarProperty Name="email" ColumnName="email" />
-                <ScalarProperty Name="name" ColumnName="name" />
                 <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -1900,9 +2018,13 @@
           <EntitySetMapping Name="Employees">
             <EntityTypeMapping TypeName="ClothesManamentModel1.Employee">
               <MappingFragment StoreEntitySet="Employee">
+                <ScalarProperty Name="idAccount" ColumnName="idAccount" />
                 <ScalarProperty Name="isWorking" ColumnName="isWorking" />
                 <ScalarProperty Name="birthday" ColumnName="birthday" />
+                <ScalarProperty Name="dateBegin" ColumnName="dateBegin" />
+                <ScalarProperty Name="dateEnd" ColumnName="dateEnd" />
                 <ScalarProperty Name="address" ColumnName="address" />
+                <ScalarProperty Name="phone" ColumnName="phone" />
                 <ScalarProperty Name="lastName" ColumnName="lastName" />
                 <ScalarProperty Name="firstName" ColumnName="firstName" />
                 <ScalarProperty Name="id" ColumnName="id" />
@@ -1995,6 +2117,8 @@
             <EntityTypeMapping TypeName="ClothesManamentModel1.Provider">
               <MappingFragment StoreEntitySet="Provider">
                 <ScalarProperty Name="active" ColumnName="active" />
+                <ScalarProperty Name="address" ColumnName="address" />
+                <ScalarProperty Name="phone" ColumnName="phone" />
                 <ScalarProperty Name="infomation" ColumnName="infomation" />
                 <ScalarProperty Name="brandName" ColumnName="brandName" />
                 <ScalarProperty Name="imageUrl" ColumnName="imageUrl" />
@@ -2048,8 +2172,20 @@
               <ScalarProperty Name="id" ColumnName="idProduct" />
             </EndProperty>
           </AssociationSetMapping>
-          <FunctionImportMapping FunctionImportName="SP_CheckInvoiceExist" FunctionName="ClothesManamentModel1.Store.SP_CheckInvoiceExist" />
-        </EntityContainerMapping>
+          <EntitySetMapping Name="Customers">
+            <EntityTypeMapping TypeName="ClothesManamentModel1.Customer">
+              <MappingFragment StoreEntitySet="Customer">
+                <ScalarProperty Name="idAccount" ColumnName="idAccount" />
+                <ScalarProperty Name="imageUrl" ColumnName="imageUrl" />
+                <ScalarProperty Name="phone" ColumnName="phone" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="SP_AddAddress" FunctionName="ClothesManamentModel1.Store.SP_AddAddress" />
+          <FunctionImportMapping FunctionImportName="SP_DelAddress" FunctionName="ClothesManamentModel1.Store.SP_DelAddress" />
+          </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
   </edmx:Runtime>

@@ -23,7 +23,7 @@ namespace ClothesManament.Models
         public int isLike { get; set; }
         public Nullable<Double> valuePromotion { get; set; }
         public String typePromotion { get; set; }
-        public SP_GetProviderDetail_Result provider { get; set; }
+        public SP_GetProviderDetail_Result1 provider { get; set; }
 
         public List<String> images { set; get; }
         public List<SP_GetColorsOfProduct_Result> colors { set; get; }
