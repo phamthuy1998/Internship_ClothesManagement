@@ -11,6 +11,7 @@ import androidx.databinding.ViewDataBinding
 import androidx.lifecycle.Observer
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.ptithcm.core.CoreApplication
+import com.ptithcm.core.model.ProductClothesDetail
 import com.ptithcm.core.model.ProductVariant
 import com.ptithcm.core.model.Variant
 import com.ptithcm.core.param.AddProductParam
@@ -25,12 +26,15 @@ import com.ptithcm.ptshop.constant.KEY_ARGUMENT
 import com.ptithcm.ptshop.databinding.FragmentShoppingBagBinding
 import com.ptithcm.ptshop.databinding.LayoutPopUpDeleteItemBinding
 import com.ptithcm.ptshop.ext.*
+import com.ptithcm.ptshop.util.BindingAdapterText
 import com.ptithcm.ptshop.util.PopUp
 import com.ptithcm.ptshop.widget.RecyclerRefreshLayout
 import com.ptithcm.ptshop.view.MainActivity
 import com.ptithcm.ptshop.view.home.StoryDetailActivity
 import com.ptithcm.ptshop.viewmodel.ShoppingViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
+import java.util.*
+import kotlin.collections.ArrayList
 
 class ShoppingBagFragment : BaseFragment<FragmentShoppingBagBinding>(), View.OnClickListener {
 
@@ -60,7 +64,7 @@ class ShoppingBagFragment : BaseFragment<FragmentShoppingBagBinding>(), View.OnC
         if (!isLogin) {
             viewBinding.swipeRf.isEnabled = false
             if (countBags > 0) {
-                setUpResult(ObjectHandler.notLoginBasket)
+                setUpResult(ObjectHandler.cart?.products)
             } else {
                 setupEmptyView()
             }
@@ -213,18 +217,19 @@ class ShoppingBagFragment : BaseFragment<FragmentShoppingBagBinding>(), View.OnC
         }
     }
 
-    private fun setUpResult(it: ArrayList<ProductVariant>) {
+    private fun setUpResult(it: ArrayList<ProductClothesDetail>?) {
+        it ?: return
         val size = ObjectHandler.getNumberItem()
         setUpToolBar(size)
-        val sum = it.calculatePriceAfterTax()
-        val string = getString(
+
+        val totalPrice = it.calculateFinalPrice()
+        val totalPriceStr = getString(
             R.string.basket_total,
             size,
-            sum.toString().roundPrice(CoreApplication.instance.currency.getLocale())
+            totalPrice.toString().roundPrice(Locale.getDefault())
         )
-        viewBinding.tvDescShoppingBag.text =
-            HtmlCompat.fromHtml(string, HtmlCompat.FROM_HTML_MODE_COMPACT)
-        adapter.addProduct(it)
+        BindingAdapterText.setTextHtml(viewBinding.tvDescShoppingBag, totalPriceStr)
+        adapter.submitList(it)
         viewBinding.swipeRf.setRefreshing(false)
     }
 

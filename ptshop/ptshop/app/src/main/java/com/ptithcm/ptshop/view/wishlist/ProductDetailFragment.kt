@@ -68,7 +68,7 @@ class ProductDetailFragment : BaseFragment<FragmentProductDetailBinding>() {
         viewBinding.btnAddToCard.visibility =
             if (CoreApplication.instance.profile?.user?.brand != null) View.GONE else View.VISIBLE
         viewBinding.tvOriginPrice.paintFlags = Paint.STRIKE_THRU_TEXT_FLAG
-        if(product==null) viewBinding.btnAddToCard.disable()
+        if (product == null) viewBinding.btnAddToCard.disable()
     }
 
     override fun bindViewModelOnce() {
@@ -94,7 +94,7 @@ class ProductDetailFragment : BaseFragment<FragmentProductDetailBinding>() {
         })
 
         shoppingViewModel.error.observe(this, Observer {
-                (requireActivity() as? MainActivity)?.isShowErrorNetwork(true)
+            (requireActivity() as? MainActivity)?.isShowErrorNetwork(true)
         })
     }
 
@@ -123,34 +123,6 @@ class ProductDetailFragment : BaseFragment<FragmentProductDetailBinding>() {
             R.id.tvSizeGuide -> {
                 navController.navigateAnimation(R.id.sizeGuideFragment)
             }
-//            R.id.tvMoreFromBoutique, R.id.tvTitleToolbar -> {
-//                navController.navigateAnimation(
-//                    R.id.nav_carousel_detail,
-//                    bundle = bundleOf(
-//                        KEY_ARGUMENT to Carousel(
-//                            storeId = product?.brand?.id,
-//                            type = TypeCarousel.STORE.value,
-//                            gender = Gender.NONE.value
-//                        )
-//                    )
-//                )
-//            }
-//            R.id.tvMoreFromVendor, R.id.tvVendor -> {
-//                val typeCarousel =
-//                    if (product?.vendor_brand?.stores?.size ?: 0 > 1) TypeCarousel.BRAND else TypeCarousel.STORE
-//                navController.navigateAnimation(
-//                    R.id.nav_carousel_detail,
-//                    bundle = bundleOf(
-//                        KEY_ARGUMENT to Carousel(
-//                            brand_id = product?.vendor_brand?.id,
-//                            storeId = product?.brand?.id,
-//                            type = typeCarousel.value,
-//                            name = product?.vendor_brand?.name,
-//                            gender = Gender.NONE.value
-//                        )
-//                    )
-//                )
-//            }
             R.id.btnAddToCard -> {
                 val numQuality = viewBinding.btnQuantity.selectedItem?.toString()?.toInt() ?: 0
 
@@ -158,12 +130,10 @@ class ProductDetailFragment : BaseFragment<FragmentProductDetailBinding>() {
                     return
                 }
                 quality -= numQuality
-                if (isLogin.not()) {
-                    handleAddToCardWithoutLogin(
-                        selectedQuantity = numQuality
-                    )
-                    return
-                }
+
+                handleAddToCart(
+                    selectedQuantity = numQuality
+                )
 
                 shoppingViewModel.updateBasket(
                     AddProductParam(
@@ -224,12 +194,17 @@ class ProductDetailFragment : BaseFragment<FragmentProductDetailBinding>() {
 
     private fun setUpToolBar() {
         (requireActivity() as? BaseActivity<*>)?.apply {
-            val toolbar = when(this){
+            val toolbar = when (this) {
                 is MainActivity -> viewBinding.layoutToolbar.toolbar
                 is StoryDetailActivity -> viewBinding.layoutToolbar.toolbar
                 else -> null
             }
-            initToolbar(hasBackRight = false, hasLeft = false, hasCount = false, isProductPage = true)
+            initToolbar(
+                hasBackRight = false,
+                hasLeft = false,
+                hasCount = false,
+                isProductPage = true
+            )
             toolbar?.isSelected = true
             setupToolbar(
                 productDetail?.provider?.brandName ?: "",
@@ -310,42 +285,26 @@ class ProductDetailFragment : BaseFragment<FragmentProductDetailBinding>() {
         val colorOption =
             productDetail?.colors?.getOrNull(viewBinding.btnColor.selectedItemPosition)
         val sizeOption = productDetail?.sizes?.getOrNull(viewBinding.btnSize.selectedItemPosition)
-        val quantity = productDetail?.sizesColors?.first {
+        viewBinding.isAvailable = colorOption == null && sizeOption == null
+
+        val quantityFromBE = productDetail?.sizesColors?.firstOrNull() {
             it.colorID == colorOption?.id && it.sizeId == sizeOption?.id
         }?.quantity ?: 0
+        val quantityFromLocal = ObjectHandler.getQuantityProductClothesFromLocal(
+            product?.id,
+            sizeOption?.id,
+            colorOption?.id
+        )
 
-        viewBinding.isAvailable = colorOption == null && sizeOption == null
-        viewBinding.hasQuantity = quantity != 0
-        setQuantity(quantity)
+        val realQuantity = (quantityFromBE - quantityFromLocal).coerceIn(0..Int.MAX_VALUE)
 
-//        if (productVariant == null){
-//            viewBinding.tvPriceOrigin.text = getString(R.string.no_price)
-//            viewBinding.isAvailable = false
-//            viewBinding.hasQuantity = false
-//            setQuantity(0)
-//            return
-//        }
-//
-//        viewBinding.tvPriceOrigin.text =
-//            productVariant?.price_after_tax?.roundPrice(locale)
-//        viewBinding.tvAfterTaxPrice.text =
-//            productVariant?.price_after_tax?.roundPrice(locale)
-//        viewBinding.tvOriginPrice.text =
-//            productVariant?.compare_at_price_after_tax?.roundPrice(locale)
-//        val quantityFromBE = productVariant?.inventory_quantity ?: 0
-//        val quantityFromLocal =
-//            ObjectHandler.getQuantityFromLocal(productVariant?.id)
-//        val realQuantity = if (quantityFromBE - quantityFromLocal < 0)
-//            0
-//        else quantityFromBE - quantityFromLocal
-//        setQuantity(realQuantity)
+        viewBinding.hasQuantity = realQuantity != 0
+        setQuantity(realQuantity)
     }
 
     private fun setQuantity(inventory_quantity: Int?) {
         viewBinding.btnQuantity.apply {
-            val size = if (inventory_quantity ?: 0 > 50)
-                50
-            else inventory_quantity
+            val size = inventory_quantity?.coerceAtMost(50)
 
             quality = inventory_quantity ?: 0
 
@@ -383,98 +342,21 @@ class ProductDetailFragment : BaseFragment<FragmentProductDetailBinding>() {
         }
     }
 
-    /* - Check field option-A in product and option-B in variants of product
-        if non of  B in A then set un available
-        else if B in A then get the 1st valid variant
-       - The first valid variant is the first on has field inventory_quantity > 0 (usually variant with field position = 1)
-       - Field variant already been sort by position */
-//    private fun checkQuantity(): Boolean {
-//        productDetail?.run {
-////            viewBinding.hasQuantity = sizesColors?.map { it.quantity ?: 0 }?.max() ?: 0 > 0
-//
-//        }
-//        val item = viewBinding.item?.variants
-//        val sizeOption = product?.options?.sizeOption()
-//        val colorOptions = product?.options?.colorOption()
-//        val arrBoolean = arrayListOf<Boolean>()
-//        viewBinding.btnSizeVisible = sizeOption != null
-//        viewBinding.btnColorVisible = colorOptions != null
-//
-//        item.forEach {
-//            val variantSizeOption = it.options.sizeOption().value
-//            val variantColorOption = it.options.colorOption().value
-//            val hasOptionColor = colorOptions.containValue(variantColorOption ?: "")
-//            val hasOptionSize = sizeOption.containValue(variantSizeOption ?: "")
-//            arrBoolean.add(hasOptionColor && hasOptionSize)
-//            if (hasOptionSize
-//                && hasOptionColor
-//            ) {
-//                if (it.inventory_quantity ?: 0 > 0) {
-//                    firstSizeSelection = sizeOption?.values?.indexOf(variantSizeOption) ?: -1
-//                    firstColorSelection = colorOptions?.values?.indexOf(variantColorOption) ?: -1
-//                    productVariant = it.checkIfWrongPrice()
-//                    viewBinding.hasQuantity = true
-//                    viewBinding.isAvailable = true
-//                    return true
-//                }
-//            }
-//        }
-//
-//        if (viewBinding.hasQuantity == null) {
-//            viewBinding.hasQuantity = sizeOption == null && colorOptions == null
-//        }
-//        if (item.size ?: 0 > 0) {
-//            productVariant = item.first().checkIfWrongPrice()
-//        }
-//        if (sizeOption == null && colorOptions == null) {
-//            return true
-//        }
-//        return arrBoolean.finalBoolean()
-//    }
+    private fun handleAddToCart(selectedQuantity: Int) {
+        viewBinding.hasQuantity = quality == 0
+        setQuantity(quality)
 
-//    private fun setSelection(){
-//        productVariant?.let {
-//            viewBinding.tvPriceOrigin.text =
-//                productVariant?.price_after_tax?.roundPrice(locale)
-//            viewBinding.tvAfterTaxPrice.text =
-//                productVariant?.price_after_tax?.roundPrice(locale)
-//            viewBinding.tvOriginPrice.text =
-//                productVariant?.compare_at_price_after_tax?.roundPrice(locale)
-//
-//            if (viewBinding.hasQuantity == false
-//                && viewBinding.isAvailable == false){
-//                viewBinding.btnSize.setSelection(0)
-//                viewBinding.btnColor.setSelection(0)
-//                return
-//            }
-//
-//            if (firstSizeSelection != -1) {
-//                viewBinding.btnSize.setSelection(firstSizeSelection)
-//            }
-//
-//            if (firstColorSelection != -1){
-//                viewBinding.btnColor.setSelection(firstColorSelection)
-//            }
-//
-//            if (it.options?.sizeOption() == null && it.options?.colorOption() == null){
-//                setQuantity(it.inventory_quantity)
-//            }
-//        }
-//    }
+        val colorOption =
+            productDetail?.colors?.getOrNull(viewBinding.btnColor.selectedItemPosition)
+        val sizeOption = productDetail?.sizes?.getOrNull(viewBinding.btnSize.selectedItemPosition)
+        viewBinding.isAvailable = colorOption == null && sizeOption == null
+        val sizesColor =
+            productDetail?.sizesColors?.firstOrNull { it.colorID == colorOption?.id && it.sizeId == sizeOption?.id }
 
-    private fun handleAddToCardWithoutLogin(selectedQuantity: Int) {
-//        viewBinding.hasQuantity = quality == 0
-//        setQuantity(quality)
-//        ObjectHandler.addToNotLoginBasket(
-//            ProductVariant(
-//                productVariant?.copy(
-//                    product = product?.copyToNew()
-//                ) ?: return,
-//                selectedQuantity,
-//                null
-//            )
-//        )
-//        messageHandler?.runMessageHandler(getString(R.string.add_to_basket_success))
+        val product = clone(productDetail)?.apply {
+            quantityInCart = clone(sizesColor).apply { this?.quantity = selectedQuantity }
+        }
+        ObjectHandler.addToCart(product)
+        messageHandler?.runMessageHandler(getString(R.string.add_to_basket_success))
     }
-
 }

@@ -93,7 +93,7 @@ object BindingAdapterText {
         if (text.isNullOrEmpty())
             return
 
-        view.text = Html.fromHtml(text)
+        view.text = HtmlCompat.fromHtml(text, HtmlCompat.FROM_HTML_MODE_COMPACT)
     }
 
     @JvmStatic

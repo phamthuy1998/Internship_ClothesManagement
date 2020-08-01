@@ -21,12 +21,8 @@ open class CoreApplication : Application(){
 
     var profile: Profile? = null
     var account: Account? = null
-    var currency: SupportedCurrency = SupportedCurrency()
     var basket: Basket? = null
-    // wait for login to sync all product variant save in local to BE
-    var notLoginBasket: ArrayList<ProductVariant> = arrayListOf()
-
-    var prodWishList = arrayListOf<Int>()
+    var cart: Cart? = null
 
     private val prefsUtil: PrefUtil by inject()
 
@@ -41,10 +37,7 @@ open class CoreApplication : Application(){
         instance = this
         profile = prefsUtil.profile
         account = prefsUtil.account
-        currency = prefsUtil.currency.checkType()
-        basket = prefsUtil.basket
-        notLoginBasket = prefsUtil.notLoginBasket ?: arrayListOf()
-        prodWishList = prefsUtil.prodInWishList ?: arrayListOf()
+        cart = prefsUtil.cart
     }
 
     fun isNetworkConnected() : Boolean{
@@ -67,52 +60,19 @@ open class CoreApplication : Application(){
         this.account = account
     }
 
-    fun saveCurrency(currency: SupportedCurrency){
-        prefsUtil.currency = currency
-        this.currency = currency
-    }
-
     fun clearAccount(){
         prefsUtil.account = null
         this.account = null
-        notLoginBasket.clear()
-        removeAllFromWishList()
-        clearBasket()
+        clearCart()
     }
 
-    private fun clearCurrency(){
-        this.currency = SupportedCurrency().checkType()
-        prefsUtil.currency = this.currency
+    fun clearCart() {
+        this.cart = null
+        prefsUtil.cart = null
     }
 
-    fun saveBasket(basket: Basket){
-        this.basket = basket
-        prefsUtil.basket = basket
-        saveUser(profile?.copy(user = basket.saveAddressUser(profile?.user)) ?: return)
-    }
-
-    fun clearBasket() {
-        this.basket = null
-        prefsUtil.basket = null
-    }
-
-    fun clearLocalBasket(basket: Basket?){
-        notLoginBasket.clear()
-        prefsUtil.notLoginBasket = arrayListOf()
-        saveBasket(basket ?: return)
-    }
-
-    fun saveBasketToPref(notLoginBasket: ArrayList<ProductVariant>){
-        prefsUtil.notLoginBasket = notLoginBasket
-    }
-
-    fun saveWishListToPref(list: ArrayList<Int>){
-        prefsUtil.prodInWishList = list
-    }
-
-    private fun removeAllFromWishList(){
-        prodWishList.clear()
-        prefsUtil.prodInWishList = prodWishList
+    fun saveCartToPref(cart: Cart?){
+        prefsUtil.cart = cart
     }
 
     open fun addMoreModule(): List<Module> = emptyList()

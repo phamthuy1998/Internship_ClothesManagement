@@ -8,8 +8,8 @@
         <import type="android.view.View"/>
 
         <variable
-            name="data"
-            type="com.ptithcm.core.model.ProductVariant" />
+            name="item"
+            type="com.ptithcm.core.model.ProductClothesDetail" />
 
     </data>
 
@@ -23,6 +23,8 @@
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_marginBottom="@dimen/layout_margin_16dp"
+            app:imageUrl="@{item.thumnail}"
+            app:placeHolder="@{@drawable/ic_place_holder}"
             app:layout_constraintDimensionRatio="0.6"
             app:layout_constraintWidth_percent="0.3"
             app:layout_constraintTop_toTopOf="parent"
@@ -42,7 +44,8 @@
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/tvPrice"
             style="@style/normal_text.bold"
-            android:visibility="@{data.product_variant.compare_at_price_after_tax == null ? View.VISIBLE : View.GONE}"
+            price="@{item.price}"
+            setVisible="@{item.valuePromotion == 0.0}"
             android:layout_marginStart="@dimen/layout_margin_8dp"
             android:textSize="@dimen/text_size_18sp"
             app:layout_constraintTop_toTopOf="@id/ivClose"
@@ -53,7 +56,10 @@
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/tvDiscountPrice"
             style="@style/normal_text.bold"
-            android:visibility="@{data.product_variant.compare_at_price_after_tax == null ? View.GONE : View.VISIBLE}"
+            price="@{item.price}"
+            promo="@{item.valuePromotion}"
+            promoType="@{item.typePromotion}"
+            setVisible="@{item.valuePromotion != 0.0}"
             android:textColor="@color/colorTextDiscount"
             android:layout_marginStart="@dimen/layout_margin_8dp"
             android:textSize="@dimen/text_size_18sp"
@@ -65,7 +71,9 @@
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/tvOriginPrice"
             style="@style/normal_text"
-            android:visibility="@{data.product_variant.compare_at_price_after_tax == null ? View.GONE : View.VISIBLE}"
+            price="@{item.price}"
+            setPaintFlagsStrike="@{true}"
+            setVisible="@{item.valuePromotion != 0.0}"
             android:layout_marginStart="@dimen/layout_margin_8dp"
             android:textSize="@dimen/text_size_18sp"
             app:layout_constraintTop_toTopOf="@id/tvDiscountPrice"
@@ -78,7 +86,7 @@
             android:layout_width="@dimen/no_padding"
             android:layout_marginTop="@dimen/layout_margin_8dp"
             android:layout_marginStart="@dimen/layout_margin_8dp"
-            android:text="@{data.product_variant.product.title}"
+            android:text="@{item.title.toUpperCase()}"
             android:textAllCaps="true"
             android:textAlignment="viewStart"
             android:maxLines="1"
@@ -91,7 +99,7 @@
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/tvTittle"
             style="@style/normal_text.grey"
-            android:text="@{data.product_variant.product.vendor}"
+            android:text="@{item.provider.brandName}"
             app:layout_constraintTop_toBottomOf="@id/tvVendor"
             app:layout_constraintStart_toStartOf="@id/tvVendor"
             tools:text="snapprodtest02"/>
