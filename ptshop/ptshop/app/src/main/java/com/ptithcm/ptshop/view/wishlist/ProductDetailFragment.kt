@@ -13,8 +13,6 @@ import com.ptithcm.core.CoreApplication
 import com.ptithcm.core.model.ProductClothes
 import com.ptithcm.core.model.ProductClothesDetail
 import com.ptithcm.core.model.Variant
-import com.ptithcm.core.param.AddProductParam
-import com.ptithcm.core.param.ProductVariantParam
 import com.ptithcm.core.param.RefineParam
 import com.ptithcm.core.util.ObjectHandler
 import com.ptithcm.ptshop.R
@@ -135,16 +133,6 @@ class ProductDetailFragment : BaseFragment<FragmentProductDetailBinding>() {
                     selectedQuantity = numQuality
                 )
 
-                shoppingViewModel.updateBasket(
-                    AddProductParam(
-                        arrayListOf(
-                            ProductVariantParam(
-                                quantity = productVariant?.inventory_quantity!! - quality,
-                                product_variant = productVariant?.id ?: return
-                            )
-                        )
-                    )
-                )
             }
             R.id.ivRight -> {
                 v.apply {
@@ -287,7 +275,7 @@ class ProductDetailFragment : BaseFragment<FragmentProductDetailBinding>() {
         val sizeOption = productDetail?.sizes?.getOrNull(viewBinding.btnSize.selectedItemPosition)
         viewBinding.isAvailable = colorOption == null && sizeOption == null
 
-        val quantityFromBE = productDetail?.sizesColors?.firstOrNull() {
+        val quantityFromBE = productDetail?.sizesColors?.firstOrNull {
             it.colorID == colorOption?.id && it.sizeId == sizeOption?.id
         }?.quantity ?: 0
         val quantityFromLocal = ObjectHandler.getQuantityProductClothesFromLocal(
@@ -352,6 +340,9 @@ class ProductDetailFragment : BaseFragment<FragmentProductDetailBinding>() {
         viewBinding.isAvailable = colorOption == null && sizeOption == null
         val sizesColor =
             productDetail?.sizesColors?.firstOrNull { it.colorID == colorOption?.id && it.sizeId == sizeOption?.id }
+
+        productDetail?.selectedColor = colorOption
+        productDetail?.selectedSize = sizeOption
 
         val product = clone(productDetail)?.apply {
             quantityInCart = clone(sizesColor).apply { this?.quantity = selectedQuantity }

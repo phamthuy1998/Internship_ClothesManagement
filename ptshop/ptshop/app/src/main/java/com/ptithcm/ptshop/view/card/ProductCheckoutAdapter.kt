@@ -6,12 +6,12 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.ptithcm.core.CoreApplication
 import com.ptithcm.core.model.ProductVariant
 import com.ptithcm.ptshop.R
 import com.ptithcm.ptshop.databinding.ItemProductCheckoutBinding
 import com.ptithcm.ptshop.ext.roundPrice
 import com.ptithcm.ptshop.ext.visible
+import java.util.*
 
 class ProductCheckoutAdapter: RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     private val productVariants = arrayListOf<ProductVariant>()
@@ -43,7 +43,7 @@ class ProductCheckoutAdapter: RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     inner class ItemViewHolder(val binding: ItemProductCheckoutBinding): RecyclerView.ViewHolder(binding.root){
 
         fun bind(item: ProductVariant){
-            val locale = CoreApplication.instance.currency.getLocale()!!
+            val locale = Locale.getDefault()
             item.product_variant.checkIfWrongPrice()
             binding.data = item
             item.product_variant.apply {

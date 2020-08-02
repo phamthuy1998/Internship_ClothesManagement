@@ -1,16 +1,17 @@
 package com.ptithcm.core.model
 
 import android.os.Parcelable
+import com.ptithcm.core.vo.ItemViewModel
 import kotlinx.android.parcel.Parcelize
 
 @Parcelize
 data class ProductClothesDetail(
+    override var id: Int,
     var active: Int?,
     var addDate: String?,
     var categoryID: Int?,
     var colors: List<Color>?,
     var detail: String?,
-    var id: Int?,
     var images: List<String>?,
     var isLike: Int?,
     var isNew: Int?,
@@ -29,9 +30,9 @@ data class ProductClothesDetail(
     var selectedSize: Size?,
     var selectedColor: Color?,
     var quantityInCart: SizesColor?
-) : Parcelable {
+) : ItemViewModel, Parcelable {
 
-    fun getFinalPrice() : Double {
+    fun getFinalPrice(): Double {
         var finalPrice = price ?: 0.0
         if (valuePromotion != 0.0) {
             if (typePromotion == PromotionType.ABSOLUTE) {
@@ -43,5 +44,6 @@ data class ProductClothesDetail(
         return finalPrice.coerceIn(0.0..Double.MAX_VALUE)
     }
 
-    fun findQuantityOfSizeAndColor(sizeId: Int?, colorId: Int?): SizesColor? = sizesColors?.firstOrNull { it.sizeId == sizeId && it.colorID == colorId }
+    fun getSizeAndColorById(sizeId: Int?, colorId: Int?): SizesColor? =
+        sizesColors?.firstOrNull { it.sizeId == sizeId && it.colorID == colorId }
 }

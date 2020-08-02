@@ -4,18 +4,15 @@ import androidx.lifecycle.MediatorLiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.ptithcm.core.CoreApplication
 import com.ptithcm.core.model.Basket
 import com.ptithcm.core.model.Brand
 import com.ptithcm.core.model.ProductClothesDetail
 import com.ptithcm.core.param.AddProductParam
-import com.ptithcm.core.param.ProductVariantParam
 import com.ptithcm.core.repository.ShoppingCardRepository
 import com.ptithcm.core.util.ObjectHandler
 import com.ptithcm.core.vo.MessageResponse
 import com.ptithcm.core.vo.Result
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.runBlocking
 
 class ShoppingViewModel(val repo: ShoppingCardRepository) : ViewModel() {
 
@@ -29,41 +26,41 @@ class ShoppingViewModel(val repo: ShoppingCardRepository) : ViewModel() {
     val isLoading = MutableLiveData<Boolean>()
 
     fun updateBasket(param: AddProductParam) {
-        viewModelScope.launch {
-            updateResult.addSource(repo.updateBasket(param)) {
-                when (it) {
-                    Result.Loading -> {
-                        isLoading.value = true
-                    }
-                    is Result.Error -> {
-                        isLoading.value = false
-                        error.value = Pair(it.message, it.code)
-                    }
-                    is Result.Success -> {
-                        CoreApplication.instance.saveBasket(it.data ?: return@addSource)
-                        isLoading.value = false
-                        updateResult.value = it.data
-                    }
-                }
-            }
-        }
+//        viewModelScope.launch {
+//            updateResult.addSource(repo.updateBasket(param)) {
+//                when (it) {
+//                    Result.Loading -> {
+//                        isLoading.value = true
+//                    }
+//                    is Result.Error -> {
+//                        isLoading.value = false
+//                        error.value = Pair(it.message, it.code)
+//                    }
+//                    is Result.Success -> {
+//                        CoreApplication.instance.saveBasket(it.data ?: return@addSource)
+//                        isLoading.value = false
+//                        updateResult.value = it.data
+//                    }
+//                }
+//            }
+//        }
     }
 
     fun getBasket() {
-        viewModelScope.launch {
-            cardResult.addSource(repo.getAllCard()) {
-                when (it) {
-                    Result.Loading -> {
-                    }
-                    is Result.Error -> {
-                    }
-                    is Result.Success -> {
-                        CoreApplication.instance.saveBasket(it.data ?: return@addSource)
-                        cardResult.value = it.data
-                    }
-                }
-            }
-        }
+//        viewModelScope.launch {
+//            cardResult.addSource(repo.getAllCard()) {
+//                when (it) {
+//                    Result.Loading -> {
+//                    }
+//                    is Result.Error -> {
+//                    }
+//                    is Result.Success -> {
+//                        CoreApplication.instance.saveBasket(it.data ?: return@addSource)
+//                        cardResult.value = it.data
+//                    }
+//                }
+//            }
+//        }
     }
 
     fun removeFromBasket(id: Long) {
@@ -122,40 +119,40 @@ class ShoppingViewModel(val repo: ShoppingCardRepository) : ViewModel() {
     }
 
     fun updateBasketFromLocal() {
-        runBlocking {
-            launch {
-                //just call this when first time login, after that no need
-                if (CoreApplication.instance.basket != null) {
-                    return@launch
-                }
-                val listProdVariant = ObjectHandler.notLoginBasket
-                val listProductParam = listProdVariant.map {
-                    ProductVariantParam(
-                        quantity = it.quantity,
-                        product_variant = it.product_variant.id ?: 0
-                    )
-                }
-                val addProductParam =
-                    AddProductParam(listProductParam as ArrayList<ProductVariantParam>)
-                viewModelScope.launch {
-                    updateResult.addSource(repo.updateBasket(addProductParam)) {
-                        when (it) {
-                            Result.Loading -> {
-                                isLoading.value = true
-                            }
-                            is Result.Error -> {
-                                isLoading.value = false
-                                error.value = Pair(it.message, it.code)
-                            }
-                            is Result.Success -> {
-                                CoreApplication.instance.clearLocalBasket(it.data)
-                                isLoading.value = false
-                                updateResult.value = it.data
-                            }
-                        }
-                    }
-                }
-            }
-        }
+//        runBlocking {
+//            launch {
+//                //just call this when first time login, after that no need
+//                if (CoreApplication.instance.basket != null) {
+//                    return@launch
+//                }
+//                val listProdVariant = ObjectHandler.notLoginBasket
+//                val listProductParam = listProdVariant.map {
+//                    ProductVariantParam(
+//                        quantity = it.quantity,
+//                        product_variant = it.product_variant.id ?: 0
+//                    )
+//                }
+//                val addProductParam =
+//                    AddProductParam(listProductParam as ArrayList<ProductVariantParam>)
+//                viewModelScope.launch {
+//                    updateResult.addSource(repo.updateBasket(addProductParam)) {
+//                        when (it) {
+//                            Result.Loading -> {
+//                                isLoading.value = true
+//                            }
+//                            is Result.Error -> {
+//                                isLoading.value = false
+//                                error.value = Pair(it.message, it.code)
+//                            }
+//                            is Result.Success -> {
+//                                CoreApplication.instance.clearLocalBasket(it.data)
+//                                isLoading.value = false
+//                                updateResult.value = it.data
+//                            }
+//                        }
+//                    }
+//                }
+//            }
+//        }
     }
 }

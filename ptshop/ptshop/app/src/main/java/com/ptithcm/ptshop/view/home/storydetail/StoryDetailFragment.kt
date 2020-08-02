@@ -13,7 +13,6 @@ import androidx.databinding.ViewDataBinding
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.bottomsheet.BottomSheetBehavior
-import com.ptithcm.core.CoreApplication
 import com.ptithcm.core.model.*
 import com.ptithcm.core.util.capitalize
 import com.ptithcm.ptshop.R
@@ -43,8 +42,9 @@ class StoryDetailFragment: BaseFragment<ActivityStoryDetailBinding>(), View.OnCl
     private val homeViewModel: HomeViewModel by viewModel()
 
     private val productAdapter = ProductImageAdapter(
-        CoreApplication.instance.currency.getLocale() ?: Locale.UK){ it: Any?, _: Int? ->
-        when(it) {
+        Locale.getDefault()
+    ) { it: Any?, _: Int? ->
+        when (it) {
             // click to see detail
             is Product -> {
                 navController.navigateAnimation(

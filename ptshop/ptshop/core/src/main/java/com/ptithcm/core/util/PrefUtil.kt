@@ -6,8 +6,9 @@ import android.net.ConnectivityManager
 import android.net.NetworkCapabilities
 import androidx.appcompat.app.AppCompatActivity
 import com.google.gson.Gson
-import com.google.gson.reflect.TypeToken
-import com.ptithcm.core.model.*
+import com.ptithcm.core.model.Account
+import com.ptithcm.core.model.Cart
+import com.ptithcm.core.model.Profile
 
 //KEY WORD
 const val INIT_PAGE = 1
@@ -78,14 +79,16 @@ class PrefUtil constructor(
                 gSon.fromJson<Cart>(
                     prefs.getString(CART, null)
                     , Cart::class.java
-                )
+                )?.apply {
+                    products.sortBy { it.id }
+                }
             } catch (e: Exception) {
                 null
             }
         }
         set(value) = prefs.edit().putString(
             CART,
-            gSon.toJson(value)
+            gSon.toJson(value?.apply { products.sortBy { it.id } })
         ).apply()
 }
 

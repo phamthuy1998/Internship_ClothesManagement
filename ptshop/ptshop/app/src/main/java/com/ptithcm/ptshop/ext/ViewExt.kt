@@ -1,7 +1,9 @@
 package com.ptithcm.ptshop.ext
 
-import android.util.TypedValue
-import android.view.*
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import android.view.WindowManager
 import android.view.animation.Animation
 import android.view.animation.AnimationUtils
 import android.view.animation.Transformation
@@ -12,10 +14,8 @@ import androidx.core.view.isVisible
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import com.google.android.material.bottomnavigation.BottomNavigationItemView
-import com.google.android.material.bottomnavigation.BottomNavigationMenuView
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.ptithcm.ptshop.R
-import com.ptithcm.ptshop.constant.KEY_EMPTY
 import com.ptithcm.ptshop.constant.MENU_ADD_PRODUCT_ID
 import com.ptithcm.ptshop.databinding.FragmentRefineBinding
 
@@ -247,4 +247,8 @@ fun BottomNavigationView.disableLongClick() {
         findViewById<BottomNavigationItemView>(R.id.nav_profile)?.setOnLongClickListener { true }
         findViewById<BottomNavigationItemView>(MENU_ADD_PRODUCT_ID)?.setOnLongClickListener { true }
     }
+}
+
+fun View.startAnimationError() {
+    startAnimation(AnimationUtils.loadAnimation(context, R.anim.shake))
 }

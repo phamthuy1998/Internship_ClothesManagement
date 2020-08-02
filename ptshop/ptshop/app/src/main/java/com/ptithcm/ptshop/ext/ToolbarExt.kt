@@ -8,7 +8,6 @@ import androidx.appcompat.widget.AppCompatImageButton
 import androidx.appcompat.widget.AppCompatImageView
 import androidx.appcompat.widget.AppCompatTextView
 import androidx.appcompat.widget.Toolbar
-import com.ptithcm.core.CoreApplication
 import com.ptithcm.core.util.ObjectHandler
 import com.ptithcm.ptshop.R
 import com.ptithcm.ptshop.view.MainActivity
@@ -91,12 +90,6 @@ fun AppCompatActivity.setupToolbar(
                     visible()
                     text = title
                 }
-            }
-        }
-        toolbar.findViewById<AppCompatTextView>(R.id.tvBackRight)?.apply {
-            text = CoreApplication.instance.currency.code
-            setOnClickListener {
-                messageQueue?.invoke(it)
             }
         }
         toolbar.findViewById<AppCompatImageButton>(R.id.ivLeft)?.apply {

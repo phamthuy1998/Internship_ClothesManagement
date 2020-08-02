@@ -22,15 +22,16 @@ import com.ptithcm.ptshop.databinding.FragmentCheckoutBinding
 import com.ptithcm.ptshop.databinding.LayoutBottomsheetDiscountCodeBinding
 import com.ptithcm.ptshop.ext.*
 import com.ptithcm.ptshop.util.PopUp
-import com.ptithcm.ptshop.widget.RecyclerRefreshLayout
 import com.ptithcm.ptshop.view.MainActivity
 import com.ptithcm.ptshop.view.home.StoryDetailActivity
 import com.ptithcm.ptshop.viewmodel.CheckoutViewModel
 import com.ptithcm.ptshop.viewmodel.ListenerViewModel
 import com.ptithcm.ptshop.viewmodel.PaymentViewModel
+import com.ptithcm.ptshop.widget.RecyclerRefreshLayout
 import com.stripe.android.model.Card
 import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
+import java.util.*
 
 class CheckoutFragment : BaseFragment<FragmentCheckoutBinding>(), View.OnClickListener {
 
@@ -417,7 +418,7 @@ class CheckoutFragment : BaseFragment<FragmentCheckoutBinding>(), View.OnClickLi
     private fun setTaxCheckout(item: Pair<MutableList<CheckoutBrand>?, Discount?>) {
         isCallApi = false
         isHideContent(isCallApi)
-        val locale = CoreApplication.instance.currency.getLocale()!!
+        val locale = Locale.getDefault()
         // reset total price
         var sum = 0.0
 

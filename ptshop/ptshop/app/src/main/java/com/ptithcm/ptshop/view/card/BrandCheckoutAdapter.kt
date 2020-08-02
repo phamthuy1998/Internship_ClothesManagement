@@ -8,7 +8,6 @@ import android.widget.ArrayAdapter
 import androidx.core.text.HtmlCompat
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
-import com.ptithcm.core.CoreApplication
 import com.ptithcm.core.model.CheckoutBrand
 import com.ptithcm.core.model.ProductVariant
 import com.ptithcm.ptshop.R
@@ -60,7 +59,7 @@ class BrandCheckoutAdapter(val listenerId: ((Int?) -> Unit)? = null,
         private val productCheckoutAdapter = ProductCheckoutAdapter()
 
         fun bind(item: CheckoutBrand){
-            val locale = CoreApplication.instance.currency.getLocale()!!
+            val locale = Locale.getDefault()
             binding.apply {
                 title = item.brand?.brand_name
                 appliedDiscount = item.applied_discount
