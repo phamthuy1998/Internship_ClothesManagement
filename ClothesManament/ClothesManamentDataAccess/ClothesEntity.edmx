@@ -469,6 +469,10 @@
           <Parameter Name="userId" Type="int" Mode="In" />
         </Function>
         <Function Name="fn_diagramobjects" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="int" />
+        <Function Name="forgotPasswordReset" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="email" Type="nvarchar" Mode="In" />
+          <Parameter Name="newPass" Type="varchar" Mode="In" />
+        </Function>
         <Function Name="getCategoryByGender" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="GenderID" Type="int" Mode="In" />
         </Function>
@@ -1087,6 +1091,10 @@
             <End Role="ProductSizeColor" EntitySet="ProductSizeColors" />
             <End Role="InvoiceItem" EntitySet="InvoiceItems" />
           </AssociationSet>
+          <FunctionImport Name="forgotPasswordReset">
+            <Parameter Name="email" Mode="In" Type="String" />
+            <Parameter Name="newPass" Mode="In" Type="String" />
+          </FunctionImport>
           </EntityContainer>
         <ComplexType Name="getCategoryByGender_Result">
           <Property Type="Int32" Name="id" Nullable="false" />
@@ -2411,6 +2419,7 @@
           </AssociationSetMapping>
           <FunctionImportMapping FunctionImportName="SP_AddAccount" FunctionName="ClothesManamentModel1.Store.SP_AddAccount" />
           <FunctionImportMapping FunctionImportName="SP_EditAddress" FunctionName="ClothesManamentModel1.Store.SP_EditAddress" />
+          <FunctionImportMapping FunctionImportName="forgotPasswordReset" FunctionName="ClothesManamentModel1.Store.forgotPasswordReset" />
           </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

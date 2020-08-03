@@ -9,11 +9,11 @@ using System.IO;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
-using System.Net.Http.Headers;
-using System.Net.Mail;
-using System.Threading.Tasks;
-using System.Web;
-using System.Web.Http;
+    using System.Net.Http.Headers;
+    using System.Net.Mail;
+    using System.Threading.Tasks;
+    using System.Web;
+    using System.Web.Http;
 
 namespace ClothesManagement.Controllers
 {
@@ -88,18 +88,16 @@ namespace ClothesManagement.Controllers
             }
         }
 
-        private string createEmailBody(string userName, string title, string message)
+        private string createEmailBody(string userName)
 
         {
             string body = string.Empty;
             //using streamreader for reading my htmltemplate   
-            using (StreamReader reader = new StreamReader(HttpContext.Current.Server.MapPath("/Views/Home/send_mail.cshtml")))
+            using (StreamReader reader = new StreamReader(HttpContext.Current.Server.MapPath("/Views/Home/send_mail_add_order.cshtml")))
             {
                 body = reader.ReadToEnd();
             }
             body = body.Replace("{UserName}", userName); //replacing the required things  
-            body = body.Replace("{Title}", title);
-            body = body.Replace("{message}", message);
             return body;
         }
 
@@ -142,13 +140,14 @@ namespace ClothesManagement.Controllers
             }
 
             var email = (await Task.Run(() => entities.SP_GetEmail(orderParam.accountID).FirstOrDefault()));
+            var name = entities.Accounts.FirstOrDefault(x => x.email == email);
             MailMessage msg = new MailMessage();
             msg.From = new MailAddress("congnghephanmemptithcm@gmail.com");
             msg.To.Add(email);
             msg.Subject = "Xác nhận đơn hàng";
             MemoryCacheHelper.Add("orderParam", orderParam, DateTimeOffset.UtcNow.AddHours(1));
 
-            msg.Body = createEmailBody("thuy", "Mail xac nhan don hang", "Xin chao ban ");
+            msg.Body = createEmailBody(name.username);
             //msg.Priority = MailPriority.High;
             msg.IsBodyHtml = true;
 
@@ -204,7 +203,7 @@ namespace ClothesManagement.Controllers
             if (orderParam.accountID == null)
             {
                 MemoryCacheHelper.Add("statusOrder", -1, DateTimeOffset.UtcNow.AddHours(1));
-                return "Id tài khoản không được bỏ trống!";
+                return "Đã hết phiên làm việc, vui lòng kiểm tra lại";
             }
             var isAccExist = entities.SP_CheckUserExist(orderParam.accountID).FirstOrDefault();
             if (isAccExist == 0)

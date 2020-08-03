@@ -777,5 +777,18 @@ namespace ClothesManamentDataAccess
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("SP_EditAddress", addressIdParameter, provinceParameter, districtParameter, wardsParameter, streetParameter, nameParameter, phoneParameter);
         }
+    
+        public virtual int forgotPasswordReset(string email, string newPass)
+        {
+            var emailParameter = email != null ?
+                new ObjectParameter("email", email) :
+                new ObjectParameter("email", typeof(string));
+    
+            var newPassParameter = newPass != null ?
+                new ObjectParameter("newPass", newPass) :
+                new ObjectParameter("newPass", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("forgotPasswordReset", emailParameter, newPassParameter);
+        }
     }
 }

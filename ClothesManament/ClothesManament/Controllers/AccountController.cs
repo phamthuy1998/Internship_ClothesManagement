@@ -19,6 +19,11 @@ using ClothesManament.Results;
 using ClothesManamentDataAccess;
 using System.Linq;
 using System.Data.Entity.Core.Objects;
+using System.Net.Mail;
+using ClothesManagement.Models;
+using System.IO;
+using System.Net;
+using System.Text;
 
 namespace ClothesManament.Controllers
 {
@@ -145,11 +150,53 @@ namespace ClothesManament.Controllers
 
         }
 
+        private string emailFrgotPassword(string userName, string password)
 
-        [Route("api/forgotPassword")]
+        {
+            string body = string.Empty;
+            //using streamreader for reading my htmltemplate   
+            using (StreamReader reader = new StreamReader(HttpContext.Current.Server.MapPath("/Views/Home/forgot_password.cshtml")))
+            {
+                body = reader.ReadToEnd();
+            }
+            body = body.Replace("{UserName}", userName); //replacing the required things  
+            body = body.Replace("{password}", password);
+            return body;
+        }
+        // Generate a random number between two numbers    
+        public int RandomNumber(int min, int max)
+        {
+            Random random = new Random();
+            return random.Next(min, max);
+        }
+        // Generate a random password of a given length (optional)  
+        public string RandomPassword(int size = 0)
+        {
+            StringBuilder builder = new StringBuilder();
+            builder.Append(RandomNumber(100000, 999999));
+            return builder.ToString();
+        }
+        // Generate a random string with a given size and case.   
+        // If second parameter is true, the return string is lowercase  
+        public string RandomString(int size, bool lowerCase)
+        {
+            StringBuilder builder = new StringBuilder();
+            Random random = new Random();
+            char ch;
+            for (int i = 0; i < size; i++)
+            {
+                ch = Convert.ToChar(Convert.ToInt32(Math.Floor(26 * random.NextDouble() + 65)));
+                builder.Append(ch);
+            }
+            if (lowerCase)
+                return builder.ToString().ToLower();
+            return builder.ToString();
+        }
+
+        [Route("api/forgot-password")]
         [AcceptVerbs("POST")]
         [HttpPost]
-        public ResponseObjectModel<String> forgotPassword(String email)
+        public async Task<ResponseObjectModel<string>> forgotPassword(String email)
         {
             var result = entities.Accounts.FirstOrDefault(x => x.email == email);
             if (result == null)
@@ -165,14 +212,59 @@ namespace ClothesManament.Controllers
 
             // send mail reset password
 
+            MailMessage msg = new MailMessage();
+            msg.From = new MailAddress("congnghephanmemptithcm@gmail.com");
+            msg.To.Add(email);
+            msg.Subject = "Đổi mật khẩu";
+            var password = RandomPassword();
+            MemoryCacheHelper.Add("changePassword", password, DateTimeOffset.UtcNow.AddHours(1));
+            MemoryCacheHelper.Add("emailChangePassword", email, DateTimeOffset.UtcNow.AddHours(1));
+            var name = entities.Accounts.FirstOrDefault(x => x.email == email);
+            msg.Body = emailFrgotPassword(name.username, password);
+            //msg.Priority = MailPriority.High;
+            msg.IsBodyHtml = true;
+
+            using (SmtpClient client = new SmtpClient())
+            {
+                client.EnableSsl = true;
+                client.UseDefaultCredentials = false;
+                client.Credentials = new NetworkCredential("congnghephanmemptithcm@gmail.com", "quankhung123");
+                client.Host = "smtp.gmail.com";
+                client.Port = 587;
+                client.DeliveryMethod = SmtpDeliveryMethod.Network;
+                //client.Send(msg);
+                await client.SendMailAsync(msg);
+                await Task.FromResult(0);
+            }
+
 
             return new ResponseObjectModel<String>()
             {
-                message = "Thay đổi mật khẩu thất bại",
-                status = false,
+                message = "Email reset password đã được gửi tới email "+ email,
+                status = true,
                 code = 200,
                 data = ""
             };
+
+        }
+
+
+        [Route("api/updated-password")]
+        [AcceptVerbs("GET")]
+        [HttpGet]
+        public String changePassword()
+        {
+            var pass = MemoryCacheHelper.GetValue("changePassword")as String;
+            var email = MemoryCacheHelper.GetValue("emailChangePassword") as String;
+
+            var result = entities.forgotPasswordReset(email, pass);
+            if (result==-1)
+            {
+                return "email không tồn tại trong hệ thống, vui lòng kiểm tra lại";
+            }else
+            {
+                return "Đổi mật khẩu thành công";
+            }
 
         }
 
