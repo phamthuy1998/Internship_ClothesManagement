@@ -4,7 +4,10 @@ import android.app.Application
 import com.ptithcm.core.di.localModule
 import com.ptithcm.core.di.remoteModule
 import com.ptithcm.core.di.repositoryModule
-import com.ptithcm.core.model.*
+import com.ptithcm.core.model.Account
+import com.ptithcm.core.model.Basket
+import com.ptithcm.core.model.Cart
+import com.ptithcm.core.model.Profile
 import com.ptithcm.core.util.PrefUtil
 import org.koin.android.ext.android.inject
 import org.koin.android.ext.koin.androidContext
@@ -12,9 +15,9 @@ import org.koin.android.ext.koin.androidLogger
 import org.koin.core.context.startKoin
 import org.koin.core.module.Module
 
-open class CoreApplication : Application(){
+open class CoreApplication : Application() {
 
-    companion object{
+    companion object {
         lateinit var instance: CoreApplication
             private set
     }
@@ -37,10 +40,10 @@ open class CoreApplication : Application(){
         instance = this
         profile = prefsUtil.profile
         account = prefsUtil.account
-        cart = prefsUtil.cart
+        cart = prefsUtil.cart ?: Cart()
     }
 
-    fun isNetworkConnected() : Boolean{
+    fun isNetworkConnected(): Boolean {
         return prefsUtil.isNetworkConnected()
     }
 
@@ -51,19 +54,19 @@ open class CoreApplication : Application(){
         return moduleList
     }
 
-    fun saveUser(profile: Profile){
+    fun saveUser(profile: Profile) {
         prefsUtil.profile = profile
         this.profile = profile
     }
-    fun saveAccount(account: Account){
+
+    fun saveAccount(account: Account) {
         prefsUtil.account = account
         this.account = account
     }
 
-    fun clearAccount(){
+    fun clearAccount() {
         prefsUtil.account = null
         this.account = null
-        clearCart()
     }
 
     fun clearCart() {
@@ -71,8 +74,13 @@ open class CoreApplication : Application(){
         prefsUtil.cart = null
     }
 
-    fun saveCartToPref(cart: Cart?){
+    fun saveCartToPref(cart: Cart?) {
         prefsUtil.cart = cart
+    }
+
+    fun getCartFromPref(): Cart? {
+        cart = prefsUtil.cart
+        return cart
     }
 
     open fun addMoreModule(): List<Module> = emptyList()

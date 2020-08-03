@@ -6,7 +6,6 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.ptithcm.core.CoreApplication
 import com.ptithcm.core.model.Product
 import com.ptithcm.ptshop.R
 import com.ptithcm.ptshop.databinding.ItemAddProductBinding
@@ -75,7 +74,7 @@ class AddProductAdapter(
         RecyclerView.ViewHolder(binding.root) {
         fun bind(item: Product?) {
             binding.item = item
-            binding.locale = CoreApplication.instance.currency.name?.toLocale()
+//            binding.locale = CoreApplication.instance.currency.name?.toLocale()
             Glide.with(binding.root)
                 .load(item?.image?.get(0)?.src)
                 .into(binding.ivProduct)

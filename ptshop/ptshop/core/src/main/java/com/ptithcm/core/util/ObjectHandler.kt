@@ -1,9 +1,9 @@
 package com.ptithcm.core.util
 
 import com.ptithcm.core.CoreApplication
+import com.ptithcm.core.model.Cart
 import com.ptithcm.core.model.ProductClothesDetail
 import com.ptithcm.core.model.ProductVariant
-import com.ptithcm.core.model.SizesColor
 
 object ObjectHandler {
 
@@ -28,14 +28,19 @@ object ObjectHandler {
         }
     }
 
-    fun getNumberItem() = CoreApplication.instance.cart?.products?.fold(0, { sum, prod -> sum + (prod.quantityInCart?.quantity ?: 0) }) ?: 0
+    fun getNumberItem() = CoreApplication.instance.cart?.products?.fold(
+        0,
+        { sum, prod -> sum + (prod.quantityInCart?.quantity ?: 0) }) ?: 0
 
-    fun getTotalPrice() = CoreApplication.instance.cart?.products?.fold(0.0, {sum, prod -> sum + (prod.getFinalPrice() * (prod.quantityInCart?.quantity ?: 1))})
+    fun getTotalPrice() = CoreApplication.instance.cart?.products?.fold(
+        0.0,
+        { sum, prod -> sum + (prod.getFinalPrice() * (prod.quantityInCart?.quantity ?: 1)) })
 
     //check quantity of a product in prefsUtil
     fun getQuantityProductClothesFromLocal(productId: Int?, sizeId: Int?, colorId: Int?): Int {
         val products = getProductsInCart()
-        return products?.firstOrNull { it.providerId == productId && it.quantityInCart?.sizeId == sizeId && it.quantityInCart?.colorID == colorId }?.quantityInCart?.quantity ?: 0
+        return products?.firstOrNull { it.providerId == productId && it.quantityInCart?.sizeId == sizeId && it.quantityInCart?.colorID == colorId }?.quantityInCart?.quantity
+            ?: 0
     }
 
     private fun getProductsInCart(): List<ProductClothesDetail>? {
@@ -45,59 +50,59 @@ object ObjectHandler {
 
     fun addToCart(product: ProductClothesDetail?) {
         product ?: return
-        val index = cart?.products?.indexOfFirst { it.id == product.id && it.quantityInCart?.sizeId == product.quantityInCart?.sizeId && it.quantityInCart?.colorID == product.quantityInCart?.colorID } ?: -1
+        val index =
+            cart?.products?.indexOfFirst { it.id == product.id && it.quantityInCart?.sizeId == product.quantityInCart?.sizeId && it.quantityInCart?.colorID == product.quantityInCart?.colorID }
+                ?: -1
 
         if (index != -1) {
             val exitProduct = cart?.products?.getOrNull(index) ?: return
-            cart?.products?.removeAt(index)
-            cart?.products?.add(exitProduct)
+            exitProduct.quantityInCart?.quantity =
+                exitProduct.quantityInCart?.quantity?.plus((product.quantityInCart?.quantity ?: 0))
         } else {
             cart?.products?.add(product)
         }
         CoreApplication.instance.saveCartToPref(cart)
     }
 
-//    fun adjustProdInNotLoginBasket(
-//        productVariant: ProductVariant,
-//        previousVariantID: Long = -1L
-//    ): ArrayList<ProductVariant> {
-//        if (previousVariantID == -1L) {
-//            notLoginBasket.replaceAll {
-//                if (it.product_variant.id == productVariant.product_variant.id) {
-//                    productVariant
-//                } else {
-//                    it
-//                }
-//            }
-//        } else {
-//            var isExist = false
-//            var previousIndex = -1
-//            notLoginBasket = notLoginBasket.mapIndexed { index, it ->
-//                if (it.product_variant.id == productVariant.product_variant.id) {
-//                    it.quantity += 1
-//                    isExist = true
-//                }
-//                if (it.product_variant.id == previousVariantID) {
-//                    previousIndex = index
-//                }
-//                it
-//            } as ArrayList<ProductVariant>
-//            if (isExist.not()) {
-//                notLoginBasket.add(productVariant)
-//            }
-//            notLoginBasket.removeAt(previousIndex)
-//        }
-//        CoreApplication.instance.saveBasketToPref(notLoginBasket)
-//        return notLoginBasket
-//    }
+    fun adjustProductInCart(product: ProductClothesDetail?): ArrayList<ProductClothesDetail>? {
+        val productsInCart = cart?.products
+        product ?: return productsInCart
 
-//    fun removeFromNotLoginBasket(id: Long): ArrayList<ProductVariant> {
-//        notLoginBasket.removeAll {
-//            it.product_variant.id == id
-//        }
-//        CoreApplication.instance.saveBasketToPref(notLoginBasket)
-//        return notLoginBasket
-//    }
+        val products =
+            productsInCart?.filter { it.id == product.id && it.selectedColor?.id == product.selectedColor?.id && it.selectedSize?.id == product.selectedSize?.id }
+        val isExist = products?.size ?: 0 > 1
+
+        if (isExist) {
+            val quantity = products?.fold(0, { sum, prod ->
+                sum + (prod.quantityInCart?.quantity ?: 0)
+            })
+
+            products?.forEachIndexed { index, prod ->
+                if (index == 0)
+                    prod.quantityInCart?.quantity = quantity?.coerceAtMost(
+                        prod.getSizeAndColorById(
+                            sizeId = prod.selectedSize?.id,
+                            colorId = prod.selectedColor?.id
+                        )?.quantity ?: 0
+                    )
+                else {
+                    productsInCart.remove(prod)
+                }
+            }
+        }
+        saveCartToPref()
+        return getCartFromPref()?.products
+    }
+
+
+    fun saveCartToPref() {
+        CoreApplication.instance.saveCartToPref(cart)
+    }
+
+    fun getCartFromPref(): Cart? {
+        cart = CoreApplication.instance.getCartFromPref()
+        return cart
+    }
     // end section shopping bag
 
     // start section wish list

@@ -5,7 +5,6 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.ptithcm.core.CoreApplication
 import com.ptithcm.core.model.Product
 import com.ptithcm.ptshop.R
 import com.ptithcm.ptshop.databinding.ItemPreviewProductBinding
@@ -45,7 +44,7 @@ class ProductAdapter(
         RecyclerView.ViewHolder(binding.root) {
         fun bind(item: Product?, position: Int) {
             binding.item = item
-            binding.locale = CoreApplication.instance.currency.name?.toLocale()
+//            binding.locale = CoreApplication.instance.currency.name?.toLocale()
             binding.swipeLayout.setOnActionsListener(object : SwipeLayout.SwipeActionsListener {
                 override fun onOpen(direction: Int, isContinuous: Boolean) {
                     if (direction == SwipeLayout.LEFT && isContinuous) {

@@ -8,27 +8,22 @@ import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
-import com.ptithcm.core.model.Color
 import com.ptithcm.core.model.ProductClothesDetail
-import com.ptithcm.core.model.ProductVariant
-import com.ptithcm.core.model.Size
-import com.ptithcm.core.param.AddProductParam
-import com.ptithcm.core.param.ProductVariantParam
 import com.ptithcm.core.util.ObjectHandler
 import com.ptithcm.core.vo.Result
 import com.ptithcm.ptshop.R
 import com.ptithcm.ptshop.databinding.ItemShoppingCardBinding
 import com.ptithcm.ptshop.ext.clone
-import com.ptithcm.ptshop.ext.copyFrom
-import com.ptithcm.ptshop.ext.findVariant
-import com.ptithcm.ptshop.ext.gone
+import com.ptithcm.ptshop.ext.startAnimationError
 
-class ShoppingCardAdapter(val listener: ((Any?) -> Unit)? = null) :
+class ShoppingCardAdapter(val listener: ((Int, Any?) -> Unit)? = null) :
     RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
-    private val productList = arrayListOf<ProductClothesDetail>()
+    private var productList = arrayListOf<ProductClothesDetail>()
 
     private val isLogin = ObjectHandler.isLogin()
+
+    var curProduct: ProductClothesDetail? = null
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         val dataBinding = DataBindingUtil.inflate<ItemShoppingCardBinding>(
@@ -47,13 +42,12 @@ class ShoppingCardAdapter(val listener: ((Any?) -> Unit)? = null) :
     }
 
     fun submitList(list: ArrayList<ProductClothesDetail>) {
-        productList.clear()
-        productList.addAll(list.sortedBy { it.id })
+        productList = list
         notifyDataSetChanged()
     }
 
     // just for not login yet
-    fun removeItem(product: ProductClothesDetail) {
+    fun removeItem(product: ProductClothesDetail?) {
         val index = productList.indexOf(product)
         if (index != -1) {
             productList.removeAt(index)
@@ -70,44 +64,40 @@ class ShoppingCardAdapter(val listener: ((Any?) -> Unit)? = null) :
             viewBinding.item = item
 
             viewBinding.root.setOnClickListener {
-                listener?.invoke(item)
+                curProduct = item
+                listener?.invoke(GO_TO_PRODUCT_DETAIL, item)
             }
 
             viewBinding.ivClose.setOnClickListener {
-                listener?.invoke(item)
+                curProduct = item
+                listener?.invoke(DELETE_PRODUCT, item)
             }
 
-            val selectedSizeOption =
-                item.sizes?.firstOrNull { it.id == item.quantityInCart?.sizeId }
-            val selectedColorOption =
-                item.colors?.firstOrNull { it.id == item.quantityInCart?.colorID }
-
-            setUpBtnQuantity(item, selectedSizeOption, selectedColorOption)
-            setUpBtnColor(item, selectedColorOption)
-            setUpBtnSize(item, selectedSizeOption)
+            setUpBtnQuantity(item)
+            setUpBtnColor(item)
+            setUpBtnSize(item)
 
             viewBinding.tvQuantity.setOnClickListener {
+                curProduct = item
                 viewBinding.btnQuantity.performClick()
             }
         }
 
-        private fun setUpBtnQuantity(
-            item: ProductClothesDetail,
-            selectedSizeOption: Size?,
-            selectedColorOption: Color?
-        ) {
-            var firstSetup = true
-            val realQuantity =
-                item.sizesColors?.firstOrNull { it.sizeId == selectedSizeOption?.id && it.colorID == selectedColorOption?.id }?.quantity
-                    ?: 0
-            val size = realQuantity.coerceAtMost(50)
+        private fun setUpBtnQuantity(item: ProductClothesDetail) {
+            val quantityInCart = item.quantityInCart?.quantity ?: 0
+
+            val quantityInStock = item.getSizeAndColorById(
+                sizeId = item.selectedSize?.id,
+                colorId = item.selectedColor?.id
+            )?.quantity ?: 0
+            val realQuantity = quantityInStock.coerceAtMost(50)
 
             viewBinding.tvQuantity.text =
-                context.getString(R.string.quantity_spinner, realQuantity.toString())
+                context.getString(R.string.quantity_spinner, quantityInCart.toString())
 
-            val option = (1..size).toMutableList().map { it.toString() }
+            val option = (1..realQuantity).toMutableList().map { it.toString() }
             viewBinding.btnQuantity.adapter = ArrayAdapter(context, R.layout.item_spinner, option)
-            viewBinding.btnQuantity.setSelection(realQuantity - 1, true)
+            viewBinding.btnQuantity.setSelection(quantityInCart - 1, true)
             viewBinding.btnQuantity.onItemSelectedListener =
                 object : AdapterView.OnItemSelectedListener {
                     override fun onNothingSelected(p0: AdapterView<*>?) {}
@@ -118,10 +108,7 @@ class ShoppingCardAdapter(val listener: ((Any?) -> Unit)? = null) :
                         position: Int,
                         id: Long
                     ) {
-                        if (firstSetup) {
-                            firstSetup = false
-                            return
-                        }
+                        curProduct = item
                         val quantity =
                             viewBinding.btnQuantity.getItemAtPosition(position).toString().toInt()
 
@@ -130,22 +117,20 @@ class ShoppingCardAdapter(val listener: ((Any?) -> Unit)? = null) :
                             viewBinding.btnQuantity.getItemAtPosition(position) as String
                         )
                         if (quantity != item.quantityInCart?.quantity) {
-                            listener?.invoke(Pair(item, -1L))
+                            item.quantityInCart?.quantity = quantity
+                            listener?.invoke(UPDATE_QUANTITY, item)
                         }
                     }
                 }
         }
 
-        private fun setUpBtnSize(
-            item: ProductClothesDetail,
-            selectedSizeOption: Size?
-        ) {
+        private fun setUpBtnSize(item: ProductClothesDetail) {
             val sizeOptionsStr = item.sizes?.map { it.sizeName } ?: listOf()
             viewBinding.btnSize.adapter =
                 ArrayAdapter<String>(context, R.layout.item_spinner, sizeOptionsStr)
             viewBinding.btnSize.setSelection(
                 checkIndex(
-                    selectedSizeOption?.sizeName,
+                    item.selectedSize?.sizeName,
                     sizeOptionsStr
                 )
             )
@@ -155,30 +140,35 @@ class ShoppingCardAdapter(val listener: ((Any?) -> Unit)? = null) :
                     override fun onNothingSelected(p0: AdapterView<*>?) {}
 
                     override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
+                        curProduct = item
                         val newSizeOption = item.sizes?.getOrNull(p2)
 
-                        if (newSizeOption?.id != selectedSizeOption?.id) {
-                            val previousIndex = checkIndex(selectedSizeOption?.sizeName, sizeOptionsStr)
+                        if (newSizeOption?.id != item.selectedSize?.id) {
+                            val previousIndex =
+                                checkIndex(item.selectedSize?.sizeName, sizeOptionsStr)
 
-                            val newSizeColor = item.findQuantityOfSizeAndColor(
-                                sizeId = item.quantityInCart?.sizeId,
-                                colorId = item.quantityInCart?.colorID
+                            val newSizeColor = item.getSizeAndColorById(
+                                sizeId = newSizeOption?.id,
+                                colorId = item.selectedColor?.id
                             )
-                            // at the moment when change size option
-                            // will reset quantity option
-                            if (newSizeColor?.quantity != 0) {
-                                item.quantityInCart = clone(newSizeColor)?.apply { quantity = 1 }
 
-                                listener?.invoke(item)
+                            if (newSizeColor?.quantity ?: 0 != 0) {
+                                item.selectedSize = newSizeOption
+                                item.quantityInCart = clone(newSizeColor)?.apply {
+                                    quantity = item.quantityInCart?.quantity?.coerceAtMost(
+                                        newSizeColor?.quantity ?: 0
+                                    )
+                                }
 
-                                setUpBtnQuantity(
-                                    item,
-                                    newSizeOption,
-                                    item
-                                )
+                                curProduct = item
+                                listener?.invoke(UPDATE_PRODUCT, item)
+
+                                setUpBtnQuantity(item)
                             } else {
-                                setSelection(previousIndex)
+                                viewBinding.btnSize.setSelection(previousIndex)
+                                viewBinding.root.startAnimationError()
                                 listener?.invoke(
+                                    ERROR,
                                     Result.Error(
                                         context.getString(R.string.item_selected_no_quantity),
                                         null
@@ -189,109 +179,65 @@ class ShoppingCardAdapter(val listener: ((Any?) -> Unit)? = null) :
                     }
 
                 }
-
-            viewBinding.btnSize.apply {
-                val option = item.product_variant.product?.options?.sizeOption()
-
-                val selectedOption = item.product_variant.options?.sizeOption()
-
-                if (selectedOption == null) {
-                    gone()
-                    return@apply
-                }
-
-                adapter =
-
-                    setSelection(checkIndex(selectedOption.value, option?.values))
-
-
-            }
         }
 
-        private fun setUpBtnColor(
-            item: ProductClothesDetail,
-            selectedColorOption: Color?
-        ) {
-            viewBinding.btnColor.apply {
-                val option = item.product_variant.product?.options?.colorOption()
+        private fun setUpBtnColor(item: ProductClothesDetail) {
+            val colorOptionsStr = item.colors?.map { it.colorName } ?: listOf()
+            viewBinding.btnColor.adapter = ArrayAdapter<String>(
+                context,
+                R.layout.item_spinner,
+                colorOptionsStr
+            )
 
-                val selectedOption = item.product_variant.options?.colorOption()
-
-                if (selectedOption == null) {
-                    gone()
-                    return@apply
-                }
-
-                adapter = ArrayAdapter<String>(
-                    context,
-                    R.layout.item_spinner,
-                    option?.values ?: listOf()
+            viewBinding.btnColor.setSelection(
+                checkIndex(
+                    item.selectedColor?.colorName,
+                    colorOptionsStr
                 )
+            )
 
-                setSelection(checkIndex(selectedOption.value, option?.values))
-
-                onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+            viewBinding.btnColor.onItemSelectedListener =
+                object : AdapterView.OnItemSelectedListener {
                     override fun onNothingSelected(p0: AdapterView<*>?) {}
 
                     override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
-                        val newColor = getItemAtPosition(p2).toString()
-                        if (newColor != selectedOption.value) {
-                            val previousIndex = checkIndex(selectedOption.value, option?.values)
-                            val variants = item.product_variant.product?.variants
-                            val size = item.product_variant.options?.sizeOption()?.value
-                            val variant = findVariant(Pair(size, newColor), variants)
-                            if (variant != null) {
-                                // at the moment when change color option
-                                // will reset quantity option
-                                if (variant.inventory_quantity ?: 0 > 0) {
-                                    if (isLogin.not()) {
-                                        listener?.invoke(
-                                            Pair(
-                                                ProductVariant(
-                                                    product_variant = variant.copyFrom(item.product_variant),
-                                                    quantity = 1,
-                                                    applied_discount = null
-                                                ),
-                                                item.product_variant.id
-                                            )
-                                        )
-                                        return
-                                    }
-                                    listener?.invoke(
-                                        Pair(
-                                            AddProductParam(
-                                                arrayListOf(
-                                                    ProductVariantParam(
-                                                        quantity = 1,
-                                                        product_variant = variant.id ?: 0
-                                                    )
-                                                )
-                                            ),
-                                            item.product_variant.id
-                                        )
-                                    )
-                                    setUpBtnQuantity(
-                                        ProductVariant(variant, 1, null),
-                                        selectedSizeOption,
-                                        selectedColorOption
-                                    )
-                                } else {
-                                    setSelection(previousIndex)
-                                    listener?.invoke(
-                                        Result.Error(
-                                            context.getString(R.string.item_selected_no_quantity),
-                                            null
-                                        )
+                        val newColorOption = item.colors?.getOrNull(p2)
+                        if (newColorOption?.id != item.selectedColor?.id) {
+                            val previousIndex =
+                                checkIndex(item.selectedColor?.colorName, colorOptionsStr)
+
+                            val newSizeColor = item.getSizeAndColorById(
+                                sizeId = item.selectedSize?.id,
+                                colorId = newColorOption?.id
+                            )
+
+                            if (newSizeColor?.quantity ?: 0 != 0) {
+                                item.selectedColor = newColorOption
+                                item.quantityInCart = clone(newSizeColor)?.apply {
+                                    quantity = item.quantityInCart?.quantity?.coerceAtMost(
+                                        newSizeColor?.quantity ?: 0
                                     )
                                 }
+
+                                curProduct = item
+                                listener?.invoke(UPDATE_PRODUCT, item)
+
+                                setUpBtnQuantity(item)
                             } else {
-                                setSelection(previousIndex)
+                                viewBinding.btnColor.setSelection(previousIndex)
+                                viewBinding.root.startAnimationError()
+                                listener?.invoke(
+                                    ERROR,
+                                    Result.Error(
+                                        context.getString(R.string.item_selected_no_quantity),
+                                        null
+                                    )
+                                )
                             }
                         }
                     }
 
                 }
-            }
         }
 
         private fun checkIndex(option: String?, listOp: List<String?>?): Int {
@@ -299,5 +245,13 @@ class ShoppingCardAdapter(val listener: ((Any?) -> Unit)? = null) :
                 it == option
             } ?: 0
         }
+    }
+
+    companion object {
+        const val GO_TO_PRODUCT_DETAIL = 0
+        const val DELETE_PRODUCT = 1
+        const val UPDATE_QUANTITY = 2
+        const val UPDATE_PRODUCT = 3
+        const val ERROR = 4
     }
 }

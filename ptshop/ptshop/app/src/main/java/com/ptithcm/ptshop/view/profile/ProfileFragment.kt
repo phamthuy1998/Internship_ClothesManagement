@@ -120,7 +120,6 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>(), View.OnClickList
             if (it != null) {
                 (requireActivity() as? BaseActivity<*>)?.closePopup()
                 CoreApplication.instance.clearAccount()
-                CoreApplication.instance.clearBasket()
                 viewBinding.isLogin = false
                 viewBinding.isBrand = false
                 setupToolbar()
