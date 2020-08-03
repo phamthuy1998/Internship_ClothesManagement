@@ -70,6 +70,18 @@ class ShoppingCardRepositoryImpl(val api: ApiService, val apiClothesService: Api
         }.build().asLiveData()
     }
 
+    override suspend fun getAllProductsInCart(ids: List<Int>): LiveData<Result<ObjectResponse<ArrayList<ProductClothesDetail>>>> {
+        return object :
+            NetworkBoundResource<ObjectResponse<ArrayList<ProductClothesDetail>>, ObjectResponse<ArrayList<ProductClothesDetail>>>() {
+            override suspend fun createCall(): Response<ObjectResponse<ArrayList<ProductClothesDetail>>> =
+                apiClothesService.getAllProductsInCart(ids)
+
+            override fun processResponse(response: ObjectResponse<ArrayList<ProductClothesDetail>>): ObjectResponse<ArrayList<ProductClothesDetail>>? {
+                return response
+            }
+        }.build().asLiveData()
+    }
+
     override suspend fun getShopDetail(id: Int?): LiveData<Result<Brand>> {
         return object : NetworkBoundResource<Brand, Brand>() {
             override fun processResponse(response: Brand) = response

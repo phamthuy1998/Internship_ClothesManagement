@@ -17,6 +17,7 @@ import com.ptithcm.core.vo.Result
 import com.ptithcm.ptshop.R
 import com.ptithcm.ptshop.base.BaseActivity
 import com.ptithcm.ptshop.base.BaseFragment
+import com.ptithcm.ptshop.constant.ERROR_CODE_404
 import com.ptithcm.ptshop.constant.FROM_SHOPPING_BAG
 import com.ptithcm.ptshop.constant.KEY_ARGUMENT
 import com.ptithcm.ptshop.databinding.FragmentShoppingBagBinding
@@ -71,7 +72,7 @@ class ShoppingBagFragment : BaseFragment<FragmentShoppingBagBinding>(), View.OnC
             isFirstTimeCall = false
         }
         viewBinding.swipeRf.setOnRefreshListener {
-            basketViewModel.getBasket()
+            basketViewModel.getAllProductsInCart(ObjectHandler.getAllIdProdsInCart())
         }
     }
 
@@ -102,13 +103,17 @@ class ShoppingBagFragment : BaseFragment<FragmentShoppingBagBinding>(), View.OnC
 //            }
 //        })
 //
-//        basketViewModel.error.observe(this, Observer {
-//            if (it.second == ERROR_CODE_404) {
-//                (requireActivity() as? BaseActivity<*>)?.isShowErrorNetwork(true)
-//            } else {
-//                messageHandler?.runMessageErrorHandler(it.first)
-//            }
-//        })
+        basketViewModel.cartResult.observe(this, androidx.lifecycle.Observer {
+
+        })
+
+        basketViewModel.error.observe(this, androidx.lifecycle.Observer {
+            if (it.second == ERROR_CODE_404) {
+                (requireActivity() as? BaseActivity<*>)?.isShowErrorNetwork(true)
+            } else {
+                messageHandler?.runMessageErrorHandler(it.first)
+            }
+        })
     }
 
     override fun onClick(v: View?) {

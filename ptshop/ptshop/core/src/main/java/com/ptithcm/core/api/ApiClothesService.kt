@@ -61,6 +61,11 @@ interface ApiClothesService {
         @Query("accountId") accountId: Int? = CoreApplication.instance.account?.id
     ): Response<ObjectResponse<ProductClothesDetail>>
 
+    @POST("/api/get-all-product-cart")
+    suspend fun getAllProductsInCart(
+        @Body ids: List<Int>
+    ): Response<ObjectResponse<ArrayList<ProductClothesDetail>>>
+
     /*-----------------------------*/
     /* Wish Product*/
     @GET("/api/favoriteProducts")
