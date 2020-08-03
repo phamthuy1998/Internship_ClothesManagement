@@ -30,12 +30,29 @@ data class ProductClothesDetail(
     var selectedSize: Size?,
     var selectedColor: Color?,
     var quantityInCart: SizesColor?,
-    var hasChanged: Boolean = false,
 
-    var isError: Boolean = false,
+    var hasChanged: Boolean = false,
     var hasChangedPrice: Boolean = false,
     var hasChangedQuantity: Boolean = false
 ) : ItemViewModel, Parcelable {
+
+    fun copyProd(newProd: ProductClothesDetail) {
+        colors = newProd.colors
+        images = newProd.images
+        isLike = newProd.isLike
+        isNew = newProd.isNew
+        price = newProd.price
+        provider = newProd.provider
+        providerId = newProd.providerId
+        rating = newProd.rating
+        sizes = newProd.sizes
+        sizesColors = newProd.sizesColors
+        sold = newProd.sold
+        thumnail = newProd.thumnail
+        title = newProd.title
+        typePromotion = newProd.typePromotion
+        valuePromotion = newProd.valuePromotion
+    }
 
     fun getFinalPrice(): Double {
         var finalPrice = price ?: 0.0

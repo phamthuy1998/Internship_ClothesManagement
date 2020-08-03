@@ -16,8 +16,6 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        tools:background="@drawable/bg_error_stroke"
-        android:background="@{item.error ? @drawable/bg_error_stroke : null}"
         android:paddingTop="@dimen/layout_margin_8dp">
 
         <androidx.appcompat.widget.AppCompatImageView
@@ -108,6 +106,7 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="@dimen/no_padding"
+            android:id="@+id/clOption"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/layout_margin_16dp"
             android:orientation="horizontal"
@@ -175,15 +174,18 @@
             style="@style/normal_text"
             hasChangeQuantity="@{item.hasChangedQuantity}"
             hasChangedPrice="@{item.hasChangedPrice}"
-            setVisible="@{item.error}"
+            setVisible="@{item.hasChanged}"
             android:layout_width="0dp"
+            android:layout_marginTop="@dimen/layout_margin_16dp"
+            android:paddingBottom="@dimen/layout_margin_16dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/layout_margin_16dp"
             android:layout_marginEnd="@dimen/layout_margin_4dp"
             android:layout_marginBottom="@dimen/layout_margin_16dp"
             android:textAlignment="textEnd"
+            android:textSize="@dimen/text_size_10sp"
+            app:layout_constraintTop_toBottomOf="@id/clOption"
             android:textColor="@color/red"
-            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@id/ivProduct"
             tools:text="@string/error_price_quantity_has_been_changed" />

@@ -289,7 +289,7 @@
     <string name="email_or_username">Email or username</string>
     <string name="name">Name</string>
     <string name="price_format">%s &#x20AB;</string>
-    <string name="error_price_quantity_has_been_changed"><![CDATA[<font face="montserrat_bold"><big><b>Price</b></big></font> and <font face="montserrat_bold"><big><b>Quantity in Stock</b></big></font> has been changed, Please check again!]]>]</string>
-    <string name="error_quantity_has_been_changed"><![CDATA[<font face="montserrat_bold"><big><b>Quantity in Stock</b></big></font> has been changed, Please check again!]]>]</string>
-    <string name="error_price_has_been_changed"><![CDATA[<font face="montserrat_bold"><big><b>Price</b></big></font> has been changed, Please check again!]]>]</string>
+    <string name="error_price_quantity_has_been_changed"><![CDATA[<b>Price</b> and <b>Quantity in Stock</b> has been changed, Please check again!]]></string>
+    <string name="error_quantity_has_been_changed"><![CDATA[<b>Quantity in Stock</b> has been changed, Please check again!]]></string>
+    <string name="error_price_has_been_changed"><![CDATA[<b>Price</b> has been changed, Please check again!]]></string>
 </resources>

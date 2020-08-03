@@ -44,7 +44,7 @@ class ShoppingViewModel(val repo: ShoppingCardRepository) : ViewModel() {
 
     fun getAllProductsInCart(ids: List<Int>) {
         viewModelScope.launch {
-            detailResult.addSource(repo.getAllProductsInCart(ids)) {
+            cartResult.addSource(repo.getAllProductsInCart(ids)) {
                 when (it) {
                     Result.Loading -> {
                     }

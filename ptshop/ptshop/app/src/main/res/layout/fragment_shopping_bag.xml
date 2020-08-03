@@ -1,10 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-        <import type="android.view.View"/>
+
+        <import type="android.view.View" />
+
         <variable
             name="fragment"
             type="com.ptithcm.ptshop.view.card.ShoppingBagFragment" />
@@ -35,15 +37,15 @@
                 android:layout_width="match_parent"
                 android:paddingTop="@dimen/layout_margin_16dp"
                 android:paddingBottom="@dimen/layout_margin_16dp"
-                tools:text="3 items: Total(excluding delivery) 224.95"/>
+                tools:text="3 items: Total(excluding delivery) 224.95" />
 
         </com.google.android.material.appbar.AppBarLayout>
 
         <com.dinuscxj.refresh.RecyclerRefreshLayout
             android:id="@+id/swipeRf"
+            setVisible="@{size > 0}"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:visibility="@{size > 0 ? View.VISIBLE : View.GONE}"
             app:layout_constraintTop_toBottomOf="@id/appBarLayout">
 
             <androidx.recyclerview.widget.RecyclerView
@@ -51,38 +53,41 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:clipToPadding="false"
+                android:orientation="vertical"
                 android:paddingStart="@dimen/layout_margin_16dp"
                 android:paddingEnd="@dimen/layout_margin_16dp"
                 android:paddingBottom="@dimen/layout_margin_128dp"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                 app:layout_constraintTop_toBottomOf="@id/tvDescShoppingBag"
-                tools:listitem="@layout/item_shopping_card"/>
+                tools:listitem="@layout/item_shopping_card" />
 
         </com.dinuscxj.refresh.RecyclerRefreshLayout>
 
-        <include android:id="@+id/layoutEmpty"
+        <include
+            android:id="@+id/layoutEmpty"
+            layout="@layout/layout_shoping_bag_empty"
+            setVisible="@{size == 0}"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            layout="@layout/layout_shoping_bag_empty"
-            android:visibility="@{size > 0 ? View.GONE : View.VISIBLE}"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintTop_toBottomOf="@id/appBarLayout"
-            app:layout_constraintBottom_toBottomOf="parent"/>
+            tools:visibility="gone" />
 
         <com.ptithcm.ptshop.widget.LoadingButton
             android:id="@+id/btnCheckOut"
+            setVisible="@{size > 0}"
             android:layout_width="@dimen/no_padding"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/layout_margin_16dp"
             android:layout_marginEnd="@dimen/layout_margin_16dp"
             android:layout_marginBottom="@dimen/layout_margin_24dp"
             android:onClick="@{fragment::onClick}"
-            app:isShowTextBehind="true"
-            app:text="@string/checkout"
             app:isOpacity="true"
-            android:visibility="@{size > 0 ? View.VISIBLE : View.GONE}"
+            app:isShowTextBehind="true"
             app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent" />
+            app:text="@string/checkout" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
