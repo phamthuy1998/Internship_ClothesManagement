@@ -18,7 +18,7 @@ interface ShoppingCardRepository {
 
     suspend fun getProductDetail(id: Int?): LiveData<Result<ObjectResponse<ProductClothesDetail>>>
 
-    suspend fun getAllProductsInCart(ids: List<Int>): LiveData<Result<ObjectResponse<ArrayList<ProductClothesDetail>>>>
+    suspend fun getAllProductsInCart(ids: List<Int>): LiveData<Result<ArrayList<ProductClothesDetail>>>
 
     suspend fun getShopDetail(id: Int?): LiveData<Result<Brand>>
 }

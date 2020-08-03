@@ -102,4 +102,17 @@ object BindingAdapterText {
         if (boolean)
             view.paintFlags = (Paint.STRIKE_THRU_TEXT_FLAG)
     }
+
+    @JvmStatic
+    @BindingAdapter("hasChangedPrice", "hasChangeQuantity")
+    fun setTextErrorInCart(view: TextView, hasChangedPrice: Boolean?, hasChangeQuantity: Boolean?) {
+        val stringRes = when {
+            hasChangedPrice == true && hasChangeQuantity == true -> R.string.error_price_quantity_has_been_changed
+            hasChangedPrice == true -> R.string.error_price_has_been_changed
+            hasChangeQuantity == true -> R.string.error_quantity_has_been_changed
+            else -> 0
+        }
+
+        view.text = HtmlCompat.fromHtml(view.context.getString(stringRes), HtmlCompat.FROM_HTML_MODE_COMPACT)
+    }
 }

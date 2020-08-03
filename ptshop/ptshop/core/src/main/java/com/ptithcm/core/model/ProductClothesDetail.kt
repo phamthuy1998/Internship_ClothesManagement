@@ -29,7 +29,12 @@ data class ProductClothesDetail(
 
     var selectedSize: Size?,
     var selectedColor: Color?,
-    var quantityInCart: SizesColor?
+    var quantityInCart: SizesColor?,
+    var hasChanged: Boolean = false,
+
+    var isError: Boolean = false,
+    var hasChangedPrice: Boolean = false,
+    var hasChangedQuantity: Boolean = false
 ) : ItemViewModel, Parcelable {
 
     fun getFinalPrice(): Double {
@@ -46,4 +51,23 @@ data class ProductClothesDetail(
 
     fun getSizeAndColorById(sizeId: Int?, colorId: Int?): SizesColor? =
         sizesColors?.firstOrNull { it.sizeId == sizeId && it.colorID == colorId }
+
+    override fun equals(other: Any?): Boolean {
+        if (this === other)
+            return true
+
+        return this.hashCode() == other?.hashCode()
+    }
+
+    override fun hashCode(): Int {
+        var result = id
+        result = 31 * result + (colors?.hashCode() ?: 0)
+        result = 31 * result + (price?.hashCode() ?: 0)
+        result = 31 * result + (sizes?.hashCode() ?: 0)
+        result = 31 * result + (sizesColors?.hashCode() ?: 0)
+        result = 31 * result + (sold ?: 0)
+        result = 31 * result + (typePromotion?.hashCode() ?: 0)
+        result = 31 * result + (valuePromotion?.hashCode() ?: 0)
+        return result
+    }
 }

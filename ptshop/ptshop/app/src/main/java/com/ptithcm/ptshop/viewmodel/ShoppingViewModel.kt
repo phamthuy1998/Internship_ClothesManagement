@@ -52,7 +52,7 @@ class ShoppingViewModel(val repo: ShoppingCardRepository) : ViewModel() {
                         error.value = Pair(it.message, it.code)
                     }
                     is Result.Success -> {
-                        cartResult.value = it.data?.data
+                        cartResult.value = it.data
                     }
                 }
             }

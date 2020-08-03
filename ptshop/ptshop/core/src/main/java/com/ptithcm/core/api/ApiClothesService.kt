@@ -64,7 +64,7 @@ interface ApiClothesService {
     @POST("/api/get-all-product-cart")
     suspend fun getAllProductsInCart(
         @Body ids: List<Int>
-    ): Response<ObjectResponse<ArrayList<ProductClothesDetail>>>
+    ): Response<ArrayList<ProductClothesDetail>>
 
     /*-----------------------------*/
     /* Wish Product*/

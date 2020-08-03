@@ -29,6 +29,7 @@ import com.ptithcm.ptshop.view.MainActivity
 import com.ptithcm.ptshop.view.home.StoryDetailActivity
 import com.ptithcm.ptshop.viewmodel.ShoppingViewModel
 import com.ptithcm.ptshop.widget.RecyclerRefreshLayout
+import org.jetbrains.anko.collections.forEachWithIndex
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import java.util.*
 
@@ -61,6 +62,7 @@ class ShoppingBagFragment : BaseFragment<FragmentShoppingBagBinding>(), View.OnC
         viewBinding.swipeRf.isEnabled = false
         if (countBags > 0) {
             setUpResult(ObjectHandler.cart?.products)
+            viewBinding.swipeRf.setRefreshing(true)
         } else {
             setupEmptyView()
         }
@@ -76,35 +78,21 @@ class ShoppingBagFragment : BaseFragment<FragmentShoppingBagBinding>(), View.OnC
         }
     }
 
-    override fun bindViewModelOnce() {
-//        basketViewModel.updateResult.observe(this, Observer {
-//            setUpResult(it.product_variants as ArrayList<ProductVariant>)
-//        })
-//
-//        basketViewModel.removeResult.observe(this, Observer {
-//            if (isUpdate.not()) {
-//                basketViewModel.getBasket()
-//            } else {
-//                isUpdate = false
-//                basketViewModel.updateBasket(addProductParam ?: return@Observer)
-//                addProductParam = null
-//            }
-//        })
-    }
-
     override fun bindViewModel() {
-//        basketViewModel.cardResult.observe(this, Observer {
-//            setUpResult(it.product_variants as ArrayList<ProductVariant>)
-//            if (viewBinding.btnCheckOut.isLoading) {
-//                viewBinding.btnCheckOut.isLoading = false
-//                navController.navigateAnimation(
-//                    R.id.fragment_checkout
-//                )
-//            }
-//        })
-//
         basketViewModel.cartResult.observe(this, androidx.lifecycle.Observer {
-
+            setUpResult(it)
+            if (viewBinding.btnCheckOut.isLoading) {
+                viewBinding.btnCheckOut.isLoading = false
+                it.forEachWithIndex { i, product ->
+                    if (product.isError) {
+                        viewBinding.rvProducts.smoothScrollToPosition(i)
+                        return@Observer
+                    }
+                }
+                navController.navigateAnimation(
+                    R.id.fragment_checkout
+                )
+            }
         })
 
         basketViewModel.error.observe(this, androidx.lifecycle.Observer {
@@ -130,7 +118,7 @@ class ShoppingBagFragment : BaseFragment<FragmentShoppingBagBinding>(), View.OnC
                     return
                 }
                 viewBinding.btnCheckOut.isLoading = true
-                basketViewModel.getBasket()
+                basketViewModel.getAllProductsInCart(ObjectHandler.getAllIdProdsInCart())
             }
             R.id.btnCancel -> {
                 (requireActivity() as? BaseActivity<*>)?.closePopup()

@@ -264,7 +264,7 @@
     <string name="login_to_add_wish_list">Please login to add product to your wishlist</string>
     <string name="unavailable">UNAVAILABLE</string>
     <string name="shipping_tax">Shipping Tax</string>
-    <string name="sync_basket">Syncing up your basket…</string>
+    <string name="sync_basket">Syncing up your cart…</string>
     <string name="prepare_checkout">Preparing for checkout…</string>
     <string name="title_delete_story">
         Are you want to delete \n the story?</string>
@@ -289,4 +289,7 @@
     <string name="email_or_username">Email or username</string>
     <string name="name">Name</string>
     <string name="price_format">%s &#x20AB;</string>
+    <string name="error_price_quantity_has_been_changed"><![CDATA[<font face="montserrat_bold"><big><b>Price</b></big></font> and <font face="montserrat_bold"><big><b>Quantity in Stock</b></big></font> has been changed, Please check again!]]>]</string>
+    <string name="error_quantity_has_been_changed"><![CDATA[<font face="montserrat_bold"><big><b>Quantity in Stock</b></big></font> has been changed, Please check again!]]>]</string>
+    <string name="error_price_has_been_changed"><![CDATA[<font face="montserrat_bold"><big><b>Price</b></big></font> has been changed, Please check again!]]>]</string>
 </resources>

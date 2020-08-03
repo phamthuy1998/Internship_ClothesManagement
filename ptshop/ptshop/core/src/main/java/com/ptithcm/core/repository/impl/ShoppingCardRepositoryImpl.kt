@@ -1,6 +1,7 @@
 package com.ptithcm.core.repository.impl
 
 import androidx.lifecycle.LiveData
+import com.ptithcm.core.R
 import com.ptithcm.core.api.ApiClothesService
 import com.ptithcm.core.api.ApiService
 import com.ptithcm.core.data.remote.NetworkBoundResource
@@ -70,13 +71,31 @@ class ShoppingCardRepositoryImpl(val api: ApiService, val apiClothesService: Api
         }.build().asLiveData()
     }
 
-    override suspend fun getAllProductsInCart(ids: List<Int>): LiveData<Result<ObjectResponse<ArrayList<ProductClothesDetail>>>> {
+    override suspend fun getAllProductsInCart(ids: List<Int>): LiveData<Result<ArrayList<ProductClothesDetail>>> {
         return object :
-            NetworkBoundResource<ObjectResponse<ArrayList<ProductClothesDetail>>, ObjectResponse<ArrayList<ProductClothesDetail>>>() {
-            override suspend fun createCall(): Response<ObjectResponse<ArrayList<ProductClothesDetail>>> =
+            NetworkBoundResource<ArrayList<ProductClothesDetail>, ArrayList<ProductClothesDetail>>() {
+            override suspend fun createCall(): Response<ArrayList<ProductClothesDetail>> =
                 apiClothesService.getAllProductsInCart(ids)
 
-            override fun processResponse(response: ObjectResponse<ArrayList<ProductClothesDetail>>): ObjectResponse<ArrayList<ProductClothesDetail>>? {
+            override fun processResponse(response: ArrayList<ProductClothesDetail>): ArrayList<ProductClothesDetail>? {
+                response.forEachIndexed { i, newProduct ->
+                    val curProduct = ObjectHandler.cart?.products?.getOrNull(i)
+                    newProduct.run {
+                        selectedColor = curProduct?.selectedColor
+                        selectedSize = curProduct?.selectedSize
+                        quantityInCart = curProduct?.quantityInCart
+
+                        hasChanged = newProduct == curProduct
+                        hasChangedPrice = newProduct.price != curProduct?.price || newProduct.typePromotion != curProduct?.typePromotion || newProduct.valuePromotion != curProduct?.valuePromotion
+
+                        val newSizeAndColor = newProduct.getSizeAndColorById(sizeId = curProduct?.selectedSize?.id, colorId = curProduct?.selectedColor?.id)
+                        val quantityInStock = newSizeAndColor?.quantity ?: 0
+                        hasChangedQuantity = curProduct?.quantityInCart?.quantity ?: 0 > quantityInStock
+                    }
+                }
+                if (!response.isNullOrEmpty())
+                    ObjectHandler.cart?.products =  response
+
                 return response
             }
         }.build().asLiveData()

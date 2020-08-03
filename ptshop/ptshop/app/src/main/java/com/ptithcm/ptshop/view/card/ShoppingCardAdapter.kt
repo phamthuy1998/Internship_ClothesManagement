@@ -81,16 +81,21 @@ class ShoppingCardAdapter(val listener: ((Int, Any?) -> Unit)? = null) :
                 curProduct = item
                 viewBinding.btnQuantity.performClick()
             }
+
+            if (item.isError)
+                viewBinding.root.startAnimationError()
+
+            viewBinding.executePendingBindings()
         }
 
         private fun setUpBtnQuantity(item: ProductClothesDetail) {
-            val quantityInCart = item.quantityInCart?.quantity ?: 0
-
             val quantityInStock = item.getSizeAndColorById(
                 sizeId = item.selectedSize?.id,
                 colorId = item.selectedColor?.id
             )?.quantity ?: 0
             val realQuantity = quantityInStock.coerceAtMost(50)
+
+            val quantityInCart = item.quantityInCart?.quantity?.coerceAtMost(realQuantity) ?: 0
 
             viewBinding.tvQuantity.text =
                 context.getString(R.string.quantity_spinner, quantityInCart.toString())

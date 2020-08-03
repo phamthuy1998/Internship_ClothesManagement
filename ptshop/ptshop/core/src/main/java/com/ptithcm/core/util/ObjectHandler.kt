@@ -37,13 +37,7 @@ object ObjectHandler {
         0.0,
         { sum, prod -> sum + (prod.getFinalPrice() * (prod.quantityInCart?.quantity ?: 1)) })
 
-    fun getAllIdProdsInCart(): List<Int> {
-        val setIds = CopyOnWriteArraySet<Int>()
-        cart?.products?.map { it.id }?.forEach {
-            setIds.plus(it)
-        }
-        return setIds.toList()
-    }
+    fun getAllIdProdsInCart(): List<Int> = cart?.products?.map { it.id } ?: arrayListOf()
 
     //check quantity of a product in prefsUtil
     fun getQuantityProductClothesFromLocal(productId: Int?, sizeId: Int?, colorId: Int?): Int {
