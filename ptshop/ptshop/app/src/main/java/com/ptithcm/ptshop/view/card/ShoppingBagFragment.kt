@@ -248,7 +248,8 @@ class ShoppingBagFragment : BaseFragment<FragmentShoppingBagBinding>(), View.OnC
             // out of stock
             ShoppingCardAdapter.ERROR -> {
                 (data as? Result.Error)?.let {
-                    messageHandler?.runMessageErrorHandler(it.message)
+                    viewBinding.root.showErrorSnackBar(it.message)
+//                    messageHandler?.runMessageErrorHandler(it.message)
                 }
             }
 
