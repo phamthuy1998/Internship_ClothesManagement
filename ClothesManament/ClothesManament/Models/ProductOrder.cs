@@ -7,7 +7,11 @@ namespace ClothesManament.Models
 {
     public class ProductOrder
     {
-        public int id { set; get; }
+        public int productId { set; get; }
+        public int colorId { set; get; }
+        public int sizeId { set; get; }
         public int quantity { set; get; }
+
+
     }
 }

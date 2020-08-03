@@ -399,11 +399,14 @@ namespace ClothesManament.Controllers
         [HttpPost]
         public async Task<ResponseObjectModel<int?>> addAddress(
             Nullable<int> userId = null,
-            String address = null,
+            String province = null,
+            String district = null,
+            String wards = null,
+            String street = null,
             String name = null,
             String phone = null)
         {
-            var addressId = (await Task.Run(() => entities.SP_AddAddress(userId, address, name, phone).FirstOrDefault()));
+            var addressId = (await Task.Run(() => entities.SP_AddAddress(userId, province, district, wards, street, name, phone).FirstOrDefault()));
             if (addressId > 0)
                 return new ResponseObjectModel<int?>
                 {
@@ -420,6 +423,29 @@ namespace ClothesManament.Controllers
                     code = 200,
                     data = -1
                 };
+        }
+
+        [Route("api/edit-addess")]
+        [AcceptVerbs("PUT")]
+        [HttpPut]
+        public async Task<ResponseObjectModel<int?>> editAddress(
+           Nullable<int> addressId = null,
+           String province = null,
+           String district = null,
+           String wards = null,
+           String street = null,
+           String name = null,
+           String phone = null)
+        {
+            var result = (await Task.Run(() => entities.SP_EditAddress(addressId, province, district, wards, street, name, phone)));
+            return new ResponseObjectModel<int?>
+            {
+                message = "Cập nhật địa chỉ thành công",
+                status = true,
+                code = 200,
+                data = addressId
+            };
+
         }
     }
 }

@@ -18,8 +18,11 @@ namespace ClothesManamentDataAccess
         public int productId { get; set; }
         public Nullable<double> unitPrice { get; set; }
         public Nullable<int> quantity { get; set; }
+        public int colorId { get; set; }
+        public int sizeId { get; set; }
     
         public virtual Invoice Invoice { get; set; }
         public virtual Product Product { get; set; }
+        public virtual ProductSizeColor ProductSizeColor { get; set; }
     }
 }

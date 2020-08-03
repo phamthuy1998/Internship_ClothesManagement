@@ -145,7 +145,7 @@ namespace ClothesManagement.Controllers
             MailMessage msg = new MailMessage();
             msg.From = new MailAddress("congnghephanmemptithcm@gmail.com");
             msg.To.Add(email);
-            msg.Subject = "test";
+            msg.Subject = "Xác nhận đơn hàng";
             MemoryCacheHelper.Add("orderParam", orderParam, DateTimeOffset.UtcNow.AddHours(1));
 
             msg.Body = createEmailBody("thuy", "Mail xac nhan don hang", "Xin chao ban ");
@@ -225,7 +225,7 @@ namespace ClothesManagement.Controllers
                 for (int i = 0; i < orderParam.products.Count; i++)
                 {
                     product = orderParam.products[i];
-                    entities.SP_AddOrderItem(product.id, product.quantity, orderId);
+                    entities.SP_AddOrderItem(orderId, product.productId, product.colorId, product.sizeId, product.quantity);
                 }
 
                 MemoryCacheHelper.Add("statusOrder", 1, DateTimeOffset.UtcNow.AddHours(1));
