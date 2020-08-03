@@ -31,18 +31,19 @@ namespace ClothesManamentDataAccess
         public virtual DbSet<Address> Addresses { get; set; }
         public virtual DbSet<Category> Categories { get; set; }
         public virtual DbSet<Color> Colors { get; set; }
+        public virtual DbSet<Customer> Customers { get; set; }
         public virtual DbSet<Employee> Employees { get; set; }
         public virtual DbSet<Image> Images { get; set; }
+        public virtual DbSet<ImportCoupon> ImportCoupons { get; set; }
+        public virtual DbSet<ImportCouponDetail> ImportCouponDetails { get; set; }
         public virtual DbSet<Invoice> Invoices { get; set; }
         public virtual DbSet<InvoiceItem> InvoiceItems { get; set; }
         public virtual DbSet<Product> Products { get; set; }
         public virtual DbSet<ProductSizeColor> ProductSizeColors { get; set; }
         public virtual DbSet<Promotion> Promotions { get; set; }
         public virtual DbSet<Provider> Providers { get; set; }
-        public virtual DbSet<Role> Roles { get; set; }
         public virtual DbSet<Size> Sizes { get; set; }
         public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
-        public virtual DbSet<Customer> Customers { get; set; }
     
         public virtual ObjectResult<Nullable<int>> ChangePassword(Nullable<int> userId, string oldPass, string newPass)
         {
@@ -70,22 +71,22 @@ namespace ClothesManamentDataAccess
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("DelAccount", userIdParameter);
         }
     
-        public virtual ObjectResult<getCategoryByGender_Result> getCategoryByGender(Nullable<int> genderID)
+        public virtual ObjectResult<getCategoryByGender_Result1> getCategoryByGender(Nullable<int> genderID)
         {
             var genderIDParameter = genderID.HasValue ?
                 new ObjectParameter("GenderID", genderID) :
                 new ObjectParameter("GenderID", typeof(int));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<getCategoryByGender_Result>("getCategoryByGender", genderIDParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<getCategoryByGender_Result1>("getCategoryByGender", genderIDParameter);
         }
     
-        public virtual ObjectResult<getCategoryGender_Result> getCategoryGender(Nullable<int> genderID)
+        public virtual ObjectResult<getCategoryGender_Result1> getCategoryGender(Nullable<int> genderID)
         {
             var genderIDParameter = genderID.HasValue ?
                 new ObjectParameter("GenderID", genderID) :
                 new ObjectParameter("GenderID", typeof(int));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<getCategoryGender_Result>("getCategoryGender", genderIDParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<getCategoryGender_Result1>("getCategoryGender", genderIDParameter);
         }
     
         public virtual ObjectResult<Nullable<int>> SP_AddOrder(Nullable<int> userId, string address, string phone, string name, string note)
@@ -113,21 +114,29 @@ namespace ClothesManamentDataAccess
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("SP_AddOrder", userIdParameter, addressParameter, phoneParameter, nameParameter, noteParameter);
         }
     
-        public virtual int SP_AddOrderItem(Nullable<int> productId, Nullable<int> quantity, Nullable<int> invoiceId)
+        public virtual int SP_AddOrderItem(Nullable<int> invoiceId, Nullable<int> productId, Nullable<int> colorId, Nullable<int> sizeId, Nullable<int> quantity)
         {
+            var invoiceIdParameter = invoiceId.HasValue ?
+                new ObjectParameter("invoiceId", invoiceId) :
+                new ObjectParameter("invoiceId", typeof(int));
+    
             var productIdParameter = productId.HasValue ?
                 new ObjectParameter("productId", productId) :
                 new ObjectParameter("productId", typeof(int));
+    
+            var colorIdParameter = colorId.HasValue ?
+                new ObjectParameter("colorId", colorId) :
+                new ObjectParameter("colorId", typeof(int));
+    
+            var sizeIdParameter = sizeId.HasValue ?
+                new ObjectParameter("sizeId", sizeId) :
+                new ObjectParameter("sizeId", typeof(int));
     
             var quantityParameter = quantity.HasValue ?
                 new ObjectParameter("quantity", quantity) :
                 new ObjectParameter("quantity", typeof(int));
     
-            var invoiceIdParameter = invoiceId.HasValue ?
-                new ObjectParameter("invoiceId", invoiceId) :
-                new ObjectParameter("invoiceId", typeof(int));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("SP_AddOrderItem", productIdParameter, quantityParameter, invoiceIdParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("SP_AddOrderItem", invoiceIdParameter, productIdParameter, colorIdParameter, sizeIdParameter, quantityParameter);
         }
     
         public virtual int sp_alterdiagram(string diagramname, Nullable<int> owner_id, Nullable<int> version, byte[] definition)
@@ -207,13 +216,13 @@ namespace ClothesManamentDataAccess
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_dropdiagram", diagramnameParameter, owner_idParameter);
         }
     
-        public virtual ObjectResult<SP_GetAllAddress_Result> SP_GetAllAddress(Nullable<int> userId)
+        public virtual ObjectResult<SP_GetAllAddress_Result1> SP_GetAllAddress(Nullable<int> userId)
         {
             var userIdParameter = userId.HasValue ?
                 new ObjectParameter("userId", userId) :
                 new ObjectParameter("userId", typeof(int));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_GetAllAddress_Result>("SP_GetAllAddress", userIdParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_GetAllAddress_Result1>("SP_GetAllAddress", userIdParameter);
         }
     
         public virtual ObjectResult<SP_GetColorsOfProduct_Result> SP_GetColorsOfProduct(Nullable<int> productId)
@@ -645,15 +654,27 @@ namespace ClothesManamentDataAccess
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("SP_CheckInvoiceExist", inovoiceIdParameter);
         }
     
-        public virtual ObjectResult<Nullable<int>> SP_AddAddress(Nullable<int> userId, string address, string name, string phone)
+        public virtual ObjectResult<Nullable<int>> SP_AddAddress(Nullable<int> userId, string province, string district, string wards, string street, string name, string phone)
         {
             var userIdParameter = userId.HasValue ?
                 new ObjectParameter("userId", userId) :
                 new ObjectParameter("userId", typeof(int));
     
-            var addressParameter = address != null ?
-                new ObjectParameter("address", address) :
-                new ObjectParameter("address", typeof(string));
+            var provinceParameter = province != null ?
+                new ObjectParameter("province", province) :
+                new ObjectParameter("province", typeof(string));
+    
+            var districtParameter = district != null ?
+                new ObjectParameter("district", district) :
+                new ObjectParameter("district", typeof(string));
+    
+            var wardsParameter = wards != null ?
+                new ObjectParameter("wards", wards) :
+                new ObjectParameter("wards", typeof(string));
+    
+            var streetParameter = street != null ?
+                new ObjectParameter("street", street) :
+                new ObjectParameter("street", typeof(string));
     
             var nameParameter = name != null ?
                 new ObjectParameter("name", name) :
@@ -663,7 +684,7 @@ namespace ClothesManamentDataAccess
                 new ObjectParameter("phone", phone) :
                 new ObjectParameter("phone", typeof(string));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("SP_AddAddress", userIdParameter, addressParameter, nameParameter, phoneParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("SP_AddAddress", userIdParameter, provinceParameter, districtParameter, wardsParameter, streetParameter, nameParameter, phoneParameter);
         }
     
         public virtual ObjectResult<Nullable<int>> SP_DelAddress(Nullable<int> addressId)
@@ -673,6 +694,101 @@ namespace ClothesManamentDataAccess
                 new ObjectParameter("addressId", typeof(int));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("SP_DelAddress", addressIdParameter);
+        }
+    
+        public virtual ObjectResult<Nullable<int>> SP_AddAccount(string firstName, string lastName, string phone, string address, string dateBegin, string birthday, Nullable<int> isWorking, string email, Nullable<int> roleId, string password, string username)
+        {
+            var firstNameParameter = firstName != null ?
+                new ObjectParameter("firstName", firstName) :
+                new ObjectParameter("firstName", typeof(string));
+    
+            var lastNameParameter = lastName != null ?
+                new ObjectParameter("lastName", lastName) :
+                new ObjectParameter("lastName", typeof(string));
+    
+            var phoneParameter = phone != null ?
+                new ObjectParameter("phone", phone) :
+                new ObjectParameter("phone", typeof(string));
+    
+            var addressParameter = address != null ?
+                new ObjectParameter("address", address) :
+                new ObjectParameter("address", typeof(string));
+    
+            var dateBeginParameter = dateBegin != null ?
+                new ObjectParameter("dateBegin", dateBegin) :
+                new ObjectParameter("dateBegin", typeof(string));
+    
+            var birthdayParameter = birthday != null ?
+                new ObjectParameter("birthday", birthday) :
+                new ObjectParameter("birthday", typeof(string));
+    
+            var isWorkingParameter = isWorking.HasValue ?
+                new ObjectParameter("isWorking", isWorking) :
+                new ObjectParameter("isWorking", typeof(int));
+    
+            var emailParameter = email != null ?
+                new ObjectParameter("email", email) :
+                new ObjectParameter("email", typeof(string));
+    
+            var roleIdParameter = roleId.HasValue ?
+                new ObjectParameter("roleId", roleId) :
+                new ObjectParameter("roleId", typeof(int));
+    
+            var passwordParameter = password != null ?
+                new ObjectParameter("password", password) :
+                new ObjectParameter("password", typeof(string));
+    
+            var usernameParameter = username != null ?
+                new ObjectParameter("username", username) :
+                new ObjectParameter("username", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("SP_AddAccount", firstNameParameter, lastNameParameter, phoneParameter, addressParameter, dateBeginParameter, birthdayParameter, isWorkingParameter, emailParameter, roleIdParameter, passwordParameter, usernameParameter);
+        }
+    
+        public virtual int SP_EditAddress(Nullable<int> addressId, string province, string district, string wards, string street, string name, string phone)
+        {
+            var addressIdParameter = addressId.HasValue ?
+                new ObjectParameter("addressId", addressId) :
+                new ObjectParameter("addressId", typeof(int));
+    
+            var provinceParameter = province != null ?
+                new ObjectParameter("province", province) :
+                new ObjectParameter("province", typeof(string));
+    
+            var districtParameter = district != null ?
+                new ObjectParameter("district", district) :
+                new ObjectParameter("district", typeof(string));
+    
+            var wardsParameter = wards != null ?
+                new ObjectParameter("wards", wards) :
+                new ObjectParameter("wards", typeof(string));
+    
+            var streetParameter = street != null ?
+                new ObjectParameter("street", street) :
+                new ObjectParameter("street", typeof(string));
+    
+            var nameParameter = name != null ?
+                new ObjectParameter("name", name) :
+                new ObjectParameter("name", typeof(string));
+    
+            var phoneParameter = phone != null ?
+                new ObjectParameter("phone", phone) :
+                new ObjectParameter("phone", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("SP_EditAddress", addressIdParameter, provinceParameter, districtParameter, wardsParameter, streetParameter, nameParameter, phoneParameter);
+        }
+    
+        public virtual int forgotPasswordReset(string email, string newPass)
+        {
+            var emailParameter = email != null ?
+                new ObjectParameter("email", email) :
+                new ObjectParameter("email", typeof(string));
+    
+            var newPassParameter = newPass != null ?
+                new ObjectParameter("newPass", newPass) :
+                new ObjectParameter("newPass", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("forgotPasswordReset", emailParameter, newPassParameter);
         }
     }
 }

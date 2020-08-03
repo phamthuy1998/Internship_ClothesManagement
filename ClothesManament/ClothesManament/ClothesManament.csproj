@@ -347,8 +347,8 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\Home\htmlTemplate.cshtml" />
-    <Content Include="Views\Home\send_mail.cshtml" />
+    <Content Include="Views\Home\forgot_password.cshtml" />
+    <Content Include="Views\Home\send_mail_add_order.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

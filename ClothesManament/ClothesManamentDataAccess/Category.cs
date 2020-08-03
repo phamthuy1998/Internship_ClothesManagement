@@ -23,7 +23,6 @@ namespace ClothesManamentDataAccess
         public int id { get; set; }
         public string name { get; set; }
         public string detail { get; set; }
-        public int genderID { get; set; }
         public string imageUrl { get; set; }
         public string thumnail { get; set; }
         public Nullable<byte> sex { get; set; }

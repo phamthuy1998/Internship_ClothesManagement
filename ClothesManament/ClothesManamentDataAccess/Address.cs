@@ -16,7 +16,10 @@ namespace ClothesManamentDataAccess
     {
         public int id { get; set; }
         public Nullable<int> accountId { get; set; }
-        public string address1 { get; set; }
+        public string province { get; set; }
+        public string district { get; set; }
+        public string wards { get; set; }
+        public string street { get; set; }
         public string name { get; set; }
         public string phone { get; set; }
         public Nullable<int> active { get; set; }

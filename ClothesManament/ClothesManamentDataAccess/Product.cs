@@ -18,6 +18,7 @@ namespace ClothesManamentDataAccess
         public Product()
         {
             this.Images = new HashSet<Image>();
+            this.ImportCouponDetails = new HashSet<ImportCouponDetail>();
             this.InvoiceItems = new HashSet<InvoiceItem>();
             this.ProductSizeColors = new HashSet<ProductSizeColor>();
             this.Accounts = new HashSet<Account>();
@@ -40,6 +41,8 @@ namespace ClothesManamentDataAccess
         public virtual Category Category { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Image> Images { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<ImportCouponDetail> ImportCouponDetails { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<InvoiceItem> InvoiceItems { get; set; }
         public virtual Provider Provider { get; set; }

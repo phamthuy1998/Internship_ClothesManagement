@@ -6,6 +6,7 @@ using ClothesManament.Models;
 using System.Web;
 using Newtonsoft.Json;
 using System.Threading.Tasks;
+using System.Collections.Generic;
 
 namespace ClothesManament.Controllers
 {
@@ -18,6 +19,57 @@ namespace ClothesManament.Controllers
             entities = new ClothesEntities();
         }
 
+
+        [Route("api/get-all-product-cart")]
+        [AcceptVerbs("POST")]
+        [HttpPost]
+        public List<Models.ProductDetail> getListProductCart(List<int> idProducts)
+        {
+            List<Models.ProductDetail> listProduct = new List<Models.ProductDetail>();
+            for (int i = 0; i < idProducts.Count; i++)
+            {
+                var product = getProductDetail(idProducts[i]);
+                if (product != null)
+                    listProduct.Add(product);
+            }
+            return listProduct;
+        }
+
+        public Models.ProductDetail getProductDetail(int productID)
+        {
+            var productDetail = entities.SP_GetProductInfoDetail(productID, null).FirstOrDefault();
+
+            var listImage = entities.SP_ImagesOfProduct(productID).ToList();
+            var providerDetail = entities.SP_GetProviderDetail(productDetail.providerId).FirstOrDefault();
+            var colors = entities.SP_GetColorsOfProduct(productDetail.providerId).ToList();
+            var sizes = entities.SP_GetSizesOfProduct(productDetail.providerId).ToList();
+            var colorsSizes = entities.SP_GetSizesColorsOfProduct(productDetail.providerId).ToList();
+
+            return new Models.ProductDetail()
+            {
+                id = productDetail.id,
+                title = productDetail.title,
+                detail = productDetail.detail,
+                price = productDetail.price,
+                categoryID = productDetail.categoryID,
+                sold = productDetail.sold,
+                rating = productDetail.rating,
+                active = productDetail.active,
+                providerId = productDetail.providerId,
+                thumnail = productDetail.thumnail,
+                isNew = productDetail.isNew,
+                addDate = productDetail.addDate,
+                isLike = productDetail.isLike,
+                valuePromotion = productDetail.promotion,
+                typePromotion = productDetail.typePromotion,
+                provider = providerDetail,
+                images = listImage,
+                colors = colors,
+                sizes = sizes,
+                sizesColors = colorsSizes
+            };
+        }
+
         [Route("api/allProductsOfCategory")]
         [AcceptVerbs("GET")]
         [HttpGet]
@@ -27,7 +79,8 @@ namespace ClothesManament.Controllers
             if (pageNumber <= 0) pageNumber = 1;
             var listResponse = (await Task.Run(() => entities.SP_GetProductOfCategory(categoryID, pageNumber, pageSize, accountId).ToList()));
             var count = (await Task.Run(() => entities.SP_GetProductOfCategoryCount(categoryID).FirstOrDefault()));
-            return new ListResponse<SP_GetProductOfCategory_Result1>() {
+            return new ListResponse<SP_GetProductOfCategory_Result1>()
+            {
                 count = count,
                 results = listResponse
             };

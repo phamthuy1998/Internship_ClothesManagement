@@ -9,11 +9,16 @@ using System.Windows.Forms;
 
 namespace ClothesAdmin
 {
-    public partial class Form1 : DevExpress.XtraEditors.XtraForm
+    public partial class FormLogin : DevExpress.XtraEditors.XtraForm
     {
-        public Form1()
+        public FormLogin()
         {
             InitializeComponent();
+        }
+
+        private void FormLogin_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

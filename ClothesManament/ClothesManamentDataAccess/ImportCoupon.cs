@@ -12,19 +12,20 @@ namespace ClothesManamentDataAccess
     using System;
     using System.Collections.Generic;
     
-    public partial class Role
+    public partial class ImportCoupon
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Role()
+        public ImportCoupon()
         {
-            this.Accounts = new HashSet<Account>();
+            this.ImportCouponDetails = new HashSet<ImportCouponDetail>();
         }
     
         public int id { get; set; }
-        public string roleName { get; set; }
-        public string image { get; set; }
+        public int date { get; set; }
+        public Nullable<int> employeeId { get; set; }
     
+        public virtual Employee Employee { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Account> Accounts { get; set; }
+        public virtual ICollection<ImportCouponDetail> ImportCouponDetails { get; set; }
     }
 }
