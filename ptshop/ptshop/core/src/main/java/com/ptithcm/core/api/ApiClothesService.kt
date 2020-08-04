@@ -5,7 +5,6 @@ import com.ptithcm.core.model.*
 import com.ptithcm.core.model.wish.ObjectResponse
 import com.ptithcm.core.param.ChangePassParam
 import com.ptithcm.core.param.EditAccountParam
-import com.ptithcm.core.param.ForgotPasswordParam
 import com.ptithcm.core.param.LogInParam
 import com.ptithcm.core.vo.ListResponse
 import retrofit2.Response
@@ -20,8 +19,8 @@ interface ApiClothesService {
     @DELETE("/api/logout")
     suspend fun logOut(): Response<Void>
 
-    @POST("/api/forgotPassword")
-    suspend fun forgotPassword(@Body param: ForgotPasswordParam): Response<ObjectResponse<String>>
+    @POST("/api/forgot-password")
+    suspend fun forgotPassword(@Query("email") email: String): Response<ObjectResponse<String>>
 
     @POST("/api/signUp")
     suspend fun signUp(@Body acc: Account): Response<ObjectResponse<Account>>

@@ -6,7 +6,6 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.ptithcm.core.model.Account
 import com.ptithcm.core.model.wish.ObjectResponse
-import com.ptithcm.core.param.ForgotPasswordParam
 import com.ptithcm.core.param.LogInParam
 import com.ptithcm.core.repository.AuthRepository
 import com.ptithcm.core.vo.Result
@@ -16,7 +15,7 @@ class AuthenticateViewModel(private val repository: AuthRepository) : ViewModel(
     val logInLiveData = MediatorLiveData<ObjectResponse<Account>>()
     val signUpLiveData = MediatorLiveData<ObjectResponse<Account>>()
     val logOutLiveData = MediatorLiveData<String>()
-    val forgotPasswordLiveData = MediatorLiveData<Any>()
+    val forgotPasswordLiveData = MediatorLiveData<String>()
     val error = MutableLiveData<Pair<String, Int?>>()
 
     fun logIn(param: LogInParam) {
@@ -64,15 +63,15 @@ class AuthenticateViewModel(private val repository: AuthRepository) : ViewModel(
         }
     }
 
-    fun forgotPassword(param: ForgotPasswordParam) {
+    fun forgotPassword(param: String) {
         viewModelScope.launch {
-            forgotPasswordLiveData.addSource(repository.postForgotPassword(param)) {
+            forgotPasswordLiveData.addSource(repository.requestForgotPassword(param)) {
                 when (it) {
                     is Result.Error -> {
                         error.value = Pair(it.message, it.code)
                     }
                     is Result.Success -> {
-                        forgotPasswordLiveData.value = it.data
+                        forgotPasswordLiveData.value = it.data?.message
                     }
                 }
             }
