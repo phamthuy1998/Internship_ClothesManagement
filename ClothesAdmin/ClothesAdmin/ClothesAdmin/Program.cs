@@ -16,11 +16,6 @@ namespace ClothesAdmin
         public static SqlConnection conn = new SqlConnection();
         public static String connstr;
         public static SqlDataReader myReader;
-        public static String servername = "";
-        public static String username = "";
-        public static String mlogin = "";
-        public static String password = "";
-        public static String mSV = "";
 
         /// <summary>
         /// The main entry point for the application.
@@ -63,9 +58,7 @@ namespace ClothesAdmin
                 Program.conn.Close();
             try
             {
-                Program.connstr = "Data Source=" + Program.servername + ";Initial Catalog=" +
-                      Program.database + ";User ID=" +
-                      Program.mlogin + ";password=" + Program.password;
+                Program.connstr = "Data Source=THUY;Initial Catalog=ClothesManament;User ID=sa;password=123";
                 Program.conn.ConnectionString = Program.connstr;
                 Program.conn.Open();
                 return 1;
@@ -104,12 +97,12 @@ namespace ClothesAdmin
         public static SqlDataReader ExecSqlDataReader1(String strLenh)
         {
             SqlDataReader myreader;
-            SqlCommand sqlcmd = new SqlCommand(strLenh, Program.conn1);
+            SqlCommand sqlcmd = new SqlCommand(strLenh, Program.conn);
             sqlcmd.CommandType = CommandType.Text;
             //tối đa cho đợi 10p, tgian tính bằng s
             sqlcmd.CommandTimeout = 600;
             // Kiểm tra trạng thái đóng hay mở
-            if (Program.conn1.State == ConnectionState.Closed) Program.conn1.Open();
+            if (Program.conn.State == ConnectionState.Closed) Program.conn.Open();
             try
             {
                 myreader = sqlcmd.ExecuteReader(); return myreader;
@@ -117,7 +110,7 @@ namespace ClothesAdmin
             }
             catch (SqlException ex)
             {
-                Program.conn1.Close();
+                Program.conn.Close();
                 MessageBox.Show(ex.Message);
                 return null;
             }

@@ -350,6 +350,7 @@
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Home\forgot_password.cshtml" />
     <Content Include="Views\Home\send_mail_add_order.cshtml" />
+    <Content Include="Views\Home\auth.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -30,6 +30,7 @@ namespace ClothesManamentDataAccess
         public string password { get; set; }
         public string username { get; set; }
         public Nullable<int> active { get; set; }
+        public Nullable<int> isAccuracy { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Address> Addresses { get; set; }

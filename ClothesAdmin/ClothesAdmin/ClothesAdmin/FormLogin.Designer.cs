@@ -77,6 +77,7 @@
             this.btnThoat.TabIndex = 35;
             this.btnThoat.Text = "Thoát";
             this.btnThoat.UseVisualStyleBackColor = false;
+            this.btnThoat.Click += new System.EventHandler(this.btnThoat_Click);
             // 
             // btnDangNhap
             // 
@@ -90,6 +91,7 @@
             this.btnDangNhap.TabIndex = 34;
             this.btnDangNhap.Text = "Đăng nhập";
             this.btnDangNhap.UseVisualStyleBackColor = false;
+            this.btnDangNhap.Click += new System.EventHandler(this.btnDangNhap_Click);
             // 
             // label3
             // 
@@ -139,7 +141,7 @@
             this.label1.ForeColor = System.Drawing.Color.Navy;
             this.label1.Location = new System.Drawing.Point(294, 44);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(121, 41);
+            this.label1.Size = new System.Drawing.Size(118, 40);
             this.label1.TabIndex = 41;
             this.label1.Text = "Login ";
             // 
@@ -160,6 +162,7 @@
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "FormLogin";
             this.Text = "Login";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmDangNhap_FormClosing);
             this.Load += new System.EventHandler(this.FormLogin_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();

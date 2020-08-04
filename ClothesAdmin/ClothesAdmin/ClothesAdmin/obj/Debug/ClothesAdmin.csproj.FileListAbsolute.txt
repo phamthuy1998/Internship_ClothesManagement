@@ -39,10 +39,16 @@ D:\Thuy\thuctap\Internship_ClothesManament\ClothesAdmin\ClothesAdmin\ClothesAdmi
 D:\Thuy\thuctap\Internship_ClothesManament\ClothesAdmin\ClothesAdmin\ClothesAdmin\bin\Debug\ja\DevExpress.Pdf.v19.1.Core.resources.dll
 D:\Thuy\thuctap\Internship_ClothesManament\ClothesAdmin\ClothesAdmin\ClothesAdmin\bin\Debug\ru\DevExpress.Pdf.v19.1.Core.resources.dll
 D:\Thuy\thuctap\Internship_ClothesManament\ClothesAdmin\ClothesAdmin\ClothesAdmin\obj\Debug\ClothesAdmin.csprojAssemblyReference.cache
-D:\Thuy\thuctap\Internship_ClothesManament\ClothesAdmin\ClothesAdmin\ClothesAdmin\obj\Debug\ClothesAdmin.Form1.resources
 D:\Thuy\thuctap\Internship_ClothesManament\ClothesAdmin\ClothesAdmin\ClothesAdmin\obj\Debug\ClothesAdmin.Properties.Resources.resources
 D:\Thuy\thuctap\Internship_ClothesManament\ClothesAdmin\ClothesAdmin\ClothesAdmin\obj\Debug\ClothesAdmin.csproj.GenerateResource.cache
 D:\Thuy\thuctap\Internship_ClothesManament\ClothesAdmin\ClothesAdmin\ClothesAdmin\obj\Debug\ClothesAdmin.csproj.CoreCompileInputs.cache
 D:\Thuy\thuctap\Internship_ClothesManament\ClothesAdmin\ClothesAdmin\ClothesAdmin\obj\Debug\ClothesAdmin.csproj.CopyComplete
 D:\Thuy\thuctap\Internship_ClothesManament\ClothesAdmin\ClothesAdmin\ClothesAdmin\obj\Debug\ClothesAdmin.exe
 D:\Thuy\thuctap\Internship_ClothesManament\ClothesAdmin\ClothesAdmin\ClothesAdmin\obj\Debug\ClothesAdmin.pdb
+D:\Thuy\thuctap\Internship_ClothesManament\ClothesAdmin\ClothesAdmin\ClothesAdmin\bin\Debug\SqlServerTypes\x64\msvcr120.dll
+D:\Thuy\thuctap\Internship_ClothesManament\ClothesAdmin\ClothesAdmin\ClothesAdmin\bin\Debug\SqlServerTypes\x64\SqlServerSpatial140.dll
+D:\Thuy\thuctap\Internship_ClothesManament\ClothesAdmin\ClothesAdmin\ClothesAdmin\bin\Debug\SqlServerTypes\x86\msvcr120.dll
+D:\Thuy\thuctap\Internship_ClothesManament\ClothesAdmin\ClothesAdmin\ClothesAdmin\bin\Debug\SqlServerTypes\x86\SqlServerSpatial140.dll
+D:\Thuy\thuctap\Internship_ClothesManament\ClothesAdmin\ClothesAdmin\ClothesAdmin\bin\Debug\Microsoft.SqlServer.Types.dll
+D:\Thuy\thuctap\Internship_ClothesManament\ClothesAdmin\ClothesAdmin\ClothesAdmin\obj\Debug\ClothesAdmin.FormLogin.resources
+D:\Thuy\thuctap\Internship_ClothesManament\ClothesAdmin\ClothesAdmin\ClothesAdmin\obj\Debug\ClothesAdmin.exe.licenses

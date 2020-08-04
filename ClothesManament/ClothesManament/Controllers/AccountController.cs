@@ -297,6 +297,16 @@ namespace ClothesManament.Controllers
                         data = null
                     };
                 }
+                else if (resultInt == -3)
+                {
+                    return new ResponseObjectModel<SPGetAccountInfoUserID_Result1>()
+                    {
+                        message = "Tài khoản chưa được xác thực, vui lòng kiểm tra mail của bạn",
+                        status = false,
+                        code = 200,
+                        data = null
+                    };
+                }
                 else
                 {
                     var accountInfo = entities.SPGetAccountInfoUserID(resultInt).FirstOrDefault(); ;
@@ -332,10 +342,41 @@ namespace ClothesManament.Controllers
 
         }
 
+        private string createMailAuthen(string userName)
+
+        {
+            string body = string.Empty;
+            //using streamreader for reading my htmltemplate   
+            using (StreamReader reader = new StreamReader(HttpContext.Current.Server.MapPath("/Views/Home/auth.cshtml")))
+            {
+                body = reader.ReadToEnd();
+            }
+            body = body.Replace("{name}", userName); //replacing the required things  
+            return body;
+        }
+
+        [Route("api/confirm-account")]
+        [HttpGet]
+        [AcceptVerbs("GET")]
+        public String authenAccount()
+        {
+            var email = MemoryCacheHelper.GetValue("emailRegister") as String;
+            if(email ==null) return "Xác thực tài khoản thất bại, liên kết đã hết hạn!";
+            var result = entities.SP_AuthAccount(email).FirstOrDefault();
+            if (result == -1)
+            {
+                return "Email của bạn chưa được đăng ký trong hệ thống, vui lòng kiểm tra lại!";
+            }
+            else
+            {
+                return "Tài khoản của bạn đã được xác thực thành công!";
+            }
+        }
+
         [Route("api/signUp")]
         [AcceptVerbs("POST")]
         [HttpPost]
-        public ResponseObjectModel<SPGetAccountInfoByUsername_Result1> signUp([FromBody] AccountInfo acc)
+        public async Task<ResponseObjectModel<SPGetAccountInfoByUsername_Result1>> signUp([FromBody] AccountInfo acc)
         {
             try
             {
@@ -388,10 +429,31 @@ namespace ClothesManament.Controllers
                                 data = null
                             };
                         }
+                        MailMessage msg = new MailMessage();
+                        msg.From = new MailAddress("congnghephanmemptithcm@gmail.com");
+                        msg.To.Add(acc.email);
+                        msg.Subject = "Xác thực tài khoản";
+                        MemoryCacheHelper.Add("emailRegister", acc.email, DateTimeOffset.UtcNow.AddHours(1));
 
+                        msg.Body = createMailAuthen(acc.name);
+                        //msg.Priority = MailPriority.High;
+                        msg.IsBodyHtml = true;
+
+                        using (SmtpClient client = new SmtpClient())
+                        {
+                            client.EnableSsl = true;
+                            client.UseDefaultCredentials = false;
+                            client.Credentials = new NetworkCredential("congnghephanmemptithcm@gmail.com", "quankhung123");
+                            client.Host = "smtp.gmail.com";
+                            client.Port = 587;
+                            client.DeliveryMethod = SmtpDeliveryMethod.Network;
+                            //client.Send(msg);
+                            await client.SendMailAsync(msg);
+                            await Task.FromResult(0);
+                        }
                         return new ResponseObjectModel<SPGetAccountInfoByUsername_Result1>()
                         {
-                            message = "Đăng ký tài khoản thành công",
+                            message = "Đăng ký tài khoản thành công, vui lòng kiểm tra mail để xác thực tài khoản!",
                             status = true,
                             code = 200,
                             data = accountInfo

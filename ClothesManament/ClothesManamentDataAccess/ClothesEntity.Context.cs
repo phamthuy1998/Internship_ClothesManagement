@@ -840,5 +840,14 @@ namespace ClothesManamentDataAccess
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("SP_GetProductSearchFilterCount", typeIdParameter, keySearchParameter, categoryIdParameter);
         }
+    
+        public virtual ObjectResult<Nullable<int>> SP_AuthAccount(string email)
+        {
+            var emailParameter = email != null ?
+                new ObjectParameter("email", email) :
+                new ObjectParameter("email", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("SP_AuthAccount", emailParameter);
+        }
     }
 }

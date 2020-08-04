@@ -20,5 +20,32 @@ namespace ClothesAdmin
         {
 
         }
+
+        private void btnDangNhap_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnThoat_Click(object sender, EventArgs e)
+        {
+
+            DialogResult dr = MessageBox.Show("Bạn có chắc muốn thoát chương trình", "Thông báo", MessageBoxButtons.YesNo);
+            if (dr == DialogResult.Yes)
+            {
+                Application.ExitThread();
+            }
+        }
+
+        private void frmDangNhap_FormClosing(object sender, FormClosingEventArgs e)
+        {
+
+            DialogResult dr = MessageBox.Show("Bạn có chắc muốn thoát chương trình", "Thông báo", MessageBoxButtons.YesNo);
+            if (dr == DialogResult.Yes)
+            {
+                Application.ExitThread();
+            }
+            else e.Cancel = true;
+        }
+
     }
 }
