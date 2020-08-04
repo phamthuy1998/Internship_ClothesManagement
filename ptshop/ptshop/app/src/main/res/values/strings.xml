@@ -178,6 +178,7 @@
     <string name="quantity_spinner">QTY %1s</string>
     <string name="quantity_x">x %1s</string>
     <string name="add_to_basket_success">Item is added to the basket</string>
+    <string name="some_item_changed_in_cart">Some items in cart has been changed price or quantity. Please check again!</string>
     <string name="item_selected_no_quantity">There is no product of this selection in stock</string>
     <string name="place_order">Place Order</string>
     <string name="select_delivery_method">Select Delivery Method</string>

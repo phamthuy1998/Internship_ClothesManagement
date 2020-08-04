@@ -102,10 +102,6 @@ class ShoppingCardRepositoryImpl(val api: ApiService, val apiClothesService: Api
 
                     }
                 }
-                if (!response.isNullOrEmpty()) {
-                    ObjectHandler.cart?.products = response
-                    ObjectHandler.saveCartToPref()
-                }
                 return response
             }
         }.build().asLiveData()

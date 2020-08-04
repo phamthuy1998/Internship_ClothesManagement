@@ -8,6 +8,7 @@ import com.ptithcm.core.model.Basket
 import com.ptithcm.core.model.Brand
 import com.ptithcm.core.model.ProductClothesDetail
 import com.ptithcm.core.repository.ShoppingCardRepository
+import com.ptithcm.core.util.ObjectHandler
 import com.ptithcm.core.vo.MessageResponse
 import com.ptithcm.core.vo.Result
 import kotlinx.coroutines.launch
@@ -52,6 +53,10 @@ class ShoppingViewModel(val repo: ShoppingCardRepository) : ViewModel() {
                         error.value = Pair(it.message, it.code)
                     }
                     is Result.Success -> {
+                        if (!it.data.isNullOrEmpty()) {
+                            ObjectHandler.cart?.products = it.data ?: arrayListOf()
+                            ObjectHandler.saveCartToPref()
+                        }
                         cartResult.value = it.data
                     }
                 }

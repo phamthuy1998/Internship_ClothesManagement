@@ -27,7 +27,6 @@ import com.ptithcm.ptshop.view.MainActivity
 import com.ptithcm.ptshop.view.home.StoryDetailActivity
 import com.ptithcm.ptshop.viewmodel.ShoppingViewModel
 import com.ptithcm.ptshop.widget.RecyclerRefreshLayout
-import org.jetbrains.anko.collections.forEachWithIndex
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import java.util.*
 
@@ -55,23 +54,20 @@ class ShoppingBagFragment : BaseFragment<FragmentShoppingBagBinding>(), View.OnC
             viewBinding.swipeRf.isEnabled = false
             setupEmptyView()
         }
-
-        viewBinding.swipeRf.setOnRefreshListener {
-            basketViewModel.getAllProductsInCart(ObjectHandler.getAllIdProdsInCart())
-        }
     }
 
     override fun bindViewModel() {
         basketViewModel.cartResult.observe(this, androidx.lifecycle.Observer {
             setUpResult(it)
+            val indexOfItemChanged = it.indexOfFirst { it.hasChanged }
+            if (indexOfItemChanged != -1) {
+                messageHandler?.runMessageErrorHandler(getString(R.string.some_item_changed_in_cart))
+                viewBinding.rvProducts.smoothScrollToPosition(indexOfItemChanged)
+                viewBinding.btnCheckOut.isLoading = false
+                return@Observer
+            }
             if (viewBinding.btnCheckOut.isLoading) {
                 viewBinding.btnCheckOut.isLoading = false
-                it.forEachWithIndex { i, product ->
-                    if (product.hasChanged) {
-                        viewBinding.rvProducts.smoothScrollToPosition(i)
-                        return@Observer
-                    }
-                }
                 navController.navigateAnimation(
                     R.id.fragment_checkout
                 )
@@ -132,6 +128,7 @@ class ShoppingBagFragment : BaseFragment<FragmentShoppingBagBinding>(), View.OnC
 
     private fun setUpRv() {
         viewBinding.rvProducts.adapter = adapter
+
         viewBinding.swipeRf.setRefreshView(
             RecyclerRefreshLayout(
                 requireContext(),
@@ -142,6 +139,10 @@ class ShoppingBagFragment : BaseFragment<FragmentShoppingBagBinding>(), View.OnC
                 ViewGroup.LayoutParams.WRAP_CONTENT
             )
         )
+
+        viewBinding.swipeRf.setOnRefreshListener {
+            basketViewModel.getAllProductsInCart(ObjectHandler.getAllIdProdsInCart())
+        }
     }
 
     private fun setUpToolBar(size: Int = 0) {
