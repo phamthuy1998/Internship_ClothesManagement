@@ -462,9 +462,6 @@
           <Parameter Name="oldPass" Type="varchar" Mode="In" />
           <Parameter Name="newPass" Type="varchar" Mode="In" />
         </Function>
-        <Function Name="checkMH" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="varchar">
-          <Parameter Name="maMH" Type="nchar" Mode="In" />
-        </Function>
         <Function Name="DelAccount" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="userId" Type="int" Mode="In" />
         </Function>
@@ -478,9 +475,6 @@
         </Function>
         <Function Name="getCategoryGender" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="GenderID" Type="int" Mode="In" />
-        </Function>
-        <Function Name="Num2Text" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="nvarchar">
-          <Parameter Name="Number" Type="float" Mode="In" />
         </Function>
         <Function Name="SP_AddAccount" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="firstName" Type="nvarchar" Mode="In" />
@@ -600,6 +594,20 @@
           <Parameter Name="AccountID" Type="int" Mode="In" />
         </Function>
         <Function Name="SP_GetProductOfCategoryCount" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="categoryId" Type="int" Mode="In" />
+        </Function>
+        <Function Name="SP_GetProductSearchFilter" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="typeId" Type="int" Mode="In" />
+          <Parameter Name="keySearch" Type="nvarchar" Mode="In" />
+          <Parameter Name="typeFilter" Type="int" Mode="In" />
+          <Parameter Name="categoryId" Type="int" Mode="In" />
+          <Parameter Name="currentPage" Type="int" Mode="In" />
+          <Parameter Name="PageSize" Type="int" Mode="In" />
+          <Parameter Name="AccountID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="SP_GetProductSearchFilterCount" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="typeId" Type="int" Mode="In" />
+          <Parameter Name="keySearch" Type="nvarchar" Mode="In" />
           <Parameter Name="categoryId" Type="int" Mode="In" />
         </Function>
         <Function Name="SP_GetProductsOfProvider" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
@@ -866,7 +874,7 @@
           <FunctionImport Name="SP_GetProductOfCategoryCount" ReturnType="Collection(Int32)">
           <Parameter Name="categoryId" Mode="In" Type="Int32" />
           </FunctionImport>
-          <FunctionImport Name="SP_GetProductsOfProvider" ReturnType="Collection(ClothesManamentModel1.SP_GetProductsOfProvider_Result1)">
+          <FunctionImport Name="SP_GetProductsOfProvider" ReturnType="Collection(ClothesManamentModel1.SP_GetProductOfCategory_Result1)">
             <Parameter Name="providerId" Mode="In" Type="Int32" />
             <Parameter Name="currentPage" Mode="In" Type="Int32" />
             <Parameter Name="PageSize" Mode="In" Type="Int32" />
@@ -1094,6 +1102,20 @@
           <FunctionImport Name="forgotPasswordReset">
             <Parameter Name="email" Mode="In" Type="String" />
             <Parameter Name="newPass" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="SP_GetProductSearchFilter" ReturnType="Collection(ClothesManamentModel1.SP_GetProductOfCategory_Result1)">
+            <Parameter Name="typeId" Mode="In" Type="Int32" />
+            <Parameter Name="keySearch" Mode="In" Type="String" />
+            <Parameter Name="typeFilter" Mode="In" Type="Int32" />
+            <Parameter Name="categoryId" Mode="In" Type="Int32" />
+            <Parameter Name="currentPage" Mode="In" Type="Int32" />
+            <Parameter Name="PageSize" Mode="In" Type="Int32" />
+            <Parameter Name="AccountID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="SP_GetProductSearchFilterCount" ReturnType="Collection(Int32)">
+            <Parameter Name="typeId" Mode="In" Type="Int32" />
+            <Parameter Name="keySearch" Mode="In" Type="String" />
+            <Parameter Name="categoryId" Mode="In" Type="Int32" />
           </FunctionImport>
           </EntityContainer>
         <ComplexType Name="getCategoryByGender_Result">
@@ -1977,7 +1999,7 @@
           <FunctionImportMapping FunctionImportName="SP_GetProductOfCategoryCount" FunctionName="ClothesManamentModel1.Store.SP_GetProductOfCategoryCount" />
           <FunctionImportMapping FunctionImportName="SP_GetProductsOfProvider" FunctionName="ClothesManamentModel1.Store.SP_GetProductsOfProvider" >
           <ResultMapping>
-              <ComplexTypeMapping TypeName="ClothesManamentModel1.SP_GetProductsOfProvider_Result1">
+              <ComplexTypeMapping TypeName="ClothesManamentModel1.SP_GetProductOfCategory_Result1">
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="title" ColumnName="title" />
                 <ScalarProperty Name="detail" ColumnName="detail" />
@@ -2420,6 +2442,23 @@
           <FunctionImportMapping FunctionImportName="SP_AddAccount" FunctionName="ClothesManamentModel1.Store.SP_AddAccount" />
           <FunctionImportMapping FunctionImportName="SP_EditAddress" FunctionName="ClothesManamentModel1.Store.SP_EditAddress" />
           <FunctionImportMapping FunctionImportName="forgotPasswordReset" FunctionName="ClothesManamentModel1.Store.forgotPasswordReset" />
+          <FunctionImportMapping FunctionImportName="SP_GetProductSearchFilter" FunctionName="ClothesManamentModel1.Store.SP_GetProductSearchFilter" >
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ClothesManamentModel1.SP_GetProductOfCategory_Result1">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="title" ColumnName="title" />
+                <ScalarProperty Name="detail" ColumnName="detail" />
+                <ScalarProperty Name="rating" ColumnName="rating" />
+                <ScalarProperty Name="sold" ColumnName="sold" />
+                <ScalarProperty Name="price" ColumnName="price" />
+                <ScalarProperty Name="thumnail" ColumnName="thumnail" />
+                <ScalarProperty Name="isLike" ColumnName="isLike" />
+                <ScalarProperty Name="promotion" ColumnName="promotion" />
+                <ScalarProperty Name="typePromotion" ColumnName="typePromotion" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SP_GetProductSearchFilterCount" FunctionName="ClothesManamentModel1.Store.SP_GetProductSearchFilterCount" />
           </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

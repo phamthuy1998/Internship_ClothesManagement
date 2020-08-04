@@ -274,6 +274,7 @@
     <Compile Include="Models\ListResponse.cs" />
     <Compile Include="Models\AccountInfo.cs" />
     <Compile Include="Models\MemoryCacheHelper.cs" />
+    <Compile Include="Models\FilterSearch.cs" />
     <Compile Include="Models\OrderDetail.cs" />
     <Compile Include="Models\ProductOrder.cs" />
     <Compile Include="Models\OrderParam.cs" />
