@@ -1,7 +1,6 @@
 package com.ptithcm.ptshop.util
 
 import android.graphics.Paint
-import android.text.Html
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.appcompat.widget.AppCompatSpinner
@@ -101,5 +100,23 @@ object BindingAdapterText {
     fun setPaintFlagsStrike(view: TextView, boolean: Boolean) {
         if (boolean)
             view.paintFlags = (Paint.STRIKE_THRU_TEXT_FLAG)
+    }
+
+    @JvmStatic
+    @BindingAdapter("hasChangedPrice", "hasChangeQuantity")
+    fun setTextErrorInCart(view: TextView, hasChangedPrice: Boolean?, hasChangeQuantity: Boolean?) {
+        val stringRes = when {
+            hasChangedPrice == true && hasChangeQuantity == true -> R.string.error_price_quantity_has_been_changed
+            hasChangedPrice == true -> R.string.error_price_has_been_changed
+            hasChangeQuantity == true -> R.string.error_quantity_has_been_changed
+            else -> -1
+        }
+        if (stringRes == -1)
+            return
+
+        view.text = HtmlCompat.fromHtml(
+            view.context.getString(stringRes),
+            HtmlCompat.FROM_HTML_MODE_COMPACT
+        )
     }
 }

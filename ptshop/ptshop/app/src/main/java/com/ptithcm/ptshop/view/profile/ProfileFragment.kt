@@ -24,7 +24,6 @@ import com.ptithcm.core.model.Carousel
 import com.ptithcm.core.model.Profile
 import com.ptithcm.core.model.TypeCarousel
 import com.ptithcm.core.param.UpdateDetailParam
-import com.ptithcm.core.util.ObjectHandler
 import com.ptithcm.ptshop.R
 import com.ptithcm.ptshop.base.BaseActivity
 import com.ptithcm.ptshop.base.BaseFragment
@@ -110,9 +109,6 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>(), View.OnClickList
         viewBinding.fragment = this
         viewBinding.isLogin = currentAccount != null
         viewBinding.account = currentAccount
-        if (ObjectHandler.isLogin()){
-            shoppingViewModel.updateBasketFromLocal()
-        }
     }
 
     private fun observeViewModel() {
@@ -121,7 +117,6 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>(), View.OnClickList
                 (requireActivity() as? BaseActivity<*>)?.closePopup()
                 CoreApplication.instance.clearAccount()
                 viewBinding.isLogin = false
-                viewBinding.isBrand = false
                 setupToolbar()
                 (activity as? MainActivity)?.updateUIBottomNav()
             }

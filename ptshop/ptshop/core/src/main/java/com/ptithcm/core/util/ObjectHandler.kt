@@ -4,6 +4,7 @@ import com.ptithcm.core.CoreApplication
 import com.ptithcm.core.model.Cart
 import com.ptithcm.core.model.ProductClothesDetail
 import com.ptithcm.core.model.ProductVariant
+import java.util.concurrent.CopyOnWriteArraySet
 
 object ObjectHandler {
 
@@ -35,6 +36,8 @@ object ObjectHandler {
     fun getTotalPrice() = CoreApplication.instance.cart?.products?.fold(
         0.0,
         { sum, prod -> sum + (prod.getFinalPrice() * (prod.quantityInCart?.quantity ?: 1)) })
+
+    fun getAllIdProdsInCart(): List<Int> = cart?.products?.map { it.id } ?: arrayListOf()
 
     //check quantity of a product in prefsUtil
     fun getQuantityProductClothesFromLocal(productId: Int?, sizeId: Int?, colorId: Int?): Int {

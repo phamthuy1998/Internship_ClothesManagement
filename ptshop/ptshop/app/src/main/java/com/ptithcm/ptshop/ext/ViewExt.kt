@@ -1,5 +1,6 @@
 package com.ptithcm.ptshop.ext
 
+import android.graphics.Typeface
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -8,13 +9,16 @@ import android.view.animation.Animation
 import android.view.animation.AnimationUtils
 import android.view.animation.Transformation
 import android.widget.LinearLayout
+import android.widget.TextView
 import androidx.annotation.LayoutRes
+import androidx.core.content.ContextCompat
 import androidx.core.view.doOnLayout
 import androidx.core.view.isVisible
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import com.google.android.material.bottomnavigation.BottomNavigationItemView
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.google.android.material.snackbar.Snackbar
 import com.ptithcm.ptshop.R
 import com.ptithcm.ptshop.constant.MENU_ADD_PRODUCT_ID
 import com.ptithcm.ptshop.databinding.FragmentRefineBinding
@@ -251,4 +255,26 @@ fun BottomNavigationView.disableLongClick() {
 
 fun View.startAnimationError() {
     startAnimation(AnimationUtils.loadAnimation(context, R.anim.shake))
+}
+
+fun View.showErrorSnackBar(resString: Int) {
+    val message = context.getString(resString)
+    val snackBar = Snackbar.make(this, message, Snackbar.LENGTH_SHORT)
+    val snackBarView = snackBar.view
+    snackBarView.setBackgroundColor(ContextCompat.getColor(context, R.color.red))
+    val textView = snackBarView.findViewById<View>(R.id.snackbar_text) as TextView
+    textView.setTextColor(ContextCompat.getColor(context, R.color.white))
+    textView.setTypeface(null, Typeface.BOLD)
+    snackBar.show()
+}
+
+fun View.showErrorSnackBar(string: String?) {
+    val message = string ?: ""
+    val snackBar = Snackbar.make(this, message, Snackbar.LENGTH_SHORT)
+    val snackBarView = snackBar.view
+    snackBarView.setBackgroundColor(ContextCompat.getColor(context, R.color.red))
+    val textView = snackBarView.findViewById<View>(R.id.snackbar_text) as TextView
+    textView.setTextColor(ContextCompat.getColor(context, R.color.white))
+    textView.setTypeface(null, Typeface.BOLD)
+    snackBar.show()
 }

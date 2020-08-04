@@ -9,7 +9,6 @@ import android.widget.ArrayAdapter
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.ptithcm.core.model.ProductClothesDetail
-import com.ptithcm.core.util.ObjectHandler
 import com.ptithcm.core.vo.Result
 import com.ptithcm.ptshop.R
 import com.ptithcm.ptshop.databinding.ItemShoppingCardBinding
@@ -20,8 +19,6 @@ class ShoppingCardAdapter(val listener: ((Int, Any?) -> Unit)? = null) :
     RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     private var productList = arrayListOf<ProductClothesDetail>()
-
-    private val isLogin = ObjectHandler.isLogin()
 
     var curProduct: ProductClothesDetail? = null
 
@@ -42,7 +39,8 @@ class ShoppingCardAdapter(val listener: ((Int, Any?) -> Unit)? = null) :
     }
 
     fun submitList(list: ArrayList<ProductClothesDetail>) {
-        productList = list
+        productList.clear()
+        productList.addAll(list)
         notifyDataSetChanged()
     }
 
@@ -81,21 +79,26 @@ class ShoppingCardAdapter(val listener: ((Int, Any?) -> Unit)? = null) :
                 curProduct = item
                 viewBinding.btnQuantity.performClick()
             }
+
+            if (item.hasChanged)
+                viewBinding.root.startAnimationError()
+
+            viewBinding.executePendingBindings()
         }
 
         private fun setUpBtnQuantity(item: ProductClothesDetail) {
-            val quantityInCart = item.quantityInCart?.quantity ?: 0
-
             val quantityInStock = item.getSizeAndColorById(
                 sizeId = item.selectedSize?.id,
                 colorId = item.selectedColor?.id
-            )?.quantity ?: 0
-            val realQuantity = quantityInStock.coerceAtMost(50)
+            )?.quantity?.coerceAtMost(50) ?: 0
+
+            val quantityInCart =
+                item.quantityInCart?.quantity?.coerceAtMost(quantityInStock) ?: 0 ?: 0
 
             viewBinding.tvQuantity.text =
                 context.getString(R.string.quantity_spinner, quantityInCart.toString())
 
-            val option = (1..realQuantity).toMutableList().map { it.toString() }
+            val option = (1..quantityInStock).toMutableList().map { it.toString() }
             viewBinding.btnQuantity.adapter = ArrayAdapter(context, R.layout.item_spinner, option)
             viewBinding.btnQuantity.setSelection(quantityInCart - 1, true)
             viewBinding.btnQuantity.onItemSelectedListener =
