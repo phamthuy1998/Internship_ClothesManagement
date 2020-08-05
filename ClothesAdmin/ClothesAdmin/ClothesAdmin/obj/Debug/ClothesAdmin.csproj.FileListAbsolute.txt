@@ -52,3 +52,16 @@ D:\Thuy\thuctap\Internship_ClothesManament\ClothesAdmin\ClothesAdmin\ClothesAdmi
 D:\Thuy\thuctap\Internship_ClothesManament\ClothesAdmin\ClothesAdmin\ClothesAdmin\bin\Debug\Microsoft.SqlServer.Types.dll
 D:\Thuy\thuctap\Internship_ClothesManament\ClothesAdmin\ClothesAdmin\ClothesAdmin\obj\Debug\ClothesAdmin.FormLogin.resources
 D:\Thuy\thuctap\Internship_ClothesManament\ClothesAdmin\ClothesAdmin\ClothesAdmin\obj\Debug\ClothesAdmin.exe.licenses
+D:\Thuy\thuctap\Internship_ClothesManament\ClothesAdmin\ClothesAdmin\ClothesAdmin\bin\Debug\DevExpress.XtraBars.v19.1.dll
+D:\Thuy\thuctap\Internship_ClothesManament\ClothesAdmin\ClothesAdmin\ClothesAdmin\bin\Debug\DevExpress.XtraBars.v19.1.xml
+D:\Thuy\thuctap\Internship_ClothesManament\ClothesAdmin\ClothesAdmin\ClothesAdmin\bin\Debug\de\DevExpress.XtraBars.v19.1.resources.dll
+D:\Thuy\thuctap\Internship_ClothesManament\ClothesAdmin\ClothesAdmin\ClothesAdmin\bin\Debug\es\DevExpress.XtraBars.v19.1.resources.dll
+D:\Thuy\thuctap\Internship_ClothesManament\ClothesAdmin\ClothesAdmin\ClothesAdmin\bin\Debug\ja\DevExpress.XtraBars.v19.1.resources.dll
+D:\Thuy\thuctap\Internship_ClothesManament\ClothesAdmin\ClothesAdmin\ClothesAdmin\bin\Debug\ru\DevExpress.XtraBars.v19.1.resources.dll
+D:\Thuy\thuctap\Internship_ClothesManament\ClothesAdmin\ClothesAdmin\ClothesAdmin\obj\Debug\ClothesAdmin.MainForm.resources
+D:\Thuy\thuctap\Internship_ClothesManament\ClothesAdmin\ClothesAdmin\ClothesAdmin\bin\Debug\DevExpress.XtraLayout.v19.1.dll
+D:\Thuy\thuctap\Internship_ClothesManament\ClothesAdmin\ClothesAdmin\ClothesAdmin\bin\Debug\DevExpress.XtraLayout.v19.1.xml
+D:\Thuy\thuctap\Internship_ClothesManament\ClothesAdmin\ClothesAdmin\ClothesAdmin\bin\Debug\de\DevExpress.XtraLayout.v19.1.resources.dll
+D:\Thuy\thuctap\Internship_ClothesManament\ClothesAdmin\ClothesAdmin\ClothesAdmin\bin\Debug\es\DevExpress.XtraLayout.v19.1.resources.dll
+D:\Thuy\thuctap\Internship_ClothesManament\ClothesAdmin\ClothesAdmin\ClothesAdmin\bin\Debug\ja\DevExpress.XtraLayout.v19.1.resources.dll
+D:\Thuy\thuctap\Internship_ClothesManament\ClothesAdmin\ClothesAdmin\ClothesAdmin\bin\Debug\ru\DevExpress.XtraLayout.v19.1.resources.dll

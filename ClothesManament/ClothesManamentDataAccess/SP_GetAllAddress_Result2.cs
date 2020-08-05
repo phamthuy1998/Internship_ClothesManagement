@@ -10,9 +10,8 @@
 namespace ClothesManamentDataAccess
 {
     using System;
-    using System.Collections.Generic;
     
-    public partial class Address
+    public partial class SP_GetAllAddress_Result2
     {
         public int id { get; set; }
         public Nullable<int> accountId { get; set; }
@@ -22,9 +21,6 @@ namespace ClothesManamentDataAccess
         public string street { get; set; }
         public string name { get; set; }
         public string phone { get; set; }
-        public Nullable<int> active { get; set; }
         public Nullable<int> isDefault { get; set; }
-    
-        public virtual Account Account { get; set; }
     }
 }

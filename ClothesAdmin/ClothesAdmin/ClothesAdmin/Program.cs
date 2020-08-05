@@ -12,15 +12,21 @@ namespace ClothesAdmin
 {
     static class Program
     {
-        public static FormLogin frmLogin;
+        public static FormLogin frmLogin; 
         public static SqlConnection conn = new SqlConnection();
         public static String connstr;
         public static SqlDataReader myReader;
+
+        public static MainForm mainForm;
+
+
+        public static AccountLogin accountLogin;
 
         /// <summary>
         /// The main entry point for the application.
         /// </summary>
         [STAThread]
+
         static void Main()
         {
             Application.EnableVisualStyles();
@@ -32,7 +38,6 @@ namespace ClothesAdmin
 
         public static int ExecSqlNonQuery(String strlenh)
         {
-
             if (conn.State == ConnectionState.Closed) conn.Open();
             SqlCommand Sqlcmd = new SqlCommand(strlenh, conn);
             Sqlcmd.CommandType = CommandType.Text;
@@ -58,7 +63,7 @@ namespace ClothesAdmin
                 Program.conn.Close();
             try
             {
-                Program.connstr = "Data Source=THUY;Initial Catalog=ClothesManament;User ID=sa;password=123";
+                Program.connstr = "Data Source=THUY;Initial Catalog=ClothesManament;Persist Security Info=True;User ID=sa;Password=123";
                 Program.conn.ConnectionString = Program.connstr;
                 Program.conn.Open();
                 return 1;

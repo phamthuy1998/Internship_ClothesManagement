@@ -220,6 +220,9 @@
     <Compile Include="Provider.cs">
       <DependentUpon>ClothesEntity.tt</DependentUpon>
     </Compile>
+    <Compile Include="Role.cs">
+      <DependentUpon>ClothesEntity.tt</DependentUpon>
+    </Compile>
     <Compile Include="Size.cs">
       <DependentUpon>ClothesEntity.tt</DependentUpon>
     </Compile>
@@ -251,6 +254,9 @@
       <DependentUpon>ClothesEntity.tt</DependentUpon>
     </Compile>
     <Compile Include="SP_GetAllAddress_Result1.cs">
+      <DependentUpon>ClothesEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SP_GetAllAddress_Result2.cs">
       <DependentUpon>ClothesEntity.tt</DependentUpon>
     </Compile>
     <Compile Include="SP_GetAllInvoice_Result.cs">

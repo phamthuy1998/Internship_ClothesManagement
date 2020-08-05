@@ -240,7 +240,7 @@ namespace ClothesManament.Controllers
 
             return new ResponseObjectModel<String>()
             {
-                message = "Email reset password đã được gửi tới email "+ email,
+                message = "Email reset password đã được gửi tới email " + email,
                 status = true,
                 code = 200,
                 data = ""
@@ -254,14 +254,15 @@ namespace ClothesManament.Controllers
         [HttpGet]
         public String changePassword()
         {
-            var pass = MemoryCacheHelper.GetValue("changePassword")as String;
+            var pass = MemoryCacheHelper.GetValue("changePassword") as String;
             var email = MemoryCacheHelper.GetValue("emailChangePassword") as String;
 
             var result = entities.forgotPasswordReset(email, pass);
-            if (result==-1)
+            if (result == -1)
             {
                 return "email không tồn tại trong hệ thống, vui lòng kiểm tra lại";
-            }else
+            }
+            else
             {
                 return "Đổi mật khẩu thành công";
             }
@@ -361,7 +362,7 @@ namespace ClothesManament.Controllers
         public String authenAccount()
         {
             var email = MemoryCacheHelper.GetValue("emailRegister") as String;
-            if(email ==null) return "Xác thực tài khoản thất bại, liên kết đã hết hạn!";
+            if (email == null) return "Xác thực tài khoản thất bại, liên kết đã hết hạn!";
             var result = entities.SP_AuthAccount(email).FirstOrDefault();
             if (result == -1)
             {
@@ -558,9 +559,10 @@ namespace ClothesManament.Controllers
             String wards = null,
             String street = null,
             String name = null,
-            String phone = null)
+            String phone = null,
+             Nullable<int> isDefault = null)
         {
-            var addressId = (await Task.Run(() => entities.SP_AddAddress(userId, province, district, wards, street, name, phone).FirstOrDefault()));
+            var addressId = (await Task.Run(() => entities.SP_AddAddress(userId, province, district, wards, street, name, phone, isDefault).FirstOrDefault()));
             if (addressId > 0)
                 return new ResponseObjectModel<int?>
                 {
@@ -589,9 +591,11 @@ namespace ClothesManament.Controllers
            String wards = null,
            String street = null,
            String name = null,
-           String phone = null)
+           String phone = null,
+            Nullable<int> isDefault = null,
+             Nullable<int> accountId = null)
         {
-            var result = (await Task.Run(() => entities.SP_EditAddress(addressId, province, district, wards, street, name, phone)));
+            var result = (await Task.Run(() => entities.SP_EditAddress(addressId, province, district, wards, street, name, phone, isDefault, accountId)));
             return new ResponseObjectModel<int?>
             {
                 message = "Cập nhật địa chỉ thành công",

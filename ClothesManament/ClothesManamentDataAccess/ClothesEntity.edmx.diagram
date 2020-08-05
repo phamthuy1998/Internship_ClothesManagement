@@ -40,6 +40,8 @@
         <AssociationConnector Association="ClothesManamentModel1.FavoriteProduct" />
         <AssociationConnector Association="ClothesManamentModel1.PromotionItem" />
         <AssociationConnector Association="ClothesManamentModel1.FK_InvoiceItem_ProductSizeColor" />
+        <EntityTypeShape EntityType="ClothesManamentModel1.Role" Width="1.5" PointX="0.75" PointY="6.625" />
+        <AssociationConnector Association="ClothesManamentModel1.FK_Account_Role" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
