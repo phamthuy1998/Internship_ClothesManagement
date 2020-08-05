@@ -131,7 +131,7 @@
     <string name="show_results">Show Result (%s)</string>
     <string name="applys">Apply (%s)</string>
     <string name="city">City*</string>
-    <string name="phone">Phone*</string>
+    <string name="phone">Phone</string>
     <string name="no_price">No Price</string>
     <string name="apply">Apply</string>
     <string name="delete">Delete</string>
@@ -142,6 +142,7 @@
     <string name="set_card_as_default_payment">Set card as default payment</string>
     <string name="terms_and_conditions_">Terms and Conditions</string>
     <string name="save_and_continue">SAVE AND CONTINUE</string>
+    <string name="add_address">ADD ADDRESS</string>
 
     <string name="bags">Bags</string>
     <string name="t_shirts">T-Shirts</string>
@@ -294,4 +295,8 @@
     <string name="error_quantity_has_been_changed"><![CDATA[<b>Quantity in Stock</b> has been changed, Please check again!]]></string>
     <string name="error_price_has_been_changed"><![CDATA[<b>Price</b> has been changed, Please check again!]]></string>
     <string name="default_address">Default</string>
+    <string name="street">Street</string>
+    <string name="district">District</string>
+    <string name="wards">Wards</string>
+    <string name="province">Province</string>
 </resources>

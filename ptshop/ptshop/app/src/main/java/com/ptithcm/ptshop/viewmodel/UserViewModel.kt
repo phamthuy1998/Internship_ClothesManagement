@@ -105,9 +105,6 @@ class UserViewModel(private val repository: UserRepository) : ViewModel() {
         viewModelScope.launch {
             allAddressLiveData.addSource(repository.getAllAddress()) {
                 when (it) {
-                    Result.Loading -> {
-                        isLoading.value = true
-                    }
                     is Result.Error -> {
                         isLoading.value = false
                         error.value = Pair(it.message, it.code)
@@ -136,7 +133,8 @@ class UserViewModel(private val repository: UserRepository) : ViewModel() {
         }
     }
 
-    fun updateAddress(param: ShoppingAddress) {
+    fun updateAddress(param: ShoppingAddress?) {
+        param ?: return
         viewModelScope.launch {
             updateAddressResultLiveData.addSource(repository.updateAddress(param)) {
                 when (it) {

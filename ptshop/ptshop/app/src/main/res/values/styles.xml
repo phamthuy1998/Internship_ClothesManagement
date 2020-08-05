@@ -184,6 +184,7 @@
         <item name="android:layout_marginStart">@dimen/layout_margin_32dp</item>
         <item name="android:layout_marginEnd">@dimen/layout_margin_32dp</item>
         <item name="android:textAlignment">viewStart</item>
+        <item name="android:gravity">center_vertical</item>
 
     </style>
 

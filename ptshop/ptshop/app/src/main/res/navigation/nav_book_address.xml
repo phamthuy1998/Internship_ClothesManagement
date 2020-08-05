@@ -8,10 +8,6 @@
         android:name="com.ptithcm.ptshop.view.addressbook.AddressBookFragment"
         android:label="AddressBookFragment" />
     <fragment
-        android:id="@+id/billingAddressDetailFragment"
-        android:name="com.ptithcm.ptshop.view.addressbook.BillingAddressDetailFragment"
-        android:label="BillingAddressDetailFragment" />
-    <fragment
         android:id="@+id/shippingAddressDetailFragment"
         android:name="com.ptithcm.ptshop.view.addressbook.ShippingAddressDetailFragment"
         android:label="ShippingAddressDetailFragment" />

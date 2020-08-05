@@ -35,14 +35,11 @@ class AddressBookFragment : BaseFragment<FragmentAddressBookBinding>() {
         }
     }
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        userViewModel.getAllAddress()
-    }
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         activity?.btnNav?.visibility = View.GONE
+        (activity as? BaseActivity<*>)?.isShowLoading(true)
+        userViewModel.getAllAddress()
         setupToolbar()
         initAdapter()
     }
@@ -54,21 +51,26 @@ class AddressBookFragment : BaseFragment<FragmentAddressBookBinding>() {
         }
     }
 
+    override fun bindEvent() {
+        viewBinding.fabCreateAddress.setOnClickListener {
+            navController.navigateAnimation(
+                R.id.shippingAddressDetailFragment
+            )
+        }
+    }
+
     override fun bindViewModelOnce() {
         super.bindViewModelOnce()
         userViewModel.allAddressLiveData.observe(this, Observer {
             adapter.submitList(it)
             viewBinding.swlRefresh.isRefreshing = false
+            (activity as? BaseActivity<*>)?.isShowLoading(false)
         })
 
         userViewModel.updateAddressResultLiveData.observe(this, Observer {
             messageHandler?.runMessageHandler(it)
             adapter.currentList.removeAt(adapter.currentPosition)
             adapter.notifyItemRemoved(adapter.currentPosition)
-        })
-
-        userViewModel.isLoading.observe(this, Observer {
-            (activity as? BaseActivity<*>)?.isShowLoading(it)
         })
 
         userViewModel.error.observe(this, Observer {
