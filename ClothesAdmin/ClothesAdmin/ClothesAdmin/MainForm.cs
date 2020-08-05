@@ -15,6 +15,8 @@ namespace ClothesAdmin
     {
         private Form form;
         private ProductForm productForm = null;
+        private CategoryForm categoryForm = null;
+        private AccountsForm accountsForm = null;
         public MainForm()
         {
             InitializeComponent();
@@ -46,5 +48,22 @@ namespace ClothesAdmin
             return null;
         }
 
+        private void backstageViewClientControl1_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnCategory_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            form = this.CheckExists(typeof(CategoryForm));
+            if (form == null)
+            {
+                IsMdiContainer = true;
+                categoryForm = new CategoryForm();
+                categoryForm.MdiParent = this;
+                categoryForm.Show();
+            }
+            else form.Activate();
+        }
     }
 }

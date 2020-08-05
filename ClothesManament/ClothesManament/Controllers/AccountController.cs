@@ -552,17 +552,9 @@ namespace ClothesManament.Controllers
         [Route("api/add-addess")]
         [AcceptVerbs("POST")]
         [HttpPost]
-        public async Task<ResponseObjectModel<int?>> addAddress(
-            Nullable<int> userId = null,
-            String province = null,
-            String district = null,
-            String wards = null,
-            String street = null,
-            String name = null,
-            String phone = null,
-             Nullable<int> isDefault = null)
+        public async Task<ResponseObjectModel<int?>> addAddress( AddressEit address)
         {
-            var addressId = (await Task.Run(() => entities.SP_AddAddress(userId, province, district, wards, street, name, phone, isDefault).FirstOrDefault()));
+            var addressId = (await Task.Run(() => entities.SP_AddAddress(address.accountId, address.province, address.district, address.wards, address.street, address.name, address.phone, address.isDefault).FirstOrDefault()));
             if (addressId > 0)
                 return new ResponseObjectModel<int?>
                 {
@@ -584,24 +576,16 @@ namespace ClothesManament.Controllers
         [Route("api/edit-addess")]
         [AcceptVerbs("PUT")]
         [HttpPut]
-        public async Task<ResponseObjectModel<int?>> editAddress(
-           Nullable<int> addressId = null,
-           String province = null,
-           String district = null,
-           String wards = null,
-           String street = null,
-           String name = null,
-           String phone = null,
-            Nullable<int> isDefault = null,
-             Nullable<int> accountId = null)
+        public ResponseObjectModel<int?> editAddress(AddressEit address)
+
         {
-            var result = (await Task.Run(() => entities.SP_EditAddress(addressId, province, district, wards, street, name, phone, isDefault, accountId)));
+            entities.SP_EditAddress(address.addressId, address.province, address.district, address.wards, address.street, address.name, address.phone, address.isDefault, address.accountId);
             return new ResponseObjectModel<int?>
             {
                 message = "Cập nhật địa chỉ thành công",
                 status = true,
                 code = 200,
-                data = addressId
+                data = null
             };
 
         }

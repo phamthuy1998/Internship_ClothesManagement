@@ -7,6 +7,7 @@ using DevExpress.Skins;
 using DevExpress.LookAndFeel;
 using System.Data;
 using System.Data.SqlClient;
+using System.Drawing;
 
 namespace ClothesAdmin
 {
@@ -26,7 +27,7 @@ namespace ClothesAdmin
         /// The main entry point for the application.
         /// </summary>
         [STAThread]
-
+       
         static void Main()
         {
             Application.EnableVisualStyles();
@@ -55,6 +56,11 @@ namespace ClothesAdmin
                 conn.Close();
                 return ex.State; // trang thai lỗi gởi từ RAISERROR trong SQL Server qua
             }
+        }
+
+        public static System.Drawing.Image resizeImage(System.Drawing.Image imgToResize, System.Drawing.Size size)
+        {
+            return (System.Drawing.Image)(new Bitmap(imgToResize, size));
         }
 
         public static int KetNoi()

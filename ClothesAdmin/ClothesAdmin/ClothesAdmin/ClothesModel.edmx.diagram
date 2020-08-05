@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="0476cbd51405424bb6b1d98b7fdd016a" Name="Diagram1">
+        <EntityTypeShape EntityType="ClothesManamentModel.Account" Width="1.5" PointX="3" PointY="12.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ClothesManamentModel.Address" Width="1.5" PointX="5.25" PointY="7.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="ClothesManamentModel.Category" Width="1.5" PointX="6" PointY="3.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="ClothesManamentModel.Color" Width="1.5" PointX="10.25" PointY="5.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="ClothesManamentModel.Customer" Width="1.5" PointX="5.25" PointY="11" IsExpanded="true" />
+        <EntityTypeShape EntityType="ClothesManamentModel.Employee" Width="1.5" PointX="5.25" PointY="14.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="ClothesManamentModel.Image" Width="1.5" PointX="10.5" PointY="8.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="ClothesManamentModel.ImportCoupon" Width="1.5" PointX="7.5" PointY="14.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="ClothesManamentModel.ImportCouponDetail" Width="1.5" PointX="9.75" PointY="14.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ClothesManamentModel.Invoice" Width="1.5" PointX="5.25" PointY="18.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="ClothesManamentModel.InvoiceItem" Width="1.5" PointX="7.5" PointY="18.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="ClothesManamentModel.Product" Width="1.5" PointX="8.25" PointY="9.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="ClothesManamentModel.ProductSizeColor" Width="1.5" PointX="12.5" PointY="12" IsExpanded="true" />
+        <EntityTypeShape EntityType="ClothesManamentModel.Promotion" Width="1.5" PointX="10.5" PointY="18.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="ClothesManamentModel.Provider" Width="1.5" PointX="6" PointY="22.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="ClothesManamentModel.Role" Width="1.5" PointX="0.75" PointY="13.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="ClothesManamentModel.Size" Width="1.5" PointX="10.25" PointY="21.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="ClothesManamentModel.sysdiagram" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <AssociationConnector Association="ClothesManamentModel.FK_Account_Role" ManuallyRouted="false" />
+        <AssociationConnector Association="ClothesManamentModel.FK_Address_Account1" ManuallyRouted="false" />
+        <AssociationConnector Association="ClothesManamentModel.FK_Customer_Account" ManuallyRouted="false" />
+        <AssociationConnector Association="ClothesManamentModel.FK_Employee_Account1" ManuallyRouted="false" />
+        <AssociationConnector Association="ClothesManamentModel.FK_Invoice_Account" ManuallyRouted="false" />
+        <AssociationConnector Association="ClothesManamentModel.FK_Product_Category" ManuallyRouted="false" />
+        <AssociationConnector Association="ClothesManamentModel.FK_ProductSizeColor_Color1" ManuallyRouted="false" />
+        <AssociationConnector Association="ClothesManamentModel.FK_ImportCoupon_Employee" ManuallyRouted="false" />
+        <AssociationConnector Association="ClothesManamentModel.FK_Image_Product" ManuallyRouted="false" />
+        <AssociationConnector Association="ClothesManamentModel.FK_ImportCouponDetail_ImportCoupon" ManuallyRouted="false" />
+        <AssociationConnector Association="ClothesManamentModel.FK_ImportCouponDetail_Product" ManuallyRouted="false" />
+        <AssociationConnector Association="ClothesManamentModel.FK_InvoiceItem_Invoice" ManuallyRouted="false" />
+        <AssociationConnector Association="ClothesManamentModel.FK_InvoiceItem_ProductSizeColor" ManuallyRouted="false" />
+        <AssociationConnector Association="ClothesManamentModel.FK_Product_Brand" ManuallyRouted="false" />
+        <AssociationConnector Association="ClothesManamentModel.FK_ProductSizeColor_Product1" ManuallyRouted="false" />
+        <AssociationConnector Association="ClothesManamentModel.FK_ProductSizeColor_Size1" ManuallyRouted="false" />
+        <AssociationConnector Association="ClothesManamentModel.FavoriteProduct" ManuallyRouted="false" />
+        <AssociationConnector Association="ClothesManamentModel.PromotionItem" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

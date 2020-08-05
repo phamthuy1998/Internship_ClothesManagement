@@ -82,7 +82,7 @@ namespace ClothesAdmin
                 Program.mainForm.tvRoleName.Text = Program.accountLogin.roleName;
                 Program.mainForm.rbAccountInfo.AccessibleName = Program.accountLogin.roleName;
                 Program.mainForm.Activate();
-                Program.mainForm.ShowDialog();
+                Invoke((Action)(() => { Program.mainForm.ShowDialog(); }));
                 this.Close();
             }
             else

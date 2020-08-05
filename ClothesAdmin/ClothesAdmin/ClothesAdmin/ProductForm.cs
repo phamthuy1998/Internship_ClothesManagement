@@ -10,7 +10,7 @@ using System.Windows.Forms;
 
 namespace ClothesAdmin
 {
-    public partial class ProductForm : Form
+    public partial class ProductForm : DevExpress.XtraEditors.XtraForm
     {
         public ProductForm()
         {
