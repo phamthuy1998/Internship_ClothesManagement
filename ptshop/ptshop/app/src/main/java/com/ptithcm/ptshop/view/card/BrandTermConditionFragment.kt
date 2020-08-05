@@ -4,7 +4,6 @@ import androidx.lifecycle.Observer
 import com.ptithcm.ptshop.R
 import com.ptithcm.ptshop.base.BaseFragment
 import com.ptithcm.ptshop.constant.ERROR_CODE_404
-import com.ptithcm.ptshop.constant.KEY_ARGUMENT_INT
 import com.ptithcm.ptshop.databinding.FragmentBrandTermConditionBinding
 import com.ptithcm.ptshop.ext.initToolBar
 import com.ptithcm.ptshop.ext.isShowErrorNetwork
@@ -22,18 +21,10 @@ class BrandTermConditionFragment : BaseFragment<FragmentBrandTermConditionBindin
     private val shoppingViewModel: ShoppingViewModel by viewModel()
 
     override fun bindEvent() {
-        arguments?.getInt(KEY_ARGUMENT_INT)?.let {
-            shoppingViewModel.getBrandDetail(it)
-        }
-
         setUpToolBar()
     }
 
     override fun bindViewModel() {
-        shoppingViewModel.brandDetailResult.observe(this, Observer {
-            viewBinding.termCondition.text = if (it.terms.isNullOrEmpty()) getString(R.string.term_condition_empty) else it.terms
-        })
-
         shoppingViewModel.isLoading.observe(this, Observer {
             (activity as? MainActivity)?.isShowLoading(it)
         })

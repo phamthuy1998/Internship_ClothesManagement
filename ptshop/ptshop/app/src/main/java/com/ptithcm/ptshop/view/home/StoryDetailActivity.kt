@@ -49,8 +49,6 @@ class StoryDetailActivity : BaseActivity<FragmentStoryDetailBinding>() {
 
 
     override fun bindViewModel() {
-        shoppingViewModel.cardResult.observe(this, Observer {  })
-        wishListViewModel.wishListResult.observe(this, Observer { })
         brandViewModel.brandsLiveData.observe(this, Observer { })
         brandViewModel.storesLiveData.observe(this, Observer {})
     }

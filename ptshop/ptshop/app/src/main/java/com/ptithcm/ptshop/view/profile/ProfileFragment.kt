@@ -160,12 +160,7 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>(), View.OnClickList
                 Toast.makeText(requireContext(), it.first, Toast.LENGTH_SHORT).show()
             }
         })
-
-        shoppingViewModel.updateResult.observe(this, Observer {
-            setupToolbar()
-        })
     }
-
 
     override fun onClick(v: View?) {
         when (v?.id) {

@@ -4,12 +4,10 @@ import com.ptithcm.core.CoreApplication
 import com.ptithcm.core.model.Cart
 import com.ptithcm.core.model.ProductClothesDetail
 import com.ptithcm.core.model.ProductVariant
-import java.util.concurrent.CopyOnWriteArraySet
 
 object ObjectHandler {
 
     var cart = CoreApplication.instance.cart
-
 
     fun isLogin() = CoreApplication.instance.account != null
 

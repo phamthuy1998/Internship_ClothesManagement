@@ -201,7 +201,6 @@ class CheckoutFragment : BaseFragment<FragmentCheckoutBinding>(), View.OnClickLi
             // After finish checkout must remove item that in wish list
             // BE NOT SUPPORT remove from wish list
             // so FE must call remove item ONE BY ONE
-            (activity as? MainActivity)?.removeFromWishListAfterCheckout(false)
             val cusOption = NavOptions.Builder().apply {
                 setLaunchSingleTop(true)
                 setEnterAnim(R.anim.slide_in_right)
