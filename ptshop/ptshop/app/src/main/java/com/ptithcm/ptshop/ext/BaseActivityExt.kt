@@ -104,15 +104,3 @@ fun BaseActivity<*>.goToShop() {
 fun MainActivity.goToShopFromWishList() {
     btnNav.selectedItemId = R.id.nav_shop
 }
-
-fun MainActivity.removeFromWishListAfterCheckout(isGetWishList: Boolean) {
-    if (isGetWishList.not()) {
-        wishListViewModel.getWishList()
-    } else {
-        refreshBashKet()
-    }
-}
-
-private fun MainActivity.refreshBashKet() {
-    shoppingViewModel.getBasket()
-}

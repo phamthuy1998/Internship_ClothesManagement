@@ -89,5 +89,28 @@ interface ApiClothesService {
     suspend fun getDetailProvider(
         @Query("providerId") providerId: Int?
     ): Response<Provider>
+
+    /*-----------------------------*/
+    /* Address*/
+    @GET("/api/address")
+    suspend fun getAllAddress(@Query("accountId") accountId: Int? = CoreApplication.instance.account?.id): Response<ArrayList<ShoppingAddress>>
+
+    @POST("/api/add-addess")
+    suspend fun addAddress(@Body param: ShoppingAddress): Response<ObjectResponse<Int>>
+
+    @PUT("/api/edit-addess")
+    suspend fun updateAddress(
+        @Query("accountId") accountId: Int?,
+        @Query("province") province: String?,
+        @Query("name") name: String?,
+        @Query("phone") phone: String?,
+        @Query("district") district: String?,
+        @Query("wards") wards: String?,
+        @Query("street") street: String?,
+        @Query("isDefault") isDefault: Int?
+    ): Response<ObjectResponse<Int>>
+
+    @GET("/api/add-addess")
+    suspend fun deleteAddress(@Query("addressId") addressId: Int?): Response<ObjectResponse<Int>>
 }
 

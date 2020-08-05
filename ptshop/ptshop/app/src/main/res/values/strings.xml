@@ -293,4 +293,5 @@
     <string name="error_price_quantity_has_been_changed"><![CDATA[<b>Price</b> and <b>Quantity in Stock</b> has been changed, Please check again!]]></string>
     <string name="error_quantity_has_been_changed"><![CDATA[<b>Quantity in Stock</b> has been changed, Please check again!]]></string>
     <string name="error_price_has_been_changed"><![CDATA[<b>Price</b> has been changed, Please check again!]]></string>
+    <string name="default_address">Default</string>
 </resources>

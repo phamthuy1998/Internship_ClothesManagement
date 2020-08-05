@@ -70,12 +70,6 @@ class ProductDetailFragment : BaseFragment<FragmentProductDetailBinding>() {
     }
 
     override fun bindViewModelOnce() {
-        shoppingViewModel.updateResult.observe(this, Observer {
-            viewBinding.hasQuantity = quality > 0
-            setQuantity(quality)
-            messageHandler?.runMessageHandler(getString(R.string.add_to_basket_success))
-        })
-
         shoppingViewModel.detailResult.observe(this, Observer {
             productDetail = it
             viewBinding.item = productDetail

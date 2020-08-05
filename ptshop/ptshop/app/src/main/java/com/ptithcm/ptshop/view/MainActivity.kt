@@ -72,8 +72,6 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
         })
         brandViewModel.brandsLiveData.observe(this, Observer { })
         brandViewModel.storesLiveData.observe(this, Observer {})
-        shoppingViewModel.cardResult.observe(this, Observer {  })
-        wishListViewModel.wishListResult.observe(this, Observer { removeFromWishListAfterCheckout(true)})
     }
 
     /**
