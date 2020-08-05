@@ -6,7 +6,6 @@ import com.ptithcm.core.api.ApiService
 import com.ptithcm.core.data.remote.NetworkBoundResource
 import com.ptithcm.core.model.Account
 import com.ptithcm.core.model.wish.ObjectResponse
-import com.ptithcm.core.param.ForgotPasswordParam
 import com.ptithcm.core.param.LogInParam
 import com.ptithcm.core.repository.AuthRepository
 import com.ptithcm.core.vo.Result
@@ -14,7 +13,7 @@ import retrofit2.Response
 
 
 class AuthRepositoryImpl(val api: ApiService, val apiClothes: ApiClothesService) : AuthRepository {
-    override suspend fun postForgotPassword(param: ForgotPasswordParam): LiveData<Result<ObjectResponse<String>>> {
+    override suspend fun requestForgotPassword(param: String): LiveData<Result<ObjectResponse<String>>> {
         return object : NetworkBoundResource<ObjectResponse<String>, ObjectResponse<String>>() {
             override fun processResponse(response: ObjectResponse<String>): ObjectResponse<String>? =
                 response

@@ -1,6 +1,5 @@
 package com.ptithcm.ptshop.view.card
 
-import android.os.Bundle
 import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.widget.AppCompatImageButton
@@ -10,13 +9,13 @@ import androidx.databinding.ViewDataBinding
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.ptithcm.core.model.ProductClothes
 import com.ptithcm.core.model.ProductClothesDetail
-import com.ptithcm.core.param.AddProductParam
 import com.ptithcm.core.util.ObjectHandler
 import com.ptithcm.core.util.PriceFormat
 import com.ptithcm.core.vo.Result
 import com.ptithcm.ptshop.R
 import com.ptithcm.ptshop.base.BaseActivity
 import com.ptithcm.ptshop.base.BaseFragment
+import com.ptithcm.ptshop.constant.ERROR_CODE_404
 import com.ptithcm.ptshop.constant.FROM_SHOPPING_BAG
 import com.ptithcm.ptshop.constant.KEY_ARGUMENT
 import com.ptithcm.ptshop.databinding.FragmentShoppingBagBinding
@@ -37,17 +36,8 @@ class ShoppingBagFragment : BaseFragment<FragmentShoppingBagBinding>(), View.OnC
         get() = R.layout.fragment_shopping_bag
 
     private val basketViewModel: ShoppingViewModel by viewModel()
-    private var prodId: Long = 0
-    private var isUpdate = false
-    private var addProductParam: AddProductParam? = null
     private var isLogin = false
-    private var isFirstTimeCall = false
     private val adapter = ShoppingCardAdapter(this::adapterListener)
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        isFirstTimeCall = isLogin
-    }
 
     override fun bindEvent() {
         viewBinding.fragment = this
@@ -57,58 +47,40 @@ class ShoppingBagFragment : BaseFragment<FragmentShoppingBagBinding>(), View.OnC
         setUpToolBar(countBags)
         setUpRv()
 
-        viewBinding.swipeRf.isEnabled = false
         if (countBags > 0) {
-            setUpResult(ObjectHandler.cart?.products)
+            viewBinding.swipeRf.setRefreshing(true)
+            basketViewModel.getAllProductsInCart(ObjectHandler.getAllIdProdsInCart())
         } else {
+            viewBinding.swipeRf.isEnabled = false
             setupEmptyView()
         }
-
-        if (isFirstTimeCall) {
-            viewBinding.swipeRf.visible()
-            viewBinding.layoutEmpty.root.gone()
-            viewBinding.swipeRf.setRefreshing(true)
-            isFirstTimeCall = false
-        }
-        viewBinding.swipeRf.setOnRefreshListener {
-            basketViewModel.getBasket()
-        }
-    }
-
-    override fun bindViewModelOnce() {
-//        basketViewModel.updateResult.observe(this, Observer {
-//            setUpResult(it.product_variants as ArrayList<ProductVariant>)
-//        })
-//
-//        basketViewModel.removeResult.observe(this, Observer {
-//            if (isUpdate.not()) {
-//                basketViewModel.getBasket()
-//            } else {
-//                isUpdate = false
-//                basketViewModel.updateBasket(addProductParam ?: return@Observer)
-//                addProductParam = null
-//            }
-//        })
     }
 
     override fun bindViewModel() {
-//        basketViewModel.cardResult.observe(this, Observer {
-//            setUpResult(it.product_variants as ArrayList<ProductVariant>)
-//            if (viewBinding.btnCheckOut.isLoading) {
-//                viewBinding.btnCheckOut.isLoading = false
-//                navController.navigateAnimation(
-//                    R.id.fragment_checkout
-//                )
-//            }
-//        })
-//
-//        basketViewModel.error.observe(this, Observer {
-//            if (it.second == ERROR_CODE_404) {
-//                (requireActivity() as? BaseActivity<*>)?.isShowErrorNetwork(true)
-//            } else {
-//                messageHandler?.runMessageErrorHandler(it.first)
-//            }
-//        })
+        basketViewModel.cartResult.observe(this, androidx.lifecycle.Observer {
+            setUpResult(it)
+            val indexOfItemChanged = it.indexOfFirst { it.hasChanged }
+            if (indexOfItemChanged != -1) {
+                messageHandler?.runMessageErrorHandler(getString(R.string.some_item_changed_in_cart))
+                viewBinding.rvProducts.smoothScrollToPosition(indexOfItemChanged)
+                viewBinding.btnCheckOut.isLoading = false
+                return@Observer
+            }
+            if (viewBinding.btnCheckOut.isLoading) {
+                viewBinding.btnCheckOut.isLoading = false
+                navController.navigateAnimation(
+                    R.id.fragment_checkout
+                )
+            }
+        })
+
+        basketViewModel.error.observe(this, androidx.lifecycle.Observer {
+            if (it.second == ERROR_CODE_404) {
+                (requireActivity() as? BaseActivity<*>)?.isShowErrorNetwork(true)
+            } else {
+                messageHandler?.runMessageErrorHandler(it.first)
+            }
+        })
     }
 
     override fun onClick(v: View?) {
@@ -125,7 +97,7 @@ class ShoppingBagFragment : BaseFragment<FragmentShoppingBagBinding>(), View.OnC
                     return
                 }
                 viewBinding.btnCheckOut.isLoading = true
-                basketViewModel.getBasket()
+                basketViewModel.getAllProductsInCart(ObjectHandler.getAllIdProdsInCart())
             }
             R.id.btnCancel -> {
                 (requireActivity() as? BaseActivity<*>)?.closePopup()
@@ -156,6 +128,7 @@ class ShoppingBagFragment : BaseFragment<FragmentShoppingBagBinding>(), View.OnC
 
     private fun setUpRv() {
         viewBinding.rvProducts.adapter = adapter
+
         viewBinding.swipeRf.setRefreshView(
             RecyclerRefreshLayout(
                 requireContext(),
@@ -166,12 +139,14 @@ class ShoppingBagFragment : BaseFragment<FragmentShoppingBagBinding>(), View.OnC
                 ViewGroup.LayoutParams.WRAP_CONTENT
             )
         )
+
+        viewBinding.swipeRf.setOnRefreshListener {
+            basketViewModel.getAllProductsInCart(ObjectHandler.getAllIdProdsInCart())
+        }
     }
 
     private fun setUpToolBar(size: Int = 0) {
-        if (isFirstTimeCall.not()) {
-            viewBinding.size = size
-        }
+        viewBinding.size = size
 
         val totalPrice = ObjectHandler.cart?.products.calculateFinalPrice()
         val totalPriceStr = getString(
@@ -249,13 +224,15 @@ class ShoppingBagFragment : BaseFragment<FragmentShoppingBagBinding>(), View.OnC
             ShoppingCardAdapter.UPDATE_QUANTITY -> {
                 (data as? ProductClothesDetail)?.let {
                     ObjectHandler.saveCartToPref()
+                    setUpToolBar(ObjectHandler.getNumberItem())
                 }
             }
 
             // out of stock
             ShoppingCardAdapter.ERROR -> {
                 (data as? Result.Error)?.let {
-                    messageHandler?.runMessageErrorHandler(it.message)
+                    viewBinding.root.showErrorSnackBar(it.message)
+//                    messageHandler?.runMessageErrorHandler(it.message)
                 }
             }
 

@@ -4,19 +4,9 @@
 
     <data>
 
-        <import type="android.view.View" />
-
         <variable
             name="isLogin"
             type="Boolean" />
-
-        <variable
-            name="isBrand"
-            type="Boolean" />
-
-        <variable
-            name="profile"
-            type="com.ptithcm.core.model.Profile" />
 
         <variable
             name="account"
@@ -26,9 +16,6 @@
             name="fragment"
             type="com.ptithcm.ptshop.view.profile.ProfileFragment" />
 
-        <variable
-            name="brand"
-            type="com.ptithcm.core.model.Brand" />
     </data>
 
     <FrameLayout
@@ -40,7 +27,7 @@
             layout="@layout/fragment_profile_prelogin"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:visibility="@{isLogin? View.GONE : View.VISIBLE}"
+            setVisible="@{!isLogin}"
             bind:parentFragment="@{fragment}" />
 
         <include
@@ -48,7 +35,7 @@
             layout="@layout/fragment_profile_customer"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:visibility="@{(isLogin &amp;&amp; !isBrand)? View.VISIBLE : View.GONE}"
+            setVisible="@{isLogin}"
             bind:account="@{account}"
             bind:parentFragment="@{fragment}" />
     </FrameLayout>

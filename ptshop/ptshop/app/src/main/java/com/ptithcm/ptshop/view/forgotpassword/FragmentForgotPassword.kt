@@ -5,16 +5,19 @@ import android.view.View
 import android.widget.Toast
 import androidx.appcompat.widget.AppCompatImageButton
 import androidx.lifecycle.Observer
-import com.ptithcm.core.param.ForgotPasswordParam
 import com.ptithcm.ptshop.R
 import com.ptithcm.ptshop.base.BaseActivity
 import com.ptithcm.ptshop.base.BaseFragment
 import com.ptithcm.ptshop.constant.ERROR_CODE_404
 import com.ptithcm.ptshop.databinding.FragmentForgotPasswordBinding
-import com.ptithcm.ptshop.ext.*
+import com.ptithcm.ptshop.ext.initToolbar
+import com.ptithcm.ptshop.ext.isShowErrorNetwork
+import com.ptithcm.ptshop.ext.isValidEmail
+import com.ptithcm.ptshop.ext.setupToolbar
 import com.ptithcm.ptshop.view.MainActivity
 import com.ptithcm.ptshop.view.home.StoryDetailActivity
 import com.ptithcm.ptshop.viewmodel.AuthenticateViewModel
+import org.jetbrains.anko.support.v4.toast
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class FragmentForgotPassword : BaseFragment<FragmentForgotPasswordBinding>() {
@@ -68,8 +71,10 @@ class FragmentForgotPassword : BaseFragment<FragmentForgotPasswordBinding>() {
     override fun bindViewModel() {
         super.bindViewModel()
         authViewModel.forgotPasswordLiveData.observe(this, Observer {
+            toast(it)
             navController.popBackStack()
         })
+
         authViewModel.error.observe(this, Observer {
             if (it.second == ERROR_CODE_404) {
                 (requireActivity() as? MainActivity)?.isShowErrorNetwork(true)
@@ -84,7 +89,7 @@ class FragmentForgotPassword : BaseFragment<FragmentForgotPasswordBinding>() {
             R.id.btn_send -> {
                 viewBinding.isValid = viewBinding.edtEmail.text.toString().trim().isValidEmail()
                 if (isValidInput()) {
-                    authViewModel.forgotPassword(ForgotPasswordParam(viewBinding.edtEmail.text.toString().trim()))
+                    authViewModel.forgotPassword(viewBinding.edtEmail.text.toString().trim())
                 }
             }
         }
