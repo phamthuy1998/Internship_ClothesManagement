@@ -70,16 +70,7 @@ class UserRepositoryImpl (val api: ApiService, val apiClothes: ApiClothesService
         return object : NetworkBoundResource<ObjectResponse<Int>, ObjectResponse<Int>>() {
             override fun processResponse(response: ObjectResponse<Int>) = response
             override suspend fun createCall(): Response<ObjectResponse<Int>> =
-                apiClothes.updateAddress(
-                    accountId = param.accountId,
-                    province = param.province,
-                    name = param.name,
-                    phone = param.phone,
-                    district = param.district,
-                    wards = param.wards,
-                    street = param.street,
-                    isDefault = param.isDefault
-                )
+                apiClothes.updateAddress(param)
         }.build().asLiveData()
     }
 

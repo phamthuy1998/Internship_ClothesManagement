@@ -69,8 +69,7 @@ class AddressBookFragment : BaseFragment<FragmentAddressBookBinding>() {
 
         userViewModel.updateAddressResultLiveData.observe(this, Observer {
             messageHandler?.runMessageHandler(it)
-            adapter.currentList.removeAt(adapter.currentPosition)
-            adapter.notifyItemRemoved(adapter.currentPosition)
+            adapter.removeItem(adapter.currentPosition)
         })
 
         userViewModel.error.observe(this, Observer {

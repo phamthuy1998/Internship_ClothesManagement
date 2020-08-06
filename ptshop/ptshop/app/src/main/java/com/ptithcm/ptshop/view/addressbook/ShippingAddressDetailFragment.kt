@@ -66,9 +66,12 @@ class ShippingAddressDetailFragment : BaseFragment<FragmentDetailShippingAddress
 
     override fun bindViewModelOnce() {
         userViewModel.updateAddressResultLiveData.observe(this, Observer {
+            changeStatusButton(false)
+            messageHandler?.runMessageHandler(it)
             toast(it)
         })
         userViewModel.error.observe(this, Observer {
+            changeStatusButton(false)
             responseError(it)
         })
 //        paymentViewModel.updateAddressBookLiveData.observe(this, Observer {
@@ -108,8 +111,8 @@ class ShippingAddressDetailFragment : BaseFragment<FragmentDetailShippingAddress
     private fun checkValidField(): Boolean {
         return if (address.isEmpty()) {
             messageHandler?.runMessageErrorHandler("Please complete all required fields")
-            true
-        } else false
+            false
+        } else true
     }
 
     private fun changeStatusButton(isLoading: Boolean) {

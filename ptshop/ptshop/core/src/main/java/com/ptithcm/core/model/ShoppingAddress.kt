@@ -1,8 +1,8 @@
 package com.ptithcm.core.model
 
 import android.os.Parcelable
+import androidx.databinding.BaseObservable
 import androidx.databinding.Bindable
-import androidx.databinding.Observable
 import com.ptithcm.core.CoreApplication
 import kotlinx.android.parcel.Parcelize
 
@@ -25,15 +25,7 @@ data class ShoppingAddress(
     @Bindable
     var wards: String? = "",
     var isDefault: Int? = 0
-) : Observable, Parcelable {
-    override fun removeOnPropertyChangedCallback(callback: Observable.OnPropertyChangedCallback?) {
-        TODO("Not yet implemented")
-    }
-
-    override fun addOnPropertyChangedCallback(callback: Observable.OnPropertyChangedCallback?) {
-        TODO("Not yet implemented")
-    }
-
+) : BaseObservable(), Parcelable {
     fun getFullAddress(): String {
         val fullAddress = StringBuilder()
         if (!street.isNullOrEmpty())

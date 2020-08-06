@@ -44,7 +44,6 @@ class ShoppingCardAdapter(val listener: ((Int, Any?) -> Unit)? = null) :
         notifyDataSetChanged()
     }
 
-    // just for not login yet
     fun removeItem(product: ProductClothesDetail?) {
         val index = productList.indexOf(product)
         if (index != -1) {

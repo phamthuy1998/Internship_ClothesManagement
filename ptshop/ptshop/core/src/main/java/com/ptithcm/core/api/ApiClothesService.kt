@@ -99,18 +99,9 @@ interface ApiClothesService {
     suspend fun addAddress(@Body param: ShoppingAddress): Response<ObjectResponse<Int>>
 
     @PUT("/api/edit-addess")
-    suspend fun updateAddress(
-        @Query("accountId") accountId: Int?,
-        @Query("province") province: String?,
-        @Query("name") name: String?,
-        @Query("phone") phone: String?,
-        @Query("district") district: String?,
-        @Query("wards") wards: String?,
-        @Query("street") street: String?,
-        @Query("isDefault") isDefault: Int?
-    ): Response<ObjectResponse<Int>>
+    suspend fun updateAddress(@Body param: ShoppingAddress): Response<ObjectResponse<Int>>
 
-    @GET("/api/add-addess")
+    @DELETE("/api/del-addess")
     suspend fun deleteAddress(@Query("addressId") addressId: Int?): Response<ObjectResponse<Int>>
 }
 
