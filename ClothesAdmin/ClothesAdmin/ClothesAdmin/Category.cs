@@ -63,7 +63,7 @@ namespace ClothesAdmin
                     {
                         using (Stream stream = webClient.OpenRead(imageUrl))
                         {
-                            return System.Drawing.Image.FromStream(stream);
+                            return Program.resizeImage( System.Drawing.Image.FromStream(stream), new System.Drawing.Size(100, 100) );
                         }
                     }
                 }

@@ -579,13 +579,13 @@ namespace ClothesManament.Controllers
         public ResponseObjectModel<int?> editAddress(AddressEit address)
 
         {
-            entities.SP_EditAddress(address.addressId, address.province, address.district, address.wards, address.street, address.name, address.phone, address.isDefault, address.accountId);
+          var result=  entities.SP_EditAddress(address.addressId, address.province, address.district, address.wards, address.street, address.name, address.phone, address.isDefault, address.accountId);
             return new ResponseObjectModel<int?>
             {
                 message = "Cập nhật địa chỉ thành công",
                 status = true,
                 code = 200,
-                data = null
+                data = result
             };
 
         }

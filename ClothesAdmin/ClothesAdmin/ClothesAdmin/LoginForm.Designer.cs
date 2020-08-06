@@ -1,6 +1,6 @@
 ﻿namespace ClothesAdmin
 {
-    partial class FormLogin
+    partial class LoginForm
     {
         /// <summary>
         /// Required designer variable.
@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormLogin));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(LoginForm));
             this.pictureBox3 = new System.Windows.Forms.PictureBox();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.btnThoat = new System.Windows.Forms.Button();
@@ -113,6 +113,7 @@
             this.txPassword.PasswordChar = '*';
             this.txPassword.Size = new System.Drawing.Size(388, 32);
             this.txPassword.TabIndex = 32;
+            this.txPassword.Text = "thuythuy";
             // 
             // txUsername
             // 
@@ -122,6 +123,7 @@
             this.txUsername.Name = "txUsername";
             this.txUsername.Size = new System.Drawing.Size(388, 32);
             this.txUsername.TabIndex = 31;
+            this.txUsername.Text = "anna1998";
             // 
             // label2
             // 
@@ -145,7 +147,7 @@
             this.label1.TabIndex = 41;
             this.label1.Text = "Đăng nhập";
             // 
-            // FormLogin
+            // LoginForm
             // 
             this.Appearance.BackColor = System.Drawing.Color.White;
             this.Appearance.Options.UseBackColor = true;
@@ -162,7 +164,7 @@
             this.Controls.Add(this.txUsername);
             this.Controls.Add(this.label2);
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.Name = "FormLogin";
+            this.Name = "LoginForm";
             this.Text = "Login";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmDangNhap_FormClosing);
             this.Load += new System.EventHandler(this.FormLogin_Load);

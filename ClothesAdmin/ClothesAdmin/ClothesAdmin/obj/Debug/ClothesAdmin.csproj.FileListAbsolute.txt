@@ -49,7 +49,6 @@ D:\Thuy\thuctap\Internship_ClothesManament\ClothesAdmin\ClothesAdmin\ClothesAdmi
 D:\Thuy\thuctap\Internship_ClothesManament\ClothesAdmin\ClothesAdmin\ClothesAdmin\bin\Debug\SqlServerTypes\x86\msvcr120.dll
 D:\Thuy\thuctap\Internship_ClothesManament\ClothesAdmin\ClothesAdmin\ClothesAdmin\bin\Debug\SqlServerTypes\x86\SqlServerSpatial140.dll
 D:\Thuy\thuctap\Internship_ClothesManament\ClothesAdmin\ClothesAdmin\ClothesAdmin\bin\Debug\Microsoft.SqlServer.Types.dll
-D:\Thuy\thuctap\Internship_ClothesManament\ClothesAdmin\ClothesAdmin\ClothesAdmin\obj\Debug\ClothesAdmin.FormLogin.resources
 D:\Thuy\thuctap\Internship_ClothesManament\ClothesAdmin\ClothesAdmin\ClothesAdmin\obj\Debug\ClothesAdmin.exe.licenses
 D:\Thuy\thuctap\Internship_ClothesManament\ClothesAdmin\ClothesAdmin\ClothesAdmin\bin\Debug\DevExpress.XtraBars.v19.1.dll
 D:\Thuy\thuctap\Internship_ClothesManament\ClothesAdmin\ClothesAdmin\ClothesAdmin\bin\Debug\DevExpress.XtraBars.v19.1.xml
@@ -198,3 +197,6 @@ D:\Thuy\thuctap\Internship_ClothesManament\ClothesAdmin\ClothesAdmin\ClothesAdmi
 D:\Thuy\thuctap\Internship_ClothesManament\ClothesAdmin\ClothesAdmin\ClothesAdmin\bin\Debug\EntityFramework.xml
 D:\Thuy\thuctap\Internship_ClothesManament\ClothesAdmin\ClothesAdmin\ClothesAdmin\bin\Debug\EntityFramework.SqlServer.xml
 D:\Thuy\thuctap\Internship_ClothesManament\ClothesAdmin\ClothesAdmin\ClothesAdmin\obj\Debug\ClothesAdmin.csprojAssemblyReference.cache
+D:\Thuy\thuctap\Internship_ClothesManament\ClothesAdmin\ClothesAdmin\ClothesAdmin\obj\Debug\ClothesAdmin.ProviderForm.resources
+D:\Thuy\thuctap\Internship_ClothesManament\ClothesAdmin\ClothesAdmin\ClothesAdmin\obj\Debug\ClothesAdmin.ProviderAddEditForm.resources
+D:\Thuy\thuctap\Internship_ClothesManament\ClothesAdmin\ClothesAdmin\ClothesAdmin\obj\Debug\ClothesAdmin.LoginForm.resources

@@ -140,11 +140,11 @@
     <Compile Include="Employee.cs">
       <DependentUpon>ClothesModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="FormLogin.cs">
+    <Compile Include="LoginForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FormLogin.Designer.cs">
-      <DependentUpon>FormLogin.cs</DependentUpon>
+    <Compile Include="LoginForm.Designer.cs">
+      <DependentUpon>LoginForm.cs</DependentUpon>
     </Compile>
     <Compile Include="getCategoryByGender_Result.cs">
       <DependentUpon>ClothesModel.tt</DependentUpon>
@@ -192,6 +192,18 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Provider.cs">
       <DependentUpon>ClothesModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ProviderAddEditForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ProviderAddEditForm.Designer.cs">
+      <DependentUpon>ProviderAddEditForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ProviderForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ProviderForm.Designer.cs">
+      <DependentUpon>ProviderForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Role.cs">
       <DependentUpon>ClothesModel.tt</DependentUpon>
@@ -263,8 +275,8 @@
     <EmbeddedResource Include="CategoryForm.resx">
       <DependentUpon>CategoryForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormLogin.resx">
-      <DependentUpon>FormLogin.cs</DependentUpon>
+    <EmbeddedResource Include="LoginForm.resx">
+      <DependentUpon>LoginForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
@@ -281,9 +293,20 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="ProviderAddEditForm.resx">
+      <DependentUpon>ProviderAddEditForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ProviderForm.resx">
+      <DependentUpon>ProviderForm.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="App.config" />
     <None Include="ClassDiagram1.cd" />
+    <EntityDeploy Include="ClothesModel.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>ClothesModel.Designer.cs</LastGenOutput>
+    </EntityDeploy>
     <None Include="ClothesDataSet.xsc">
       <DependentUpon>ClothesDataSet.xsd</DependentUpon>
     </None>
@@ -295,10 +318,6 @@
     <None Include="ClothesDataSet.xss">
       <DependentUpon>ClothesDataSet.xsd</DependentUpon>
     </None>
-    <EntityDeploy Include="ClothesModel.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>ClothesModel.Designer.cs</LastGenOutput>
-    </EntityDeploy>
     <None Include="ClothesModel.edmx.diagram">
       <DependentUpon>ClothesModel.edmx</DependentUpon>
     </None>
@@ -333,6 +352,17 @@
       <DependentUpon>ClothesModel.edmx</DependentUpon>
       <LastGenOutput>ClothesModel.cs</LastGenOutput>
     </Content>
+    <None Include="Resources\no_image.jpg" />
+    <None Include="Resources\tshirt.png" />
+    <None Include="Resources\editcolors.svg" />
+    <None Include="Resources\palette_16x16.png" />
+    <None Include="Resources\palette_32x32.png" />
+    <None Include="Resources\color-wheel.png" />
+    <None Include="Resources\clothes.png" />
+    <None Include="Resources\category.png" />
+    <None Include="Resources\hand.png" />
+    <None Include="Resources\invoice.png" />
+    <None Include="Resources\promo.png" />
     <Content Include="SqlServerTypes\readme.htm" />
     <Content Include="SqlServerTypes\x64\msvcr120.dll">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>

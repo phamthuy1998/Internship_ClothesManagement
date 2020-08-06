@@ -9,10 +9,10 @@ using System.Windows.Forms;
 
 namespace ClothesAdmin
 {
-    public partial class FormLogin : DevExpress.XtraEditors.XtraForm
+    public partial class LoginForm : DevExpress.XtraEditors.XtraForm
     {
         private bool isLoginSuccess = false;
-        public FormLogin()
+        public LoginForm()
         {
             InitializeComponent();
         }
@@ -80,7 +80,6 @@ namespace ClothesAdmin
                 Program.mainForm.tvUserName.Text = Program.accountLogin.username;
                 Program.mainForm.tvName.Text = Program.accountLogin.name;
                 Program.mainForm.tvRoleName.Text = Program.accountLogin.roleName;
-                Program.mainForm.rbAccountInfo.AccessibleName = Program.accountLogin.roleName;
                 Program.mainForm.Activate();
                 Invoke((Action)(() => { Program.mainForm.ShowDialog(); }));
                 this.Close();
@@ -99,19 +98,21 @@ namespace ClothesAdmin
             {
                 Application.ExitThread();
             }
+            else return;
         }
 
         private void frmDangNhap_FormClosing(object sender, FormClosingEventArgs e)
         {
             if (!isLoginSuccess)
             {
-                DialogResult dr = MessageBox.Show("Bạn có chắc muốn thoát chương trình", "Thông báo", MessageBoxButtons.YesNo);
+                DialogResult dr = MessageBox.Show("Bạn có chắc muốn thoát chương trình login", "Thông báo", MessageBoxButtons.YesNo);
                 if (dr == DialogResult.Yes)
                 {
                     Application.ExitThread();
                 }
                 else e.Cancel = true;
             }
+            else return;
         }
     }
 }

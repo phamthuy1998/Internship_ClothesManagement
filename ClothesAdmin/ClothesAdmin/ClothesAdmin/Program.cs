@@ -13,7 +13,7 @@ namespace ClothesAdmin
 {
     static class Program
     {
-        public static FormLogin frmLogin; 
+        public static LoginForm frmLogin; 
         public static SqlConnection conn = new SqlConnection();
         public static String connstr;
         public static SqlDataReader myReader;
@@ -34,7 +34,7 @@ namespace ClothesAdmin
             Application.SetCompatibleTextRenderingDefault(false);
 
             BonusSkins.Register();
-            Application.Run(new FormLogin());
+            Application.Run(new LoginForm());
         }
 
         public static int ExecSqlNonQuery(String strlenh)
@@ -85,7 +85,8 @@ namespace ClothesAdmin
 
         public static SqlDataReader ExecSqlDataReader(String strLenh)
         {
-            SqlDataReader myreader;
+            if(myReader!=null)
+            myReader.Close();
             SqlCommand sqlcmd = new SqlCommand(strLenh, Program.conn);
             sqlcmd.CommandType = CommandType.Text;
             //tối đa cho đợi 10p, tgian tính bằng s
@@ -94,7 +95,7 @@ namespace ClothesAdmin
             if (Program.conn.State == ConnectionState.Closed) Program.conn.Open();
             try
             {
-                myreader = sqlcmd.ExecuteReader(); return myreader;
+                myReader = sqlcmd.ExecuteReader(); return myReader;
 
             }
             catch (SqlException ex)
