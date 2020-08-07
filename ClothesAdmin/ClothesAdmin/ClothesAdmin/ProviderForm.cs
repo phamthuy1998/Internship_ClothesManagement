@@ -54,7 +54,7 @@ namespace ClothesAdmin
                     return;
                 }
 
-                if (MessageBox.Show("Bạn có chắc chắn muốn xóa " + ((DataRowView)this.providerBindingSource.Current).Row["branchName"].ToString() + "?", "", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                if (MessageBox.Show("Bạn có chắc chắn muốn xóa " + ((DataRowView)this.providerBindingSource.Current).Row["brandName"].ToString() + "?", "", MessageBoxButtons.YesNo) == DialogResult.Yes)
                 {
                     try
                     {
@@ -87,22 +87,25 @@ namespace ClothesAdmin
 
         private void btnAddProvider_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
+            providerBindingSource.AddNew();
             //ProviderAddEditForm provierForm = new ProviderAddEditForm();
             //provierForm.FormClosed += new FormClosedEventHandler(provierForm.frm3_FormClosed());
             //provierForm.Show();
-            using (ProviderAddEditForm provierForm = new ProviderAddEditForm())
-            {
-                var dlgResult = provierForm.ShowDialog(); // show form 3 as a modal dialog box
-                                                          // halt this procedure until form3 is closed
-                                                          // handle the result of form3:
-                if (dlgResult == DialogResult.OK)
-                {
-                    // TODO: This line of code loads data into the 'clothesDataSet.Product' table. You can move, or remove it, as needed.
-                    this.productTableAdapter.Fill(this.clothesDataSet.Product);
-                    // TODO: This line of code loads data into the 'clothesDataSet.Provider' table. You can move, or remove it, as needed.
-                    this.providerTableAdapter.Fill(this.clothesDataSet.Provider);
-                }
-            }
+
+            //using (ProviderAddEditForm provierForm = new ProviderAddEditForm())
+            //{
+            //    var dlgResult = provierForm.ShowDialog(); // show form 3 as a modal dialog box
+            //                                              // halt this procedure until form3 is closed
+            //                                              // handle the result of form3:
+            //    if (dlgResult == DialogResult.OK)
+            //    {
+            //        // TODO: This line of code loads data into the 'clothesDataSet.Product' table. You can move, or remove it, as needed.
+            //        this.productTableAdapter.Fill(this.clothesDataSet.Product);
+            //        // TODO: This line of code loads data into the 'clothesDataSet.Provider' table. You can move, or remove it, as needed.
+            //        this.providerTableAdapter.Fill(this.clothesDataSet.Provider);
+            //    }
+            //}
+
 
         }
 
@@ -122,7 +125,9 @@ namespace ClothesAdmin
 
         private void btnSaveAddProvider_Click(object sender, EventArgs e)
         {
-
+            this.Validate();
+            this.providerBindingSource.EndEdit();
+            this.tableAdapterManager.UpdateAll(this.clothesDataSet);
         }
 
         private void setImage()

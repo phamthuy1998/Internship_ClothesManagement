@@ -51,7 +51,6 @@
             this.btnAddProvider = new DevExpress.XtraBars.BarButtonItem();
             this.btnDelProvider = new DevExpress.XtraBars.BarButtonItem();
             this.btnReloadProvider = new DevExpress.XtraBars.BarButtonItem();
-            this.btnExitProvider = new DevExpress.XtraBars.BarButtonItem();
             this.barDockControl1 = new DevExpress.XtraBars.BarDockControl();
             this.barDockControl2 = new DevExpress.XtraBars.BarDockControl();
             this.barDockControl3 = new DevExpress.XtraBars.BarDockControl();
@@ -83,6 +82,8 @@
             this.addressTextEdit = new DevExpress.XtraEditors.TextEdit();
             this.activeSpinEdit = new DevExpress.XtraEditors.SpinEdit();
             this.imageProvider = new System.Windows.Forms.PictureBox();
+            this.btnExitProvider = new DevExpress.XtraBars.BarButtonItem();
+            this.barButtonItem1 = new DevExpress.XtraBars.BarButtonItem();
             idLabel = new System.Windows.Forms.Label();
             imageUrlLabel = new System.Windows.Forms.Label();
             brandNameLabel = new System.Windows.Forms.Label();
@@ -257,10 +258,10 @@
             this.btnDelProvider,
             this.btnSua,
             this.btnReloadProvider,
-            this.btnExitProvider,
-            this.btnTimKiem});
+            this.btnTimKiem,
+            this.barButtonItem1});
             this.barManager.MainMenu = this.bar2;
-            this.barManager.MaxItemId = 10;
+            this.barManager.MaxItemId = 11;
             // 
             // bar2
             // 
@@ -272,14 +273,14 @@
             new DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.PaintStyle, this.btnAddProvider, DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph),
             new DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.PaintStyle, this.btnDelProvider, DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph),
             new DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.PaintStyle, this.btnReloadProvider, DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph),
-            new DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.PaintStyle, this.btnExitProvider, DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph)});
+            new DevExpress.XtraBars.LinkPersistInfo(this.barButtonItem1)});
             this.bar2.OptionsBar.MultiLine = true;
             this.bar2.OptionsBar.UseWholeRow = true;
             this.bar2.Text = "Main menu";
             // 
             // btnAddProvider
             // 
-            this.btnAddProvider.Caption = "Thêm";
+            this.btnAddProvider.Caption = "Add new";
             this.btnAddProvider.Id = 0;
             this.btnAddProvider.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnAddProvider.ImageOptions.Image")));
             this.btnAddProvider.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("btnAddProvider.ImageOptions.LargeImage")));
@@ -288,7 +289,7 @@
             // 
             // btnDelProvider
             // 
-            this.btnDelProvider.Caption = "Xóa";
+            this.btnDelProvider.Caption = "Delete";
             this.btnDelProvider.Id = 2;
             this.btnDelProvider.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnDelProvider.ImageOptions.Image")));
             this.btnDelProvider.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("btnDelProvider.ImageOptions.LargeImage")));
@@ -297,21 +298,12 @@
             // 
             // btnReloadProvider
             // 
-            this.btnReloadProvider.Caption = "Tải lại";
+            this.btnReloadProvider.Caption = "Reload";
             this.btnReloadProvider.Id = 5;
             this.btnReloadProvider.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnReloadProvider.ImageOptions.Image")));
             this.btnReloadProvider.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("btnReloadProvider.ImageOptions.LargeImage")));
             this.btnReloadProvider.Name = "btnReloadProvider";
             this.btnReloadProvider.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnReloadProvider_ItemClick);
-            // 
-            // btnExitProvider
-            // 
-            this.btnExitProvider.Caption = "Thoát";
-            this.btnExitProvider.Id = 7;
-            this.btnExitProvider.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnExitProvider.ImageOptions.Image")));
-            this.btnExitProvider.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("btnExitProvider.ImageOptions.LargeImage")));
-            this.btnExitProvider.Name = "btnExitProvider";
-            this.btnExitProvider.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnExitProvider_ItemClick);
             // 
             // barDockControl1
             // 
@@ -610,13 +602,27 @@
             // 
             this.imageProvider.ErrorImage = global::ClothesAdmin.Properties.Resources.no_image;
             this.imageProvider.InitialImage = global::ClothesAdmin.Properties.Resources.no_image;
-            this.imageProvider.Location = new System.Drawing.Point(1479, 119);
-            this.imageProvider.MaximumSize = new System.Drawing.Size(300, 0);
+            this.imageProvider.Location = new System.Drawing.Point(1499, 133);
             this.imageProvider.Name = "imageProvider";
-            this.imageProvider.Size = new System.Drawing.Size(300, 300);
-            this.imageProvider.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
+            this.imageProvider.Size = new System.Drawing.Size(393, 300);
+            this.imageProvider.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.imageProvider.TabIndex = 49;
             this.imageProvider.TabStop = false;
+            // 
+            // btnExitProvider
+            // 
+            this.btnExitProvider.Caption = "Thoát";
+            this.btnExitProvider.Id = 7;
+            this.btnExitProvider.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnExitProvider.ImageOptions.Image")));
+            this.btnExitProvider.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("btnExitProvider.ImageOptions.LargeImage")));
+            this.btnExitProvider.Name = "btnExitProvider";
+            this.btnExitProvider.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnExitProvider_ItemClick);
+            // 
+            // barButtonItem1
+            // 
+            this.barButtonItem1.Caption = "Close form";
+            this.barButtonItem1.Id = 10;
+            this.barButtonItem1.Name = "barButtonItem1";
             // 
             // ProviderForm
             // 
@@ -683,7 +689,6 @@
         private DevExpress.XtraBars.BarButtonItem btnAddProvider;
         private DevExpress.XtraBars.BarButtonItem btnDelProvider;
         private DevExpress.XtraBars.BarButtonItem btnReloadProvider;
-        private DevExpress.XtraBars.BarButtonItem btnExitProvider;
         private DevExpress.XtraBars.BarDockControl barDockControl1;
         private DevExpress.XtraBars.BarDockControl barDockControl2;
         private DevExpress.XtraBars.BarDockControl barDockControl3;
@@ -715,5 +720,7 @@
         private DevExpress.XtraEditors.TextEdit addressTextEdit;
         private DevExpress.XtraEditors.SpinEdit activeSpinEdit;
         private System.Windows.Forms.PictureBox imageProvider;
+        private DevExpress.XtraBars.BarButtonItem barButtonItem1;
+        private DevExpress.XtraBars.BarButtonItem btnExitProvider;
     }
 }
