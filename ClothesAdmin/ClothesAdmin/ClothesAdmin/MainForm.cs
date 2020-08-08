@@ -17,6 +17,7 @@ namespace ClothesAdmin
         private ProductForm productForm = null;
         private CategoryForm categoryForm = null;
         private ColorForm colorForm = null;
+        private SizeForm sizeForm = null;
         private AccountsForm accountsForm = null;
         private ProviderForm providerForm = null;
         public MainForm()
@@ -239,6 +240,19 @@ namespace ClothesAdmin
                 colorForm = new ColorForm();
                 colorForm.MdiParent = this;
                 colorForm.Show();
+            }
+            else form.Activate();
+        }
+
+        private void btnSize_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            form = this.CheckExists(typeof(SizeForm));
+            if (form == null)
+            {
+                IsMdiContainer = true;
+                sizeForm = new SizeForm();
+                sizeForm.MdiParent = this;
+                sizeForm.Show();
             }
             else form.Activate();
         }

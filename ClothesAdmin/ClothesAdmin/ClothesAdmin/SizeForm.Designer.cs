@@ -1,6 +1,6 @@
 ﻿namespace ClothesAdmin
 {
-    partial class ColorForm
+    partial class SizeForm
     {
         /// <summary>
         /// Required designer variable.
@@ -30,11 +30,11 @@
         {
             this.components = new System.ComponentModel.Container();
             System.Windows.Forms.Label idLabel;
-            System.Windows.Forms.Label colorNameLabel;
-            System.Windows.Forms.Label colorHexLabel;
+            System.Windows.Forms.Label sizeNameLabel;
+            System.Windows.Forms.Label descriptionLabel;
             System.Windows.Forms.Label activeLabel;
             System.Windows.Forms.Label label1;
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ColorForm));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SizeForm));
             this.barManager = new DevExpress.XtraBars.BarManager(this.components);
             this.bar2 = new DevExpress.XtraBars.Bar();
             this.btnAddProvider = new DevExpress.XtraBars.BarButtonItem();
@@ -48,87 +48,85 @@
             this.btnSua = new DevExpress.XtraBars.BarButtonItem();
             this.btnTimKiem = new DevExpress.XtraBars.BarButtonItem();
             this.clothesDataSet = new ClothesAdmin.ClothesDataSet();
-            this.colorBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.colorTableAdapter = new ClothesAdmin.ClothesDataSetTableAdapters.ColorTableAdapter();
+            this.sizeBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.sizeTableAdapter = new ClothesAdmin.ClothesDataSetTableAdapters.SizeTableAdapter();
             this.tableAdapterManager = new ClothesAdmin.ClothesDataSetTableAdapters.TableAdapterManager();
-            this.colorGridControl = new DevExpress.XtraGrid.GridControl();
+            this.sizeGridControl = new DevExpress.XtraGrid.GridControl();
             this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.colid = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colcolorName = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colcolorHex = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colsizeName = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.coldescription = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colactive = new DevExpress.XtraGrid.Columns.GridColumn();
             this.idSpinEdit = new DevExpress.XtraEditors.SpinEdit();
-            this.colorNameTextEdit = new DevExpress.XtraEditors.TextEdit();
+            this.sizeNameTextEdit = new DevExpress.XtraEditors.TextEdit();
             this.activeSpinEdit = new DevExpress.XtraEditors.SpinEdit();
+            this.descriptionRichTextBox = new System.Windows.Forms.RichTextBox();
             this.btnCancelAddProvider = new System.Windows.Forms.Button();
             this.btnSaveAddProvider = new System.Windows.Forms.Button();
-            this.colorHexTextEdit = new DevExpress.XtraEditors.TextEdit();
-            this.btnChooseColor = new System.Windows.Forms.Button();
-            this.lbChooseColor = new System.Windows.Forms.LinkLabel();
             this.productSizeColorBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.productSizeColorTableAdapter = new ClothesAdmin.ClothesDataSetTableAdapters.ProductSizeColorTableAdapter();
             idLabel = new System.Windows.Forms.Label();
-            colorNameLabel = new System.Windows.Forms.Label();
-            colorHexLabel = new System.Windows.Forms.Label();
+            sizeNameLabel = new System.Windows.Forms.Label();
+            descriptionLabel = new System.Windows.Forms.Label();
             activeLabel = new System.Windows.Forms.Label();
             label1 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.barManager)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.clothesDataSet)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.colorBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.colorGridControl)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.sizeBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.sizeGridControl)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.idSpinEdit.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.colorNameTextEdit.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.sizeNameTextEdit.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.activeSpinEdit.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.colorHexTextEdit.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.productSizeColorBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // idLabel
             // 
             idLabel.AutoSize = true;
-            idLabel.Location = new System.Drawing.Point(881, 201);
+            idLabel.Location = new System.Drawing.Point(869, 142);
             idLabel.Name = "idLabel";
-            idLabel.Size = new System.Drawing.Size(23, 17);
+            idLabel.Size = new System.Drawing.Size(21, 17);
             idLabel.TabIndex = 5;
-            idLabel.Text = "id:";
+            idLabel.Text = "ID";
             // 
-            // colorNameLabel
+            // sizeNameLabel
             // 
-            colorNameLabel.AutoSize = true;
-            colorNameLabel.Location = new System.Drawing.Point(881, 255);
-            colorNameLabel.Name = "colorNameLabel";
-            colorNameLabel.Size = new System.Drawing.Size(84, 17);
-            colorNameLabel.TabIndex = 7;
-            colorNameLabel.Text = "color Name:";
+            sizeNameLabel.AutoSize = true;
+            sizeNameLabel.Location = new System.Drawing.Point(869, 191);
+            sizeNameLabel.Name = "sizeNameLabel";
+            sizeNameLabel.Size = new System.Drawing.Size(74, 17);
+            sizeNameLabel.TabIndex = 7;
+            sizeNameLabel.Text = "Size name";
             // 
-            // colorHexLabel
+            // descriptionLabel
             // 
-            colorHexLabel.AutoSize = true;
-            colorHexLabel.Location = new System.Drawing.Point(881, 327);
-            colorHexLabel.Name = "colorHexLabel";
-            colorHexLabel.Size = new System.Drawing.Size(71, 17);
-            colorHexLabel.TabIndex = 9;
-            colorHexLabel.Text = "color Hex:";
+            descriptionLabel.AutoSize = true;
+            descriptionLabel.Location = new System.Drawing.Point(869, 246);
+            descriptionLabel.Name = "descriptionLabel";
+            descriptionLabel.Size = new System.Drawing.Size(72, 17);
+            descriptionLabel.TabIndex = 9;
+            descriptionLabel.Text = "Décription";
             // 
             // activeLabel
             // 
             activeLabel.AutoSize = true;
-            activeLabel.Location = new System.Drawing.Point(881, 389);
+            activeLabel.Location = new System.Drawing.Point(869, 368);
             activeLabel.Name = "activeLabel";
-            activeLabel.Size = new System.Drawing.Size(49, 17);
+            activeLabel.Size = new System.Drawing.Size(46, 17);
             activeLabel.TabIndex = 11;
-            activeLabel.Text = "active:";
+            activeLabel.Text = "Active";
+            activeLabel.Click += new System.EventHandler(this.activeLabel_Click);
             // 
             // label1
             // 
             label1.AutoSize = true;
             label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            label1.Location = new System.Drawing.Point(874, 79);
+            label1.Location = new System.Drawing.Point(861, 52);
             label1.Name = "label1";
-            label1.Size = new System.Drawing.Size(178, 36);
-            label1.TabIndex = 23;
-            label1.Text = "Color detail";
+            label1.Size = new System.Drawing.Size(163, 36);
+            label1.TabIndex = 24;
+            label1.Text = "Size detail";
             // 
             // barManager
             // 
@@ -206,16 +204,16 @@
             this.barDockControl1.Location = new System.Drawing.Point(0, 0);
             this.barDockControl1.Manager = this.barManager;
             this.barDockControl1.Margin = new System.Windows.Forms.Padding(2);
-            this.barDockControl1.Size = new System.Drawing.Size(1649, 33);
+            this.barDockControl1.Size = new System.Drawing.Size(1437, 33);
             // 
             // barDockControl2
             // 
             this.barDockControl2.CausesValidation = false;
             this.barDockControl2.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.barDockControl2.Location = new System.Drawing.Point(0, 696);
+            this.barDockControl2.Location = new System.Drawing.Point(0, 686);
             this.barDockControl2.Manager = this.barManager;
             this.barDockControl2.Margin = new System.Windows.Forms.Padding(2);
-            this.barDockControl2.Size = new System.Drawing.Size(1649, 0);
+            this.barDockControl2.Size = new System.Drawing.Size(1437, 0);
             // 
             // barDockControl3
             // 
@@ -224,16 +222,16 @@
             this.barDockControl3.Location = new System.Drawing.Point(0, 33);
             this.barDockControl3.Manager = this.barManager;
             this.barDockControl3.Margin = new System.Windows.Forms.Padding(2);
-            this.barDockControl3.Size = new System.Drawing.Size(0, 663);
+            this.barDockControl3.Size = new System.Drawing.Size(0, 653);
             // 
             // barDockControl5
             // 
             this.barDockControl5.CausesValidation = false;
             this.barDockControl5.Dock = System.Windows.Forms.DockStyle.Right;
-            this.barDockControl5.Location = new System.Drawing.Point(1649, 33);
+            this.barDockControl5.Location = new System.Drawing.Point(1437, 33);
             this.barDockControl5.Manager = this.barManager;
             this.barDockControl5.Margin = new System.Windows.Forms.Padding(2);
-            this.barDockControl5.Size = new System.Drawing.Size(0, 663);
+            this.barDockControl5.Size = new System.Drawing.Size(0, 653);
             // 
             // btnSua
             // 
@@ -255,14 +253,14 @@
             this.clothesDataSet.DataSetName = "ClothesDataSet";
             this.clothesDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
-            // colorBindingSource
+            // sizeBindingSource
             // 
-            this.colorBindingSource.DataMember = "Color";
-            this.colorBindingSource.DataSource = this.clothesDataSet;
+            this.sizeBindingSource.DataMember = "Size";
+            this.sizeBindingSource.DataSource = this.clothesDataSet;
             // 
-            // colorTableAdapter
+            // sizeTableAdapter
             // 
-            this.colorTableAdapter.ClearBeforeFill = true;
+            this.sizeTableAdapter.ClearBeforeFill = true;
             // 
             // tableAdapterManager
             // 
@@ -270,7 +268,7 @@
             this.tableAdapterManager.AddressTableAdapter = null;
             this.tableAdapterManager.BackupDataSetBeforeUpdate = false;
             this.tableAdapterManager.CategoryTableAdapter = null;
-            this.tableAdapterManager.ColorTableAdapter = this.colorTableAdapter;
+            this.tableAdapterManager.ColorTableAdapter = null;
             this.tableAdapterManager.CustomerTableAdapter = null;
             this.tableAdapterManager.EmployeeTableAdapter = null;
             this.tableAdapterManager.FavoriteProductTableAdapter = null;
@@ -285,30 +283,30 @@
             this.tableAdapterManager.PromotionTableAdapter = null;
             this.tableAdapterManager.ProviderTableAdapter = null;
             this.tableAdapterManager.RoleTableAdapter = null;
-            this.tableAdapterManager.SizeTableAdapter = null;
+            this.tableAdapterManager.SizeTableAdapter = this.sizeTableAdapter;
             this.tableAdapterManager.UpdateOrder = ClothesAdmin.ClothesDataSetTableAdapters.TableAdapterManager.UpdateOrderOption.InsertUpdateDelete;
             // 
-            // colorGridControl
+            // sizeGridControl
             // 
-            this.colorGridControl.DataSource = this.colorBindingSource;
-            this.colorGridControl.Dock = System.Windows.Forms.DockStyle.Left;
-            this.colorGridControl.Location = new System.Drawing.Point(0, 33);
-            this.colorGridControl.MainView = this.gridView1;
-            this.colorGridControl.MenuManager = this.barManager;
-            this.colorGridControl.Name = "colorGridControl";
-            this.colorGridControl.Size = new System.Drawing.Size(776, 663);
-            this.colorGridControl.TabIndex = 5;
-            this.colorGridControl.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
+            this.sizeGridControl.DataSource = this.sizeBindingSource;
+            this.sizeGridControl.Dock = System.Windows.Forms.DockStyle.Left;
+            this.sizeGridControl.Location = new System.Drawing.Point(0, 33);
+            this.sizeGridControl.MainView = this.gridView1;
+            this.sizeGridControl.MenuManager = this.barManager;
+            this.sizeGridControl.Name = "sizeGridControl";
+            this.sizeGridControl.Size = new System.Drawing.Size(814, 653);
+            this.sizeGridControl.TabIndex = 5;
+            this.sizeGridControl.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridView1});
             // 
             // gridView1
             // 
             this.gridView1.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
             this.colid,
-            this.colcolorName,
-            this.colcolorHex,
+            this.colsizeName,
+            this.coldescription,
             this.colactive});
-            this.gridView1.GridControl = this.colorGridControl;
+            this.gridView1.GridControl = this.sizeGridControl;
             this.gridView1.Name = "gridView1";
             // 
             // colid
@@ -321,25 +319,25 @@
             this.colid.VisibleIndex = 0;
             this.colid.Width = 94;
             // 
-            // colcolorName
+            // colsizeName
             // 
-            this.colcolorName.FieldName = "colorName";
-            this.colcolorName.MinWidth = 25;
-            this.colcolorName.Name = "colcolorName";
-            this.colcolorName.OptionsColumn.AllowEdit = false;
-            this.colcolorName.Visible = true;
-            this.colcolorName.VisibleIndex = 1;
-            this.colcolorName.Width = 94;
+            this.colsizeName.FieldName = "sizeName";
+            this.colsizeName.MinWidth = 25;
+            this.colsizeName.Name = "colsizeName";
+            this.colsizeName.OptionsColumn.AllowEdit = false;
+            this.colsizeName.Visible = true;
+            this.colsizeName.VisibleIndex = 1;
+            this.colsizeName.Width = 94;
             // 
-            // colcolorHex
+            // coldescription
             // 
-            this.colcolorHex.FieldName = "colorHex";
-            this.colcolorHex.MinWidth = 25;
-            this.colcolorHex.Name = "colcolorHex";
-            this.colcolorHex.OptionsColumn.AllowEdit = false;
-            this.colcolorHex.Visible = true;
-            this.colcolorHex.VisibleIndex = 2;
-            this.colcolorHex.Width = 94;
+            this.coldescription.FieldName = "description";
+            this.coldescription.MinWidth = 25;
+            this.coldescription.Name = "coldescription";
+            this.coldescription.OptionsColumn.AllowEdit = false;
+            this.coldescription.Visible = true;
+            this.coldescription.VisibleIndex = 2;
+            this.coldescription.Width = 94;
             // 
             // colactive
             // 
@@ -353,14 +351,13 @@
             // 
             // idSpinEdit
             // 
-            this.idSpinEdit.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.colorBindingSource, "id", true));
+            this.idSpinEdit.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.sizeBindingSource, "id", true));
             this.idSpinEdit.EditValue = new decimal(new int[] {
             0,
             0,
             0,
             0});
-            this.idSpinEdit.Enabled = false;
-            this.idSpinEdit.Location = new System.Drawing.Point(1009, 198);
+            this.idSpinEdit.Location = new System.Drawing.Point(976, 139);
             this.idSpinEdit.MenuManager = this.barManager;
             this.idSpinEdit.Name = "idSpinEdit";
             this.idSpinEdit.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
@@ -368,24 +365,24 @@
             this.idSpinEdit.Size = new System.Drawing.Size(125, 24);
             this.idSpinEdit.TabIndex = 6;
             // 
-            // colorNameTextEdit
+            // sizeNameTextEdit
             // 
-            this.colorNameTextEdit.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.colorBindingSource, "colorName", true));
-            this.colorNameTextEdit.Location = new System.Drawing.Point(1009, 252);
-            this.colorNameTextEdit.MenuManager = this.barManager;
-            this.colorNameTextEdit.Name = "colorNameTextEdit";
-            this.colorNameTextEdit.Size = new System.Drawing.Size(317, 22);
-            this.colorNameTextEdit.TabIndex = 8;
+            this.sizeNameTextEdit.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.sizeBindingSource, "sizeName", true));
+            this.sizeNameTextEdit.Location = new System.Drawing.Point(976, 188);
+            this.sizeNameTextEdit.MenuManager = this.barManager;
+            this.sizeNameTextEdit.Name = "sizeNameTextEdit";
+            this.sizeNameTextEdit.Size = new System.Drawing.Size(338, 22);
+            this.sizeNameTextEdit.TabIndex = 8;
             // 
             // activeSpinEdit
             // 
-            this.activeSpinEdit.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.colorBindingSource, "active", true));
+            this.activeSpinEdit.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.sizeBindingSource, "active", true));
             this.activeSpinEdit.EditValue = new decimal(new int[] {
             0,
             0,
             0,
             0});
-            this.activeSpinEdit.Location = new System.Drawing.Point(1009, 386);
+            this.activeSpinEdit.Location = new System.Drawing.Point(976, 365);
             this.activeSpinEdit.MenuManager = this.barManager;
             this.activeSpinEdit.Name = "activeSpinEdit";
             this.activeSpinEdit.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
@@ -393,15 +390,24 @@
             this.activeSpinEdit.Size = new System.Drawing.Size(125, 24);
             this.activeSpinEdit.TabIndex = 12;
             // 
+            // descriptionRichTextBox
+            // 
+            this.descriptionRichTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.sizeBindingSource, "description", true));
+            this.descriptionRichTextBox.Location = new System.Drawing.Point(976, 243);
+            this.descriptionRichTextBox.Name = "descriptionRichTextBox";
+            this.descriptionRichTextBox.Size = new System.Drawing.Size(338, 96);
+            this.descriptionRichTextBox.TabIndex = 25;
+            this.descriptionRichTextBox.Text = "";
+            // 
             // btnCancelAddProvider
             // 
             this.btnCancelAddProvider.BackColor = System.Drawing.Color.White;
             this.btnCancelAddProvider.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnCancelAddProvider.ForeColor = System.Drawing.Color.Crimson;
-            this.btnCancelAddProvider.Location = new System.Drawing.Point(1083, 488);
+            this.btnCancelAddProvider.Location = new System.Drawing.Point(1191, 485);
             this.btnCancelAddProvider.Name = "btnCancelAddProvider";
             this.btnCancelAddProvider.Size = new System.Drawing.Size(123, 52);
-            this.btnCancelAddProvider.TabIndex = 37;
+            this.btnCancelAddProvider.TabIndex = 39;
             this.btnCancelAddProvider.Text = "Cancel";
             this.btnCancelAddProvider.UseVisualStyleBackColor = false;
             this.btnCancelAddProvider.Click += new System.EventHandler(this.btnCancelAddProvider_Click);
@@ -411,90 +417,55 @@
             this.btnSaveAddProvider.BackColor = System.Drawing.Color.White;
             this.btnSaveAddProvider.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSaveAddProvider.ForeColor = System.Drawing.Color.ForestGreen;
-            this.btnSaveAddProvider.Location = new System.Drawing.Point(874, 488);
+            this.btnSaveAddProvider.Location = new System.Drawing.Point(982, 485);
             this.btnSaveAddProvider.Name = "btnSaveAddProvider";
             this.btnSaveAddProvider.Size = new System.Drawing.Size(123, 52);
-            this.btnSaveAddProvider.TabIndex = 36;
+            this.btnSaveAddProvider.TabIndex = 38;
             this.btnSaveAddProvider.Text = "Save";
             this.btnSaveAddProvider.UseVisualStyleBackColor = false;
             this.btnSaveAddProvider.Click += new System.EventHandler(this.btnSaveAddProvider_Click);
             // 
-            // colorHexTextEdit
-            // 
-            this.colorHexTextEdit.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.colorBindingSource, "colorHex", true));
-            this.colorHexTextEdit.Enabled = false;
-            this.colorHexTextEdit.Location = new System.Drawing.Point(1009, 324);
-            this.colorHexTextEdit.MenuManager = this.barManager;
-            this.colorHexTextEdit.Name = "colorHexTextEdit";
-            this.colorHexTextEdit.Size = new System.Drawing.Size(125, 22);
-            this.colorHexTextEdit.TabIndex = 49;
-            this.colorHexTextEdit.EditValueChanged += new System.EventHandler(this.colorHexTextEdit_EditValueChanged);
-            // 
-            // btnChooseColor
-            // 
-            this.btnChooseColor.Location = new System.Drawing.Point(1181, 310);
-            this.btnChooseColor.Name = "btnChooseColor";
-            this.btnChooseColor.Size = new System.Drawing.Size(120, 51);
-            this.btnChooseColor.TabIndex = 59;
-            this.btnChooseColor.UseVisualStyleBackColor = true;
-            this.btnChooseColor.Click += new System.EventHandler(this.btnChooseColor_Click);
-            // 
-            // lbChooseColor
-            // 
-            this.lbChooseColor.AutoSize = true;
-            this.lbChooseColor.LinkColor = System.Drawing.Color.DeepSkyBlue;
-            this.lbChooseColor.Location = new System.Drawing.Point(1328, 327);
-            this.lbChooseColor.Name = "lbChooseColor";
-            this.lbChooseColor.Size = new System.Drawing.Size(91, 17);
-            this.lbChooseColor.TabIndex = 64;
-            this.lbChooseColor.TabStop = true;
-            this.lbChooseColor.Text = "Choose color";
-            this.lbChooseColor.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.lbChooseColor_LinkClicked);
-            // 
             // productSizeColorBindingSource
             // 
-            this.productSizeColorBindingSource.DataMember = "FK_ProductSizeColor_Color1";
-            this.productSizeColorBindingSource.DataSource = this.colorBindingSource;
+            this.productSizeColorBindingSource.DataMember = "FK_ProductSizeColor_Size1";
+            this.productSizeColorBindingSource.DataSource = this.sizeBindingSource;
             // 
             // productSizeColorTableAdapter
             // 
             this.productSizeColorTableAdapter.ClearBeforeFill = true;
             // 
-            // ColorForm
+            // SizeForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1649, 696);
-            this.Controls.Add(this.lbChooseColor);
-            this.Controls.Add(this.btnChooseColor);
-            this.Controls.Add(this.colorHexTextEdit);
+            this.ClientSize = new System.Drawing.Size(1437, 686);
             this.Controls.Add(this.btnCancelAddProvider);
             this.Controls.Add(this.btnSaveAddProvider);
+            this.Controls.Add(this.descriptionRichTextBox);
             this.Controls.Add(label1);
             this.Controls.Add(idLabel);
             this.Controls.Add(this.idSpinEdit);
-            this.Controls.Add(colorNameLabel);
-            this.Controls.Add(this.colorNameTextEdit);
-            this.Controls.Add(colorHexLabel);
+            this.Controls.Add(sizeNameLabel);
+            this.Controls.Add(this.sizeNameTextEdit);
+            this.Controls.Add(descriptionLabel);
             this.Controls.Add(activeLabel);
             this.Controls.Add(this.activeSpinEdit);
-            this.Controls.Add(this.colorGridControl);
+            this.Controls.Add(this.sizeGridControl);
             this.Controls.Add(this.barDockControl3);
             this.Controls.Add(this.barDockControl5);
             this.Controls.Add(this.barDockControl2);
             this.Controls.Add(this.barDockControl1);
-            this.Name = "ColorForm";
-            this.Text = "ColorForm";
-            this.Load += new System.EventHandler(this.ColorForm_Load);
+            this.Name = "SizeForm";
+            this.Text = "SizeForm";
+            this.Load += new System.EventHandler(this.SizeForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.barManager)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.clothesDataSet)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.colorBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.colorGridControl)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.sizeBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.sizeGridControl)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.idSpinEdit.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.colorNameTextEdit.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.sizeNameTextEdit.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.activeSpinEdit.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.colorHexTextEdit.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.productSizeColorBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -513,26 +484,24 @@
         private DevExpress.XtraBars.BarDockControl barDockControl2;
         private DevExpress.XtraBars.BarDockControl barDockControl3;
         private DevExpress.XtraBars.BarDockControl barDockControl5;
-        private System.Windows.Forms.BindingSource colorBindingSource;
-        private ClothesDataSet clothesDataSet;
         private DevExpress.XtraBars.BarButtonItem btnSua;
         private DevExpress.XtraBars.BarButtonItem btnTimKiem;
-        private ClothesDataSetTableAdapters.ColorTableAdapter colorTableAdapter;
+        private System.Windows.Forms.BindingSource sizeBindingSource;
+        private ClothesDataSet clothesDataSet;
+        private ClothesDataSetTableAdapters.SizeTableAdapter sizeTableAdapter;
         private ClothesDataSetTableAdapters.TableAdapterManager tableAdapterManager;
-        private DevExpress.XtraGrid.GridControl colorGridControl;
-        private DevExpress.XtraGrid.Views.Grid.GridView gridView1;
         private DevExpress.XtraEditors.SpinEdit idSpinEdit;
-        private DevExpress.XtraEditors.TextEdit colorNameTextEdit;
+        private DevExpress.XtraEditors.TextEdit sizeNameTextEdit;
         private DevExpress.XtraEditors.SpinEdit activeSpinEdit;
+        private DevExpress.XtraGrid.GridControl sizeGridControl;
+        private DevExpress.XtraGrid.Views.Grid.GridView gridView1;
+        private DevExpress.XtraGrid.Columns.GridColumn colid;
+        private DevExpress.XtraGrid.Columns.GridColumn colsizeName;
+        private DevExpress.XtraGrid.Columns.GridColumn coldescription;
+        private DevExpress.XtraGrid.Columns.GridColumn colactive;
+        private System.Windows.Forms.RichTextBox descriptionRichTextBox;
         private System.Windows.Forms.Button btnCancelAddProvider;
         private System.Windows.Forms.Button btnSaveAddProvider;
-        private DevExpress.XtraEditors.TextEdit colorHexTextEdit;
-        private System.Windows.Forms.Button btnChooseColor;
-        private System.Windows.Forms.LinkLabel lbChooseColor;
-        private DevExpress.XtraGrid.Columns.GridColumn colid;
-        private DevExpress.XtraGrid.Columns.GridColumn colcolorName;
-        private DevExpress.XtraGrid.Columns.GridColumn colcolorHex;
-        private DevExpress.XtraGrid.Columns.GridColumn colactive;
         private System.Windows.Forms.BindingSource productSizeColorBindingSource;
         private ClothesDataSetTableAdapters.ProductSizeColorTableAdapter productSizeColorTableAdapter;
     }

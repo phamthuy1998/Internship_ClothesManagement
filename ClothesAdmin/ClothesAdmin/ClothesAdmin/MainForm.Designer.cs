@@ -331,9 +331,9 @@
             this.backstageViewClientControl1.Controls.Add(this.linkChangeAvatar);
             this.backstageViewClientControl1.Controls.Add(this.btnSaveInfo);
             this.backstageViewClientControl1.Controls.Add(this.picAvater);
-            this.backstageViewClientControl1.Location = new System.Drawing.Point(200, 77);
+            this.backstageViewClientControl1.Location = new System.Drawing.Point(163, 77);
             this.backstageViewClientControl1.Name = "backstageViewClientControl1";
-            this.backstageViewClientControl1.Size = new System.Drawing.Size(750, 602);
+            this.backstageViewClientControl1.Size = new System.Drawing.Size(787, 602);
             this.backstageViewClientControl1.TabIndex = 1;
             this.backstageViewClientControl1.Load += new System.EventHandler(this.backstageViewClientControl1_Load_1);
             // 
@@ -452,9 +452,9 @@
             this.backstageViewClientControl2.Controls.Add(this.emailTextEdit);
             this.backstageViewClientControl2.Controls.Add(usernameLabel);
             this.backstageViewClientControl2.Controls.Add(this.usernameTextEdit);
-            this.backstageViewClientControl2.Location = new System.Drawing.Point(200, 77);
+            this.backstageViewClientControl2.Location = new System.Drawing.Point(163, 77);
             this.backstageViewClientControl2.Name = "backstageViewClientControl2";
-            this.backstageViewClientControl2.Size = new System.Drawing.Size(750, 602);
+            this.backstageViewClientControl2.Size = new System.Drawing.Size(787, 602);
             this.backstageViewClientControl2.TabIndex = 4;
             this.backstageViewClientControl2.Load += new System.EventHandler(this.backstageViewClientControl2_Load);
             // 
@@ -651,6 +651,7 @@
             this.btnSize.Id = 265;
             this.btnSize.ImageOptions.Image = global::ClothesAdmin.Properties.Resources.tshirt;
             this.btnSize.Name = "btnSize";
+            this.btnSize.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnSize_ItemClick);
             // 
             // btnColor
             // 

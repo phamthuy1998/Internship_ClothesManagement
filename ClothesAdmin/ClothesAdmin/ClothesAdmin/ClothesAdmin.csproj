@@ -211,6 +211,12 @@
     <Compile Include="Size.cs">
       <DependentUpon>ClothesModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="SizeForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SizeForm.Designer.cs">
+      <DependentUpon>SizeForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="SPGetAccountInfoByUserId_Result.cs">
       <DependentUpon>ClothesModel.tt</DependentUpon>
     </Compile>
@@ -300,6 +306,9 @@
     </Compile>
     <EmbeddedResource Include="ProviderForm.resx">
       <DependentUpon>ProviderForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SizeForm.resx">
+      <DependentUpon>SizeForm.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="App.config" />
     <None Include="ClassDiagram1.cd" />

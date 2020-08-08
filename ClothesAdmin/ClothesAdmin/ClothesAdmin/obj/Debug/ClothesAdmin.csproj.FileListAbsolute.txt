@@ -200,3 +200,4 @@ D:\Thuy\thuctap\Internship_ClothesManament\ClothesAdmin\ClothesAdmin\ClothesAdmi
 D:\Thuy\thuctap\Internship_ClothesManament\ClothesAdmin\ClothesAdmin\ClothesAdmin\obj\Debug\ClothesAdmin.ProviderForm.resources
 D:\Thuy\thuctap\Internship_ClothesManament\ClothesAdmin\ClothesAdmin\ClothesAdmin\obj\Debug\ClothesAdmin.LoginForm.resources
 D:\Thuy\thuctap\Internship_ClothesManament\ClothesAdmin\ClothesAdmin\ClothesAdmin\obj\Debug\ClothesAdmin.ColorForm.resources
+D:\Thuy\thuctap\Internship_ClothesManament\ClothesAdmin\ClothesAdmin\ClothesAdmin\obj\Debug\ClothesAdmin.SizeForm.resources

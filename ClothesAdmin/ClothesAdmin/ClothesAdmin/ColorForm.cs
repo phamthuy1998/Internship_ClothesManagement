@@ -80,7 +80,7 @@ namespace ClothesAdmin
         {
             if (colorBindingSource.Count == 0)
             {
-                MessageBox.Show("Không có providers để xóa!", "THÔNG BÁO", MessageBoxButtons.OK);
+                MessageBox.Show("Không có color để xóa!", "THÔNG BÁO", MessageBoxButtons.OK);
                 return;
             }
             else
