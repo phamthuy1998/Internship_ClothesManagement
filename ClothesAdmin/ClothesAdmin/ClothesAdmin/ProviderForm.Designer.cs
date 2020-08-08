@@ -174,7 +174,7 @@
             // 
             label1.AutoSize = true;
             label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            label1.Location = new System.Drawing.Point(906, 33);
+            label1.Location = new System.Drawing.Point(906, 49);
             label1.Name = "label1";
             label1.Size = new System.Drawing.Size(221, 36);
             label1.TabIndex = 22;
@@ -239,10 +239,10 @@
             // 
             this.barDockControl4.CausesValidation = false;
             this.barDockControl4.Dock = System.Windows.Forms.DockStyle.Right;
-            this.barDockControl4.Location = new System.Drawing.Point(1892, 33);
+            this.barDockControl4.Location = new System.Drawing.Point(1900, 30);
             this.barDockControl4.Manager = null;
             this.barDockControl4.Margin = new System.Windows.Forms.Padding(2);
-            this.barDockControl4.Size = new System.Drawing.Size(0, 695);
+            this.barDockControl4.Size = new System.Drawing.Size(0, 693);
             // 
             // barManager
             // 
@@ -320,34 +320,34 @@
             this.barDockControl1.Location = new System.Drawing.Point(0, 0);
             this.barDockControl1.Manager = this.barManager;
             this.barDockControl1.Margin = new System.Windows.Forms.Padding(2);
-            this.barDockControl1.Size = new System.Drawing.Size(1892, 33);
+            this.barDockControl1.Size = new System.Drawing.Size(1900, 30);
             // 
             // barDockControl2
             // 
             this.barDockControl2.CausesValidation = false;
             this.barDockControl2.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.barDockControl2.Location = new System.Drawing.Point(0, 728);
+            this.barDockControl2.Location = new System.Drawing.Point(0, 723);
             this.barDockControl2.Manager = this.barManager;
             this.barDockControl2.Margin = new System.Windows.Forms.Padding(2);
-            this.barDockControl2.Size = new System.Drawing.Size(1892, 0);
+            this.barDockControl2.Size = new System.Drawing.Size(1900, 0);
             // 
             // barDockControl3
             // 
             this.barDockControl3.CausesValidation = false;
             this.barDockControl3.Dock = System.Windows.Forms.DockStyle.Left;
-            this.barDockControl3.Location = new System.Drawing.Point(0, 33);
+            this.barDockControl3.Location = new System.Drawing.Point(0, 30);
             this.barDockControl3.Manager = this.barManager;
             this.barDockControl3.Margin = new System.Windows.Forms.Padding(2);
-            this.barDockControl3.Size = new System.Drawing.Size(0, 695);
+            this.barDockControl3.Size = new System.Drawing.Size(0, 693);
             // 
             // barDockControl5
             // 
             this.barDockControl5.CausesValidation = false;
             this.barDockControl5.Dock = System.Windows.Forms.DockStyle.Right;
-            this.barDockControl5.Location = new System.Drawing.Point(1892, 33);
+            this.barDockControl5.Location = new System.Drawing.Point(1900, 30);
             this.barDockControl5.Manager = this.barManager;
             this.barDockControl5.Margin = new System.Windows.Forms.Padding(2);
-            this.barDockControl5.Size = new System.Drawing.Size(0, 695);
+            this.barDockControl5.Size = new System.Drawing.Size(0, 693);
             // 
             // btnSua
             // 
@@ -415,11 +415,11 @@
             // 
             this.providerGridControl.DataSource = this.providerBindingSource;
             this.providerGridControl.Dock = System.Windows.Forms.DockStyle.Left;
-            this.providerGridControl.Location = new System.Drawing.Point(0, 33);
+            this.providerGridControl.Location = new System.Drawing.Point(0, 30);
             this.providerGridControl.MainView = this.gridView1;
             this.providerGridControl.MenuManager = this.barManager;
             this.providerGridControl.Name = "providerGridControl";
-            this.providerGridControl.Size = new System.Drawing.Size(865, 695);
+            this.providerGridControl.Size = new System.Drawing.Size(865, 693);
             this.providerGridControl.TabIndex = 13;
             this.providerGridControl.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridView1});
@@ -530,7 +530,7 @@
             this.idSpinEdit.Name = "idSpinEdit";
             this.idSpinEdit.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.idSpinEdit.Size = new System.Drawing.Size(125, 24);
+            this.idSpinEdit.Size = new System.Drawing.Size(125, 22);
             this.idSpinEdit.TabIndex = 21;
             // 
             // tvImageUrlProvider
@@ -578,11 +578,12 @@
             this.activeSpinEdit.Name = "activeSpinEdit";
             this.activeSpinEdit.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.activeSpinEdit.Size = new System.Drawing.Size(125, 24);
+            this.activeSpinEdit.Size = new System.Drawing.Size(125, 22);
             this.activeSpinEdit.TabIndex = 32;
             // 
             // imageProvider
             // 
+            this.imageProvider.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.imageProvider.ErrorImage = global::ClothesAdmin.Properties.Resources.no_image;
             this.imageProvider.InitialImage = global::ClothesAdmin.Properties.Resources.no_image;
             this.imageProvider.Location = new System.Drawing.Point(1499, 133);
@@ -631,7 +632,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1892, 728);
+            this.ClientSize = new System.Drawing.Size(1900, 723);
             this.Controls.Add(this.imageProvider);
             this.Controls.Add(this.btnCancelAddProvider);
             this.Controls.Add(this.btnSaveAddProvider);

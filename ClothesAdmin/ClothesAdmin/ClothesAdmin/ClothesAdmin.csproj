@@ -134,6 +134,12 @@
     <Compile Include="Color.cs">
       <DependentUpon>ClothesModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="ColorForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ColorForm.Designer.cs">
+      <DependentUpon>ColorForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Customer.cs">
       <DependentUpon>ClothesModel.tt</DependentUpon>
     </Compile>
@@ -192,12 +198,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Provider.cs">
       <DependentUpon>ClothesModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="ProviderAddEditForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="ProviderAddEditForm.Designer.cs">
-      <DependentUpon>ProviderAddEditForm.cs</DependentUpon>
     </Compile>
     <Compile Include="ProviderForm.cs">
       <SubType>Form</SubType>
@@ -275,6 +275,9 @@
     <EmbeddedResource Include="CategoryForm.resx">
       <DependentUpon>CategoryForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="ColorForm.resx">
+      <DependentUpon>ColorForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="LoginForm.resx">
       <DependentUpon>LoginForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -295,9 +298,6 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
-    <EmbeddedResource Include="ProviderAddEditForm.resx">
-      <DependentUpon>ProviderAddEditForm.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="ProviderForm.resx">
       <DependentUpon>ProviderForm.cs</DependentUpon>
     </EmbeddedResource>

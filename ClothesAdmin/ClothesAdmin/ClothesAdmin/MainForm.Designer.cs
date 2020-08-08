@@ -83,7 +83,8 @@
             this.btnInvoice = new DevExpress.XtraBars.BarButtonItem();
             this.barButtonItem4 = new DevExpress.XtraBars.BarButtonItem();
             this.btnSize = new DevExpress.XtraBars.BarButtonItem();
-            this.barButtonItem7 = new DevExpress.XtraBars.BarButtonItem();
+            this.btnColor = new DevExpress.XtraBars.BarButtonItem();
+            this.barButtonItem8 = new DevExpress.XtraBars.BarButtonItem();
             this.rbHome = new DevExpress.XtraBars.Ribbon.RibbonPage();
             this.ribbonPageGroup1 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.ribbonPageGroup4 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
@@ -117,7 +118,6 @@
             this.barButtonGroup2 = new DevExpress.XtraBars.BarButtonGroup();
             this.barButtonItem5 = new DevExpress.XtraBars.BarButtonItem();
             this.barButtonItem6 = new DevExpress.XtraBars.BarButtonItem();
-            this.barButtonItem8 = new DevExpress.XtraBars.BarButtonItem();
             firstNameLabel = new System.Windows.Forms.Label();
             lastNameLabel = new System.Windows.Forms.Label();
             phoneLabel = new System.Windows.Forms.Label();
@@ -281,7 +281,7 @@
             this.btnInvoice,
             this.barButtonItem4,
             this.btnSize,
-            this.barButtonItem7,
+            this.btnColor,
             this.barButtonItem8});
             this.ribbon.Location = new System.Drawing.Point(0, 0);
             this.ribbon.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
@@ -652,12 +652,19 @@
             this.btnSize.ImageOptions.Image = global::ClothesAdmin.Properties.Resources.tshirt;
             this.btnSize.Name = "btnSize";
             // 
-            // barButtonItem7
+            // btnColor
             // 
-            this.barButtonItem7.Caption = "Color";
-            this.barButtonItem7.Id = 266;
-            this.barButtonItem7.ImageOptions.Image = global::ClothesAdmin.Properties.Resources.color_wheel;
-            this.barButtonItem7.Name = "barButtonItem7";
+            this.btnColor.Caption = "Color";
+            this.btnColor.Id = 266;
+            this.btnColor.ImageOptions.Image = global::ClothesAdmin.Properties.Resources.color_wheel;
+            this.btnColor.Name = "btnColor";
+            this.btnColor.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnColor_ItemClick);
+            // 
+            // barButtonItem8
+            // 
+            this.barButtonItem8.Caption = "barButtonItem8";
+            this.barButtonItem8.Id = 267;
+            this.barButtonItem8.Name = "barButtonItem8";
             // 
             // rbHome
             // 
@@ -675,7 +682,7 @@
             // 
             this.ribbonPageGroup1.ItemLinks.Add(this.btnProduct);
             this.ribbonPageGroup1.ItemLinks.Add(this.btnSize, true);
-            this.ribbonPageGroup1.ItemLinks.Add(this.barButtonItem7);
+            this.ribbonPageGroup1.ItemLinks.Add(this.btnColor);
             this.ribbonPageGroup1.Name = "ribbonPageGroup1";
             // 
             // ribbonPageGroup4
@@ -863,12 +870,6 @@
             // 
             this.barButtonItem6.Name = "barButtonItem6";
             // 
-            // barButtonItem8
-            // 
-            this.barButtonItem8.Caption = "barButtonItem8";
-            this.barButtonItem8.Id = 267;
-            this.barButtonItem8.Name = "barButtonItem8";
-            // 
             // MainForm
             // 
             this.ActiveGlowColor = System.Drawing.Color.White;
@@ -1000,7 +1001,7 @@
         private DevExpress.XtraBars.BarButtonGroup barButtonGroup2;
         private DevExpress.XtraBars.BarButtonItem barButtonItem5;
         private DevExpress.XtraBars.BarButtonItem barButtonItem6;
-        private DevExpress.XtraBars.BarButtonItem barButtonItem7;
+        private DevExpress.XtraBars.BarButtonItem btnColor;
         private DevExpress.XtraBars.BarButtonItem barButtonItem8;
     }
 }

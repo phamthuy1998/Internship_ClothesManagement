@@ -16,6 +16,7 @@ namespace ClothesAdmin
         private Form form;
         private ProductForm productForm = null;
         private CategoryForm categoryForm = null;
+        private ColorForm colorForm = null;
         private AccountsForm accountsForm = null;
         private ProviderForm providerForm = null;
         public MainForm()
@@ -227,6 +228,19 @@ namespace ClothesAdmin
         private void barButtonItem4_ItemClick(object sender, ItemClickEventArgs e)
         {
 
+        }
+
+        private void btnColor_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            form = this.CheckExists(typeof(ColorForm));
+            if (form == null)
+            {
+                IsMdiContainer = true;
+                colorForm = new ColorForm();
+                colorForm.MdiParent = this;
+                colorForm.Show();
+            }
+            else form.Activate();
         }
     }
 }

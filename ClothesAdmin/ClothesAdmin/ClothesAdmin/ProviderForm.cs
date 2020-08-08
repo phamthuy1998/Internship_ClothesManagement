@@ -50,7 +50,11 @@ namespace ClothesAdmin
             {
                 if (productBindingSource.Count > 0)
                 {
-                    MessageBox.Show("Nhà cung cấp đã có sản phẩm, không thể xóa", "", MessageBoxButtons.OK);
+                    MessageBox.Show("Nhà cung cấp đã có sản phẩm, không thể xóa, trạng thái của nhà cung cấp sẽ được chuyển qua đã xóa", "", MessageBoxButtons.OK);
+                    activeSpinEdit.EditValue = 1;
+                    this.Validate();
+                    this.providerBindingSource.EndEdit();
+                    this.tableAdapterManager.UpdateAll(this.clothesDataSet);
                     return;
                 }
 
@@ -65,7 +69,7 @@ namespace ClothesAdmin
                     }
                     catch (Exception ex)
                     {
-                        MessageBox.Show("Lỗi xóa khoa" + ex.Message, "", MessageBoxButtons.OK);
+                        MessageBox.Show("Lỗi xóa Provider" + ex.Message, "", MessageBoxButtons.OK);
                     }
                 }
             }

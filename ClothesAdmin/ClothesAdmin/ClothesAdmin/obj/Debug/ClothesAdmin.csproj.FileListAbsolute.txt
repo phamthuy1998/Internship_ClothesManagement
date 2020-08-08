@@ -198,5 +198,5 @@ D:\Thuy\thuctap\Internship_ClothesManament\ClothesAdmin\ClothesAdmin\ClothesAdmi
 D:\Thuy\thuctap\Internship_ClothesManament\ClothesAdmin\ClothesAdmin\ClothesAdmin\bin\Debug\EntityFramework.SqlServer.xml
 D:\Thuy\thuctap\Internship_ClothesManament\ClothesAdmin\ClothesAdmin\ClothesAdmin\obj\Debug\ClothesAdmin.csprojAssemblyReference.cache
 D:\Thuy\thuctap\Internship_ClothesManament\ClothesAdmin\ClothesAdmin\ClothesAdmin\obj\Debug\ClothesAdmin.ProviderForm.resources
-D:\Thuy\thuctap\Internship_ClothesManament\ClothesAdmin\ClothesAdmin\ClothesAdmin\obj\Debug\ClothesAdmin.ProviderAddEditForm.resources
 D:\Thuy\thuctap\Internship_ClothesManament\ClothesAdmin\ClothesAdmin\ClothesAdmin\obj\Debug\ClothesAdmin.LoginForm.resources
+D:\Thuy\thuctap\Internship_ClothesManament\ClothesAdmin\ClothesAdmin\ClothesAdmin\obj\Debug\ClothesAdmin.ColorForm.resources
