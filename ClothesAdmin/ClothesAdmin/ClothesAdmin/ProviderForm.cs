@@ -146,5 +146,19 @@ namespace ClothesAdmin
         {
             setImage();
         }
+
+        private void btnCloseForm_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            DialogResult dr = MessageBox.Show("Bạn có chắc muốn thoát chương trình provider", "", MessageBoxButtons.YesNo);
+            if (dr == DialogResult.Yes)
+            {
+                this.Close();
+            }
+        }
+
+        private void providerGridControl_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

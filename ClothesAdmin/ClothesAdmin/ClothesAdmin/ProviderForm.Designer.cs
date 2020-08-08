@@ -51,6 +51,7 @@
             this.btnAddProvider = new DevExpress.XtraBars.BarButtonItem();
             this.btnDelProvider = new DevExpress.XtraBars.BarButtonItem();
             this.btnReloadProvider = new DevExpress.XtraBars.BarButtonItem();
+            this.btnCloseForm = new DevExpress.XtraBars.BarButtonItem();
             this.barDockControl1 = new DevExpress.XtraBars.BarDockControl();
             this.barDockControl2 = new DevExpress.XtraBars.BarDockControl();
             this.barDockControl3 = new DevExpress.XtraBars.BarDockControl();
@@ -72,8 +73,6 @@
             this.colphone = new DevExpress.XtraGrid.Columns.GridColumn();
             this.coladdress = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colactive = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.btnCancelAddProvider = new System.Windows.Forms.Button();
-            this.btnSaveAddProvider = new System.Windows.Forms.Button();
             this.infomationRichTextBox = new System.Windows.Forms.RichTextBox();
             this.idSpinEdit = new DevExpress.XtraEditors.SpinEdit();
             this.tvImageUrlProvider = new DevExpress.XtraEditors.TextEdit();
@@ -83,7 +82,8 @@
             this.activeSpinEdit = new DevExpress.XtraEditors.SpinEdit();
             this.imageProvider = new System.Windows.Forms.PictureBox();
             this.btnExitProvider = new DevExpress.XtraBars.BarButtonItem();
-            this.barButtonItem1 = new DevExpress.XtraBars.BarButtonItem();
+            this.btnSaveAddProvider = new System.Windows.Forms.Button();
+            this.btnCancelAddProvider = new System.Windows.Forms.Button();
             idLabel = new System.Windows.Forms.Label();
             imageUrlLabel = new System.Windows.Forms.Label();
             brandNameLabel = new System.Windows.Forms.Label();
@@ -174,7 +174,7 @@
             // 
             label1.AutoSize = true;
             label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            label1.Location = new System.Drawing.Point(906, 66);
+            label1.Location = new System.Drawing.Point(906, 33);
             label1.Name = "label1";
             label1.Size = new System.Drawing.Size(221, 36);
             label1.TabIndex = 22;
@@ -239,10 +239,10 @@
             // 
             this.barDockControl4.CausesValidation = false;
             this.barDockControl4.Dock = System.Windows.Forms.DockStyle.Right;
-            this.barDockControl4.Location = new System.Drawing.Point(1892, 53);
+            this.barDockControl4.Location = new System.Drawing.Point(1892, 33);
             this.barDockControl4.Manager = null;
             this.barDockControl4.Margin = new System.Windows.Forms.Padding(2);
-            this.barDockControl4.Size = new System.Drawing.Size(0, 586);
+            this.barDockControl4.Size = new System.Drawing.Size(0, 695);
             // 
             // barManager
             // 
@@ -259,7 +259,7 @@
             this.btnSua,
             this.btnReloadProvider,
             this.btnTimKiem,
-            this.barButtonItem1});
+            this.btnCloseForm});
             this.barManager.MainMenu = this.bar2;
             this.barManager.MaxItemId = 11;
             // 
@@ -273,7 +273,7 @@
             new DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.PaintStyle, this.btnAddProvider, DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph),
             new DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.PaintStyle, this.btnDelProvider, DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph),
             new DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.PaintStyle, this.btnReloadProvider, DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph),
-            new DevExpress.XtraBars.LinkPersistInfo(this.barButtonItem1)});
+            new DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.PaintStyle, this.btnCloseForm, DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph)});
             this.bar2.OptionsBar.MultiLine = true;
             this.bar2.OptionsBar.UseWholeRow = true;
             this.bar2.Text = "Main menu";
@@ -282,7 +282,7 @@
             // 
             this.btnAddProvider.Caption = "Add new";
             this.btnAddProvider.Id = 0;
-            this.btnAddProvider.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnAddProvider.ImageOptions.Image")));
+            this.btnAddProvider.ImageOptions.Image = global::ClothesAdmin.Properties.Resources.add;
             this.btnAddProvider.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("btnAddProvider.ImageOptions.LargeImage")));
             this.btnAddProvider.Name = "btnAddProvider";
             this.btnAddProvider.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnAddProvider_ItemClick);
@@ -291,7 +291,7 @@
             // 
             this.btnDelProvider.Caption = "Delete";
             this.btnDelProvider.Id = 2;
-            this.btnDelProvider.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnDelProvider.ImageOptions.Image")));
+            this.btnDelProvider.ImageOptions.Image = global::ClothesAdmin.Properties.Resources.delete__1_;
             this.btnDelProvider.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("btnDelProvider.ImageOptions.LargeImage")));
             this.btnDelProvider.Name = "btnDelProvider";
             this.btnDelProvider.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnDelProvider_ItemClick);
@@ -300,10 +300,18 @@
             // 
             this.btnReloadProvider.Caption = "Reload";
             this.btnReloadProvider.Id = 5;
-            this.btnReloadProvider.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnReloadProvider.ImageOptions.Image")));
+            this.btnReloadProvider.ImageOptions.Image = global::ClothesAdmin.Properties.Resources.exchange;
             this.btnReloadProvider.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("btnReloadProvider.ImageOptions.LargeImage")));
             this.btnReloadProvider.Name = "btnReloadProvider";
             this.btnReloadProvider.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnReloadProvider_ItemClick);
+            // 
+            // btnCloseForm
+            // 
+            this.btnCloseForm.Caption = "Close form";
+            this.btnCloseForm.Id = 10;
+            this.btnCloseForm.ImageOptions.Image = global::ClothesAdmin.Properties.Resources.close;
+            this.btnCloseForm.Name = "btnCloseForm";
+            this.btnCloseForm.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnCloseForm_ItemClick);
             // 
             // barDockControl1
             // 
@@ -312,13 +320,13 @@
             this.barDockControl1.Location = new System.Drawing.Point(0, 0);
             this.barDockControl1.Manager = this.barManager;
             this.barDockControl1.Margin = new System.Windows.Forms.Padding(2);
-            this.barDockControl1.Size = new System.Drawing.Size(1892, 53);
+            this.barDockControl1.Size = new System.Drawing.Size(1892, 33);
             // 
             // barDockControl2
             // 
             this.barDockControl2.CausesValidation = false;
             this.barDockControl2.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.barDockControl2.Location = new System.Drawing.Point(0, 639);
+            this.barDockControl2.Location = new System.Drawing.Point(0, 728);
             this.barDockControl2.Manager = this.barManager;
             this.barDockControl2.Margin = new System.Windows.Forms.Padding(2);
             this.barDockControl2.Size = new System.Drawing.Size(1892, 0);
@@ -327,19 +335,19 @@
             // 
             this.barDockControl3.CausesValidation = false;
             this.barDockControl3.Dock = System.Windows.Forms.DockStyle.Left;
-            this.barDockControl3.Location = new System.Drawing.Point(0, 53);
+            this.barDockControl3.Location = new System.Drawing.Point(0, 33);
             this.barDockControl3.Manager = this.barManager;
             this.barDockControl3.Margin = new System.Windows.Forms.Padding(2);
-            this.barDockControl3.Size = new System.Drawing.Size(0, 586);
+            this.barDockControl3.Size = new System.Drawing.Size(0, 695);
             // 
             // barDockControl5
             // 
             this.barDockControl5.CausesValidation = false;
             this.barDockControl5.Dock = System.Windows.Forms.DockStyle.Right;
-            this.barDockControl5.Location = new System.Drawing.Point(1892, 53);
+            this.barDockControl5.Location = new System.Drawing.Point(1892, 33);
             this.barDockControl5.Manager = this.barManager;
             this.barDockControl5.Margin = new System.Windows.Forms.Padding(2);
-            this.barDockControl5.Size = new System.Drawing.Size(0, 586);
+            this.barDockControl5.Size = new System.Drawing.Size(0, 695);
             // 
             // btnSua
             // 
@@ -407,14 +415,15 @@
             // 
             this.providerGridControl.DataSource = this.providerBindingSource;
             this.providerGridControl.Dock = System.Windows.Forms.DockStyle.Left;
-            this.providerGridControl.Location = new System.Drawing.Point(0, 53);
+            this.providerGridControl.Location = new System.Drawing.Point(0, 33);
             this.providerGridControl.MainView = this.gridView1;
             this.providerGridControl.MenuManager = this.barManager;
             this.providerGridControl.Name = "providerGridControl";
-            this.providerGridControl.Size = new System.Drawing.Size(865, 586);
+            this.providerGridControl.Size = new System.Drawing.Size(865, 695);
             this.providerGridControl.TabIndex = 13;
             this.providerGridControl.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridView1});
+            this.providerGridControl.Click += new System.EventHandler(this.providerGridControl_Click);
             // 
             // gridView1
             // 
@@ -498,32 +507,6 @@
             this.colactive.Visible = true;
             this.colactive.VisibleIndex = 6;
             this.colactive.Width = 94;
-            // 
-            // btnCancelAddProvider
-            // 
-            this.btnCancelAddProvider.BackColor = System.Drawing.Color.White;
-            this.btnCancelAddProvider.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnCancelAddProvider.ForeColor = System.Drawing.Color.Crimson;
-            this.btnCancelAddProvider.Location = new System.Drawing.Point(1319, 595);
-            this.btnCancelAddProvider.Name = "btnCancelAddProvider";
-            this.btnCancelAddProvider.Size = new System.Drawing.Size(123, 52);
-            this.btnCancelAddProvider.TabIndex = 35;
-            this.btnCancelAddProvider.Text = "Cancel";
-            this.btnCancelAddProvider.UseVisualStyleBackColor = false;
-            this.btnCancelAddProvider.Click += new System.EventHandler(this.btnCancelAddProvider_Click);
-            // 
-            // btnSaveAddProvider
-            // 
-            this.btnSaveAddProvider.BackColor = System.Drawing.Color.White;
-            this.btnSaveAddProvider.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSaveAddProvider.ForeColor = System.Drawing.Color.ForestGreen;
-            this.btnSaveAddProvider.Location = new System.Drawing.Point(1110, 595);
-            this.btnSaveAddProvider.Name = "btnSaveAddProvider";
-            this.btnSaveAddProvider.Size = new System.Drawing.Size(123, 52);
-            this.btnSaveAddProvider.TabIndex = 34;
-            this.btnSaveAddProvider.Text = "Save";
-            this.btnSaveAddProvider.UseVisualStyleBackColor = false;
-            this.btnSaveAddProvider.Click += new System.EventHandler(this.btnSaveAddProvider_Click);
             // 
             // infomationRichTextBox
             // 
@@ -618,17 +601,37 @@
             this.btnExitProvider.Name = "btnExitProvider";
             this.btnExitProvider.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnExitProvider_ItemClick);
             // 
-            // barButtonItem1
+            // btnSaveAddProvider
             // 
-            this.barButtonItem1.Caption = "Close form";
-            this.barButtonItem1.Id = 10;
-            this.barButtonItem1.Name = "barButtonItem1";
+            this.btnSaveAddProvider.BackColor = System.Drawing.Color.White;
+            this.btnSaveAddProvider.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSaveAddProvider.ForeColor = System.Drawing.Color.ForestGreen;
+            this.btnSaveAddProvider.Location = new System.Drawing.Point(1110, 595);
+            this.btnSaveAddProvider.Name = "btnSaveAddProvider";
+            this.btnSaveAddProvider.Size = new System.Drawing.Size(123, 52);
+            this.btnSaveAddProvider.TabIndex = 34;
+            this.btnSaveAddProvider.Text = "Save";
+            this.btnSaveAddProvider.UseVisualStyleBackColor = false;
+            this.btnSaveAddProvider.Click += new System.EventHandler(this.btnSaveAddProvider_Click);
+            // 
+            // btnCancelAddProvider
+            // 
+            this.btnCancelAddProvider.BackColor = System.Drawing.Color.White;
+            this.btnCancelAddProvider.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCancelAddProvider.ForeColor = System.Drawing.Color.Crimson;
+            this.btnCancelAddProvider.Location = new System.Drawing.Point(1319, 595);
+            this.btnCancelAddProvider.Name = "btnCancelAddProvider";
+            this.btnCancelAddProvider.Size = new System.Drawing.Size(123, 52);
+            this.btnCancelAddProvider.TabIndex = 35;
+            this.btnCancelAddProvider.Text = "Cancel";
+            this.btnCancelAddProvider.UseVisualStyleBackColor = false;
+            this.btnCancelAddProvider.Click += new System.EventHandler(this.btnCancelAddProvider_Click);
             // 
             // ProviderForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1892, 639);
+            this.ClientSize = new System.Drawing.Size(1892, 728);
             this.Controls.Add(this.imageProvider);
             this.Controls.Add(this.btnCancelAddProvider);
             this.Controls.Add(this.btnSaveAddProvider);
@@ -654,7 +657,7 @@
             this.Controls.Add(this.barDockControl2);
             this.Controls.Add(this.barDockControl1);
             this.Name = "ProviderForm";
-            this.Text = "ProviderForm";
+            this.Text = "Provider";
             this.Load += new System.EventHandler(this.ProviderForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.barManager)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.clothesDataSet)).EndInit();
@@ -710,8 +713,6 @@
         private DevExpress.XtraGrid.Columns.GridColumn colphone;
         private DevExpress.XtraGrid.Columns.GridColumn coladdress;
         private DevExpress.XtraGrid.Columns.GridColumn colactive;
-        private System.Windows.Forms.Button btnCancelAddProvider;
-        private System.Windows.Forms.Button btnSaveAddProvider;
         private System.Windows.Forms.RichTextBox infomationRichTextBox;
         private DevExpress.XtraEditors.SpinEdit idSpinEdit;
         private DevExpress.XtraEditors.TextEdit tvImageUrlProvider;
@@ -720,7 +721,9 @@
         private DevExpress.XtraEditors.TextEdit addressTextEdit;
         private DevExpress.XtraEditors.SpinEdit activeSpinEdit;
         private System.Windows.Forms.PictureBox imageProvider;
-        private DevExpress.XtraBars.BarButtonItem barButtonItem1;
+        private DevExpress.XtraBars.BarButtonItem btnCloseForm;
         private DevExpress.XtraBars.BarButtonItem btnExitProvider;
+        private System.Windows.Forms.Button btnCancelAddProvider;
+        private System.Windows.Forms.Button btnSaveAddProvider;
     }
 }

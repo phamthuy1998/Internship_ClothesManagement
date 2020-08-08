@@ -363,6 +363,13 @@
     <None Include="Resources\hand.png" />
     <None Include="Resources\invoice.png" />
     <None Include="Resources\promo.png" />
+    <None Include="Resources\close.png" />
+    <None Include="Resources\delete.png" />
+    <None Include="Resources\exchange.png" />
+    <None Include="Resources\new.png" />
+    <None Include="Resources\add.png" />
+    <None Include="Resources\delete %281%29.png" />
+    <None Include="Resources\paper.png" />
     <Content Include="SqlServerTypes\readme.htm" />
     <Content Include="SqlServerTypes\x64\msvcr120.dll">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>

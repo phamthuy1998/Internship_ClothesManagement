@@ -19,10 +19,49 @@ namespace ClothesAdmin
 
         private void CategoryForm_Load(object sender, EventArgs e)
         {
-            using(ClothesEntities db  = new ClothesEntities())
+            // TODO: This line of code loads data into the 'clothesDataSet.Category' table. You can move, or remove it, as needed.
+            this.categoryTableAdapter.Fill(this.clothesDataSet.Category);
+            setIcon();
+            setThumbnailImage();
+        }
+
+        private void btnAdd_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+
+        }
+
+        private void setIcon()
+        {
+            if (String.IsNullOrEmpty(imageUrlTextEdit.Text))
             {
-                categoryBindingSource.DataSource = db.Categories.ToList();
+                picImageIcon.Image = Properties.Resources.no_image;
             }
+            else
+            {
+                picImageIcon.ImageLocation = imageUrlTextEdit.Text;
+            }
+        }
+
+        private void setThumbnailImage()
+        {
+            if (String.IsNullOrEmpty(thumnailTextEdit.Text))
+            {
+                picThumbnail.Image = Properties.Resources.no_image;
+            }
+            else
+            {
+                picThumbnail.ImageLocation = thumnailTextEdit.Text;
+            }
+        }
+
+        private void imageUrlTextEdit_EditValueChanged(object sender, EventArgs e)
+        {
+            setIcon();
+        }
+
+        private void thumnailTextEdit_EditValueChanged(object sender, EventArgs e)
+        {
+            setThumbnailImage();
         }
     }
 }
