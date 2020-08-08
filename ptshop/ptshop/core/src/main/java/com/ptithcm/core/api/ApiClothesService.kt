@@ -65,6 +65,11 @@ interface ApiClothesService {
         @Body ids: List<Int>
     ): Response<ArrayList<ProductClothesDetail>>
 
+    @POST("/api/get-products")
+    suspend fun getRefineProducts(
+        @Body searchParams: SearchParams?
+    ): Response<ListResponse<ProductClothes>>
+
     /*-----------------------------*/
     /* Wish Product*/
     @GET("/api/favoriteProducts")

@@ -2,6 +2,7 @@ package com.ptithcm.core.repository
 
 import androidx.lifecycle.LiveData
 import com.ptithcm.core.model.Brand
+import com.ptithcm.core.model.SearchParams
 import com.ptithcm.core.model.Stories
 import com.ptithcm.core.vo.ItemViewModel
 import com.ptithcm.core.vo.Listing
@@ -45,4 +46,10 @@ interface CarouselDetailRepository {
         pageNumber: Int,
         accountId: Int
     ): Listing<ItemViewModel>
+
+    suspend fun getPagingRefineProduct(
+        searchParam: SearchParams?
+    ): Listing<ItemViewModel>
+
+
 }

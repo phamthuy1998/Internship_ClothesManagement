@@ -3,17 +3,17 @@ package com.ptithcm.ptshop.view.refine
 import android.os.Bundle
 import android.view.View
 import androidx.core.os.bundleOf
-import androidx.lifecycle.Observer
+import androidx.core.view.isVisible
+import com.ptithcm.core.model.SearchParams
 import com.ptithcm.core.param.CategoriesParam
 import com.ptithcm.core.param.CategoriesRefine
 import com.ptithcm.core.param.RefineParam
+import com.ptithcm.core.util.INIT_PAGE
+import com.ptithcm.core.util.PAGE_SIZE
 import com.ptithcm.ptshop.R
 import com.ptithcm.ptshop.base.BaseActivity
 import com.ptithcm.ptshop.base.BaseFragment
-import com.ptithcm.ptshop.constant.IS_PRODUCT
-import com.ptithcm.ptshop.constant.KEY_ARGUMENT
-import com.ptithcm.ptshop.constant.KEY_EMPTY
-import com.ptithcm.ptshop.constant.KEY_MAIN_CATEGORIES
+import com.ptithcm.ptshop.constant.*
 import com.ptithcm.ptshop.databinding.FragmentRefineBinding
 import com.ptithcm.ptshop.ext.*
 import com.ptithcm.ptshop.view.MainActivity
@@ -32,37 +32,30 @@ class RefineFragment : BaseFragment<FragmentRefineBinding>(), View.OnClickListen
     private var isMainCategory: Boolean = false
     private var categoriesParam: CategoriesParam? = null
 
+    private var searchParam: SearchParams? = null
+    private var isShowFilterBy: Boolean = false
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         viewModel.refineLiveData.value = null
-        refineParam = arguments?.getParcelable(KEY_ARGUMENT)
-        refineParamRequest = refineParam?.copy()
-        isProduct = arguments?.getBoolean(IS_PRODUCT) ?: false
-        if (!isProduct) {
-            isMainCategory = arguments?.getBoolean(KEY_MAIN_CATEGORIES) ?: false
+//        refineParam = arguments?.getParcelable(KEY_ARGUMENT)
+//        refineParamRequest = refineParam?.copy()
+//        isProduct = arguments?.getBoolean(IS_PRODUCT) ?: false
+//
+//        if (!isProduct) {
+//            isMainCategory = arguments?.getBoolean(KEY_MAIN_CATEGORIES) ?: false
+//        }
+
+        arguments?.run {
+            searchParam = clone(getParcelable(KEY_SEARCH))
+            isShowFilterBy = getBoolean(KEY_IS_SHOW_FILTER_BY, false)
         }
     }
 
     override fun bindEvent() {
-        super.bindEvent()
         setupToolbar()
+        viewBinding.gFilter.isVisible = isShowFilterBy
         initEvent()
-        init(refineParam)
-    }
-
-    override fun bindViewModel() {
-        super.bindViewModel()
-        viewModel.categoriesParamLiveData.observe(this, Observer {
-            categoriesParam = it.first
-        })
-        viewModel.refineLiveData.observe(this, Observer {
-            it?.let {
-                if (!it.second) {
-                    refineParamRequest = it.first
-                    init(refineParamRequest)
-                }
-            }
-        })
+        init(searchParam)
     }
 
     override fun onClick(view: View?) {
@@ -78,18 +71,6 @@ class RefineFragment : BaseFragment<FragmentRefineBinding>(), View.OnClickListen
             R.id.tvColours -> {
                 navController.navigate(
                     R.id.action_fragment_colours,
-                    bundleOf(KEY_ARGUMENT to refineParamRequest)
-                )
-            }
-            R.id.tvSizes -> {
-                navController.navigate(
-                    R.id.action_fragment_sizes,
-                    bundleOf(KEY_ARGUMENT to refineParamRequest)
-                )
-            }
-            R.id.tvGender -> {
-                navController.navigate(
-                    R.id.action_fragment_gender,
                     bundleOf(KEY_ARGUMENT to refineParamRequest)
                 )
             }
@@ -127,20 +108,29 @@ class RefineFragment : BaseFragment<FragmentRefineBinding>(), View.OnClickListen
                 }
             }
             R.id.btnShowResult -> {
-                refineParamRequest?.newItems = viewBinding.ivRightNewItems.isSelected
-                refineParamRequest?.ourPicks = viewBinding.ivRightOurPicks.isSelected
-                refineParamRequest?.priceHigh = viewBinding.ivRightPriceHigh.isSelected
-                refineParamRequest?.priceLow = viewBinding.ivRightPriceLow.isSelected
-                viewModel.refineLiveData.value = Pair(refineParamRequest, true)
+                val typeFilter: Int? = when {
+                    viewBinding.ivRightPriceHigh.isSelected -> PRICE_DESC
+                    viewBinding.ivRightPriceLow.isSelected -> PRICE_ASC
+                    viewBinding.ivRightNewItems.isSelected -> NEWEST
+                    viewBinding.ivRightOldItems.isSelected -> OLDEST
+                    else -> null
+                }
+                searchParam?.run {
+                    this.typeFilter = typeFilter
+                    pageNumber = INIT_PAGE
+                    pageSize = PAGE_SIZE
+                }
+                viewModel.filterLiveData.value = Pair(searchParam, true)
+
                 navController.popBackStack()
             }
             R.id.tvNewItems -> {
                 viewBinding.ivRightNewItems.isSelected = !viewBinding.ivRightNewItems.isSelected
                 viewBinding.chooseView(isNewItems = viewBinding.ivRightNewItems.isSelected)
             }
-            R.id.tvOurPicks -> {
-                viewBinding.ivRightOurPicks.isSelected = !viewBinding.ivRightOurPicks.isSelected
-                viewBinding.chooseView(isOurPicks = viewBinding.ivRightOurPicks.isSelected)
+            R.id.tvOldItems -> {
+                viewBinding.ivRightOldItems.isSelected = !viewBinding.ivRightOldItems.isSelected
+                viewBinding.chooseView(isOurPicks = viewBinding.ivRightOldItems.isSelected)
             }
             R.id.tvPriceHigh -> {
                 viewBinding.ivRightPriceHigh.isSelected = !viewBinding.ivRightPriceHigh.isSelected
@@ -156,9 +146,11 @@ class RefineFragment : BaseFragment<FragmentRefineBinding>(), View.OnClickListen
     private fun setupToolbar() {
         (requireActivity() as? BaseActivity<*>)?.apply {
             initToolbar(hasBackRight = false, hasRight = false, hasLeft = false)
-            setupToolbar(getString(R.string.refine),
-                isBackPress = false, messageQueue = this@RefineFragment::onClickToolbarEvent)
-            when(this){
+            setupToolbar(
+                getString(R.string.refine),
+                isBackPress = false, messageQueue = this@RefineFragment::onClickToolbarEvent
+            )
+            when (this) {
                 is MainActivity -> {
                     viewBinding.layoutToolbar.ivBack.setImageResource(R.drawable.ic_black_close)
                     viewBinding.layoutToolbar.tvClear.visible()
@@ -183,42 +175,38 @@ class RefineFragment : BaseFragment<FragmentRefineBinding>(), View.OnClickListen
     }
 
     private fun init(refineParam: RefineParam?) {
-        viewBinding.tvRefineGender.gendersRefine(refineParam?.gender)
-        viewBinding.tvRefineColours.coloursRefine(refineParam?.colours)
-        viewBinding.tvRefineSizes.sizesRefine(refineParam?.sizes)
         viewBinding.tvRefineCategories.sizeCategories(refineParam?.categories)
         viewBinding.tvRefineBrands.sizeBrands(refineParam?.brands)
         when {
             refineParam?.newItems == true -> viewBinding.ivRightNewItems.isSelected = true
-            refineParam?.ourPicks == true -> viewBinding.ivRightOurPicks.isSelected = true
+            refineParam?.ourPicks == true -> viewBinding.ivRightOldItems.isSelected = true
             refineParam?.priceHigh == true -> viewBinding.ivRightPriceHigh.isSelected = true
             refineParam?.priceLow == true -> viewBinding.ivRightPriceLow.isSelected = true
+        }
+    }
+
+    private fun init(searchParams: SearchParams?) {
+        when (searchParams?.typeFilter) {
+            PRICE_ASC -> viewBinding.ivRightPriceHigh.isSelected = true
+            PRICE_DESC -> viewBinding.ivRightPriceLow.isSelected = true
+            NEWEST -> viewBinding.ivRightNewItems.isSelected = true
+            OLDEST -> viewBinding.ivRightOldItems.isSelected = true
         }
     }
 
     private fun initEvent() {
         viewBinding.tvCategories.setOnClickListener(this)
         viewBinding.tvBrands.setOnClickListener(this)
-        viewBinding.tvColours.setOnClickListener(this)
-        viewBinding.tvSizes.setOnClickListener(this)
-        viewBinding.tvGender.setOnClickListener(this)
         viewBinding.tvNewItems.setOnClickListener(this)
-        viewBinding.tvOurPicks.setOnClickListener(this)
+        viewBinding.tvOldItems.setOnClickListener(this)
         viewBinding.tvPriceHigh.setOnClickListener(this)
         viewBinding.tvPriceLow.setOnClickListener(this)
         viewBinding.btnShowResult.setOnClickListener(this)
     }
 
     private fun clearView() {
-        if (isProduct) {
-            viewBinding.tvRefineCategories.text = KEY_EMPTY
-        }
-        viewBinding.tvRefineBrands.text = KEY_EMPTY
-        viewBinding.tvRefineColours.text = KEY_EMPTY
-        viewBinding.tvRefineSizes.text = KEY_EMPTY
-        viewBinding.tvRefineGender.text = KEY_EMPTY
         viewBinding.ivRightNewItems.isSelected = false
-        viewBinding.ivRightOurPicks.isSelected = false
+        viewBinding.ivRightOldItems.isSelected = false
         viewBinding.ivRightPriceLow.isSelected = false
         viewBinding.ivRightPriceHigh.isSelected = false
     }
