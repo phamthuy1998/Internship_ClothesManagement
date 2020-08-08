@@ -18,6 +18,7 @@ namespace ClothesAdmin
         private CategoryForm categoryForm = null;
         private ColorForm colorForm = null;
         private SizeForm sizeForm = null;
+        private SizeColorForm sizeColorForm = null;
         private AccountsForm accountsForm = null;
         private ProviderForm providerForm = null;
         public MainForm()
@@ -253,6 +254,32 @@ namespace ClothesAdmin
                 sizeForm = new SizeForm();
                 sizeForm.MdiParent = this;
                 sizeForm.Show();
+            }
+            else form.Activate();
+        }
+
+        private void btnSignout_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            DialogResult dr = MessageBox.Show("Bạn có chắc muốn đăng xuất?", "", MessageBoxButtons.OKCancel);
+            if (dr == DialogResult.OK)
+            {
+                backstageViewControl1.Hide();
+                Program.mainForm.Hide();
+                Program.frmLogin = new LoginForm();
+                Invoke((Action)(() => { Program.frmLogin.ShowDialog(); }));
+                this.Close();
+            }
+        }
+
+        private void btnProductSizeColor_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            form = this.CheckExists(typeof(SizeColorForm));
+            if (form == null)
+            {
+                IsMdiContainer = true;
+                sizeColorForm = new SizeColorForm();
+                sizeColorForm.MdiParent = this;
+                sizeColorForm.Show();
             }
             else form.Activate();
         }

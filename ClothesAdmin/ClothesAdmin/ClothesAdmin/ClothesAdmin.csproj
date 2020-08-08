@@ -211,6 +211,12 @@
     <Compile Include="Size.cs">
       <DependentUpon>ClothesModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="SizeColorForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SizeColorForm.Designer.cs">
+      <DependentUpon>SizeColorForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="SizeForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -307,6 +313,9 @@
     <EmbeddedResource Include="ProviderForm.resx">
       <DependentUpon>ProviderForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="SizeColorForm.resx">
+      <DependentUpon>SizeColorForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="SizeForm.resx">
       <DependentUpon>SizeForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -379,6 +388,10 @@
     <None Include="Resources\add.png" />
     <None Include="Resources\delete %281%29.png" />
     <None Include="Resources\paper.png" />
+    <None Include="Resources\commerce-and-shopping.png" />
+    <None Include="Resources\logout.png" />
+    <None Include="Resources\clothes %281%29.png" />
+    <None Include="Resources\dress.png" />
     <Content Include="SqlServerTypes\readme.htm" />
     <Content Include="SqlServerTypes\x64\msvcr120.dll">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>

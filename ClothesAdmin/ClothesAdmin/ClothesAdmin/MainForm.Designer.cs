@@ -85,6 +85,9 @@
             this.btnSize = new DevExpress.XtraBars.BarButtonItem();
             this.btnColor = new DevExpress.XtraBars.BarButtonItem();
             this.barButtonItem8 = new DevExpress.XtraBars.BarButtonItem();
+            this.btnProductSizeColor = new DevExpress.XtraBars.BarButtonItem();
+            this.barButtonItem7 = new DevExpress.XtraBars.BarButtonItem();
+            this.btnSignout = new DevExpress.XtraBars.BarButtonItem();
             this.rbHome = new DevExpress.XtraBars.Ribbon.RibbonPage();
             this.ribbonPageGroup1 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.ribbonPageGroup4 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
@@ -92,10 +95,8 @@
             this.ribbonPageGroup6 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.ribbonPageGroup7 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.ribbonPageGroup8 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
-            this.rbbReport = new DevExpress.XtraBars.Ribbon.RibbonPage();
-            this.ribbonPageGroup2 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.rbView = new DevExpress.XtraBars.Ribbon.RibbonPage();
-            this.ribbonPageGroup3 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
+            this.ribbonPageGroup9 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.ribbonPage3 = new DevExpress.XtraBars.Ribbon.RibbonPage();
             this.ribbonPage5 = new DevExpress.XtraBars.Ribbon.RibbonPage();
             this.ribbonPage7 = new DevExpress.XtraBars.Ribbon.RibbonPage();
@@ -118,6 +119,7 @@
             this.barButtonGroup2 = new DevExpress.XtraBars.BarButtonGroup();
             this.barButtonItem5 = new DevExpress.XtraBars.BarButtonItem();
             this.barButtonItem6 = new DevExpress.XtraBars.BarButtonItem();
+            this.ribbonPage2 = new DevExpress.XtraBars.Ribbon.RibbonPage();
             firstNameLabel = new System.Windows.Forms.Label();
             lastNameLabel = new System.Windows.Forms.Label();
             phoneLabel = new System.Windows.Forms.Label();
@@ -282,14 +284,16 @@
             this.barButtonItem4,
             this.btnSize,
             this.btnColor,
-            this.barButtonItem8});
+            this.barButtonItem8,
+            this.btnProductSizeColor,
+            this.barButtonItem7,
+            this.btnSignout});
             this.ribbon.Location = new System.Drawing.Point(0, 0);
             this.ribbon.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.ribbon.MaxItemId = 268;
+            this.ribbon.MaxItemId = 271;
             this.ribbon.Name = "ribbon";
             this.ribbon.Pages.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPage[] {
             this.rbHome,
-            this.rbbReport,
             this.rbView});
             this.ribbon.ShowItemCaptionsInPageHeader = true;
             this.ribbon.Size = new System.Drawing.Size(1217, 193);
@@ -331,9 +335,9 @@
             this.backstageViewClientControl1.Controls.Add(this.linkChangeAvatar);
             this.backstageViewClientControl1.Controls.Add(this.btnSaveInfo);
             this.backstageViewClientControl1.Controls.Add(this.picAvater);
-            this.backstageViewClientControl1.Location = new System.Drawing.Point(163, 77);
+            this.backstageViewClientControl1.Location = new System.Drawing.Point(200, 77);
             this.backstageViewClientControl1.Name = "backstageViewClientControl1";
-            this.backstageViewClientControl1.Size = new System.Drawing.Size(787, 602);
+            this.backstageViewClientControl1.Size = new System.Drawing.Size(750, 602);
             this.backstageViewClientControl1.TabIndex = 1;
             this.backstageViewClientControl1.Load += new System.EventHandler(this.backstageViewClientControl1_Load_1);
             // 
@@ -452,9 +456,9 @@
             this.backstageViewClientControl2.Controls.Add(this.emailTextEdit);
             this.backstageViewClientControl2.Controls.Add(usernameLabel);
             this.backstageViewClientControl2.Controls.Add(this.usernameTextEdit);
-            this.backstageViewClientControl2.Location = new System.Drawing.Point(163, 77);
+            this.backstageViewClientControl2.Location = new System.Drawing.Point(200, 77);
             this.backstageViewClientControl2.Name = "backstageViewClientControl2";
-            this.backstageViewClientControl2.Size = new System.Drawing.Size(787, 602);
+            this.backstageViewClientControl2.Size = new System.Drawing.Size(750, 602);
             this.backstageViewClientControl2.TabIndex = 4;
             this.backstageViewClientControl2.Load += new System.EventHandler(this.backstageViewClientControl2_Load);
             // 
@@ -603,7 +607,8 @@
             // 
             this.btnProduct.Caption = "Product";
             this.btnProduct.Id = 13;
-            this.btnProduct.ImageOptions.Image = global::ClothesAdmin.Properties.Resources.clothes;
+            this.btnProduct.ImageOptions.Image = global::ClothesAdmin.Properties.Resources.dress;
+            this.btnProduct.ImageOptions.LargeImage = global::ClothesAdmin.Properties.Resources.dress;
             this.btnProduct.Name = "btnProduct";
             this.btnProduct.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnProduct_ItemClick);
             // 
@@ -667,6 +672,28 @@
             this.barButtonItem8.Id = 267;
             this.barButtonItem8.Name = "barButtonItem8";
             // 
+            // btnProductSizeColor
+            // 
+            this.btnProductSizeColor.Caption = "Size color";
+            this.btnProductSizeColor.Id = 268;
+            this.btnProductSizeColor.ImageOptions.Image = global::ClothesAdmin.Properties.Resources.commerce_and_shopping;
+            this.btnProductSizeColor.Name = "btnProductSizeColor";
+            this.btnProductSizeColor.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnProductSizeColor_ItemClick);
+            // 
+            // barButtonItem7
+            // 
+            this.barButtonItem7.Caption = "barButtonItem7";
+            this.barButtonItem7.Id = 269;
+            this.barButtonItem7.Name = "barButtonItem7";
+            // 
+            // btnSignout
+            // 
+            this.btnSignout.Caption = "Log out";
+            this.btnSignout.Id = 270;
+            this.btnSignout.ImageOptions.Image = global::ClothesAdmin.Properties.Resources.logout;
+            this.btnSignout.Name = "btnSignout";
+            this.btnSignout.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnSignout_ItemClick);
+            // 
             // rbHome
             // 
             this.rbHome.Groups.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPageGroup[] {
@@ -684,6 +711,7 @@
             this.ribbonPageGroup1.ItemLinks.Add(this.btnProduct);
             this.ribbonPageGroup1.ItemLinks.Add(this.btnSize, true);
             this.ribbonPageGroup1.ItemLinks.Add(this.btnColor);
+            this.ribbonPageGroup1.ItemLinks.Add(this.btnProductSizeColor);
             this.ribbonPageGroup1.Name = "ribbonPageGroup1";
             // 
             // ribbonPageGroup4
@@ -712,29 +740,18 @@
             this.ribbonPageGroup8.ItemLinks.Add(this.barButtonItem4);
             this.ribbonPageGroup8.Name = "ribbonPageGroup8";
             // 
-            // rbbReport
-            // 
-            this.rbbReport.Groups.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPageGroup[] {
-            this.ribbonPageGroup2});
-            this.rbbReport.Name = "rbbReport";
-            this.rbbReport.Text = "Report";
-            // 
-            // ribbonPageGroup2
-            // 
-            this.ribbonPageGroup2.Name = "ribbonPageGroup2";
-            this.ribbonPageGroup2.Text = "ribbonPageGroup2";
-            // 
             // rbView
             // 
             this.rbView.Groups.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPageGroup[] {
-            this.ribbonPageGroup3});
+            this.ribbonPageGroup9});
             this.rbView.Name = "rbView";
-            this.rbView.Text = "View";
+            this.rbView.Text = "Profile";
             // 
-            // ribbonPageGroup3
+            // ribbonPageGroup9
             // 
-            this.ribbonPageGroup3.Name = "ribbonPageGroup3";
-            this.ribbonPageGroup3.Text = "ribbonPageGroup3";
+            this.ribbonPageGroup9.ItemLinks.Add(this.btnSignout);
+            this.ribbonPageGroup9.Name = "ribbonPageGroup9";
+            this.ribbonPageGroup9.Text = "ribbonPageGroup9";
             // 
             // ribbonPage3
             // 
@@ -871,6 +888,11 @@
             // 
             this.barButtonItem6.Name = "barButtonItem6";
             // 
+            // ribbonPage2
+            // 
+            this.ribbonPage2.Name = "ribbonPage2";
+            this.ribbonPage2.Text = "ribbonPage2";
+            // 
             // MainForm
             // 
             this.ActiveGlowColor = System.Drawing.Color.White;
@@ -931,10 +953,7 @@
         private DevExpress.XtraBars.Ribbon.RibbonControl ribbon;
         private DevExpress.XtraBars.Ribbon.RibbonPage rbHome;
         private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroup1;
-        private DevExpress.XtraBars.Ribbon.RibbonPage rbbReport;
-        private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroup2;
         private DevExpress.XtraBars.Ribbon.RibbonPage rbView;
-        private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroup3;
         private DevExpress.XtraBars.Ribbon.RibbonPage ribbonPage3;
         private DevExpress.XtraBars.Ribbon.RibbonPage ribbonPage5;
         private DevExpress.XtraBars.Ribbon.RibbonPage ribbonPage7;
@@ -1004,5 +1023,10 @@
         private DevExpress.XtraBars.BarButtonItem barButtonItem6;
         private DevExpress.XtraBars.BarButtonItem btnColor;
         private DevExpress.XtraBars.BarButtonItem barButtonItem8;
+        private DevExpress.XtraBars.BarButtonItem btnProductSizeColor;
+        private DevExpress.XtraBars.BarButtonItem barButtonItem7;
+        private DevExpress.XtraBars.BarButtonItem btnSignout;
+        private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroup9;
+        private DevExpress.XtraBars.Ribbon.RibbonPage ribbonPage2;
     }
 }
