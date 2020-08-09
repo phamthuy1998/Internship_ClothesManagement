@@ -29,6 +29,15 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.Windows.Forms.Label productIDLabel;
+            System.Windows.Forms.Label titleLabel;
+            System.Windows.Forms.Label sizeIdLabel;
+            System.Windows.Forms.Label sizeNameLabel;
+            System.Windows.Forms.Label colorIDLabel;
+            System.Windows.Forms.Label colorNameLabel;
+            System.Windows.Forms.Label colorHexLabel;
+            System.Windows.Forms.Label nameLabel;
+            System.Windows.Forms.Label brandNameLabel;
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SizeColorForm));
             this.barManager = new DevExpress.XtraBars.BarManager(this.components);
             this.bar2 = new DevExpress.XtraBars.Bar();
@@ -53,13 +62,24 @@
             this.label2 = new System.Windows.Forms.Label();
             this.sP_GetProductColorSizeBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.sP_GetProductColorSizeTableAdapter = new ClothesAdmin.ClothesDataSetTableAdapters.SP_GetProductColorSizeTableAdapter();
-            this.providerComboBox = new System.Windows.Forms.ComboBox();
-            this.categoryComboBox = new System.Windows.Forms.ComboBox();
+            this.cbbProvider = new System.Windows.Forms.ComboBox();
+            this.cbbCategory = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.panelControl1 = new DevExpress.XtraEditors.PanelControl();
             this.panelControl2 = new DevExpress.XtraEditors.PanelControl();
+            this.btnCancelAddProvider = new System.Windows.Forms.Button();
+            this.btnSaveAddProvider = new System.Windows.Forms.Button();
+            this.productIDSpinEdit = new DevExpress.XtraEditors.SpinEdit();
+            this.titleTextEdit = new DevExpress.XtraEditors.TextEdit();
+            this.sizeIdSpinEdit = new DevExpress.XtraEditors.SpinEdit();
+            this.sizeNameTextEdit = new DevExpress.XtraEditors.TextEdit();
+            this.colorIDSpinEdit = new DevExpress.XtraEditors.SpinEdit();
+            this.colorNameTextEdit = new DevExpress.XtraEditors.TextEdit();
+            this.colorHexTextEdit = new DevExpress.XtraEditors.TextEdit();
+            this.nameTextEdit = new DevExpress.XtraEditors.TextEdit();
+            this.brandNameTextEdit = new DevExpress.XtraEditors.TextEdit();
             this.panelControl3 = new DevExpress.XtraEditors.PanelControl();
             this.panelControl4 = new DevExpress.XtraEditors.PanelControl();
             this.sP_GetProductColorSizeGridControl = new DevExpress.XtraGrid.GridControl();
@@ -71,6 +91,17 @@
             this.colcolorID = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colcolorName = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colcolorHex = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colname = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colbrandName = new DevExpress.XtraGrid.Columns.GridColumn();
+            productIDLabel = new System.Windows.Forms.Label();
+            titleLabel = new System.Windows.Forms.Label();
+            sizeIdLabel = new System.Windows.Forms.Label();
+            sizeNameLabel = new System.Windows.Forms.Label();
+            colorIDLabel = new System.Windows.Forms.Label();
+            colorNameLabel = new System.Windows.Forms.Label();
+            colorHexLabel = new System.Windows.Forms.Label();
+            nameLabel = new System.Windows.Forms.Label();
+            brandNameLabel = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.barManager)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.clothesDataSet)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.productSizeColorBindingSource)).BeginInit();
@@ -81,12 +112,103 @@
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
             this.panelControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl2)).BeginInit();
+            this.panelControl2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.productIDSpinEdit.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.titleTextEdit.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.sizeIdSpinEdit.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.sizeNameTextEdit.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.colorIDSpinEdit.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.colorNameTextEdit.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.colorHexTextEdit.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nameTextEdit.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.brandNameTextEdit.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl4)).BeginInit();
             this.panelControl4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.sP_GetProductColorSizeGridControl)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
             this.SuspendLayout();
+            // 
+            // productIDLabel
+            // 
+            productIDLabel.AutoSize = true;
+            productIDLabel.Location = new System.Drawing.Point(100, 84);
+            productIDLabel.Name = "productIDLabel";
+            productIDLabel.Size = new System.Drawing.Size(77, 17);
+            productIDLabel.TabIndex = 0;
+            productIDLabel.Text = "product ID:";
+            // 
+            // titleLabel
+            // 
+            titleLabel.AutoSize = true;
+            titleLabel.Location = new System.Drawing.Point(100, 112);
+            titleLabel.Name = "titleLabel";
+            titleLabel.Size = new System.Drawing.Size(34, 17);
+            titleLabel.TabIndex = 2;
+            titleLabel.Text = "title:";
+            // 
+            // sizeIdLabel
+            // 
+            sizeIdLabel.AutoSize = true;
+            sizeIdLabel.Location = new System.Drawing.Point(100, 140);
+            sizeIdLabel.Name = "sizeIdLabel";
+            sizeIdLabel.Size = new System.Drawing.Size(52, 17);
+            sizeIdLabel.TabIndex = 4;
+            sizeIdLabel.Text = "size Id:";
+            // 
+            // sizeNameLabel
+            // 
+            sizeNameLabel.AutoSize = true;
+            sizeNameLabel.Location = new System.Drawing.Point(100, 168);
+            sizeNameLabel.Name = "sizeNameLabel";
+            sizeNameLabel.Size = new System.Drawing.Size(78, 17);
+            sizeNameLabel.TabIndex = 6;
+            sizeNameLabel.Text = "size Name:";
+            // 
+            // colorIDLabel
+            // 
+            colorIDLabel.AutoSize = true;
+            colorIDLabel.Location = new System.Drawing.Point(100, 196);
+            colorIDLabel.Name = "colorIDLabel";
+            colorIDLabel.Size = new System.Drawing.Size(60, 17);
+            colorIDLabel.TabIndex = 8;
+            colorIDLabel.Text = "color ID:";
+            // 
+            // colorNameLabel
+            // 
+            colorNameLabel.AutoSize = true;
+            colorNameLabel.Location = new System.Drawing.Point(100, 224);
+            colorNameLabel.Name = "colorNameLabel";
+            colorNameLabel.Size = new System.Drawing.Size(84, 17);
+            colorNameLabel.TabIndex = 10;
+            colorNameLabel.Text = "color Name:";
+            // 
+            // colorHexLabel
+            // 
+            colorHexLabel.AutoSize = true;
+            colorHexLabel.Location = new System.Drawing.Point(100, 252);
+            colorHexLabel.Name = "colorHexLabel";
+            colorHexLabel.Size = new System.Drawing.Size(71, 17);
+            colorHexLabel.TabIndex = 12;
+            colorHexLabel.Text = "color Hex:";
+            // 
+            // nameLabel
+            // 
+            nameLabel.AutoSize = true;
+            nameLabel.Location = new System.Drawing.Point(100, 280);
+            nameLabel.Name = "nameLabel";
+            nameLabel.Size = new System.Drawing.Size(47, 17);
+            nameLabel.TabIndex = 14;
+            nameLabel.Text = "name:";
+            // 
+            // brandNameLabel
+            // 
+            brandNameLabel.AutoSize = true;
+            brandNameLabel.Location = new System.Drawing.Point(100, 308);
+            brandNameLabel.Name = "brandNameLabel";
+            brandNameLabel.Size = new System.Drawing.Size(90, 17);
+            brandNameLabel.TabIndex = 16;
+            brandNameLabel.Text = "brand Name:";
             // 
             // barManager
             // 
@@ -129,6 +251,7 @@
             this.btnAddProvider.ImageOptions.Image = global::ClothesAdmin.Properties.Resources.add;
             this.btnAddProvider.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("btnAddProvider.ImageOptions.LargeImage")));
             this.btnAddProvider.Name = "btnAddProvider";
+            this.btnAddProvider.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnAddProvider_ItemClick);
             // 
             // btnDelProvider
             // 
@@ -152,6 +275,7 @@
             this.btnCloseForm.Id = 10;
             this.btnCloseForm.ImageOptions.Image = global::ClothesAdmin.Properties.Resources.close;
             this.btnCloseForm.Name = "btnCloseForm";
+            this.btnCloseForm.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnCloseForm_ItemClick);
             // 
             // barDockControl1
             // 
@@ -160,7 +284,7 @@
             this.barDockControl1.Location = new System.Drawing.Point(0, 0);
             this.barDockControl1.Manager = this.barManager;
             this.barDockControl1.Margin = new System.Windows.Forms.Padding(2);
-            this.barDockControl1.Size = new System.Drawing.Size(1249, 30);
+            this.barDockControl1.Size = new System.Drawing.Size(1932, 30);
             // 
             // barDockControl2
             // 
@@ -169,7 +293,7 @@
             this.barDockControl2.Location = new System.Drawing.Point(0, 606);
             this.barDockControl2.Manager = this.barManager;
             this.barDockControl2.Margin = new System.Windows.Forms.Padding(2);
-            this.barDockControl2.Size = new System.Drawing.Size(1249, 0);
+            this.barDockControl2.Size = new System.Drawing.Size(1932, 0);
             // 
             // barDockControl3
             // 
@@ -184,7 +308,7 @@
             // 
             this.barDockControl5.CausesValidation = false;
             this.barDockControl5.Dock = System.Windows.Forms.DockStyle.Right;
-            this.barDockControl5.Location = new System.Drawing.Point(1249, 30);
+            this.barDockControl5.Location = new System.Drawing.Point(1932, 30);
             this.barDockControl5.Manager = this.barManager;
             this.barDockControl5.Margin = new System.Windows.Forms.Padding(2);
             this.barDockControl5.Size = new System.Drawing.Size(0, 576);
@@ -278,27 +402,31 @@
             // 
             this.sP_GetProductColorSizeTableAdapter.ClearBeforeFill = true;
             // 
-            // providerComboBox
+            // cbbProvider
             // 
-            this.providerComboBox.DataSource = this.providerBindingSource;
-            this.providerComboBox.DisplayMember = "brandName";
-            this.providerComboBox.FormattingEnabled = true;
-            this.providerComboBox.Location = new System.Drawing.Point(112, 82);
-            this.providerComboBox.Name = "providerComboBox";
-            this.providerComboBox.Size = new System.Drawing.Size(300, 24);
-            this.providerComboBox.TabIndex = 8;
-            this.providerComboBox.ValueMember = "id";
+            this.cbbProvider.DataSource = this.providerBindingSource;
+            this.cbbProvider.DisplayMember = "brandName";
+            this.cbbProvider.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbbProvider.FormattingEnabled = true;
+            this.cbbProvider.Location = new System.Drawing.Point(112, 82);
+            this.cbbProvider.Name = "cbbProvider";
+            this.cbbProvider.Size = new System.Drawing.Size(300, 24);
+            this.cbbProvider.TabIndex = 8;
+            this.cbbProvider.ValueMember = "id";
+            this.cbbProvider.SelectedIndexChanged += new System.EventHandler(this.cbbProvider_SelectedIndexChanged);
             // 
-            // categoryComboBox
+            // cbbCategory
             // 
-            this.categoryComboBox.DataSource = this.categoryBindingSource;
-            this.categoryComboBox.DisplayMember = "name";
-            this.categoryComboBox.FormattingEnabled = true;
-            this.categoryComboBox.Location = new System.Drawing.Point(112, 35);
-            this.categoryComboBox.Name = "categoryComboBox";
-            this.categoryComboBox.Size = new System.Drawing.Size(300, 24);
-            this.categoryComboBox.TabIndex = 4;
-            this.categoryComboBox.ValueMember = "id";
+            this.cbbCategory.DataSource = this.categoryBindingSource;
+            this.cbbCategory.DisplayMember = "name";
+            this.cbbCategory.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbbCategory.FormattingEnabled = true;
+            this.cbbCategory.Location = new System.Drawing.Point(112, 35);
+            this.cbbCategory.Name = "cbbCategory";
+            this.cbbCategory.Size = new System.Drawing.Size(300, 24);
+            this.cbbCategory.TabIndex = 4;
+            this.cbbCategory.ValueMember = "id";
+            this.cbbCategory.SelectedIndexChanged += new System.EventHandler(this.cbbCategory_SelectedIndexChanged);
             // 
             // label1
             // 
@@ -321,8 +449,8 @@
             // tableLayoutPanel1
             // 
             this.tableLayoutPanel1.ColumnCount = 2;
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 65.33227F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 34.66774F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 62.03585F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 37.96415F));
             this.tableLayoutPanel1.Controls.Add(this.panelControl1, 0, 0);
             this.tableLayoutPanel1.Controls.Add(this.panelControl2, 1, 1);
             this.tableLayoutPanel1.Controls.Add(this.panelControl3, 1, 0);
@@ -333,35 +461,182 @@
             this.tableLayoutPanel1.RowCount = 2;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 23.78472F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 76.21528F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(1249, 576);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(1932, 576);
             this.tableLayoutPanel1.TabIndex = 19;
             // 
             // panelControl1
             // 
-            this.panelControl1.Controls.Add(this.providerComboBox);
+            this.panelControl1.Controls.Add(this.cbbProvider);
             this.panelControl1.Controls.Add(this.label1);
-            this.panelControl1.Controls.Add(this.categoryComboBox);
+            this.panelControl1.Controls.Add(this.cbbCategory);
             this.panelControl1.Controls.Add(this.label3);
             this.panelControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelControl1.Location = new System.Drawing.Point(3, 3);
             this.panelControl1.Name = "panelControl1";
-            this.panelControl1.Size = new System.Drawing.Size(810, 130);
+            this.panelControl1.Size = new System.Drawing.Size(1192, 130);
             this.panelControl1.TabIndex = 0;
             // 
             // panelControl2
             // 
+            this.panelControl2.Controls.Add(this.btnCancelAddProvider);
+            this.panelControl2.Controls.Add(this.btnSaveAddProvider);
+            this.panelControl2.Controls.Add(productIDLabel);
+            this.panelControl2.Controls.Add(this.productIDSpinEdit);
+            this.panelControl2.Controls.Add(titleLabel);
+            this.panelControl2.Controls.Add(this.titleTextEdit);
+            this.panelControl2.Controls.Add(sizeIdLabel);
+            this.panelControl2.Controls.Add(this.sizeIdSpinEdit);
+            this.panelControl2.Controls.Add(sizeNameLabel);
+            this.panelControl2.Controls.Add(this.sizeNameTextEdit);
+            this.panelControl2.Controls.Add(colorIDLabel);
+            this.panelControl2.Controls.Add(this.colorIDSpinEdit);
+            this.panelControl2.Controls.Add(colorNameLabel);
+            this.panelControl2.Controls.Add(this.colorNameTextEdit);
+            this.panelControl2.Controls.Add(colorHexLabel);
+            this.panelControl2.Controls.Add(this.colorHexTextEdit);
+            this.panelControl2.Controls.Add(nameLabel);
+            this.panelControl2.Controls.Add(this.nameTextEdit);
+            this.panelControl2.Controls.Add(brandNameLabel);
+            this.panelControl2.Controls.Add(this.brandNameTextEdit);
             this.panelControl2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panelControl2.Location = new System.Drawing.Point(819, 139);
+            this.panelControl2.Location = new System.Drawing.Point(1201, 139);
             this.panelControl2.Name = "panelControl2";
-            this.panelControl2.Size = new System.Drawing.Size(427, 434);
+            this.panelControl2.Size = new System.Drawing.Size(728, 434);
             this.panelControl2.TabIndex = 1;
+            // 
+            // btnCancelAddProvider
+            // 
+            this.btnCancelAddProvider.BackColor = System.Drawing.Color.White;
+            this.btnCancelAddProvider.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCancelAddProvider.ForeColor = System.Drawing.Color.Crimson;
+            this.btnCancelAddProvider.Location = new System.Drawing.Point(573, 217);
+            this.btnCancelAddProvider.Name = "btnCancelAddProvider";
+            this.btnCancelAddProvider.Size = new System.Drawing.Size(123, 52);
+            this.btnCancelAddProvider.TabIndex = 41;
+            this.btnCancelAddProvider.Text = "Cancel";
+            this.btnCancelAddProvider.UseVisualStyleBackColor = false;
+            // 
+            // btnSaveAddProvider
+            // 
+            this.btnSaveAddProvider.BackColor = System.Drawing.Color.White;
+            this.btnSaveAddProvider.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSaveAddProvider.ForeColor = System.Drawing.Color.ForestGreen;
+            this.btnSaveAddProvider.Location = new System.Drawing.Point(364, 217);
+            this.btnSaveAddProvider.Name = "btnSaveAddProvider";
+            this.btnSaveAddProvider.Size = new System.Drawing.Size(123, 52);
+            this.btnSaveAddProvider.TabIndex = 40;
+            this.btnSaveAddProvider.Text = "Save";
+            this.btnSaveAddProvider.UseVisualStyleBackColor = false;
+            this.btnSaveAddProvider.Click += new System.EventHandler(this.btnSaveAddProvider_Click);
+            // 
+            // productIDSpinEdit
+            // 
+            this.productIDSpinEdit.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.sP_GetProductColorSizeBindingSource, "productID", true));
+            this.productIDSpinEdit.EditValue = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+            this.productIDSpinEdit.Location = new System.Drawing.Point(196, 81);
+            this.productIDSpinEdit.MenuManager = this.barManager;
+            this.productIDSpinEdit.Name = "productIDSpinEdit";
+            this.productIDSpinEdit.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.productIDSpinEdit.Size = new System.Drawing.Size(125, 22);
+            this.productIDSpinEdit.TabIndex = 1;
+            // 
+            // titleTextEdit
+            // 
+            this.titleTextEdit.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.sP_GetProductColorSizeBindingSource, "title", true));
+            this.titleTextEdit.Location = new System.Drawing.Point(196, 109);
+            this.titleTextEdit.MenuManager = this.barManager;
+            this.titleTextEdit.Name = "titleTextEdit";
+            this.titleTextEdit.Size = new System.Drawing.Size(125, 22);
+            this.titleTextEdit.TabIndex = 3;
+            // 
+            // sizeIdSpinEdit
+            // 
+            this.sizeIdSpinEdit.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.sP_GetProductColorSizeBindingSource, "sizeId", true));
+            this.sizeIdSpinEdit.EditValue = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+            this.sizeIdSpinEdit.Location = new System.Drawing.Point(196, 137);
+            this.sizeIdSpinEdit.MenuManager = this.barManager;
+            this.sizeIdSpinEdit.Name = "sizeIdSpinEdit";
+            this.sizeIdSpinEdit.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.sizeIdSpinEdit.Size = new System.Drawing.Size(125, 22);
+            this.sizeIdSpinEdit.TabIndex = 5;
+            // 
+            // sizeNameTextEdit
+            // 
+            this.sizeNameTextEdit.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.sP_GetProductColorSizeBindingSource, "sizeName", true));
+            this.sizeNameTextEdit.Location = new System.Drawing.Point(196, 165);
+            this.sizeNameTextEdit.MenuManager = this.barManager;
+            this.sizeNameTextEdit.Name = "sizeNameTextEdit";
+            this.sizeNameTextEdit.Size = new System.Drawing.Size(125, 22);
+            this.sizeNameTextEdit.TabIndex = 7;
+            // 
+            // colorIDSpinEdit
+            // 
+            this.colorIDSpinEdit.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.sP_GetProductColorSizeBindingSource, "colorID", true));
+            this.colorIDSpinEdit.EditValue = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+            this.colorIDSpinEdit.Location = new System.Drawing.Point(196, 193);
+            this.colorIDSpinEdit.MenuManager = this.barManager;
+            this.colorIDSpinEdit.Name = "colorIDSpinEdit";
+            this.colorIDSpinEdit.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.colorIDSpinEdit.Size = new System.Drawing.Size(125, 22);
+            this.colorIDSpinEdit.TabIndex = 9;
+            // 
+            // colorNameTextEdit
+            // 
+            this.colorNameTextEdit.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.sP_GetProductColorSizeBindingSource, "colorName", true));
+            this.colorNameTextEdit.Location = new System.Drawing.Point(196, 221);
+            this.colorNameTextEdit.MenuManager = this.barManager;
+            this.colorNameTextEdit.Name = "colorNameTextEdit";
+            this.colorNameTextEdit.Size = new System.Drawing.Size(125, 22);
+            this.colorNameTextEdit.TabIndex = 11;
+            // 
+            // colorHexTextEdit
+            // 
+            this.colorHexTextEdit.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.sP_GetProductColorSizeBindingSource, "colorHex", true));
+            this.colorHexTextEdit.Location = new System.Drawing.Point(196, 249);
+            this.colorHexTextEdit.MenuManager = this.barManager;
+            this.colorHexTextEdit.Name = "colorHexTextEdit";
+            this.colorHexTextEdit.Size = new System.Drawing.Size(125, 22);
+            this.colorHexTextEdit.TabIndex = 13;
+            // 
+            // nameTextEdit
+            // 
+            this.nameTextEdit.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.sP_GetProductColorSizeBindingSource, "name", true));
+            this.nameTextEdit.Location = new System.Drawing.Point(196, 277);
+            this.nameTextEdit.MenuManager = this.barManager;
+            this.nameTextEdit.Name = "nameTextEdit";
+            this.nameTextEdit.Size = new System.Drawing.Size(125, 22);
+            this.nameTextEdit.TabIndex = 15;
+            // 
+            // brandNameTextEdit
+            // 
+            this.brandNameTextEdit.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.sP_GetProductColorSizeBindingSource, "brandName", true));
+            this.brandNameTextEdit.Location = new System.Drawing.Point(196, 305);
+            this.brandNameTextEdit.MenuManager = this.barManager;
+            this.brandNameTextEdit.Name = "brandNameTextEdit";
+            this.brandNameTextEdit.Size = new System.Drawing.Size(125, 22);
+            this.brandNameTextEdit.TabIndex = 17;
             // 
             // panelControl3
             // 
             this.panelControl3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panelControl3.Location = new System.Drawing.Point(819, 3);
+            this.panelControl3.Location = new System.Drawing.Point(1201, 3);
             this.panelControl3.Name = "panelControl3";
-            this.panelControl3.Size = new System.Drawing.Size(427, 130);
+            this.panelControl3.Size = new System.Drawing.Size(728, 130);
             this.panelControl3.TabIndex = 2;
             // 
             // panelControl4
@@ -370,7 +645,7 @@
             this.panelControl4.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelControl4.Location = new System.Drawing.Point(3, 139);
             this.panelControl4.Name = "panelControl4";
-            this.panelControl4.Size = new System.Drawing.Size(810, 434);
+            this.panelControl4.Size = new System.Drawing.Size(1192, 434);
             this.panelControl4.TabIndex = 3;
             // 
             // sP_GetProductColorSizeGridControl
@@ -381,7 +656,7 @@
             this.sP_GetProductColorSizeGridControl.MainView = this.gridView1;
             this.sP_GetProductColorSizeGridControl.MenuManager = this.barManager;
             this.sP_GetProductColorSizeGridControl.Name = "sP_GetProductColorSizeGridControl";
-            this.sP_GetProductColorSizeGridControl.Size = new System.Drawing.Size(806, 430);
+            this.sP_GetProductColorSizeGridControl.Size = new System.Drawing.Size(1188, 430);
             this.sP_GetProductColorSizeGridControl.TabIndex = 0;
             this.sP_GetProductColorSizeGridControl.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridView1});
@@ -395,7 +670,9 @@
             this.colsizeName,
             this.colcolorID,
             this.colcolorName,
-            this.colcolorHex});
+            this.colcolorHex,
+            this.colname,
+            this.colbrandName});
             this.gridView1.GridControl = this.sP_GetProductColorSizeGridControl;
             this.gridView1.Name = "gridView1";
             // 
@@ -406,7 +683,7 @@
             this.colproductID.Name = "colproductID";
             this.colproductID.Visible = true;
             this.colproductID.VisibleIndex = 0;
-            this.colproductID.Width = 94;
+            this.colproductID.Width = 25;
             // 
             // coltitle
             // 
@@ -415,7 +692,7 @@
             this.coltitle.Name = "coltitle";
             this.coltitle.Visible = true;
             this.coltitle.VisibleIndex = 1;
-            this.coltitle.Width = 94;
+            this.coltitle.Width = 170;
             // 
             // colsizeId
             // 
@@ -424,7 +701,7 @@
             this.colsizeId.Name = "colsizeId";
             this.colsizeId.Visible = true;
             this.colsizeId.VisibleIndex = 2;
-            this.colsizeId.Width = 94;
+            this.colsizeId.Width = 30;
             // 
             // colsizeName
             // 
@@ -433,7 +710,7 @@
             this.colsizeName.Name = "colsizeName";
             this.colsizeName.Visible = true;
             this.colsizeName.VisibleIndex = 3;
-            this.colsizeName.Width = 94;
+            this.colsizeName.Width = 48;
             // 
             // colcolorID
             // 
@@ -442,7 +719,7 @@
             this.colcolorID.Name = "colcolorID";
             this.colcolorID.Visible = true;
             this.colcolorID.VisibleIndex = 4;
-            this.colcolorID.Width = 94;
+            this.colcolorID.Width = 34;
             // 
             // colcolorName
             // 
@@ -451,7 +728,7 @@
             this.colcolorName.Name = "colcolorName";
             this.colcolorName.Visible = true;
             this.colcolorName.VisibleIndex = 5;
-            this.colcolorName.Width = 94;
+            this.colcolorName.Width = 111;
             // 
             // colcolorHex
             // 
@@ -460,13 +737,33 @@
             this.colcolorHex.Name = "colcolorHex";
             this.colcolorHex.Visible = true;
             this.colcolorHex.VisibleIndex = 6;
-            this.colcolorHex.Width = 94;
+            this.colcolorHex.Width = 97;
+            // 
+            // colname
+            // 
+            this.colname.FieldName = "name";
+            this.colname.MinWidth = 25;
+            this.colname.Name = "colname";
+            this.colname.OptionsColumn.AllowEdit = false;
+            this.colname.Visible = true;
+            this.colname.VisibleIndex = 7;
+            this.colname.Width = 120;
+            // 
+            // colbrandName
+            // 
+            this.colbrandName.FieldName = "brandName";
+            this.colbrandName.MinWidth = 25;
+            this.colbrandName.Name = "colbrandName";
+            this.colbrandName.OptionsColumn.AllowEdit = false;
+            this.colbrandName.Visible = true;
+            this.colbrandName.VisibleIndex = 8;
+            this.colbrandName.Width = 150;
             // 
             // SizeColorForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1249, 606);
+            this.ClientSize = new System.Drawing.Size(1932, 606);
             this.Controls.Add(this.tableLayoutPanel1);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.barDockControl3);
@@ -487,6 +784,17 @@
             this.panelControl1.ResumeLayout(false);
             this.panelControl1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl2)).EndInit();
+            this.panelControl2.ResumeLayout(false);
+            this.panelControl2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.productIDSpinEdit.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.titleTextEdit.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.sizeIdSpinEdit.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.sizeNameTextEdit.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.colorIDSpinEdit.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.colorNameTextEdit.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.colorHexTextEdit.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nameTextEdit.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.brandNameTextEdit.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl4)).EndInit();
             this.panelControl4.ResumeLayout(false);
@@ -524,9 +832,9 @@
         private ClothesDataSetTableAdapters.SP_GetProductColorSizeTableAdapter sP_GetProductColorSizeTableAdapter;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         private DevExpress.XtraEditors.PanelControl panelControl1;
-        private System.Windows.Forms.ComboBox providerComboBox;
+        private System.Windows.Forms.ComboBox cbbProvider;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.ComboBox categoryComboBox;
+        private System.Windows.Forms.ComboBox cbbCategory;
         private System.Windows.Forms.Label label3;
         private DevExpress.XtraEditors.PanelControl panelControl2;
         private DevExpress.XtraEditors.PanelControl panelControl3;
@@ -540,5 +848,18 @@
         private DevExpress.XtraGrid.Columns.GridColumn colcolorID;
         private DevExpress.XtraGrid.Columns.GridColumn colcolorName;
         private DevExpress.XtraGrid.Columns.GridColumn colcolorHex;
+        private DevExpress.XtraGrid.Columns.GridColumn colname;
+        private DevExpress.XtraGrid.Columns.GridColumn colbrandName;
+        private DevExpress.XtraEditors.SpinEdit productIDSpinEdit;
+        private DevExpress.XtraEditors.TextEdit titleTextEdit;
+        private DevExpress.XtraEditors.SpinEdit sizeIdSpinEdit;
+        private DevExpress.XtraEditors.TextEdit sizeNameTextEdit;
+        private DevExpress.XtraEditors.SpinEdit colorIDSpinEdit;
+        private DevExpress.XtraEditors.TextEdit colorNameTextEdit;
+        private DevExpress.XtraEditors.TextEdit colorHexTextEdit;
+        private DevExpress.XtraEditors.TextEdit nameTextEdit;
+        private DevExpress.XtraEditors.TextEdit brandNameTextEdit;
+        private System.Windows.Forms.Button btnCancelAddProvider;
+        private System.Windows.Forms.Button btnSaveAddProvider;
     }
 }
