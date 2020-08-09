@@ -1,20 +1,16 @@
 package com.ptithcm.ptshop.view.card
 
-import android.graphics.Paint
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
-import com.ptithcm.core.model.ProductVariant
+import com.ptithcm.core.model.ProductClothesDetail
 import com.ptithcm.ptshop.R
 import com.ptithcm.ptshop.databinding.ItemProductCheckoutBinding
-import com.ptithcm.ptshop.ext.roundPrice
-import com.ptithcm.ptshop.ext.visible
 import java.util.*
 
 class ProductCheckoutAdapter: RecyclerView.Adapter<RecyclerView.ViewHolder>() {
-    private val productVariants = arrayListOf<ProductVariant>()
+    private val products = arrayListOf<ProductClothesDetail>()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         val binding = DataBindingUtil.inflate<ItemProductCheckoutBinding>(
@@ -26,41 +22,26 @@ class ProductCheckoutAdapter: RecyclerView.Adapter<RecyclerView.ViewHolder>() {
         return ItemViewHolder(binding)
     }
 
-    override fun getItemCount(): Int = productVariants.size
+    override fun getItemCount(): Int = products.size
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
-        (holder as? ItemViewHolder)?.bind(productVariants[position])
+        (holder as? ItemViewHolder)?.bind(products[position])
     }
 
-    fun addToList(arr: ArrayList<ProductVariant>){
-        this.productVariants.apply {
+    fun addToList(arr: ArrayList<ProductClothesDetail>) {
+        this.products.apply {
             clear()
             addAll(arr)
             notifyDataSetChanged()
         }
     }
 
-    inner class ItemViewHolder(val binding: ItemProductCheckoutBinding): RecyclerView.ViewHolder(binding.root){
+    inner class ItemViewHolder(val binding: ItemProductCheckoutBinding) :
+        RecyclerView.ViewHolder(binding.root) {
 
-        fun bind(item: ProductVariant){
-            val locale = Locale.getDefault()
-            item.product_variant.checkIfWrongPrice()
-            binding.data = item
-            item.product_variant.apply {
-                binding.tvPrice.text = price_after_tax?.roundPrice(locale)
-                binding.tvDiscountPrice.text = price_after_tax?.roundPrice(locale)
-                binding.tvOriginPrice.apply {
-                    text = compare_at_price_after_tax?.roundPrice(locale)
-                    paintFlags = (Paint.STRIKE_THRU_TEXT_FLAG)
-                }
-            }
-            item.applied_discount?.apply {
-                binding.discountInfo.root.visible()
-                binding.discountInfo.title = title
-            }
-            Glide.with(binding.root.context)
-                .load(item.product_variant.product?.image?.get(0)?.src_original)
-                .into(binding.ivProduct)
+        fun bind(item: ProductClothesDetail) {
+            binding.item = item
+            binding.executePendingBindings()
         }
     }
 }

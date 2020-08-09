@@ -19,9 +19,4 @@
             android:name="creditCard"
             app:argType="com.ptithcm.core.model.CreditCard" />
     </fragment>
-    <fragment
-        android:id="@+id/billingAddressDetailFragment"
-        tools:layout="@layout/fragment_detail_billing_address"
-        android:name="com.ptithcm.ptshop.view.addressbook.BillingAddressDetailFragment"
-        android:label="BillingAddressDetailFragment" />
 </navigation>

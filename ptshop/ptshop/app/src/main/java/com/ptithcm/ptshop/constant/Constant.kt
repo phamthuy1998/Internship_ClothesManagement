@@ -47,6 +47,7 @@ const val POPUP_MODEL = "popup_model"
 const val ERROR_CODE_404 = 404
 const val VIEW_ALL = "View All"
 const val GOTO_ACTIVITY_STORY = 1001
+const val KEY_IS_CHOOSE_ADDRESS = "key_is_choose_address"
 
 const val KEY_SEARCH_BY_CATEGORIES = "key_search_by_categories"
 const val KEY_SEARCH_BY_DESIGNERS = "key_search_by_designers"

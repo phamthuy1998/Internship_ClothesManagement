@@ -10,8 +10,8 @@
         <import type="android.text.TextUtils" />
 
         <variable
-            name="basket"
-            type="com.ptithcm.core.model.User" />
+            name="item"
+            type="com.ptithcm.core.model.ShoppingAddress" />
 
     </data>
 
@@ -42,7 +42,7 @@
             android:text="@string/add_a_shipping_address"
             android:textAlignment="viewStart"
             android:textColor="#FF0000"
-            android:visibility="@{(TextUtils.isEmpty(basket.shipping_address_line_1) &amp;&amp; TextUtils.isEmpty(basket.shipping_address_line_2) &amp;&amp;TextUtils.isEmpty(basket.shipping_address_town_city) &amp;&amp;TextUtils.isEmpty(basket.shipping_address_county_area) &amp;&amp;TextUtils.isEmpty(basket.shipping_address_country) &amp;&amp;TextUtils.isEmpty(basket.shipping_address_postcode_zip) &amp;&amp; TextUtils.isEmpty(basket.shipping_telephone) )? View.VISIBLE : View.GONE}"
+            setVisible="@{item == null}"
             android:layout_marginStart="@dimen/layout_margin_8dp"
             android:layout_marginTop="@dimen/layout_margin_8dp"
             android:layout_marginBottom="@dimen/layout_margin_8dp"
@@ -50,92 +50,98 @@
             app:layout_constraintEnd_toEndOf="@id/shippingAddressText"
             app:layout_constraintTop_toBottomOf="@id/shippingAddressText"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintVertical_bias="0"/>
+            app:layout_constraintVertical_bias="0" />
+
+        <androidx.constraintlayout.widget.Barrier
+            android:id="@+id/barrier"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:barrierDirection="end"
+            app:constraint_referenced_ids="tvTitleName, tvTitlePhone, tvTitleAddress" />
 
         <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/shippingAddressLine1"
-            style="@style/normal_text"
-            android:layout_width="0dp"
-            android:layout_marginTop="@dimen/layout_margin_8dp"
-            android:text="@{basket.shipping_address_line_1}"
-            android:textAlignment="viewStart"
-            android:visibility="@{TextUtils.isEmpty(basket.shipping_address_line_1) ?  (basket.shipping_address_line_1 == null ? View.GONE : View.INVISIBLE) :  View.VISIBLE}"
+            android:id="@+id/tvTitleName"
+            style="@style/normal_text.grey"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/layout_margin_12dp"
+            android:layout_marginTop="@dimen/layout_margin_12dp"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:text="Name:"
+            android:textAlignment="center"
             app:layout_constraintTop_toBottomOf="@id/shippingAddressText"
-            app:layout_constraintStart_toStartOf="@id/shippingAddressText"
-            app:layout_constraintEnd_toEndOf="@id/shippingAddressText"
-            tools:text="flat 7 - 3 queens road" />
+            app:layout_constraintStart_toStartOf="parent" />
 
         <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/shippingAddressLine2"
+            android:id="@+id/tvName"
             style="@style/normal_text"
             android:layout_width="0dp"
-            android:text="@{basket.shipping_address_line_2}"
-            android:textAlignment="viewStart"
-            android:visibility="@{TextUtils.isEmpty(basket.shipping_address_line_2) ? (basket.shipping_address_line_2 == null ? View.GONE : View.INVISIBLE) : View.VISIBLE}"
-            app:layout_constraintTop_toBottomOf="@id/shippingAddressLine1"
-            app:layout_constraintStart_toStartOf="@id/shippingAddressLine1"
-            app:layout_constraintEnd_toEndOf="@id/shippingAddressLine1"
-            tools:text="2" />
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/layout_margin_8dp"
+            android:layout_marginEnd="@dimen/layout_margin_8dp"
+            android:maxLines="1"
+            android:text="@{item.name}"
+            android:textAlignment="textStart"
+            app:layout_constraintBaseline_toBaselineOf="@id/tvTitleName"
+            app:layout_constraintStart_toEndOf="@id/barrier"
+            tools:text="Thuỷ" />
 
         <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/shippingAddressTownCity"
-            style="@style/normal_text"
-            android:layout_width="0dp"
-            android:text="@{basket.shipping_address_town_city}"
-            android:textAlignment="viewStart"
-            android:visibility="@{TextUtils.isEmpty(basket.shipping_address_town_city) ? (basket.shipping_address_town_city == null ? View.GONE : View.INVISIBLE) : View.VISIBLE}"
-            app:layout_constraintTop_toBottomOf="@id/shippingAddressLine2"
-            app:layout_constraintStart_toStartOf="@id/shippingAddressLine2"
-            app:layout_constraintEnd_toEndOf="@id/shippingAddressLine2"
-            tools:text="richmond" />
+            android:id="@+id/tvTitlePhone"
+            style="@style/normal_text.grey"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/layout_margin_8dp"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:text="Phone:"
+            android:textAlignment="center"
+            app:layout_constraintStart_toStartOf="@id/tvTitleName"
+            app:layout_constraintTop_toBottomOf="@id/tvTitleName" />
 
         <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/shippingAddressCountryArea"
+            android:id="@+id/tvPhone"
             style="@style/normal_text"
             android:layout_width="0dp"
-            android:text="@{basket.shipping_address_county_area}"
-            android:textAlignment="viewStart"
-            android:visibility="@{TextUtils.isEmpty(basket.shipping_address_county_area) ? View.GONE : View.VISIBLE}"
-            app:layout_constraintTop_toBottomOf="@id/shippingAddressTownCity"
-            app:layout_constraintStart_toStartOf="@id/shippingAddressTownCity"
-            app:layout_constraintEnd_toEndOf="@id/shippingAddressTownCity"
-            tools:text="London" />
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/layout_margin_8dp"
+            android:layout_marginEnd="@dimen/layout_margin_12dp"
+            android:maxLines="1"
+            android:text="@{item.phone}"
+            android:textAlignment="textStart"
+            app:layout_constraintBaseline_toBaselineOf="@id/tvTitlePhone"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/barrier"
+            tools:text="0123456789" />
 
         <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/shippingAddressCountry"
-            style="@style/normal_text"
-            android:layout_width="0dp"
-            android:text="@{basket.shipping_address_country}"
-            android:textAlignment="viewStart"
-            android:visibility="@{TextUtils.isEmpty(basket.shipping_address_country) ? View.GONE : View.VISIBLE}"
-            app:layout_constraintTop_toBottomOf="@id/shippingAddressCountryArea"
-            app:layout_constraintStart_toStartOf="@id/shippingAddressCountryArea"
-            app:layout_constraintEnd_toEndOf="@id/shippingAddressCountryArea"
-            tools:text="United Kingdom" />
+            android:id="@+id/tvTitleAddress"
+            style="@style/normal_text.grey"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/layout_margin_8dp"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:text="Address:"
+            android:textAlignment="center"
+            app:layout_constraintStart_toStartOf="@id/tvTitleName"
+            app:layout_constraintTop_toBottomOf="@id/tvTitlePhone" />
 
         <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/shippingAddressPostCode"
+            android:id="@+id/tvAddress"
             style="@style/normal_text"
             android:layout_width="0dp"
-            android:text="@{basket.shipping_address_postcode_zip}"
-            android:textAlignment="viewStart"
-            android:visibility="@{TextUtils.isEmpty(basket.shipping_address_postcode_zip) ? View.GONE : View.VISIBLE}"
-            app:layout_constraintTop_toBottomOf="@id/shippingAddressCountry"
-            app:layout_constraintStart_toStartOf="@id/shippingAddressCountry"
-            app:layout_constraintEnd_toEndOf="@id/shippingAddressCountry"
-            tools:text="TW10 6JW" />
-
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/shippingAddressPhone"
-            style="@style/normal_text"
-            android:layout_width="0dp"
-            android:text="@{basket.shipping_telephone}"
-            android:textAlignment="viewStart"
-            android:visibility="@{TextUtils.isEmpty(basket.shipping_telephone) ? View.GONE : View.VISIBLE}"
-            app:layout_constraintTop_toBottomOf="@id/shippingAddressPostCode"
-            app:layout_constraintStart_toStartOf="@id/shippingAddressPostCode"
-            app:layout_constraintEnd_toEndOf="@id/shippingAddressPostCode"
-            tools:text="7411188787" />
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/layout_margin_8dp"
+            android:layout_marginEnd="@dimen/layout_margin_12dp"
+            android:lineSpacingExtra="2dp"
+            android:text="@{item.fullAddress}"
+            android:textAlignment="textStart"
+            app:layout_constraintBaseline_toBaselineOf="@id/tvTitleAddress"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/barrier"
+            tools:text="0123456789" />
 
         <androidx.appcompat.widget.AppCompatImageView
             android:layout_width="wrap_content"
@@ -144,6 +150,13 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@drawable/ic_right_arrow" />
+
+        <androidx.constraintlayout.widget.Group
+            android:id="@+id/gContent"
+            setVisible="@{item != null}"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:constraint_referenced_ids="tvName,tvAddress,tvPhone,tvTitleAddress,tvTitleName,tvTitlePhone" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

@@ -9,12 +9,14 @@ import com.google.gson.Gson
 import com.ptithcm.core.model.Account
 import com.ptithcm.core.model.Cart
 import com.ptithcm.core.model.Profile
+import com.ptithcm.core.model.ShoppingAddress
 
 //KEY WORD
 const val INIT_PAGE = 1
 const val PAGE_SIZE = 20
 const val USER_PROFILE = "USER_PROFILE"
 const val USER_ACCOUNT = "USER_ACCOUNT"
+const val DEFAULT_ADDRESS = "DEFAULT_ADDRESS"
 const val CART = "CART"
 const val ORDERING_HIGH = "-price_range_ordering"
 const val ORDERING_LOW = "price_range_ordering"
@@ -89,6 +91,22 @@ class PrefUtil constructor(
         set(value) = prefs.edit().putString(
             CART,
             gSon.toJson(value?.apply { products.sortBy { it.id } })
+        ).apply()
+
+    var defaultAddress: ShoppingAddress?
+        get() {
+            return try {
+                gSon.fromJson(
+                    prefs.getString(DEFAULT_ADDRESS, null),
+                    ShoppingAddress::class.java
+                )
+            } catch (e: Exception) {
+                null
+            }
+        }
+        set(value) = prefs.edit().putString(
+            DEFAULT_ADDRESS,
+            gSon.toJson(value)
         ).apply()
 }
 

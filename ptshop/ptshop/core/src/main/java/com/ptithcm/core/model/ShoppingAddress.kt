@@ -31,11 +31,11 @@ data class ShoppingAddress(
         if (!street.isNullOrEmpty())
             fullAddress.append(street)
         if (!wards.isNullOrEmpty())
-            fullAddress.append(", Phường $wards")
+            fullAddress.append(", $wards")
         if (!district.isNullOrEmpty())
-            fullAddress.append(", Quận/Huyện $district")
+            fullAddress.append(", $district")
         if (!province.isNullOrEmpty())
-            fullAddress.append(", Tỉnh/Thành Phố $province")
+            fullAddress.append(", $province")
         return fullAddress.toString()
     }
 

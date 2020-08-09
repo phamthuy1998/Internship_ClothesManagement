@@ -4,10 +4,7 @@ import android.app.Application
 import com.ptithcm.core.di.localModule
 import com.ptithcm.core.di.remoteModule
 import com.ptithcm.core.di.repositoryModule
-import com.ptithcm.core.model.Account
-import com.ptithcm.core.model.Basket
-import com.ptithcm.core.model.Cart
-import com.ptithcm.core.model.Profile
+import com.ptithcm.core.model.*
 import com.ptithcm.core.util.PrefUtil
 import org.koin.android.ext.android.inject
 import org.koin.android.ext.koin.androidContext
@@ -26,6 +23,7 @@ open class CoreApplication : Application() {
     var account: Account? = null
     var basket: Basket? = null
     var cart: Cart? = null
+    var defaultAddress: ShoppingAddress? = null
 
     private val prefsUtil: PrefUtil by inject()
 
@@ -41,6 +39,7 @@ open class CoreApplication : Application() {
         profile = prefsUtil.profile
         account = prefsUtil.account
         cart = prefsUtil.cart ?: Cart()
+        defaultAddress = prefsUtil.defaultAddress
     }
 
     fun isNetworkConnected(): Boolean {
@@ -81,6 +80,13 @@ open class CoreApplication : Application() {
     fun getCartFromPref(): Cart? {
         cart = prefsUtil.cart
         return cart
+    }
+
+    fun saveDefaultAddress(address: ShoppingAddress?) {
+        cart?.shippingAddress = defaultAddress
+        saveCartToPref(cart)
+        this.defaultAddress = address
+        prefsUtil.defaultAddress = address
     }
 
     open fun addMoreModule(): List<Module> = emptyList()

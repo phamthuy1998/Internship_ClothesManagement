@@ -91,7 +91,7 @@ class PaymentMethodsAdapter(private var creditCards: ArrayList<CreditCard?>?,pri
             if (isFromCheckout){
                 when {
                     creditCard?.id == selectedCardId -> viewBinding.ivNext.setImageResource(R.drawable.ic_check_black_24dp)
-                    creditCard?.default_card == true && selectedCardId?.isEmpty() == true -> viewBinding.ivNext.setImageResource(R.drawable.ic_check_black_24dp)
+//                    creditCard?.default_card == true && selectedCardId?.isEmpty() == true -> viewBinding.ivNext.setImageResource(R.drawable.ic_check_black_24dp)
                     else -> viewBinding.ivNext.gone()
                 }
             }

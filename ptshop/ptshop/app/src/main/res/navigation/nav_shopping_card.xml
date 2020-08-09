@@ -40,7 +40,7 @@
     <fragment
         android:id="@+id/fragment_shipping_address"
         android:name="com.ptithcm.ptshop.view.addressbook.ShippingAddressDetailFragment"
-        tools:layout="@layout/fragment_detail_shipping_address" />
+        tools:layout="@layout/fragment_address_book" />
 
     <fragment
         android:id="@+id/fragment_payment"
@@ -56,16 +56,6 @@
             android:name="creditCard"
             app:argType="com.ptithcm.core.model.CreditCard" />
     </fragment>
-
-    <fragment
-        android:id="@+id/fragment_billing_address"
-        android:name="com.ptithcm.ptshop.view.addressbook.BillingAddressDetailFragment"
-        tools:layout="@layout/fragment_detail_billing_address" />
-
-    <fragment
-        android:id="@+id/fragment_bill_address"
-        android:name="com.ptithcm.ptshop.view.card.BillAddressDetailFragment"
-        tools:layout="@layout/fragment_detail_bill_address" />
 
     <fragment
         android:id="@+id/fragment_product_detail"

@@ -17,7 +17,7 @@ val repositoryModule = module {
     single<DesignerRepository> { DesignerRepositoryImpl(get()) }
     single<BrandsRepository> { BrandsRepositoryImpl(get()) }
     single<ShoppingCardRepository> { ShoppingCardRepositoryImpl(get(), get()) }
-    single<CheckoutRepository> { CheckoutRepositoryImpl(get()) }
+    single<CheckoutRepository> { CheckoutRepositoryImpl(get(), get()) }
     single<SearchRepository> { SearchRepositoryImpl(get()) }
     single<ShareDataRepository> { ShareDataRepositoryImpl(get()) }
     single<UploadRepository> { UploadRepositoryImpl(get()) }

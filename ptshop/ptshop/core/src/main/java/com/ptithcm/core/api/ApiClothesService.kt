@@ -6,6 +6,7 @@ import com.ptithcm.core.model.wish.ObjectResponse
 import com.ptithcm.core.param.ChangePassParam
 import com.ptithcm.core.param.EditAccountParam
 import com.ptithcm.core.param.LogInParam
+import com.ptithcm.core.param.RequestCheckoutParam
 import com.ptithcm.core.vo.ListResponse
 import retrofit2.Response
 import retrofit2.http.*
@@ -108,5 +109,10 @@ interface ApiClothesService {
 
     @DELETE("/api/del-addess")
     suspend fun deleteAddress(@Query("addressId") addressId: Int?): Response<ObjectResponse<Int>>
+
+    /*-----------------------------*/
+    /* Invoice*/
+    @POST("/api/addInvoice")
+    suspend fun requestCheckout(@Body param: RequestCheckoutParam): Response<ObjectResponse<Any>>
 }
 

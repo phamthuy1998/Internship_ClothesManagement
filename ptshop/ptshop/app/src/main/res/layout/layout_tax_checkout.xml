@@ -74,31 +74,13 @@
             app:layout_constraintBottom_toBottomOf="@id/tvMerchantDiscount"
             app:layout_constraintEnd_toEndOf="parent"
             tools:text="-1.20"/>
-
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/tvTax"
-            style="@style/normal_text"
-            android:text="@string/tax"
-            android:layout_marginTop="@dimen/layout_margin_8dp"
-            app:layout_constraintTop_toBottomOf="@id/tvMerchantDiscount"
-            app:layout_constraintStart_toStartOf="@id/tvMerchantDiscount" />
-
-
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/tvtaxPrice"
-            style="@style/normal_text"
-            android:text="@{tax}"
-            app:layout_constraintBaseline_toBaselineOf="@id/tvTax"
-            app:layout_constraintEnd_toEndOf="parent"
-            tools:text="32.14"/>
-
         <View
             android:id="@+id/divider1"
             style="@style/divider"
             android:layout_marginTop="@dimen/layout_margin_8dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tvTax" />
+            app:layout_constraintTop_toBottomOf="@id/tvMerchantDiscount" />
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/tvDiscount"
@@ -131,31 +113,13 @@
             app:layout_constraintBaseline_toBaselineOf="@id/tvShipping"
             app:layout_constraintEnd_toEndOf="parent" />
 
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/tvShippingTax"
-            style="@style/normal_text"
-            android:text="@string/shipping_tax"
-            android:layout_marginTop="@dimen/layout_margin_8dp"
-            android:visibility="@{shippingTax == null ? View.GONE : View.VISIBLE}"
-            app:layout_constraintTop_toBottomOf="@id/tvShipping"
-            app:layout_constraintStart_toStartOf="@id/tvShipping" />
-
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/tvShippingTaxPrice"
-            style="@style/normal_text"
-            android:text="@{shippingTax}"
-            android:visibility="@{shippingTax == null ? View.GONE : View.VISIBLE}"
-            app:layout_constraintTop_toTopOf="@id/tvShippingTax"
-            app:layout_constraintEnd_toEndOf="parent"
-            tools:text="0.00"/>
-
         <View
             android:id="@+id/divider2"
             style="@style/divider"
             android:layout_marginTop="@dimen/layout_margin_8dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tvShippingTax" />
+            app:layout_constraintTop_toBottomOf="@id/tvShipping" />
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/tvTotal"

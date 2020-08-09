@@ -4,18 +4,22 @@ import android.os.Bundle
 import android.view.View
 import androidx.core.os.bundleOf
 import androidx.lifecycle.Observer
+import com.ptithcm.core.CoreApplication
 import com.ptithcm.core.model.ShoppingAddress
 import com.ptithcm.ptshop.R
 import com.ptithcm.ptshop.base.BaseActivity
 import com.ptithcm.ptshop.base.BaseFragment
 import com.ptithcm.ptshop.constant.ERROR_CODE_404
 import com.ptithcm.ptshop.constant.KEY_ARGUMENT
+import com.ptithcm.ptshop.constant.KEY_IS_CHOOSE_ADDRESS
 import com.ptithcm.ptshop.databinding.FragmentAddressBookBinding
 import com.ptithcm.ptshop.ext.*
 import com.ptithcm.ptshop.view.MainActivity
 import com.ptithcm.ptshop.view.addressbook.adapter.AddressAdapter
+import com.ptithcm.ptshop.viewmodel.ListenerViewModel
 import com.ptithcm.ptshop.viewmodel.UserViewModel
 import kotlinx.android.synthetic.main.activity_main.*
+import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class AddressBookFragment : BaseFragment<FragmentAddressBookBinding>() {
@@ -23,13 +27,22 @@ class AddressBookFragment : BaseFragment<FragmentAddressBookBinding>() {
         get() = R.layout.fragment_address_book
 
     private val userViewModel: UserViewModel by viewModel()
+    private val listenerViewModel: ListenerViewModel by sharedViewModel()
+
+    private var isChooseAddress = false
 
     private val adapter = AddressAdapter { it: ShoppingAddress?, pos: Int? ->
         if (pos == null) {
-            navController.navigateAnimation(
-                R.id.shippingAddressDetailFragment,
-                bundle = bundleOf(KEY_ARGUMENT to it)
-            )
+            if (!isChooseAddress) {
+                navController.navigateAnimation(
+                    R.id.shippingAddressDetailFragment,
+                    bundle = bundleOf(KEY_ARGUMENT to it)
+                )
+            } else {
+                CoreApplication.instance.cart?.shippingAddress = it
+                listenerViewModel.updateShippingAddress.value = true
+                navController.popBackStack()
+            }
         } else {
             userViewModel.deleteAddress(it?.id)
         }
@@ -39,6 +52,10 @@ class AddressBookFragment : BaseFragment<FragmentAddressBookBinding>() {
         super.onViewCreated(view, savedInstanceState)
         activity?.btnNav?.visibility = View.GONE
         (activity as? BaseActivity<*>)?.isShowLoading(true)
+
+        if (requireArguments().containsKey(KEY_IS_CHOOSE_ADDRESS))
+            isChooseAddress = requireArguments().getBoolean(KEY_IS_CHOOSE_ADDRESS, false)
+
         userViewModel.getAllAddress()
         setupToolbar()
         initAdapter()
