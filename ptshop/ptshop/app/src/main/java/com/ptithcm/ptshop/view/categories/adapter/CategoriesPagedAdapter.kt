@@ -18,7 +18,6 @@ import com.ptithcm.ptshop.databinding.ItemProductCarouselBinding
 import com.ptithcm.ptshop.databinding.LayoutCountItemCategoryBinding
 
 class CategoriesPagedAdapter(
-    private val banner: String? = null,
     private val listener: (product: ProductClothes?, isRefine: Boolean) -> Unit,
     private val listenerAddProduct: ((product: ProductClothes?) -> Unit)? = null
 ) : PagedListAdapter<ItemViewModel, RecyclerView.ViewHolder>(DIFF_UTIL) {
@@ -90,9 +89,9 @@ class CategoriesPagedAdapter(
             is CountViewHolder -> {
                 val item = getItem(position) as CountViewModel
                 holder.bind(item)
-//                holder.viewBinding.layoutRefine.container.setOnClickListener {
-//                    listener.invoke(ProductClothes(), true)
-//                }
+                holder.viewBinding.layoutRefine.container.setOnClickListener {
+                    listener.invoke(null, true)
+                }
             }
 
             is NetworkStateItemViewHolder -> {
@@ -149,7 +148,6 @@ class CategoriesPagedAdapter(
 
         fun bind(data: CountViewModel?) {
             viewBinding.count = data?.count
-            viewBinding.banner = banner
         }
     }
 }

@@ -13,4 +13,8 @@ data class SearchParams(
     var typeFilter: Int?,
     var typeSearch: Int?,
     var typeSearchFilter: Int?
-) : Parcelable
+) : Parcelable {
+    fun clearData() {
+        typeFilter = null
+    }
+}

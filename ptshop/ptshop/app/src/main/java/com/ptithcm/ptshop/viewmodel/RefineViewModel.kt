@@ -12,5 +12,6 @@ class RefineViewModel : ViewModel() {
     val categoriesParamLiveData = MutableLiveData<Pair<CategoriesParam, Gender>>()
     val sizeType  = MutableLiveData<Int>()
     val refineLiveData = MutableLiveData<Pair<RefineParam?, Boolean>>()
+
     val filterLiveData = MutableLiveData<Pair<SearchParams?, Boolean>>()
 }

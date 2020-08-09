@@ -7,11 +7,8 @@ import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.ptithcm.core.CoreApplication
-import com.ptithcm.core.model.Brand
 import com.ptithcm.core.model.ProductClothes
 import com.ptithcm.core.model.SearchParams
-import com.ptithcm.core.model.TypeCarousel
-import com.ptithcm.core.param.RefineParam
 import com.ptithcm.core.util.INIT_PAGE
 import com.ptithcm.core.util.PAGE_SIZE
 import com.ptithcm.core.vo.Result
@@ -41,18 +38,20 @@ class CarouselProductFragment : BaseFragment<FragmentCarouselProductBinding>(),
     private val wishListViewModel: WishListViewModel by viewModel()
 
     private lateinit var productAdapter: CarouselProductPagedAdapter
-    private var vendorBrand: Brand? = null
     private lateinit var scrollListener: RecyclerView.OnScrollListener
-    private var refineParam: RefineParam? = null
     private var filterParam: SearchParams? = null
-    private lateinit var typeCarousel: TypeCarousel
     private var isInitRefine = true
     private var isRequestRefine = false
     private var scrollHandler: ScrollHandler? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        initBindViewModel()
+        viewModel.getPagingProductsProvider(
+            providersViewModel.provider?.id ?: 0,
+            20,
+            1,
+            CoreApplication.instance.account?.id ?: 0
+        )
     }
 
     override fun bindEvent() {
@@ -64,9 +63,9 @@ class CarouselProductFragment : BaseFragment<FragmentCarouselProductBinding>(),
     }
 
     override fun bindViewModel() {
-        super.bindViewModel()
         viewModel.productsProviderLiveData.observe(this, Observer {
-            productAdapter.submitList(it)
+            if (!isRequestRefine)
+                productAdapter.submitList(it)
         })
 
         viewModel.productLoadStatusX.observe(this, Observer {
@@ -81,6 +80,28 @@ class CarouselProductFragment : BaseFragment<FragmentCarouselProductBinding>(),
                 else -> viewBinding.layoutLoading.gone()
             }
         })
+
+        viewModel.refineProductLiveData.observe(this, Observer {
+            if (isRequestRefine) {
+                productAdapter.submitList(it)
+            }
+        })
+
+        if (!refineViewModel.filterLiveData.hasObservers())
+            refineViewModel.filterLiveData.observe(this, Observer {
+                it?.let {
+                    filterParam = it.first
+                    if (it.second) {
+                        isRequestRefine = it.second
+                        viewModel.getPagingRefineProduct(it.first)
+                    }
+                }
+            })
+
+        wishListViewModel.addAndRemoveResult.observe(this, Observer {})
+        wishListViewModel.error.observe(this, Observer {
+            (requireActivity() as? BaseActivity<*>)?.isShowErrorNetwork(true)
+        })
     }
 
     override fun onClick(view: View?) {
@@ -94,36 +115,6 @@ class CarouselProductFragment : BaseFragment<FragmentCarouselProductBinding>(),
     override fun onDestroyView() {
         super.onDestroyView()
         scrollHandler?.removeHandler()
-    }
-
-    private fun initBindViewModel() {
-        viewModel.getPagingProductsProvider(
-            providersViewModel.provider?.id ?: 0,
-            20,
-            1,
-            CoreApplication.instance.account?.id ?: 0
-        )
-
-        viewModel.refineProductLiveData.observe(this, Observer {
-            if (isRequestRefine) {
-                productAdapter.submitList(it)
-            }
-        })
-
-        refineViewModel.filterLiveData.observe(this, Observer {
-            it?.let {
-                filterParam = it.first
-                if (it.second) {
-                    isRequestRefine = it.second
-                    viewModel.getPagingRefineProduct(it.first)
-                }
-            }
-        })
-
-        wishListViewModel.addAndRemoveResult.observe(this, Observer {})
-        wishListViewModel.error.observe(this, Observer {
-            (requireActivity() as? BaseActivity<*>)?.isShowErrorNetwork(true)
-        })
     }
 
     private fun intiAdapter() {
@@ -187,8 +178,7 @@ class CarouselProductFragment : BaseFragment<FragmentCarouselProductBinding>(),
             navController.navigateAnimation(
                 R.id.fragment_product_detail,
                 bundle = bundleOf(
-                    KEY_ARGUMENT to product,
-                    KEY_ARGUMENT_REFINE to refineParam
+                    KEY_ARGUMENT to product
                 )
             )
         }

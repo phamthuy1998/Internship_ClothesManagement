@@ -2,12 +2,8 @@ package com.ptithcm.ptshop.view.refine
 
 import android.os.Bundle
 import android.view.View
-import androidx.core.os.bundleOf
 import androidx.core.view.isVisible
 import com.ptithcm.core.model.SearchParams
-import com.ptithcm.core.param.CategoriesParam
-import com.ptithcm.core.param.CategoriesRefine
-import com.ptithcm.core.param.RefineParam
 import com.ptithcm.core.util.INIT_PAGE
 import com.ptithcm.core.util.PAGE_SIZE
 import com.ptithcm.ptshop.R
@@ -26,24 +22,12 @@ class RefineFragment : BaseFragment<FragmentRefineBinding>(), View.OnClickListen
     override val layoutId: Int = R.layout.fragment_refine
 
     private val viewModel: RefineViewModel by sharedViewModel(from = { requireActivity() })
-    private var refineParam: RefineParam? = null
-    private var refineParamRequest: RefineParam? = null
-    private var isProduct: Boolean = false
-    private var isMainCategory: Boolean = false
-    private var categoriesParam: CategoriesParam? = null
 
     private var searchParam: SearchParams? = null
     private var isShowFilterBy: Boolean = false
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        viewModel.refineLiveData.value = null
-//        refineParam = arguments?.getParcelable(KEY_ARGUMENT)
-//        refineParamRequest = refineParam?.copy()
-//        isProduct = arguments?.getBoolean(IS_PRODUCT) ?: false
-//
-//        if (!isProduct) {
-//            isMainCategory = arguments?.getBoolean(KEY_MAIN_CATEGORIES) ?: false
-//        }
+        viewModel.filterLiveData.value = null
 
         arguments?.run {
             searchParam = clone(getParcelable(KEY_SEARCH))
@@ -61,51 +45,41 @@ class RefineFragment : BaseFragment<FragmentRefineBinding>(), View.OnClickListen
     override fun onClick(view: View?) {
         when (view?.id) {
             R.id.tvClear -> {
-                refineParamRequest?.clearData(
-                    isProduct, categories = arrayListOf(
-                        categoriesParam?.copyCategoryRefine() ?: CategoriesRefine()
-                    )
-                )
+                searchParam?.clearData()
                 clearView()
             }
-            R.id.tvColours -> {
-                navController.navigate(
-                    R.id.action_fragment_colours,
-                    bundleOf(KEY_ARGUMENT to refineParamRequest)
-                )
-            }
             R.id.tvCategories -> {
-                if (isProduct) {
-                    navController.navigate(
-                        R.id.action_fragment_all_categories_refine,
-                        bundleOf(KEY_ARGUMENT to refineParamRequest)
-                    )
-                } else {
-                    if (isMainCategory) {
-                        navController.navigate(
-                            R.id.action_fragment_main_categories_refine,
-                            bundleOf(KEY_ARGUMENT to refineParamRequest)
-                        )
-                    } else {
-                        navController.navigate(
-                            R.id.action_fragment_categories_refine,
-                            bundleOf(KEY_ARGUMENT to refineParamRequest)
-                        )
-                    }
-                }
+//                if (isProduct) {
+//                    navController.navigate(
+//                        R.id.action_fragment_all_categories_refine,
+//                        bundleOf(KEY_ARGUMENT to refineParamRequest)
+//                    )
+//                } else {
+//                    if (isMainCategory) {
+//                        navController.navigate(
+//                            R.id.action_fragment_main_categories_refine,
+//                            bundleOf(KEY_ARGUMENT to refineParamRequest)
+//                        )
+//                    } else {
+//                        navController.navigate(
+//                            R.id.action_fragment_categories_refine,
+//                            bundleOf(KEY_ARGUMENT to refineParamRequest)
+//                        )
+//                    }
+//                }
             }
             R.id.tvBrands -> {
-                if (refineParam?.storiesRefine?.isStories == true) {
-                    navController.navigateAnimation(
-                        R.id.fragment_brand_refine_stories,
-                        bundle = bundleOf(KEY_ARGUMENT to refineParamRequest)
-                    )
-                } else {
-                    navController.navigateAnimation(
-                        R.id.fragment_brand_refine,
-                        bundle = bundleOf(KEY_ARGUMENT to refineParamRequest)
-                    )
-                }
+//                if (refineParam?.storiesRefine?.isStories == true) {
+//                    navController.navigateAnimation(
+//                        R.id.fragment_brand_refine_stories,
+//                        bundle = bundleOf(KEY_ARGUMENT to refineParamRequest)
+//                    )
+//                } else {
+//                    navController.navigateAnimation(
+//                        R.id.fragment_brand_refine,
+//                        bundle = bundleOf(KEY_ARGUMENT to refineParamRequest)
+//                    )
+//                }
             }
             R.id.btnShowResult -> {
                 val typeFilter: Int? = when {
@@ -168,27 +142,16 @@ class RefineFragment : BaseFragment<FragmentRefineBinding>(), View.OnClickListen
     private fun onClickToolbarEvent(view: View) {
         when (view.id) {
             R.id.ivBack -> {
-                viewModel.refineLiveData.value = Pair(refineParam, false)
+                viewModel.filterLiveData.value = Pair(searchParam, false)
                 navController.popBackStack()
             }
         }
     }
 
-    private fun init(refineParam: RefineParam?) {
-        viewBinding.tvRefineCategories.sizeCategories(refineParam?.categories)
-        viewBinding.tvRefineBrands.sizeBrands(refineParam?.brands)
-        when {
-            refineParam?.newItems == true -> viewBinding.ivRightNewItems.isSelected = true
-            refineParam?.ourPicks == true -> viewBinding.ivRightOldItems.isSelected = true
-            refineParam?.priceHigh == true -> viewBinding.ivRightPriceHigh.isSelected = true
-            refineParam?.priceLow == true -> viewBinding.ivRightPriceLow.isSelected = true
-        }
-    }
-
     private fun init(searchParams: SearchParams?) {
         when (searchParams?.typeFilter) {
-            PRICE_ASC -> viewBinding.ivRightPriceHigh.isSelected = true
-            PRICE_DESC -> viewBinding.ivRightPriceLow.isSelected = true
+            PRICE_ASC -> viewBinding.ivRightPriceLow.isSelected = true
+            PRICE_DESC -> viewBinding.ivRightPriceHigh.isSelected = true
             NEWEST -> viewBinding.ivRightNewItems.isSelected = true
             OLDEST -> viewBinding.ivRightOldItems.isSelected = true
         }
@@ -210,5 +173,4 @@ class RefineFragment : BaseFragment<FragmentRefineBinding>(), View.OnClickListen
         viewBinding.ivRightPriceLow.isSelected = false
         viewBinding.ivRightPriceHigh.isSelected = false
     }
-
 }
