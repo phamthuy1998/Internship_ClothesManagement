@@ -258,4 +258,40 @@ class CarouselDetailRepositoryImpl(
             }
         )
     }
+
+    override suspend fun getPagingRefineProduct(searchParams: SearchParams?): Listing<ItemViewModel> {
+        val sourceFactory =
+            object :
+                BaseDataSourceFactory<ProductClothes, ItemViewModel>(status = MutableLiveData()) {
+                override suspend fun createXCall(page: Int): Response<ListResponse<ProductClothes>> {
+                    return clothesApi.getRefineProducts(searchParams.apply {
+                        this?.pageNumber = page
+                    })
+                }
+
+                override suspend fun handleXResponse(
+                    items: ListResponse<ProductClothes>, firstLoad: Boolean
+                ): List<ItemViewModel> {
+                    val result = arrayListOf<ItemViewModel>()
+
+                    if (firstLoad) {
+                        val countView = CountViewModel(items.count, 0x0, null)
+                        result.add(countView)
+                    }
+
+                    result.addAll(items.results)
+                    return result
+                }
+            }
+
+        val pagedLiveData = sourceFactory.toLiveData(pageSize = PAGE_SIZE)
+
+        return Listing(
+            result = pagedLiveData,
+            status = sourceFactory.status,
+            refresh = {
+                sourceFactory.sourceLiveData.value?.invalidate()
+            }
+        )
+    }
 }

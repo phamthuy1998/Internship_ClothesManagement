@@ -130,6 +130,4 @@ class DesignerFragment : BaseFragment<FragmentDesignerBinding>() {
     private fun getProviders() {
         providersViewModel.getProviders()
     }
-
-
 }

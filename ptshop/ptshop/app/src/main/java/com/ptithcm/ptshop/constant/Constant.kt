@@ -34,6 +34,7 @@ const val KEY_EMPTY = ""
 const val KEY_ARGUMENT = "key_argument"
 const val KEY_ARGUMENT_REFINE = "key_refine"
 const val KEY_DESIGNER = "key_designer"
+const val KEY_CATEGORY = "key_category"
 const val KEY_TYPE = "key_type"
 const val KEY_ID = "key_id"
 const val KEY_SEARCH = "key_search"
@@ -46,6 +47,17 @@ const val POPUP_MODEL = "popup_model"
 const val ERROR_CODE_404 = 404
 const val VIEW_ALL = "View All"
 const val GOTO_ACTIVITY_STORY = 1001
+
+const val KEY_SEARCH_BY_CATEGORIES = "key_search_by_categories"
+const val KEY_SEARCH_BY_DESIGNERS = "key_search_by_designers"
+
+const val PRICE_ASC = 1
+const val PRICE_DESC = 2
+const val NEWEST = 3
+const val OLDEST = 4
+const val SEARCH_BY_CATEGORIES = 1
+const val SEARCH_BY_DESIGNER = 2
+const val KEY_IS_SHOW_FILTER_BY = "key_is_show_filter_by"
 
 enum class PhotoType {
     PROFILE_PHOTO, COVER_PHOTO

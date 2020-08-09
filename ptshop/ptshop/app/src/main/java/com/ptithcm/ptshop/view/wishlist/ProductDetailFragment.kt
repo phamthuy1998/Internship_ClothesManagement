@@ -210,10 +210,10 @@ class ProductDetailFragment : BaseFragment<FragmentProductDetailBinding>() {
         viewBinding.btnColor.apply {
             viewBinding.btnColorVisible = !colorOptions.isNullOrEmpty()
 
-            adapter = ArrayAdapter(
+            adapter = ColorSpinnerAdapter(
                 context,
-                R.layout.item_spinner,
-                colorOptions.map { it.colorName }
+                R.layout.item_color,
+                colorOptions
             )
 
             onItemSelectedListener = object : AdapterView.OnItemSelectedListener {

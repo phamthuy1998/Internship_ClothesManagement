@@ -194,7 +194,7 @@ fun FragmentRefineBinding.chooseView(
 ) {
     when {
         isNewItems -> {
-            this.ivRightOurPicks.isSelected = false
+            this.ivRightOldItems.isSelected = false
             this.ivRightPriceHigh.isSelected = false
             this.ivRightPriceLow.isSelected = false
         }
@@ -205,12 +205,12 @@ fun FragmentRefineBinding.chooseView(
         }
         isPriceHigh -> {
             this.ivRightNewItems.isSelected = false
-            this.ivRightOurPicks.isSelected = false
+            this.ivRightOldItems.isSelected = false
             this.ivRightPriceLow.isSelected = false
         }
         isPriceLow -> {
             this.ivRightNewItems.isSelected = false
-            this.ivRightOurPicks.isSelected = false
+            this.ivRightOldItems.isSelected = false
             this.ivRightPriceHigh.isSelected = false
         }
     }

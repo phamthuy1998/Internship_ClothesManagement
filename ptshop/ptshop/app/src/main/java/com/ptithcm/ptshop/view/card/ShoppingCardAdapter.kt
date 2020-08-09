@@ -14,6 +14,7 @@ import com.ptithcm.ptshop.R
 import com.ptithcm.ptshop.databinding.ItemShoppingCardBinding
 import com.ptithcm.ptshop.ext.clone
 import com.ptithcm.ptshop.ext.startAnimationError
+import com.ptithcm.ptshop.view.wishlist.ColorSpinnerAdapter
 
 class ShoppingCardAdapter(val listener: ((Int, Any?) -> Unit)? = null) :
     RecyclerView.Adapter<RecyclerView.ViewHolder>() {
@@ -185,10 +186,11 @@ class ShoppingCardAdapter(val listener: ((Int, Any?) -> Unit)? = null) :
 
         private fun setUpBtnColor(item: ProductClothesDetail) {
             val colorOptionsStr = item.colors?.map { it.colorName } ?: listOf()
-            viewBinding.btnColor.adapter = ArrayAdapter<String>(
+
+            viewBinding.btnColor.adapter = ColorSpinnerAdapter(
                 context,
-                R.layout.item_spinner,
-                colorOptionsStr
+                R.layout.item_color,
+                item.colors ?: arrayListOf()
             )
 
             viewBinding.btnColor.setSelection(

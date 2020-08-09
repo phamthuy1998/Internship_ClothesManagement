@@ -123,7 +123,8 @@
     <string name="sizes">Sizes</string>
     <string name="genders">Genders</string>
     <string name="sort_by">Sort By</string>
-    <string name="new_items">New Items</string>
+    <string name="new_items">Newest Items</string>
+    <string name="old_items">Oldest Items</string>
     <string name="our_picks">Our Picks</string>
     <string name="price_high_first">Price (High First)</string>
     <string name="price_low_first">Price (Low First)</string>

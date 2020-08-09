@@ -19,6 +19,12 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
+                <androidx.constraintlayout.widget.Group
+                    android:id="@+id/gFilter"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:constraint_referenced_ids="tvFilterBy,rlBrands,rlCategories" />
+
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/tvFilterBy"
                     style="@style/normal_text.Toolbar.Bold"
@@ -134,160 +140,6 @@
 
                 </RelativeLayout>
 
-                <RelativeLayout
-                    android:id="@+id/rlColours"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    app:layout_constraintTop_toBottomOf="@id/rlBrands">
-
-                    <androidx.appcompat.widget.AppCompatTextView
-                        android:id="@+id/tvColours"
-                        style="@style/normal_text"
-                        android:layout_width="match_parent"
-                        android:padding="@dimen/layout_margin_16dp"
-                        android:text="@string/colours"
-                        android:textAlignment="textStart" />
-
-                    <androidx.appcompat.widget.AppCompatImageView
-                        android:id="@+id/ivRightColours"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignTop="@id/tvColours"
-                        android:layout_alignEnd="@id/tvColours"
-                        android:layout_alignBottom="@id/tvColours"
-                        android:layout_marginEnd="@dimen/layout_margin_8dp"
-                        android:src="@drawable/ic_right_black_24dp" />
-
-                    <View
-                        android:id="@+id/vLineColours"
-                        style="@style/divider"
-                        android:layout_width="match_parent"
-                        android:layout_alignStart="@id/tvColours"
-                        android:layout_alignEnd="@id/tvColours"
-                        android:layout_alignBottom="@id/tvColours"
-                        android:layout_marginStart="@dimen/layout_margin_16dp"
-                        android:layout_marginEnd="@dimen/layout_margin_16dp" />
-
-                    <androidx.appcompat.widget.AppCompatTextView
-                        android:id="@+id/tvRefineColours"
-                        style="@style/normal_text.SemiBold"
-                        android:layout_width="@dimen/image_200dp"
-                        android:layout_height="wrap_content"
-                        android:layout_alignTop="@id/tvColours"
-                        android:layout_alignEnd="@id/ivRightColours"
-                        android:layout_alignBottom="@id/tvColours"
-                        android:layout_marginEnd="@dimen/layout_margin_40dp"
-                        android:ellipsize="end"
-                        android:gravity="center_vertical|end"
-                        android:singleLine="true"
-                        android:textAlignment="gravity"
-                        android:textAllCaps="true"
-                        android:textColor="@color/text_gray" />
-
-                </RelativeLayout>
-
-                <RelativeLayout
-                    android:id="@+id/rlSizes"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    app:layout_constraintTop_toBottomOf="@id/rlColours">
-
-                    <androidx.appcompat.widget.AppCompatTextView
-                        android:id="@+id/tvSizes"
-                        style="@style/normal_text"
-                        android:layout_width="match_parent"
-                        android:padding="@dimen/layout_margin_16dp"
-                        android:text="@string/sizes"
-                        android:textAlignment="textStart" />
-
-                    <androidx.appcompat.widget.AppCompatImageView
-                        android:id="@+id/ivRightSizes"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignTop="@id/tvSizes"
-                        android:layout_alignEnd="@id/tvSizes"
-                        android:layout_alignBottom="@id/tvSizes"
-                        android:layout_marginEnd="@dimen/layout_margin_8dp"
-                        android:src="@drawable/ic_right_black_24dp" />
-
-                    <View
-                        android:id="@+id/vLineSizes"
-                        style="@style/divider"
-                        android:layout_width="match_parent"
-                        android:layout_alignStart="@id/tvSizes"
-                        android:layout_alignEnd="@id/tvSizes"
-                        android:layout_alignBottom="@id/tvSizes"
-                        android:layout_marginStart="@dimen/layout_margin_16dp"
-                        android:layout_marginEnd="@dimen/layout_margin_16dp" />
-
-                    <androidx.appcompat.widget.AppCompatTextView
-                        android:id="@+id/tvRefineSizes"
-                        style="@style/normal_text.SemiBold"
-                        android:layout_width="@dimen/image_200dp"
-                        android:layout_height="wrap_content"
-                        android:layout_alignTop="@id/tvSizes"
-                        android:layout_alignEnd="@id/ivRightSizes"
-                        android:layout_alignBottom="@id/tvSizes"
-                        android:layout_marginEnd="@dimen/layout_margin_40dp"
-                        android:ellipsize="end"
-                        android:textAlignment="gravity"
-                        android:gravity="center_vertical|end"
-                        android:singleLine="true"
-                        android:textAllCaps="true"
-                        android:textColor="@color/text_gray" />
-
-                </RelativeLayout>
-
-                <RelativeLayout
-                    android:id="@+id/rlGender"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    app:layout_constraintTop_toBottomOf="@id/rlSizes">
-
-                    <androidx.appcompat.widget.AppCompatTextView
-                        android:id="@+id/tvGender"
-                        style="@style/normal_text"
-                        android:layout_width="match_parent"
-                        android:padding="@dimen/layout_margin_16dp"
-                        android:text="@string/genders"
-                        android:textAlignment="textStart" />
-
-                    <androidx.appcompat.widget.AppCompatImageView
-                        android:id="@+id/ivRightGender"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignTop="@id/tvGender"
-                        android:layout_alignEnd="@id/tvGender"
-                        android:layout_alignBottom="@id/tvGender"
-                        android:layout_marginEnd="@dimen/layout_margin_8dp"
-                        android:src="@drawable/ic_right_black_24dp" />
-
-                    <View
-                        android:id="@+id/vLineGender"
-                        style="@style/divider"
-                        android:layout_width="match_parent"
-                        android:layout_alignStart="@id/tvGender"
-                        android:layout_alignEnd="@id/tvGender"
-                        android:layout_alignBottom="@id/tvGender"
-                        android:layout_marginStart="@dimen/layout_margin_16dp"
-                        android:layout_marginEnd="@dimen/layout_margin_16dp" />
-
-                    <androidx.appcompat.widget.AppCompatTextView
-                        android:id="@+id/tvRefineGender"
-                        style="@style/normal_text.SemiBold"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignTop="@id/tvGender"
-                        android:layout_alignEnd="@id/ivRightGender"
-                        android:layout_alignBottom="@id/tvGender"
-                        android:layout_marginEnd="@dimen/layout_margin_40dp"
-                        android:gravity="center|end"
-                        android:textAllCaps="false"
-                        android:textColor="@color/text_gray" />
-
-
-                </RelativeLayout>
-
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/tvSortBy"
                     style="@style/normal_text.Toolbar.Bold"
@@ -297,7 +149,7 @@
                     android:textAlignment="textStart"
                     android:textAllCaps="false"
                     android:textSize="@dimen/text_size_15sp"
-                    app:layout_constraintTop_toBottomOf="@id/rlGender" />
+                    app:layout_constraintTop_toBottomOf="@id/rlBrands" />
 
                 <RelativeLayout
                     android:id="@+id/rlNewItems"
@@ -334,36 +186,36 @@
                 </RelativeLayout>
 
                 <RelativeLayout
-                    android:id="@+id/rlOurPicks"
+                    android:id="@+id/rlOldItems"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     app:layout_constraintTop_toBottomOf="@id/rlNewItems">
 
                     <androidx.appcompat.widget.AppCompatTextView
-                        android:id="@+id/tvOurPicks"
+                        android:id="@+id/tvOldItems"
                         style="@style/normal_text"
                         android:layout_width="match_parent"
                         android:padding="@dimen/layout_margin_16dp"
-                        android:text="@string/our_picks"
+                        android:text="@string/old_items"
                         android:textAlignment="textStart" />
 
                     <androidx.appcompat.widget.AppCompatImageView
-                        android:id="@+id/ivRightOurPicks"
+                        android:id="@+id/ivRightOldItems"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_alignTop="@id/tvOurPicks"
-                        android:layout_alignEnd="@id/tvOurPicks"
-                        android:layout_alignBottom="@id/tvOurPicks"
+                        android:layout_alignTop="@id/tvOldItems"
+                        android:layout_alignEnd="@id/tvOldItems"
+                        android:layout_alignBottom="@id/tvOldItems"
                         android:layout_marginEnd="@dimen/layout_margin_16dp"
                         android:src="@drawable/bg_refine_active" />
 
                     <View
-                        android:id="@+id/vLineOurPicks"
+                        android:id="@+id/vLineOldItems"
                         style="@style/divider"
                         android:layout_width="match_parent"
-                        android:layout_alignStart="@id/tvOurPicks"
-                        android:layout_alignEnd="@id/tvOurPicks"
-                        android:layout_alignBottom="@id/tvOurPicks" />
+                        android:layout_alignStart="@id/tvOldItems"
+                        android:layout_alignEnd="@id/tvOldItems"
+                        android:layout_alignBottom="@id/tvOldItems" />
 
                 </RelativeLayout>
 
@@ -371,7 +223,7 @@
                     android:id="@+id/rlPriceHigh"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    app:layout_constraintTop_toBottomOf="@id/rlOurPicks">
+                    app:layout_constraintTop_toBottomOf="@id/rlOldItems">
 
                     <androidx.appcompat.widget.AppCompatTextView
                         android:id="@+id/tvPriceHigh"

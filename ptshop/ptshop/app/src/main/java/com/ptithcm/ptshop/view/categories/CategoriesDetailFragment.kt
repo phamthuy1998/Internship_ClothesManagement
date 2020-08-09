@@ -9,16 +9,13 @@ import androidx.recyclerview.widget.RecyclerView
 import com.ptithcm.core.CoreApplication
 import com.ptithcm.core.model.Category
 import com.ptithcm.core.model.ProductClothes
-import com.ptithcm.core.param.CategoriesParam
-import com.ptithcm.core.param.ProductsParam
-import com.ptithcm.core.param.RefineParam
-import com.ptithcm.core.param.StoriesRefine
+import com.ptithcm.core.model.SearchParams
+import com.ptithcm.core.util.INIT_PAGE
+import com.ptithcm.core.util.PAGE_SIZE
 import com.ptithcm.ptshop.R
+import com.ptithcm.ptshop.base.BaseActivity
 import com.ptithcm.ptshop.base.BaseFragment
-import com.ptithcm.ptshop.constant.IS_PRODUCT
-import com.ptithcm.ptshop.constant.KEY_ARGUMENT
-import com.ptithcm.ptshop.constant.KEY_ARGUMENT_REFINE
-import com.ptithcm.ptshop.constant.KEY_EMPTY
+import com.ptithcm.ptshop.constant.*
 import com.ptithcm.ptshop.databinding.FragmentCategoriesDetailBinding
 import com.ptithcm.ptshop.ext.*
 import com.ptithcm.ptshop.util.ScrollHandler
@@ -43,13 +40,9 @@ class CategoriesDetailFragment : BaseFragment<FragmentCategoriesDetailBinding>()
     private val viewModelRefine: RefineViewModel by sharedViewModel(from = { requireActivity() })
     private val wishListViewModel: WishListViewModel by viewModel()
 
-    private lateinit var categoriesParam: CategoriesParam
-    private lateinit var productCategory: ProductsParam
     private lateinit var category: Category
-    private var refineParam: RefineParam? = null
-    private var banner: String? = null
-    private var sizeType: Int? = null
-    private var isInitRefine = false
+    private var filterParam: SearchParams? = null
+    private var isInitRefine = true
     private var isRequestRefine = false
     private lateinit var scrollListener: RecyclerView.OnScrollListener
     private var scrollHandler: ScrollHandler? = null
@@ -68,52 +61,52 @@ class CategoriesDetailFragment : BaseFragment<FragmentCategoriesDetailBinding>()
         viewBinding.btnFab.setOnClickListener(this)
     }
 
+    override fun bindViewModelOnce() {
+    }
+
     override fun bindViewModel() {
         super.bindViewModel()
-//        viewModelFilter.allCategoriesRefineLiveData.observe(this, Observer {
-//            if (!isInitRefine) {
-//                if (arguments?.getBoolean(IS_PRODUCT) == true) {
-//                    val categoriesRefine = it.getItemCategories(productCategory)
-//                    refineParam?.categories = categoriesRefine
-//                } else {
-//                    sizeType = if (categoriesParam.main_category_id != 0) {
-//                        it.first { item -> item.value == categoriesParam.main_category_id }
-//                            .size_type
-//                    } else 0
-//                }
-//            }
-//        })
-//
         viewModelProduct.productsCategoriesLiveData.observe(this, Observer {
-//            if (!isRequestRefine) {
-            adapter.submitList(it)
-//            }
+            if (!isRequestRefine)
+                adapter.submitList(it)
         })
-//
-//        viewModelProduct.productLoadStatusX.observe(this, Observer {
-//            adapter.setNetworkState(it)
-//            when (it) {
-//                is Result.Error -> {
-//                    if (adapter.currentList?.isEmpty() == true) {
-//                        (requireActivity() as? MainActivity)?.isShowErrorNetwork(true)
-//                    }
-//                }
-//            }
-//        })
-//
-//        viewModelProduct.networkStateRefine.observe(this, Observer {
-//            (requireActivity() as? MainActivity)?.isShowLoading(it)
-//        })
-//
-//        wishListViewModel.addResult.observe(this, Observer { })
-//        wishListViewModel.removeResult.observe(this, Observer { })
-//        wishListViewModel.error.observe(this, Observer {
-//            (requireActivity() as? MainActivity)?.isShowErrorNetwork(true)
-//        })
 
-//        viewModelProduct.refineProductLiveData.observe(this, Observer {
-//            adapter.submitList(it)
-//        })
+        viewModelProduct.productLoadStatusX.observe(this, Observer {
+            adapter.setNetworkState(it)
+            when (it) {
+                is com.ptithcm.core.vo.Result.Error -> {
+                    if (adapter.currentList?.isEmpty() == true) {
+                        (requireActivity() as? MainActivity)?.isShowErrorNetwork(true)
+                    }
+                }
+            }
+        })
+
+        viewModelProduct.networkStateRefine.observe(this, Observer {
+            (requireActivity() as? MainActivity)?.isShowLoading(it)
+        })
+
+        viewModelProduct.refineProductLiveData.observe(this, Observer {
+            if (isRequestRefine) {
+                adapter.submitList(it)
+            }
+        })
+
+        if (!viewModelRefine.filterLiveData.hasObservers())
+            viewModelRefine.filterLiveData.observe(this, Observer {
+                it?.let {
+                    filterParam = it.first
+                    if (it.second) {
+                        isRequestRefine = it.second
+                        viewModelProduct.getPagingRefineProduct(it.first)
+                    }
+                }
+            })
+
+        wishListViewModel.addAndRemoveResult.observe(this, Observer {})
+        wishListViewModel.error.observe(this, Observer {
+            (requireActivity() as? BaseActivity<*>)?.isShowErrorNetwork(true)
+        })
     }
 
     override fun onClick(view: View?) {
@@ -169,43 +162,10 @@ class CategoriesDetailFragment : BaseFragment<FragmentCategoriesDetailBinding>()
             1,
             CoreApplication.instance.account?.id ?: 0
         )
-//        refineParam = RefineParam()
-//        banner = arguments?.getString(KEY_BANNER_CATEGORY)
-//        if (arguments?.getBoolean(IS_PRODUCT) == true) {
-//            productCategory = arguments?.getParcelable(KEY_ARGUMENT) ?: ProductsParam()
-//            viewModelProduct.getPagingProductsCategories(
-//                productCategory.mainCategories, productCategory.categories,
-//                arrayListOf(), productCategory.gender
-//            )
-//        } else {
-//            categoriesParam = arguments?.getParcelable(KEY_ARGUMENT) ?: CategoriesParam()
-//            viewModelProduct.getPagingProductsCategories(
-//                if (categoriesParam.main_category_id == 0) arrayListOf() else arrayListOf(
-//                    categoriesParam.main_category_id
-//                ),
-//                if (categoriesParam.category_id == 0) arrayListOf() else arrayListOf(categoriesParam.category_id),
-//                if (categoriesParam.filter_id == 0) arrayListOf() else arrayListOf(categoriesParam.filter_id),
-//                categoriesParam.gender
-//            )
-//        }
-//        viewModelRefine.refineLiveData.observe(this, Observer {
-//            it?.let {
-//                if (isInitRefine) {
-//                    refineParam = it.first
-//                    if (it.second) {
-//                        isRequestRefine = true
-//                        viewModelProduct.getPagingRefineProduct(it.first)
-//                    } else {
-//                        observeRefineData()
-//                    }
-//                }
-//            }
-//        })
     }
 
     private fun intiAdapter() {
         adapter = CategoriesPagedAdapter(
-            banner,
             listener = this::eventListener, listenerAddProduct = this::listenerAddProduct
         )
         val layoutManager = GridLayoutManager(requireContext(), 2)
@@ -246,39 +206,37 @@ class CategoriesDetailFragment : BaseFragment<FragmentCategoriesDetailBinding>()
     }
 
     private fun eventListener(product: ProductClothes?, isRefine: Boolean) {
-//        if (isRefine) {
-//            when (arguments?.getBoolean(IS_PRODUCT)) {
-//                true -> {
-//                    refineParam?.gender = arrayListOf(switchGender(productCategory.gender))
-//                    navController.navigateAnimation(
-//                        R.id.nav_refine,
-//                        bundle = bundleOf(KEY_ARGUMENT to refineParam, IS_PRODUCT to true)
-//                    )
-//                }
-//                else -> {
-//                    if (!this.isInitRefine) {
-//                        initRefineParam()
-//                    }
-//                    viewModelRefine.categoriesParamLiveData.value =
-//                        Pair(categoriesParam, switchGender(categoriesParam.gender))
-//                    viewModelRefine.sizeType.value = sizeType
-//                    navController.navigateAnimation(
-//                        R.id.nav_refine,
-//                        bundle = bundleOf(
-//                            KEY_ARGUMENT to refineParam,
-//                            IS_PRODUCT to false,
-//                            KEY_MAIN_CATEGORIES to (categoriesParam.typeCategories == TypeCategories.MAIN_CATEGORIES)
-//                        )
-//                    )
-//                }
-//            }
-//            this.isInitRefine = true
-//        } else {
-        navController.navigateAnimation(
-            R.id.fragment_product_detail,
-            bundle = bundleOf(KEY_ARGUMENT to product, KEY_ARGUMENT_REFINE to refineParam)
+        if (isRefine) {
+            if (isInitRefine)
+                filterParam = initRefineParam()
+
+            navController.navigateAnimation(
+                R.id.nav_refine,
+                bundle = bundleOf(
+                    KEY_SEARCH to filterParam,
+                    KEY_IS_SHOW_FILTER_BY to false
+                )
+            )
+            this.isInitRefine = false
+        } else {
+            navController.navigateAnimation(
+                R.id.fragment_product_detail,
+                bundle = bundleOf(KEY_ARGUMENT to product)
+            )
+        }
+    }
+
+    private fun initRefineParam(): SearchParams {
+        return SearchParams(
+            accountId = CoreApplication.instance.account?.id,
+            idTypeSearch = category.id,
+            typeSearch = SEARCH_BY_CATEGORIES,
+            typeFilter = null,
+            typeSearchFilter = 2,
+            pageNumber = INIT_PAGE,
+            pageSize = PAGE_SIZE,
+            keySearch = KEY_EMPTY
         )
-//        }
     }
 
     private fun listenerAddProduct(product: ProductClothes?) {
@@ -293,16 +251,4 @@ class CategoriesDetailFragment : BaseFragment<FragmentCategoriesDetailBinding>()
             messageHandler?.runMessageErrorHandler(getString(R.string.error_add_product))
         }
     }
-
-    private fun initRefineParam() {
-        refineParam =
-            RefineParam(
-                ourPicks = false, newItems = false, priceHigh = false,
-                priceLow = false, storiesRefine = StoriesRefine()
-            )
-        val categoriesRefine = categoriesParam.copyItemAllCategoryRefine()
-        refineParam?.categories = arrayListOf(categoriesRefine)
-        refineParam?.gender = arrayListOf(switchGender(categoriesParam.gender))
-    }
-
 }

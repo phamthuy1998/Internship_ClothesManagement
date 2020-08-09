@@ -5,10 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.paging.PagedList
-import com.ptithcm.core.model.Brand
-import com.ptithcm.core.model.Gender
-import com.ptithcm.core.model.Stories
-import com.ptithcm.core.model.TypeCarousel
+import com.ptithcm.core.model.*
 import com.ptithcm.core.repository.CarouselDetailRepository
 import com.ptithcm.core.vo.ItemViewModel
 import com.ptithcm.core.vo.Result
@@ -189,27 +186,27 @@ class CarouselDetailViewModel(private val repository: CarouselDetailRepository) 
     }
 
 
-//    fun getPagingRefineProduct(refineParam: RefineParam?) {
-//        viewModelScope.launch {
-//            val request = repository.getPagingRefineProduct(refineParam)
-//            refineProductLiveData.addSource(request.result) {
-//                refineProductLiveData.value = it
-//            }
-//            refineProductLiveData.addSource(request.status) {
-//                productLoadStatusX.value = it
-//                when (it) {
-//                    is Result.Loading -> {
-//                        networkStateRefine.value = true
-//                    }
-//                    is Result.Error -> {
-//                        networkStateRefine.value = false
-//                    }
-//                    is Result.Success -> {
-//                        networkStateRefine.value = false
-//                    }
-//                }
-//            }
-//        }
-//    }
+    fun getPagingRefineProduct(searchParams: SearchParams?) {
+        viewModelScope.launch {
+            val request = repository.getPagingRefineProduct(searchParams)
+            refineProductLiveData.addSource(request.result) {
+                refineProductLiveData.value = it
+            }
+            refineProductLiveData.addSource(request.status) {
+                productLoadStatusX.value = it
+                when (it) {
+                    is Result.Loading -> {
+                        networkStateRefine.value = true
+                    }
+                    is Result.Error -> {
+                        networkStateRefine.value = false
+                    }
+                    is Result.Success -> {
+                        networkStateRefine.value = false
+                    }
+                }
+            }
+        }
+    }
 
 }
