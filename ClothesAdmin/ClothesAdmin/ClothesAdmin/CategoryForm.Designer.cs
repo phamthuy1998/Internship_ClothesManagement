@@ -36,14 +36,15 @@
             System.Windows.Forms.Label thumnailLabel;
             System.Windows.Forms.Label sexLabel;
             System.Windows.Forms.Label activeLabel;
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CategoryForm));
             System.Windows.Forms.Label label1;
             System.Windows.Forms.Label label2;
             System.Windows.Forms.Label label3;
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CategoryForm));
             this.clothesDataSet = new ClothesAdmin.ClothesDataSet();
             this.categoryBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.categoryTableAdapter = new ClothesAdmin.ClothesDataSetTableAdapters.CategoryTableAdapter();
             this.tableAdapterManager = new ClothesAdmin.ClothesDataSetTableAdapters.TableAdapterManager();
+            this.productTableAdapter = new ClothesAdmin.ClothesDataSetTableAdapters.ProductTableAdapter();
             this.idSpinEdit = new DevExpress.XtraEditors.SpinEdit();
             this.nameTextEdit = new DevExpress.XtraEditors.TextEdit();
             this.detailRichTextBox = new System.Windows.Forms.RichTextBox();
@@ -77,7 +78,6 @@
             this.btnCancelAddProvider = new System.Windows.Forms.Button();
             this.btnSaveAddProvider = new System.Windows.Forms.Button();
             this.productBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.productTableAdapter = new ClothesAdmin.ClothesDataSetTableAdapters.ProductTableAdapter();
             idLabel = new System.Windows.Forms.Label();
             nameLabel = new System.Windows.Forms.Label();
             detailLabel = new System.Windows.Forms.Label();
@@ -103,6 +103,97 @@
             ((System.ComponentModel.ISupportInitialize)(this.picThumbnail)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.productBindingSource)).BeginInit();
             this.SuspendLayout();
+            // 
+            // idLabel
+            // 
+            idLabel.AutoSize = true;
+            idLabel.Location = new System.Drawing.Point(840, 124);
+            idLabel.Name = "idLabel";
+            idLabel.Size = new System.Drawing.Size(21, 17);
+            idLabel.TabIndex = 1;
+            idLabel.Text = "ID";
+            // 
+            // nameLabel
+            // 
+            nameLabel.AutoSize = true;
+            nameLabel.Location = new System.Drawing.Point(840, 172);
+            nameLabel.Name = "nameLabel";
+            nameLabel.Size = new System.Drawing.Size(45, 17);
+            nameLabel.TabIndex = 3;
+            nameLabel.Text = "Name";
+            // 
+            // detailLabel
+            // 
+            detailLabel.AutoSize = true;
+            detailLabel.Location = new System.Drawing.Point(840, 422);
+            detailLabel.Name = "detailLabel";
+            detailLabel.Size = new System.Drawing.Size(44, 17);
+            detailLabel.TabIndex = 5;
+            detailLabel.Text = "Detail";
+            // 
+            // imageUrlLabel
+            // 
+            imageUrlLabel.AutoSize = true;
+            imageUrlLabel.Location = new System.Drawing.Point(840, 218);
+            imageUrlLabel.Name = "imageUrlLabel";
+            imageUrlLabel.Size = new System.Drawing.Size(66, 17);
+            imageUrlLabel.TabIndex = 7;
+            imageUrlLabel.Text = "Icon URL";
+            // 
+            // thumnailLabel
+            // 
+            thumnailLabel.AutoSize = true;
+            thumnailLabel.Location = new System.Drawing.Point(840, 265);
+            thumnailLabel.Name = "thumnailLabel";
+            thumnailLabel.Size = new System.Drawing.Size(74, 17);
+            thumnailLabel.TabIndex = 9;
+            thumnailLabel.Text = "Thumbnail";
+            // 
+            // sexLabel
+            // 
+            sexLabel.AutoSize = true;
+            sexLabel.Location = new System.Drawing.Point(840, 312);
+            sexLabel.Name = "sexLabel";
+            sexLabel.Size = new System.Drawing.Size(31, 17);
+            sexLabel.TabIndex = 11;
+            sexLabel.Text = "Sex";
+            // 
+            // activeLabel
+            // 
+            activeLabel.AutoSize = true;
+            activeLabel.Location = new System.Drawing.Point(840, 364);
+            activeLabel.Name = "activeLabel";
+            activeLabel.Size = new System.Drawing.Size(46, 17);
+            activeLabel.TabIndex = 13;
+            activeLabel.Text = "Active";
+            // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            label1.Location = new System.Drawing.Point(981, 41);
+            label1.Name = "label1";
+            label1.Size = new System.Drawing.Size(229, 36);
+            label1.TabIndex = 24;
+            label1.Text = "Category detail";
+            // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.Location = new System.Drawing.Point(1425, 124);
+            label2.Name = "label2";
+            label2.Size = new System.Drawing.Size(34, 17);
+            label2.TabIndex = 51;
+            label2.Text = "Icon";
+            // 
+            // label3
+            // 
+            label3.AutoSize = true;
+            label3.Location = new System.Drawing.Point(1415, 364);
+            label3.Name = "label3";
+            label3.Size = new System.Drawing.Size(74, 17);
+            label3.TabIndex = 52;
+            label3.Text = "Thumbnail";
             // 
             // clothesDataSet
             // 
@@ -142,14 +233,9 @@
             this.tableAdapterManager.SizeTableAdapter = null;
             this.tableAdapterManager.UpdateOrder = ClothesAdmin.ClothesDataSetTableAdapters.TableAdapterManager.UpdateOrderOption.InsertUpdateDelete;
             // 
-            // idLabel
+            // productTableAdapter
             // 
-            idLabel.AutoSize = true;
-            idLabel.Location = new System.Drawing.Point(840, 124);
-            idLabel.Name = "idLabel";
-            idLabel.Size = new System.Drawing.Size(21, 17);
-            idLabel.TabIndex = 1;
-            idLabel.Text = "ID";
+            this.productTableAdapter.ClearBeforeFill = true;
             // 
             // idSpinEdit
             // 
@@ -164,17 +250,8 @@
             this.idSpinEdit.Name = "idSpinEdit";
             this.idSpinEdit.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.idSpinEdit.Size = new System.Drawing.Size(125, 22);
+            this.idSpinEdit.Size = new System.Drawing.Size(125, 24);
             this.idSpinEdit.TabIndex = 2;
-            // 
-            // nameLabel
-            // 
-            nameLabel.AutoSize = true;
-            nameLabel.Location = new System.Drawing.Point(840, 172);
-            nameLabel.Name = "nameLabel";
-            nameLabel.Size = new System.Drawing.Size(45, 17);
-            nameLabel.TabIndex = 3;
-            nameLabel.Text = "Name";
             // 
             // nameTextEdit
             // 
@@ -183,15 +260,6 @@
             this.nameTextEdit.Name = "nameTextEdit";
             this.nameTextEdit.Size = new System.Drawing.Size(387, 22);
             this.nameTextEdit.TabIndex = 4;
-            // 
-            // detailLabel
-            // 
-            detailLabel.AutoSize = true;
-            detailLabel.Location = new System.Drawing.Point(840, 422);
-            detailLabel.Name = "detailLabel";
-            detailLabel.Size = new System.Drawing.Size(44, 17);
-            detailLabel.TabIndex = 5;
-            detailLabel.Text = "Detail";
             // 
             // detailRichTextBox
             // 
@@ -202,15 +270,6 @@
             this.detailRichTextBox.TabIndex = 6;
             this.detailRichTextBox.Text = "";
             // 
-            // imageUrlLabel
-            // 
-            imageUrlLabel.AutoSize = true;
-            imageUrlLabel.Location = new System.Drawing.Point(840, 218);
-            imageUrlLabel.Name = "imageUrlLabel";
-            imageUrlLabel.Size = new System.Drawing.Size(66, 17);
-            imageUrlLabel.TabIndex = 7;
-            imageUrlLabel.Text = "Icon URL";
-            // 
             // imageUrlTextEdit
             // 
             this.imageUrlTextEdit.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.categoryBindingSource, "imageUrl", true));
@@ -220,15 +279,6 @@
             this.imageUrlTextEdit.TabIndex = 8;
             this.imageUrlTextEdit.EditValueChanged += new System.EventHandler(this.imageUrlTextEdit_EditValueChanged);
             // 
-            // thumnailLabel
-            // 
-            thumnailLabel.AutoSize = true;
-            thumnailLabel.Location = new System.Drawing.Point(840, 265);
-            thumnailLabel.Name = "thumnailLabel";
-            thumnailLabel.Size = new System.Drawing.Size(74, 17);
-            thumnailLabel.TabIndex = 9;
-            thumnailLabel.Text = "Thumbnail";
-            // 
             // thumnailTextEdit
             // 
             this.thumnailTextEdit.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.categoryBindingSource, "thumnail", true));
@@ -237,15 +287,6 @@
             this.thumnailTextEdit.Size = new System.Drawing.Size(387, 22);
             this.thumnailTextEdit.TabIndex = 10;
             this.thumnailTextEdit.EditValueChanged += new System.EventHandler(this.thumnailTextEdit_EditValueChanged);
-            // 
-            // sexLabel
-            // 
-            sexLabel.AutoSize = true;
-            sexLabel.Location = new System.Drawing.Point(840, 312);
-            sexLabel.Name = "sexLabel";
-            sexLabel.Size = new System.Drawing.Size(31, 17);
-            sexLabel.TabIndex = 11;
-            sexLabel.Text = "Sex";
             // 
             // sexSpinEdit
             // 
@@ -259,17 +300,8 @@
             this.sexSpinEdit.Name = "sexSpinEdit";
             this.sexSpinEdit.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.sexSpinEdit.Size = new System.Drawing.Size(125, 22);
+            this.sexSpinEdit.Size = new System.Drawing.Size(125, 24);
             this.sexSpinEdit.TabIndex = 12;
-            // 
-            // activeLabel
-            // 
-            activeLabel.AutoSize = true;
-            activeLabel.Location = new System.Drawing.Point(840, 364);
-            activeLabel.Name = "activeLabel";
-            activeLabel.Size = new System.Drawing.Size(46, 17);
-            activeLabel.TabIndex = 13;
-            activeLabel.Text = "Active";
             // 
             // activeSpinEdit
             // 
@@ -283,7 +315,7 @@
             this.activeSpinEdit.Name = "activeSpinEdit";
             this.activeSpinEdit.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.activeSpinEdit.Size = new System.Drawing.Size(125, 22);
+            this.activeSpinEdit.Size = new System.Drawing.Size(125, 24);
             this.activeSpinEdit.TabIndex = 14;
             // 
             // barManager
@@ -362,34 +394,34 @@
             this.barDockControl1.Location = new System.Drawing.Point(0, 0);
             this.barDockControl1.Manager = this.barManager;
             this.barDockControl1.Margin = new System.Windows.Forms.Padding(2);
-            this.barDockControl1.Size = new System.Drawing.Size(1932, 30);
+            this.barDockControl1.Size = new System.Drawing.Size(1940, 33);
             // 
             // barDockControl2
             // 
             this.barDockControl2.CausesValidation = false;
             this.barDockControl2.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.barDockControl2.Location = new System.Drawing.Point(0, 842);
+            this.barDockControl2.Location = new System.Drawing.Point(0, 837);
             this.barDockControl2.Manager = this.barManager;
             this.barDockControl2.Margin = new System.Windows.Forms.Padding(2);
-            this.barDockControl2.Size = new System.Drawing.Size(1932, 0);
+            this.barDockControl2.Size = new System.Drawing.Size(1940, 0);
             // 
             // barDockControl3
             // 
             this.barDockControl3.CausesValidation = false;
             this.barDockControl3.Dock = System.Windows.Forms.DockStyle.Left;
-            this.barDockControl3.Location = new System.Drawing.Point(0, 30);
+            this.barDockControl3.Location = new System.Drawing.Point(0, 33);
             this.barDockControl3.Manager = this.barManager;
             this.barDockControl3.Margin = new System.Windows.Forms.Padding(2);
-            this.barDockControl3.Size = new System.Drawing.Size(0, 812);
+            this.barDockControl3.Size = new System.Drawing.Size(0, 804);
             // 
             // barDockControl5
             // 
             this.barDockControl5.CausesValidation = false;
             this.barDockControl5.Dock = System.Windows.Forms.DockStyle.Right;
-            this.barDockControl5.Location = new System.Drawing.Point(1932, 30);
+            this.barDockControl5.Location = new System.Drawing.Point(1940, 33);
             this.barDockControl5.Manager = this.barManager;
             this.barDockControl5.Margin = new System.Windows.Forms.Padding(2);
-            this.barDockControl5.Size = new System.Drawing.Size(0, 812);
+            this.barDockControl5.Size = new System.Drawing.Size(0, 804);
             // 
             // btnSua
             // 
@@ -410,10 +442,10 @@
             // 
             this.categoryGridControl.DataSource = this.categoryBindingSource;
             this.categoryGridControl.Dock = System.Windows.Forms.DockStyle.Left;
-            this.categoryGridControl.Location = new System.Drawing.Point(0, 30);
+            this.categoryGridControl.Location = new System.Drawing.Point(0, 33);
             this.categoryGridControl.MainView = this.gridView1;
             this.categoryGridControl.Name = "categoryGridControl";
-            this.categoryGridControl.Size = new System.Drawing.Size(785, 812);
+            this.categoryGridControl.Size = new System.Drawing.Size(785, 804);
             this.categoryGridControl.TabIndex = 20;
             this.categoryGridControl.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridView1});
@@ -501,16 +533,6 @@
             this.colactive.VisibleIndex = 6;
             this.colactive.Width = 94;
             // 
-            // label1
-            // 
-            label1.AutoSize = true;
-            label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            label1.Location = new System.Drawing.Point(981, 30);
-            label1.Name = "label1";
-            label1.Size = new System.Drawing.Size(229, 36);
-            label1.TabIndex = 24;
-            label1.Text = "Category detail";
-            // 
             // picImageIcon
             // 
             this.picImageIcon.ErrorImage = global::ClothesAdmin.Properties.Resources.no_image;
@@ -532,24 +554,6 @@
             this.picThumbnail.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.picThumbnail.TabIndex = 54;
             this.picThumbnail.TabStop = false;
-            // 
-            // label2
-            // 
-            label2.AutoSize = true;
-            label2.Location = new System.Drawing.Point(1425, 124);
-            label2.Name = "label2";
-            label2.Size = new System.Drawing.Size(34, 17);
-            label2.TabIndex = 51;
-            label2.Text = "Icon";
-            // 
-            // label3
-            // 
-            label3.AutoSize = true;
-            label3.Location = new System.Drawing.Point(1415, 364);
-            label3.Name = "label3";
-            label3.Size = new System.Drawing.Size(74, 17);
-            label3.TabIndex = 52;
-            label3.Text = "Thumbnail";
             // 
             // btnCancelAddProvider
             // 
@@ -582,15 +586,11 @@
             this.productBindingSource.DataMember = "FK_Product_Category";
             this.productBindingSource.DataSource = this.categoryBindingSource;
             // 
-            // productTableAdapter
-            // 
-            this.productTableAdapter.ClearBeforeFill = true;
-            // 
-            // CategoryForm1
+            // CategoryForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1932, 842);
+            this.ClientSize = new System.Drawing.Size(1940, 837);
             this.Controls.Add(this.btnCancelAddProvider);
             this.Controls.Add(this.btnSaveAddProvider);
             this.Controls.Add(this.picImageIcon);
@@ -617,7 +617,7 @@
             this.Controls.Add(this.barDockControl5);
             this.Controls.Add(this.barDockControl2);
             this.Controls.Add(this.barDockControl1);
-            this.Name = "CategoryForm1";
+            this.Name = "CategoryForm";
             this.Text = "CategoryForm1";
             this.Load += new System.EventHandler(this.CategoryForm1_Load);
             ((System.ComponentModel.ISupportInitialize)(this.clothesDataSet)).EndInit();

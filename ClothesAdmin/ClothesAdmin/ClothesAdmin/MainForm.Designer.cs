@@ -319,8 +319,8 @@
             this.backstageViewControl1.Location = new System.Drawing.Point(69, 225);
             this.backstageViewControl1.Name = "backstageViewControl1";
             this.backstageViewControl1.OwnerControl = this.ribbon;
-            this.backstageViewControl1.SelectedTab = this.btnO;
-            this.backstageViewControl1.SelectedTabIndex = 3;
+            this.backstageViewControl1.SelectedTab = this.backstageViewTabItem1;
+            this.backstageViewControl1.SelectedTabIndex = 0;
             this.backstageViewControl1.Size = new System.Drawing.Size(950, 679);
             this.backstageViewControl1.TabIndex = 3;
             // 
@@ -341,9 +341,9 @@
             this.backstageViewClientControl1.Controls.Add(this.linkChangeAvatar);
             this.backstageViewClientControl1.Controls.Add(this.btnSaveInfo);
             this.backstageViewClientControl1.Controls.Add(this.picAvater);
-            this.backstageViewClientControl1.Location = new System.Drawing.Point(200, 77);
+            this.backstageViewClientControl1.Location = new System.Drawing.Point(200, 78);
             this.backstageViewClientControl1.Name = "backstageViewClientControl1";
-            this.backstageViewClientControl1.Size = new System.Drawing.Size(750, 602);
+            this.backstageViewClientControl1.Size = new System.Drawing.Size(749, 600);
             this.backstageViewClientControl1.TabIndex = 1;
             this.backstageViewClientControl1.Load += new System.EventHandler(this.backstageViewClientControl1_Load_1);
             // 
@@ -356,6 +356,7 @@
             this.tvAvatar.Name = "tvAvatar";
             this.tvAvatar.Size = new System.Drawing.Size(441, 22);
             this.tvAvatar.TabIndex = 21;
+            this.tvAvatar.EditValueChanged += new System.EventHandler(this.tvAvatar_EditValueChanged);
             // 
             // employeeBindingSource
             // 
@@ -560,6 +561,7 @@
             this.backstageViewTabItem1.Caption = "Info";
             this.backstageViewTabItem1.ContentControl = this.backstageViewClientControl1;
             this.backstageViewTabItem1.Name = "backstageViewTabItem1";
+            this.backstageViewTabItem1.Selected = true;
             // 
             // btnAccSetting
             // 
@@ -575,7 +577,6 @@
             // 
             this.btnO.Caption = "Options";
             this.btnO.Name = "btnO";
-            this.btnO.Selected = true;
             // 
             // backstageViewItemSeparator2
             // 

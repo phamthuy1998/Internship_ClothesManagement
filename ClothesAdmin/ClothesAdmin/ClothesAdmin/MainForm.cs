@@ -297,5 +297,10 @@ namespace ClothesAdmin
             }
             else form.Activate();
         }
+
+        private void tvAvatar_EditValueChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }
