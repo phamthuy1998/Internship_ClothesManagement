@@ -10,6 +10,7 @@ import androidx.lifecycle.ViewModelProviders
 import com.ptithcm.core.BuildConfig
 import com.ptithcm.core.CoreApplication
 import com.ptithcm.core.model.CreditCard
+import com.ptithcm.core.util.ObjectHandler
 import com.ptithcm.ptshop.R
 import com.ptithcm.ptshop.base.BaseActivity
 import com.ptithcm.ptshop.base.BaseFragment
@@ -74,7 +75,6 @@ class CreditCardDetailFragment : BaseFragment<FragmentDetailCreditCardBinding>()
         changeExpiryDateListener()
         if (creditCard == null) {
             viewBinding.isValidForm = false
-            bindAddress()
         } else {
             viewBinding.isValidForm = true
             bindCreditCard()
@@ -122,7 +122,7 @@ class CreditCardDetailFragment : BaseFragment<FragmentDetailCreditCardBinding>()
     }
 
     private fun bindAddress() {
-        creditCard = CoreApplication.instance.cart?.copyCreditCard()
+        creditCard = ObjectHandler.cart?.copyCreditCard()
     }
 
     private fun bindCreditCard() {
@@ -214,6 +214,7 @@ class CreditCardDetailFragment : BaseFragment<FragmentDetailCreditCardBinding>()
                     }
             }
             R.id.btnCancel -> {
+                listenerViewModel.changePayment.value = null
                 (requireActivity() as? BaseActivity<*>)?.closePopup()
             }
             R.id.btnOk -> {
@@ -246,6 +247,10 @@ class CreditCardDetailFragment : BaseFragment<FragmentDetailCreditCardBinding>()
                 }
 
                 override fun onSuccess(result: Token) {
+                    if (creditCard == null)
+                        bindAddress()
+                    creditCard?.brand = viewBinding.etCardNumber.cardBrand
+                    creditCard?.mapCreditCard(ObjectHandler.cart?.shippingAddress)
                     creditCard?.tokenCard = result.id
                     listenerViewModel.changePayment.value = creditCard
                     navController.popBackStack()
@@ -305,9 +310,5 @@ class CreditCardDetailFragment : BaseFragment<FragmentDetailCreditCardBinding>()
             btnOk.setOnClickListener(this@CreditCardDetailFragment::onClick)
             title = getString(R.string.delete_credit_card)
         }
-        val spannable = CreditUtil.formatDeletePopUpTitle(requireContext())
-        (popupBinding as? LayoutPopUpBinding)?.tvTitle?.typeface = null
-        (popupBinding as? LayoutPopUpBinding)?.tvTitle?.text = spannable
     }
-
 }

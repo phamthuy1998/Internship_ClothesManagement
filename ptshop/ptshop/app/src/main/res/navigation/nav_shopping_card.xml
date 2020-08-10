@@ -39,7 +39,7 @@
 
     <fragment
         android:id="@+id/fragment_shipping_address"
-        android:name="com.ptithcm.ptshop.view.addressbook.ShippingAddressDetailFragment"
+        android:name="com.ptithcm.ptshop.view.addressbook.AddressBookFragment"
         tools:layout="@layout/fragment_address_book" />
 
     <fragment

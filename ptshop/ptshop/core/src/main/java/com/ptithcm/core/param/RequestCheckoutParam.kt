@@ -8,5 +8,5 @@ data class RequestCheckoutParam(
     var name: String?,
     var note: String?,
     var phone: String?,
-    var products: SizesColor?
+    var products: List<SizesColor?>?
 )

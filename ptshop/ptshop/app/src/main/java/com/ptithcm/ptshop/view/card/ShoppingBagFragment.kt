@@ -268,6 +268,6 @@ class ShoppingBagFragment : BaseFragment<FragmentShoppingBagBinding>(), View.OnC
     }
 
     private fun setupEmptyView() {
-        setUpToolBar()
+        setUpToolBar(0)
     }
 }
