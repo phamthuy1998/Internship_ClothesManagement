@@ -111,7 +111,7 @@ class CheckoutFragment : BaseFragment<FragmentCheckoutBinding>(), View.OnClickLi
                     name = cart.shippingAddress?.name,
                     phone = cart.shippingAddress?.phone,
                     products = cart.products.map { it.quantityInCart },
-                    note = ""
+                    note = viewBinding.includeNote.edtNote.text?.toString()
                 )
                 checkoutViewModel.requestCheckout(checkoutParam)
                 return@Observer
@@ -180,7 +180,7 @@ class CheckoutFragment : BaseFragment<FragmentCheckoutBinding>(), View.OnClickLi
             }
             R.id.shipping_address -> {
                 navController.navigateAnimation(
-                    R.id.fragment_shipping_address,
+                    R.id.nav_book_address,
                     bundle = bundleOf(
                         KEY_IS_CHOOSE_ADDRESS to true
                     )

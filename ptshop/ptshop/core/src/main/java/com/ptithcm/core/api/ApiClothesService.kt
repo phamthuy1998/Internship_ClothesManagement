@@ -112,6 +112,14 @@ interface ApiClothesService {
 
     /*-----------------------------*/
     /* Invoice*/
+    @GET("/api/allInvoice")
+    suspend fun getAllInvoices(
+        @Query("pageSize") pageSize: Int = 20,
+        @Query("pageNumber") pageNumber: Int = 1,
+        @Query("statusId") statusId: Int,
+        @Query("accountId") accountId: Int? = CoreApplication.instance.account?.id
+    ): Response<ListResponse<Invoice>>
+
     @POST("/api/addInvoice")
     suspend fun requestCheckout(@Body param: RequestCheckoutParam): Response<ObjectResponse<Any>>
 }

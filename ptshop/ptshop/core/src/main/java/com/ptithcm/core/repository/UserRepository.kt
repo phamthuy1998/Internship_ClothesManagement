@@ -8,6 +8,8 @@ import com.ptithcm.core.model.wish.ObjectResponse
 import com.ptithcm.core.param.ChangePassParam
 import com.ptithcm.core.param.EditAccountParam
 import com.ptithcm.core.param.UpdateAddressParam
+import com.ptithcm.core.vo.ItemViewModel
+import com.ptithcm.core.vo.Listing
 import com.ptithcm.core.vo.Result
 
 
@@ -20,4 +22,9 @@ interface UserRepository {
     suspend fun addAddress(param: ShoppingAddress): LiveData<Result<ObjectResponse<Int>>>
     suspend fun updateAddress(param: ShoppingAddress): LiveData<Result<ObjectResponse<Int>>>
     suspend fun deleteAddress(addressId: Int?): LiveData<Result<ObjectResponse<Int>>>
+    suspend fun getPagingAllInvoices(
+        pageSize: Int,
+        statusId: Int,
+        accountId: Int
+    ): Listing<ItemViewModel>
 }

@@ -7,7 +7,6 @@ import androidx.core.content.ContextCompat
 import androidx.core.os.bundleOf
 import androidx.databinding.ViewDataBinding
 import com.google.android.material.bottomnavigation.BottomNavigationView
-import com.ptithcm.core.CoreApplication
 import com.ptithcm.core.model.ProductClothes
 import com.ptithcm.core.model.ProductClothesDetail
 import com.ptithcm.core.util.ObjectHandler
@@ -27,7 +26,6 @@ import com.ptithcm.ptshop.util.PopUp
 import com.ptithcm.ptshop.view.MainActivity
 import com.ptithcm.ptshop.view.home.StoryDetailActivity
 import com.ptithcm.ptshop.viewmodel.ShoppingViewModel
-import com.ptithcm.ptshop.viewmodel.UserViewModel
 import com.ptithcm.ptshop.widget.RecyclerRefreshLayout
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import java.util.*
@@ -38,7 +36,6 @@ class ShoppingBagFragment : BaseFragment<FragmentShoppingBagBinding>(), View.OnC
         get() = R.layout.fragment_shopping_bag
 
     private val basketViewModel: ShoppingViewModel by viewModel()
-    private val userViewModel: UserViewModel by viewModel()
 
     private var isLogin = false
     private val adapter = ShoppingCardAdapter(this::adapterListener)
@@ -61,8 +58,6 @@ class ShoppingBagFragment : BaseFragment<FragmentShoppingBagBinding>(), View.OnC
     }
 
     override fun bindViewModel() {
-        userViewModel.getAllAddress()
-
         basketViewModel.cartResult.observe(this, androidx.lifecycle.Observer {
             setUpResult(it)
             val indexOfItemChanged = it.indexOfFirst { it.hasChanged }
@@ -86,11 +81,6 @@ class ShoppingBagFragment : BaseFragment<FragmentShoppingBagBinding>(), View.OnC
             } else {
                 messageHandler?.runMessageErrorHandler(it.first)
             }
-        })
-
-        userViewModel.allAddressLiveData.observe(this, androidx.lifecycle.Observer {
-            val defaultAddress = it.firstOrNull { address -> address.isDefault == 1 }
-            CoreApplication.instance.saveDefaultAddress(defaultAddress)
         })
     }
 
@@ -173,17 +163,6 @@ class ShoppingBagFragment : BaseFragment<FragmentShoppingBagBinding>(), View.OnC
             when (this) {
                 is MainActivity -> {
                     findViewById<BottomNavigationView>(R.id.btnNav).gone()
-                    viewBinding.layoutToolbar.toolbar.apply {
-                        isSelected = false
-                        findViewById<AppCompatImageButton>(R.id.ivBack)?.setImageDrawable(
-                            ContextCompat.getDrawable(
-                                context,
-                                R.drawable.ic_black_close
-                            )
-                        )
-                    }
-                }
-                is StoryDetailActivity -> {
                     viewBinding.layoutToolbar.toolbar.apply {
                         isSelected = false
                         findViewById<AppCompatImageButton>(R.id.ivBack)?.setImageDrawable(

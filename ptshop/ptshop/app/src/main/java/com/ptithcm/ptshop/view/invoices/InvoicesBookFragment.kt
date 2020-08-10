@@ -1,4 +1,4 @@
-package com.ptithcm.ptshop.view.addressbook
+package com.ptithcm.ptshop.view.invoices
 
 import android.os.Bundle
 import android.view.View
@@ -22,7 +22,7 @@ import kotlinx.android.synthetic.main.activity_main.*
 import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
-class AddressBookFragment : BaseFragment<FragmentAddressBookBinding>() {
+class InvoicesBookFragment : BaseFragment<FragmentAddressBookBinding>() {
     override val layoutId: Int
         get() = R.layout.fragment_address_book
 

@@ -36,7 +36,6 @@ import com.ptithcm.ptshop.util.FileUtil
 import com.ptithcm.ptshop.util.PopUp
 import com.ptithcm.ptshop.view.MainActivity
 import com.ptithcm.ptshop.viewmodel.AuthenticateViewModel
-import com.ptithcm.ptshop.viewmodel.ShoppingViewModel
 import com.ptithcm.ptshop.viewmodel.UserViewModel
 import org.koin.android.ext.android.inject
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -56,7 +55,6 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>(), View.OnClickList
     private var photoType: PhotoType? = null
     private var currentProfile: Profile? = null
     private var currentAccount: Account? = null
-    private val shoppingViewModel: ShoppingViewModel by viewModel()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -207,6 +205,9 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>(), View.OnClickList
             }
             R.id.payment_method_btn -> {
                 navController.navigate(R.id.nav_payment_methods)
+            }
+            R.id.invoice -> {
+                navController.navigate(R.id.nav_invoices)
             }
             R.id.avatar -> {
                 photoType = PhotoType.PROFILE_PHOTO
