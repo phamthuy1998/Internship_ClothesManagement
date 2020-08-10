@@ -53,48 +53,25 @@
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/tvSubTotalPrice"
             style="@style/normal_text"
-            android:text="@{subtotal}"
+            android:text="@{@string/price_format(subtotal)}"
             app:layout_constraintBaseline_toBaselineOf="@id/tvSubtotal"
             app:layout_constraintEnd_toEndOf="parent"
             tools:text="146.29"/>
 
         <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/tvMerchantDiscount"
-            style="@style/normal_text"
-            android:layout_marginTop="@dimen/layout_margin_8dp"
-            android:visibility="@{merchantdiscount == null ? View.GONE : View.VISIBLE}"
-            app:layout_constraintTop_toBottomOf="@id/tvSubtotal"
-            app:layout_constraintStart_toStartOf="@id/tvSubtotal"/>
-
-        <androidx.appcompat.widget.AppCompatTextView
-            style="@style/normal_text"
-            android:text="@{`-`+merchantdiscount}"
-            android:visibility="@{merchantdiscount == null ? View.GONE : View.VISIBLE}"
-            app:layout_constraintTop_toTopOf="@id/tvMerchantDiscount"
-            app:layout_constraintBottom_toBottomOf="@id/tvMerchantDiscount"
-            app:layout_constraintEnd_toEndOf="parent"
-            tools:text="-1.20"/>
-        <View
-            android:id="@+id/divider1"
-            style="@style/divider"
-            android:layout_marginTop="@dimen/layout_margin_8dp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tvMerchantDiscount" />
-
-        <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/tvDiscount"
             style="@style/normal_text"
-            android:visibility="@{discount == null ? View.GONE : View.VISIBLE }"
+            setVisible="@{discount != null}"
+            android:text="@string/discount"
             android:layout_marginTop="@dimen/layout_margin_8dp"
-            app:layout_constraintStart_toStartOf="@id/divider1"
-            app:layout_constraintTop_toBottomOf="@id/divider1"/>
+            app:layout_constraintStart_toStartOf="@id/tvSubtotal"
+            app:layout_constraintTop_toBottomOf="@id/tvSubtotal" />
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/tvDiscountPrice"
             style="@style/normal_text"
-            android:text="@{`-`+discount}"
-            android:visibility="@{discount == null ? View.GONE : View.VISIBLE }"
+            setVisible="@{discount != null}"
+            android:text="@{`-`+ @string/price_format(discount)}"
             app:layout_constraintBaseline_toBaselineOf="@id/tvDiscount"
             app:layout_constraintEnd_toEndOf="parent" />
 
@@ -109,7 +86,7 @@
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/tvShippingPrice"
             style="@style/normal_text"
-            android:text="@{shipping}"
+            android:text="free"
             app:layout_constraintBaseline_toBaselineOf="@id/tvShipping"
             app:layout_constraintEnd_toEndOf="parent" />
 
@@ -133,7 +110,7 @@
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/tvTotalPrice"
             style="@style/normal_text.bold"
-            android:text="@{total}"
+            android:text="@{@string/price_format(total)}"
             app:layout_constraintBaseline_toBaselineOf="@id/tvTotal"
             app:layout_constraintEnd_toEndOf="parent" />
 

@@ -94,7 +94,6 @@ object BindingAdapterText {
 
         view.text = HtmlCompat.fromHtml(text, HtmlCompat.FROM_HTML_MODE_COMPACT)
     }
-
     @JvmStatic
     @BindingAdapter("setPaintFlagsStrike")
     fun setPaintFlagsStrike(view: TextView, boolean: Boolean) {

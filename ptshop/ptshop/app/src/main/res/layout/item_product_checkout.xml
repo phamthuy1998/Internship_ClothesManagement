@@ -16,6 +16,8 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:paddingStart="@dimen/layout_margin_16dp"
+        android:paddingEnd="@dimen/layout_margin_16dp"
         android:background="@color/white"
         android:paddingTop="@dimen/layout_margin_8dp">
 
@@ -140,6 +142,7 @@
             android:layout_marginStart="@dimen/layout_margin_12dp"
             android:textAlignment="textStart"
             android:textAllCaps="true"
+            android:text="@{item.quantityInCart.sizeName}"
             app:layout_constraintBaseline_toBaselineOf="@id/tvTitleSize"
             app:layout_constraintStart_toEndOf="@id/bOption"
             tools:text="xs" />
