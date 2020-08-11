@@ -22,7 +22,7 @@ namespace ClothesAdmin
         {
             // TODO: This line of code loads data into the 'clothesDataSet.Account' table. You can move, or remove it, as needed.
             this.sP_GetAllEmployeeTableAdapter.Fill(this.clothesDataSet.SP_GetAllEmployee, Program.accountLogin.accountId,null);
-            this.sP_GetAccEmployeeInfoTableAdapter.Fill(this.clothesDataSet.SP_GetAccEmployeeInfo, Program.accountLogin.accountId);
+            this.sP_GetAccEmployeeInfoTableAdapter.Fill(this.clothesDataSet.SP_GetAccEmployeeInfo, Convert.ToInt32(idAccountSpinEdit.Value));
             setAvatar();
         }
 
@@ -34,7 +34,7 @@ namespace ClothesAdmin
         private void sP_GetAllEmployeeGridControl_Click(object sender, EventArgs e)
         {
             setAvatar();
-            this.sP_GetAccEmployeeInfoTableAdapter.Fill(this.clothesDataSet.SP_GetAccEmployeeInfo, idAccountSpinEdit.Value );
+            this.sP_GetAccEmployeeInfoTableAdapter.Fill(this.clothesDataSet.SP_GetAccEmployeeInfo, Convert.ToInt32(idAccountSpinEdit.Value ));
         }
 
         private void setAvatar()
@@ -51,11 +51,56 @@ namespace ClothesAdmin
 
         private void btnSearchEmployee_Click(object sender, EventArgs e)
         {
-            this.sP_GetAllEmployeeTableAdapter.Fill(this.clothesDataSet.SP_GetAllEmployee, Program.accountLogin.accountId, edtSearch.Text);
-            this.sP_GetAccEmployeeInfoTableAdapter.Fill(this.clothesDataSet.SP_GetAccEmployeeInfo, Program.accountLogin.accountId);
+            if (String.IsNullOrEmpty(edtSearch.Text))
+            {
+                this.sP_GetAllEmployeeTableAdapter.Fill(this.clothesDataSet.SP_GetAllEmployee, Program.accountLogin.accountId, null);
+                this.sP_GetAccEmployeeInfoTableAdapter.Fill(this.clothesDataSet.SP_GetAccEmployeeInfo, Convert.ToInt32(idAccountSpinEdit.Value));
+                setAvatar();
+            }
+            else
+            {
+                this.sP_GetAllEmployeeTableAdapter.Fill(this.clothesDataSet.SP_GetAllEmployee, Program.accountLogin.accountId, edtSearch.Text);
+                this.sP_GetAccEmployeeInfoTableAdapter.Fill(this.clothesDataSet.SP_GetAccEmployeeInfo, Convert.ToInt32(idAccountSpinEdit.Value));
+                setAvatar();
+            }
+          
+        }
+
+        private void btnAddProvider_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            sP_GetAccEmployeeInfoBindingSource.AddNew();
+            sP_GetAllEmployeeBindingSource.AddNew();
+        }
+
+        private void btnCancelAddProvider_Click(object sender, EventArgs e)
+        {
+            this.Validate();
+            this.sP_GetAccEmployeeInfoBindingSource.EndEdit();
+            this.sP_GetAllEmployeeBindingSource.EndEdit();
+            this.tableAdapterManager.UpdateAll(this.clothesDataSet);
+        }
+
+        private void btnSaveAddProvider_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnDelProvider_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+
+        }
+
+        private void btnReloadProvider_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            // TODO: This line of code loads data into the 'clothesDataSet.Account' table. You can move, or remove it, as needed.
+            this.sP_GetAllEmployeeTableAdapter.Fill(this.clothesDataSet.SP_GetAllEmployee, Program.accountLogin.accountId, null);
+            this.sP_GetAccEmployeeInfoTableAdapter.Fill(this.clothesDataSet.SP_GetAccEmployeeInfo, Convert.ToInt32(idAccountSpinEdit.Value));
             setAvatar();
         }
 
-     
+        private void btnCloseForm_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            this.Close();
+        }
     }
 }

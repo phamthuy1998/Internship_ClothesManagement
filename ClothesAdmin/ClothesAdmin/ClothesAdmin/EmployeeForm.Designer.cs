@@ -104,7 +104,6 @@
             this.dateEndDateEdit = new DevExpress.XtraEditors.DateEdit();
             this.isWorkingSpinEdit = new DevExpress.XtraEditors.SpinEdit();
             this.idAccountSpinEdit = new DevExpress.XtraEditors.SpinEdit();
-            this.accountBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.accountTableAdapter = new ClothesAdmin.ClothesDataSetTableAdapters.AccountTableAdapter();
             this.sP_GetAccEmployeeInfoTableAdapter = new ClothesAdmin.ClothesDataSetTableAdapters.SP_GetAccEmployeeInfoTableAdapter();
             label1 = new System.Windows.Forms.Label();
@@ -155,14 +154,13 @@
             ((System.ComponentModel.ISupportInitialize)(this.dateEndDateEdit.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.isWorkingSpinEdit.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.idAccountSpinEdit.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.accountBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
             // 
             label1.AutoSize = true;
             label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            label1.Location = new System.Drawing.Point(72, 25);
+            label1.Location = new System.Drawing.Point(67, 11);
             label1.Name = "label1";
             label1.Size = new System.Drawing.Size(240, 36);
             label1.TabIndex = 25;
@@ -363,6 +361,7 @@
             this.btnAddProvider.ImageOptions.Image = global::ClothesAdmin.Properties.Resources.add;
             this.btnAddProvider.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("btnAddProvider.ImageOptions.LargeImage")));
             this.btnAddProvider.Name = "btnAddProvider";
+            this.btnAddProvider.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnAddProvider_ItemClick);
             // 
             // btnDelProvider
             // 
@@ -371,6 +370,7 @@
             this.btnDelProvider.ImageOptions.Image = global::ClothesAdmin.Properties.Resources.delete__1_;
             this.btnDelProvider.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("btnDelProvider.ImageOptions.LargeImage")));
             this.btnDelProvider.Name = "btnDelProvider";
+            this.btnDelProvider.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnDelProvider_ItemClick);
             // 
             // btnReloadProvider
             // 
@@ -379,6 +379,7 @@
             this.btnReloadProvider.ImageOptions.Image = global::ClothesAdmin.Properties.Resources.exchange;
             this.btnReloadProvider.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("btnReloadProvider.ImageOptions.LargeImage")));
             this.btnReloadProvider.Name = "btnReloadProvider";
+            this.btnReloadProvider.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnReloadProvider_ItemClick);
             // 
             // btnCloseForm
             // 
@@ -386,6 +387,7 @@
             this.btnCloseForm.Id = 10;
             this.btnCloseForm.ImageOptions.Image = global::ClothesAdmin.Properties.Resources.close;
             this.btnCloseForm.Name = "btnCloseForm";
+            this.btnCloseForm.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnCloseForm_ItemClick);
             // 
             // barDockControl1
             // 
@@ -394,7 +396,7 @@
             this.barDockControl1.Location = new System.Drawing.Point(0, 0);
             this.barDockControl1.Manager = this.barManager;
             this.barDockControl1.Margin = new System.Windows.Forms.Padding(2);
-            this.barDockControl1.Size = new System.Drawing.Size(1940, 33);
+            this.barDockControl1.Size = new System.Drawing.Size(1932, 33);
             // 
             // barDockControl2
             // 
@@ -403,7 +405,7 @@
             this.barDockControl2.Location = new System.Drawing.Point(0, 1062);
             this.barDockControl2.Manager = this.barManager;
             this.barDockControl2.Margin = new System.Windows.Forms.Padding(2);
-            this.barDockControl2.Size = new System.Drawing.Size(1940, 0);
+            this.barDockControl2.Size = new System.Drawing.Size(1932, 0);
             // 
             // barDockControl3
             // 
@@ -418,7 +420,7 @@
             // 
             this.barDockControl5.CausesValidation = false;
             this.barDockControl5.Dock = System.Windows.Forms.DockStyle.Right;
-            this.barDockControl5.Location = new System.Drawing.Point(1940, 33);
+            this.barDockControl5.Location = new System.Drawing.Point(1932, 33);
             this.barDockControl5.Manager = this.barManager;
             this.barDockControl5.Margin = new System.Windows.Forms.Padding(2);
             this.barDockControl5.Size = new System.Drawing.Size(0, 1029);
@@ -492,16 +494,16 @@
             this.tableLayoutPanel1.RowCount = 2;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 7.714561F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 92.28544F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(1940, 1029);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(1932, 1029);
             this.tableLayoutPanel1.TabIndex = 7;
             // 
             // panel3
             // 
             this.panel3.Controls.Add(label1);
             this.panel3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel3.Location = new System.Drawing.Point(973, 3);
+            this.panel3.Location = new System.Drawing.Point(969, 3);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(964, 73);
+            this.panel3.Size = new System.Drawing.Size(960, 73);
             this.panel3.TabIndex = 3;
             // 
             // sP_GetAllEmployeeGridControl
@@ -512,7 +514,7 @@
             this.sP_GetAllEmployeeGridControl.MainView = this.gridView1;
             this.sP_GetAllEmployeeGridControl.MenuManager = this.barManager;
             this.sP_GetAllEmployeeGridControl.Name = "sP_GetAllEmployeeGridControl";
-            this.sP_GetAllEmployeeGridControl.Size = new System.Drawing.Size(964, 944);
+            this.sP_GetAllEmployeeGridControl.Size = new System.Drawing.Size(960, 944);
             this.sP_GetAllEmployeeGridControl.TabIndex = 0;
             this.sP_GetAllEmployeeGridControl.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridView1});
@@ -652,12 +654,12 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel1.Location = new System.Drawing.Point(3, 3);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(964, 73);
+            this.panel1.Size = new System.Drawing.Size(960, 73);
             this.panel1.TabIndex = 1;
             // 
             // btnSearchEmployee
             // 
-            this.btnSearchEmployee.Location = new System.Drawing.Point(438, 20);
+            this.btnSearchEmployee.Location = new System.Drawing.Point(437, 15);
             this.btnSearchEmployee.Name = "btnSearchEmployee";
             this.btnSearchEmployee.Size = new System.Drawing.Size(75, 32);
             this.btnSearchEmployee.TabIndex = 2;
@@ -667,7 +669,7 @@
             // 
             // edtSearch
             // 
-            this.edtSearch.Location = new System.Drawing.Point(40, 25);
+            this.edtSearch.Location = new System.Drawing.Point(39, 20);
             this.edtSearch.Name = "edtSearch";
             this.edtSearch.Size = new System.Drawing.Size(374, 22);
             this.edtSearch.TabIndex = 0;
@@ -712,9 +714,9 @@
             this.panel2.Controls.Add(idAccountLabel);
             this.panel2.Controls.Add(this.idAccountSpinEdit);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel2.Location = new System.Drawing.Point(973, 82);
+            this.panel2.Location = new System.Drawing.Point(969, 82);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(964, 944);
+            this.panel2.Size = new System.Drawing.Size(960, 944);
             this.panel2.TabIndex = 2;
             // 
             // idSpinEdit1
@@ -794,31 +796,33 @@
             this.btnCancelAddProvider.BackColor = System.Drawing.Color.White;
             this.btnCancelAddProvider.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnCancelAddProvider.ForeColor = System.Drawing.Color.Crimson;
-            this.btnCancelAddProvider.Location = new System.Drawing.Point(510, 698);
+            this.btnCancelAddProvider.Location = new System.Drawing.Point(690, 616);
             this.btnCancelAddProvider.Name = "btnCancelAddProvider";
             this.btnCancelAddProvider.Size = new System.Drawing.Size(123, 52);
             this.btnCancelAddProvider.TabIndex = 58;
             this.btnCancelAddProvider.Text = "Cancel";
             this.btnCancelAddProvider.UseVisualStyleBackColor = false;
+            this.btnCancelAddProvider.Click += new System.EventHandler(this.btnCancelAddProvider_Click);
             // 
             // btnSaveAddProvider
             // 
             this.btnSaveAddProvider.BackColor = System.Drawing.Color.White;
             this.btnSaveAddProvider.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSaveAddProvider.ForeColor = System.Drawing.Color.ForestGreen;
-            this.btnSaveAddProvider.Location = new System.Drawing.Point(292, 698);
+            this.btnSaveAddProvider.Location = new System.Drawing.Point(472, 616);
             this.btnSaveAddProvider.Name = "btnSaveAddProvider";
             this.btnSaveAddProvider.Size = new System.Drawing.Size(123, 52);
             this.btnSaveAddProvider.TabIndex = 57;
             this.btnSaveAddProvider.Text = "Save";
             this.btnSaveAddProvider.UseVisualStyleBackColor = false;
+            this.btnSaveAddProvider.Click += new System.EventHandler(this.btnSaveAddProvider_Click);
             // 
             // picAvater
             // 
             this.picAvater.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.picAvater.ErrorImage = global::ClothesAdmin.Properties.Resources.no_image;
             this.picAvater.InitialImage = global::ClothesAdmin.Properties.Resources.no_image;
-            this.picAvater.Location = new System.Drawing.Point(655, 7);
+            this.picAvater.Location = new System.Drawing.Point(656, 32);
             this.picAvater.MaximumSize = new System.Drawing.Size(226, 276);
             this.picAvater.Name = "picAvater";
             this.picAvater.Size = new System.Drawing.Size(226, 276);
@@ -961,13 +965,10 @@
             this.idAccountSpinEdit.Name = "idAccountSpinEdit";
             this.idAccountSpinEdit.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.idAccountSpinEdit.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
+            this.idAccountSpinEdit.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
             this.idAccountSpinEdit.Size = new System.Drawing.Size(125, 24);
             this.idAccountSpinEdit.TabIndex = 21;
-            // 
-            // accountBindingSource
-            // 
-            this.accountBindingSource.DataMember = "Account";
-            this.accountBindingSource.DataSource = this.clothesDataSet;
             // 
             // accountTableAdapter
             // 
@@ -981,7 +982,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1940, 1062);
+            this.ClientSize = new System.Drawing.Size(1932, 1062);
             this.Controls.Add(this.tableLayoutPanel1);
             this.Controls.Add(this.barDockControl3);
             this.Controls.Add(this.barDockControl5);
@@ -1023,7 +1024,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.dateEndDateEdit.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.isWorkingSpinEdit.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.idAccountSpinEdit.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.accountBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1080,7 +1080,6 @@
         private System.Windows.Forms.PictureBox picAvater;
         private System.Windows.Forms.Button btnCancelAddProvider;
         private System.Windows.Forms.Button btnSaveAddProvider;
-        private System.Windows.Forms.BindingSource accountBindingSource;
         private ClothesDataSetTableAdapters.AccountTableAdapter accountTableAdapter;
         private System.Windows.Forms.Panel panel4;
         private System.Windows.Forms.BindingSource sP_GetAccEmployeeInfoBindingSource;
