@@ -1,10 +1,14 @@
 package com.ptithcm.core.repository.impl
 
 import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
+import androidx.paging.toLiveData
 import com.ptithcm.core.api.ApiClothesService
 import com.ptithcm.core.api.ApiService
+import com.ptithcm.core.data.remote.BaseDataSourceFactory
 import com.ptithcm.core.data.remote.NetworkBoundResource
 import com.ptithcm.core.model.Account
+import com.ptithcm.core.model.Invoice
 import com.ptithcm.core.model.ShoppingAddress
 import com.ptithcm.core.model.User
 import com.ptithcm.core.model.wish.ObjectResponse
@@ -12,6 +16,10 @@ import com.ptithcm.core.param.ChangePassParam
 import com.ptithcm.core.param.EditAccountParam
 import com.ptithcm.core.param.UpdateAddressParam
 import com.ptithcm.core.repository.UserRepository
+import com.ptithcm.core.util.PAGE_SIZE
+import com.ptithcm.core.vo.ItemViewModel
+import com.ptithcm.core.vo.ListResponse
+import com.ptithcm.core.vo.Listing
 import com.ptithcm.core.vo.Result
 import retrofit2.Response
 
@@ -82,5 +90,33 @@ class UserRepositoryImpl (val api: ApiService, val apiClothes: ApiClothesService
         }.build().asLiveData()
     }
 
+    override suspend fun getPagingAllInvoices(
+        pageSize: Int,
+        statusId: Int,
+        accountId: Int
+    ): Listing<ItemViewModel> {
+        val sourceFactory =
+            object :
+                BaseDataSourceFactory<Invoice, ItemViewModel>(status = MutableLiveData()) {
+                override suspend fun createXCall(page: Int): Response<ListResponse<Invoice>> {
+                    return apiClothes.getAllInvoices(pageSize, page, statusId)
+                }
 
+                override suspend fun handleXResponse(
+                    items: ListResponse<Invoice>, firstLoad: Boolean
+                ): List<ItemViewModel> {
+                    return items.results
+                }
+            }
+
+        val pagedLiveData = sourceFactory.toLiveData(pageSize = PAGE_SIZE)
+
+        return Listing(
+            result = pagedLiveData,
+            status = sourceFactory.status,
+            refresh = {
+                sourceFactory.sourceLiveData.value?.invalidate()
+            }
+        )
+    }
 }

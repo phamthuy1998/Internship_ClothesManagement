@@ -1,17 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
-<navigation
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_shopping_card"
     app:startDestination="@id/fragment_shopping_bag">
+
+    <include app:graph="@navigation/nav_book_address" />
 
     <fragment
         android:id="@+id/fragment_shopping_bag"
         android:name="com.ptithcm.ptshop.view.card.ShoppingBagFragment"
         tools:layout="@layout/fragment_shopping_bag">
 
-        <action android:id="@+id/action_pop_nav_shop"
+        <action
+            android:id="@+id/action_pop_nav_shop"
             app:popUpTo="@id/fragment_shop"
             app:enterAnim="@anim/slide_in_up"
             app:exitAnim="@anim/slide_out_left"
@@ -36,11 +38,6 @@
         android:id="@+id/fragment_brand_term_condition"
         android:name="com.ptithcm.ptshop.view.card.BrandTermConditionFragment"
         tools:layout="@layout/fragment_brand_term_condition" />
-
-    <fragment
-        android:id="@+id/fragment_shipping_address"
-        android:name="com.ptithcm.ptshop.view.addressbook.AddressBookFragment"
-        tools:layout="@layout/fragment_address_book" />
 
     <fragment
         android:id="@+id/fragment_payment"

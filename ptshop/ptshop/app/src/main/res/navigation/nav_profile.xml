@@ -57,6 +57,7 @@
     </fragment>
 
     <include app:graph="@navigation/nav_book_address" />
+    <include app:graph="@navigation/nav_invoices" />
 
     <include app:graph="@navigation/nav_payment_methods" />
     <fragment
