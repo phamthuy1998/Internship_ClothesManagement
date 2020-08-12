@@ -46,9 +46,7 @@ namespace ClothesAdmin
 
         private void btnCancelAddProvider_Click(object sender, EventArgs e)
         {
-            this.Validate();
-            this.categoryBindingSource.EndEdit();
-            this.tableAdapterManager.UpdateAll(this.clothesDataSet);
+            this.categoryBindingSource.CancelEdit();
         }
 
         private void setIcon()
