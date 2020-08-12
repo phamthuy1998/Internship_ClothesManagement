@@ -92,22 +92,22 @@ class UserRepositoryImpl (val api: ApiService, val apiClothes: ApiClothesService
 
     override suspend fun getPagingAllInvoices(
         pageSize: Int,
-        statusId: Int,
-        accountId: Int
+        pageNumber: Int,
+        statusId: Int
     ): Listing<ItemViewModel> {
         val sourceFactory =
-            object :
-                BaseDataSourceFactory<Invoice, ItemViewModel>(status = MutableLiveData()) {
-                override suspend fun createXCall(page: Int): Response<ListResponse<Invoice>> {
-                    return apiClothes.getAllInvoices(pageSize, page, statusId)
-                }
+                object :
+                        BaseDataSourceFactory<Invoice, ItemViewModel>(status = MutableLiveData()) {
+                    override suspend fun createXCall(page: Int): Response<ListResponse<Invoice>> {
+                        return apiClothes.getAllInvoices(pageSize, page, statusId)
+                    }
 
-                override suspend fun handleXResponse(
-                    items: ListResponse<Invoice>, firstLoad: Boolean
-                ): List<ItemViewModel> {
-                    return items.results
+                    override suspend fun handleXResponse(
+                            items: ListResponse<Invoice>, firstLoad: Boolean
+                    ): List<ItemViewModel> {
+                        return items.results
+                    }
                 }
-            }
 
         val pagedLiveData = sourceFactory.toLiveData(pageSize = PAGE_SIZE)
 

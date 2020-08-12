@@ -19,6 +19,7 @@
     <dimen name="layout_margin_24dp">24dp</dimen>
     <dimen name="layout_margin_32dp">32dp</dimen>
     <dimen name="layout_margin_28dp">28dp</dimen>
+    <dimen name="layout_margin_45dp">45dp</dimen>
     <dimen name="layout_margin_64dp">64dp</dimen>
     <dimen name="layout_margin_72dp">72dp</dimen>
     <dimen name="layout_margin_104dp">104dp</dimen>

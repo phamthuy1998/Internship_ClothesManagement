@@ -54,6 +54,7 @@
     <string name="payment_methods">Payment Methods</string>
     <string name="invoices">Invoices</string>
     <string name="address_book">Address Book</string>
+    <string name="invoice_book">Invoice Book</string>
     <string name="change_password">Change Password</string>
     <string name="my_details">My Details</string>
     <string name="hi">Hi,</string>

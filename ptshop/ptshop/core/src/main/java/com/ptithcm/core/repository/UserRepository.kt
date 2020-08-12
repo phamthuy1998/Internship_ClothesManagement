@@ -24,7 +24,7 @@ interface UserRepository {
     suspend fun deleteAddress(addressId: Int?): LiveData<Result<ObjectResponse<Int>>>
     suspend fun getPagingAllInvoices(
         pageSize: Int,
-        statusId: Int,
-        accountId: Int
+        pageNumber: Int,
+        statusId: Int
     ): Listing<ItemViewModel>
 }

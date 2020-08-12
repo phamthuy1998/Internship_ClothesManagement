@@ -72,9 +72,9 @@ open class BottomPopupDialog : BottomSheetDialogFragment() {
 
     override fun onStart() {
         super.onStart()
-        dialog.setCancelable(popup?.isCancelable == true)
-        dialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
-        dialog.window?.setLayout(MATCH_PARENT, MATCH_PARENT)
+        dialog?.setCancelable(popup?.isCancelable == true)
+        dialog?.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+        dialog?.window?.setLayout(MATCH_PARENT, MATCH_PARENT)
     }
 
     override fun show(manager: FragmentManager, tag: String?) {
