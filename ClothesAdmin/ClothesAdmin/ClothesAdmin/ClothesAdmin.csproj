@@ -157,6 +157,18 @@
     <Compile Include="EmployeeForm.Designer.cs">
       <DependentUpon>EmployeeForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="ImportCuponForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ImportCuponForm.Designer.cs">
+      <DependentUpon>ImportCuponForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="InvoiceForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="InvoiceForm.Designer.cs">
+      <DependentUpon>InvoiceForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="LoginForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -205,6 +217,12 @@
     <Compile Include="Program.cs" />
     <Compile Include="Promotion.cs">
       <DependentUpon>ClothesModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="PromotionForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PromotionForm.Designer.cs">
+      <DependentUpon>PromotionForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Provider.cs">
@@ -289,6 +307,7 @@
       <DependentUpon>ClothesModel.tt</DependentUpon>
     </Compile>
     <Compile Include="SqlServerTypes\Loader.cs" />
+    <Compile Include="StatusOrder.cs" />
     <Compile Include="sysdiagram.cs">
       <DependentUpon>ClothesModel.tt</DependentUpon>
     </Compile>
@@ -304,6 +323,9 @@
     <EmbeddedResource Include="EmployeeForm.resx">
       <DependentUpon>EmployeeForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="InvoiceForm.resx">
+      <DependentUpon>InvoiceForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="LoginForm.resx">
       <DependentUpon>LoginForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -312,6 +334,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ProductForm.resx">
       <DependentUpon>ProductForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PromotionForm.resx">
+      <DependentUpon>PromotionForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\licenses.licx" />
     <EmbeddedResource Include="Properties\Resources.resx">

@@ -69,8 +69,8 @@
             this.sP_GetAllEmployeeGridControl = new DevExpress.XtraGrid.GridControl();
             this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.colid = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colfirstName = new DevExpress.XtraGrid.Columns.GridColumn();
             this.collastName = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colfirstName = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colphone = new DevExpress.XtraGrid.Columns.GridColumn();
             this.coladdress = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colbirthday = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -178,7 +178,7 @@
             // firstNameLabel
             // 
             firstNameLabel.AutoSize = true;
-            firstNameLabel.Location = new System.Drawing.Point(60, 48);
+            firstNameLabel.Location = new System.Drawing.Point(60, 89);
             firstNameLabel.Name = "firstNameLabel";
             firstNameLabel.Size = new System.Drawing.Size(70, 17);
             firstNameLabel.TabIndex = 2;
@@ -187,7 +187,7 @@
             // lastNameLabel
             // 
             lastNameLabel.AutoSize = true;
-            lastNameLabel.Location = new System.Drawing.Point(60, 90);
+            lastNameLabel.Location = new System.Drawing.Point(60, 48);
             lastNameLabel.Name = "lastNameLabel";
             lastNameLabel.Size = new System.Drawing.Size(70, 17);
             lastNameLabel.TabIndex = 4;
@@ -269,7 +269,7 @@
             // 
             label2.AutoSize = true;
             label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            label2.Location = new System.Drawing.Point(34, 402);
+            label2.Location = new System.Drawing.Point(67, 408);
             label2.Name = "label2";
             label2.Size = new System.Drawing.Size(132, 36);
             label2.TabIndex = 60;
@@ -524,8 +524,8 @@
             // 
             this.gridView1.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
             this.colid,
-            this.colfirstName,
             this.collastName,
+            this.colfirstName,
             this.colphone,
             this.coladdress,
             this.colbirthday,
@@ -547,16 +547,6 @@
             this.colid.VisibleIndex = 0;
             this.colid.Width = 94;
             // 
-            // colfirstName
-            // 
-            this.colfirstName.FieldName = "firstName";
-            this.colfirstName.MinWidth = 25;
-            this.colfirstName.Name = "colfirstName";
-            this.colfirstName.OptionsColumn.AllowEdit = false;
-            this.colfirstName.Visible = true;
-            this.colfirstName.VisibleIndex = 1;
-            this.colfirstName.Width = 94;
-            // 
             // collastName
             // 
             this.collastName.FieldName = "lastName";
@@ -566,6 +556,16 @@
             this.collastName.Visible = true;
             this.collastName.VisibleIndex = 2;
             this.collastName.Width = 94;
+            // 
+            // colfirstName
+            // 
+            this.colfirstName.FieldName = "firstName";
+            this.colfirstName.MinWidth = 25;
+            this.colfirstName.Name = "colfirstName";
+            this.colfirstName.OptionsColumn.AllowEdit = false;
+            this.colfirstName.Visible = true;
+            this.colfirstName.VisibleIndex = 1;
+            this.colfirstName.Width = 94;
             // 
             // colphone
             // 
@@ -727,6 +727,7 @@
             0,
             0,
             0});
+            this.idSpinEdit1.Enabled = false;
             this.idSpinEdit1.Location = new System.Drawing.Point(151, 468);
             this.idSpinEdit1.MenuManager = this.barManager;
             this.idSpinEdit1.Name = "idSpinEdit1";
@@ -850,7 +851,7 @@
             // firstNameTextEdit
             // 
             this.firstNameTextEdit.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.sP_GetAllEmployeeBindingSource, "firstName", true));
-            this.firstNameTextEdit.Location = new System.Drawing.Point(178, 45);
+            this.firstNameTextEdit.Location = new System.Drawing.Point(178, 86);
             this.firstNameTextEdit.MenuManager = this.barManager;
             this.firstNameTextEdit.Name = "firstNameTextEdit";
             this.firstNameTextEdit.Size = new System.Drawing.Size(183, 22);
@@ -859,7 +860,7 @@
             // lastNameTextEdit
             // 
             this.lastNameTextEdit.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.sP_GetAllEmployeeBindingSource, "lastName", true));
-            this.lastNameTextEdit.Location = new System.Drawing.Point(178, 87);
+            this.lastNameTextEdit.Location = new System.Drawing.Point(178, 45);
             this.lastNameTextEdit.MenuManager = this.barManager;
             this.lastNameTextEdit.Name = "lastNameTextEdit";
             this.lastNameTextEdit.Size = new System.Drawing.Size(408, 22);

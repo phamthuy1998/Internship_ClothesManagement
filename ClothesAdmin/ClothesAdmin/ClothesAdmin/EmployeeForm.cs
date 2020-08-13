@@ -91,24 +91,61 @@ namespace ClothesAdmin
         {
             if (isAdd)
             {
+                String birthday = null, beginDate = null, endDate = null;
+                if (birthdayDateEdit.Text.Trim() == null)
+                    birthday = "'null'";
+                else
+                    birthday = "'" + birthdayDateEdit.EditValue.ToString() + "'";
 
+                if (String.IsNullOrEmpty(dateBeginDateEdit.Text))
+                    beginDate = "'null'";
+                else
+                    beginDate = "'" + dateBeginDateEdit.EditValue.ToString() + "'";
+
+                if (String.IsNullOrEmpty(dateEndDateEdit.Text))
+                    endDate = "'null'";
+                else
+                    endDate = "'" + dateEndDateEdit.EditValue.ToString() + "'";
+
+                String sql = "EXEC SP_AddEmployee N'"
+                    + firstNameTextEdit.Text.Trim() + "', N'"
+                    + lastNameTextEdit.Text.Trim() + "', N'"
+                    + phoneTextEdit.Text.Trim() + "', N'"
+                    + addressTextEdit.Text.Trim() + "', N'"
+                    + avatarTextEdit.Text.Trim() + "', "
+                    + birthday + ", "
+                    + beginDate + ","
+                    + endDate + ", "
+                    + Convert.ToInt32(isWorkingSpinEdit.Value) + ", N'"
+                    + emailTextEdit.Text.Trim() + "',"
+                    + roleIdSpinEdit.Text.Trim() + ", N'"
+                    + passwordTextEdit.Text.Trim() + "', N'"
+                    + usernameTextEdit.Text.Trim() + "'";
+                MessageBox.Show(sql, "sql", MessageBoxButtons.OK);
+                Program.myReader = Program.ExecSqlDataReader(sql);
+                if (Program.myReader == null) return;
+                Program.myReader.Read();
+                if (Program.myReader == null) return;
+                int statusEdit = Program.myReader.GetInt32(0);
+                String message = Program.myReader.GetString(1);
+                MessageBox.Show(statusEdit + " " + message, "THÔNG BÁO", MessageBoxButtons.OK);
             }
             else
             {
 
                 String birthday = null, beginDate = null, endDate = null;
                 if (birthdayDateEdit.Text.Trim() == null)
-                    birthday = null;
+                    birthday = "'null'";
                 else
                     birthday = "'" + birthdayDateEdit.EditValue.ToString() + "'";
 
-                if (dateBeginDateEdit.Text.Trim() == null)
-                    beginDate = null;
+                if (String.IsNullOrEmpty(dateBeginDateEdit.Text))
+                    beginDate = "'null'";
                 else
                     beginDate = "'" + dateBeginDateEdit.EditValue.ToString() + "'";
 
-                if (dateEndDateEdit.Text.Trim() == null)
-                    endDate = null;
+                if (String.IsNullOrEmpty(dateEndDateEdit.Text ))
+                    endDate = "'null'";
                 else
                     endDate = "'" + dateEndDateEdit.EditValue.ToString() + "'";
 

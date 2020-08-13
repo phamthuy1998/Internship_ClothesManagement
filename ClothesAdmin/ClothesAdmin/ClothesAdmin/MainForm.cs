@@ -17,9 +17,12 @@ namespace ClothesAdmin
         private ProductForm productForm = null;
         private CategoryForm categoryForm = null;
         private ColorForm colorForm = null;
+        private InvoiceForm invoiceForm = null;
         private EmployeeForm employeeForm = null;
         private SizeForm sizeForm = null;
+        private ImportCuponForm importCuponForm = null;
         private SizeColorForm sizeColorForm = null;
+        private PromotionForm promotionForm = null;
         private AccountsForm accountsForm = null;
         private ProviderForm providerForm = null;
         public MainForm()
@@ -218,19 +221,15 @@ namespace ClothesAdmin
 
         private void btnInvoice_ItemClick(object sender, ItemClickEventArgs e)
         {
-            DialogResult dr = MessageBox.Show("Bạn có chắc muốn đăng xuất?", "", MessageBoxButtons.OKCancel);
-            if (dr == DialogResult.OK)
+            form = this.CheckExists(typeof(InvoiceForm));
+            if (form == null)
             {
-                Program.mainForm.Hide();
-                Program.frmLogin = new LoginForm();
-                Invoke((Action)(() => { Program.frmLogin.ShowDialog(); }));
-                this.Close();
+                IsMdiContainer = true;
+                invoiceForm = new InvoiceForm();
+                invoiceForm.MdiParent = this;
+                invoiceForm.Show();
             }
-        }
-
-        private void barButtonItem4_ItemClick(object sender, ItemClickEventArgs e)
-        {
-
+            else form.Activate();
         }
 
         private void btnColor_ItemClick(object sender, ItemClickEventArgs e)
@@ -301,6 +300,32 @@ namespace ClothesAdmin
         private void tvAvatar_EditValueChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void btnPromo_ItemClick(object sender, ItemClickEventArgs e)
+        {
+             form = this.CheckExists(typeof(PromotionForm));
+            if (form == null)
+            {
+                IsMdiContainer = true;
+                promotionForm = new PromotionForm();
+                promotionForm.MdiParent = this;
+                promotionForm.Show();
+            }
+            else form.Activate();
+        }
+
+        private void barButtonItem4_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            form = this.CheckExists(typeof(ImportCuponForm));
+            if (form == null)
+            {
+                IsMdiContainer = true;
+                importCuponForm = new ImportCuponForm();
+                importCuponForm.MdiParent = this;
+                importCuponForm.Show();
+            }
+            else form.Activate();
         }
     }
 }
