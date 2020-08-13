@@ -107,9 +107,7 @@ abstract class BasePageKeyedDataSource<I, O>(
 
     @MainThread
     private fun setValue(newValue: Result<O>) {
-        if (status.value != newValue) {
             status.postValue(newValue)
-        }
     }
 
     @MainThread

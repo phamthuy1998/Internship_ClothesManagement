@@ -31,6 +31,10 @@ class InvoicesBookFragment : BaseFragment<FragmentInvoicesBookBinding>() {
 
     private val userViewModel: UserViewModel by viewModel()
 
+    private val mActivity: BaseActivity<*> by lazy {
+        requireActivity() as BaseActivity<*>
+    }
+
     private val adapter = InvoicesPagedAdapter { it: Invoice?, pos: Int? -> }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -40,8 +44,8 @@ class InvoicesBookFragment : BaseFragment<FragmentInvoicesBookBinding>() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        activity?.btnNav?.visibility = View.GONE
-        (activity as? BaseActivity<*>)?.isShowLoading(true)
+        mActivity.btnNav?.visibility = View.GONE
+        mActivity.isShowLoading(true)
 
         setupToolbar()
         initAdapter()
@@ -56,19 +60,21 @@ class InvoicesBookFragment : BaseFragment<FragmentInvoicesBookBinding>() {
 
     override fun bindViewModel() {
         userViewModel.invoicesLiveData.observe(this, Observer {
+            mActivity.isShowLoading(false)
+            viewBinding.swlRefresh.isRefreshing = false
             adapter.submitList(it)
         })
 
         userViewModel.invoiceLoadStatusX.observe(this, Observer {
             adapter.setNetworkState(it)
             when (it) {
-                is Result.Loading -> viewBinding.layoutLoading.visible()
                 is Result.Error -> {
                     if (adapter.currentList?.isEmpty() == true) {
                         (requireActivity() as? BaseActivity<*>)?.isShowErrorNetwork(true)
                     }
+                    mActivity.isShowLoading(false)
                 }
-                else -> viewBinding.layoutLoading.gone()
+                else -> mActivity.isShowLoading(false)
             }
         })
     }

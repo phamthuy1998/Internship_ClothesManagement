@@ -104,6 +104,9 @@ class InvoicesPagedAdapter(
     inner class InvoiceViewHolder(val viewBinding: ItemInvoiceBinding) :
         RecyclerView.ViewHolder(viewBinding.root) {
 
-        fun bind(invoice: Invoice?) {}
+        fun bind(invoice: Invoice?) {
+            viewBinding.item = invoice
+            viewBinding.executePendingBindings()
+        }
     }
 }
