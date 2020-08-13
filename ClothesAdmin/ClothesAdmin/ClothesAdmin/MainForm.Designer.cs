@@ -110,6 +110,7 @@
             this.ribbonPage15 = new DevExpress.XtraBars.Ribbon.RibbonPage();
             this.defaultLookAndFeel1 = new DevExpress.LookAndFeel.DefaultLookAndFeel(this.components);
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
+            this.tvIdEmployee = new System.Windows.Forms.ToolStripStatusLabel();
             this.tvUserName = new System.Windows.Forms.ToolStripStatusLabel();
             this.tvName = new System.Windows.Forms.ToolStripStatusLabel();
             this.tvRoleName = new System.Windows.Forms.ToolStripStatusLabel();
@@ -125,7 +126,6 @@
             this.barButtonItem6 = new DevExpress.XtraBars.BarButtonItem();
             this.ribbonPage2 = new DevExpress.XtraBars.Ribbon.RibbonPage();
             this.ribbonPage4 = new DevExpress.XtraBars.Ribbon.RibbonPage();
-            this.tvIdEmployee = new System.Windows.Forms.ToolStripStatusLabel();
             firstNameLabel = new System.Windows.Forms.Label();
             lastNameLabel = new System.Windows.Forms.Label();
             phoneLabel = new System.Windows.Forms.Label();
@@ -354,7 +354,6 @@
             // tvAvatar
             // 
             this.tvAvatar.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.employeeBindingSource, "avatar", true));
-            this.tvAvatar.Enabled = false;
             this.tvAvatar.Location = new System.Drawing.Point(243, 212);
             this.tvAvatar.MenuManager = this.ribbon;
             this.tvAvatar.Name = "tvAvatar";
@@ -719,6 +718,7 @@
             this.btnProductPromotion.Caption = "Product in promotion";
             this.btnProductPromotion.Id = 273;
             this.btnProductPromotion.Name = "btnProductPromotion";
+            this.btnProductPromotion.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnProductPromotion_ItemClick);
             // 
             // rbHome
             // 
@@ -840,26 +840,31 @@
             this.tvUserName,
             this.tvName,
             this.tvRoleName});
-            this.statusStrip1.Location = new System.Drawing.Point(0, 1077);
+            this.statusStrip1.Location = new System.Drawing.Point(0, 1079);
             this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Size = new System.Drawing.Size(1217, 24);
+            this.statusStrip1.Size = new System.Drawing.Size(1217, 22);
             this.statusStrip1.TabIndex = 1;
             this.statusStrip1.Text = "statusStrip1";
+            // 
+            // tvIdEmployee
+            // 
+            this.tvIdEmployee.Name = "tvIdEmployee";
+            this.tvIdEmployee.Size = new System.Drawing.Size(0, 17);
             // 
             // tvUserName
             // 
             this.tvUserName.Name = "tvUserName";
-            this.tvUserName.Size = new System.Drawing.Size(0, 19);
+            this.tvUserName.Size = new System.Drawing.Size(0, 17);
             // 
             // tvName
             // 
             this.tvName.Name = "tvName";
-            this.tvName.Size = new System.Drawing.Size(0, 19);
+            this.tvName.Size = new System.Drawing.Size(0, 17);
             // 
             // tvRoleName
             // 
             this.tvRoleName.Name = "tvRoleName";
-            this.tvRoleName.Size = new System.Drawing.Size(0, 19);
+            this.tvRoleName.Size = new System.Drawing.Size(0, 17);
             // 
             // xtraTabbedMdiManager1
             // 
@@ -937,11 +942,6 @@
             // 
             this.ribbonPage4.Name = "ribbonPage4";
             this.ribbonPage4.Text = "ribbonPage4";
-            // 
-            // tvIdEmployee
-            // 
-            this.tvIdEmployee.Name = "tvIdEmployee";
-            this.tvIdEmployee.Size = new System.Drawing.Size(0, 19);
             // 
             // MainForm
             // 

@@ -211,6 +211,12 @@
     <Compile Include="ProductForm.Designer.cs">
       <DependentUpon>ProductForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="ProductPromotionForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ProductPromotionForm.Designer.cs">
+      <DependentUpon>ProductPromotionForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="ProductSizeColor.cs">
       <DependentUpon>ClothesModel.tt</DependentUpon>
     </Compile>
@@ -334,6 +340,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ProductForm.resx">
       <DependentUpon>ProductForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ProductPromotionForm.resx">
+      <DependentUpon>ProductPromotionForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PromotionForm.resx">
       <DependentUpon>PromotionForm.cs</DependentUpon>

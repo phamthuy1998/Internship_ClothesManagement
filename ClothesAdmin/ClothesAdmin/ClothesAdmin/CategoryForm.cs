@@ -118,7 +118,7 @@ namespace ClothesAdmin
                     }
                     catch (Exception ex)
                     {
-                        MessageBox.Show("Lỗi xóa khoa" + ex.Message, "", MessageBoxButtons.OK);
+                        MessageBox.Show("Lỗi xóa category" + ex.Message, "", MessageBoxButtons.OK);
                     }
                 }
             }

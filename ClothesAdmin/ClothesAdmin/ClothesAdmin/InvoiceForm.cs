@@ -150,5 +150,48 @@ namespace ClothesAdmin
         {
             loadData();
         }
+
+        private void productComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void productIdSpinEdit_EditValueChanged(object sender, EventArgs e)
+        {
+            productComboBox.SelectedValue = productIdSpinEdit.Value;
+        }
+
+        private void colorIdSpinEdit_EditValueChanged(object sender, EventArgs e)
+        {
+            colorComboBox.SelectedValue = colorIdSpinEdit.Value;
+        }
+
+        private void sizeIdSpinEdit_EditValueChanged(object sender, EventArgs e)
+        {
+            if (sizeIdSpinEdit.Value > 0)
+                sizeComboBox.SelectedValue = sizeIdSpinEdit.Value;
+        }
+
+        private void statusOrderIdSpinEdit_EditValueChanged(object sender, EventArgs e)
+        {
+            statusOrderCombobox.SelectedIndex = Convert.ToInt32(statusOrderIdSpinEdit.Value - 1);
+        }
+
+        private void statusOrderCombobox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            statusOrderIdSpinEdit.Value = statusOrderCombobox.SelectedIndex + 1;
+        }
+
+        private void btnSaveAddProvider_Click_1(object sender, EventArgs e)
+        {
+            this.Validate();
+            this.invoiceBindingSource.EndEdit();
+            this.tableAdapterManager.UpdateAll(this.clothesDataSet);
+        }
+
+        private void btnCancelAddProvider_Click_1(object sender, EventArgs e)
+        {
+            this.invoiceBindingSource.CancelEdit();
+        }
     }
 }

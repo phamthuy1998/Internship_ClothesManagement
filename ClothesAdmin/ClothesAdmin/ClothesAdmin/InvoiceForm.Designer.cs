@@ -29,7 +29,6 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(InvoiceForm));
             System.Windows.Forms.Label employeeIdLabel;
             System.Windows.Forms.Label idLabel;
             System.Windows.Forms.Label updateDateLabel;
@@ -53,6 +52,7 @@
             System.Windows.Forms.Label unitPriceLabel;
             System.Windows.Forms.Label quantityLabel;
             System.Windows.Forms.Label label5;
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(InvoiceForm));
             this.barManager = new DevExpress.XtraBars.BarManager(this.components);
             this.bar2 = new DevExpress.XtraBars.Bar();
             this.btnReloadProvider = new DevExpress.XtraBars.BarButtonItem();
@@ -78,6 +78,7 @@
             this.colorTableAdapter = new ClothesAdmin.ClothesDataSetTableAdapters.ColorTableAdapter();
             this.sizeTableAdapter = new ClothesAdmin.ClothesDataSetTableAdapters.SizeTableAdapter();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.cbbStatusOrder = new System.Windows.Forms.ComboBox();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.invoiceItemGridControl = new DevExpress.XtraGrid.GridControl();
             this.gridView2 = new DevExpress.XtraGrid.Views.Grid.GridView();
@@ -127,7 +128,6 @@
             this.sizeIdSpinEdit = new DevExpress.XtraEditors.SpinEdit();
             this.unitPriceSpinEdit = new DevExpress.XtraEditors.SpinEdit();
             this.quantitySpinEdit = new DevExpress.XtraEditors.SpinEdit();
-            this.cbbStatusOrder = new System.Windows.Forms.ComboBox();
             employeeIdLabel = new System.Windows.Forms.Label();
             idLabel = new System.Windows.Forms.Label();
             updateDateLabel = new System.Windows.Forms.Label();
@@ -189,6 +189,214 @@
             ((System.ComponentModel.ISupportInitialize)(this.unitPriceSpinEdit.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.quantitySpinEdit.Properties)).BeginInit();
             this.SuspendLayout();
+            // 
+            // employeeIdLabel
+            // 
+            employeeIdLabel.AutoSize = true;
+            employeeIdLabel.Location = new System.Drawing.Point(651, 120);
+            employeeIdLabel.Name = "employeeIdLabel";
+            employeeIdLabel.Size = new System.Drawing.Size(88, 17);
+            employeeIdLabel.TabIndex = 59;
+            employeeIdLabel.Text = "employee Id:";
+            // 
+            // idLabel
+            // 
+            idLabel.AutoSize = true;
+            idLabel.Location = new System.Drawing.Point(47, 24);
+            idLabel.Name = "idLabel";
+            idLabel.Size = new System.Drawing.Size(23, 17);
+            idLabel.TabIndex = 0;
+            idLabel.Text = "id:";
+            // 
+            // updateDateLabel
+            // 
+            updateDateLabel.AutoSize = true;
+            updateDateLabel.Location = new System.Drawing.Point(347, 63);
+            updateDateLabel.Name = "updateDateLabel";
+            updateDateLabel.Size = new System.Drawing.Size(90, 17);
+            updateDateLabel.TabIndex = 2;
+            updateDateLabel.Text = "update Date:";
+            // 
+            // buyDateLabel
+            // 
+            buyDateLabel.AutoSize = true;
+            buyDateLabel.Location = new System.Drawing.Point(47, 63);
+            buyDateLabel.Name = "buyDateLabel";
+            buyDateLabel.Size = new System.Drawing.Size(69, 17);
+            buyDateLabel.TabIndex = 4;
+            buyDateLabel.Text = "buy Date:";
+            // 
+            // nameLabel
+            // 
+            nameLabel.AutoSize = true;
+            nameLabel.Location = new System.Drawing.Point(47, 103);
+            nameLabel.Name = "nameLabel";
+            nameLabel.Size = new System.Drawing.Size(47, 17);
+            nameLabel.TabIndex = 6;
+            nameLabel.Text = "name:";
+            // 
+            // phoneLabel
+            // 
+            phoneLabel.AutoSize = true;
+            phoneLabel.Location = new System.Drawing.Point(47, 138);
+            phoneLabel.Name = "phoneLabel";
+            phoneLabel.Size = new System.Drawing.Size(52, 17);
+            phoneLabel.TabIndex = 8;
+            phoneLabel.Text = "phone:";
+            // 
+            // addressLabel
+            // 
+            addressLabel.AutoSize = true;
+            addressLabel.Location = new System.Drawing.Point(47, 172);
+            addressLabel.Name = "addressLabel";
+            addressLabel.Size = new System.Drawing.Size(63, 17);
+            addressLabel.TabIndex = 10;
+            addressLabel.Text = "address:";
+            // 
+            // noteLabel
+            // 
+            noteLabel.AutoSize = true;
+            noteLabel.Location = new System.Drawing.Point(47, 207);
+            noteLabel.Name = "noteLabel";
+            noteLabel.Size = new System.Drawing.Size(40, 17);
+            noteLabel.TabIndex = 12;
+            noteLabel.Text = "note:";
+            // 
+            // label4
+            // 
+            label4.AutoSize = true;
+            label4.Location = new System.Drawing.Point(47, 276);
+            label4.Name = "label4";
+            label4.Size = new System.Drawing.Size(90, 17);
+            label4.TabIndex = 14;
+            label4.Text = "Status order ";
+            // 
+            // userIDLabel
+            // 
+            userIDLabel.AutoSize = true;
+            userIDLabel.Location = new System.Drawing.Point(47, 242);
+            userIDLabel.Name = "userIDLabel";
+            userIDLabel.Size = new System.Drawing.Size(57, 17);
+            userIDLabel.TabIndex = 14;
+            userIDLabel.Text = "user ID:";
+            // 
+            // statusOrderIdLabel
+            // 
+            statusOrderIdLabel.AutoSize = true;
+            statusOrderIdLabel.Location = new System.Drawing.Point(633, 269);
+            statusOrderIdLabel.Name = "statusOrderIdLabel";
+            statusOrderIdLabel.Size = new System.Drawing.Size(106, 17);
+            statusOrderIdLabel.TabIndex = 16;
+            statusOrderIdLabel.Text = "status Order Id:";
+            // 
+            // deliveryDateLabel
+            // 
+            deliveryDateLabel.AutoSize = true;
+            deliveryDateLabel.Location = new System.Drawing.Point(633, 63);
+            deliveryDateLabel.Name = "deliveryDateLabel";
+            deliveryDateLabel.Size = new System.Drawing.Size(95, 17);
+            deliveryDateLabel.TabIndex = 18;
+            deliveryDateLabel.Text = "delivery Date:";
+            // 
+            // activeLabel
+            // 
+            activeLabel.AutoSize = true;
+            activeLabel.Location = new System.Drawing.Point(47, 309);
+            activeLabel.Name = "activeLabel";
+            activeLabel.Size = new System.Drawing.Size(49, 17);
+            activeLabel.TabIndex = 20;
+            activeLabel.Text = "active:";
+            // 
+            // label3
+            // 
+            label3.AutoSize = true;
+            label3.Location = new System.Drawing.Point(42, 182);
+            label3.Name = "label3";
+            label3.Size = new System.Drawing.Size(35, 17);
+            label3.TabIndex = 59;
+            label3.Text = "Size";
+            // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.Enabled = false;
+            label2.Location = new System.Drawing.Point(42, 142);
+            label2.Name = "label2";
+            label2.Size = new System.Drawing.Size(41, 17);
+            label2.TabIndex = 59;
+            label2.Text = "Color";
+            // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Location = new System.Drawing.Point(42, 100);
+            label1.Name = "label1";
+            label1.Size = new System.Drawing.Size(57, 17);
+            label1.TabIndex = 59;
+            label1.Text = "Product";
+            // 
+            // orderIdLabel
+            // 
+            orderIdLabel.AutoSize = true;
+            orderIdLabel.Location = new System.Drawing.Point(42, 56);
+            orderIdLabel.Name = "orderIdLabel";
+            orderIdLabel.Size = new System.Drawing.Size(61, 17);
+            orderIdLabel.TabIndex = 0;
+            orderIdLabel.Text = "order Id:";
+            // 
+            // productIdLabel
+            // 
+            productIdLabel.AutoSize = true;
+            productIdLabel.Location = new System.Drawing.Point(464, 95);
+            productIdLabel.Name = "productIdLabel";
+            productIdLabel.Size = new System.Drawing.Size(75, 17);
+            productIdLabel.TabIndex = 2;
+            productIdLabel.Text = "product Id:";
+            // 
+            // colorIdLabel
+            // 
+            colorIdLabel.AutoSize = true;
+            colorIdLabel.Location = new System.Drawing.Point(464, 136);
+            colorIdLabel.Name = "colorIdLabel";
+            colorIdLabel.Size = new System.Drawing.Size(58, 17);
+            colorIdLabel.TabIndex = 4;
+            colorIdLabel.Text = "color Id:";
+            // 
+            // sizeIdLabel
+            // 
+            sizeIdLabel.AutoSize = true;
+            sizeIdLabel.Location = new System.Drawing.Point(464, 182);
+            sizeIdLabel.Name = "sizeIdLabel";
+            sizeIdLabel.Size = new System.Drawing.Size(52, 17);
+            sizeIdLabel.TabIndex = 6;
+            sizeIdLabel.Text = "size Id:";
+            // 
+            // unitPriceLabel
+            // 
+            unitPriceLabel.AutoSize = true;
+            unitPriceLabel.Location = new System.Drawing.Point(42, 230);
+            unitPriceLabel.Name = "unitPriceLabel";
+            unitPriceLabel.Size = new System.Drawing.Size(71, 17);
+            unitPriceLabel.TabIndex = 8;
+            unitPriceLabel.Text = "unit Price:";
+            // 
+            // quantityLabel
+            // 
+            quantityLabel.AutoSize = true;
+            quantityLabel.Location = new System.Drawing.Point(42, 274);
+            quantityLabel.Name = "quantityLabel";
+            quantityLabel.Size = new System.Drawing.Size(62, 17);
+            quantityLabel.TabIndex = 10;
+            quantityLabel.Text = "quantity:";
+            // 
+            // label5
+            // 
+            label5.AutoSize = true;
+            label5.Location = new System.Drawing.Point(61, 20);
+            label5.Name = "label5";
+            label5.Size = new System.Drawing.Size(90, 17);
+            label5.TabIndex = 14;
+            label5.Text = "Status order ";
             // 
             // barManager
             // 
@@ -387,6 +595,16 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(1940, 57);
             this.panel1.TabIndex = 9;
+            // 
+            // cbbStatusOrder
+            // 
+            this.cbbStatusOrder.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbbStatusOrder.FormattingEnabled = true;
+            this.cbbStatusOrder.Location = new System.Drawing.Point(172, 17);
+            this.cbbStatusOrder.Name = "cbbStatusOrder";
+            this.cbbStatusOrder.Size = new System.Drawing.Size(426, 24);
+            this.cbbStatusOrder.TabIndex = 59;
+            this.cbbStatusOrder.SelectedIndexChanged += new System.EventHandler(this.cbbStatusOrder_SelectedIndexChanged);
             // 
             // tableLayoutPanel1
             // 
@@ -681,15 +899,6 @@
             this.panel3.Size = new System.Drawing.Size(1242, 486);
             this.panel3.TabIndex = 2;
             // 
-            // employeeIdLabel
-            // 
-            employeeIdLabel.AutoSize = true;
-            employeeIdLabel.Location = new System.Drawing.Point(651, 120);
-            employeeIdLabel.Name = "employeeIdLabel";
-            employeeIdLabel.Size = new System.Drawing.Size(88, 17);
-            employeeIdLabel.TabIndex = 59;
-            employeeIdLabel.Text = "employee Id:";
-            // 
             // employeeIdSpinEdit
             // 
             this.employeeIdSpinEdit.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.invoiceBindingSource, "employeeId", true));
@@ -709,11 +918,13 @@
             // 
             // statusOrderCombobox
             // 
+            this.statusOrderCombobox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.statusOrderCombobox.FormattingEnabled = true;
             this.statusOrderCombobox.Location = new System.Drawing.Point(158, 273);
             this.statusOrderCombobox.Name = "statusOrderCombobox";
             this.statusOrderCombobox.Size = new System.Drawing.Size(426, 24);
             this.statusOrderCombobox.TabIndex = 59;
+            this.statusOrderCombobox.SelectedIndexChanged += new System.EventHandler(this.statusOrderCombobox_SelectedIndexChanged);
             // 
             // btnCancelAddProvider
             // 
@@ -726,6 +937,7 @@
             this.btnCancelAddProvider.TabIndex = 58;
             this.btnCancelAddProvider.Text = "Cancel";
             this.btnCancelAddProvider.UseVisualStyleBackColor = false;
+            this.btnCancelAddProvider.Click += new System.EventHandler(this.btnCancelAddProvider_Click_1);
             // 
             // btnSaveAddProvider
             // 
@@ -738,15 +950,7 @@
             this.btnSaveAddProvider.TabIndex = 57;
             this.btnSaveAddProvider.Text = "Save";
             this.btnSaveAddProvider.UseVisualStyleBackColor = false;
-            // 
-            // idLabel
-            // 
-            idLabel.AutoSize = true;
-            idLabel.Location = new System.Drawing.Point(47, 24);
-            idLabel.Name = "idLabel";
-            idLabel.Size = new System.Drawing.Size(23, 17);
-            idLabel.TabIndex = 0;
-            idLabel.Text = "id:";
+            this.btnSaveAddProvider.Click += new System.EventHandler(this.btnSaveAddProvider_Click_1);
             // 
             // idSpinEdit
             // 
@@ -765,15 +969,6 @@
             this.idSpinEdit.Size = new System.Drawing.Size(125, 24);
             this.idSpinEdit.TabIndex = 1;
             // 
-            // updateDateLabel
-            // 
-            updateDateLabel.AutoSize = true;
-            updateDateLabel.Location = new System.Drawing.Point(347, 63);
-            updateDateLabel.Name = "updateDateLabel";
-            updateDateLabel.Size = new System.Drawing.Size(90, 17);
-            updateDateLabel.TabIndex = 2;
-            updateDateLabel.Text = "update Date:";
-            // 
             // updateDateDateEdit
             // 
             this.updateDateDateEdit.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.invoiceBindingSource, "updateDate", true));
@@ -788,15 +983,6 @@
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.updateDateDateEdit.Size = new System.Drawing.Size(125, 22);
             this.updateDateDateEdit.TabIndex = 3;
-            // 
-            // buyDateLabel
-            // 
-            buyDateLabel.AutoSize = true;
-            buyDateLabel.Location = new System.Drawing.Point(47, 63);
-            buyDateLabel.Name = "buyDateLabel";
-            buyDateLabel.Size = new System.Drawing.Size(69, 17);
-            buyDateLabel.TabIndex = 4;
-            buyDateLabel.Text = "buy Date:";
             // 
             // buyDateDateEdit
             // 
@@ -813,15 +999,6 @@
             this.buyDateDateEdit.Size = new System.Drawing.Size(125, 22);
             this.buyDateDateEdit.TabIndex = 5;
             // 
-            // nameLabel
-            // 
-            nameLabel.AutoSize = true;
-            nameLabel.Location = new System.Drawing.Point(47, 103);
-            nameLabel.Name = "nameLabel";
-            nameLabel.Size = new System.Drawing.Size(47, 17);
-            nameLabel.TabIndex = 6;
-            nameLabel.Text = "name:";
-            // 
             // nameTextEdit
             // 
             this.nameTextEdit.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.invoiceBindingSource, "name", true));
@@ -831,15 +1008,6 @@
             this.nameTextEdit.Name = "nameTextEdit";
             this.nameTextEdit.Size = new System.Drawing.Size(312, 22);
             this.nameTextEdit.TabIndex = 7;
-            // 
-            // phoneLabel
-            // 
-            phoneLabel.AutoSize = true;
-            phoneLabel.Location = new System.Drawing.Point(47, 138);
-            phoneLabel.Name = "phoneLabel";
-            phoneLabel.Size = new System.Drawing.Size(52, 17);
-            phoneLabel.TabIndex = 8;
-            phoneLabel.Text = "phone:";
             // 
             // phoneTextEdit
             // 
@@ -851,15 +1019,6 @@
             this.phoneTextEdit.Size = new System.Drawing.Size(217, 22);
             this.phoneTextEdit.TabIndex = 9;
             // 
-            // addressLabel
-            // 
-            addressLabel.AutoSize = true;
-            addressLabel.Location = new System.Drawing.Point(47, 172);
-            addressLabel.Name = "addressLabel";
-            addressLabel.Size = new System.Drawing.Size(63, 17);
-            addressLabel.TabIndex = 10;
-            addressLabel.Text = "address:";
-            // 
             // addressTextEdit
             // 
             this.addressTextEdit.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.invoiceBindingSource, "address", true));
@@ -870,15 +1029,6 @@
             this.addressTextEdit.Size = new System.Drawing.Size(425, 22);
             this.addressTextEdit.TabIndex = 11;
             // 
-            // noteLabel
-            // 
-            noteLabel.AutoSize = true;
-            noteLabel.Location = new System.Drawing.Point(47, 207);
-            noteLabel.Name = "noteLabel";
-            noteLabel.Size = new System.Drawing.Size(40, 17);
-            noteLabel.TabIndex = 12;
-            noteLabel.Text = "note:";
-            // 
             // noteTextEdit
             // 
             this.noteTextEdit.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.invoiceBindingSource, "note", true));
@@ -888,24 +1038,6 @@
             this.noteTextEdit.Name = "noteTextEdit";
             this.noteTextEdit.Size = new System.Drawing.Size(425, 22);
             this.noteTextEdit.TabIndex = 13;
-            // 
-            // label4
-            // 
-            label4.AutoSize = true;
-            label4.Location = new System.Drawing.Point(47, 276);
-            label4.Name = "label4";
-            label4.Size = new System.Drawing.Size(90, 17);
-            label4.TabIndex = 14;
-            label4.Text = "Status order ";
-            // 
-            // userIDLabel
-            // 
-            userIDLabel.AutoSize = true;
-            userIDLabel.Location = new System.Drawing.Point(47, 242);
-            userIDLabel.Name = "userIDLabel";
-            userIDLabel.Size = new System.Drawing.Size(57, 17);
-            userIDLabel.TabIndex = 14;
-            userIDLabel.Text = "user ID:";
             // 
             // userIDSpinEdit
             // 
@@ -924,15 +1056,6 @@
             this.userIDSpinEdit.Size = new System.Drawing.Size(125, 24);
             this.userIDSpinEdit.TabIndex = 15;
             // 
-            // statusOrderIdLabel
-            // 
-            statusOrderIdLabel.AutoSize = true;
-            statusOrderIdLabel.Location = new System.Drawing.Point(633, 269);
-            statusOrderIdLabel.Name = "statusOrderIdLabel";
-            statusOrderIdLabel.Size = new System.Drawing.Size(106, 17);
-            statusOrderIdLabel.TabIndex = 16;
-            statusOrderIdLabel.Text = "status Order Id:";
-            // 
             // statusOrderIdSpinEdit
             // 
             this.statusOrderIdSpinEdit.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.invoiceBindingSource, "statusOrderId", true));
@@ -949,15 +1072,7 @@
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.statusOrderIdSpinEdit.Size = new System.Drawing.Size(125, 24);
             this.statusOrderIdSpinEdit.TabIndex = 17;
-            // 
-            // deliveryDateLabel
-            // 
-            deliveryDateLabel.AutoSize = true;
-            deliveryDateLabel.Location = new System.Drawing.Point(633, 63);
-            deliveryDateLabel.Name = "deliveryDateLabel";
-            deliveryDateLabel.Size = new System.Drawing.Size(95, 17);
-            deliveryDateLabel.TabIndex = 18;
-            deliveryDateLabel.Text = "delivery Date:";
+            this.statusOrderIdSpinEdit.EditValueChanged += new System.EventHandler(this.statusOrderIdSpinEdit_EditValueChanged);
             // 
             // deliveryDateDateEdit
             // 
@@ -972,15 +1087,6 @@
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.deliveryDateDateEdit.Size = new System.Drawing.Size(125, 22);
             this.deliveryDateDateEdit.TabIndex = 19;
-            // 
-            // activeLabel
-            // 
-            activeLabel.AutoSize = true;
-            activeLabel.Location = new System.Drawing.Point(47, 309);
-            activeLabel.Name = "activeLabel";
-            activeLabel.Size = new System.Drawing.Size(49, 17);
-            activeLabel.TabIndex = 20;
-            activeLabel.Text = "active:";
             // 
             // activeSpinEdit
             // 
@@ -1031,6 +1137,7 @@
             // 
             this.sizeComboBox.DataSource = this.sizeBindingSource;
             this.sizeComboBox.DisplayMember = "sizeName";
+            this.sizeComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.sizeComboBox.Enabled = false;
             this.sizeComboBox.FormattingEnabled = true;
             this.sizeComboBox.Location = new System.Drawing.Point(123, 182);
@@ -1043,6 +1150,7 @@
             // 
             this.colorComboBox.DataSource = this.colorBindingSource;
             this.colorComboBox.DisplayMember = "colorName";
+            this.colorComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.colorComboBox.Enabled = false;
             this.colorComboBox.FormattingEnabled = true;
             this.colorComboBox.Location = new System.Drawing.Point(123, 139);
@@ -1051,38 +1159,11 @@
             this.colorComboBox.TabIndex = 59;
             this.colorComboBox.ValueMember = "id";
             // 
-            // label3
-            // 
-            label3.AutoSize = true;
-            label3.Location = new System.Drawing.Point(42, 182);
-            label3.Name = "label3";
-            label3.Size = new System.Drawing.Size(35, 17);
-            label3.TabIndex = 59;
-            label3.Text = "Size";
-            // 
-            // label2
-            // 
-            label2.AutoSize = true;
-            label2.Enabled = false;
-            label2.Location = new System.Drawing.Point(42, 142);
-            label2.Name = "label2";
-            label2.Size = new System.Drawing.Size(41, 17);
-            label2.TabIndex = 59;
-            label2.Text = "Color";
-            // 
-            // label1
-            // 
-            label1.AutoSize = true;
-            label1.Location = new System.Drawing.Point(42, 100);
-            label1.Name = "label1";
-            label1.Size = new System.Drawing.Size(57, 17);
-            label1.TabIndex = 59;
-            label1.Text = "Product";
-            // 
             // productComboBox
             // 
             this.productComboBox.DataSource = this.productBindingSource;
             this.productComboBox.DisplayMember = "title";
+            this.productComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.productComboBox.Enabled = false;
             this.productComboBox.FormattingEnabled = true;
             this.productComboBox.Location = new System.Drawing.Point(123, 97);
@@ -1090,15 +1171,7 @@
             this.productComboBox.Size = new System.Drawing.Size(300, 24);
             this.productComboBox.TabIndex = 58;
             this.productComboBox.ValueMember = "id";
-            // 
-            // orderIdLabel
-            // 
-            orderIdLabel.AutoSize = true;
-            orderIdLabel.Location = new System.Drawing.Point(42, 56);
-            orderIdLabel.Name = "orderIdLabel";
-            orderIdLabel.Size = new System.Drawing.Size(61, 17);
-            orderIdLabel.TabIndex = 0;
-            orderIdLabel.Text = "order Id:";
+            this.productComboBox.SelectedIndexChanged += new System.EventHandler(this.productComboBox_SelectedIndexChanged);
             // 
             // orderIdSpinEdit
             // 
@@ -1117,15 +1190,6 @@
             this.orderIdSpinEdit.Size = new System.Drawing.Size(125, 24);
             this.orderIdSpinEdit.TabIndex = 1;
             // 
-            // productIdLabel
-            // 
-            productIdLabel.AutoSize = true;
-            productIdLabel.Location = new System.Drawing.Point(464, 95);
-            productIdLabel.Name = "productIdLabel";
-            productIdLabel.Size = new System.Drawing.Size(75, 17);
-            productIdLabel.TabIndex = 2;
-            productIdLabel.Text = "product Id:";
-            // 
             // productIdSpinEdit
             // 
             this.productIdSpinEdit.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.invoiceItemBindingSource, "productId", true));
@@ -1142,15 +1206,7 @@
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.productIdSpinEdit.Size = new System.Drawing.Size(125, 24);
             this.productIdSpinEdit.TabIndex = 3;
-            // 
-            // colorIdLabel
-            // 
-            colorIdLabel.AutoSize = true;
-            colorIdLabel.Location = new System.Drawing.Point(464, 136);
-            colorIdLabel.Name = "colorIdLabel";
-            colorIdLabel.Size = new System.Drawing.Size(58, 17);
-            colorIdLabel.TabIndex = 4;
-            colorIdLabel.Text = "color Id:";
+            this.productIdSpinEdit.EditValueChanged += new System.EventHandler(this.productIdSpinEdit_EditValueChanged);
             // 
             // colorIdSpinEdit
             // 
@@ -1168,15 +1224,7 @@
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.colorIdSpinEdit.Size = new System.Drawing.Size(125, 24);
             this.colorIdSpinEdit.TabIndex = 5;
-            // 
-            // sizeIdLabel
-            // 
-            sizeIdLabel.AutoSize = true;
-            sizeIdLabel.Location = new System.Drawing.Point(464, 182);
-            sizeIdLabel.Name = "sizeIdLabel";
-            sizeIdLabel.Size = new System.Drawing.Size(52, 17);
-            sizeIdLabel.TabIndex = 6;
-            sizeIdLabel.Text = "size Id:";
+            this.colorIdSpinEdit.EditValueChanged += new System.EventHandler(this.colorIdSpinEdit_EditValueChanged);
             // 
             // sizeIdSpinEdit
             // 
@@ -1194,15 +1242,7 @@
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.sizeIdSpinEdit.Size = new System.Drawing.Size(125, 24);
             this.sizeIdSpinEdit.TabIndex = 7;
-            // 
-            // unitPriceLabel
-            // 
-            unitPriceLabel.AutoSize = true;
-            unitPriceLabel.Location = new System.Drawing.Point(42, 230);
-            unitPriceLabel.Name = "unitPriceLabel";
-            unitPriceLabel.Size = new System.Drawing.Size(71, 17);
-            unitPriceLabel.TabIndex = 8;
-            unitPriceLabel.Text = "unit Price:";
+            this.sizeIdSpinEdit.EditValueChanged += new System.EventHandler(this.sizeIdSpinEdit_EditValueChanged);
             // 
             // unitPriceSpinEdit
             // 
@@ -1221,15 +1261,6 @@
             this.unitPriceSpinEdit.Size = new System.Drawing.Size(177, 24);
             this.unitPriceSpinEdit.TabIndex = 9;
             // 
-            // quantityLabel
-            // 
-            quantityLabel.AutoSize = true;
-            quantityLabel.Location = new System.Drawing.Point(42, 274);
-            quantityLabel.Name = "quantityLabel";
-            quantityLabel.Size = new System.Drawing.Size(62, 17);
-            quantityLabel.TabIndex = 10;
-            quantityLabel.Text = "quantity:";
-            // 
             // quantitySpinEdit
             // 
             this.quantitySpinEdit.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.invoiceItemBindingSource, "quantity", true));
@@ -1246,24 +1277,6 @@
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.quantitySpinEdit.Size = new System.Drawing.Size(125, 24);
             this.quantitySpinEdit.TabIndex = 11;
-            // 
-            // label5
-            // 
-            label5.AutoSize = true;
-            label5.Location = new System.Drawing.Point(61, 20);
-            label5.Name = "label5";
-            label5.Size = new System.Drawing.Size(90, 17);
-            label5.TabIndex = 14;
-            label5.Text = "Status order ";
-            // 
-            // cbbStatusOrder
-            // 
-            this.cbbStatusOrder.FormattingEnabled = true;
-            this.cbbStatusOrder.Location = new System.Drawing.Point(172, 17);
-            this.cbbStatusOrder.Name = "cbbStatusOrder";
-            this.cbbStatusOrder.Size = new System.Drawing.Size(426, 24);
-            this.cbbStatusOrder.TabIndex = 59;
-            this.cbbStatusOrder.SelectedIndexChanged += new System.EventHandler(this.cbbStatusOrder_SelectedIndexChanged);
             // 
             // InvoiceForm
             // 
