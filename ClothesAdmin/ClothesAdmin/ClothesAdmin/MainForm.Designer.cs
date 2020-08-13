@@ -743,7 +743,6 @@
             // ribbonPageGroup4
             // 
             this.ribbonPageGroup4.ItemLinks.Add(this.btnPromo);
-            this.ribbonPageGroup4.ItemLinks.Add(this.btnProductPromotion);
             this.ribbonPageGroup4.Name = "ribbonPageGroup4";
             // 
             // ribbonPageGroup5
