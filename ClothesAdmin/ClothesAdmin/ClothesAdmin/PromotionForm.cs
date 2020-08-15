@@ -111,6 +111,7 @@ namespace ClothesAdmin
                         promotionBindingSource.RemoveCurrent();
                         //đẩy dữ liệu về adapter
                         this.promotionTableAdapter.Update(this.clothesDataSet.Promotion);
+                        Program.showToastDel();
                     }
                     catch (Exception ex)
                     {
@@ -128,6 +129,7 @@ namespace ClothesAdmin
         private void btnReloadProvider_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
             loadData();
+            Program.showToastReload();
         }
 
         private void btnCancelAddProvider_Click(object sender, EventArgs e)
@@ -140,6 +142,7 @@ namespace ClothesAdmin
             this.Validate();
             this.promotionBindingSource.EndEdit();
             this.tableAdapterManager.UpdateAll(this.clothesDataSet);
+            Program.showToastSave();
         }
 
         private void button2_Click(object sender, EventArgs e)

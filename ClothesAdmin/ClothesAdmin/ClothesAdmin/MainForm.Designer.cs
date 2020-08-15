@@ -718,7 +718,6 @@
             this.btnProductPromotion.Caption = "Product in promotion";
             this.btnProductPromotion.Id = 273;
             this.btnProductPromotion.Name = "btnProductPromotion";
-            this.btnProductPromotion.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnProductPromotion_ItemClick);
             // 
             // rbHome
             // 

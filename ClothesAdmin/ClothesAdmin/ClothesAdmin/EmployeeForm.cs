@@ -129,6 +129,7 @@ namespace ClothesAdmin
                 int statusEdit = Program.myReader.GetInt32(0);
                 String message = Program.myReader.GetString(1);
                 MessageBox.Show(statusEdit + " " + message, "THÔNG BÁO", MessageBoxButtons.OK);
+                Program.showToastSave();
             }
             else
             {
@@ -173,6 +174,7 @@ namespace ClothesAdmin
                 int statusEdit = Program.myReader.GetInt32(0);
                 String message = Program.myReader.GetString(1);
                 MessageBox.Show(statusEdit + " " + message, "THÔNG BÁO", MessageBoxButtons.OK);
+                Program.showToastUpdate();
             }
         }
 
@@ -188,9 +190,10 @@ namespace ClothesAdmin
                 if (MessageBox.Show("Bạn có chắc chắn muốn xóa " + ((DataRowView)this.sP_GetAllEmployeeBindingSource.Current).Row["firstName"].ToString() + "?", "", MessageBoxButtons.YesNo) == DialogResult.Yes)
                 {
                     String sql = "EXEC SP_DelEmployee " + Convert.ToInt32(idSpinEdit.Value);
-
                     Program.myReader = Program.ExecSqlDataReader(sql);
                     loadData();
+                    Program.showToastDel();
+
                 }
             }
         }
@@ -199,6 +202,7 @@ namespace ClothesAdmin
         {
             isAdd = false;
             loadData();
+            Program.showToastReload();
         }
 
         private void btnCloseForm_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)

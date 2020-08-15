@@ -24,7 +24,6 @@ namespace ClothesAdmin
         private SizeColorForm sizeColorForm = null;
         private PromotionForm promotionForm = null;
         private AccountsForm accountsForm = null;
-        private ProductPromotionForm productPromotionForm = null;
         private ProviderForm providerForm = null;
         public MainForm()
         {
@@ -325,19 +324,6 @@ namespace ClothesAdmin
                 importCuponForm = new ImportCuponForm();
                 importCuponForm.MdiParent = this;
                 importCuponForm.Show();
-            }
-            else form.Activate();
-        }
-
-        private void btnProductPromotion_ItemClick(object sender, ItemClickEventArgs e)
-        {
-            form = this.CheckExists(typeof(ProductPromotionForm));
-            if (form == null)
-            {
-                IsMdiContainer = true;
-                productPromotionForm = new ProductPromotionForm();
-                productPromotionForm.MdiParent = this;
-                productPromotionForm.Show();
             }
             else form.Activate();
         }

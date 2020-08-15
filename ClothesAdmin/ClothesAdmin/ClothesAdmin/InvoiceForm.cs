@@ -110,6 +110,7 @@ namespace ClothesAdmin
         private void btnReloadProvider_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
             loadData();
+            Program.showToastReload();
         }
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
@@ -187,6 +188,7 @@ namespace ClothesAdmin
             this.Validate();
             this.invoiceBindingSource.EndEdit();
             this.tableAdapterManager.UpdateAll(this.clothesDataSet);
+            Program.showToastSave();
         }
 
         private void btnCancelAddProvider_Click_1(object sender, EventArgs e)

@@ -66,6 +66,7 @@ namespace ClothesAdmin
                         providerBindingSource.RemoveCurrent();
                         //đẩy dữ liệu về adapter
                         this.providerTableAdapter.Update(this.clothesDataSet.Provider);
+                        Program.showToastDel();
                     }
                     catch (Exception ex)
                     {
@@ -120,6 +121,7 @@ namespace ClothesAdmin
             // TODO: This line of code loads data into the 'clothesDataSet.Provider' table. You can move, or remove it, as needed.
             this.providerTableAdapter.Fill(this.clothesDataSet.Provider);
             setImage();
+            Program.showToastReload();
         }
 
         private void btnCancelAddProvider_Click(object sender, EventArgs e)
@@ -132,6 +134,7 @@ namespace ClothesAdmin
             this.Validate();
             this.providerBindingSource.EndEdit();
             this.tableAdapterManager.UpdateAll(this.clothesDataSet);
+            Program.showToastSave();
         }
 
         private void setImage()

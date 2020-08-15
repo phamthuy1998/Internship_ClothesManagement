@@ -28,6 +28,10 @@ namespace ClothesAdmin
 
         private void ImportCuponForm_Load(object sender, EventArgs e)
         {
+            // TODO: This line of code loads data into the 'clothesDataSet.Color' table. You can move, or remove it, as needed.
+            this.colorTableAdapter.Fill(this.clothesDataSet.Color);
+            // TODO: This line of code loads data into the 'clothesDataSet.Size' table. You can move, or remove it, as needed.
+            this.sizeTableAdapter.Fill(this.clothesDataSet.Size);
             employeeComboBox1.SelectedIndex = -1;
             loadData();
         }
@@ -77,6 +81,7 @@ namespace ClothesAdmin
             this.Validate();
             this.importCouponBindingSource.EndEdit();
             this.tableAdapterManager.UpdateAll(this.clothesDataSet);
+            Program.showToastSave();
         }
 
         private void btnDelProvider_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
@@ -102,6 +107,7 @@ namespace ClothesAdmin
                         importCouponBindingSource.RemoveCurrent();
                         //đẩy dữ liệu về adapter
                         this.importCouponTableAdapter.Update(this.clothesDataSet.ImportCoupon);
+                        Program.showToastDel();
                     }
                     catch (Exception ex)
                     {
@@ -114,6 +120,7 @@ namespace ClothesAdmin
         private void btnReloadProvider_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
             loadData();
+            Program.showToastReload();
         }
 
         private void btnCloseForm_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
@@ -159,6 +166,7 @@ namespace ClothesAdmin
                 this.Validate();
                 this.importCouponDetailBindingSource.EndEdit();
                 this.tableAdapterManager.UpdateAll(this.clothesDataSet);
+                Program.showToastSave();
             }
             catch (Exception ex) { MessageBox.Show(ex.Message, "THÔNG BÁO", MessageBoxButtons.OK); }
         }
@@ -221,6 +229,39 @@ namespace ClothesAdmin
 
             }
             catch (Exception ex) { }
+        }
+
+        private void sizeIDTextBox_TextChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                sizeComboBox.SelectedValue = Convert.ToInt32(sizeIDTextBox.Text);
+            }catch(Exception ex)
+            {
+
+            }
+        }
+
+        private void colorIdTextBox_TextChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                colorComboBox.SelectedValue = Convert.ToInt32(colorIdTextBox.Text);
+            }
+            catch (Exception ex)
+            {
+
+            }
+        }
+
+        private void sizeComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            sizeIDTextBox.Text = sizeComboBox.SelectedValue.ToString();
+        }
+
+        private void colorComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            colorIdTextBox.Text = colorComboBox.SelectedValue.ToString();
         }
     }
 }

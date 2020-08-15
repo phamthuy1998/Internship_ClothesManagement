@@ -337,7 +337,7 @@
             this.barDockControl1.Location = new System.Drawing.Point(0, 0);
             this.barDockControl1.Manager = this.barManager;
             this.barDockControl1.Margin = new System.Windows.Forms.Padding(2);
-            this.barDockControl1.Size = new System.Drawing.Size(1940, 30);
+            this.barDockControl1.Size = new System.Drawing.Size(1940, 33);
             // 
             // barDockControl2
             // 
@@ -352,19 +352,19 @@
             // 
             this.barDockControl3.CausesValidation = false;
             this.barDockControl3.Dock = System.Windows.Forms.DockStyle.Left;
-            this.barDockControl3.Location = new System.Drawing.Point(0, 30);
+            this.barDockControl3.Location = new System.Drawing.Point(0, 33);
             this.barDockControl3.Manager = this.barManager;
             this.barDockControl3.Margin = new System.Windows.Forms.Padding(2);
-            this.barDockControl3.Size = new System.Drawing.Size(0, 901);
+            this.barDockControl3.Size = new System.Drawing.Size(0, 898);
             // 
             // barDockControl5
             // 
             this.barDockControl5.CausesValidation = false;
             this.barDockControl5.Dock = System.Windows.Forms.DockStyle.Right;
-            this.barDockControl5.Location = new System.Drawing.Point(1940, 30);
+            this.barDockControl5.Location = new System.Drawing.Point(1940, 33);
             this.barDockControl5.Manager = this.barManager;
             this.barDockControl5.Margin = new System.Windows.Forms.Padding(2);
-            this.barDockControl5.Size = new System.Drawing.Size(0, 901);
+            this.barDockControl5.Size = new System.Drawing.Size(0, 898);
             // 
             // btnSua
             // 
@@ -392,7 +392,7 @@
             this.tableLayoutPanel1.Controls.Add(this.panel1, 0, 1);
             this.tableLayoutPanel1.Controls.Add(this.panel2, 1, 1);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 30);
+            this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 33);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 2;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 45.02793F));
@@ -405,7 +405,7 @@
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(1940, 901);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(1940, 898);
             this.tableLayoutPanel1.TabIndex = 5;
             // 
             // promotionItemGridControl
@@ -417,7 +417,7 @@
             this.promotionItemGridControl.MainView = this.gridView2;
             this.promotionItemGridControl.MenuManager = this.barManager;
             this.promotionItemGridControl.Name = "promotionItemGridControl";
-            this.promotionItemGridControl.Size = new System.Drawing.Size(843, 395);
+            this.promotionItemGridControl.Size = new System.Drawing.Size(843, 394);
             this.promotionItemGridControl.TabIndex = 1;
             this.promotionItemGridControl.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridView2});
@@ -507,7 +507,7 @@
             this.promotionGridControl.MainView = this.gridView1;
             this.promotionGridControl.MenuManager = this.barManager;
             this.promotionGridControl.Name = "promotionGridControl";
-            this.promotionGridControl.Size = new System.Drawing.Size(1076, 395);
+            this.promotionGridControl.Size = new System.Drawing.Size(1076, 394);
             this.promotionGridControl.TabIndex = 0;
             this.promotionGridControl.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridView1});
@@ -640,9 +640,9 @@
             this.panel1.Controls.Add(typeLabel);
             this.panel1.Controls.Add(this.typeTextEdit);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel1.Location = new System.Drawing.Point(6, 410);
+            this.panel1.Location = new System.Drawing.Point(6, 409);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1076, 485);
+            this.panel1.Size = new System.Drawing.Size(1076, 483);
             this.panel1.TabIndex = 2;
             // 
             // btnCancelAddProvider
@@ -798,9 +798,9 @@
             this.panel2.Controls.Add(idPromoLabel);
             this.panel2.Controls.Add(this.idPromoSpinEdit);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel2.Location = new System.Drawing.Point(1091, 410);
+            this.panel2.Location = new System.Drawing.Point(1091, 409);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(843, 485);
+            this.panel2.Size = new System.Drawing.Size(843, 483);
             this.panel2.TabIndex = 3;
             // 
             // promotionComboBox
@@ -808,6 +808,7 @@
             this.promotionComboBox.DataSource = this.promotionBindingSource1;
             this.promotionComboBox.DisplayMember = "name";
             this.promotionComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.promotionComboBox.Enabled = false;
             this.promotionComboBox.FormattingEnabled = true;
             this.promotionComboBox.Location = new System.Drawing.Point(122, 126);
             this.promotionComboBox.Name = "promotionComboBox";

@@ -11,9 +11,9 @@ using DevExpress.XtraEditors;
 
 namespace ClothesAdmin
 {
-    public partial class ProductPromotionForm : DevExpress.XtraEditors.XtraForm
+    public partial class ProductImageForm : DevExpress.XtraEditors.XtraForm
     {
-        public ProductPromotionForm()
+        public ProductImageForm()
         {
             InitializeComponent();
         }

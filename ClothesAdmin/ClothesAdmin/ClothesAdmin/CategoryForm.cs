@@ -42,6 +42,7 @@ namespace ClothesAdmin
             this.Validate();
             this.categoryBindingSource.EndEdit();
             this.tableAdapterManager.UpdateAll(this.clothesDataSet);
+            Program.showToastSave();
         }
 
         private void btnCancelAddProvider_Click(object sender, EventArgs e)
@@ -115,6 +116,7 @@ namespace ClothesAdmin
                         categoryBindingSource.RemoveCurrent();
                         //đẩy dữ liệu về adapter
                         this.categoryTableAdapter.Update(this.clothesDataSet.Category);
+                        Program.showToastDel();
                     }
                     catch (Exception ex)
                     {
@@ -130,6 +132,7 @@ namespace ClothesAdmin
             this.productTableAdapter.Fill(this.clothesDataSet.Product);
             // TODO: This line of code loads data into the 'clothesDataSet.Category' table. You can move, or remove it, as needed.
             this.categoryTableAdapter.Fill(this.clothesDataSet.Category);
+            Program.showToastReload();
         }
 
         private void btnCloseForm_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)

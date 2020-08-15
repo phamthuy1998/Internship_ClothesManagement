@@ -154,6 +154,12 @@
     <Compile Include="Customer.cs">
       <DependentUpon>ClothesModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="CustomToast.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CustomToast.Designer.cs">
+      <DependentUpon>CustomToast.cs</DependentUpon>
+    </Compile>
     <Compile Include="Employee.cs">
       <DependentUpon>ClothesModel.tt</DependentUpon>
     </Compile>
@@ -217,11 +223,11 @@
     <Compile Include="ProductForm.Designer.cs">
       <DependentUpon>ProductForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="ProductPromotionForm.cs">
+    <Compile Include="ProductImageForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ProductPromotionForm.Designer.cs">
-      <DependentUpon>ProductPromotionForm.cs</DependentUpon>
+    <Compile Include="ProductImageForm.Designer.cs">
+      <DependentUpon>ProductImageForm.cs</DependentUpon>
     </Compile>
     <Compile Include="ProductSizeColor.cs">
       <DependentUpon>ClothesModel.tt</DependentUpon>
@@ -332,6 +338,9 @@
     <EmbeddedResource Include="ColorForm.resx">
       <DependentUpon>ColorForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="CustomToast.resx">
+      <DependentUpon>CustomToast.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="EmployeeForm.resx">
       <DependentUpon>EmployeeForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -350,9 +359,6 @@
     <EmbeddedResource Include="ProductForm.resx">
       <DependentUpon>ProductForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ProductPromotionForm.resx">
-      <DependentUpon>ProductPromotionForm.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="PromotionForm.resx">
       <DependentUpon>PromotionForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -369,6 +375,9 @@
     </Compile>
     <EmbeddedResource Include="ProviderForm.resx">
       <DependentUpon>ProviderForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SizeColorForm.aa-DJ.resx">
+      <DependentUpon>SizeColorForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="SizeColorForm.resx">
       <DependentUpon>SizeColorForm.cs</DependentUpon>

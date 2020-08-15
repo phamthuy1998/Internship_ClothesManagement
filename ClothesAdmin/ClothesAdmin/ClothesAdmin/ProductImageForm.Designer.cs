@@ -1,6 +1,6 @@
 ﻿namespace ClothesAdmin
 {
-    partial class ProductPromotionForm
+    partial class ProductImageForm
     {
         /// <summary>
         /// Required designer variable.
@@ -28,17 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.SuspendLayout();
-            // 
-            // ProductPromotionForm
-            // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.components = new System.ComponentModel.Container();
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1151, 741);
-            this.Name = "ProductPromotionForm";
-            this.Text = "ProductPromotionForm";
-            this.ResumeLayout(false);
-
+            this.Text = "ProductImageForm";
         }
 
         #endregion

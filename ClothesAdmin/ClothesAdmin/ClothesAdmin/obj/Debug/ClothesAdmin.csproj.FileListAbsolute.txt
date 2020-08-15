@@ -199,7 +199,6 @@ D:\internship\Internship_ClothesManagement\ClothesAdmin\ClothesAdmin\ClothesAdmi
 D:\internship\Internship_ClothesManagement\ClothesAdmin\ClothesAdmin\ClothesAdmin\obj\Debug\ClothesAdmin.LoginForm.resources
 D:\internship\Internship_ClothesManagement\ClothesAdmin\ClothesAdmin\ClothesAdmin\obj\Debug\ClothesAdmin.MainForm.resources
 D:\internship\Internship_ClothesManagement\ClothesAdmin\ClothesAdmin\ClothesAdmin\obj\Debug\ClothesAdmin.ProductForm.resources
-D:\internship\Internship_ClothesManagement\ClothesAdmin\ClothesAdmin\ClothesAdmin\obj\Debug\ClothesAdmin.ProductPromotionForm.resources
 D:\internship\Internship_ClothesManagement\ClothesAdmin\ClothesAdmin\ClothesAdmin\obj\Debug\ClothesAdmin.PromotionForm.resources
 D:\internship\Internship_ClothesManagement\ClothesAdmin\ClothesAdmin\ClothesAdmin\obj\Debug\ClothesAdmin.Properties.Resources.resources
 D:\internship\Internship_ClothesManagement\ClothesAdmin\ClothesAdmin\ClothesAdmin\obj\Debug\ClothesAdmin.ProviderForm.resources
@@ -209,3 +208,7 @@ D:\internship\Internship_ClothesManagement\ClothesAdmin\ClothesAdmin\ClothesAdmi
 D:\internship\Internship_ClothesManagement\ClothesAdmin\ClothesAdmin\ClothesAdmin\obj\Debug\ClothesAdmin.exe.licenses
 D:\internship\Internship_ClothesManagement\ClothesAdmin\ClothesAdmin\ClothesAdmin\obj\Debug\ClothesAdmin.exe
 D:\internship\Internship_ClothesManagement\ClothesAdmin\ClothesAdmin\ClothesAdmin\obj\Debug\ClothesAdmin.pdb
+D:\internship\Internship_ClothesManagement\ClothesAdmin\ClothesAdmin\ClothesAdmin\obj\Debug\ClothesAdmin.CustomToast.resources
+D:\internship\Internship_ClothesManagement\ClothesAdmin\ClothesAdmin\ClothesAdmin\bin\Debug\aa-DJ\ClothesAdmin.resources.dll
+D:\internship\Internship_ClothesManagement\ClothesAdmin\ClothesAdmin\ClothesAdmin\obj\Debug\ClothesAdmin.SizeColorForm.aa-DJ.resources
+D:\internship\Internship_ClothesManagement\ClothesAdmin\ClothesAdmin\ClothesAdmin\obj\Debug\aa-DJ\ClothesAdmin.resources.dll

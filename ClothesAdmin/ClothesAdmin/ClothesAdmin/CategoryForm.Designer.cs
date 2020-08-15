@@ -36,7 +36,7 @@
             System.Windows.Forms.Label thumnailLabel;
             System.Windows.Forms.Label sexLabel;
             System.Windows.Forms.Label activeLabel;
-            System.Windows.Forms.Label label1;
+            System.Windows.Forms.Label c;
             System.Windows.Forms.Label label2;
             System.Windows.Forms.Label label3;
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CategoryForm));
@@ -85,7 +85,7 @@
             thumnailLabel = new System.Windows.Forms.Label();
             sexLabel = new System.Windows.Forms.Label();
             activeLabel = new System.Windows.Forms.Label();
-            label1 = new System.Windows.Forms.Label();
+            c = new System.Windows.Forms.Label();
             label2 = new System.Windows.Forms.Label();
             label3 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.clothesDataSet)).BeginInit();
@@ -167,15 +167,15 @@
             activeLabel.TabIndex = 13;
             activeLabel.Text = "Active";
             // 
-            // label1
+            // c
             // 
-            label1.AutoSize = true;
-            label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            label1.Location = new System.Drawing.Point(942, 44);
-            label1.Name = "label1";
-            label1.Size = new System.Drawing.Size(229, 36);
-            label1.TabIndex = 24;
-            label1.Text = "Category detail";
+            c.AutoSize = true;
+            c.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            c.Location = new System.Drawing.Point(942, 44);
+            c.Name = "c";
+            c.Size = new System.Drawing.Size(229, 36);
+            c.TabIndex = 24;
+            c.Text = "Category detail";
             // 
             // label2
             // 
@@ -597,7 +597,7 @@
             this.Controls.Add(this.picThumbnail);
             this.Controls.Add(label2);
             this.Controls.Add(label3);
-            this.Controls.Add(label1);
+            this.Controls.Add(c);
             this.Controls.Add(this.categoryGridControl);
             this.Controls.Add(idLabel);
             this.Controls.Add(this.idSpinEdit);

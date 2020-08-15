@@ -40,6 +40,7 @@ namespace ClothesAdmin
             this.Validate();
             this.colorBindingSource.EndEdit();
             this.tableAdapterManager.UpdateAll(this.clothesDataSet);
+            Program.showToastSave();
         }
 
         private void colorHexTextEdit_EditValueChanged(object sender, EventArgs e)
@@ -103,6 +104,7 @@ namespace ClothesAdmin
                         colorBindingSource.RemoveCurrent();
                         //đẩy dữ liệu về adapter
                         this.colorTableAdapter.Update(this.clothesDataSet.Color);
+                        Program.showToastDel();
                     }
                     catch (Exception ex)
                     {
@@ -118,6 +120,7 @@ namespace ClothesAdmin
             this.productSizeColorTableAdapter.Fill(this.clothesDataSet.ProductSizeColor);
             // TODO: This line of code loads data into the 'clothesDataSet.Color' table. You can move, or remove it, as needed.
             this.colorTableAdapter.Fill(this.clothesDataSet.Color);
+            Program.showToastReload();
         }
 
         private void btnCloseForm_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
