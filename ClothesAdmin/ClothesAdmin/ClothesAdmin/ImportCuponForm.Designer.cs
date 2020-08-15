@@ -29,9 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ImportCuponForm));
             System.Windows.Forms.Label idLabel;
-            System.Windows.Forms.Label dateLabel;
             System.Windows.Forms.Label employeeIdLabel;
             System.Windows.Forms.Label idCouponLabel;
             System.Windows.Forms.Label idProductLabel;
@@ -39,6 +37,8 @@
             System.Windows.Forms.Label priceLabel;
             System.Windows.Forms.Label label1;
             System.Windows.Forms.Label label2;
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ImportCuponForm));
+            System.Windows.Forms.Label dateLabel;
             this.barManager = new DevExpress.XtraBars.BarManager(this.components);
             this.bar2 = new DevExpress.XtraBars.Bar();
             this.btnAddProvider = new DevExpress.XtraBars.BarButtonItem();
@@ -53,48 +53,47 @@
             this.btnTimKiem = new DevExpress.XtraBars.BarButtonItem();
             this.panel1 = new System.Windows.Forms.Panel();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
-            this.panel4 = new System.Windows.Forms.Panel();
-            this.panel5 = new System.Windows.Forms.Panel();
-            this.clothesDataSet = new ClothesAdmin.ClothesDataSet();
-            this.importCouponBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.importCouponTableAdapter = new ClothesAdmin.ClothesDataSetTableAdapters.ImportCouponTableAdapter();
-            this.tableAdapterManager = new ClothesAdmin.ClothesDataSetTableAdapters.TableAdapterManager();
-            this.importCouponGridControl = new DevExpress.XtraGrid.GridControl();
-            this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
-            this.importCouponDetailBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.importCouponDetailTableAdapter = new ClothesAdmin.ClothesDataSetTableAdapters.ImportCouponDetailTableAdapter();
             this.importCouponDetailGridControl = new DevExpress.XtraGrid.GridControl();
-            this.gridView2 = new DevExpress.XtraGrid.Views.Grid.GridView();
-            this.idSpinEdit = new DevExpress.XtraEditors.SpinEdit();
-            this.dateSpinEdit = new DevExpress.XtraEditors.SpinEdit();
-            this.employeeIdSpinEdit = new DevExpress.XtraEditors.SpinEdit();
-            this.idCouponSpinEdit = new DevExpress.XtraEditors.SpinEdit();
-            this.idProductSpinEdit = new DevExpress.XtraEditors.SpinEdit();
-            this.quantitySpinEdit = new DevExpress.XtraEditors.SpinEdit();
-            this.priceSpinEdit = new DevExpress.XtraEditors.SpinEdit();
-            this.colid = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.coldate = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colemployeeId = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colidCoupon = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colidProduct = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colquantity = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colprice = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.btnCancelAddItem = new System.Windows.Forms.Button();
-            this.btnSaveAddItem = new System.Windows.Forms.Button();
-            this.btnSaveIport = new System.Windows.Forms.Button();
-            this.btnCancelImport = new System.Windows.Forms.Button();
-            this.productBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.productTableAdapter = new ClothesAdmin.ClothesDataSetTableAdapters.ProductTableAdapter();
-            this.productComboBox = new System.Windows.Forms.ComboBox();
-            this.employeeBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.employeeTableAdapter = new ClothesAdmin.ClothesDataSetTableAdapters.EmployeeTableAdapter();
-            this.employeeComboBox = new System.Windows.Forms.ComboBox();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.addProductPromoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.deleteProductPromoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.reloadToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.importCouponDetailBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.importCouponBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.clothesDataSet = new ClothesAdmin.ClothesDataSet();
+            this.gridView2 = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.colidCoupon = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colidProduct = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colquantity = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colprice = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.importCouponGridControl = new DevExpress.XtraGrid.GridControl();
+            this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.colid = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.coldate = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colemployeeId = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.panel4 = new System.Windows.Forms.Panel();
+            this.employeeComboBox = new System.Windows.Forms.ComboBox();
+            this.employeeBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.btnCancelImport = new System.Windows.Forms.Button();
+            this.btnSaveIport = new System.Windows.Forms.Button();
+            this.idSpinEdit = new DevExpress.XtraEditors.SpinEdit();
+            this.employeeIdSpinEdit = new DevExpress.XtraEditors.SpinEdit();
+            this.panel5 = new System.Windows.Forms.Panel();
+            this.productComboBox = new System.Windows.Forms.ComboBox();
+            this.productBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.btnCancelAddItem = new System.Windows.Forms.Button();
+            this.btnSaveAddItem = new System.Windows.Forms.Button();
+            this.idCouponSpinEdit = new DevExpress.XtraEditors.SpinEdit();
+            this.idProductSpinEdit = new DevExpress.XtraEditors.SpinEdit();
+            this.quantitySpinEdit = new DevExpress.XtraEditors.SpinEdit();
+            this.priceSpinEdit = new DevExpress.XtraEditors.SpinEdit();
+            this.importCouponTableAdapter = new ClothesAdmin.ClothesDataSetTableAdapters.ImportCouponTableAdapter();
+            this.tableAdapterManager = new ClothesAdmin.ClothesDataSetTableAdapters.TableAdapterManager();
+            this.employeeTableAdapter = new ClothesAdmin.ClothesDataSetTableAdapters.EmployeeTableAdapter();
+            this.importCouponDetailTableAdapter = new ClothesAdmin.ClothesDataSetTableAdapters.ImportCouponDetailTableAdapter();
+            this.productTableAdapter = new ClothesAdmin.ClothesDataSetTableAdapters.ProductTableAdapter();
+            this.dateDateEdit = new DevExpress.XtraEditors.DateEdit();
             idLabel = new System.Windows.Forms.Label();
-            dateLabel = new System.Windows.Forms.Label();
             employeeIdLabel = new System.Windows.Forms.Label();
             idCouponLabel = new System.Windows.Forms.Label();
             idProductLabel = new System.Windows.Forms.Label();
@@ -102,28 +101,102 @@
             priceLabel = new System.Windows.Forms.Label();
             label1 = new System.Windows.Forms.Label();
             label2 = new System.Windows.Forms.Label();
+            dateLabel = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.barManager)).BeginInit();
             this.tableLayoutPanel1.SuspendLayout();
-            this.panel4.SuspendLayout();
-            this.panel5.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.clothesDataSet)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.importCouponDetailGridControl)).BeginInit();
+            this.contextMenuStrip1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.importCouponDetailBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.importCouponBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.clothesDataSet)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridView2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.importCouponGridControl)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.importCouponDetailBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.importCouponDetailGridControl)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gridView2)).BeginInit();
+            this.panel4.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.employeeBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.idSpinEdit.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dateSpinEdit.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.employeeIdSpinEdit.Properties)).BeginInit();
+            this.panel5.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.productBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.idCouponSpinEdit.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.idProductSpinEdit.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.quantitySpinEdit.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.priceSpinEdit.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.productBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.employeeBindingSource)).BeginInit();
-            this.contextMenuStrip1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dateDateEdit.Properties.CalendarTimeProperties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dateDateEdit.Properties)).BeginInit();
             this.SuspendLayout();
+            // 
+            // idLabel
+            // 
+            idLabel.AutoSize = true;
+            idLabel.Location = new System.Drawing.Point(67, 44);
+            idLabel.Name = "idLabel";
+            idLabel.Size = new System.Drawing.Size(23, 17);
+            idLabel.TabIndex = 0;
+            idLabel.Text = "id:";
+            // 
+            // employeeIdLabel
+            // 
+            employeeIdLabel.AutoSize = true;
+            employeeIdLabel.Location = new System.Drawing.Point(67, 97);
+            employeeIdLabel.Name = "employeeIdLabel";
+            employeeIdLabel.Size = new System.Drawing.Size(88, 17);
+            employeeIdLabel.TabIndex = 4;
+            employeeIdLabel.Text = "employee Id:";
+            // 
+            // idCouponLabel
+            // 
+            idCouponLabel.AutoSize = true;
+            idCouponLabel.Location = new System.Drawing.Point(84, 25);
+            idCouponLabel.Name = "idCouponLabel";
+            idCouponLabel.Size = new System.Drawing.Size(74, 17);
+            idCouponLabel.TabIndex = 0;
+            idCouponLabel.Text = "Coupon ID";
+            // 
+            // idProductLabel
+            // 
+            idProductLabel.AutoSize = true;
+            idProductLabel.Location = new System.Drawing.Point(627, 130);
+            idProductLabel.Name = "idProductLabel";
+            idProductLabel.Size = new System.Drawing.Size(74, 17);
+            idProductLabel.TabIndex = 2;
+            idProductLabel.Text = "Product ID";
+            // 
+            // quantityLabel
+            // 
+            quantityLabel.AutoSize = true;
+            quantityLabel.Location = new System.Drawing.Point(84, 74);
+            quantityLabel.Name = "quantityLabel";
+            quantityLabel.Size = new System.Drawing.Size(61, 17);
+            quantityLabel.TabIndex = 4;
+            quantityLabel.Text = "Quantity";
+            // 
+            // priceLabel
+            // 
+            priceLabel.AutoSize = true;
+            priceLabel.Location = new System.Drawing.Point(584, 74);
+            priceLabel.Name = "priceLabel";
+            priceLabel.Size = new System.Drawing.Size(40, 17);
+            priceLabel.TabIndex = 6;
+            priceLabel.Text = "Price";
+            // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Location = new System.Drawing.Point(84, 129);
+            label1.Name = "label1";
+            label1.Size = new System.Drawing.Size(57, 17);
+            label1.TabIndex = 4;
+            label1.Text = "Product";
+            // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.Location = new System.Drawing.Point(405, 97);
+            label2.Name = "label2";
+            label2.Size = new System.Drawing.Size(116, 17);
+            label2.TabIndex = 2;
+            label2.Text = "Empoyee\'s name";
             // 
             // barManager
             // 
@@ -201,7 +274,7 @@
             this.barDockControl1.Location = new System.Drawing.Point(0, 0);
             this.barDockControl1.Manager = this.barManager;
             this.barDockControl1.Margin = new System.Windows.Forms.Padding(2);
-            this.barDockControl1.Size = new System.Drawing.Size(1940, 33);
+            this.barDockControl1.Size = new System.Drawing.Size(1940, 30);
             // 
             // barDockControl2
             // 
@@ -216,19 +289,19 @@
             // 
             this.barDockControl3.CausesValidation = false;
             this.barDockControl3.Dock = System.Windows.Forms.DockStyle.Left;
-            this.barDockControl3.Location = new System.Drawing.Point(0, 33);
+            this.barDockControl3.Location = new System.Drawing.Point(0, 30);
             this.barDockControl3.Manager = this.barManager;
             this.barDockControl3.Margin = new System.Windows.Forms.Padding(2);
-            this.barDockControl3.Size = new System.Drawing.Size(0, 675);
+            this.barDockControl3.Size = new System.Drawing.Size(0, 678);
             // 
             // barDockControl5
             // 
             this.barDockControl5.CausesValidation = false;
             this.barDockControl5.Dock = System.Windows.Forms.DockStyle.Right;
-            this.barDockControl5.Location = new System.Drawing.Point(1940, 33);
+            this.barDockControl5.Location = new System.Drawing.Point(1940, 30);
             this.barDockControl5.Manager = this.barManager;
             this.barDockControl5.Margin = new System.Windows.Forms.Padding(2);
-            this.barDockControl5.Size = new System.Drawing.Size(0, 675);
+            this.barDockControl5.Size = new System.Drawing.Size(0, 678);
             // 
             // btnSua
             // 
@@ -248,13 +321,14 @@
             // panel1
             // 
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel1.Location = new System.Drawing.Point(0, 33);
+            this.panel1.Location = new System.Drawing.Point(0, 30);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(1940, 60);
             this.panel1.TabIndex = 4;
             // 
             // tableLayoutPanel1
             // 
+            this.tableLayoutPanel1.CellBorderStyle = System.Windows.Forms.TableLayoutPanelCellBorderStyle.Single;
             this.tableLayoutPanel1.ColumnCount = 2;
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
@@ -263,135 +337,76 @@
             this.tableLayoutPanel1.Controls.Add(this.panel4, 0, 1);
             this.tableLayoutPanel1.Controls.Add(this.panel5, 1, 1);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 93);
+            this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 90);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 2;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(1940, 615);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(1940, 618);
             this.tableLayoutPanel1.TabIndex = 5;
-            // 
-            // panel4
-            // 
-            this.panel4.Controls.Add(this.employeeComboBox);
-            this.panel4.Controls.Add(this.btnCancelImport);
-            this.panel4.Controls.Add(idLabel);
-            this.panel4.Controls.Add(this.btnSaveIport);
-            this.panel4.Controls.Add(this.idSpinEdit);
-            this.panel4.Controls.Add(label2);
-            this.panel4.Controls.Add(dateLabel);
-            this.panel4.Controls.Add(this.dateSpinEdit);
-            this.panel4.Controls.Add(employeeIdLabel);
-            this.panel4.Controls.Add(this.employeeIdSpinEdit);
-            this.panel4.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel4.Location = new System.Drawing.Point(3, 310);
-            this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(964, 302);
-            this.panel4.TabIndex = 2;
-            // 
-            // panel5
-            // 
-            this.panel5.ContextMenuStrip = this.contextMenuStrip1;
-            this.panel5.Controls.Add(this.productComboBox);
-            this.panel5.Controls.Add(this.btnCancelAddItem);
-            this.panel5.Controls.Add(this.btnSaveAddItem);
-            this.panel5.Controls.Add(idCouponLabel);
-            this.panel5.Controls.Add(this.idCouponSpinEdit);
-            this.panel5.Controls.Add(idProductLabel);
-            this.panel5.Controls.Add(this.idProductSpinEdit);
-            this.panel5.Controls.Add(label1);
-            this.panel5.Controls.Add(quantityLabel);
-            this.panel5.Controls.Add(this.quantitySpinEdit);
-            this.panel5.Controls.Add(priceLabel);
-            this.panel5.Controls.Add(this.priceSpinEdit);
-            this.panel5.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel5.Location = new System.Drawing.Point(973, 310);
-            this.panel5.Name = "panel5";
-            this.panel5.Size = new System.Drawing.Size(964, 302);
-            this.panel5.TabIndex = 3;
-            // 
-            // clothesDataSet
-            // 
-            this.clothesDataSet.DataSetName = "ClothesDataSet";
-            this.clothesDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
-            // importCouponBindingSource
-            // 
-            this.importCouponBindingSource.DataMember = "ImportCoupon";
-            this.importCouponBindingSource.DataSource = this.clothesDataSet;
-            // 
-            // importCouponTableAdapter
-            // 
-            this.importCouponTableAdapter.ClearBeforeFill = true;
-            // 
-            // tableAdapterManager
-            // 
-            this.tableAdapterManager.AccountTableAdapter = null;
-            this.tableAdapterManager.AddressTableAdapter = null;
-            this.tableAdapterManager.BackupDataSetBeforeUpdate = false;
-            this.tableAdapterManager.CategoryTableAdapter = null;
-            this.tableAdapterManager.ColorTableAdapter = null;
-            this.tableAdapterManager.CustomerTableAdapter = null;
-            this.tableAdapterManager.EmployeeTableAdapter = this.employeeTableAdapter;
-            this.tableAdapterManager.FavoriteProductTableAdapter = null;
-            this.tableAdapterManager.ImageTableAdapter = null;
-            this.tableAdapterManager.ImportCouponDetailTableAdapter = this.importCouponDetailTableAdapter;
-            this.tableAdapterManager.ImportCouponTableAdapter = this.importCouponTableAdapter;
-            this.tableAdapterManager.InvoiceItemTableAdapter = null;
-            this.tableAdapterManager.InvoiceTableAdapter = null;
-            this.tableAdapterManager.ProductSizeColorTableAdapter = null;
-            this.tableAdapterManager.ProductTableAdapter = this.productTableAdapter;
-            this.tableAdapterManager.PromotionItemTableAdapter = null;
-            this.tableAdapterManager.PromotionTableAdapter = null;
-            this.tableAdapterManager.ProviderTableAdapter = null;
-            this.tableAdapterManager.RoleTableAdapter = null;
-            this.tableAdapterManager.SizeTableAdapter = null;
-            this.tableAdapterManager.UpdateOrder = ClothesAdmin.ClothesDataSetTableAdapters.TableAdapterManager.UpdateOrderOption.InsertUpdateDelete;
-            // 
-            // importCouponGridControl
-            // 
-            this.importCouponGridControl.DataSource = this.importCouponBindingSource;
-            this.importCouponGridControl.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.importCouponGridControl.Location = new System.Drawing.Point(3, 3);
-            this.importCouponGridControl.MainView = this.gridView1;
-            this.importCouponGridControl.MenuManager = this.barManager;
-            this.importCouponGridControl.Name = "importCouponGridControl";
-            this.importCouponGridControl.Size = new System.Drawing.Size(964, 301);
-            this.importCouponGridControl.TabIndex = 3;
-            this.importCouponGridControl.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
-            this.gridView1});
-            // 
-            // gridView1
-            // 
-            this.gridView1.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
-            this.colid,
-            this.coldate,
-            this.colemployeeId});
-            this.gridView1.GridControl = this.importCouponGridControl;
-            this.gridView1.Name = "gridView1";
-            // 
-            // importCouponDetailBindingSource
-            // 
-            this.importCouponDetailBindingSource.DataMember = "FK_ImportCouponDetail_ImportCoupon";
-            this.importCouponDetailBindingSource.DataSource = this.importCouponBindingSource;
-            // 
-            // importCouponDetailTableAdapter
-            // 
-            this.importCouponDetailTableAdapter.ClearBeforeFill = true;
             // 
             // importCouponDetailGridControl
             // 
             this.importCouponDetailGridControl.ContextMenuStrip = this.contextMenuStrip1;
             this.importCouponDetailGridControl.DataSource = this.importCouponDetailBindingSource;
             this.importCouponDetailGridControl.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.importCouponDetailGridControl.Location = new System.Drawing.Point(973, 3);
+            this.importCouponDetailGridControl.Location = new System.Drawing.Point(973, 4);
             this.importCouponDetailGridControl.MainView = this.gridView2;
             this.importCouponDetailGridControl.MenuManager = this.barManager;
             this.importCouponDetailGridControl.Name = "importCouponDetailGridControl";
-            this.importCouponDetailGridControl.Size = new System.Drawing.Size(964, 301);
+            this.importCouponDetailGridControl.Size = new System.Drawing.Size(963, 301);
             this.importCouponDetailGridControl.TabIndex = 3;
             this.importCouponDetailGridControl.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridView2});
+            // 
+            // contextMenuStrip1
+            // 
+            this.contextMenuStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
+            this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.addProductPromoToolStripMenuItem,
+            this.deleteProductPromoToolStripMenuItem,
+            this.reloadToolStripMenuItem});
+            this.contextMenuStrip1.Name = "contextMenuStrip1";
+            this.contextMenuStrip1.Size = new System.Drawing.Size(232, 82);
+            // 
+            // addProductPromoToolStripMenuItem
+            // 
+            this.addProductPromoToolStripMenuItem.Image = global::ClothesAdmin.Properties.Resources.add;
+            this.addProductPromoToolStripMenuItem.Name = "addProductPromoToolStripMenuItem";
+            this.addProductPromoToolStripMenuItem.Size = new System.Drawing.Size(231, 26);
+            this.addProductPromoToolStripMenuItem.Text = "Add product promo";
+            this.addProductPromoToolStripMenuItem.Click += new System.EventHandler(this.addProductPromoToolStripMenuItem_Click);
+            // 
+            // deleteProductPromoToolStripMenuItem
+            // 
+            this.deleteProductPromoToolStripMenuItem.Image = global::ClothesAdmin.Properties.Resources.delete;
+            this.deleteProductPromoToolStripMenuItem.Name = "deleteProductPromoToolStripMenuItem";
+            this.deleteProductPromoToolStripMenuItem.Size = new System.Drawing.Size(231, 26);
+            this.deleteProductPromoToolStripMenuItem.Text = "Delete product promo";
+            this.deleteProductPromoToolStripMenuItem.Click += new System.EventHandler(this.deleteProductPromoToolStripMenuItem_Click);
+            // 
+            // reloadToolStripMenuItem
+            // 
+            this.reloadToolStripMenuItem.Image = global::ClothesAdmin.Properties.Resources.exchange;
+            this.reloadToolStripMenuItem.Name = "reloadToolStripMenuItem";
+            this.reloadToolStripMenuItem.Size = new System.Drawing.Size(231, 26);
+            this.reloadToolStripMenuItem.Text = "Reload ";
+            this.reloadToolStripMenuItem.Click += new System.EventHandler(this.reloadToolStripMenuItem_Click);
+            // 
+            // importCouponDetailBindingSource
+            // 
+            this.importCouponDetailBindingSource.DataMember = "FK_ImportCouponDetail_ImportCoupon";
+            this.importCouponDetailBindingSource.DataSource = this.importCouponBindingSource;
+            // 
+            // importCouponBindingSource
+            // 
+            this.importCouponBindingSource.DataMember = "ImportCoupon";
+            this.importCouponBindingSource.DataSource = this.clothesDataSet;
+            // 
+            // clothesDataSet
+            // 
+            this.clothesDataSet.DataSetName = "ClothesDataSet";
+            this.clothesDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
             // gridView2
             // 
@@ -402,212 +417,6 @@
             this.colprice});
             this.gridView2.GridControl = this.importCouponDetailGridControl;
             this.gridView2.Name = "gridView2";
-            // 
-            // idLabel
-            // 
-            idLabel.AutoSize = true;
-            idLabel.Location = new System.Drawing.Point(67, 44);
-            idLabel.Name = "idLabel";
-            idLabel.Size = new System.Drawing.Size(23, 17);
-            idLabel.TabIndex = 0;
-            idLabel.Text = "id:";
-            // 
-            // idSpinEdit
-            // 
-            this.idSpinEdit.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.importCouponBindingSource, "id", true));
-            this.idSpinEdit.EditValue = new decimal(new int[] {
-            0,
-            0,
-            0,
-            0});
-            this.idSpinEdit.Location = new System.Drawing.Point(173, 40);
-            this.idSpinEdit.MenuManager = this.barManager;
-            this.idSpinEdit.Name = "idSpinEdit";
-            this.idSpinEdit.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.idSpinEdit.Size = new System.Drawing.Size(125, 24);
-            this.idSpinEdit.TabIndex = 1;
-            // 
-            // dateLabel
-            // 
-            dateLabel.AutoSize = true;
-            dateLabel.Location = new System.Drawing.Point(638, 41);
-            dateLabel.Name = "dateLabel";
-            dateLabel.Size = new System.Drawing.Size(40, 17);
-            dateLabel.TabIndex = 2;
-            dateLabel.Text = "date:";
-            // 
-            // dateSpinEdit
-            // 
-            this.dateSpinEdit.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.importCouponBindingSource, "date", true));
-            this.dateSpinEdit.EditValue = new decimal(new int[] {
-            0,
-            0,
-            0,
-            0});
-            this.dateSpinEdit.Location = new System.Drawing.Point(720, 37);
-            this.dateSpinEdit.MenuManager = this.barManager;
-            this.dateSpinEdit.Name = "dateSpinEdit";
-            this.dateSpinEdit.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.dateSpinEdit.Size = new System.Drawing.Size(149, 24);
-            this.dateSpinEdit.TabIndex = 3;
-            // 
-            // employeeIdLabel
-            // 
-            employeeIdLabel.AutoSize = true;
-            employeeIdLabel.Location = new System.Drawing.Point(67, 97);
-            employeeIdLabel.Name = "employeeIdLabel";
-            employeeIdLabel.Size = new System.Drawing.Size(88, 17);
-            employeeIdLabel.TabIndex = 4;
-            employeeIdLabel.Text = "employee Id:";
-            // 
-            // employeeIdSpinEdit
-            // 
-            this.employeeIdSpinEdit.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.importCouponBindingSource, "employeeId", true));
-            this.employeeIdSpinEdit.EditValue = new decimal(new int[] {
-            0,
-            0,
-            0,
-            0});
-            this.employeeIdSpinEdit.Location = new System.Drawing.Point(173, 93);
-            this.employeeIdSpinEdit.MenuManager = this.barManager;
-            this.employeeIdSpinEdit.Name = "employeeIdSpinEdit";
-            this.employeeIdSpinEdit.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.employeeIdSpinEdit.Size = new System.Drawing.Size(125, 24);
-            this.employeeIdSpinEdit.TabIndex = 5;
-            this.employeeIdSpinEdit.EditValueChanged += new System.EventHandler(this.employeeIdSpinEdit_EditValueChanged);
-            // 
-            // idCouponLabel
-            // 
-            idCouponLabel.AutoSize = true;
-            idCouponLabel.Location = new System.Drawing.Point(84, 25);
-            idCouponLabel.Name = "idCouponLabel";
-            idCouponLabel.Size = new System.Drawing.Size(74, 17);
-            idCouponLabel.TabIndex = 0;
-            idCouponLabel.Text = "Coupon ID";
-            // 
-            // idCouponSpinEdit
-            // 
-            this.idCouponSpinEdit.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.importCouponDetailBindingSource, "idCoupon", true));
-            this.idCouponSpinEdit.EditValue = new decimal(new int[] {
-            0,
-            0,
-            0,
-            0});
-            this.idCouponSpinEdit.Location = new System.Drawing.Point(188, 21);
-            this.idCouponSpinEdit.MenuManager = this.barManager;
-            this.idCouponSpinEdit.Name = "idCouponSpinEdit";
-            this.idCouponSpinEdit.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.idCouponSpinEdit.Size = new System.Drawing.Size(125, 24);
-            this.idCouponSpinEdit.TabIndex = 1;
-            // 
-            // idProductLabel
-            // 
-            idProductLabel.AutoSize = true;
-            idProductLabel.Location = new System.Drawing.Point(627, 130);
-            idProductLabel.Name = "idProductLabel";
-            idProductLabel.Size = new System.Drawing.Size(74, 17);
-            idProductLabel.TabIndex = 2;
-            idProductLabel.Text = "Product ID";
-            // 
-            // idProductSpinEdit
-            // 
-            this.idProductSpinEdit.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.importCouponDetailBindingSource, "idProduct", true));
-            this.idProductSpinEdit.EditValue = new decimal(new int[] {
-            0,
-            0,
-            0,
-            0});
-            this.idProductSpinEdit.Location = new System.Drawing.Point(731, 126);
-            this.idProductSpinEdit.MenuManager = this.barManager;
-            this.idProductSpinEdit.Name = "idProductSpinEdit";
-            this.idProductSpinEdit.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.idProductSpinEdit.Size = new System.Drawing.Size(125, 24);
-            this.idProductSpinEdit.TabIndex = 3;
-            // 
-            // quantityLabel
-            // 
-            quantityLabel.AutoSize = true;
-            quantityLabel.Location = new System.Drawing.Point(84, 74);
-            quantityLabel.Name = "quantityLabel";
-            quantityLabel.Size = new System.Drawing.Size(61, 17);
-            quantityLabel.TabIndex = 4;
-            quantityLabel.Text = "Quantity";
-            // 
-            // quantitySpinEdit
-            // 
-            this.quantitySpinEdit.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.importCouponDetailBindingSource, "quantity", true));
-            this.quantitySpinEdit.EditValue = new decimal(new int[] {
-            0,
-            0,
-            0,
-            0});
-            this.quantitySpinEdit.Location = new System.Drawing.Point(188, 70);
-            this.quantitySpinEdit.MenuManager = this.barManager;
-            this.quantitySpinEdit.Name = "quantitySpinEdit";
-            this.quantitySpinEdit.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.quantitySpinEdit.Size = new System.Drawing.Size(125, 24);
-            this.quantitySpinEdit.TabIndex = 5;
-            // 
-            // priceLabel
-            // 
-            priceLabel.AutoSize = true;
-            priceLabel.Location = new System.Drawing.Point(584, 74);
-            priceLabel.Name = "priceLabel";
-            priceLabel.Size = new System.Drawing.Size(40, 17);
-            priceLabel.TabIndex = 6;
-            priceLabel.Text = "Price";
-            // 
-            // priceSpinEdit
-            // 
-            this.priceSpinEdit.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.importCouponDetailBindingSource, "price", true));
-            this.priceSpinEdit.EditValue = new decimal(new int[] {
-            0,
-            0,
-            0,
-            0});
-            this.priceSpinEdit.Location = new System.Drawing.Point(660, 70);
-            this.priceSpinEdit.MenuManager = this.barManager;
-            this.priceSpinEdit.Name = "priceSpinEdit";
-            this.priceSpinEdit.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.priceSpinEdit.Size = new System.Drawing.Size(196, 24);
-            this.priceSpinEdit.TabIndex = 7;
-            // 
-            // colid
-            // 
-            this.colid.FieldName = "id";
-            this.colid.MinWidth = 25;
-            this.colid.Name = "colid";
-            this.colid.OptionsColumn.AllowEdit = false;
-            this.colid.Visible = true;
-            this.colid.VisibleIndex = 0;
-            this.colid.Width = 94;
-            // 
-            // coldate
-            // 
-            this.coldate.FieldName = "date";
-            this.coldate.MinWidth = 25;
-            this.coldate.Name = "coldate";
-            this.coldate.OptionsColumn.AllowEdit = false;
-            this.coldate.Visible = true;
-            this.coldate.VisibleIndex = 1;
-            this.coldate.Width = 94;
-            // 
-            // colemployeeId
-            // 
-            this.colemployeeId.FieldName = "employeeId";
-            this.colemployeeId.MinWidth = 25;
-            this.colemployeeId.Name = "colemployeeId";
-            this.colemployeeId.OptionsColumn.AllowEdit = false;
-            this.colemployeeId.Visible = true;
-            this.colemployeeId.VisibleIndex = 2;
-            this.colemployeeId.Width = 94;
             // 
             // colidCoupon
             // 
@@ -649,6 +458,194 @@
             this.colprice.VisibleIndex = 3;
             this.colprice.Width = 94;
             // 
+            // importCouponGridControl
+            // 
+            this.importCouponGridControl.DataSource = this.importCouponBindingSource;
+            this.importCouponGridControl.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.importCouponGridControl.Location = new System.Drawing.Point(4, 4);
+            this.importCouponGridControl.MainView = this.gridView1;
+            this.importCouponGridControl.MenuManager = this.barManager;
+            this.importCouponGridControl.Name = "importCouponGridControl";
+            this.importCouponGridControl.Size = new System.Drawing.Size(962, 301);
+            this.importCouponGridControl.TabIndex = 3;
+            this.importCouponGridControl.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
+            this.gridView1});
+            // 
+            // gridView1
+            // 
+            this.gridView1.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
+            this.colid,
+            this.coldate,
+            this.colemployeeId});
+            this.gridView1.GridControl = this.importCouponGridControl;
+            this.gridView1.Name = "gridView1";
+            // 
+            // colid
+            // 
+            this.colid.FieldName = "id";
+            this.colid.MinWidth = 25;
+            this.colid.Name = "colid";
+            this.colid.OptionsColumn.AllowEdit = false;
+            this.colid.Visible = true;
+            this.colid.VisibleIndex = 0;
+            this.colid.Width = 94;
+            // 
+            // coldate
+            // 
+            this.coldate.FieldName = "date";
+            this.coldate.MinWidth = 25;
+            this.coldate.Name = "coldate";
+            this.coldate.OptionsColumn.AllowEdit = false;
+            this.coldate.Visible = true;
+            this.coldate.VisibleIndex = 1;
+            this.coldate.Width = 94;
+            // 
+            // colemployeeId
+            // 
+            this.colemployeeId.FieldName = "employeeId";
+            this.colemployeeId.MinWidth = 25;
+            this.colemployeeId.Name = "colemployeeId";
+            this.colemployeeId.OptionsColumn.AllowEdit = false;
+            this.colemployeeId.Visible = true;
+            this.colemployeeId.VisibleIndex = 2;
+            this.colemployeeId.Width = 94;
+            // 
+            // panel4
+            // 
+            this.panel4.Controls.Add(dateLabel);
+            this.panel4.Controls.Add(this.dateDateEdit);
+            this.panel4.Controls.Add(this.employeeComboBox);
+            this.panel4.Controls.Add(this.btnCancelImport);
+            this.panel4.Controls.Add(idLabel);
+            this.panel4.Controls.Add(this.btnSaveIport);
+            this.panel4.Controls.Add(this.idSpinEdit);
+            this.panel4.Controls.Add(label2);
+            this.panel4.Controls.Add(employeeIdLabel);
+            this.panel4.Controls.Add(this.employeeIdSpinEdit);
+            this.panel4.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel4.Location = new System.Drawing.Point(4, 312);
+            this.panel4.Name = "panel4";
+            this.panel4.Size = new System.Drawing.Size(962, 302);
+            this.panel4.TabIndex = 2;
+            // 
+            // employeeComboBox
+            // 
+            this.employeeComboBox.DataSource = this.employeeBindingSource;
+            this.employeeComboBox.DisplayMember = "firstName";
+            this.employeeComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.employeeComboBox.FormattingEnabled = true;
+            this.employeeComboBox.Location = new System.Drawing.Point(537, 94);
+            this.employeeComboBox.Name = "employeeComboBox";
+            this.employeeComboBox.Size = new System.Drawing.Size(332, 24);
+            this.employeeComboBox.TabIndex = 58;
+            this.employeeComboBox.ValueMember = "id";
+            this.employeeComboBox.SelectedIndexChanged += new System.EventHandler(this.employeeComboBox_SelectedIndexChanged);
+            // 
+            // employeeBindingSource
+            // 
+            this.employeeBindingSource.DataMember = "Employee";
+            this.employeeBindingSource.DataSource = this.clothesDataSet;
+            // 
+            // btnCancelImport
+            // 
+            this.btnCancelImport.BackColor = System.Drawing.Color.White;
+            this.btnCancelImport.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCancelImport.ForeColor = System.Drawing.Color.Crimson;
+            this.btnCancelImport.Location = new System.Drawing.Point(489, 166);
+            this.btnCancelImport.Name = "btnCancelImport";
+            this.btnCancelImport.Size = new System.Drawing.Size(123, 52);
+            this.btnCancelImport.TabIndex = 58;
+            this.btnCancelImport.Text = "Cancel";
+            this.btnCancelImport.UseVisualStyleBackColor = false;
+            this.btnCancelImport.Click += new System.EventHandler(this.btnCancelImport_Click);
+            // 
+            // btnSaveIport
+            // 
+            this.btnSaveIport.BackColor = System.Drawing.Color.White;
+            this.btnSaveIport.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSaveIport.ForeColor = System.Drawing.Color.ForestGreen;
+            this.btnSaveIport.Location = new System.Drawing.Point(271, 166);
+            this.btnSaveIport.Name = "btnSaveIport";
+            this.btnSaveIport.Size = new System.Drawing.Size(123, 52);
+            this.btnSaveIport.TabIndex = 57;
+            this.btnSaveIport.Text = "Save";
+            this.btnSaveIport.UseVisualStyleBackColor = false;
+            this.btnSaveIport.Click += new System.EventHandler(this.btnSaveIport_Click);
+            // 
+            // idSpinEdit
+            // 
+            this.idSpinEdit.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.importCouponBindingSource, "id", true));
+            this.idSpinEdit.EditValue = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+            this.idSpinEdit.Enabled = false;
+            this.idSpinEdit.Location = new System.Drawing.Point(173, 40);
+            this.idSpinEdit.MenuManager = this.barManager;
+            this.idSpinEdit.Name = "idSpinEdit";
+            this.idSpinEdit.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.idSpinEdit.Size = new System.Drawing.Size(125, 24);
+            this.idSpinEdit.TabIndex = 1;
+            // 
+            // employeeIdSpinEdit
+            // 
+            this.employeeIdSpinEdit.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.importCouponBindingSource, "employeeId", true));
+            this.employeeIdSpinEdit.EditValue = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+            this.employeeIdSpinEdit.Enabled = false;
+            this.employeeIdSpinEdit.Location = new System.Drawing.Point(173, 93);
+            this.employeeIdSpinEdit.MenuManager = this.barManager;
+            this.employeeIdSpinEdit.Name = "employeeIdSpinEdit";
+            this.employeeIdSpinEdit.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.employeeIdSpinEdit.Size = new System.Drawing.Size(125, 24);
+            this.employeeIdSpinEdit.TabIndex = 5;
+            this.employeeIdSpinEdit.EditValueChanged += new System.EventHandler(this.employeeIdSpinEdit_EditValueChanged);
+            // 
+            // panel5
+            // 
+            this.panel5.ContextMenuStrip = this.contextMenuStrip1;
+            this.panel5.Controls.Add(this.productComboBox);
+            this.panel5.Controls.Add(this.btnCancelAddItem);
+            this.panel5.Controls.Add(this.btnSaveAddItem);
+            this.panel5.Controls.Add(idCouponLabel);
+            this.panel5.Controls.Add(this.idCouponSpinEdit);
+            this.panel5.Controls.Add(idProductLabel);
+            this.panel5.Controls.Add(this.idProductSpinEdit);
+            this.panel5.Controls.Add(label1);
+            this.panel5.Controls.Add(quantityLabel);
+            this.panel5.Controls.Add(this.quantitySpinEdit);
+            this.panel5.Controls.Add(priceLabel);
+            this.panel5.Controls.Add(this.priceSpinEdit);
+            this.panel5.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel5.Location = new System.Drawing.Point(973, 312);
+            this.panel5.Name = "panel5";
+            this.panel5.Size = new System.Drawing.Size(963, 302);
+            this.panel5.TabIndex = 3;
+            // 
+            // productComboBox
+            // 
+            this.productComboBox.DataSource = this.productBindingSource;
+            this.productComboBox.DisplayMember = "title";
+            this.productComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.productComboBox.FormattingEnabled = true;
+            this.productComboBox.Location = new System.Drawing.Point(188, 126);
+            this.productComboBox.Name = "productComboBox";
+            this.productComboBox.Size = new System.Drawing.Size(378, 24);
+            this.productComboBox.TabIndex = 58;
+            this.productComboBox.ValueMember = "id";
+            this.productComboBox.SelectedIndexChanged += new System.EventHandler(this.productComboBox_SelectedIndexChanged);
+            // 
+            // productBindingSource
+            // 
+            this.productBindingSource.DataMember = "Product";
+            this.productBindingSource.DataSource = this.clothesDataSet;
+            // 
             // btnCancelAddItem
             // 
             this.btnCancelAddItem.BackColor = System.Drawing.Color.White;
@@ -675,125 +672,134 @@
             this.btnSaveAddItem.UseVisualStyleBackColor = false;
             this.btnSaveAddItem.Click += new System.EventHandler(this.btnSaveAddItem_Click);
             // 
-            // btnSaveIport
+            // idCouponSpinEdit
             // 
-            this.btnSaveIport.BackColor = System.Drawing.Color.White;
-            this.btnSaveIport.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSaveIport.ForeColor = System.Drawing.Color.ForestGreen;
-            this.btnSaveIport.Location = new System.Drawing.Point(271, 166);
-            this.btnSaveIport.Name = "btnSaveIport";
-            this.btnSaveIport.Size = new System.Drawing.Size(123, 52);
-            this.btnSaveIport.TabIndex = 57;
-            this.btnSaveIport.Text = "Save";
-            this.btnSaveIport.UseVisualStyleBackColor = false;
-            this.btnSaveIport.Click += new System.EventHandler(this.btnSaveIport_Click);
+            this.idCouponSpinEdit.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.importCouponDetailBindingSource, "idCoupon", true));
+            this.idCouponSpinEdit.EditValue = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+            this.idCouponSpinEdit.Enabled = false;
+            this.idCouponSpinEdit.Location = new System.Drawing.Point(188, 21);
+            this.idCouponSpinEdit.MenuManager = this.barManager;
+            this.idCouponSpinEdit.Name = "idCouponSpinEdit";
+            this.idCouponSpinEdit.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.idCouponSpinEdit.Size = new System.Drawing.Size(125, 24);
+            this.idCouponSpinEdit.TabIndex = 1;
             // 
-            // btnCancelImport
+            // idProductSpinEdit
             // 
-            this.btnCancelImport.BackColor = System.Drawing.Color.White;
-            this.btnCancelImport.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnCancelImport.ForeColor = System.Drawing.Color.Crimson;
-            this.btnCancelImport.Location = new System.Drawing.Point(489, 166);
-            this.btnCancelImport.Name = "btnCancelImport";
-            this.btnCancelImport.Size = new System.Drawing.Size(123, 52);
-            this.btnCancelImport.TabIndex = 58;
-            this.btnCancelImport.Text = "Cancel";
-            this.btnCancelImport.UseVisualStyleBackColor = false;
-            this.btnCancelImport.Click += new System.EventHandler(this.btnCancelImport_Click);
+            this.idProductSpinEdit.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.importCouponDetailBindingSource, "idProduct", true));
+            this.idProductSpinEdit.EditValue = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+            this.idProductSpinEdit.Enabled = false;
+            this.idProductSpinEdit.Location = new System.Drawing.Point(731, 126);
+            this.idProductSpinEdit.MenuManager = this.barManager;
+            this.idProductSpinEdit.Name = "idProductSpinEdit";
+            this.idProductSpinEdit.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.idProductSpinEdit.Size = new System.Drawing.Size(125, 24);
+            this.idProductSpinEdit.TabIndex = 3;
+            this.idProductSpinEdit.EditValueChanged += new System.EventHandler(this.idProductSpinEdit_EditValueChanged);
             // 
-            // productBindingSource
+            // quantitySpinEdit
             // 
-            this.productBindingSource.DataMember = "Product";
-            this.productBindingSource.DataSource = this.clothesDataSet;
+            this.quantitySpinEdit.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.importCouponDetailBindingSource, "quantity", true));
+            this.quantitySpinEdit.EditValue = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+            this.quantitySpinEdit.Location = new System.Drawing.Point(188, 70);
+            this.quantitySpinEdit.MenuManager = this.barManager;
+            this.quantitySpinEdit.Name = "quantitySpinEdit";
+            this.quantitySpinEdit.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.quantitySpinEdit.Size = new System.Drawing.Size(125, 24);
+            this.quantitySpinEdit.TabIndex = 5;
             // 
-            // productTableAdapter
+            // priceSpinEdit
             // 
-            this.productTableAdapter.ClearBeforeFill = true;
+            this.priceSpinEdit.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.importCouponDetailBindingSource, "price", true));
+            this.priceSpinEdit.EditValue = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+            this.priceSpinEdit.Location = new System.Drawing.Point(660, 70);
+            this.priceSpinEdit.MenuManager = this.barManager;
+            this.priceSpinEdit.Name = "priceSpinEdit";
+            this.priceSpinEdit.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.priceSpinEdit.Size = new System.Drawing.Size(196, 24);
+            this.priceSpinEdit.TabIndex = 7;
             // 
-            // productComboBox
+            // importCouponTableAdapter
             // 
-            this.productComboBox.DataSource = this.productBindingSource;
-            this.productComboBox.DisplayMember = "title";
-            this.productComboBox.FormattingEnabled = true;
-            this.productComboBox.Location = new System.Drawing.Point(188, 126);
-            this.productComboBox.Name = "productComboBox";
-            this.productComboBox.Size = new System.Drawing.Size(378, 24);
-            this.productComboBox.TabIndex = 58;
-            this.productComboBox.ValueMember = "id";
+            this.importCouponTableAdapter.ClearBeforeFill = true;
             // 
-            // label1
+            // tableAdapterManager
             // 
-            label1.AutoSize = true;
-            label1.Location = new System.Drawing.Point(84, 129);
-            label1.Name = "label1";
-            label1.Size = new System.Drawing.Size(57, 17);
-            label1.TabIndex = 4;
-            label1.Text = "Product";
-            // 
-            // employeeBindingSource
-            // 
-            this.employeeBindingSource.DataMember = "Employee";
-            this.employeeBindingSource.DataSource = this.clothesDataSet;
+            this.tableAdapterManager.AccountTableAdapter = null;
+            this.tableAdapterManager.AddressTableAdapter = null;
+            this.tableAdapterManager.BackupDataSetBeforeUpdate = false;
+            this.tableAdapterManager.CategoryTableAdapter = null;
+            this.tableAdapterManager.ColorTableAdapter = null;
+            this.tableAdapterManager.CustomerTableAdapter = null;
+            this.tableAdapterManager.EmployeeTableAdapter = this.employeeTableAdapter;
+            this.tableAdapterManager.FavoriteProductTableAdapter = null;
+            this.tableAdapterManager.ImageTableAdapter = null;
+            this.tableAdapterManager.ImportCouponDetailTableAdapter = this.importCouponDetailTableAdapter;
+            this.tableAdapterManager.ImportCouponTableAdapter = this.importCouponTableAdapter;
+            this.tableAdapterManager.InvoiceItemTableAdapter = null;
+            this.tableAdapterManager.InvoiceTableAdapter = null;
+            this.tableAdapterManager.ProductSizeColorTableAdapter = null;
+            this.tableAdapterManager.ProductTableAdapter = this.productTableAdapter;
+            this.tableAdapterManager.PromotionItemTableAdapter = null;
+            this.tableAdapterManager.PromotionTableAdapter = null;
+            this.tableAdapterManager.ProviderTableAdapter = null;
+            this.tableAdapterManager.RoleTableAdapter = null;
+            this.tableAdapterManager.SizeTableAdapter = null;
+            this.tableAdapterManager.UpdateOrder = ClothesAdmin.ClothesDataSetTableAdapters.TableAdapterManager.UpdateOrderOption.InsertUpdateDelete;
             // 
             // employeeTableAdapter
             // 
             this.employeeTableAdapter.ClearBeforeFill = true;
             // 
-            // employeeComboBox
+            // importCouponDetailTableAdapter
             // 
-            this.employeeComboBox.DataSource = this.employeeBindingSource;
-            this.employeeComboBox.DisplayMember = "firstName";
-            this.employeeComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.employeeComboBox.FormattingEnabled = true;
-            this.employeeComboBox.Location = new System.Drawing.Point(537, 94);
-            this.employeeComboBox.Name = "employeeComboBox";
-            this.employeeComboBox.Size = new System.Drawing.Size(332, 24);
-            this.employeeComboBox.TabIndex = 58;
-            this.employeeComboBox.ValueMember = "id";
-            this.employeeComboBox.SelectedIndexChanged += new System.EventHandler(this.employeeComboBox_SelectedIndexChanged);
+            this.importCouponDetailTableAdapter.ClearBeforeFill = true;
             // 
-            // label2
+            // productTableAdapter
             // 
-            label2.AutoSize = true;
-            label2.Location = new System.Drawing.Point(405, 97);
-            label2.Name = "label2";
-            label2.Size = new System.Drawing.Size(116, 17);
-            label2.TabIndex = 2;
-            label2.Text = "Empoyee\'s name";
+            this.productTableAdapter.ClearBeforeFill = true;
             // 
-            // contextMenuStrip1
+            // dateLabel
             // 
-            this.contextMenuStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
-            this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.addProductPromoToolStripMenuItem,
-            this.deleteProductPromoToolStripMenuItem,
-            this.reloadToolStripMenuItem});
-            this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(232, 82);
+            dateLabel.AutoSize = true;
+            dateLabel.Location = new System.Drawing.Point(679, 44);
+            dateLabel.Name = "dateLabel";
+            dateLabel.Size = new System.Drawing.Size(40, 17);
+            dateLabel.TabIndex = 58;
+            dateLabel.Text = "date:";
             // 
-            // addProductPromoToolStripMenuItem
+            // dateDateEdit
             // 
-            this.addProductPromoToolStripMenuItem.Image = global::ClothesAdmin.Properties.Resources.add;
-            this.addProductPromoToolStripMenuItem.Name = "addProductPromoToolStripMenuItem";
-            this.addProductPromoToolStripMenuItem.Size = new System.Drawing.Size(231, 26);
-            this.addProductPromoToolStripMenuItem.Text = "Add product promo";
-            this.addProductPromoToolStripMenuItem.Click += new System.EventHandler(this.addProductPromoToolStripMenuItem_Click);
-            // 
-            // deleteProductPromoToolStripMenuItem
-            // 
-            this.deleteProductPromoToolStripMenuItem.Image = global::ClothesAdmin.Properties.Resources.delete;
-            this.deleteProductPromoToolStripMenuItem.Name = "deleteProductPromoToolStripMenuItem";
-            this.deleteProductPromoToolStripMenuItem.Size = new System.Drawing.Size(231, 26);
-            this.deleteProductPromoToolStripMenuItem.Text = "Delete product promo";
-            this.deleteProductPromoToolStripMenuItem.Click += new System.EventHandler(this.deleteProductPromoToolStripMenuItem_Click);
-            // 
-            // reloadToolStripMenuItem
-            // 
-            this.reloadToolStripMenuItem.Image = global::ClothesAdmin.Properties.Resources.exchange;
-            this.reloadToolStripMenuItem.Name = "reloadToolStripMenuItem";
-            this.reloadToolStripMenuItem.Size = new System.Drawing.Size(231, 26);
-            this.reloadToolStripMenuItem.Text = "Reload ";
-            this.reloadToolStripMenuItem.Click += new System.EventHandler(this.reloadToolStripMenuItem_Click);
+            this.dateDateEdit.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.importCouponBindingSource, "date", true));
+            this.dateDateEdit.EditValue = null;
+            this.dateDateEdit.Location = new System.Drawing.Point(732, 41);
+            this.dateDateEdit.Name = "dateDateEdit";
+            this.dateDateEdit.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.dateDateEdit.Properties.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.dateDateEdit.Size = new System.Drawing.Size(137, 22);
+            this.dateDateEdit.TabIndex = 59;
             // 
             // ImportCuponForm
             // 
@@ -806,32 +812,34 @@
             this.Controls.Add(this.barDockControl5);
             this.Controls.Add(this.barDockControl2);
             this.Controls.Add(this.barDockControl1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Name = "ImportCuponForm";
             this.Text = "ImportCuponForm";
             this.Load += new System.EventHandler(this.ImportCuponForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.barManager)).EndInit();
             this.tableLayoutPanel1.ResumeLayout(false);
-            this.panel4.ResumeLayout(false);
-            this.panel4.PerformLayout();
-            this.panel5.ResumeLayout(false);
-            this.panel5.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.clothesDataSet)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.importCouponDetailGridControl)).EndInit();
+            this.contextMenuStrip1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.importCouponDetailBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.importCouponBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.clothesDataSet)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridView2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.importCouponGridControl)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.importCouponDetailBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.importCouponDetailGridControl)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gridView2)).EndInit();
+            this.panel4.ResumeLayout(false);
+            this.panel4.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.employeeBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.idSpinEdit.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dateSpinEdit.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.employeeIdSpinEdit.Properties)).EndInit();
+            this.panel5.ResumeLayout(false);
+            this.panel5.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.productBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.idCouponSpinEdit.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.idProductSpinEdit.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.quantitySpinEdit.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.priceSpinEdit.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.productBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.employeeBindingSource)).EndInit();
-            this.contextMenuStrip1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dateDateEdit.Properties.CalendarTimeProperties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dateDateEdit.Properties)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -873,7 +881,6 @@
         private DevExpress.XtraGrid.Columns.GridColumn coldate;
         private DevExpress.XtraGrid.Columns.GridColumn colemployeeId;
         private DevExpress.XtraEditors.SpinEdit idSpinEdit;
-        private DevExpress.XtraEditors.SpinEdit dateSpinEdit;
         private DevExpress.XtraEditors.SpinEdit employeeIdSpinEdit;
         private DevExpress.XtraEditors.SpinEdit idCouponSpinEdit;
         private DevExpress.XtraEditors.SpinEdit idProductSpinEdit;
@@ -893,5 +900,6 @@
         private System.Windows.Forms.ToolStripMenuItem addProductPromoToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem deleteProductPromoToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem reloadToolStripMenuItem;
+        private DateEdit dateDateEdit;
     }
 }

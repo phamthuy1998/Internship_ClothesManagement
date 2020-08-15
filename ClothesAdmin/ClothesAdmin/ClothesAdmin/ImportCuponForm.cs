@@ -139,9 +139,13 @@ namespace ClothesAdmin
 
         private void btnSaveAddItem_Click(object sender, EventArgs e)
         {
-            this.Validate();
-            this.importCouponDetailBindingSource.EndEdit();
-            this.tableAdapterManager.UpdateAll(this.clothesDataSet);
+            try
+            {
+                this.Validate();
+                this.importCouponDetailBindingSource.EndEdit();
+                this.tableAdapterManager.UpdateAll(this.clothesDataSet);
+            }
+            catch(Exception ex) { MessageBox.Show(ex.Message, "THÔNG BÁO", MessageBoxButtons.OK); }
         }
 
         private void addProductPromoToolStripMenuItem_Click(object sender, EventArgs e)
@@ -177,7 +181,21 @@ namespace ClothesAdmin
 
         private void reloadToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            loadDataItem()
+            loadDataItem();
+        }
+
+        private void idProductSpinEdit_EditValueChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                productComboBox.SelectedValue = Convert.ToInt32(idProductSpinEdit.Value);
+            }
+            catch(Exception ex) { }
+        }
+
+        private void productComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            idProductSpinEdit.Value = Convert.ToInt32(productComboBox.SelectedValue);
         }
     }
 }
