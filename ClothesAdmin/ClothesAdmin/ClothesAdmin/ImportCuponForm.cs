@@ -28,13 +28,19 @@ namespace ClothesAdmin
 
         private void ImportCuponForm_Load(object sender, EventArgs e)
         {
+            employeeComboBox1.SelectedIndex = -1;
             loadData();
         }
 
         private void loadData()
         {
             // TODO: This line of code loads data into the 'clothesDataSet.Employee' table. You can move, or remove it, as needed.
-            this.employeeTableAdapter.Fill(this.clothesDataSet.Employee);
+
+            try
+            {
+                this.employeeTableAdapter.Fill(this.clothesDataSet.Employee);
+            }
+            catch (Exception ex) { }
             // TODO: This line of code loads data into the 'clothesDataSet.Product' table. You can move, or remove it, as needed.
             this.productTableAdapter.Fill(this.clothesDataSet.Product);
             // TODO: This line of code loads data into the 'clothesDataSet.ImportCouponDetail' table. You can move, or remove it, as needed.
@@ -42,15 +48,23 @@ namespace ClothesAdmin
             // TODO: This line of code loads data into the 'clothesDataSet.ImportCouponDetail' table. You can move, or remove it, as needed.
             this.importCouponDetailTableAdapter.Fill(this.clothesDataSet.ImportCouponDetail);
             // TODO: This line of code loads data into the 'clothesDataSet.ImportCoupon' table. You can move, or remove it, as needed.
-            this.importCouponTableAdapter.Fill(this.clothesDataSet.ImportCoupon);
+            if (employeeComboBox1.SelectedIndex > 0)
+            {
+                this.importCouponTableAdapter.Fill(this.clothesDataSet.ImportCoupon);
+            }
+            else
+            {
+                try
+                {
+                    this.importCouponTableAdapter.FillBy(this.clothesDataSet.ImportCoupon, Convert.ToInt32(employeeComboBox1.SelectedValue));
+
+                }
+                catch (Exception ex) { }
+            }
         }
 
         private void loadDataItem()
         {
-            // TODO: This line of code loads data into the 'clothesDataSet.Employee' table. You can move, or remove it, as needed.
-            this.employeeTableAdapter.Fill(this.clothesDataSet.Employee);
-            // TODO: This line of code loads data into the 'clothesDataSet.Product' table. You can move, or remove it, as needed.
-            this.productTableAdapter.Fill(this.clothesDataSet.Product);
             // TODO: This line of code loads data into the 'clothesDataSet.ImportCouponDetail' table. You can move, or remove it, as needed.
             this.importCouponDetailTableAdapter.Fill(this.clothesDataSet.ImportCouponDetail);
             // TODO: This line of code loads data into the 'clothesDataSet.ImportCouponDetail' table. You can move, or remove it, as needed.
@@ -115,6 +129,7 @@ namespace ClothesAdmin
         private void btnAddProvider_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
             importCouponBindingSource.AddNew();
+            employeeIdSpinEdit.EditValue = Program.accountLogin.idEmployee;
         }
 
         private void employeeComboBox_SelectedIndexChanged(object sender, EventArgs e)
@@ -145,7 +160,7 @@ namespace ClothesAdmin
                 this.importCouponDetailBindingSource.EndEdit();
                 this.tableAdapterManager.UpdateAll(this.clothesDataSet);
             }
-            catch(Exception ex) { MessageBox.Show(ex.Message, "THÔNG BÁO", MessageBoxButtons.OK); }
+            catch (Exception ex) { MessageBox.Show(ex.Message, "THÔNG BÁO", MessageBoxButtons.OK); }
         }
 
         private void addProductPromoToolStripMenuItem_Click(object sender, EventArgs e)
@@ -190,12 +205,22 @@ namespace ClothesAdmin
             {
                 productComboBox.SelectedValue = Convert.ToInt32(idProductSpinEdit.Value);
             }
-            catch(Exception ex) { }
+            catch (Exception ex) { }
         }
 
         private void productComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             idProductSpinEdit.Value = Convert.ToInt32(productComboBox.SelectedValue);
+        }
+
+        private void employeeComboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                this.importCouponTableAdapter.FillBy(this.clothesDataSet.ImportCoupon, Convert.ToInt32(employeeComboBox1.SelectedValue));
+
+            }
+            catch (Exception ex) { }
         }
     }
 }
