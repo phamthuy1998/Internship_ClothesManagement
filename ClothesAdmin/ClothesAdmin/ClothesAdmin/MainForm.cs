@@ -271,19 +271,6 @@ namespace ClothesAdmin
             }
         }
 
-        private void btnProductSizeColor_ItemClick(object sender, ItemClickEventArgs e)
-        {
-            form = this.CheckExists(typeof(SizeColorForm));
-            if (form == null)
-            {
-                IsMdiContainer = true;
-                sizeColorForm = new SizeColorForm();
-                sizeColorForm.MdiParent = this;
-                sizeColorForm.Show();
-            }
-            else form.Activate();
-        }
-
         private void btnEmloyee_ItemClick(object sender, ItemClickEventArgs e)
         {
             form = this.CheckExists(typeof(EmployeeForm));

@@ -359,6 +359,9 @@
     <EmbeddedResource Include="ProductForm.resx">
       <DependentUpon>ProductForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="ProductImageForm.resx">
+      <DependentUpon>ProductImageForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="PromotionForm.resx">
       <DependentUpon>PromotionForm.cs</DependentUpon>
     </EmbeddedResource>

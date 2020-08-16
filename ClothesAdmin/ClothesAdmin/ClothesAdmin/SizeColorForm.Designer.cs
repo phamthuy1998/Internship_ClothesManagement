@@ -65,6 +65,7 @@
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.productSizeColorGridControl = new DevExpress.XtraGrid.GridControl();
             this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.productName = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colproductID = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colsizeId = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colcolorID = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -72,22 +73,27 @@
             this.colimageUrl = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colactive = new DevExpress.XtraGrid.Columns.GridColumn();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.btnCancelAddProvider = new System.Windows.Forms.Button();
+            this.btnSaveAddProvider = new System.Windows.Forms.Button();
+            this.colorComboBox = new System.Windows.Forms.ComboBox();
+            this.colorBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.sizeComboBox = new System.Windows.Forms.ComboBox();
+            this.sizeBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.productComboBox = new System.Windows.Forms.ComboBox();
+            this.productBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.productIDTextBox = new System.Windows.Forms.TextBox();
             this.sizeIdTextBox = new System.Windows.Forms.TextBox();
             this.colorIDTextBox = new System.Windows.Forms.TextBox();
             this.quantityTextBox = new System.Windows.Forms.TextBox();
             this.imageUrlTextBox = new System.Windows.Forms.TextBox();
             this.activeTextBox = new System.Windows.Forms.TextBox();
-            this.productBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.productTableAdapter = new ClothesAdmin.ClothesDataSetTableAdapters.ProductTableAdapter();
-            this.productComboBox = new System.Windows.Forms.ComboBox();
-            this.sizeBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.sizeTableAdapter = new ClothesAdmin.ClothesDataSetTableAdapters.SizeTableAdapter();
-            this.sizeComboBox = new System.Windows.Forms.ComboBox();
-            this.colorBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.colorTableAdapter = new ClothesAdmin.ClothesDataSetTableAdapters.ColorTableAdapter();
-            this.colorComboBox = new System.Windows.Forms.ComboBox();
-            this.productName = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.invoiceItemBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.invoiceItemTableAdapter = new ClothesAdmin.ClothesDataSetTableAdapters.InvoiceItemTableAdapter();
+            this.importCouponDetailBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.importCouponDetailTableAdapter = new ClothesAdmin.ClothesDataSetTableAdapters.ImportCouponDetailTableAdapter();
             productIDLabel = new System.Windows.Forms.Label();
             sizeIdLabel = new System.Windows.Forms.Label();
             colorIDLabel = new System.Windows.Forms.Label();
@@ -107,9 +113,11 @@
             ((System.ComponentModel.ISupportInitialize)(this.productSizeColorGridControl)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
             this.panel2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.productBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.sizeBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.colorBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.sizeBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.productBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.invoiceItemBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.importCouponDetailBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // productIDLabel
@@ -141,6 +149,21 @@
             // 
             resources.ApplyResources(activeLabel, "activeLabel");
             activeLabel.Name = "activeLabel";
+            // 
+            // label1
+            // 
+            resources.ApplyResources(label1, "label1");
+            label1.Name = "label1";
+            // 
+            // label2
+            // 
+            resources.ApplyResources(label2, "label2");
+            label2.Name = "label2";
+            // 
+            // label3
+            // 
+            resources.ApplyResources(label3, "label3");
+            label3.Name = "label3";
             // 
             // barManager
             // 
@@ -183,6 +206,7 @@
             this.btnAddProvider.ImageOptions.Image = global::ClothesAdmin.Properties.Resources.add;
             this.btnAddProvider.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("btnAddProvider.ImageOptions.LargeImage")));
             this.btnAddProvider.Name = "btnAddProvider";
+            this.btnAddProvider.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnAddProvider_ItemClick);
             // 
             // btnDelProvider
             // 
@@ -191,6 +215,7 @@
             this.btnDelProvider.ImageOptions.Image = global::ClothesAdmin.Properties.Resources.delete__1_;
             this.btnDelProvider.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("btnDelProvider.ImageOptions.LargeImage")));
             this.btnDelProvider.Name = "btnDelProvider";
+            this.btnDelProvider.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnDelProvider_ItemClick);
             // 
             // btnReloadProvider
             // 
@@ -199,6 +224,7 @@
             this.btnReloadProvider.ImageOptions.Image = global::ClothesAdmin.Properties.Resources.exchange;
             this.btnReloadProvider.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("btnReloadProvider.ImageOptions.LargeImage")));
             this.btnReloadProvider.Name = "btnReloadProvider";
+            this.btnReloadProvider.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnReloadProvider_ItemClick);
             // 
             // btnCloseForm
             // 
@@ -206,6 +232,7 @@
             this.btnCloseForm.Id = 10;
             this.btnCloseForm.ImageOptions.Image = global::ClothesAdmin.Properties.Resources.close;
             this.btnCloseForm.Name = "btnCloseForm";
+            this.btnCloseForm.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnCloseForm_ItemClick);
             // 
             // barDockControl1
             // 
@@ -346,6 +373,12 @@
             this.gridView1.GridControl = this.productSizeColorGridControl;
             this.gridView1.Name = "gridView1";
             // 
+            // productName
+            // 
+            resources.ApplyResources(this.productName, "productName");
+            this.productName.MinWidth = 25;
+            this.productName.Name = "productName";
+            // 
             // colproductID
             // 
             this.colproductID.FieldName = "productID";
@@ -396,6 +429,8 @@
             // 
             // panel2
             // 
+            this.panel2.Controls.Add(this.btnCancelAddProvider);
+            this.panel2.Controls.Add(this.btnSaveAddProvider);
             this.panel2.Controls.Add(this.colorComboBox);
             this.panel2.Controls.Add(this.sizeComboBox);
             this.panel2.Controls.Add(this.productComboBox);
@@ -416,6 +451,70 @@
             this.panel2.Controls.Add(this.activeTextBox);
             resources.ApplyResources(this.panel2, "panel2");
             this.panel2.Name = "panel2";
+            // 
+            // btnCancelAddProvider
+            // 
+            this.btnCancelAddProvider.BackColor = System.Drawing.Color.White;
+            resources.ApplyResources(this.btnCancelAddProvider, "btnCancelAddProvider");
+            this.btnCancelAddProvider.ForeColor = System.Drawing.Color.Crimson;
+            this.btnCancelAddProvider.Name = "btnCancelAddProvider";
+            this.btnCancelAddProvider.UseVisualStyleBackColor = false;
+            this.btnCancelAddProvider.Click += new System.EventHandler(this.btnCancelAddProvider_Click);
+            // 
+            // btnSaveAddProvider
+            // 
+            this.btnSaveAddProvider.BackColor = System.Drawing.Color.White;
+            resources.ApplyResources(this.btnSaveAddProvider, "btnSaveAddProvider");
+            this.btnSaveAddProvider.ForeColor = System.Drawing.Color.ForestGreen;
+            this.btnSaveAddProvider.Name = "btnSaveAddProvider";
+            this.btnSaveAddProvider.UseVisualStyleBackColor = false;
+            this.btnSaveAddProvider.Click += new System.EventHandler(this.btnSaveAddProvider_Click);
+            // 
+            // colorComboBox
+            // 
+            this.colorComboBox.DataSource = this.colorBindingSource;
+            this.colorComboBox.DisplayMember = "colorName";
+            this.colorComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.colorComboBox.FormattingEnabled = true;
+            resources.ApplyResources(this.colorComboBox, "colorComboBox");
+            this.colorComboBox.Name = "colorComboBox";
+            this.colorComboBox.ValueMember = "id";
+            // 
+            // colorBindingSource
+            // 
+            this.colorBindingSource.DataMember = "Color";
+            this.colorBindingSource.DataSource = this.clothesDataSet;
+            // 
+            // sizeComboBox
+            // 
+            this.sizeComboBox.DataSource = this.sizeBindingSource;
+            this.sizeComboBox.DisplayMember = "sizeName";
+            this.sizeComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.sizeComboBox.FormattingEnabled = true;
+            resources.ApplyResources(this.sizeComboBox, "sizeComboBox");
+            this.sizeComboBox.Name = "sizeComboBox";
+            this.sizeComboBox.ValueMember = "id";
+            this.sizeComboBox.SelectedIndexChanged += new System.EventHandler(this.sizeComboBox_SelectedIndexChanged);
+            // 
+            // sizeBindingSource
+            // 
+            this.sizeBindingSource.DataMember = "Size";
+            this.sizeBindingSource.DataSource = this.clothesDataSet;
+            // 
+            // productComboBox
+            // 
+            this.productComboBox.DataSource = this.productBindingSource;
+            this.productComboBox.DisplayMember = "title";
+            this.productComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            resources.ApplyResources(this.productComboBox, "productComboBox");
+            this.productComboBox.FormattingEnabled = true;
+            this.productComboBox.Name = "productComboBox";
+            this.productComboBox.ValueMember = "id";
+            // 
+            // productBindingSource
+            // 
+            this.productBindingSource.DataMember = "Product";
+            this.productBindingSource.DataSource = this.clothesDataSet;
             // 
             // productIDTextBox
             // 
@@ -453,83 +552,35 @@
             resources.ApplyResources(this.activeTextBox, "activeTextBox");
             this.activeTextBox.Name = "activeTextBox";
             // 
-            // productBindingSource
-            // 
-            this.productBindingSource.DataMember = "Product";
-            this.productBindingSource.DataSource = this.clothesDataSet;
-            // 
             // productTableAdapter
             // 
             this.productTableAdapter.ClearBeforeFill = true;
-            // 
-            // productComboBox
-            // 
-            this.productComboBox.DataSource = this.productBindingSource;
-            this.productComboBox.DisplayMember = "title";
-            this.productComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.productComboBox.FormattingEnabled = true;
-            resources.ApplyResources(this.productComboBox, "productComboBox");
-            this.productComboBox.Name = "productComboBox";
-            this.productComboBox.ValueMember = "id";
-            // 
-            // label1
-            // 
-            resources.ApplyResources(label1, "label1");
-            label1.Name = "label1";
-            // 
-            // sizeBindingSource
-            // 
-            this.sizeBindingSource.DataMember = "Size";
-            this.sizeBindingSource.DataSource = this.clothesDataSet;
             // 
             // sizeTableAdapter
             // 
             this.sizeTableAdapter.ClearBeforeFill = true;
             // 
-            // sizeComboBox
-            // 
-            this.sizeComboBox.DataSource = this.sizeBindingSource;
-            this.sizeComboBox.DisplayMember = "sizeName";
-            this.sizeComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.sizeComboBox.FormattingEnabled = true;
-            resources.ApplyResources(this.sizeComboBox, "sizeComboBox");
-            this.sizeComboBox.Name = "sizeComboBox";
-            this.sizeComboBox.ValueMember = "id";
-            // 
-            // label2
-            // 
-            resources.ApplyResources(label2, "label2");
-            label2.Name = "label2";
-            // 
-            // colorBindingSource
-            // 
-            this.colorBindingSource.DataMember = "Color";
-            this.colorBindingSource.DataSource = this.clothesDataSet;
-            // 
             // colorTableAdapter
             // 
             this.colorTableAdapter.ClearBeforeFill = true;
             // 
-            // colorComboBox
+            // invoiceItemBindingSource
             // 
-            this.colorComboBox.DataSource = this.colorBindingSource;
-            this.colorComboBox.DisplayMember = "colorName";
-            this.colorComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.colorComboBox.FormattingEnabled = true;
-            resources.ApplyResources(this.colorComboBox, "colorComboBox");
-            this.colorComboBox.Name = "colorComboBox";
-            this.colorComboBox.ValueMember = "id";
+            this.invoiceItemBindingSource.DataMember = "FK_InvoiceItem_ProductSizeColor";
+            this.invoiceItemBindingSource.DataSource = this.productSizeColorBindingSource;
             // 
-            // label3
+            // invoiceItemTableAdapter
             // 
-            resources.ApplyResources(label3, "label3");
-            label3.Name = "label3";
+            this.invoiceItemTableAdapter.ClearBeforeFill = true;
             // 
-            // productName
+            // importCouponDetailBindingSource
             // 
-            resources.ApplyResources(this.productName, "productName");
-            this.productName.MinWidth = 25;
-            this.productName.Name = "productName";
+            this.importCouponDetailBindingSource.DataMember = "FK_ImportCouponDetail_ProductSizeColor";
+            this.importCouponDetailBindingSource.DataSource = this.productSizeColorBindingSource;
+            // 
+            // importCouponDetailTableAdapter
+            // 
+            this.importCouponDetailTableAdapter.ClearBeforeFill = true;
             // 
             // SizeColorForm
             // 
@@ -554,9 +605,11 @@
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).EndInit();
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.productBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.sizeBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.colorBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.sizeBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.productBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.invoiceItemBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.importCouponDetailBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -613,5 +666,11 @@
         private ClothesDataSetTableAdapters.ColorTableAdapter colorTableAdapter;
         private DevExpress.XtraGrid.Columns.GridColumn productName;
         private System.Windows.Forms.ComboBox colorComboBox;
+        private System.Windows.Forms.BindingSource invoiceItemBindingSource;
+        private ClothesDataSetTableAdapters.InvoiceItemTableAdapter invoiceItemTableAdapter;
+        private System.Windows.Forms.BindingSource importCouponDetailBindingSource;
+        private ClothesDataSetTableAdapters.ImportCouponDetailTableAdapter importCouponDetailTableAdapter;
+        private System.Windows.Forms.Button btnCancelAddProvider;
+        private System.Windows.Forms.Button btnSaveAddProvider;
     }
 }

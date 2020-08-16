@@ -81,8 +81,9 @@
             this.categoryBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.btnListImages = new System.Windows.Forms.LinkLabel();
             this.btnCancelAddProvider = new System.Windows.Forms.Button();
+            this.btnSizeColor = new System.Windows.Forms.Button();
             this.btnSaveAddProvider = new System.Windows.Forms.Button();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.thumbnailProduct = new System.Windows.Forms.PictureBox();
             this.detailRichTextBox = new System.Windows.Forms.RichTextBox();
             this.addDateDateEdit = new DevExpress.XtraEditors.DateEdit();
             this.idTextBox = new System.Windows.Forms.TextBox();
@@ -142,7 +143,7 @@
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.providerBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.categoryBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.thumbnailProduct)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.addDateDateEdit.Properties.CalendarTimeProperties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.addDateDateEdit.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.barManager1)).BeginInit();
@@ -587,8 +588,9 @@
             this.panel1.Controls.Add(this.categoryComboBox);
             this.panel1.Controls.Add(this.btnListImages);
             this.panel1.Controls.Add(this.btnCancelAddProvider);
+            this.panel1.Controls.Add(this.btnSizeColor);
             this.panel1.Controls.Add(this.btnSaveAddProvider);
-            this.panel1.Controls.Add(this.pictureBox1);
+            this.panel1.Controls.Add(this.thumbnailProduct);
             this.panel1.Controls.Add(detailLabel);
             this.panel1.Controls.Add(this.detailRichTextBox);
             this.panel1.Controls.Add(this.addDateDateEdit);
@@ -660,10 +662,11 @@
             // btnListImages
             // 
             this.btnListImages.AutoSize = true;
+            this.btnListImages.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnListImages.LinkColor = System.Drawing.SystemColors.MenuHighlight;
-            this.btnListImages.Location = new System.Drawing.Point(733, 437);
+            this.btnListImages.Location = new System.Drawing.Point(717, 425);
             this.btnListImages.Name = "btnListImages";
-            this.btnListImages.Size = new System.Drawing.Size(67, 17);
+            this.btnListImages.Size = new System.Drawing.Size(104, 25);
             this.btnListImages.TabIndex = 59;
             this.btnListImages.TabStop = true;
             this.btnListImages.Text = "Image list";
@@ -682,6 +685,20 @@
             this.btnCancelAddProvider.UseVisualStyleBackColor = false;
             this.btnCancelAddProvider.Click += new System.EventHandler(this.btnCancelAddProvider_Click);
             // 
+            // btnSizeColor
+            // 
+            this.btnSizeColor.BackColor = System.Drawing.Color.White;
+            this.btnSizeColor.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSizeColor.ForeColor = System.Drawing.Color.DarkViolet;
+            this.btnSizeColor.ImageAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.btnSizeColor.Location = new System.Drawing.Point(687, 488);
+            this.btnSizeColor.Name = "btnSizeColor";
+            this.btnSizeColor.Size = new System.Drawing.Size(171, 63);
+            this.btnSizeColor.TabIndex = 57;
+            this.btnSizeColor.Text = "Size and color";
+            this.btnSizeColor.UseVisualStyleBackColor = false;
+            this.btnSizeColor.Click += new System.EventHandler(this.btnSizeColor_Click);
+            // 
             // btnSaveAddProvider
             // 
             this.btnSaveAddProvider.BackColor = System.Drawing.Color.White;
@@ -695,13 +712,15 @@
             this.btnSaveAddProvider.UseVisualStyleBackColor = false;
             this.btnSaveAddProvider.Click += new System.EventHandler(this.btnSaveAddProvider_Click);
             // 
-            // pictureBox1
+            // thumbnailProduct
             // 
-            this.pictureBox1.Location = new System.Drawing.Point(572, 82);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(351, 319);
-            this.pictureBox1.TabIndex = 51;
-            this.pictureBox1.TabStop = false;
+            this.thumbnailProduct.ErrorImage = global::ClothesAdmin.Properties.Resources.no_image;
+            this.thumbnailProduct.Location = new System.Drawing.Point(572, 82);
+            this.thumbnailProduct.Name = "thumbnailProduct";
+            this.thumbnailProduct.Size = new System.Drawing.Size(351, 319);
+            this.thumbnailProduct.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.thumbnailProduct.TabIndex = 51;
+            this.thumbnailProduct.TabStop = false;
             // 
             // detailRichTextBox
             // 
@@ -793,6 +812,7 @@
             this.thumnailTextBox.Name = "thumnailTextBox";
             this.thumnailTextBox.Size = new System.Drawing.Size(392, 22);
             this.thumnailTextBox.TabIndex = 42;
+            this.thumnailTextBox.TextChanged += new System.EventHandler(this.thumnailTextBox_TextChanged);
             // 
             // isNewTextBox
             // 
@@ -1008,7 +1028,7 @@
             this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.providerBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.categoryBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.thumbnailProduct)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.addDateDateEdit.Properties.CalendarTimeProperties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.addDateDateEdit.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.barManager1)).EndInit();
@@ -1079,7 +1099,7 @@
         private System.Windows.Forms.TextBox soldTextBox;
         private System.Windows.Forms.RichTextBox detailRichTextBox;
         private DevExpress.XtraEditors.DateEdit addDateDateEdit;
-        private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.PictureBox thumbnailProduct;
         private System.Windows.Forms.Button btnCancelAddProvider;
         private System.Windows.Forms.Button btnSaveAddProvider;
         private System.Windows.Forms.LinkLabel btnListImages;
@@ -1099,5 +1119,6 @@
         private System.Windows.Forms.BindingSource providerBindingSource;
         private ClothesDataSetTableAdapters.ProviderTableAdapter providerTableAdapter;
         private System.Windows.Forms.ComboBox providerComboBox;
+        private System.Windows.Forms.Button btnSizeColor;
     }
 }

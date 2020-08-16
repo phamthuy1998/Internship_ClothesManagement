@@ -40,10 +40,10 @@
             System.Windows.Forms.Label dateLabel;
             System.Windows.Forms.Label label3;
             System.Windows.Forms.Label sizeIDLabel;
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ImportCuponForm));
             System.Windows.Forms.Label label4;
             System.Windows.Forms.Label label5;
             System.Windows.Forms.Label colorIdLabel;
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ImportCuponForm));
             this.barManager = new DevExpress.XtraBars.BarManager(this.components);
             this.bar2 = new DevExpress.XtraBars.Bar();
             this.btnAddProvider = new DevExpress.XtraBars.BarButtonItem();
@@ -89,6 +89,9 @@
             this.idSpinEdit = new DevExpress.XtraEditors.SpinEdit();
             this.employeeIdSpinEdit = new DevExpress.XtraEditors.SpinEdit();
             this.panel5 = new System.Windows.Forms.Panel();
+            this.colorIdTextBox = new System.Windows.Forms.TextBox();
+            this.colorComboBox = new System.Windows.Forms.ComboBox();
+            this.colorBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.sizeComboBox = new System.Windows.Forms.ComboBox();
             this.sizeBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.sizeIDTextBox = new System.Windows.Forms.TextBox();
@@ -106,10 +109,7 @@
             this.importCouponDetailTableAdapter = new ClothesAdmin.ClothesDataSetTableAdapters.ImportCouponDetailTableAdapter();
             this.productTableAdapter = new ClothesAdmin.ClothesDataSetTableAdapters.ProductTableAdapter();
             this.sizeTableAdapter = new ClothesAdmin.ClothesDataSetTableAdapters.SizeTableAdapter();
-            this.colorBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.colorTableAdapter = new ClothesAdmin.ClothesDataSetTableAdapters.ColorTableAdapter();
-            this.colorComboBox = new System.Windows.Forms.ComboBox();
-            this.colorIdTextBox = new System.Windows.Forms.TextBox();
             idLabel = new System.Windows.Forms.Label();
             employeeIdLabel = new System.Windows.Forms.Label();
             idCouponLabel = new System.Windows.Forms.Label();
@@ -143,13 +143,13 @@
             ((System.ComponentModel.ISupportInitialize)(this.idSpinEdit.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.employeeIdSpinEdit.Properties)).BeginInit();
             this.panel5.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.colorBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.sizeBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.productBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.idCouponSpinEdit.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.idProductSpinEdit.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.quantitySpinEdit.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.priceSpinEdit.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.colorBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // idLabel
@@ -250,6 +250,33 @@
             sizeIDLabel.Size = new System.Drawing.Size(52, 17);
             sizeIDLabel.TabIndex = 58;
             sizeIDLabel.Text = "Size ID";
+            // 
+            // label4
+            // 
+            label4.AutoSize = true;
+            label4.Location = new System.Drawing.Point(82, 116);
+            label4.Name = "label4";
+            label4.Size = new System.Drawing.Size(35, 17);
+            label4.TabIndex = 4;
+            label4.Text = "Size";
+            // 
+            // label5
+            // 
+            label5.AutoSize = true;
+            label5.Location = new System.Drawing.Point(84, 165);
+            label5.Name = "label5";
+            label5.Size = new System.Drawing.Size(41, 17);
+            label5.TabIndex = 4;
+            label5.Text = "Color";
+            // 
+            // colorIdLabel
+            // 
+            colorIdLabel.AutoSize = true;
+            colorIdLabel.Location = new System.Drawing.Point(625, 165);
+            colorIdLabel.Name = "colorIdLabel";
+            colorIdLabel.Size = new System.Drawing.Size(58, 17);
+            colorIdLabel.TabIndex = 59;
+            colorIdLabel.Text = "Color ID";
             // 
             // barManager
             // 
@@ -746,6 +773,34 @@
             this.panel5.Size = new System.Drawing.Size(963, 393);
             this.panel5.TabIndex = 3;
             // 
+            // colorIdTextBox
+            // 
+            this.colorIdTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.importCouponDetailBindingSource, "colorId", true));
+            this.colorIdTextBox.Enabled = false;
+            this.colorIdTextBox.Location = new System.Drawing.Point(729, 162);
+            this.colorIdTextBox.Name = "colorIdTextBox";
+            this.colorIdTextBox.Size = new System.Drawing.Size(125, 22);
+            this.colorIdTextBox.TabIndex = 60;
+            this.colorIdTextBox.TextChanged += new System.EventHandler(this.colorIdTextBox_TextChanged);
+            // 
+            // colorComboBox
+            // 
+            this.colorComboBox.DataSource = this.colorBindingSource;
+            this.colorComboBox.DisplayMember = "colorName";
+            this.colorComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.colorComboBox.FormattingEnabled = true;
+            this.colorComboBox.Location = new System.Drawing.Point(190, 162);
+            this.colorComboBox.Name = "colorComboBox";
+            this.colorComboBox.Size = new System.Drawing.Size(374, 24);
+            this.colorComboBox.TabIndex = 59;
+            this.colorComboBox.ValueMember = "id";
+            this.colorComboBox.SelectedIndexChanged += new System.EventHandler(this.colorComboBox_SelectedIndexChanged);
+            // 
+            // colorBindingSource
+            // 
+            this.colorBindingSource.DataMember = "Color";
+            this.colorBindingSource.DataSource = this.clothesDataSet;
+            // 
             // sizeComboBox
             // 
             this.sizeComboBox.DataSource = this.sizeBindingSource;
@@ -929,64 +984,9 @@
             // 
             this.sizeTableAdapter.ClearBeforeFill = true;
             // 
-            // label4
-            // 
-            label4.AutoSize = true;
-            label4.Location = new System.Drawing.Point(82, 116);
-            label4.Name = "label4";
-            label4.Size = new System.Drawing.Size(35, 17);
-            label4.TabIndex = 4;
-            label4.Text = "Size";
-            // 
-            // colorBindingSource
-            // 
-            this.colorBindingSource.DataMember = "Color";
-            this.colorBindingSource.DataSource = this.clothesDataSet;
-            // 
             // colorTableAdapter
             // 
             this.colorTableAdapter.ClearBeforeFill = true;
-            // 
-            // colorComboBox
-            // 
-            this.colorComboBox.DataSource = this.colorBindingSource;
-            this.colorComboBox.DisplayMember = "colorName";
-            this.colorComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.colorComboBox.FormattingEnabled = true;
-            this.colorComboBox.Location = new System.Drawing.Point(190, 162);
-            this.colorComboBox.Name = "colorComboBox";
-            this.colorComboBox.Size = new System.Drawing.Size(374, 24);
-            this.colorComboBox.TabIndex = 59;
-            this.colorComboBox.ValueMember = "id";
-            this.colorComboBox.SelectedIndexChanged += new System.EventHandler(this.colorComboBox_SelectedIndexChanged);
-            // 
-            // label5
-            // 
-            label5.AutoSize = true;
-            label5.Location = new System.Drawing.Point(84, 165);
-            label5.Name = "label5";
-            label5.Size = new System.Drawing.Size(41, 17);
-            label5.TabIndex = 4;
-            label5.Text = "Color";
-            // 
-            // colorIdLabel
-            // 
-            colorIdLabel.AutoSize = true;
-            colorIdLabel.Location = new System.Drawing.Point(625, 165);
-            colorIdLabel.Name = "colorIdLabel";
-            colorIdLabel.Size = new System.Drawing.Size(58, 17);
-            colorIdLabel.TabIndex = 59;
-            colorIdLabel.Text = "Color ID";
-            // 
-            // colorIdTextBox
-            // 
-            this.colorIdTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.importCouponDetailBindingSource, "colorId", true));
-            this.colorIdTextBox.Enabled = false;
-            this.colorIdTextBox.Location = new System.Drawing.Point(729, 162);
-            this.colorIdTextBox.Name = "colorIdTextBox";
-            this.colorIdTextBox.Size = new System.Drawing.Size(125, 22);
-            this.colorIdTextBox.TabIndex = 60;
-            this.colorIdTextBox.TextChanged += new System.EventHandler(this.colorIdTextBox_TextChanged);
             // 
             // ImportCuponForm
             // 
@@ -1025,13 +1025,13 @@
             ((System.ComponentModel.ISupportInitialize)(this.employeeIdSpinEdit.Properties)).EndInit();
             this.panel5.ResumeLayout(false);
             this.panel5.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.colorBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.sizeBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.productBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.idCouponSpinEdit.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.idProductSpinEdit.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.quantitySpinEdit.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.priceSpinEdit.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.colorBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 

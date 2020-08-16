@@ -298,7 +298,7 @@
             this.btnProductPromotion});
             this.ribbon.Location = new System.Drawing.Point(0, 0);
             this.ribbon.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.ribbon.MaxItemId = 274;
+            this.ribbon.MaxItemId = 275;
             this.ribbon.Name = "ribbon";
             this.ribbon.Pages.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPage[] {
             this.rbHome,
@@ -678,11 +678,10 @@
             // 
             // btnProductSizeColor
             // 
-            this.btnProductSizeColor.Caption = "Size color";
+            this.btnProductSizeColor.Caption = "Size color ";
             this.btnProductSizeColor.Id = 268;
             this.btnProductSizeColor.ImageOptions.Image = global::ClothesAdmin.Properties.Resources.commerce_and_shopping;
             this.btnProductSizeColor.Name = "btnProductSizeColor";
-            this.btnProductSizeColor.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnProductSizeColor_ItemClick);
             // 
             // barButtonItem7
             // 
@@ -736,7 +735,6 @@
             this.ribbonPageGroup1.ItemLinks.Add(this.btnProduct);
             this.ribbonPageGroup1.ItemLinks.Add(this.btnSize, true);
             this.ribbonPageGroup1.ItemLinks.Add(this.btnColor);
-            this.ribbonPageGroup1.ItemLinks.Add(this.btnProductSizeColor);
             this.ribbonPageGroup1.Name = "ribbonPageGroup1";
             // 
             // ribbonPageGroup4

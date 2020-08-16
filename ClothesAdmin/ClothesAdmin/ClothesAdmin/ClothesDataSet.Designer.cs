@@ -5029,8 +5029,6 @@ namespace ClothesAdmin {
             
             private global::System.Data.DataColumn columnproductId;
             
-            private global::System.Data.DataColumn columnactive;
-            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public ImageDataTable() {
@@ -5090,14 +5088,6 @@ namespace ClothesAdmin {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn activeColumn {
-                get {
-                    return this.columnactive;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -5133,13 +5123,12 @@ namespace ClothesAdmin {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public ImageRow AddImageRow(string imageUrl, ProductRow parentProductRowByFK_Image_Product, int active) {
+            public ImageRow AddImageRow(string imageUrl, ProductRow parentProductRowByFK_Image_Product) {
                 ImageRow rowImageRow = ((ImageRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         null,
                         imageUrl,
-                        null,
-                        active};
+                        null};
                 if ((parentProductRowByFK_Image_Product != null)) {
                     columnValuesArray[2] = parentProductRowByFK_Image_Product[0];
                 }
@@ -5175,7 +5164,6 @@ namespace ClothesAdmin {
                 this.columnid = base.Columns["id"];
                 this.columnimageUrl = base.Columns["imageUrl"];
                 this.columnproductId = base.Columns["productId"];
-                this.columnactive = base.Columns["active"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -5187,8 +5175,6 @@ namespace ClothesAdmin {
                 base.Columns.Add(this.columnimageUrl);
                 this.columnproductId = new global::System.Data.DataColumn("productId", typeof(int), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnproductId);
-                this.columnactive = new global::System.Data.DataColumn("active", typeof(int), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnactive);
                 this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
                                 this.columnid}, true));
                 this.columnid.AutoIncrement = true;
@@ -5480,10 +5466,12 @@ namespace ClothesAdmin {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public ImportCouponDetailRow FindByidCouponidProduct(int idCoupon, int idProduct) {
+            public ImportCouponDetailRow FindByidCouponidProductcolorIdsizeID(int idCoupon, int idProduct, int colorId, int sizeID) {
                 return ((ImportCouponDetailRow)(this.Rows.Find(new object[] {
                             idCoupon,
-                            idProduct})));
+                            idProduct,
+                            colorId,
+                            sizeID})));
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -5528,7 +5516,9 @@ namespace ClothesAdmin {
                 base.Columns.Add(this.columnsizeID);
                 this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
                                 this.columnidCoupon,
-                                this.columnidProduct}, true));
+                                this.columnidProduct,
+                                this.columncolorId,
+                                this.columnsizeID}, true));
                 this.columnidCoupon.AutoIncrement = true;
                 this.columnidCoupon.AutoIncrementSeed = -1;
                 this.columnidCoupon.AutoIncrementStep = -1;
@@ -23385,22 +23375,6 @@ namespace ClothesAdmin {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public int active {
-                get {
-                    try {
-                        return ((int)(this[this.tableImage.activeColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'active\' in table \'Image\' is DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tableImage.activeColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public ProductRow ProductRow {
                 get {
                     return ((ProductRow)(this.GetParentRow(this.Table.ParentRelations["FK_Image_Product"])));
@@ -23432,18 +23406,6 @@ namespace ClothesAdmin {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public void SetproductIdNull() {
                 this[this.tableImage.productIdColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool IsactiveNull() {
-                return this.IsNull(this.tableImage.activeColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void SetactiveNull() {
-                this[this.tableImage.activeColumn] = global::System.Convert.DBNull;
             }
         }
         
@@ -34422,11 +34384,31 @@ SELECT id, colorName, colorHex, active FROM Color WHERE (id = @id)";
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         private void InitCommandCollection() {
-            this._commandCollection = new global::System.Data.SqlClient.SqlCommand[1];
+            this._commandCollection = new global::System.Data.SqlClient.SqlCommand[2];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
             this._commandCollection[0].CommandText = "SELECT id, colorName, colorHex, active FROM dbo.Color";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
+            this._commandCollection[1] = new global::System.Data.SqlClient.SqlCommand();
+            this._commandCollection[1].Connection = this.Connection;
+            this._commandCollection[1].CommandText = @"IF(@productID IS NULL OR @colorID IS null)
+BEGIN 
+	SELECT  id, colorName, colorHex, Color.active 
+	FROM ProductSizeColor 
+	JOIN Color   ON Color.id = colorID
+	GROUP BY  id, colorName, colorHex, Color.active 
+END
+ELSE
+BEGIN
+	SELECT  id, colorName, colorHex, Color.active 
+	FROM ProductSizeColor 
+	JOIN Color   ON Color.id = colorID
+	WHERE (ProductSizeColor.productID = @productID AND ProductSizeColor.sizeId = @colorID)
+	GROUP BY  id, colorName, colorHex, Color.active 
+END";
+            this._commandCollection[1].CommandType = global::System.Data.CommandType.Text;
+            this._commandCollection[1].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@productID", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "productID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[1].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@colorID", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "sizeId", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -34448,6 +34430,34 @@ SELECT id, colorName, colorHex, active FROM Color WHERE (id = @id)";
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, true)]
         public virtual ClothesDataSet.ColorDataTable GetData() {
             this.Adapter.SelectCommand = this.CommandCollection[0];
+            ClothesDataSet.ColorDataTable dataTable = new ClothesDataSet.ColorDataTable();
+            this.Adapter.Fill(dataTable);
+            return dataTable;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Fill, false)]
+        public virtual int FillBy(ClothesDataSet.ColorDataTable dataTable, int productID, int colorID) {
+            this.Adapter.SelectCommand = this.CommandCollection[1];
+            this.Adapter.SelectCommand.Parameters[0].Value = ((int)(productID));
+            this.Adapter.SelectCommand.Parameters[1].Value = ((int)(colorID));
+            if ((this.ClearBeforeFill == true)) {
+                dataTable.Clear();
+            }
+            int returnValue = this.Adapter.Fill(dataTable);
+            return returnValue;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, false)]
+        public virtual ClothesDataSet.ColorDataTable GetDataBy(int productID, int colorID) {
+            this.Adapter.SelectCommand = this.CommandCollection[1];
+            this.Adapter.SelectCommand.Parameters[0].Value = ((int)(productID));
+            this.Adapter.SelectCommand.Parameters[1].Value = ((int)(colorID));
             ClothesDataSet.ColorDataTable dataTable = new ClothesDataSet.ColorDataTable();
             this.Adapter.Fill(dataTable);
             return dataTable;
@@ -36249,43 +36259,37 @@ SELECT idProduct, idAccount FROM FavoriteProduct WHERE (idAccount = @idAccount) 
             tableMapping.ColumnMappings.Add("id", "id");
             tableMapping.ColumnMappings.Add("imageUrl", "imageUrl");
             tableMapping.ColumnMappings.Add("productId", "productId");
-            tableMapping.ColumnMappings.Add("active", "active");
             this._adapter.TableMappings.Add(tableMapping);
             this._adapter.DeleteCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.DeleteCommand.Connection = this.Connection;
-            this._adapter.DeleteCommand.CommandText = @"DELETE FROM [dbo].[Image] WHERE (([id] = @Original_id) AND ((@IsNull_imageUrl = 1 AND [imageUrl] IS NULL) OR ([imageUrl] = @Original_imageUrl)) AND ((@IsNull_productId = 1 AND [productId] IS NULL) OR ([productId] = @Original_productId)) AND ((@IsNull_active = 1 AND [active] IS NULL) OR ([active] = @Original_active)))";
+            this._adapter.DeleteCommand.CommandText = "DELETE FROM [Image] WHERE (([id] = @Original_id) AND ((@IsNull_imageUrl = 1 AND [" +
+                "imageUrl] IS NULL) OR ([imageUrl] = @Original_imageUrl)) AND ((@IsNull_productId" +
+                " = 1 AND [productId] IS NULL) OR ([productId] = @Original_productId)))";
             this._adapter.DeleteCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_id", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "id", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_imageUrl", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "imageUrl", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_imageUrl", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "imageUrl", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_productId", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "productId", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_productId", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "productId", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_active", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "active", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_active", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "active", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.InsertCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.InsertCommand.Connection = this.Connection;
-            this._adapter.InsertCommand.CommandText = "INSERT INTO [dbo].[Image] ([imageUrl], [productId], [active]) VALUES (@imageUrl, " +
-                "@productId, @active);\r\nSELECT id, imageUrl, productId, active FROM Image WHERE (" +
-                "id = SCOPE_IDENTITY())";
+            this._adapter.InsertCommand.CommandText = "INSERT INTO [Image] ([imageUrl], [productId]) VALUES (@imageUrl, @productId);\r\nSE" +
+                "LECT id, imageUrl, productId FROM Image WHERE (id = SCOPE_IDENTITY())";
             this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@imageUrl", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "imageUrl", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@productId", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "productId", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@active", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "active", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.UpdateCommand.Connection = this.Connection;
-            this._adapter.UpdateCommand.CommandText = @"UPDATE [dbo].[Image] SET [imageUrl] = @imageUrl, [productId] = @productId, [active] = @active WHERE (([id] = @Original_id) AND ((@IsNull_imageUrl = 1 AND [imageUrl] IS NULL) OR ([imageUrl] = @Original_imageUrl)) AND ((@IsNull_productId = 1 AND [productId] IS NULL) OR ([productId] = @Original_productId)) AND ((@IsNull_active = 1 AND [active] IS NULL) OR ([active] = @Original_active)));
-SELECT id, imageUrl, productId, active FROM Image WHERE (id = @id)";
+            this._adapter.UpdateCommand.CommandText = @"UPDATE [Image] SET [imageUrl] = @imageUrl, [productId] = @productId WHERE (([id] = @Original_id) AND ((@IsNull_imageUrl = 1 AND [imageUrl] IS NULL) OR ([imageUrl] = @Original_imageUrl)) AND ((@IsNull_productId = 1 AND [productId] IS NULL) OR ([productId] = @Original_productId)));
+SELECT id, imageUrl, productId FROM Image WHERE (id = @id)";
             this._adapter.UpdateCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@imageUrl", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "imageUrl", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@productId", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "productId", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@active", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "active", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_id", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "id", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_imageUrl", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "imageUrl", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_imageUrl", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "imageUrl", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_productId", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "productId", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_productId", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "productId", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_active", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "active", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_active", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "active", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@id", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "id", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
         }
         
@@ -36299,11 +36303,16 @@ SELECT id, imageUrl, productId, active FROM Image WHERE (id = @id)";
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         private void InitCommandCollection() {
-            this._commandCollection = new global::System.Data.SqlClient.SqlCommand[1];
+            this._commandCollection = new global::System.Data.SqlClient.SqlCommand[2];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = "SELECT id, imageUrl, productId, active FROM dbo.Image";
+            this._commandCollection[0].CommandText = "SELECT id, imageUrl, productId FROM Image";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
+            this._commandCollection[1] = new global::System.Data.SqlClient.SqlCommand();
+            this._commandCollection[1].Connection = this.Connection;
+            this._commandCollection[1].CommandText = "\r\nSELECT id, imageUrl, productId FROM Image\r\nwhere (productId  = @productId )";
+            this._commandCollection[1].CommandType = global::System.Data.CommandType.Text;
+            this._commandCollection[1].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@productId", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "productId", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -36325,6 +36334,42 @@ SELECT id, imageUrl, productId, active FROM Image WHERE (id = @id)";
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, true)]
         public virtual ClothesDataSet.ImageDataTable GetData() {
             this.Adapter.SelectCommand = this.CommandCollection[0];
+            ClothesDataSet.ImageDataTable dataTable = new ClothesDataSet.ImageDataTable();
+            this.Adapter.Fill(dataTable);
+            return dataTable;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Fill, false)]
+        public virtual int FillBy(ClothesDataSet.ImageDataTable dataTable, global::System.Nullable<int> productId) {
+            this.Adapter.SelectCommand = this.CommandCollection[1];
+            if ((productId.HasValue == true)) {
+                this.Adapter.SelectCommand.Parameters[0].Value = ((int)(productId.Value));
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[0].Value = global::System.DBNull.Value;
+            }
+            if ((this.ClearBeforeFill == true)) {
+                dataTable.Clear();
+            }
+            int returnValue = this.Adapter.Fill(dataTable);
+            return returnValue;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, false)]
+        public virtual ClothesDataSet.ImageDataTable GetDataBy(global::System.Nullable<int> productId) {
+            this.Adapter.SelectCommand = this.CommandCollection[1];
+            if ((productId.HasValue == true)) {
+                this.Adapter.SelectCommand.Parameters[0].Value = ((int)(productId.Value));
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[0].Value = global::System.DBNull.Value;
+            }
             ClothesDataSet.ImageDataTable dataTable = new ClothesDataSet.ImageDataTable();
             this.Adapter.Fill(dataTable);
             return dataTable;
@@ -36363,7 +36408,7 @@ SELECT id, imageUrl, productId, active FROM Image WHERE (id = @id)";
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Delete, true)]
-        public virtual int Delete(int Original_id, string Original_imageUrl, global::System.Nullable<int> Original_productId, global::System.Nullable<int> Original_active) {
+        public virtual int Delete(int Original_id, string Original_imageUrl, global::System.Nullable<int> Original_productId) {
             this.Adapter.DeleteCommand.Parameters[0].Value = ((int)(Original_id));
             if ((Original_imageUrl == null)) {
                 this.Adapter.DeleteCommand.Parameters[1].Value = ((object)(1));
@@ -36380,14 +36425,6 @@ SELECT id, imageUrl, productId, active FROM Image WHERE (id = @id)";
             else {
                 this.Adapter.DeleteCommand.Parameters[3].Value = ((object)(1));
                 this.Adapter.DeleteCommand.Parameters[4].Value = global::System.DBNull.Value;
-            }
-            if ((Original_active.HasValue == true)) {
-                this.Adapter.DeleteCommand.Parameters[5].Value = ((object)(0));
-                this.Adapter.DeleteCommand.Parameters[6].Value = ((int)(Original_active.Value));
-            }
-            else {
-                this.Adapter.DeleteCommand.Parameters[5].Value = ((object)(1));
-                this.Adapter.DeleteCommand.Parameters[6].Value = global::System.DBNull.Value;
             }
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.DeleteCommand.Connection.State;
             if (((this.Adapter.DeleteCommand.Connection.State & global::System.Data.ConnectionState.Open) 
@@ -36409,7 +36446,7 @@ SELECT id, imageUrl, productId, active FROM Image WHERE (id = @id)";
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Insert, true)]
-        public virtual int Insert(string imageUrl, global::System.Nullable<int> productId, global::System.Nullable<int> active) {
+        public virtual int Insert(string imageUrl, global::System.Nullable<int> productId) {
             if ((imageUrl == null)) {
                 this.Adapter.InsertCommand.Parameters[0].Value = global::System.DBNull.Value;
             }
@@ -36421,12 +36458,6 @@ SELECT id, imageUrl, productId, active FROM Image WHERE (id = @id)";
             }
             else {
                 this.Adapter.InsertCommand.Parameters[1].Value = global::System.DBNull.Value;
-            }
-            if ((active.HasValue == true)) {
-                this.Adapter.InsertCommand.Parameters[2].Value = ((int)(active.Value));
-            }
-            else {
-                this.Adapter.InsertCommand.Parameters[2].Value = global::System.DBNull.Value;
             }
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.InsertCommand.Connection.State;
             if (((this.Adapter.InsertCommand.Connection.State & global::System.Data.ConnectionState.Open) 
@@ -36448,7 +36479,7 @@ SELECT id, imageUrl, productId, active FROM Image WHERE (id = @id)";
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
-        public virtual int Update(string imageUrl, global::System.Nullable<int> productId, global::System.Nullable<int> active, int Original_id, string Original_imageUrl, global::System.Nullable<int> Original_productId, global::System.Nullable<int> Original_active, int id) {
+        public virtual int Update(string imageUrl, global::System.Nullable<int> productId, int Original_id, string Original_imageUrl, global::System.Nullable<int> Original_productId, int id) {
             if ((imageUrl == null)) {
                 this.Adapter.UpdateCommand.Parameters[0].Value = global::System.DBNull.Value;
             }
@@ -36461,38 +36492,24 @@ SELECT id, imageUrl, productId, active FROM Image WHERE (id = @id)";
             else {
                 this.Adapter.UpdateCommand.Parameters[1].Value = global::System.DBNull.Value;
             }
-            if ((active.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[2].Value = ((int)(active.Value));
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[2].Value = global::System.DBNull.Value;
-            }
-            this.Adapter.UpdateCommand.Parameters[3].Value = ((int)(Original_id));
+            this.Adapter.UpdateCommand.Parameters[2].Value = ((int)(Original_id));
             if ((Original_imageUrl == null)) {
-                this.Adapter.UpdateCommand.Parameters[4].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[5].Value = global::System.DBNull.Value;
+                this.Adapter.UpdateCommand.Parameters[3].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[4].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[4].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[5].Value = ((string)(Original_imageUrl));
+                this.Adapter.UpdateCommand.Parameters[3].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[4].Value = ((string)(Original_imageUrl));
             }
             if ((Original_productId.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[6].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[7].Value = ((int)(Original_productId.Value));
+                this.Adapter.UpdateCommand.Parameters[5].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[6].Value = ((int)(Original_productId.Value));
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[6].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[7].Value = global::System.DBNull.Value;
+                this.Adapter.UpdateCommand.Parameters[5].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[6].Value = global::System.DBNull.Value;
             }
-            if ((Original_active.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[8].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[9].Value = ((int)(Original_active.Value));
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[8].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[9].Value = global::System.DBNull.Value;
-            }
-            this.Adapter.UpdateCommand.Parameters[10].Value = ((int)(id));
+            this.Adapter.UpdateCommand.Parameters[7].Value = ((int)(id));
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.UpdateCommand.Connection.State;
             if (((this.Adapter.UpdateCommand.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {
@@ -36513,8 +36530,8 @@ SELECT id, imageUrl, productId, active FROM Image WHERE (id = @id)";
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
-        public virtual int Update(string imageUrl, global::System.Nullable<int> productId, global::System.Nullable<int> active, int Original_id, string Original_imageUrl, global::System.Nullable<int> Original_productId, global::System.Nullable<int> Original_active) {
-            return this.Update(imageUrl, productId, active, Original_id, Original_imageUrl, Original_productId, Original_active, Original_id);
+        public virtual int Update(string imageUrl, global::System.Nullable<int> productId, int Original_id, string Original_imageUrl, global::System.Nullable<int> Original_productId) {
+            return this.Update(imageUrl, productId, Original_id, Original_imageUrl, Original_productId, Original_id);
         }
     }
     
@@ -36648,45 +36665,46 @@ SELECT id, imageUrl, productId, active FROM Image WHERE (id = @id)";
             this._adapter.TableMappings.Add(tableMapping);
             this._adapter.DeleteCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.DeleteCommand.Connection = this.Connection;
-            this._adapter.DeleteCommand.CommandText = @"DELETE FROM [ImportCouponDetail] WHERE (([idCoupon] = @Original_idCoupon) AND ([idProduct] = @Original_idProduct) AND ((@IsNull_quantity = 1 AND [quantity] IS NULL) OR ([quantity] = @Original_quantity)) AND ((@IsNull_price = 1 AND [price] IS NULL) OR ([price] = @Original_price)) AND ([colorId] = @Original_colorId) AND ([sizeID] = @Original_sizeID))";
+            this._adapter.DeleteCommand.CommandText = @"DELETE FROM [ImportCouponDetail] WHERE (([idCoupon] = @Original_idCoupon) AND ([idProduct] = @Original_idProduct) AND ([colorId] = @Original_colorId) AND ([sizeID] = @Original_sizeID) AND ((@IsNull_quantity = 1 AND [quantity] IS NULL) OR ([quantity] = @Original_quantity)) AND ((@IsNull_price = 1 AND [price] IS NULL) OR ([price] = @Original_price)))";
             this._adapter.DeleteCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_idCoupon", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "idCoupon", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_idProduct", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "idProduct", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_colorId", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "colorId", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_sizeID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "sizeID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_quantity", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "quantity", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_quantity", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "quantity", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_price", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "price", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_price", global::System.Data.SqlDbType.Float, 0, global::System.Data.ParameterDirection.Input, 0, 0, "price", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_colorId", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "colorId", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_sizeID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "sizeID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.InsertCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.InsertCommand.Connection = this.Connection;
-            this._adapter.InsertCommand.CommandText = @"INSERT INTO [ImportCouponDetail] ([idProduct], [quantity], [price], [colorId], [sizeID]) VALUES (@idProduct, @quantity, @price, @colorId, @sizeID);
-SELECT idCoupon, idProduct, quantity, price, colorId, sizeID FROM ImportCouponDetail WHERE (colorId = @colorId) AND (idCoupon = SCOPE_IDENTITY()) AND (idProduct = @idProduct) AND (sizeID = @sizeID)";
+            this._adapter.InsertCommand.CommandText = @"INSERT INTO [ImportCouponDetail] ([idCoupon], [idProduct], [colorId], [sizeID], [quantity], [price]) VALUES (@idCoupon, @idProduct, @colorId, @sizeID, @quantity, @price);
+SELECT idCoupon, idProduct, colorId, sizeID, quantity, price FROM ImportCouponDetail WHERE (colorId = @colorId) AND (idCoupon = @idCoupon) AND (idProduct = @idProduct) AND (sizeID = @sizeID)";
             this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@idCoupon", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "idCoupon", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@idProduct", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "idProduct", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@quantity", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "quantity", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@price", global::System.Data.SqlDbType.Float, 0, global::System.Data.ParameterDirection.Input, 0, 0, "price", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@colorId", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "colorId", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@sizeID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "sizeID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@quantity", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "quantity", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@price", global::System.Data.SqlDbType.Float, 0, global::System.Data.ParameterDirection.Input, 0, 0, "price", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.UpdateCommand.Connection = this.Connection;
-            this._adapter.UpdateCommand.CommandText = @"UPDATE [ImportCouponDetail] SET [idProduct] = @idProduct, [quantity] = @quantity, [price] = @price, [colorId] = @colorId, [sizeID] = @sizeID WHERE (([idCoupon] = @Original_idCoupon) AND ([idProduct] = @Original_idProduct) AND ((@IsNull_quantity = 1 AND [quantity] IS NULL) OR ([quantity] = @Original_quantity)) AND ((@IsNull_price = 1 AND [price] IS NULL) OR ([price] = @Original_price)) AND ([colorId] = @Original_colorId) AND ([sizeID] = @Original_sizeID));
-SELECT idCoupon, idProduct, quantity, price, colorId, sizeID FROM ImportCouponDetail WHERE (colorId = @colorId) AND (idCoupon = @idCoupon) AND (idProduct = @idProduct) AND (sizeID = @sizeID)";
+            this._adapter.UpdateCommand.CommandText = @"UPDATE [ImportCouponDetail] SET [idCoupon] = @idCoupon, [idProduct] = @idProduct, [colorId] = @colorId, [sizeID] = @sizeID, [quantity] = @quantity, [price] = @price WHERE (([idCoupon] = @Original_idCoupon) AND ([idProduct] = @Original_idProduct) AND ([colorId] = @Original_colorId) AND ([sizeID] = @Original_sizeID) AND ((@IsNull_quantity = 1 AND [quantity] IS NULL) OR ([quantity] = @Original_quantity)) AND ((@IsNull_price = 1 AND [price] IS NULL) OR ([price] = @Original_price)));
+SELECT idCoupon, idProduct, colorId, sizeID, quantity, price FROM ImportCouponDetail WHERE (colorId = @colorId) AND (idCoupon = @idCoupon) AND (idProduct = @idProduct) AND (sizeID = @sizeID)";
             this._adapter.UpdateCommand.CommandType = global::System.Data.CommandType.Text;
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@idCoupon", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "idCoupon", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@idProduct", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "idProduct", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@quantity", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "quantity", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@price", global::System.Data.SqlDbType.Float, 0, global::System.Data.ParameterDirection.Input, 0, 0, "price", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@colorId", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "colorId", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@sizeID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "sizeID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@quantity", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "quantity", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@price", global::System.Data.SqlDbType.Float, 0, global::System.Data.ParameterDirection.Input, 0, 0, "price", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_idCoupon", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "idCoupon", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_idProduct", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "idProduct", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_colorId", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "colorId", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_sizeID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "sizeID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_quantity", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "quantity", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_quantity", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "quantity", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_price", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "price", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_price", global::System.Data.SqlDbType.Float, 0, global::System.Data.ParameterDirection.Input, 0, 0, "price", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_colorId", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "colorId", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_sizeID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "sizeID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@idCoupon", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "idCoupon", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -36702,7 +36720,7 @@ SELECT idCoupon, idProduct, quantity, price, colorId, sizeID FROM ImportCouponDe
             this._commandCollection = new global::System.Data.SqlClient.SqlCommand[1];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = "SELECT idCoupon, idProduct, quantity, price, colorId, sizeID FROM ImportCouponDet" +
+            this._commandCollection[0].CommandText = "SELECT idCoupon, idProduct,colorId, sizeID, quantity, price  FROM ImportCouponDet" +
                 "ail";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
         }
@@ -36764,27 +36782,27 @@ SELECT idCoupon, idProduct, quantity, price, colorId, sizeID FROM ImportCouponDe
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Delete, true)]
-        public virtual int Delete(int Original_idCoupon, int Original_idProduct, global::System.Nullable<int> Original_quantity, global::System.Nullable<double> Original_price, int Original_colorId, int Original_sizeID) {
+        public virtual int Delete(int Original_idCoupon, int Original_idProduct, int Original_colorId, int Original_sizeID, global::System.Nullable<int> Original_quantity, global::System.Nullable<double> Original_price) {
             this.Adapter.DeleteCommand.Parameters[0].Value = ((int)(Original_idCoupon));
             this.Adapter.DeleteCommand.Parameters[1].Value = ((int)(Original_idProduct));
+            this.Adapter.DeleteCommand.Parameters[2].Value = ((int)(Original_colorId));
+            this.Adapter.DeleteCommand.Parameters[3].Value = ((int)(Original_sizeID));
             if ((Original_quantity.HasValue == true)) {
-                this.Adapter.DeleteCommand.Parameters[2].Value = ((object)(0));
-                this.Adapter.DeleteCommand.Parameters[3].Value = ((int)(Original_quantity.Value));
-            }
-            else {
-                this.Adapter.DeleteCommand.Parameters[2].Value = ((object)(1));
-                this.Adapter.DeleteCommand.Parameters[3].Value = global::System.DBNull.Value;
-            }
-            if ((Original_price.HasValue == true)) {
                 this.Adapter.DeleteCommand.Parameters[4].Value = ((object)(0));
-                this.Adapter.DeleteCommand.Parameters[5].Value = ((double)(Original_price.Value));
+                this.Adapter.DeleteCommand.Parameters[5].Value = ((int)(Original_quantity.Value));
             }
             else {
                 this.Adapter.DeleteCommand.Parameters[4].Value = ((object)(1));
                 this.Adapter.DeleteCommand.Parameters[5].Value = global::System.DBNull.Value;
             }
-            this.Adapter.DeleteCommand.Parameters[6].Value = ((int)(Original_colorId));
-            this.Adapter.DeleteCommand.Parameters[7].Value = ((int)(Original_sizeID));
+            if ((Original_price.HasValue == true)) {
+                this.Adapter.DeleteCommand.Parameters[6].Value = ((object)(0));
+                this.Adapter.DeleteCommand.Parameters[7].Value = ((double)(Original_price.Value));
+            }
+            else {
+                this.Adapter.DeleteCommand.Parameters[6].Value = ((object)(1));
+                this.Adapter.DeleteCommand.Parameters[7].Value = global::System.DBNull.Value;
+            }
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.DeleteCommand.Connection.State;
             if (((this.Adapter.DeleteCommand.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {
@@ -36805,22 +36823,23 @@ SELECT idCoupon, idProduct, quantity, price, colorId, sizeID FROM ImportCouponDe
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Insert, true)]
-        public virtual int Insert(int idProduct, global::System.Nullable<int> quantity, global::System.Nullable<double> price, int colorId, int sizeID) {
-            this.Adapter.InsertCommand.Parameters[0].Value = ((int)(idProduct));
+        public virtual int Insert(int idCoupon, int idProduct, int colorId, int sizeID, global::System.Nullable<int> quantity, global::System.Nullable<double> price) {
+            this.Adapter.InsertCommand.Parameters[0].Value = ((int)(idCoupon));
+            this.Adapter.InsertCommand.Parameters[1].Value = ((int)(idProduct));
+            this.Adapter.InsertCommand.Parameters[2].Value = ((int)(colorId));
+            this.Adapter.InsertCommand.Parameters[3].Value = ((int)(sizeID));
             if ((quantity.HasValue == true)) {
-                this.Adapter.InsertCommand.Parameters[1].Value = ((int)(quantity.Value));
+                this.Adapter.InsertCommand.Parameters[4].Value = ((int)(quantity.Value));
             }
             else {
-                this.Adapter.InsertCommand.Parameters[1].Value = global::System.DBNull.Value;
+                this.Adapter.InsertCommand.Parameters[4].Value = global::System.DBNull.Value;
             }
             if ((price.HasValue == true)) {
-                this.Adapter.InsertCommand.Parameters[2].Value = ((double)(price.Value));
+                this.Adapter.InsertCommand.Parameters[5].Value = ((double)(price.Value));
             }
             else {
-                this.Adapter.InsertCommand.Parameters[2].Value = global::System.DBNull.Value;
+                this.Adapter.InsertCommand.Parameters[5].Value = global::System.DBNull.Value;
             }
-            this.Adapter.InsertCommand.Parameters[3].Value = ((int)(colorId));
-            this.Adapter.InsertCommand.Parameters[4].Value = ((int)(sizeID));
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.InsertCommand.Connection.State;
             if (((this.Adapter.InsertCommand.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {
@@ -36841,43 +36860,43 @@ SELECT idCoupon, idProduct, quantity, price, colorId, sizeID FROM ImportCouponDe
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
-        public virtual int Update(int idProduct, global::System.Nullable<int> quantity, global::System.Nullable<double> price, int colorId, int sizeID, int Original_idCoupon, int Original_idProduct, global::System.Nullable<int> Original_quantity, global::System.Nullable<double> Original_price, int Original_colorId, int Original_sizeID, int idCoupon) {
-            this.Adapter.UpdateCommand.Parameters[0].Value = ((int)(idProduct));
+        public virtual int Update(int idCoupon, int idProduct, int colorId, int sizeID, global::System.Nullable<int> quantity, global::System.Nullable<double> price, int Original_idCoupon, int Original_idProduct, int Original_colorId, int Original_sizeID, global::System.Nullable<int> Original_quantity, global::System.Nullable<double> Original_price) {
+            this.Adapter.UpdateCommand.Parameters[0].Value = ((int)(idCoupon));
+            this.Adapter.UpdateCommand.Parameters[1].Value = ((int)(idProduct));
+            this.Adapter.UpdateCommand.Parameters[2].Value = ((int)(colorId));
+            this.Adapter.UpdateCommand.Parameters[3].Value = ((int)(sizeID));
             if ((quantity.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[1].Value = ((int)(quantity.Value));
+                this.Adapter.UpdateCommand.Parameters[4].Value = ((int)(quantity.Value));
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[1].Value = global::System.DBNull.Value;
+                this.Adapter.UpdateCommand.Parameters[4].Value = global::System.DBNull.Value;
             }
             if ((price.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[2].Value = ((double)(price.Value));
+                this.Adapter.UpdateCommand.Parameters[5].Value = ((double)(price.Value));
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[2].Value = global::System.DBNull.Value;
+                this.Adapter.UpdateCommand.Parameters[5].Value = global::System.DBNull.Value;
             }
-            this.Adapter.UpdateCommand.Parameters[3].Value = ((int)(colorId));
-            this.Adapter.UpdateCommand.Parameters[4].Value = ((int)(sizeID));
-            this.Adapter.UpdateCommand.Parameters[5].Value = ((int)(Original_idCoupon));
-            this.Adapter.UpdateCommand.Parameters[6].Value = ((int)(Original_idProduct));
+            this.Adapter.UpdateCommand.Parameters[6].Value = ((int)(Original_idCoupon));
+            this.Adapter.UpdateCommand.Parameters[7].Value = ((int)(Original_idProduct));
+            this.Adapter.UpdateCommand.Parameters[8].Value = ((int)(Original_colorId));
+            this.Adapter.UpdateCommand.Parameters[9].Value = ((int)(Original_sizeID));
             if ((Original_quantity.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[7].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[8].Value = ((int)(Original_quantity.Value));
+                this.Adapter.UpdateCommand.Parameters[10].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[11].Value = ((int)(Original_quantity.Value));
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[7].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[8].Value = global::System.DBNull.Value;
+                this.Adapter.UpdateCommand.Parameters[10].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[11].Value = global::System.DBNull.Value;
             }
             if ((Original_price.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[9].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[10].Value = ((double)(Original_price.Value));
+                this.Adapter.UpdateCommand.Parameters[12].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[13].Value = ((double)(Original_price.Value));
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[9].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[10].Value = global::System.DBNull.Value;
+                this.Adapter.UpdateCommand.Parameters[12].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[13].Value = global::System.DBNull.Value;
             }
-            this.Adapter.UpdateCommand.Parameters[11].Value = ((int)(Original_colorId));
-            this.Adapter.UpdateCommand.Parameters[12].Value = ((int)(Original_sizeID));
-            this.Adapter.UpdateCommand.Parameters[13].Value = ((int)(idCoupon));
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.UpdateCommand.Connection.State;
             if (((this.Adapter.UpdateCommand.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {
@@ -36898,8 +36917,8 @@ SELECT idCoupon, idProduct, quantity, price, colorId, sizeID FROM ImportCouponDe
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
-        public virtual int Update(global::System.Nullable<int> quantity, global::System.Nullable<double> price, int colorId, int sizeID, int Original_idCoupon, int Original_idProduct, global::System.Nullable<int> Original_quantity, global::System.Nullable<double> Original_price, int Original_colorId, int Original_sizeID) {
-            return this.Update(Original_idProduct, quantity, price, colorId, sizeID, Original_idCoupon, Original_idProduct, Original_quantity, Original_price, Original_colorId, Original_sizeID, Original_idCoupon);
+        public virtual int Update(global::System.Nullable<int> quantity, global::System.Nullable<double> price, int Original_idCoupon, int Original_idProduct, int Original_colorId, int Original_sizeID, global::System.Nullable<int> Original_quantity, global::System.Nullable<double> Original_price) {
+            return this.Update(Original_idCoupon, Original_idProduct, Original_colorId, Original_sizeID, quantity, price, Original_idCoupon, Original_idProduct, Original_colorId, Original_sizeID, Original_quantity, Original_price);
         }
     }
     
@@ -38280,12 +38299,21 @@ SELECT id, title, detail, price, categoryID, rating, active, providerId, thumnai
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         private void InitCommandCollection() {
-            this._commandCollection = new global::System.Data.SqlClient.SqlCommand[1];
+            this._commandCollection = new global::System.Data.SqlClient.SqlCommand[2];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
             this._commandCollection[0].CommandText = "SELECT id, title, detail, price, categoryID, rating, active, providerId, thumnail" +
                 ", isNew, addDate, sold FROM dbo.Product";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
+            this._commandCollection[1] = new global::System.Data.SqlClient.SqlCommand();
+            this._commandCollection[1].Connection = this.Connection;
+            this._commandCollection[1].CommandText = @"SELECT  id, title, detail, price, categoryID, rating, Product.active, providerId, thumnail, isNew, addDate, sold 
+FROM Product 
+JOIN ProductSizeColor ON Product.id = ProductSizeColor.productID
+GROUP BY  id, title, detail, price, categoryID, rating, Product.active, providerId, thumnail, isNew, addDate, sold 
+
+";
+            this._commandCollection[1].CommandType = global::System.Data.CommandType.Text;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -38307,6 +38335,30 @@ SELECT id, title, detail, price, categoryID, rating, active, providerId, thumnai
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, true)]
         public virtual ClothesDataSet.ProductDataTable GetData() {
             this.Adapter.SelectCommand = this.CommandCollection[0];
+            ClothesDataSet.ProductDataTable dataTable = new ClothesDataSet.ProductDataTable();
+            this.Adapter.Fill(dataTable);
+            return dataTable;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Fill, false)]
+        public virtual int FillBy(ClothesDataSet.ProductDataTable dataTable) {
+            this.Adapter.SelectCommand = this.CommandCollection[1];
+            if ((this.ClearBeforeFill == true)) {
+                dataTable.Clear();
+            }
+            int returnValue = this.Adapter.Fill(dataTable);
+            return returnValue;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, false)]
+        public virtual ClothesDataSet.ProductDataTable GetDataBy() {
+            this.Adapter.SelectCommand = this.CommandCollection[1];
             ClothesDataSet.ProductDataTable dataTable = new ClothesDataSet.ProductDataTable();
             this.Adapter.Fill(dataTable);
             return dataTable;
@@ -38931,12 +38983,22 @@ SELECT productID, sizeId, colorID, quantity, imageUrl, active FROM ProductSizeCo
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         private void InitCommandCollection() {
-            this._commandCollection = new global::System.Data.SqlClient.SqlCommand[1];
+            this._commandCollection = new global::System.Data.SqlClient.SqlCommand[2];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
             this._commandCollection[0].CommandText = "SELECT productID, sizeId, colorID, quantity, imageUrl, active FROM dbo.ProductSiz" +
                 "eColor";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
+            this._commandCollection[1] = new global::System.Data.SqlClient.SqlCommand();
+            this._commandCollection[1].Connection = this.Connection;
+            this._commandCollection[1].CommandText = @"SELECT productID,p.title, sizeId,s.sizeName, colorID, c.colorName, quantity, imageUrl, psc.active 
+FROM dbo.ProductSizeColor psc
+JOIN Product p ON psc.productID = p.id
+JOIN Size s ON psc.sizeId = s.id
+JOIN Color c ON psc.colorID = c.id
+WHERE psc.productID = @productID";
+            this._commandCollection[1].CommandType = global::System.Data.CommandType.Text;
+            this._commandCollection[1].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@productID", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "productID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -38958,6 +39020,32 @@ SELECT productID, sizeId, colorID, quantity, imageUrl, active FROM ProductSizeCo
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, true)]
         public virtual ClothesDataSet.ProductSizeColorDataTable GetData() {
             this.Adapter.SelectCommand = this.CommandCollection[0];
+            ClothesDataSet.ProductSizeColorDataTable dataTable = new ClothesDataSet.ProductSizeColorDataTable();
+            this.Adapter.Fill(dataTable);
+            return dataTable;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Fill, false)]
+        public virtual int FillBy(ClothesDataSet.ProductSizeColorDataTable dataTable, int productID) {
+            this.Adapter.SelectCommand = this.CommandCollection[1];
+            this.Adapter.SelectCommand.Parameters[0].Value = ((int)(productID));
+            if ((this.ClearBeforeFill == true)) {
+                dataTable.Clear();
+            }
+            int returnValue = this.Adapter.Fill(dataTable);
+            return returnValue;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, false)]
+        public virtual ClothesDataSet.ProductSizeColorDataTable GetDataBy(int productID) {
+            this.Adapter.SelectCommand = this.CommandCollection[1];
+            this.Adapter.SelectCommand.Parameters[0].Value = ((int)(productID));
             ClothesDataSet.ProductSizeColorDataTable dataTable = new ClothesDataSet.ProductSizeColorDataTable();
             this.Adapter.Fill(dataTable);
             return dataTable;
@@ -41076,11 +41164,30 @@ SELECT id, sizeName, description, active FROM Size WHERE (id = @id)";
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         private void InitCommandCollection() {
-            this._commandCollection = new global::System.Data.SqlClient.SqlCommand[1];
+            this._commandCollection = new global::System.Data.SqlClient.SqlCommand[2];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
             this._commandCollection[0].CommandText = "SELECT id, sizeName, description, active FROM dbo.Size";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
+            this._commandCollection[1] = new global::System.Data.SqlClient.SqlCommand();
+            this._commandCollection[1].Connection = this.Connection;
+            this._commandCollection[1].CommandText = @"IF(@productID IS NULL)
+BEGIN 
+	SELECT  id, sizeName, description, pro.active
+	FROM ProductSizeColor AS pro
+	JOIN Size s ON pro.sizeId = s.id
+	GROUP BY   id, sizeName, description, pro.active
+END
+ELSE
+BEGIN
+	SELECT  id, sizeName, description, pro.active
+	FROM ProductSizeColor AS pro
+	JOIN Size s ON pro.sizeId = s.id
+	WHERE pro.productID = @productID
+	GROUP BY   id, sizeName, description, pro.active
+END";
+            this._commandCollection[1].CommandType = global::System.Data.CommandType.Text;
+            this._commandCollection[1].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@productID", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "productID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -41102,6 +41209,32 @@ SELECT id, sizeName, description, active FROM Size WHERE (id = @id)";
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, true)]
         public virtual ClothesDataSet.SizeDataTable GetData() {
             this.Adapter.SelectCommand = this.CommandCollection[0];
+            ClothesDataSet.SizeDataTable dataTable = new ClothesDataSet.SizeDataTable();
+            this.Adapter.Fill(dataTable);
+            return dataTable;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Fill, false)]
+        public virtual int FillBy(ClothesDataSet.SizeDataTable dataTable, int productID) {
+            this.Adapter.SelectCommand = this.CommandCollection[1];
+            this.Adapter.SelectCommand.Parameters[0].Value = ((int)(productID));
+            if ((this.ClearBeforeFill == true)) {
+                dataTable.Clear();
+            }
+            int returnValue = this.Adapter.Fill(dataTable);
+            return returnValue;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, false)]
+        public virtual ClothesDataSet.SizeDataTable GetDataBy(int productID) {
+            this.Adapter.SelectCommand = this.CommandCollection[1];
+            this.Adapter.SelectCommand.Parameters[0].Value = ((int)(productID));
             ClothesDataSet.SizeDataTable dataTable = new ClothesDataSet.SizeDataTable();
             this.Adapter.Fill(dataTable);
             return dataTable;

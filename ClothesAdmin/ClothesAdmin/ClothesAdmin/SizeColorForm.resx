@@ -147,7 +147,7 @@
     <value>panel2</value>
   </data>
   <data name="&gt;&gt;productIDLabel.ZOrder" xml:space="preserve">
-    <value>6</value>
+    <value>8</value>
   </data>
   <metadata name="sizeIdLabel.GenerateMember" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>False</value>
@@ -177,7 +177,7 @@
     <value>panel2</value>
   </data>
   <data name="&gt;&gt;sizeIdLabel.ZOrder" xml:space="preserve">
-    <value>8</value>
+    <value>10</value>
   </data>
   <metadata name="colorIDLabel.GenerateMember" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>False</value>
@@ -207,7 +207,7 @@
     <value>panel2</value>
   </data>
   <data name="&gt;&gt;colorIDLabel.ZOrder" xml:space="preserve">
-    <value>10</value>
+    <value>12</value>
   </data>
   <metadata name="quantityLabel.GenerateMember" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>False</value>
@@ -237,7 +237,7 @@
     <value>panel2</value>
   </data>
   <data name="&gt;&gt;quantityLabel.ZOrder" xml:space="preserve">
-    <value>12</value>
+    <value>14</value>
   </data>
   <metadata name="imageUrlLabel.GenerateMember" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>False</value>
@@ -267,7 +267,7 @@
     <value>panel2</value>
   </data>
   <data name="&gt;&gt;imageUrlLabel.ZOrder" xml:space="preserve">
-    <value>14</value>
+    <value>16</value>
   </data>
   <metadata name="activeLabel.GenerateMember" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>False</value>
@@ -297,7 +297,107 @@
     <value>panel2</value>
   </data>
   <data name="&gt;&gt;activeLabel.ZOrder" xml:space="preserve">
-    <value>16</value>
+    <value>18</value>
+  </data>
+  <metadata name="label1.GenerateMember" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>False</value>
+  </metadata>
+  <data name="label1.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="label1.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="label1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>28, 54</value>
+  </data>
+  <data name="label1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>96, 17</value>
+  </data>
+  <data name="label1.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="label1.Text" xml:space="preserve">
+    <value>Product name</value>
+  </data>
+  <data name="&gt;&gt;label1.Name" xml:space="preserve">
+    <value>label1</value>
+  </data>
+  <data name="&gt;&gt;label1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;label1.Parent" xml:space="preserve">
+    <value>panel2</value>
+  </data>
+  <data name="&gt;&gt;label1.ZOrder" xml:space="preserve">
+    <value>7</value>
+  </data>
+  <metadata name="label2.GenerateMember" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>False</value>
+  </metadata>
+  <data name="label2.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="label2.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="label2.Location" type="System.Drawing.Point, System.Drawing">
+    <value>28, 95</value>
+  </data>
+  <data name="label2.Size" type="System.Drawing.Size, System.Drawing">
+    <value>74, 17</value>
+  </data>
+  <data name="label2.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="label2.Text" xml:space="preserve">
+    <value>Size name</value>
+  </data>
+  <data name="&gt;&gt;label2.Name" xml:space="preserve">
+    <value>label2</value>
+  </data>
+  <data name="&gt;&gt;label2.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;label2.Parent" xml:space="preserve">
+    <value>panel2</value>
+  </data>
+  <data name="&gt;&gt;label2.ZOrder" xml:space="preserve">
+    <value>6</value>
+  </data>
+  <metadata name="label3.GenerateMember" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>False</value>
+  </metadata>
+  <data name="label3.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="label3.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="label3.Location" type="System.Drawing.Point, System.Drawing">
+    <value>28, 139</value>
+  </data>
+  <data name="label3.Size" type="System.Drawing.Size, System.Drawing">
+    <value>80, 17</value>
+  </data>
+  <data name="label3.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="label3.Text" xml:space="preserve">
+    <value>Color name</value>
+  </data>
+  <data name="&gt;&gt;label3.Name" xml:space="preserve">
+    <value>label3</value>
+  </data>
+  <data name="&gt;&gt;label3.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;label3.Parent" xml:space="preserve">
+    <value>panel2</value>
+  </data>
+  <data name="&gt;&gt;label3.ZOrder" xml:space="preserve">
+    <value>5</value>
   </data>
   <metadata name="barManager.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>151, 17</value>
@@ -468,7 +568,6 @@
   <data name="bar2.Text" xml:space="preserve">
     <value>Main menu</value>
   </data>
-  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="barDockControl1.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Top</value>
   </data>
@@ -656,7 +755,7 @@
     <value>94</value>
   </data>
   <data name="productSizeColorGridControl.Size" type="System.Drawing.Size, System.Drawing">
-    <value>964, 492</value>
+    <value>964, 502</value>
   </data>
   <data name="productSizeColorGridControl.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
@@ -672,6 +771,60 @@
   </data>
   <data name="&gt;&gt;productSizeColorGridControl.ZOrder" xml:space="preserve">
     <value>0</value>
+  </data>
+  <data name="btnCancelAddProvider.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft Sans Serif, 7.8pt, style=Bold</value>
+  </data>
+  <data name="btnCancelAddProvider.Location" type="System.Drawing.Point, System.Drawing">
+    <value>488, 328</value>
+  </data>
+  <data name="btnCancelAddProvider.Size" type="System.Drawing.Size, System.Drawing">
+    <value>123, 52</value>
+  </data>
+  <data name="btnCancelAddProvider.TabIndex" type="System.Int32, mscorlib">
+    <value>60</value>
+  </data>
+  <data name="btnCancelAddProvider.Text" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
+  <data name="&gt;&gt;btnCancelAddProvider.Name" xml:space="preserve">
+    <value>btnCancelAddProvider</value>
+  </data>
+  <data name="&gt;&gt;btnCancelAddProvider.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;btnCancelAddProvider.Parent" xml:space="preserve">
+    <value>panel2</value>
+  </data>
+  <data name="&gt;&gt;btnCancelAddProvider.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="btnSaveAddProvider.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft Sans Serif, 7.8pt, style=Bold</value>
+  </data>
+  <data name="btnSaveAddProvider.Location" type="System.Drawing.Point, System.Drawing">
+    <value>270, 328</value>
+  </data>
+  <data name="btnSaveAddProvider.Size" type="System.Drawing.Size, System.Drawing">
+    <value>123, 52</value>
+  </data>
+  <data name="btnSaveAddProvider.TabIndex" type="System.Int32, mscorlib">
+    <value>59</value>
+  </data>
+  <data name="btnSaveAddProvider.Text" xml:space="preserve">
+    <value>Save</value>
+  </data>
+  <data name="&gt;&gt;btnSaveAddProvider.Name" xml:space="preserve">
+    <value>btnSaveAddProvider</value>
+  </data>
+  <data name="&gt;&gt;btnSaveAddProvider.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;btnSaveAddProvider.Parent" xml:space="preserve">
+    <value>panel2</value>
+  </data>
+  <data name="&gt;&gt;btnSaveAddProvider.ZOrder" xml:space="preserve">
+    <value>1</value>
   </data>
   <metadata name="colorBindingSource.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>17, 146</value>
@@ -695,7 +848,7 @@
     <value>panel2</value>
   </data>
   <data name="&gt;&gt;colorComboBox.ZOrder" xml:space="preserve">
-    <value>0</value>
+    <value>2</value>
   </data>
   <metadata name="sizeBindingSource.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>739, 103</value>
@@ -719,11 +872,14 @@
     <value>panel2</value>
   </data>
   <data name="&gt;&gt;sizeComboBox.ZOrder" xml:space="preserve">
-    <value>1</value>
+    <value>3</value>
   </data>
   <metadata name="productBindingSource.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>328, 103</value>
   </metadata>
+  <data name="productComboBox.Enabled" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
   <data name="productComboBox.Location" type="System.Drawing.Point, System.Drawing">
     <value>160, 51</value>
   </data>
@@ -743,106 +899,7 @@
     <value>panel2</value>
   </data>
   <data name="&gt;&gt;productComboBox.ZOrder" xml:space="preserve">
-    <value>2</value>
-  </data>
-  <metadata name="label3.GenerateMember" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>False</value>
-  </metadata>
-  <data name="label3.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="label3.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="label3.Location" type="System.Drawing.Point, System.Drawing">
-    <value>28, 139</value>
-  </data>
-  <data name="label3.Size" type="System.Drawing.Size, System.Drawing">
-    <value>80, 17</value>
-  </data>
-  <data name="label3.TabIndex" type="System.Int32, mscorlib">
-    <value>0</value>
-  </data>
-  <data name="label3.Text" xml:space="preserve">
-    <value>Color name</value>
-  </data>
-  <data name="&gt;&gt;label3.Name" xml:space="preserve">
-    <value>label3</value>
-  </data>
-  <data name="&gt;&gt;label3.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;label3.Parent" xml:space="preserve">
-    <value>panel2</value>
-  </data>
-  <data name="&gt;&gt;label3.ZOrder" xml:space="preserve">
-    <value>3</value>
-  </data>
-  <metadata name="label2.GenerateMember" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>False</value>
-  </metadata>
-  <data name="label2.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="label2.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="label2.Location" type="System.Drawing.Point, System.Drawing">
-    <value>28, 95</value>
-  </data>
-  <data name="label2.Size" type="System.Drawing.Size, System.Drawing">
-    <value>74, 17</value>
-  </data>
-  <data name="label2.TabIndex" type="System.Int32, mscorlib">
-    <value>0</value>
-  </data>
-  <data name="label2.Text" xml:space="preserve">
-    <value>Size name</value>
-  </data>
-  <data name="&gt;&gt;label2.Name" xml:space="preserve">
-    <value>label2</value>
-  </data>
-  <data name="&gt;&gt;label2.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;label2.Parent" xml:space="preserve">
-    <value>panel2</value>
-  </data>
-  <data name="&gt;&gt;label2.ZOrder" xml:space="preserve">
     <value>4</value>
-  </data>
-  <metadata name="label1.GenerateMember" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>False</value>
-  </metadata>
-  <data name="label1.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="label1.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="label1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>28, 54</value>
-  </data>
-  <data name="label1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>96, 17</value>
-  </data>
-  <data name="label1.TabIndex" type="System.Int32, mscorlib">
-    <value>0</value>
-  </data>
-  <data name="label1.Text" xml:space="preserve">
-    <value>Product name</value>
-  </data>
-  <data name="&gt;&gt;label1.Name" xml:space="preserve">
-    <value>label1</value>
-  </data>
-  <data name="&gt;&gt;label1.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;label1.Parent" xml:space="preserve">
-    <value>panel2</value>
-  </data>
-  <data name="&gt;&gt;label1.ZOrder" xml:space="preserve">
-    <value>5</value>
   </data>
   <data name="productIDTextBox.Enabled" type="System.Boolean, mscorlib">
     <value>False</value>
@@ -866,7 +923,7 @@
     <value>panel2</value>
   </data>
   <data name="&gt;&gt;productIDTextBox.ZOrder" xml:space="preserve">
-    <value>7</value>
+    <value>9</value>
   </data>
   <data name="sizeIdTextBox.Location" type="System.Drawing.Point, System.Drawing">
     <value>575, 92</value>
@@ -887,7 +944,7 @@
     <value>panel2</value>
   </data>
   <data name="&gt;&gt;sizeIdTextBox.ZOrder" xml:space="preserve">
-    <value>9</value>
+    <value>11</value>
   </data>
   <data name="colorIDTextBox.Location" type="System.Drawing.Point, System.Drawing">
     <value>575, 136</value>
@@ -908,7 +965,7 @@
     <value>panel2</value>
   </data>
   <data name="&gt;&gt;colorIDTextBox.ZOrder" xml:space="preserve">
-    <value>11</value>
+    <value>13</value>
   </data>
   <data name="quantityTextBox.Location" type="System.Drawing.Point, System.Drawing">
     <value>160, 234</value>
@@ -929,7 +986,7 @@
     <value>panel2</value>
   </data>
   <data name="&gt;&gt;quantityTextBox.ZOrder" xml:space="preserve">
-    <value>13</value>
+    <value>15</value>
   </data>
   <data name="imageUrlTextBox.Location" type="System.Drawing.Point, System.Drawing">
     <value>160, 188</value>
@@ -950,7 +1007,7 @@
     <value>panel2</value>
   </data>
   <data name="&gt;&gt;imageUrlTextBox.ZOrder" xml:space="preserve">
-    <value>15</value>
+    <value>17</value>
   </data>
   <data name="activeTextBox.Location" type="System.Drawing.Point, System.Drawing">
     <value>575, 234</value>
@@ -971,7 +1028,7 @@
     <value>panel2</value>
   </data>
   <data name="&gt;&gt;activeTextBox.ZOrder" xml:space="preserve">
-    <value>17</value>
+    <value>19</value>
   </data>
   <data name="panel2.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Fill</value>
@@ -980,7 +1037,7 @@
     <value>973, 3</value>
   </data>
   <data name="panel2.Size" type="System.Drawing.Size, System.Drawing">
-    <value>964, 492</value>
+    <value>964, 502</value>
   </data>
   <data name="panel2.TabIndex" type="System.Int32, mscorlib">
     <value>1</value>
@@ -1001,13 +1058,13 @@
     <value>Fill</value>
   </data>
   <data name="tableLayoutPanel1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 108</value>
+    <value>0, 98</value>
   </data>
   <data name="tableLayoutPanel1.RowCount" type="System.Int32, mscorlib">
     <value>1</value>
   </data>
   <data name="tableLayoutPanel1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>1940, 498</value>
+    <value>1940, 508</value>
   </data>
   <data name="tableLayoutPanel1.TabIndex" type="System.Int32, mscorlib">
     <value>25</value>
@@ -1034,7 +1091,7 @@
     <value>0, 33</value>
   </data>
   <data name="panel1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>1940, 75</value>
+    <value>1940, 65</value>
   </data>
   <data name="panel1.TabIndex" type="System.Int32, mscorlib">
     <value>24</value>
@@ -1168,6 +1225,12 @@
   <data name="&gt;&gt;gridView1.Type" xml:space="preserve">
     <value>DevExpress.XtraGrid.Views.Grid.GridView, DevExpress.XtraGrid.v20.1, Version=20.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
   </data>
+  <data name="&gt;&gt;productName.Name" xml:space="preserve">
+    <value>productName</value>
+  </data>
+  <data name="&gt;&gt;productName.Type" xml:space="preserve">
+    <value>DevExpress.XtraGrid.Columns.GridColumn, DevExpress.XtraGrid.v20.1, Version=20.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
+  </data>
   <data name="&gt;&gt;colproductID.Name" xml:space="preserve">
     <value>colproductID</value>
   </data>
@@ -1204,6 +1267,18 @@
   <data name="&gt;&gt;colactive.Type" xml:space="preserve">
     <value>DevExpress.XtraGrid.Columns.GridColumn, DevExpress.XtraGrid.v20.1, Version=20.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
   </data>
+  <data name="&gt;&gt;colorBindingSource.Name" xml:space="preserve">
+    <value>colorBindingSource</value>
+  </data>
+  <data name="&gt;&gt;colorBindingSource.Type" xml:space="preserve">
+    <value>System.Windows.Forms.BindingSource, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;sizeBindingSource.Name" xml:space="preserve">
+    <value>sizeBindingSource</value>
+  </data>
+  <data name="&gt;&gt;sizeBindingSource.Type" xml:space="preserve">
+    <value>System.Windows.Forms.BindingSource, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
   <data name="&gt;&gt;productBindingSource.Name" xml:space="preserve">
     <value>productBindingSource</value>
   </data>
@@ -1216,23 +1291,11 @@
   <data name="&gt;&gt;productTableAdapter.Type" xml:space="preserve">
     <value>ClothesAdmin.ClothesDataSetTableAdapters.ProductTableAdapter, ClothesDataSet.Designer.cs.dll, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null</value>
   </data>
-  <data name="&gt;&gt;sizeBindingSource.Name" xml:space="preserve">
-    <value>sizeBindingSource</value>
-  </data>
-  <data name="&gt;&gt;sizeBindingSource.Type" xml:space="preserve">
-    <value>System.Windows.Forms.BindingSource, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
   <data name="&gt;&gt;sizeTableAdapter.Name" xml:space="preserve">
     <value>sizeTableAdapter</value>
   </data>
   <data name="&gt;&gt;sizeTableAdapter.Type" xml:space="preserve">
     <value>ClothesAdmin.ClothesDataSetTableAdapters.SizeTableAdapter, ClothesDataSet.Designer.cs.dll, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null</value>
-  </data>
-  <data name="&gt;&gt;colorBindingSource.Name" xml:space="preserve">
-    <value>colorBindingSource</value>
-  </data>
-  <data name="&gt;&gt;colorBindingSource.Type" xml:space="preserve">
-    <value>System.Windows.Forms.BindingSource, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;colorTableAdapter.Name" xml:space="preserve">
     <value>colorTableAdapter</value>
@@ -1240,11 +1303,29 @@
   <data name="&gt;&gt;colorTableAdapter.Type" xml:space="preserve">
     <value>ClothesAdmin.ClothesDataSetTableAdapters.ColorTableAdapter, ClothesDataSet.Designer.cs.dll, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null</value>
   </data>
-  <data name="&gt;&gt;productName.Name" xml:space="preserve">
-    <value>productName</value>
+  <data name="&gt;&gt;invoiceItemBindingSource.Name" xml:space="preserve">
+    <value>invoiceItemBindingSource</value>
   </data>
-  <data name="&gt;&gt;productName.Type" xml:space="preserve">
-    <value>DevExpress.XtraGrid.Columns.GridColumn, DevExpress.XtraGrid.v20.1, Version=20.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
+  <data name="&gt;&gt;invoiceItemBindingSource.Type" xml:space="preserve">
+    <value>System.Windows.Forms.BindingSource, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;invoiceItemTableAdapter.Name" xml:space="preserve">
+    <value>invoiceItemTableAdapter</value>
+  </data>
+  <data name="&gt;&gt;invoiceItemTableAdapter.Type" xml:space="preserve">
+    <value>ClothesAdmin.ClothesDataSetTableAdapters.InvoiceItemTableAdapter, ClothesDataSet.Designer.cs.dll, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;importCouponDetailBindingSource.Name" xml:space="preserve">
+    <value>importCouponDetailBindingSource</value>
+  </data>
+  <data name="&gt;&gt;importCouponDetailBindingSource.Type" xml:space="preserve">
+    <value>System.Windows.Forms.BindingSource, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;importCouponDetailTableAdapter.Name" xml:space="preserve">
+    <value>importCouponDetailTableAdapter</value>
+  </data>
+  <data name="&gt;&gt;importCouponDetailTableAdapter.Type" xml:space="preserve">
+    <value>ClothesAdmin.ClothesDataSetTableAdapters.ImportCouponDetailTableAdapter, ClothesDataSet.Designer.cs.dll, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;$this.Name" xml:space="preserve">
     <value>SizeColorForm</value>
@@ -1425,5 +1506,17 @@
   </metadata>
   <metadata name="colorTableAdapter.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>206, 146</value>
+  </metadata>
+  <metadata name="invoiceItemBindingSource.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>388, 146</value>
+  </metadata>
+  <metadata name="invoiceItemTableAdapter.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>622, 146</value>
+  </metadata>
+  <metadata name="importCouponDetailBindingSource.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>849, 146</value>
+  </metadata>
+  <metadata name="importCouponDetailTableAdapter.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>17, 189</value>
   </metadata>
 </root>

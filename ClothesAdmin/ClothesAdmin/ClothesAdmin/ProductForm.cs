@@ -61,7 +61,12 @@ namespace ClothesAdmin
 
         private void btnListImages_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            using (ProductImageForm provierForm = new ProductImageForm())
+            if (String.IsNullOrEmpty(idTextBox.Text))
+            {
+                MessageBox.Show("Không có sản phẩm, không thể xem danh sách hình ảnh", "Thông báo", MessageBoxButtons.OK);
+                return;
+            }
+            using (ProductImageForm provierForm = new ProductImageForm(Convert.ToInt16(idTextBox.Text)))
             {
                 var dlgResult = provierForm.ShowDialog(); // show form 3 as a modal dialog box
                                                           // halt this procedure until form3 is closed
@@ -147,7 +152,11 @@ namespace ClothesAdmin
 
         private void categoryComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            categoryIDTextBox.Text = categoryComboBox.SelectedValue.ToString();
+            try
+            {
+                categoryIDTextBox.Text = categoryComboBox.SelectedValue.ToString();
+            }
+            catch(Exception ex) { }
         }
 
         private void providerIdTextBox_TextChanged(object sender, EventArgs e)
@@ -170,7 +179,49 @@ namespace ClothesAdmin
 
         private void providerComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            providerIdTextBox.Text = providerComboBox.SelectedValue.ToString();
+            try
+            {
+                providerIdTextBox.Text = providerComboBox.SelectedValue.ToString();
+            }
+            catch(Exception ex) { }
+        }
+
+        private void thumnailTextBox_TextChanged(object sender, EventArgs e)
+        {
+            setImageThumbnail();
+        }
+
+        private void setImageThumbnail()
+        {
+            if (String.IsNullOrEmpty(thumnailTextBox.Text))
+            {
+                thumbnailProduct.Image = Properties.Resources.no_image;
+            }
+            else
+            {
+                thumbnailProduct.ImageLocation = (thumnailTextBox.Text);
+            }
+        }
+
+        private void btnSizeColor_Click(object sender, EventArgs e)
+        {
+            if (String.IsNullOrEmpty(idTextBox.Text))
+            {
+                MessageBox.Show("Không có sản phẩm, không thể xem danh sách size color", "Thông báo", MessageBoxButtons.OK);
+                return;
+            }
+            using (SizeColorForm sizeColorForm = new SizeColorForm(Convert.ToInt16(idTextBox.Text)))
+            {
+                var dlgResult = sizeColorForm.ShowDialog(); // show form 3 as a modal dialog box
+                                                          // halt this procedure until form3 is closed
+                                                          // handle the result of form3:
+                if (dlgResult == DialogResult.OK)
+                {
+                    // TODO: This line of code loads data into the 'clothesDataSet.Product' table. You can move, or remove it, as needed.
+                    this.productTableAdapter.Fill(this.clothesDataSet.Product);
+                    // TODO: This line of code loads data into the 'clothesDataSet.Provider' table. You can move, or remove it, as needed.
+                }
+            }
         }
     }
 }

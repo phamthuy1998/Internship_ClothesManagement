@@ -28,10 +28,6 @@ namespace ClothesAdmin
 
         private void ImportCuponForm_Load(object sender, EventArgs e)
         {
-            // TODO: This line of code loads data into the 'clothesDataSet.Color' table. You can move, or remove it, as needed.
-            this.colorTableAdapter.Fill(this.clothesDataSet.Color);
-            // TODO: This line of code loads data into the 'clothesDataSet.Size' table. You can move, or remove it, as needed.
-            this.sizeTableAdapter.Fill(this.clothesDataSet.Size);
             employeeComboBox1.SelectedIndex = -1;
             loadData();
         }
@@ -45,13 +41,16 @@ namespace ClothesAdmin
                 this.employeeTableAdapter.Fill(this.clothesDataSet.Employee);
             }
             catch (Exception ex) { }
+         
+
             // TODO: This line of code loads data into the 'clothesDataSet.Product' table. You can move, or remove it, as needed.
-            this.productTableAdapter.Fill(this.clothesDataSet.Product);
+            this.productTableAdapter.FillBy(this.clothesDataSet.Product);
             // TODO: This line of code loads data into the 'clothesDataSet.ImportCouponDetail' table. You can move, or remove it, as needed.
             this.importCouponDetailTableAdapter.Fill(this.clothesDataSet.ImportCouponDetail);
             // TODO: This line of code loads data into the 'clothesDataSet.ImportCouponDetail' table. You can move, or remove it, as needed.
             this.importCouponDetailTableAdapter.Fill(this.clothesDataSet.ImportCouponDetail);
             // TODO: This line of code loads data into the 'clothesDataSet.ImportCoupon' table. You can move, or remove it, as needed.
+
             if (employeeComboBox1.SelectedIndex > 0)
             {
                 this.importCouponTableAdapter.Fill(this.clothesDataSet.ImportCoupon);
@@ -65,6 +64,11 @@ namespace ClothesAdmin
                 }
                 catch (Exception ex) { }
             }
+          
+            // TODO: This line of code loads data into the 'clothesDataSet.Size' table. You can move, or remove it, as needed.
+            this.sizeTableAdapter.FillBy(this.clothesDataSet.Size, Convert.ToInt16(productComboBox.SelectedValue));
+            // TODO: This line of code loads data into the 'clothesDataSet.Color' table. You can move, or remove it, as needed.
+            this.colorTableAdapter.FillBy(this.clothesDataSet.Color, Convert.ToInt16(productComboBox.SelectedValue), Convert.ToInt16(sizeComboBox.SelectedValue));
         }
 
         private void loadDataItem()
@@ -218,7 +222,16 @@ namespace ClothesAdmin
 
         private void productComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            idProductSpinEdit.Value = Convert.ToInt32(productComboBox.SelectedValue);
+            try
+            {
+                idProductSpinEdit.Value = Convert.ToInt32(idProductSpinEdit.EditValue);
+                sizeIDTextBox.Text = sizeComboBox.SelectedValue.ToString();
+                this.sizeTableAdapter.FillBy(this.clothesDataSet.Size, Convert.ToInt16(productComboBox.SelectedValue));
+                // TODO: This line of code loads data into the 'clothesDataSet.Color' table. You can move, or remove it, as needed.
+                this.colorTableAdapter.FillBy(this.clothesDataSet.Color, Convert.ToInt16(productComboBox.SelectedValue), Convert.ToInt16(sizeComboBox.SelectedValue));
+
+            }
+            catch (Exception ex) { }
         }
 
         private void employeeComboBox1_SelectedIndexChanged(object sender, EventArgs e)
@@ -256,12 +269,25 @@ namespace ClothesAdmin
 
         private void sizeComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            sizeIDTextBox.Text = sizeComboBox.SelectedValue.ToString();
-        }
+            try
+            {
+                sizeIDTextBox.Text = sizeComboBox.SelectedValue.ToString();
+                // TODO: This line of code loads data into the 'clothesDataSet.Color' table. You can move, or remove it, as needed.
+                this.colorTableAdapter.FillBy(this.clothesDataSet.Color, Convert.ToInt16(productComboBox.SelectedValue), Convert.ToInt16(sizeComboBox.SelectedValue));
+
+            }
+            catch (Exception ex) { }
+            
+          }
 
         private void colorComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            colorIdTextBox.Text = colorComboBox.SelectedValue.ToString();
+           
+            try
+            {
+                colorIdTextBox.Text = colorComboBox.SelectedValue.ToString();
+            }
+            catch (Exception ex) { }
         }
     }
 }
