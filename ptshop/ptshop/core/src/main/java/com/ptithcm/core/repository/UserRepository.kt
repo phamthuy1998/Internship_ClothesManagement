@@ -2,6 +2,7 @@ package com.ptithcm.core.repository
 
 import androidx.lifecycle.LiveData
 import com.ptithcm.core.model.Account
+import com.ptithcm.core.model.InvoiceDetail
 import com.ptithcm.core.model.ShoppingAddress
 import com.ptithcm.core.model.User
 import com.ptithcm.core.model.wish.ObjectResponse
@@ -27,4 +28,6 @@ interface UserRepository {
         pageNumber: Int,
         statusId: Int
     ): Listing<ItemViewModel>
+
+    suspend fun getInvoiceDetail(invoiceId: Int?): LiveData<Result<ObjectResponse<InvoiceDetail>>>
 }

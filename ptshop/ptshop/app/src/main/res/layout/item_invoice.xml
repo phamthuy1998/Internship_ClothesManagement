@@ -28,7 +28,7 @@
                 android:id="@+id/vTag"
                 android:layout_width="@dimen/size_32dp"
                 android:layout_height="0dp"
-                android:background="#c7974d"
+                android:background="#1473ae"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -36,7 +36,7 @@
             <androidx.appcompat.widget.AppCompatImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/layout_margin_16dp"
+                android:layout_marginTop="@dimen/layout_margin_10dp"
                 android:padding="@dimen/layout_margin_4dp"
                 android:tint="@color/white"
                 app:layout_constraintDimensionRatio="1:1"

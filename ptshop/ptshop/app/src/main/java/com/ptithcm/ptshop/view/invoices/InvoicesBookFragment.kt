@@ -4,25 +4,17 @@ import android.os.Bundle
 import android.view.View
 import androidx.core.os.bundleOf
 import androidx.lifecycle.Observer
-import com.ptithcm.core.CoreApplication
 import com.ptithcm.core.model.Invoice
-import com.ptithcm.core.model.ShoppingAddress
 import com.ptithcm.core.vo.Result
 import com.ptithcm.ptshop.R
 import com.ptithcm.ptshop.base.BaseActivity
 import com.ptithcm.ptshop.base.BaseFragment
-import com.ptithcm.ptshop.constant.ERROR_CODE_404
 import com.ptithcm.ptshop.constant.KEY_ARGUMENT
-import com.ptithcm.ptshop.constant.KEY_IS_CHOOSE_ADDRESS
-import com.ptithcm.ptshop.databinding.FragmentAddressBookBinding
 import com.ptithcm.ptshop.databinding.FragmentInvoicesBookBinding
 import com.ptithcm.ptshop.ext.*
 import com.ptithcm.ptshop.view.MainActivity
-import com.ptithcm.ptshop.view.addressbook.adapter.AddressAdapter
-import com.ptithcm.ptshop.viewmodel.ListenerViewModel
 import com.ptithcm.ptshop.viewmodel.UserViewModel
 import kotlinx.android.synthetic.main.activity_main.*
-import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class InvoicesBookFragment : BaseFragment<FragmentInvoicesBookBinding>() {
@@ -35,7 +27,14 @@ class InvoicesBookFragment : BaseFragment<FragmentInvoicesBookBinding>() {
         requireActivity() as BaseActivity<*>
     }
 
-    private val adapter = InvoicesPagedAdapter { it: Invoice?, pos: Int? -> }
+    private val adapter = InvoicesPagedAdapter { it: Invoice?, _: Int? ->
+        navController.navigateAnimation(
+            R.id.invoiceDetailFragment,
+            bundle = bundleOf(
+                KEY_ARGUMENT to it?.id
+            )
+        )
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

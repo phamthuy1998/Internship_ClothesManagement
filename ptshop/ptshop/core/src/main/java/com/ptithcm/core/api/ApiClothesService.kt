@@ -120,6 +120,9 @@ interface ApiClothesService {
         @Query("accountId") accountId: Int? = CoreApplication.instance.account?.id
     ): Response<ListResponse<Invoice>>
 
+    @GET("/api/invoice-detail")
+    suspend fun getInvoiceDetail(@Query("invoicecId") invoiceId: Int?): Response<ObjectResponse<InvoiceDetail>>
+
     @POST("/api/addInvoice")
     suspend fun requestCheckout(@Body param: RequestCheckoutParam): Response<ObjectResponse<Any>>
 }

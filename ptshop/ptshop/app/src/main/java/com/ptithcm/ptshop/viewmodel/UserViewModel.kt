@@ -6,6 +6,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.paging.PagedList
 import com.ptithcm.core.model.Account
+import com.ptithcm.core.model.InvoiceDetail
 import com.ptithcm.core.model.ShoppingAddress
 import com.ptithcm.core.model.User
 import com.ptithcm.core.model.wish.ObjectResponse
@@ -194,6 +195,23 @@ class UserViewModel(private val repository: UserRepository) : ViewModel() {
                     }
                     is Result.Success -> {
                         networkState.value = false
+                    }
+                }
+            }
+        }
+    }
+
+    val invoiceDetailLiveData = MediatorLiveData<InvoiceDetail>()
+
+    fun getInvoiceDetail(invoiceId: Int?) {
+        viewModelScope.launch {
+            invoiceDetailLiveData.addSource(repository.getInvoiceDetail(invoiceId)) {
+                when (it) {
+                    is Result.Error -> {
+                        error.value = Pair(it.message, it.code)
+                    }
+                    is Result.Success -> {
+                        invoiceDetailLiveData.value = it.data?.data
                     }
                 }
             }
