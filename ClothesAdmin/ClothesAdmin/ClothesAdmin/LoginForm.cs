@@ -87,7 +87,18 @@ namespace ClothesAdmin
                 Program.mainForm.tvName.Text = "Name: "+Program.accountLogin.name + " ";
                 Program.mainForm.tvRoleName.Text ="Role: "+ Program.accountLogin.roleName + " ";
                 Program.mainForm.tvIdEmployee.Text = "Employee Id: " + Program.accountLogin.idEmployee + " ";
-                
+                if (Program.accountLogin.roleId ==1)
+                {
+                    Program.mainForm.rbHRM.Visible = true;
+                }
+                else if (Program.accountLogin.roleId == 2)
+                {
+                    Program.mainForm.rbHRM.Visible = false;
+                }
+                else{
+                    MessageBox.Show("Sai thông tin đăng nhập, vui lòng kiểm tra lại", "", MessageBoxButtons.OK);
+                    return;
+                }
                 Program.mainForm.Activate();
                 Invoke((Action)(() => { Program.mainForm.ShowDialog(); }));
                 this.Close();

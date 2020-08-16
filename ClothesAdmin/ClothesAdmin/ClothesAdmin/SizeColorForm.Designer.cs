@@ -479,6 +479,7 @@
             resources.ApplyResources(this.colorComboBox, "colorComboBox");
             this.colorComboBox.Name = "colorComboBox";
             this.colorComboBox.ValueMember = "id";
+            this.colorComboBox.SelectedIndexChanged += new System.EventHandler(this.colorComboBox_SelectedIndexChanged);
             // 
             // colorBindingSource
             // 

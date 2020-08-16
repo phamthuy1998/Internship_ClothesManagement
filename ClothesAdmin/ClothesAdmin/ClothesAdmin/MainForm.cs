@@ -21,6 +21,7 @@ namespace ClothesAdmin
         private EmployeeForm employeeForm = null;
         private SizeForm sizeForm = null;
         private ImportCuponForm importCuponForm = null;
+        private InvoiceStatisticFrom  invoiceStatisticFrom = null;
         private SizeColorForm sizeColorForm = null;
         private PromotionForm promotionForm = null;
         private AccountsForm accountsForm = null;
@@ -311,6 +312,32 @@ namespace ClothesAdmin
                 importCuponForm = new ImportCuponForm();
                 importCuponForm.MdiParent = this;
                 importCuponForm.Show();
+            }
+            else form.Activate();
+        }
+
+        private void btnInvoiceStatis_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            form = this.CheckExists(typeof(InvoiceStatisticFrom));
+            if (form == null)
+            {
+                IsMdiContainer = true;
+                invoiceStatisticFrom = new InvoiceStatisticFrom();
+                invoiceStatisticFrom.MdiParent = this;
+                invoiceStatisticFrom.Show();
+            }
+            else form.Activate();
+        }
+
+        private void btnProductStatistic_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            form = this.CheckExists(typeof(InvoiceStatisticFrom));
+            if (form == null)
+            {
+                IsMdiContainer = true;
+                invoiceStatisticFrom = new InvoiceStatisticFrom();
+                invoiceStatisticFrom.MdiParent = this;
+                invoiceStatisticFrom.Show();
             }
             else form.Activate();
         }

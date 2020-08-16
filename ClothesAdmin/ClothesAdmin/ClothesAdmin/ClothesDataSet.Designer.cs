@@ -38991,12 +38991,8 @@ SELECT productID, sizeId, colorID, quantity, imageUrl, active FROM ProductSizeCo
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[1] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[1].Connection = this.Connection;
-            this._commandCollection[1].CommandText = @"SELECT productID,p.title, sizeId,s.sizeName, colorID, c.colorName, quantity, imageUrl, psc.active 
-FROM dbo.ProductSizeColor psc
-JOIN Product p ON psc.productID = p.id
-JOIN Size s ON psc.sizeId = s.id
-JOIN Color c ON psc.colorID = c.id
-WHERE psc.productID = @productID";
+            this._commandCollection[1].CommandText = "SELECT productID, sizeId, colorID, quantity, imageUrl, active\r\nFROM ProductSizeCo" +
+                "lor \r\nWHERE productID = @productID ";
             this._commandCollection[1].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[1].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@productID", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "productID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
         }

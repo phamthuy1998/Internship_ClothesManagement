@@ -714,6 +714,7 @@
             // 
             // thumbnailProduct
             // 
+            this.thumbnailProduct.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.thumbnailProduct.ErrorImage = global::ClothesAdmin.Properties.Resources.no_image;
             this.thumbnailProduct.Location = new System.Drawing.Point(572, 82);
             this.thumbnailProduct.Name = "thumbnailProduct";
@@ -749,6 +750,7 @@
             // idTextBox
             // 
             this.idTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.productBindingSource, "id", true));
+            this.idTextBox.Enabled = false;
             this.idTextBox.Location = new System.Drawing.Point(140, 87);
             this.idTextBox.Name = "idTextBox";
             this.idTextBox.Size = new System.Drawing.Size(119, 22);

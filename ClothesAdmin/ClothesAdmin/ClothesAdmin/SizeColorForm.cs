@@ -31,6 +31,7 @@ namespace ClothesAdmin
         private void SizeColorForm_Load(object sender, EventArgs e)
         {
             loadData();
+            productIDTextBox.Text = productID.ToString();
         }
 
         private void loadData()
@@ -57,12 +58,21 @@ namespace ClothesAdmin
 
         private void btnAddProvider_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            productSizeColorBindingSource.AddNew();
+            try
+            {
+                productSizeColorBindingSource.AddNew();
+                productIDTextBox.Text = productID.ToString();
+            }
+            catch (Exception ex) { }
         }
 
         private void sizeComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-
+            try
+            {
+                sizeIdTextBox.Text = sizeComboBox.SelectedValue.ToString();
+            }
+            catch (Exception ex) { }
         }
 
         private void btnDelProvider_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
@@ -114,15 +124,32 @@ namespace ClothesAdmin
 
         private void btnSaveAddProvider_Click(object sender, EventArgs e)
         {
-            this.Validate();
-            this.productSizeColorBindingSource.EndEdit();
-            this.tableAdapterManager.UpdateAll(this.clothesDataSet);
-            Program.showToastSave();
+            try
+            {
+                this.Validate();
+                this.productSizeColorBindingSource.EndEdit();
+                this.tableAdapterManager.UpdateAll(this.clothesDataSet);
+                Program.showToastSave();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Lỗi thêm" + ex.Message, "", MessageBoxButtons.OK);
+            }
         }
 
         private void btnCancelAddProvider_Click(object sender, EventArgs e)
         {
             productSizeColorBindingSource.EndEdit();
+        }
+
+        private void colorComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                colorIDTextBox.Text = colorComboBox.SelectedValue.ToString();
+
+            }
+            catch (Exception ex) { }
         }
     }
 }

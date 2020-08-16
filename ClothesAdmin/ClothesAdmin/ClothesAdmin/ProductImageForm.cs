@@ -58,6 +58,7 @@ namespace ClothesAdmin
 
             }
             imageBindingSource.AddNew();
+            productIdTextBox.Text = productID.ToString();
         }
 
         private void btnDelProvider_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)

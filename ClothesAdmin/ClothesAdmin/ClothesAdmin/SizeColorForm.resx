@@ -578,7 +578,7 @@
     <value>2, 2, 2, 2</value>
   </data>
   <data name="barDockControl1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>1940, 33</value>
+    <value>1503, 33</value>
   </data>
   <data name="&gt;&gt;barDockControl1.Name" xml:space="preserve">
     <value>barDockControl1</value>
@@ -596,13 +596,13 @@
     <value>Bottom</value>
   </data>
   <data name="barDockControl2.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 606</value>
+    <value>0, 613</value>
   </data>
   <data name="barDockControl2.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>2, 2, 2, 2</value>
   </data>
   <data name="barDockControl2.Size" type="System.Drawing.Size, System.Drawing">
-    <value>1940, 0</value>
+    <value>1503, 0</value>
   </data>
   <data name="&gt;&gt;barDockControl2.Name" xml:space="preserve">
     <value>barDockControl2</value>
@@ -626,7 +626,7 @@
     <value>2, 2, 2, 2</value>
   </data>
   <data name="barDockControl3.Size" type="System.Drawing.Size, System.Drawing">
-    <value>0, 573</value>
+    <value>0, 580</value>
   </data>
   <data name="&gt;&gt;barDockControl3.Name" xml:space="preserve">
     <value>barDockControl3</value>
@@ -644,13 +644,13 @@
     <value>Right</value>
   </data>
   <data name="barDockControl5.Location" type="System.Drawing.Point, System.Drawing">
-    <value>1940, 33</value>
+    <value>1503, 33</value>
   </data>
   <data name="barDockControl5.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>2, 2, 2, 2</value>
   </data>
   <data name="barDockControl5.Size" type="System.Drawing.Size, System.Drawing">
-    <value>0, 573</value>
+    <value>0, 580</value>
   </data>
   <data name="&gt;&gt;barDockControl5.Name" xml:space="preserve">
     <value>barDockControl5</value>
@@ -671,7 +671,7 @@
     <value>8, 16</value>
   </data>
   <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
-    <value>1940, 606</value>
+    <value>1503, 613</value>
   </data>
   <data name="tableLayoutPanel1.ColumnCount" type="System.Int32, mscorlib">
     <value>2</value>
@@ -755,7 +755,7 @@
     <value>94</value>
   </data>
   <data name="productSizeColorGridControl.Size" type="System.Drawing.Size, System.Drawing">
-    <value>964, 502</value>
+    <value>745, 509</value>
   </data>
   <data name="productSizeColorGridControl.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
@@ -925,6 +925,9 @@
   <data name="&gt;&gt;productIDTextBox.ZOrder" xml:space="preserve">
     <value>9</value>
   </data>
+  <data name="sizeIdTextBox.Enabled" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
   <data name="sizeIdTextBox.Location" type="System.Drawing.Point, System.Drawing">
     <value>575, 92</value>
   </data>
@@ -945,6 +948,9 @@
   </data>
   <data name="&gt;&gt;sizeIdTextBox.ZOrder" xml:space="preserve">
     <value>11</value>
+  </data>
+  <data name="colorIDTextBox.Enabled" type="System.Boolean, mscorlib">
+    <value>False</value>
   </data>
   <data name="colorIDTextBox.Location" type="System.Drawing.Point, System.Drawing">
     <value>575, 136</value>
@@ -1034,10 +1040,10 @@
     <value>Fill</value>
   </data>
   <data name="panel2.Location" type="System.Drawing.Point, System.Drawing">
-    <value>973, 3</value>
+    <value>754, 3</value>
   </data>
   <data name="panel2.Size" type="System.Drawing.Size, System.Drawing">
-    <value>964, 502</value>
+    <value>746, 509</value>
   </data>
   <data name="panel2.TabIndex" type="System.Int32, mscorlib">
     <value>1</value>
@@ -1064,7 +1070,7 @@
     <value>1</value>
   </data>
   <data name="tableLayoutPanel1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>1940, 508</value>
+    <value>1503, 515</value>
   </data>
   <data name="tableLayoutPanel1.TabIndex" type="System.Int32, mscorlib">
     <value>25</value>
@@ -1091,7 +1097,7 @@
     <value>0, 33</value>
   </data>
   <data name="panel1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>1940, 65</value>
+    <value>1503, 65</value>
   </data>
   <data name="panel1.TabIndex" type="System.Int32, mscorlib">
     <value>24</value>
