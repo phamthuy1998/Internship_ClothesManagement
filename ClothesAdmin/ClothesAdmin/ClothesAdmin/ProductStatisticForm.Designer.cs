@@ -34,9 +34,9 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(974, 611);
+            this.ClientSize = new System.Drawing.Size(1114, 713);
             this.Name = "ProductStatisticForm";
-            this.Text = "ProductStatisticForm";
+            this.Text = "Product Statistic";
             this.ResumeLayout(false);
 
         }

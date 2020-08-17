@@ -26,6 +26,7 @@ namespace ClothesAdmin
         private PromotionForm promotionForm = null;
         private AccountsForm accountsForm = null;
         private ProviderForm providerForm = null;
+        private ProductStatisticForm productStatisticForm = null;
         public MainForm()
         {
             InitializeComponent();
@@ -331,13 +332,13 @@ namespace ClothesAdmin
 
         private void btnProductStatistic_ItemClick(object sender, ItemClickEventArgs e)
         {
-            form = this.CheckExists(typeof(InvoiceStatisticFrom));
+            form = this.CheckExists(typeof(ProductStatisticForm));
             if (form == null)
             {
                 IsMdiContainer = true;
-                invoiceStatisticFrom = new InvoiceStatisticFrom();
-                invoiceStatisticFrom.MdiParent = this;
-                invoiceStatisticFrom.Show();
+                productStatisticForm = new ProductStatisticForm();
+                productStatisticForm.MdiParent = this;
+                productStatisticForm.Show();
             }
             else form.Activate();
         }
