@@ -6,7 +6,9 @@ data class InvoiceProductDetail(
     var quantity: Int?,
     var thumnail: String?,
     var title: String?,
-    var unitPrice: Double?
+    var unitPrice: Double?,
+    var color: Color?,
+    var size: Size?
 ) {
     fun getTotalPrice() = (unitPrice ?: 0.0) * (quantity?.toDouble() ?: 0.0)
 }

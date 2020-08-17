@@ -37,7 +37,7 @@
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/tvPrice"
             style="@style/normal_text.bold"
-            price="@{item.totalPrice}"
+            price="@{item.unitPrice}"
             android:layout_marginStart="@dimen/layout_margin_8dp"
             android:textSize="@dimen/text_size_18sp"
             app:layout_constraintBottom_toBottomOf="@id/ivClose"
@@ -83,7 +83,7 @@
             android:layout_height="@dimen/layout_margin_12dp"
             android:layout_marginStart="@dimen/layout_margin_12dp"
             android:background="@drawable/bg_circle"
-            android:backgroundTint="#000000"
+            setColorProduct="@{item.color}"
             app:layout_constraintBottom_toBottomOf="@id/tvTitleColor"
             app:layout_constraintStart_toEndOf="@id/bOption"
             app:layout_constraintTop_toTopOf="@id/tvTitleColor" />
@@ -93,12 +93,11 @@
             style="@style/normal_text"
             android:layout_width="wrap_content"
             android:layout_marginStart="@dimen/layout_margin_8dp"
-            android:text="black"
+            android:text="@{item.color.colorName}"
             android:textAlignment="textStart"
             app:layout_constraintBottom_toBottomOf="@id/vColor"
             app:layout_constraintStart_toEndOf="@id/vColor"
             app:layout_constraintTop_toTopOf="@id/vColor" />
-        <!--            android:text="@{item.quantityInCart.colorName}"-->
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/tvTitleSize"
@@ -112,12 +111,11 @@
             style="@style/normal_text"
             android:layout_width="wrap_content"
             android:layout_marginStart="@dimen/layout_margin_12dp"
-            android:text="xs"
+            android:text="@{item.size.sizeName}"
             android:textAlignment="textStart"
             android:textAllCaps="true"
             app:layout_constraintBaseline_toBaselineOf="@id/tvTitleSize"
             app:layout_constraintStart_toEndOf="@id/bOption" />
-        <!--            android:text="@{item.quantityInCart.sizeName}"-->
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/tvQuantity"

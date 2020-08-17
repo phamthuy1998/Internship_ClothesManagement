@@ -111,7 +111,7 @@
             android:layout_height="@dimen/layout_margin_12dp"
             android:layout_marginStart="@dimen/layout_margin_12dp"
             android:background="@drawable/bg_circle"
-            android:backgroundTint="#000000"
+            setColorProduct="@{item.selectedColor}"
             app:layout_constraintBottom_toBottomOf="@id/tvTitleColor"
             app:layout_constraintStart_toEndOf="@id/bOption"
             app:layout_constraintTop_toTopOf="@id/tvTitleColor" />
