@@ -7,7 +7,7 @@ namespace ClothesManament.Models
 {
     public class AddressEit
     {
-        public Nullable<int> addressId { set; get; }
+        public Nullable<int> id { set; get; }
         public String province { set; get; }
         public String district { set; get; }
         public String wards { set; get; }
