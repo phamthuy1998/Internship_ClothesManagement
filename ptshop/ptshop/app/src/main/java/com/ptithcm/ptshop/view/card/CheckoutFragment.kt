@@ -21,7 +21,6 @@ import com.ptithcm.ptshop.base.BaseFragment
 import com.ptithcm.ptshop.constant.KEY_ARGUMENT_BOOLEAN
 import com.ptithcm.ptshop.constant.KEY_IS_CHOOSE_ADDRESS
 import com.ptithcm.ptshop.databinding.FragmentCheckoutBinding
-import com.ptithcm.ptshop.databinding.LayoutBottomsheetDiscountCodeBinding
 import com.ptithcm.ptshop.databinding.LayoutPopUpBinding
 import com.ptithcm.ptshop.ext.initToolBar
 import com.ptithcm.ptshop.ext.navigateAnimation
@@ -30,12 +29,14 @@ import com.ptithcm.ptshop.ext.visible
 import com.ptithcm.ptshop.util.PopUp
 import com.ptithcm.ptshop.view.MainActivity
 import com.ptithcm.ptshop.view.home.StoryDetailActivity
-import com.ptithcm.ptshop.viewmodel.*
+import com.ptithcm.ptshop.viewmodel.CheckoutViewModel
+import com.ptithcm.ptshop.viewmodel.ListenerViewModel
+import com.ptithcm.ptshop.viewmodel.ShoppingViewModel
+import com.ptithcm.ptshop.viewmodel.UserViewModel
 import com.ptithcm.ptshop.widget.RecyclerRefreshLayout
 import com.stripe.android.model.Card
 import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
-import java.util.*
 
 class CheckoutFragment : BaseFragment<FragmentCheckoutBinding>(), View.OnClickListener {
 
@@ -48,34 +49,24 @@ class CheckoutFragment : BaseFragment<FragmentCheckoutBinding>(), View.OnClickLi
     private val basketViewModel: ShoppingViewModel by viewModel()
     private val userViewModel: UserViewModel by viewModel()
 
-    private val paymentViewModel: PaymentViewModel by sharedViewModel()
     private val listenerViewModel: ListenerViewModel by sharedViewModel()
 
     private var isCallApi = false
     private var isClickCheckout = false
-    private var popUp: LayoutBottomsheetDiscountCodeBinding? = null
+    private var curPositionSelectedMethod = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         isCallApi = true
-        paymentViewModel.getPaymentMethods()
     }
 
     override fun bindEvent() {
-        setUpRv()
         setUpToolbar()
+        setUpRv()
+        setupPullToRefresh()
 
-        viewBinding.swipeRfCheckout.setRefreshView(
-            RecyclerRefreshLayout(
-                context ?: return,
-                text = getString(R.string.prepare_checkout)
-            ),
-            ViewGroup.LayoutParams(
-                ViewGroup.LayoutParams.MATCH_PARENT,
-                ViewGroup.LayoutParams.WRAP_CONTENT
-            )
-        )
+        viewBinding.fragment = this
 
         if (isCallApi) {
             basketViewModel.getAllProductsInCart(ObjectHandler.getAllIdProdsInCart())
@@ -89,16 +80,30 @@ class CheckoutFragment : BaseFragment<FragmentCheckoutBinding>(), View.OnClickLi
         viewBinding.shippingAddress.item = CoreApplication.instance.cart?.shippingAddress
         viewBinding.includePayment.data = ObjectHandler.cart?.creditCard
         viewBinding.includePayment.ivCreditCard.setImageResource(Card.getBrandIcon(ObjectHandler.cart?.creditCard?.brand))
-
-        viewBinding.fragment = this
+        viewBinding.includePayment.spinnerDelivery.setSelection(curPositionSelectedMethod)
 
         viewBinding.shippingAddress.root.setOnClickListener(this)
-
         viewBinding.includePayment.root.setOnClickListener(this)
-
         viewBinding.includeDiscount.setOnClickListener(this)
-
         viewBinding.includeHasDiscount.root.setOnClickListener(this)
+    }
+
+    private fun setupPullToRefresh() {
+        viewBinding.swipeRfCheckout.setRefreshView(
+            RecyclerRefreshLayout(
+                requireContext(),
+                text = getString(R.string.prepare_checkout)
+            ),
+            ViewGroup.LayoutParams(
+                ViewGroup.LayoutParams.MATCH_PARENT,
+                ViewGroup.LayoutParams.WRAP_CONTENT
+            )
+        )
+
+        viewBinding.swipeRfCheckout.setOnRefreshListener {
+            viewBinding.swipeRfCheckout.setRefreshing(true)
+            basketViewModel.getAllProductsInCart(ObjectHandler.getAllIdProdsInCart())
+        }
     }
 
     override fun bindViewModelOnce() {
@@ -112,8 +117,11 @@ class CheckoutFragment : BaseFragment<FragmentCheckoutBinding>(), View.OnClickLi
                     phone = cart.shippingAddress?.phone,
                     products = cart.products.map { it.quantityInCart },
                     note = viewBinding.includeNote.edtNote.text?.toString(),
-                    tokenCard = cart.creditCard?.tokenCard
+                    tokenCard = null
                 )
+                if (curPositionSelectedMethod == 2)
+                    checkoutParam.tokenCard = cart.creditCard?.tokenCard
+
                 checkoutViewModel.requestCheckout(checkoutParam)
                 return@Observer
             }
@@ -137,7 +145,7 @@ class CheckoutFragment : BaseFragment<FragmentCheckoutBinding>(), View.OnClickLi
         checkoutViewModel.resultRequestCheckout.observe(this, Observer {
             messageHandler?.runMessageHandler(it)
             ObjectHandler.cart = Cart()
-            ObjectHandler.saveCartToPref()
+            CoreApplication.instance.clearCart()
             navController.popBackStack()
         })
 
@@ -154,6 +162,8 @@ class CheckoutFragment : BaseFragment<FragmentCheckoutBinding>(), View.OnClickLi
             ObjectHandler.cart?.creditCard = card
             viewBinding.includePayment.data = card
             viewBinding.includePayment.ivCreditCard.setImageResource(Card.getBrandIcon(card?.brand))
+            if (card?.tokenCard.isNullOrEmpty())
+                viewBinding.includePayment.data = null
         })
 
         userViewModel.allAddressLiveData.observe(this, androidx.lifecycle.Observer {
@@ -176,7 +186,7 @@ class CheckoutFragment : BaseFragment<FragmentCheckoutBinding>(), View.OnClickLi
                         }
                     }
                     2 -> {
-                        if (ObjectHandler.cart?.creditCard == null)
+                        if (ObjectHandler.cart?.creditCard == null || ObjectHandler.cart?.creditCard?.tokenCard.isNullOrEmpty())
                             messageHandler?.runMessageErrorHandler(getString(R.string.select_payment_method_credit_card))
                         else if (validateInfo()) {
                             isClickCheckout = true
@@ -226,10 +236,11 @@ class CheckoutFragment : BaseFragment<FragmentCheckoutBinding>(), View.OnClickLi
         productCheckoutAdapter.addToList(CoreApplication.instance.cart?.products ?: arrayListOf())
 
         viewBinding.includePayment.spinnerDelivery.apply {
+            if (adapter != null)
+                return@apply
+
             val arr = arrayListOf(
-                context.getString(R.string.select_delivery_method).toUpperCase(
-                    Locale.getDefault()
-                ),
+                context.getString(R.string.select_delivery_method),
                 "Cash on Delivery",
                 "Credit Card"
             )
@@ -244,14 +255,10 @@ class CheckoutFragment : BaseFragment<FragmentCheckoutBinding>(), View.OnClickLi
                     position: Int,
                     p3: Long
                 ) {
+                    curPositionSelectedMethod = position
                     viewBinding.includePayment.clPayment.isVisible = position == 2
                 }
             }
-        }
-
-        viewBinding.swipeRfCheckout.setOnRefreshListener {
-            viewBinding.swipeRfCheckout.setRefreshing(true)
-            basketViewModel.getAllProductsInCart(ObjectHandler.getAllIdProdsInCart())
         }
     }
 
