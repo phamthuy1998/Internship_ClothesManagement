@@ -35,15 +35,25 @@
             System.Windows.Forms.Label totalInvoiceLabel;
             System.Windows.Forms.Label totalPriceLabel;
             System.Windows.Forms.Label totalProductLabel;
+            System.Windows.Forms.Label label3;
             this.panel1 = new System.Windows.Forms.Panel();
             this.cbbStatusOrder = new System.Windows.Forms.ComboBox();
             this.dateEnd = new DevExpress.XtraEditors.DateEdit();
             this.dateBegin = new DevExpress.XtraEditors.DateEdit();
-            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
-            this.invoiceItemGridControl = new DevExpress.XtraGrid.GridControl();
             this.invoiceItemBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.invoiceBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.clothesDataSet = new ClothesAdmin.ClothesDataSet();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.totalInvoiceTextBox = new System.Windows.Forms.TextBox();
+            this.sP_GetInvoiceBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.totalPriceTextBox = new System.Windows.Forms.TextBox();
+            this.totalProductTextBox = new System.Windows.Forms.TextBox();
+            this.invoiceTableAdapter = new ClothesAdmin.ClothesDataSetTableAdapters.InvoiceTableAdapter();
+            this.tableAdapterManager = new ClothesAdmin.ClothesDataSetTableAdapters.TableAdapterManager();
+            this.invoiceItemTableAdapter = new ClothesAdmin.ClothesDataSetTableAdapters.InvoiceItemTableAdapter();
+            this.sP_GetInvoiceTableAdapter = new ClothesAdmin.ClothesDataSetTableAdapters.SP_GetInvoiceTableAdapter();
+            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            this.invoiceItemGridControl = new DevExpress.XtraGrid.GridControl();
             this.gridView2 = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.colorderId = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colproductId = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -65,36 +75,28 @@
             this.coldeliveryDate = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colactive = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colemployeeId = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.panel2 = new System.Windows.Forms.Panel();
-            this.invoiceTableAdapter = new ClothesAdmin.ClothesDataSetTableAdapters.InvoiceTableAdapter();
-            this.tableAdapterManager = new ClothesAdmin.ClothesDataSetTableAdapters.TableAdapterManager();
-            this.invoiceItemTableAdapter = new ClothesAdmin.ClothesDataSetTableAdapters.InvoiceItemTableAdapter();
-            this.sP_GetInvoiceBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.sP_GetInvoiceTableAdapter = new ClothesAdmin.ClothesDataSetTableAdapters.SP_GetInvoiceTableAdapter();
-            this.totalInvoiceTextBox = new System.Windows.Forms.TextBox();
-            this.totalPriceTextBox = new System.Windows.Forms.TextBox();
-            this.totalProductTextBox = new System.Windows.Forms.TextBox();
             label5 = new System.Windows.Forms.Label();
             label1 = new System.Windows.Forms.Label();
             label2 = new System.Windows.Forms.Label();
             totalInvoiceLabel = new System.Windows.Forms.Label();
             totalPriceLabel = new System.Windows.Forms.Label();
             totalProductLabel = new System.Windows.Forms.Label();
+            label3 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dateEnd.Properties.CalendarTimeProperties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dateEnd.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dateBegin.Properties.CalendarTimeProperties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dateBegin.Properties)).BeginInit();
-            this.tableLayoutPanel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.invoiceItemGridControl)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.invoiceItemBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.invoiceBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.clothesDataSet)).BeginInit();
+            this.panel2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.sP_GetInvoiceBindingSource)).BeginInit();
+            this.tableLayoutPanel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.invoiceItemGridControl)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.invoiceGridControl)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
-            this.panel2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.sP_GetInvoiceBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // label5
@@ -124,8 +126,45 @@
             label2.TabIndex = 63;
             label2.Text = "Date end";
             // 
+            // totalInvoiceLabel
+            // 
+            totalInvoiceLabel.AutoSize = true;
+            totalInvoiceLabel.Location = new System.Drawing.Point(91, 17);
+            totalInvoiceLabel.Name = "totalInvoiceLabel";
+            totalInvoiceLabel.Size = new System.Drawing.Size(87, 17);
+            totalInvoiceLabel.TabIndex = 0;
+            totalInvoiceLabel.Text = "total Invoice:";
+            // 
+            // totalPriceLabel
+            // 
+            totalPriceLabel.AutoSize = true;
+            totalPriceLabel.Location = new System.Drawing.Point(491, 23);
+            totalPriceLabel.Name = "totalPriceLabel";
+            totalPriceLabel.Size = new System.Drawing.Size(75, 17);
+            totalPriceLabel.TabIndex = 2;
+            totalPriceLabel.Text = "total Price:";
+            // 
+            // totalProductLabel
+            // 
+            totalProductLabel.AutoSize = true;
+            totalProductLabel.Location = new System.Drawing.Point(886, 23);
+            totalProductLabel.Name = "totalProductLabel";
+            totalProductLabel.Size = new System.Drawing.Size(92, 17);
+            totalProductLabel.TabIndex = 4;
+            totalProductLabel.Text = "total Product:";
+            // 
+            // label3
+            // 
+            label3.AutoSize = true;
+            label3.Location = new System.Drawing.Point(818, 23);
+            label3.Name = "label3";
+            label3.Size = new System.Drawing.Size(31, 17);
+            label3.TabIndex = 2;
+            label3.Text = "vnd";
+            // 
             // panel1
             // 
+            this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panel1.Controls.Add(this.cbbStatusOrder);
             this.panel1.Controls.Add(label2);
             this.panel1.Controls.Add(label1);
@@ -174,33 +213,6 @@
             this.dateBegin.TabIndex = 62;
             this.dateBegin.EditValueChanged += new System.EventHandler(this.dateBegin_EditValueChanged);
             // 
-            // tableLayoutPanel1
-            // 
-            this.tableLayoutPanel1.ColumnCount = 2;
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 49.94775F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50.05225F));
-            this.tableLayoutPanel1.Controls.Add(this.invoiceItemGridControl, 1, 0);
-            this.tableLayoutPanel1.Controls.Add(this.invoiceGridControl, 0, 0);
-            this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 251);
-            this.tableLayoutPanel1.Name = "tableLayoutPanel1";
-            this.tableLayoutPanel1.RowCount = 1;
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(1914, 352);
-            this.tableLayoutPanel1.TabIndex = 63;
-            // 
-            // invoiceItemGridControl
-            // 
-            this.invoiceItemGridControl.DataSource = this.invoiceItemBindingSource;
-            this.invoiceItemGridControl.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.invoiceItemGridControl.Location = new System.Drawing.Point(958, 3);
-            this.invoiceItemGridControl.MainView = this.gridView2;
-            this.invoiceItemGridControl.Name = "invoiceItemGridControl";
-            this.invoiceItemGridControl.Size = new System.Drawing.Size(953, 346);
-            this.invoiceItemGridControl.TabIndex = 1;
-            this.invoiceItemGridControl.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
-            this.gridView2});
-            // 
             // invoiceItemBindingSource
             // 
             this.invoiceItemBindingSource.DataMember = "FK_InvoiceItem_Invoice";
@@ -215,6 +227,117 @@
             // 
             this.clothesDataSet.DataSetName = "ClothesDataSet";
             this.clothesDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
+            // panel2
+            // 
+            this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel2.Controls.Add(totalInvoiceLabel);
+            this.panel2.Controls.Add(this.totalInvoiceTextBox);
+            this.panel2.Controls.Add(label3);
+            this.panel2.Controls.Add(totalPriceLabel);
+            this.panel2.Controls.Add(this.totalPriceTextBox);
+            this.panel2.Controls.Add(totalProductLabel);
+            this.panel2.Controls.Add(this.totalProductTextBox);
+            this.panel2.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel2.Location = new System.Drawing.Point(0, 85);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(1914, 69);
+            this.panel2.TabIndex = 64;
+            // 
+            // totalInvoiceTextBox
+            // 
+            this.totalInvoiceTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.sP_GetInvoiceBindingSource, "totalInvoice", true));
+            this.totalInvoiceTextBox.Enabled = false;
+            this.totalInvoiceTextBox.Location = new System.Drawing.Point(189, 14);
+            this.totalInvoiceTextBox.Name = "totalInvoiceTextBox";
+            this.totalInvoiceTextBox.Size = new System.Drawing.Size(218, 22);
+            this.totalInvoiceTextBox.TabIndex = 1;
+            // 
+            // sP_GetInvoiceBindingSource
+            // 
+            this.sP_GetInvoiceBindingSource.DataMember = "SP_GetInvoice";
+            this.sP_GetInvoiceBindingSource.DataSource = this.clothesDataSet;
+            // 
+            // totalPriceTextBox
+            // 
+            this.totalPriceTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.sP_GetInvoiceBindingSource, "totalPrice", true));
+            this.totalPriceTextBox.Enabled = false;
+            this.totalPriceTextBox.Location = new System.Drawing.Point(589, 20);
+            this.totalPriceTextBox.Name = "totalPriceTextBox";
+            this.totalPriceTextBox.Size = new System.Drawing.Size(223, 22);
+            this.totalPriceTextBox.TabIndex = 3;
+            // 
+            // totalProductTextBox
+            // 
+            this.totalProductTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.sP_GetInvoiceBindingSource, "totalProduct", true));
+            this.totalProductTextBox.Enabled = false;
+            this.totalProductTextBox.Location = new System.Drawing.Point(984, 20);
+            this.totalProductTextBox.Name = "totalProductTextBox";
+            this.totalProductTextBox.Size = new System.Drawing.Size(100, 22);
+            this.totalProductTextBox.TabIndex = 5;
+            // 
+            // invoiceTableAdapter
+            // 
+            this.invoiceTableAdapter.ClearBeforeFill = true;
+            // 
+            // tableAdapterManager
+            // 
+            this.tableAdapterManager.AccountTableAdapter = null;
+            this.tableAdapterManager.AddressTableAdapter = null;
+            this.tableAdapterManager.BackupDataSetBeforeUpdate = false;
+            this.tableAdapterManager.CategoryTableAdapter = null;
+            this.tableAdapterManager.ColorTableAdapter = null;
+            this.tableAdapterManager.CustomerTableAdapter = null;
+            this.tableAdapterManager.EmployeeTableAdapter = null;
+            this.tableAdapterManager.FavoriteProductTableAdapter = null;
+            this.tableAdapterManager.ImageTableAdapter = null;
+            this.tableAdapterManager.ImportCouponDetailTableAdapter = null;
+            this.tableAdapterManager.ImportCouponTableAdapter = null;
+            this.tableAdapterManager.InvoiceItemTableAdapter = null;
+            this.tableAdapterManager.InvoiceTableAdapter = this.invoiceTableAdapter;
+            this.tableAdapterManager.ProductSizeColorTableAdapter = null;
+            this.tableAdapterManager.ProductTableAdapter = null;
+            this.tableAdapterManager.PromotionItemTableAdapter = null;
+            this.tableAdapterManager.PromotionTableAdapter = null;
+            this.tableAdapterManager.ProviderTableAdapter = null;
+            this.tableAdapterManager.RoleTableAdapter = null;
+            this.tableAdapterManager.SizeTableAdapter = null;
+            this.tableAdapterManager.UpdateOrder = ClothesAdmin.ClothesDataSetTableAdapters.TableAdapterManager.UpdateOrderOption.InsertUpdateDelete;
+            // 
+            // invoiceItemTableAdapter
+            // 
+            this.invoiceItemTableAdapter.ClearBeforeFill = true;
+            // 
+            // sP_GetInvoiceTableAdapter
+            // 
+            this.sP_GetInvoiceTableAdapter.ClearBeforeFill = true;
+            // 
+            // tableLayoutPanel1
+            // 
+            this.tableLayoutPanel1.ColumnCount = 2;
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 49.94775F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50.05225F));
+            this.tableLayoutPanel1.Controls.Add(this.invoiceItemGridControl, 1, 0);
+            this.tableLayoutPanel1.Controls.Add(this.invoiceGridControl, 0, 0);
+            this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 154);
+            this.tableLayoutPanel1.Name = "tableLayoutPanel1";
+            this.tableLayoutPanel1.RowCount = 1;
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(1914, 449);
+            this.tableLayoutPanel1.TabIndex = 65;
+            // 
+            // invoiceItemGridControl
+            // 
+            this.invoiceItemGridControl.DataSource = this.invoiceItemBindingSource;
+            this.invoiceItemGridControl.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.invoiceItemGridControl.Location = new System.Drawing.Point(958, 3);
+            this.invoiceItemGridControl.MainView = this.gridView2;
+            this.invoiceItemGridControl.Name = "invoiceItemGridControl";
+            this.invoiceItemGridControl.Size = new System.Drawing.Size(953, 443);
+            this.invoiceItemGridControl.TabIndex = 1;
+            this.invoiceItemGridControl.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
+            this.gridView2});
             // 
             // gridView2
             // 
@@ -295,7 +418,7 @@
             this.invoiceGridControl.Location = new System.Drawing.Point(3, 3);
             this.invoiceGridControl.MainView = this.gridView1;
             this.invoiceGridControl.Name = "invoiceGridControl";
-            this.invoiceGridControl.Size = new System.Drawing.Size(949, 346);
+            this.invoiceGridControl.Size = new System.Drawing.Size(949, 443);
             this.invoiceGridControl.TabIndex = 0;
             this.invoiceGridControl.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridView1});
@@ -428,120 +551,14 @@
             this.colemployeeId.VisibleIndex = 11;
             this.colemployeeId.Width = 94;
             // 
-            // panel2
-            // 
-            this.panel2.Controls.Add(totalInvoiceLabel);
-            this.panel2.Controls.Add(this.totalInvoiceTextBox);
-            this.panel2.Controls.Add(totalPriceLabel);
-            this.panel2.Controls.Add(this.totalPriceTextBox);
-            this.panel2.Controls.Add(totalProductLabel);
-            this.panel2.Controls.Add(this.totalProductTextBox);
-            this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel2.Location = new System.Drawing.Point(0, 85);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(1914, 166);
-            this.panel2.TabIndex = 64;
-            // 
-            // invoiceTableAdapter
-            // 
-            this.invoiceTableAdapter.ClearBeforeFill = true;
-            // 
-            // tableAdapterManager
-            // 
-            this.tableAdapterManager.AccountTableAdapter = null;
-            this.tableAdapterManager.AddressTableAdapter = null;
-            this.tableAdapterManager.BackupDataSetBeforeUpdate = false;
-            this.tableAdapterManager.CategoryTableAdapter = null;
-            this.tableAdapterManager.ColorTableAdapter = null;
-            this.tableAdapterManager.CustomerTableAdapter = null;
-            this.tableAdapterManager.EmployeeTableAdapter = null;
-            this.tableAdapterManager.FavoriteProductTableAdapter = null;
-            this.tableAdapterManager.ImageTableAdapter = null;
-            this.tableAdapterManager.ImportCouponDetailTableAdapter = null;
-            this.tableAdapterManager.ImportCouponTableAdapter = null;
-            this.tableAdapterManager.InvoiceItemTableAdapter = null;
-            this.tableAdapterManager.InvoiceTableAdapter = this.invoiceTableAdapter;
-            this.tableAdapterManager.ProductSizeColorTableAdapter = null;
-            this.tableAdapterManager.ProductTableAdapter = null;
-            this.tableAdapterManager.PromotionItemTableAdapter = null;
-            this.tableAdapterManager.PromotionTableAdapter = null;
-            this.tableAdapterManager.ProviderTableAdapter = null;
-            this.tableAdapterManager.RoleTableAdapter = null;
-            this.tableAdapterManager.SizeTableAdapter = null;
-            this.tableAdapterManager.UpdateOrder = ClothesAdmin.ClothesDataSetTableAdapters.TableAdapterManager.UpdateOrderOption.InsertUpdateDelete;
-            // 
-            // invoiceItemTableAdapter
-            // 
-            this.invoiceItemTableAdapter.ClearBeforeFill = true;
-            // 
-            // sP_GetInvoiceBindingSource
-            // 
-            this.sP_GetInvoiceBindingSource.DataMember = "SP_GetInvoice";
-            this.sP_GetInvoiceBindingSource.DataSource = this.clothesDataSet;
-            // 
-            // sP_GetInvoiceTableAdapter
-            // 
-            this.sP_GetInvoiceTableAdapter.ClearBeforeFill = true;
-            // 
-            // totalInvoiceLabel
-            // 
-            totalInvoiceLabel.AutoSize = true;
-            totalInvoiceLabel.Location = new System.Drawing.Point(218, 71);
-            totalInvoiceLabel.Name = "totalInvoiceLabel";
-            totalInvoiceLabel.Size = new System.Drawing.Size(87, 17);
-            totalInvoiceLabel.TabIndex = 0;
-            totalInvoiceLabel.Text = "total Invoice:";
-            // 
-            // totalInvoiceTextBox
-            // 
-            this.totalInvoiceTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.sP_GetInvoiceBindingSource, "totalInvoice", true));
-            this.totalInvoiceTextBox.Location = new System.Drawing.Point(316, 68);
-            this.totalInvoiceTextBox.Name = "totalInvoiceTextBox";
-            this.totalInvoiceTextBox.Size = new System.Drawing.Size(100, 22);
-            this.totalInvoiceTextBox.TabIndex = 1;
-            // 
-            // totalPriceLabel
-            // 
-            totalPriceLabel.AutoSize = true;
-            totalPriceLabel.Location = new System.Drawing.Point(473, 69);
-            totalPriceLabel.Name = "totalPriceLabel";
-            totalPriceLabel.Size = new System.Drawing.Size(75, 17);
-            totalPriceLabel.TabIndex = 2;
-            totalPriceLabel.Text = "total Price:";
-            // 
-            // totalPriceTextBox
-            // 
-            this.totalPriceTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.sP_GetInvoiceBindingSource, "totalPrice", true));
-            this.totalPriceTextBox.Location = new System.Drawing.Point(571, 66);
-            this.totalPriceTextBox.Name = "totalPriceTextBox";
-            this.totalPriceTextBox.Size = new System.Drawing.Size(100, 22);
-            this.totalPriceTextBox.TabIndex = 3;
-            // 
-            // totalProductLabel
-            // 
-            totalProductLabel.AutoSize = true;
-            totalProductLabel.Location = new System.Drawing.Point(735, 66);
-            totalProductLabel.Name = "totalProductLabel";
-            totalProductLabel.Size = new System.Drawing.Size(92, 17);
-            totalProductLabel.TabIndex = 4;
-            totalProductLabel.Text = "total Product:";
-            // 
-            // totalProductTextBox
-            // 
-            this.totalProductTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.sP_GetInvoiceBindingSource, "totalProduct", true));
-            this.totalProductTextBox.Location = new System.Drawing.Point(833, 63);
-            this.totalProductTextBox.Name = "totalProductTextBox";
-            this.totalProductTextBox.Size = new System.Drawing.Size(100, 22);
-            this.totalProductTextBox.TabIndex = 5;
-            // 
             // InvoiceStatisticFrom
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
             this.ClientSize = new System.Drawing.Size(1914, 603);
-            this.Controls.Add(this.panel2);
             this.Controls.Add(this.tableLayoutPanel1);
+            this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
             this.Name = "InvoiceStatisticFrom";
             this.Text = "Invoice Statistic";
@@ -552,17 +569,17 @@
             ((System.ComponentModel.ISupportInitialize)(this.dateEnd.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dateBegin.Properties.CalendarTimeProperties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dateBegin.Properties)).EndInit();
-            this.tableLayoutPanel1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.invoiceItemGridControl)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.invoiceItemBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.invoiceBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.clothesDataSet)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gridView2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.invoiceGridControl)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gridView1)).EndInit();
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.sP_GetInvoiceBindingSource)).EndInit();
+            this.tableLayoutPanel1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.invoiceItemGridControl)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridView2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.invoiceGridControl)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridView1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -572,12 +589,28 @@
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.ComboBox cbbStatusOrder;
         private DevExpress.XtraEditors.DateEdit dateBegin;
-        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         private System.Windows.Forms.Panel panel2;
         private ClothesDataSet clothesDataSet;
         private System.Windows.Forms.BindingSource invoiceBindingSource;
         private ClothesDataSetTableAdapters.InvoiceTableAdapter invoiceTableAdapter;
         private ClothesDataSetTableAdapters.TableAdapterManager tableAdapterManager;
+        private System.Windows.Forms.BindingSource invoiceItemBindingSource;
+        private ClothesDataSetTableAdapters.InvoiceItemTableAdapter invoiceItemTableAdapter;
+        private DevExpress.XtraEditors.DateEdit dateEnd;
+        private System.Windows.Forms.BindingSource sP_GetInvoiceBindingSource;
+        private ClothesDataSetTableAdapters.SP_GetInvoiceTableAdapter sP_GetInvoiceTableAdapter;
+        private System.Windows.Forms.TextBox totalInvoiceTextBox;
+        private System.Windows.Forms.TextBox totalPriceTextBox;
+        private System.Windows.Forms.TextBox totalProductTextBox;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
+        private DevExpress.XtraGrid.GridControl invoiceItemGridControl;
+        private DevExpress.XtraGrid.Views.Grid.GridView gridView2;
+        private DevExpress.XtraGrid.Columns.GridColumn colorderId;
+        private DevExpress.XtraGrid.Columns.GridColumn colproductId;
+        private DevExpress.XtraGrid.Columns.GridColumn colcolorId;
+        private DevExpress.XtraGrid.Columns.GridColumn colsizeId;
+        private DevExpress.XtraGrid.Columns.GridColumn colunitPrice;
+        private DevExpress.XtraGrid.Columns.GridColumn colquantity;
         private DevExpress.XtraGrid.GridControl invoiceGridControl;
         private DevExpress.XtraGrid.Views.Grid.GridView gridView1;
         private DevExpress.XtraGrid.Columns.GridColumn colid;
@@ -592,21 +625,5 @@
         private DevExpress.XtraGrid.Columns.GridColumn coldeliveryDate;
         private DevExpress.XtraGrid.Columns.GridColumn colactive;
         private DevExpress.XtraGrid.Columns.GridColumn colemployeeId;
-        private System.Windows.Forms.BindingSource invoiceItemBindingSource;
-        private ClothesDataSetTableAdapters.InvoiceItemTableAdapter invoiceItemTableAdapter;
-        private DevExpress.XtraGrid.GridControl invoiceItemGridControl;
-        private DevExpress.XtraGrid.Views.Grid.GridView gridView2;
-        private DevExpress.XtraGrid.Columns.GridColumn colorderId;
-        private DevExpress.XtraGrid.Columns.GridColumn colproductId;
-        private DevExpress.XtraGrid.Columns.GridColumn colcolorId;
-        private DevExpress.XtraGrid.Columns.GridColumn colsizeId;
-        private DevExpress.XtraGrid.Columns.GridColumn colunitPrice;
-        private DevExpress.XtraGrid.Columns.GridColumn colquantity;
-        private DevExpress.XtraEditors.DateEdit dateEnd;
-        private System.Windows.Forms.BindingSource sP_GetInvoiceBindingSource;
-        private ClothesDataSetTableAdapters.SP_GetInvoiceTableAdapter sP_GetInvoiceTableAdapter;
-        private System.Windows.Forms.TextBox totalInvoiceTextBox;
-        private System.Windows.Forms.TextBox totalPriceTextBox;
-        private System.Windows.Forms.TextBox totalProductTextBox;
     }
 }

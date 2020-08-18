@@ -128,6 +128,7 @@
             this.sizeIdSpinEdit = new DevExpress.XtraEditors.SpinEdit();
             this.unitPriceSpinEdit = new DevExpress.XtraEditors.SpinEdit();
             this.quantitySpinEdit = new DevExpress.XtraEditors.SpinEdit();
+            this.btnExport = new System.Windows.Forms.Button();
             employeeIdLabel = new System.Windows.Forms.Label();
             idLabel = new System.Windows.Forms.Label();
             updateDateLabel = new System.Windows.Forms.Label();
@@ -452,7 +453,7 @@
             this.barDockControl1.Location = new System.Drawing.Point(0, 0);
             this.barDockControl1.Manager = this.barManager;
             this.barDockControl1.Margin = new System.Windows.Forms.Padding(2);
-            this.barDockControl1.Size = new System.Drawing.Size(1940, 33);
+            this.barDockControl1.Size = new System.Drawing.Size(1940, 30);
             // 
             // barDockControl2
             // 
@@ -467,19 +468,19 @@
             // 
             this.barDockControl3.CausesValidation = false;
             this.barDockControl3.Dock = System.Windows.Forms.DockStyle.Left;
-            this.barDockControl3.Location = new System.Drawing.Point(0, 33);
+            this.barDockControl3.Location = new System.Drawing.Point(0, 30);
             this.barDockControl3.Manager = this.barManager;
             this.barDockControl3.Margin = new System.Windows.Forms.Padding(2);
-            this.barDockControl3.Size = new System.Drawing.Size(0, 839);
+            this.barDockControl3.Size = new System.Drawing.Size(0, 842);
             // 
             // barDockControl5
             // 
             this.barDockControl5.CausesValidation = false;
             this.barDockControl5.Dock = System.Windows.Forms.DockStyle.Right;
-            this.barDockControl5.Location = new System.Drawing.Point(1940, 33);
+            this.barDockControl5.Location = new System.Drawing.Point(1940, 30);
             this.barDockControl5.Manager = this.barManager;
             this.barDockControl5.Margin = new System.Windows.Forms.Padding(2);
-            this.barDockControl5.Size = new System.Drawing.Size(0, 839);
+            this.barDockControl5.Size = new System.Drawing.Size(0, 842);
             // 
             // btnSua
             // 
@@ -591,7 +592,7 @@
             this.panel1.Controls.Add(this.cbbStatusOrder);
             this.panel1.Controls.Add(label5);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel1.Location = new System.Drawing.Point(0, 33);
+            this.panel1.Location = new System.Drawing.Point(0, 30);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(1940, 57);
             this.panel1.TabIndex = 9;
@@ -616,13 +617,13 @@
             this.tableLayoutPanel1.Controls.Add(this.panel3, 0, 1);
             this.tableLayoutPanel1.Controls.Add(this.panel2, 1, 1);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 90);
+            this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 87);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 2;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 37.0844F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 62.9156F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(1940, 782);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(1940, 785);
             this.tableLayoutPanel1.TabIndex = 10;
             // 
             // invoiceItemGridControl
@@ -634,7 +635,7 @@
             this.invoiceItemGridControl.MainView = this.gridView2;
             this.invoiceItemGridControl.MenuManager = this.barManager;
             this.invoiceItemGridControl.Name = "invoiceItemGridControl";
-            this.invoiceItemGridControl.Size = new System.Drawing.Size(686, 284);
+            this.invoiceItemGridControl.Size = new System.Drawing.Size(686, 285);
             this.invoiceItemGridControl.TabIndex = 3;
             this.invoiceItemGridControl.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridView2});
@@ -719,7 +720,7 @@
             this.invoiceGridControl.MainView = this.gridView1;
             this.invoiceGridControl.MenuManager = this.barManager;
             this.invoiceGridControl.Name = "invoiceGridControl";
-            this.invoiceGridControl.Size = new System.Drawing.Size(1242, 284);
+            this.invoiceGridControl.Size = new System.Drawing.Size(1242, 285);
             this.invoiceGridControl.TabIndex = 3;
             this.invoiceGridControl.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridView1});
@@ -894,9 +895,9 @@
             this.panel3.Controls.Add(activeLabel);
             this.panel3.Controls.Add(this.activeSpinEdit);
             this.panel3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel3.Location = new System.Drawing.Point(3, 293);
+            this.panel3.Location = new System.Drawing.Point(3, 294);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(1242, 486);
+            this.panel3.Size = new System.Drawing.Size(1242, 488);
             this.panel3.TabIndex = 2;
             // 
             // employeeIdSpinEdit
@@ -1109,6 +1110,7 @@
             // 
             this.panel2.AutoScroll = true;
             this.panel2.ContextMenuStrip = this.contextMenuStrip1;
+            this.panel2.Controls.Add(this.btnExport);
             this.panel2.Controls.Add(this.sizeComboBox);
             this.panel2.Controls.Add(this.colorComboBox);
             this.panel2.Controls.Add(label3);
@@ -1128,9 +1130,9 @@
             this.panel2.Controls.Add(quantityLabel);
             this.panel2.Controls.Add(this.quantitySpinEdit);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel2.Location = new System.Drawing.Point(1251, 293);
+            this.panel2.Location = new System.Drawing.Point(1251, 294);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(686, 486);
+            this.panel2.Size = new System.Drawing.Size(686, 488);
             this.panel2.TabIndex = 3;
             // 
             // sizeComboBox
@@ -1278,6 +1280,19 @@
             this.quantitySpinEdit.Size = new System.Drawing.Size(125, 24);
             this.quantitySpinEdit.TabIndex = 11;
             // 
+            // btnExport
+            // 
+            this.btnExport.BackColor = System.Drawing.Color.White;
+            this.btnExport.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnExport.ForeColor = System.Drawing.Color.ForestGreen;
+            this.btnExport.Location = new System.Drawing.Point(300, 349);
+            this.btnExport.Name = "btnExport";
+            this.btnExport.Size = new System.Drawing.Size(123, 52);
+            this.btnExport.TabIndex = 61;
+            this.btnExport.Text = "Export";
+            this.btnExport.UseVisualStyleBackColor = false;
+            this.btnExport.Click += new System.EventHandler(this.btnExport_Click);
+            // 
             // InvoiceForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -1414,5 +1429,6 @@
         private DevExpress.XtraEditors.SpinEdit quantitySpinEdit;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.ComboBox cbbStatusOrder;
+        private System.Windows.Forms.Button btnExport;
     }
 }

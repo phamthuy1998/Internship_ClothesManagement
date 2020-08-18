@@ -8,6 +8,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using DevExpress.XtraEditors;
+using DevExpress.XtraReports.UI;
 
 namespace ClothesAdmin
 {
@@ -140,6 +141,7 @@ namespace ClothesAdmin
         private void reloadToolStripMenuItem_Click(object sender, EventArgs e)
         {
             loadDataInvoiceItem();
+            Program.showToastReload();
         }
 
         private void invoiceGridControl_Click(object sender, EventArgs e)
@@ -194,6 +196,42 @@ namespace ClothesAdmin
         private void btnCancelAddProvider_Click_1(object sender, EventArgs e)
         {
             this.invoiceBindingSource.CancelEdit();
+        }
+
+        private void btnExport_Click(object sender, EventArgs e)
+        {
+            if (invoiceItemBindingSource.Count > 0)
+            {
+                var orderId = orderIdSpinEdit.Value;
+                if (orderId == null || orderId <= 0)
+                {
+                    MessageBox.Show("Không có invoice item!", "THÔNG BÁO", MessageBoxButtons.OK);
+                    return;
+                }
+                try
+                {
+                    var address = ((DataRowView)this.invoiceBindingSource.Current).Row["address"].ToString();
+                    var name = ((DataRowView)this.invoiceBindingSource.Current).Row["name"].ToString();
+                    var phone = ((DataRowView)this.invoiceBindingSource.Current).Row["phone"].ToString();
+                    InvoiceXReport invoiceReport = new InvoiceXReport(Convert.ToInt16(orderId));
+                    invoiceReport.lbName.Text = "Name: "+name;
+                    invoiceReport.lbAddress.Text = "Address: "+ address;
+                    invoiceReport.lbPhone.Text = "Phone: "+phone;
+                    invoiceReport.lbPrice.Text = "Total price: ";
+
+                    ReportPrintTool report = new ReportPrintTool(invoiceReport);
+                    report.ShowPreviewDialog();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK);
+                }
+            }
+            else
+            {
+                MessageBox.Show("Không có invoice item!", "THÔNG BÁO", MessageBoxButtons.OK);
+                return;
+            }
         }
     }
 }

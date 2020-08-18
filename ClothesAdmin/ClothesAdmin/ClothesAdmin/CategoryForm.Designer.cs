@@ -394,7 +394,7 @@
             this.barDockControl1.Location = new System.Drawing.Point(0, 0);
             this.barDockControl1.Manager = this.barManager;
             this.barDockControl1.Margin = new System.Windows.Forms.Padding(2);
-            this.barDockControl1.Size = new System.Drawing.Size(1940, 33);
+            this.barDockControl1.Size = new System.Drawing.Size(1940, 30);
             // 
             // barDockControl2
             // 
@@ -409,19 +409,19 @@
             // 
             this.barDockControl3.CausesValidation = false;
             this.barDockControl3.Dock = System.Windows.Forms.DockStyle.Left;
-            this.barDockControl3.Location = new System.Drawing.Point(0, 33);
+            this.barDockControl3.Location = new System.Drawing.Point(0, 30);
             this.barDockControl3.Manager = this.barManager;
             this.barDockControl3.Margin = new System.Windows.Forms.Padding(2);
-            this.barDockControl3.Size = new System.Drawing.Size(0, 804);
+            this.barDockControl3.Size = new System.Drawing.Size(0, 807);
             // 
             // barDockControl5
             // 
             this.barDockControl5.CausesValidation = false;
             this.barDockControl5.Dock = System.Windows.Forms.DockStyle.Right;
-            this.barDockControl5.Location = new System.Drawing.Point(1940, 33);
+            this.barDockControl5.Location = new System.Drawing.Point(1940, 30);
             this.barDockControl5.Manager = this.barManager;
             this.barDockControl5.Margin = new System.Windows.Forms.Padding(2);
-            this.barDockControl5.Size = new System.Drawing.Size(0, 804);
+            this.barDockControl5.Size = new System.Drawing.Size(0, 807);
             // 
             // btnSua
             // 
@@ -442,10 +442,10 @@
             // 
             this.categoryGridControl.DataSource = this.categoryBindingSource;
             this.categoryGridControl.Dock = System.Windows.Forms.DockStyle.Left;
-            this.categoryGridControl.Location = new System.Drawing.Point(0, 33);
+            this.categoryGridControl.Location = new System.Drawing.Point(0, 30);
             this.categoryGridControl.MainView = this.gridView1;
             this.categoryGridControl.Name = "categoryGridControl";
-            this.categoryGridControl.Size = new System.Drawing.Size(785, 804);
+            this.categoryGridControl.Size = new System.Drawing.Size(785, 807);
             this.categoryGridControl.TabIndex = 20;
             this.categoryGridControl.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridView1});
@@ -535,6 +535,7 @@
             // 
             // picImageIcon
             // 
+            this.picImageIcon.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.picImageIcon.ErrorImage = global::ClothesAdmin.Properties.Resources.no_image;
             this.picImageIcon.InitialImage = global::ClothesAdmin.Properties.Resources.no_image;
             this.picImageIcon.Location = new System.Drawing.Point(1529, 124);
@@ -546,6 +547,7 @@
             // 
             // picThumbnail
             // 
+            this.picThumbnail.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.picThumbnail.ErrorImage = global::ClothesAdmin.Properties.Resources.no_image;
             this.picThumbnail.InitialImage = global::ClothesAdmin.Properties.Resources.no_image;
             this.picThumbnail.Location = new System.Drawing.Point(1418, 431);
