@@ -75,7 +75,6 @@ class AllCategoriesRefineFragment : BaseFragment<FragmentAllCategoriesRefineBind
 
             R.id.btnApply -> {
                 refineParam?.categories = categoriesSelected
-                viewModelRefine.refineLiveData.value = Pair(refineParam, false)
                 navController.popBackStack()
             }
         }

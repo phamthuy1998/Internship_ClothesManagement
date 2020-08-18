@@ -13,7 +13,10 @@ import com.ptithcm.ptshop.base.BaseActivity
 import com.ptithcm.ptshop.base.BaseFragment
 import com.ptithcm.ptshop.constant.KEY_ARGUMENT
 import com.ptithcm.ptshop.databinding.FragmentGenderBinding
-import com.ptithcm.ptshop.ext.*
+import com.ptithcm.ptshop.ext.initToolbar
+import com.ptithcm.ptshop.ext.setupToolbar
+import com.ptithcm.ptshop.ext.switchGender
+import com.ptithcm.ptshop.ext.visible
 import com.ptithcm.ptshop.view.MainActivity
 import com.ptithcm.ptshop.view.home.StoryDetailActivity
 import com.ptithcm.ptshop.view.refine.adapter.GenderRecyclerViewAdapter
@@ -61,7 +64,6 @@ class GenderFragment : BaseFragment<FragmentGenderBinding>(), View.OnClickListen
             }
             R.id.btnApply -> {
                 gendersSelected()
-                refineViewModel.refineLiveData.value = Pair(refineParam ?: RefineParam(), false)
                 navController.popBackStack()
             }
         }

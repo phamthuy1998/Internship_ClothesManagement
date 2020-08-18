@@ -50,20 +50,6 @@ class SearchResultFragment : BaseFragment<FragmentSearchResultBinding>() {
         mTitle = arguments?.getString("title")
 
         searchViewModel.getPagingSearchProduct(key, sport, style)
-        refineViewModel.refineLiveData.observe(this, Observer {
-            it?.let {
-                if (isInitRefine) {
-                    refineParam = it.first
-                    if (it.second) {
-                        isRequestRefine = true
-                        searchViewModel.getPagingRefineProduct(it.first)
-                    }else {
-                        observeRefineData()
-                    }
-                }
-            }
-        })
-
         observeRefineData()
     }
 

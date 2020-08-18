@@ -4,9 +4,7 @@ import androidx.lifecycle.MediatorLiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.ptithcm.core.model.Categories
 import com.ptithcm.core.model.Category
-import com.ptithcm.core.model.Gender
 import com.ptithcm.core.repository.ShopRepository
 import com.ptithcm.core.vo.Result
 import kotlinx.coroutines.launch
@@ -31,26 +29,11 @@ class ShopViewModel(private val repository : ShopRepository)  : ViewModel() {
                     }
                     is Result.Success -> {
                         networkState.value = false
-//                        var results: ArrayList<Category> = addSection(it)
-                        categoriesLiveData.value =addSection(it.data?: arrayListOf())
+                        categoriesLiveData.value = addSection(it.data ?: arrayListOf())
                     }
                 }
             }
         }
-    }
-
-
-    private fun filterGender(type : Gender, mainCategories : ArrayList<Categories>) : ArrayList<Categories>{
-        val results = arrayListOf<Categories>()
-        mainCategories.forEach {
-            it.images?.forEach {image ->
-                if (image.gender == type.value && it.popular){
-                    results.add(it)
-                    return@forEach
-                }
-            }
-        }
-        return results
     }
 
     private fun addSection(mainCategories : ArrayList<Category>) : ArrayList<Category>{

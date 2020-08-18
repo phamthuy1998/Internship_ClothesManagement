@@ -16,12 +16,12 @@ import com.ptithcm.ptshop.databinding.FragmentRefineBrandsStoriesBinding
 import com.ptithcm.ptshop.ext.initToolbar
 import com.ptithcm.ptshop.ext.setupToolbar
 import com.ptithcm.ptshop.ext.visible
-import com.ptithcm.ptshop.widget.fastscroll.FastScrollRecyclerViewItemDecoration
 import com.ptithcm.ptshop.view.MainActivity
 import com.ptithcm.ptshop.view.home.StoryDetailActivity
 import com.ptithcm.ptshop.view.refine.adapter.BrandRecyclerViewAdapter
 import com.ptithcm.ptshop.viewmodel.BrandsViewModel
 import com.ptithcm.ptshop.viewmodel.RefineViewModel
+import com.ptithcm.ptshop.widget.fastscroll.FastScrollRecyclerViewItemDecoration
 import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 
 class RefineBrandStoreFragment : BaseFragment<FragmentRefineBrandsStoriesBinding>(),
@@ -68,7 +68,6 @@ class RefineBrandStoreFragment : BaseFragment<FragmentRefineBrandsStoriesBinding
             }
             R.id.btnApply -> {
                 brandsSelected()
-                refineViewModel.refineLiveData.value = Pair(refineParam ?: RefineParam(), false)
                 navController.popBackStack()
             }
         }

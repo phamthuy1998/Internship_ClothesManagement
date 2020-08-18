@@ -12,24 +12,19 @@ import androidx.lifecycle.Observer
 import com.ptithcm.core.CoreApplication
 import com.ptithcm.core.model.ProductClothes
 import com.ptithcm.core.model.ProductClothesDetail
-import com.ptithcm.core.model.Variant
-import com.ptithcm.core.param.RefineParam
 import com.ptithcm.core.util.ObjectHandler
 import com.ptithcm.ptshop.R
 import com.ptithcm.ptshop.base.BaseActivity
 import com.ptithcm.ptshop.base.BaseFragment
 import com.ptithcm.ptshop.constant.KEY_ARGUMENT
-import com.ptithcm.ptshop.constant.KEY_ARGUMENT_REFINE
 import com.ptithcm.ptshop.databinding.FragmentProductDetailBinding
 import com.ptithcm.ptshop.ext.*
 import com.ptithcm.ptshop.view.MainActivity
 import com.ptithcm.ptshop.view.home.StoryDetailActivity
 import com.ptithcm.ptshop.view.wishlist.overview.ProductionClothesBannersPagerAdapter
-import com.ptithcm.ptshop.viewmodel.RefineViewModel
 import com.ptithcm.ptshop.viewmodel.ShoppingViewModel
 import com.ptithcm.ptshop.viewmodel.WishListViewModel
 import kotlinx.android.synthetic.main.activity_main.*
-import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class ProductDetailFragment : BaseFragment<FragmentProductDetailBinding>() {
@@ -39,9 +34,7 @@ class ProductDetailFragment : BaseFragment<FragmentProductDetailBinding>() {
 
     private val wishListViewModel: WishListViewModel by viewModel()
     private val shoppingViewModel: ShoppingViewModel by viewModel()
-    private val refineViewModel: RefineViewModel by sharedViewModel(from = { requireActivity() })
 
-    private var productVariant: Variant? = null
     private var product: ProductClothes? = null
     private var productDetail: ProductClothesDetail? = null
     private var quality = 0
@@ -93,19 +86,11 @@ class ProductDetailFragment : BaseFragment<FragmentProductDetailBinding>() {
     fun onClick(v: View?) {
         when (v?.id) {
             R.id.ivBack -> {
-                refineViewModel.refineLiveData.value =
-                    Pair(arguments?.getParcelable(KEY_ARGUMENT_REFINE) as? RefineParam, false)
                 navController.popBackStack()
             }
             R.id.btnDesc, R.id.tvDescription -> {
                 toggleDrawable(viewBinding.btnDesc, viewBinding.tvDescription.expandOrCollapse())
             }
-//            R.id.btnDeliveryReturn, R.id.tvDeliveryReturn -> {
-//                toggleDrawable(
-//                    viewBinding.btnDeliveryReturn,
-//                    viewBinding.tvDeliveryReturn.expandOrCollapse()
-//                )
-//            }
             R.id.btnAboutBrand, R.id.tvAboutBrand -> {
                 toggleDrawable(
                     viewBinding.btnAboutBrand,

@@ -54,7 +54,6 @@ class WishListViewModel(val repo: WishListRepository): ViewModel() {
                             wishListResult.value = arr
                         }
                         addAndRemoveResult.value = it.data
-//                        ObjectHandler.addToWishListLocal(id ?: return@addSource)
                     }
                 }
             }
