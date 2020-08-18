@@ -255,7 +255,7 @@ namespace ClothesManament.Controllers
             {
                 return new ResponseObjectModel<Models.ProductDetail>()
                 {
-                    message = "Product info",
+                    message = "Lỗi lấy thông tin sản phẩm",
                     status = false,
                     code = 200,
                     data = null
@@ -263,7 +263,7 @@ namespace ClothesManament.Controllers
             }
             var listImage = await Task.Run(() => entities.SP_ImagesOfProduct(productID).ToList());
             var providerDetail = await Task.Run(() => entities.SP_GetProviderDetail(productDetail.providerId).FirstOrDefault());
-            var colors = await Task.Run(() => entities.SP_GetColorsOfProduct(productDetail.providerId).ToList());
+            var colors = await Task.Run(() => entities.SP_GetColorsOfProduct(productDetail.id).ToList());
             var sizes = await Task.Run(() => entities.SP_GetSizesOfProduct(productDetail.providerId).ToList());
             var colorsSizes = await Task.Run(() => entities.SP_GetSizesColorsOfProduct(productDetail.providerId).ToList());
 

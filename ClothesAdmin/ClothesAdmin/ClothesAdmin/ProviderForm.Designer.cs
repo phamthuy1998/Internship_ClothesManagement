@@ -530,7 +530,7 @@
             this.idSpinEdit.Name = "idSpinEdit";
             this.idSpinEdit.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.idSpinEdit.Size = new System.Drawing.Size(125, 22);
+            this.idSpinEdit.Size = new System.Drawing.Size(125, 24);
             this.idSpinEdit.TabIndex = 21;
             // 
             // tvImageUrlProvider
@@ -578,12 +578,12 @@
             this.activeSpinEdit.Name = "activeSpinEdit";
             this.activeSpinEdit.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.activeSpinEdit.Size = new System.Drawing.Size(125, 22);
+            this.activeSpinEdit.Size = new System.Drawing.Size(125, 24);
             this.activeSpinEdit.TabIndex = 32;
             // 
             // imageProvider
             // 
-            this.imageProvider.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.imageProvider.Cursor = System.Windows.Forms.Cursors.No;
             this.imageProvider.ErrorImage = global::ClothesAdmin.Properties.Resources.no_image;
             this.imageProvider.InitialImage = global::ClothesAdmin.Properties.Resources.no_image;
             this.imageProvider.Location = new System.Drawing.Point(1499, 133);

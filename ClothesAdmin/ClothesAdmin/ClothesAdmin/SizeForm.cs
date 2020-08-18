@@ -72,6 +72,7 @@ namespace ClothesAdmin
                         sizeBindingSource.RemoveCurrent();
                         //đẩy dữ liệu về adapter
                         this.sizeTableAdapter.Update(this.clothesDataSet.Size);
+                        Program.showToastDel();
                     }
                     catch (Exception ex)
                     {
@@ -87,6 +88,7 @@ namespace ClothesAdmin
             this.productSizeColorTableAdapter.Fill(this.clothesDataSet.ProductSizeColor);
             // TODO: This line of code loads data into the 'clothesDataSet.Size' table. You can move, or remove it, as needed.
             this.sizeTableAdapter.Fill(this.clothesDataSet.Size);
+            Program.showToastReload();
         }
 
         private void btnCloseForm_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
@@ -99,6 +101,7 @@ namespace ClothesAdmin
             this.Validate();
             this.sizeBindingSource.EndEdit();
             this.tableAdapterManager.UpdateAll(this.clothesDataSet);
+            Program.showToastSave();
         }
 
         private void btnCancelAddProvider_Click(object sender, EventArgs e)

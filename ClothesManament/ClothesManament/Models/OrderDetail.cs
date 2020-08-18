@@ -19,6 +19,6 @@ namespace ClothesManament.Models
         public Nullable<double> price { get; set; }
         public Nullable<int> statusOrderId { get; set; }
         public string statusInvoice { get; set; }
-        public List<SP_GetProductInvoice_Result> products { get; set; }
+        public List<SP_GetProductInvoice_Result1> products { get; set; }
     }
 }

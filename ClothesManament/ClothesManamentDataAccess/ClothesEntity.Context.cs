@@ -637,13 +637,13 @@ namespace ClothesManamentDataAccess
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_GetInvoiceDetail_Result>("SP_GetInvoiceDetail", inovoiceIdParameter);
         }
     
-        public virtual ObjectResult<SP_GetProductInvoice_Result> SP_GetProductInvoice(Nullable<int> inovoiceId)
+        public virtual ObjectResult<SP_GetProductInvoice_Result1> SP_GetProductInvoice(Nullable<int> inovoiceId)
         {
             var inovoiceIdParameter = inovoiceId.HasValue ?
                 new ObjectParameter("inovoiceId", inovoiceId) :
                 new ObjectParameter("inovoiceId", typeof(int));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_GetProductInvoice_Result>("SP_GetProductInvoice", inovoiceIdParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_GetProductInvoice_Result1>("SP_GetProductInvoice", inovoiceIdParameter);
         }
     
         public virtual ObjectResult<Nullable<int>> SP_CheckInvoiceExist(Nullable<int> inovoiceId)

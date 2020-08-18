@@ -484,7 +484,7 @@
             this.Controls.Add(this.barDockControl2);
             this.Controls.Add(this.barDockControl1);
             this.Name = "ColorForm";
-            this.Text = "ColorForm";
+            this.Text = "Color";
             this.Load += new System.EventHandler(this.ColorForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.barManager)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.clothesDataSet)).EndInit();

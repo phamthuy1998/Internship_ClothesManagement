@@ -283,6 +283,9 @@
     <Compile Include="SP_GetProductInvoice_Result.cs">
       <DependentUpon>ClothesEntity.tt</DependentUpon>
     </Compile>
+    <Compile Include="SP_GetProductInvoice_Result1.cs">
+      <DependentUpon>ClothesEntity.tt</DependentUpon>
+    </Compile>
     <Compile Include="SP_GetProductOfCategory_Result.cs">
       <DependentUpon>ClothesEntity.tt</DependentUpon>
     </Compile>

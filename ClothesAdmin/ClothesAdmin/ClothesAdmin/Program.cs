@@ -13,7 +13,7 @@ namespace ClothesAdmin
 {
     static class Program
     {
-        public static LoginForm frmLogin; 
+        public static LoginForm frmLogin;
         public static SqlConnection conn = new SqlConnection();
         public static String connstr;
         public static SqlDataReader myReader;
@@ -27,7 +27,7 @@ namespace ClothesAdmin
         /// The main entry point for the application.
         /// </summary>
         [STAThread]
-       
+
         static void Main()
         {
             Application.EnableVisualStyles();
@@ -37,6 +37,34 @@ namespace ClothesAdmin
             Application.Run(new LoginForm());
         }
 
+        public static void showToastSave()
+        {
+            CustomToast toast = new CustomToast("Save success!", System.Drawing.Color.FromArgb(12, 120, 120));
+            toast.Show();
+        }
+
+        public static void showToast(String message, System.Drawing.Color bgColor)
+        {
+            CustomToast toast = new CustomToast(message, bgColor);
+            toast.Show();
+        }
+
+        public static void showToastUpdate()
+        {
+            CustomToast toast = new CustomToast("Update success!", System.Drawing.Color.FromArgb(248, 43, 43));
+            toast.Show();
+        }
+
+        public static void showToastDel()
+        {
+            CustomToast toast = new CustomToast("Delete item success!", System.Drawing.Color.FromArgb(168, 0, 0));
+            toast.Show();
+        }
+        public static void showToastReload()
+        {
+            CustomToast toast = new CustomToast("All data updated", System.Drawing.Color.FromArgb(7, 82, 139));
+            toast.Show();
+        }
         public static int ExecSqlNonQuery(String strlenh)
         {
             if (conn.State == ConnectionState.Closed) conn.Open();
@@ -85,8 +113,8 @@ namespace ClothesAdmin
 
         public static SqlDataReader ExecSqlDataReader(String strLenh)
         {
-            if(myReader!=null)
-            myReader.Close();
+            if (myReader != null)
+                myReader.Close();
             SqlCommand sqlcmd = new SqlCommand(strLenh, Program.conn);
             sqlcmd.CommandType = CommandType.Text;
             //tối đa cho đợi 10p, tgian tính bằng s

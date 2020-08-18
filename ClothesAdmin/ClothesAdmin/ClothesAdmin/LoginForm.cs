@@ -66,6 +66,11 @@ namespace ClothesAdmin
             {
                 isLoginSuccess = true;
                 this.Hide();
+                String avatar = null;
+                if (!Program.myReader.IsDBNull(6))
+                {
+                    avatar = Program.myReader?.GetString(6) ?? null;
+                }
                 Program.accountLogin = new AccountLogin()
                 {
                     accountId = statusLogin,
@@ -74,12 +79,26 @@ namespace ClothesAdmin
                     email = Program.myReader.GetString(3).ToString() ?? "",
                     username = Program.myReader.GetString(4).ToString() ?? "",
                     name = Program.myReader?.GetString(5).ToString() ?? "",
-                    //avatar = Program.myReader?.GetString(6).ToString() ?? ""
+                    avatar = avatar,
+                    idEmployee = Program.myReader?.GetInt32(7) ?? null
                 };
                 Program.mainForm = new MainForm();
-                Program.mainForm.tvUserName.Text = Program.accountLogin.username;
-                Program.mainForm.tvName.Text = Program.accountLogin.name;
-                Program.mainForm.tvRoleName.Text = Program.accountLogin.roleName;
+                Program.mainForm.tvUserName.Text ="Username: "+ Program.accountLogin.username+" ";
+                Program.mainForm.tvName.Text = "Name: "+Program.accountLogin.name + " ";
+                Program.mainForm.tvRoleName.Text ="Role: "+ Program.accountLogin.roleName + " ";
+                Program.mainForm.tvIdEmployee.Text = "Employee Id: " + Program.accountLogin.idEmployee + " ";
+                if (Program.accountLogin.roleId ==1)
+                {
+                    Program.mainForm.rbHRM.Visible = true;
+                }
+                else if (Program.accountLogin.roleId == 2)
+                {
+                    Program.mainForm.rbHRM.Visible = false;
+                }
+                else{
+                    MessageBox.Show("Sai thông tin đăng nhập, vui lòng kiểm tra lại", "", MessageBoxButtons.OK);
+                    return;
+                }
                 Program.mainForm.Activate();
                 Invoke((Action)(() => { Program.mainForm.ShowDialog(); }));
                 this.Close();
