@@ -111,7 +111,8 @@ class CheckoutFragment : BaseFragment<FragmentCheckoutBinding>(), View.OnClickLi
                     name = cart.shippingAddress?.name,
                     phone = cart.shippingAddress?.phone,
                     products = cart.products.map { it.quantityInCart },
-                    note = viewBinding.includeNote.edtNote.text?.toString()
+                    note = viewBinding.includeNote.edtNote.text?.toString(),
+                    tokenCard = cart.creditCard?.tokenCard
                 )
                 checkoutViewModel.requestCheckout(checkoutParam)
                 return@Observer
@@ -140,6 +141,11 @@ class CheckoutFragment : BaseFragment<FragmentCheckoutBinding>(), View.OnClickLi
             navController.popBackStack()
         })
 
+        checkoutViewModel.error.observe(this, Observer {
+            messageHandler?.runMessageErrorHandler(it.first)
+            viewBinding.btnCheckOut.isLoading = false
+        })
+
         listenerViewModel.updateShippingAddress.observe(this, Observer {
             viewBinding.shippingAddress.item = CoreApplication.instance.cart?.shippingAddress
         })
@@ -163,14 +169,16 @@ class CheckoutFragment : BaseFragment<FragmentCheckoutBinding>(), View.OnClickLi
                 when (viewBinding.includePayment.spinnerDelivery.selectedItemPosition) {
                     0 -> messageHandler?.runMessageErrorHandler(getString(R.string.select_payment_method))
                     1 -> {
-                        isClickCheckout = true
-                        basketViewModel.getAllProductsInCart(ObjectHandler.getAllIdProdsInCart())
-                        viewBinding.btnCheckOut.isLoading = true
+                        if (validateInfo()) {
+                            isClickCheckout = true
+                            basketViewModel.getAllProductsInCart(ObjectHandler.getAllIdProdsInCart())
+                            viewBinding.btnCheckOut.isLoading = true
+                        }
                     }
                     2 -> {
                         if (ObjectHandler.cart?.creditCard == null)
                             messageHandler?.runMessageErrorHandler(getString(R.string.select_payment_method_credit_card))
-                        else {
+                        else if (validateInfo()) {
                             isClickCheckout = true
                             basketViewModel.getAllProductsInCart(ObjectHandler.getAllIdProdsInCart())
                             viewBinding.btnCheckOut.isLoading = true
@@ -201,6 +209,16 @@ class CheckoutFragment : BaseFragment<FragmentCheckoutBinding>(), View.OnClickLi
                 navController.popBackStack()
             }
         }
+    }
+
+    private fun validateInfo(): Boolean {
+        var isValidate = true
+        val cart = CoreApplication.instance.cart ?: return false
+        if (cart.shippingAddress?.getFullAddress().isNullOrEmpty()) {
+            messageHandler?.runMessageErrorHandler(getString(R.string.select_address))
+            isValidate = false
+        }
+        return isValidate
     }
 
     private fun setUpRv() {

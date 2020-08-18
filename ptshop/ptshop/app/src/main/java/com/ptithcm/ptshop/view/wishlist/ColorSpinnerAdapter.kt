@@ -28,7 +28,7 @@ class ColorSpinnerAdapter(
         val item = getItem(position)
         view.findViewById<TextView>(R.id.tvColorName).text = item?.colorName
         view.findViewById<View>(R.id.vColor).backgroundTintList =
-            ColorStateList.valueOf(android.graphics.Color.parseColor("#000000"))
+            ColorStateList.valueOf(android.graphics.Color.parseColor(item?.colorHex))
         return view
     }
 

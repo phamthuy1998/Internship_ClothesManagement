@@ -293,6 +293,7 @@
     <string name="number_card">****-****-****-%s</string>
     <string name="discount_info">Type = \"Buy %1s get %2s\" /Buy items = \"Collections\"/Get items=\"Collections</string>
     <string name="select_payment_method">Please select a payment method to purchase</string>
+    <string name="select_address">Please select shipping address.</string>
     <string name="select_payment_method_credit_card">Please add credit card to purchase</string>
     <string name="invalid_method">Invalid billing address</string>
     <string name="unknown_credit">Unknown (****)</string>

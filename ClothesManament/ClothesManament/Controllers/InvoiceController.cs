@@ -2,6 +2,7 @@
 using ClothesManament.Models;
 using ClothesManamentDataAccess;
 using Newtonsoft.Json.Linq;
+using Stripe;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -9,11 +10,11 @@ using System.IO;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
-    using System.Net.Http.Headers;
-    using System.Net.Mail;
-    using System.Threading.Tasks;
-    using System.Web;
-    using System.Web.Http;
+using System.Net.Http.Headers;
+using System.Net.Mail;
+using System.Threading.Tasks;
+using System.Web;
+using System.Web.Http;
 
 namespace ClothesManagement.Controllers
 {
@@ -163,10 +164,38 @@ namespace ClothesManagement.Controllers
                 await client.SendMailAsync(msg);
                 await Task.FromResult(0);
             }
+
+            var messageStr = "Đơn hàng đã được gứi tới " + email + ", vui lòng kiểm tra email để xác nhận đơn hàng!";
+            var statusStr = true;
+            if (orderParam.tokenCard != null && !orderParam.tokenCard.Trim().Equals(""))
+            {
+                StripeConfiguration.ApiKey = "sk_test_51HEO9yAUHa3z0jaSDqZ2wNWozw2iEFIMgbPluEpQ6ipK9UplKlbg7laoC2RydTqAZWAw0ddfnAeBM0ATgpUKkztl00vrsHJVWN";
+
+                var options = new ChargeCreateOptions
+                {
+                    Amount = 100000,
+                    Currency = "vnd",
+                    Source = orderParam.tokenCard,
+                    Description = "My First Test Charge (created for API docs)",
+                };
+                var service = new ChargeService();
+                Charge charge = service.Create(options);
+                if (charge.Paid == false)
+                {
+                    messageStr = "Đã có lỗi xảy ra khi thanh toán, vui lòng thử lại!";
+                    statusStr = false;
+                }
+                else
+                {
+                    messageStr = "Thanh toán thành công.";
+                    statusStr = true;
+                }
+            }
+
             return new ResponseObjectModel<int>()
             {
-                message = "Đơn hàng đã được gứi tới " + email + ", vui lòng kiểm tra email để xác nhận đơn hàng!",
-                status = true,
+                message = messageStr,
+                status = statusStr,
                 code = 200,
                 data = 1
             };

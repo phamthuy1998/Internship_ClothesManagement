@@ -2,6 +2,7 @@ package com.ptithcm.ptshop.util
 
 import android.content.res.ColorStateList
 import android.graphics.Paint
+import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.appcompat.widget.AppCompatSpinner
@@ -123,7 +124,7 @@ object BindingAdapterText {
 
     @JvmStatic
     @BindingAdapter("setColorProduct")
-    fun setColorProduct(view: TextView, color: Color?) {
+    fun setColorProduct(view: View, color: Color?) {
         try {
             view.backgroundTintList =
                 ColorStateList.valueOf(android.graphics.Color.parseColor(color?.colorHex))

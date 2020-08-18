@@ -28,7 +28,10 @@ class CheckoutViewModel(private val repo: CheckoutRepository): ViewModel() {
                     }
                     is Result.Success -> {
                         isLoading.value = false
-                        resultRequestCheckout.value = it.data?.message
+                        if (it.data?.status == true)
+                            resultRequestCheckout.value = it.data?.message
+                        else
+                            error.value = Pair(it.data?.message ?: "", it.data?.code?.toInt())
                     }
                 }
             }
