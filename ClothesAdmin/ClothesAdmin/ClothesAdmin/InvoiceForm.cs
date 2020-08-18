@@ -213,6 +213,11 @@ namespace ClothesAdmin
                     var address = ((DataRowView)this.invoiceBindingSource.Current).Row["address"].ToString();
                     var name = ((DataRowView)this.invoiceBindingSource.Current).Row["name"].ToString();
                     var phone = ((DataRowView)this.invoiceBindingSource.Current).Row["phone"].ToString();
+                    int totalPrice = 0;
+                    for (int i = 0; i < invoiceGridControl.Rows.Count; ++i)
+                    {
+                        totalPrice += Convert.ToInt32(invoiceGridControl.Rows[i].Cells[1].Value);
+                    }
                     InvoiceXReport invoiceReport = new InvoiceXReport(Convert.ToInt16(orderId));
                     invoiceReport.lbName.Text = "Name: "+name;
                     invoiceReport.lbAddress.Text = "Address: "+ address;
