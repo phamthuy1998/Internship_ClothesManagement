@@ -149,7 +149,6 @@ namespace ClothesManagement.Controllers
             msg.To.Add(email);
             msg.Subject = "Xác nhận đơn hàng";
             MemoryCacheHelper.Add("orderParam", orderParam, DateTimeOffset.UtcNow.AddHours(1));
-
             msg.Body = createEmailBody(name.username);
             //msg.Priority = MailPriority.High;
             msg.IsBodyHtml = true;
@@ -168,6 +167,7 @@ namespace ClothesManagement.Controllers
             }
 
             var messageStr = "Đơn hàng đã được gứi tới " + email + ", vui lòng kiểm tra email để xác nhận đơn hàng!";
+
             var statusStr = true;
             if (orderParam.tokenCard != null && !orderParam.tokenCard.Trim().Equals(""))
             {

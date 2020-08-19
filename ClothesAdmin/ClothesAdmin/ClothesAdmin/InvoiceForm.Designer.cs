@@ -92,6 +92,20 @@
             this.colquantity = new DevExpress.XtraGrid.Columns.GridColumn();
             this.invoiceGridControl = new DevExpress.XtraGrid.GridControl();
             this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.colid = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colupdateDate = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colbuyDate = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colname = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colphone = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.coladdress = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colnote = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.coluserID = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colstatusOrderId = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.coldeliveryDate = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colactive = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colemployeeId = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colpayment = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colisPaid = new DevExpress.XtraGrid.Columns.GridColumn();
             this.panel3 = new System.Windows.Forms.Panel();
             this.tvStatus = new System.Windows.Forms.TextBox();
             this.isPaidTextBox = new System.Windows.Forms.TextBox();
@@ -122,20 +136,6 @@
             this.sizeIdSpinEdit = new DevExpress.XtraEditors.SpinEdit();
             this.unitPriceSpinEdit = new DevExpress.XtraEditors.SpinEdit();
             this.quantitySpinEdit = new DevExpress.XtraEditors.SpinEdit();
-            this.colid = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colupdateDate = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colbuyDate = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colname = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colphone = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.coladdress = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colnote = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.coluserID = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colstatusOrderId = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.coldeliveryDate = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colactive = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colemployeeId = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colpayment = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colisPaid = new DevExpress.XtraGrid.Columns.GridColumn();
             employeeIdLabel = new System.Windows.Forms.Label();
             idLabel = new System.Windows.Forms.Label();
             updateDateLabel = new System.Windows.Forms.Label();
@@ -588,7 +588,6 @@
             this.tableAdapterManager.ImportCouponDetailTableAdapter = null;
             this.tableAdapterManager.ImportCouponTableAdapter = null;
             this.tableAdapterManager.InvoiceItemTableAdapter = this.invoiceItemTableAdapter;
-            this.tableAdapterManager.InvoiceStatusTableAdapter = null;
             this.tableAdapterManager.InvoiceTableAdapter = this.invoiceTableAdapter;
             this.tableAdapterManager.ProductSizeColorTableAdapter = null;
             this.tableAdapterManager.ProductTableAdapter = null;
@@ -773,6 +772,146 @@
             this.gridView1.GridControl = this.invoiceGridControl;
             this.gridView1.Name = "gridView1";
             // 
+            // colid
+            // 
+            this.colid.FieldName = "id";
+            this.colid.MinWidth = 25;
+            this.colid.Name = "colid";
+            this.colid.OptionsColumn.AllowEdit = false;
+            this.colid.Visible = true;
+            this.colid.VisibleIndex = 0;
+            this.colid.Width = 94;
+            // 
+            // colupdateDate
+            // 
+            this.colupdateDate.FieldName = "updateDate";
+            this.colupdateDate.MinWidth = 25;
+            this.colupdateDate.Name = "colupdateDate";
+            this.colupdateDate.OptionsColumn.AllowEdit = false;
+            this.colupdateDate.Visible = true;
+            this.colupdateDate.VisibleIndex = 1;
+            this.colupdateDate.Width = 94;
+            // 
+            // colbuyDate
+            // 
+            this.colbuyDate.FieldName = "buyDate";
+            this.colbuyDate.MinWidth = 25;
+            this.colbuyDate.Name = "colbuyDate";
+            this.colbuyDate.OptionsColumn.AllowEdit = false;
+            this.colbuyDate.Visible = true;
+            this.colbuyDate.VisibleIndex = 2;
+            this.colbuyDate.Width = 94;
+            // 
+            // colname
+            // 
+            this.colname.FieldName = "name";
+            this.colname.MinWidth = 25;
+            this.colname.Name = "colname";
+            this.colname.OptionsColumn.AllowEdit = false;
+            this.colname.Visible = true;
+            this.colname.VisibleIndex = 3;
+            this.colname.Width = 94;
+            // 
+            // colphone
+            // 
+            this.colphone.FieldName = "phone";
+            this.colphone.MinWidth = 25;
+            this.colphone.Name = "colphone";
+            this.colphone.OptionsColumn.AllowEdit = false;
+            this.colphone.Visible = true;
+            this.colphone.VisibleIndex = 4;
+            this.colphone.Width = 94;
+            // 
+            // coladdress
+            // 
+            this.coladdress.FieldName = "address";
+            this.coladdress.MinWidth = 25;
+            this.coladdress.Name = "coladdress";
+            this.coladdress.OptionsColumn.AllowEdit = false;
+            this.coladdress.Visible = true;
+            this.coladdress.VisibleIndex = 5;
+            this.coladdress.Width = 94;
+            // 
+            // colnote
+            // 
+            this.colnote.FieldName = "note";
+            this.colnote.MinWidth = 25;
+            this.colnote.Name = "colnote";
+            this.colnote.OptionsColumn.AllowEdit = false;
+            this.colnote.Visible = true;
+            this.colnote.VisibleIndex = 6;
+            this.colnote.Width = 94;
+            // 
+            // coluserID
+            // 
+            this.coluserID.FieldName = "userID";
+            this.coluserID.MinWidth = 25;
+            this.coluserID.Name = "coluserID";
+            this.coluserID.OptionsColumn.AllowEdit = false;
+            this.coluserID.Visible = true;
+            this.coluserID.VisibleIndex = 7;
+            this.coluserID.Width = 94;
+            // 
+            // colstatusOrderId
+            // 
+            this.colstatusOrderId.FieldName = "statusOrderId";
+            this.colstatusOrderId.MinWidth = 25;
+            this.colstatusOrderId.Name = "colstatusOrderId";
+            this.colstatusOrderId.OptionsColumn.AllowEdit = false;
+            this.colstatusOrderId.Visible = true;
+            this.colstatusOrderId.VisibleIndex = 8;
+            this.colstatusOrderId.Width = 94;
+            // 
+            // coldeliveryDate
+            // 
+            this.coldeliveryDate.FieldName = "deliveryDate";
+            this.coldeliveryDate.MinWidth = 25;
+            this.coldeliveryDate.Name = "coldeliveryDate";
+            this.coldeliveryDate.OptionsColumn.AllowEdit = false;
+            this.coldeliveryDate.Visible = true;
+            this.coldeliveryDate.VisibleIndex = 9;
+            this.coldeliveryDate.Width = 94;
+            // 
+            // colactive
+            // 
+            this.colactive.FieldName = "active";
+            this.colactive.MinWidth = 25;
+            this.colactive.Name = "colactive";
+            this.colactive.OptionsColumn.AllowEdit = false;
+            this.colactive.Visible = true;
+            this.colactive.VisibleIndex = 10;
+            this.colactive.Width = 94;
+            // 
+            // colemployeeId
+            // 
+            this.colemployeeId.FieldName = "employeeId";
+            this.colemployeeId.MinWidth = 25;
+            this.colemployeeId.Name = "colemployeeId";
+            this.colemployeeId.OptionsColumn.AllowEdit = false;
+            this.colemployeeId.Visible = true;
+            this.colemployeeId.VisibleIndex = 11;
+            this.colemployeeId.Width = 94;
+            // 
+            // colpayment
+            // 
+            this.colpayment.FieldName = "payment";
+            this.colpayment.MinWidth = 25;
+            this.colpayment.Name = "colpayment";
+            this.colpayment.OptionsColumn.AllowEdit = false;
+            this.colpayment.Visible = true;
+            this.colpayment.VisibleIndex = 12;
+            this.colpayment.Width = 94;
+            // 
+            // colisPaid
+            // 
+            this.colisPaid.FieldName = "isPaid";
+            this.colisPaid.MinWidth = 25;
+            this.colisPaid.Name = "colisPaid";
+            this.colisPaid.OptionsColumn.AllowEdit = false;
+            this.colisPaid.Visible = true;
+            this.colisPaid.VisibleIndex = 13;
+            this.colisPaid.Width = 94;
+            // 
             // panel3
             // 
             this.panel3.AutoScroll = true;
@@ -818,6 +957,7 @@
             // 
             // tvStatus
             // 
+            this.tvStatus.Enabled = false;
             this.tvStatus.Location = new System.Drawing.Point(745, 210);
             this.tvStatus.Name = "tvStatus";
             this.tvStatus.Size = new System.Drawing.Size(326, 22);
@@ -826,6 +966,7 @@
             // isPaidTextBox
             // 
             this.isPaidTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.invoiceBindingSource, "isPaid", true));
+            this.isPaidTextBox.Enabled = false;
             this.isPaidTextBox.Location = new System.Drawing.Point(1110, 210);
             this.isPaidTextBox.Name = "isPaidTextBox";
             this.isPaidTextBox.Size = new System.Drawing.Size(100, 22);
@@ -835,6 +976,7 @@
             // paymentTextBox
             // 
             this.paymentTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.invoiceBindingSource, "payment", true));
+            this.paymentTextBox.Enabled = false;
             this.paymentTextBox.Location = new System.Drawing.Point(745, 167);
             this.paymentTextBox.Name = "paymentTextBox";
             this.paymentTextBox.Size = new System.Drawing.Size(379, 22);
@@ -1232,146 +1374,6 @@
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.quantitySpinEdit.Size = new System.Drawing.Size(125, 24);
             this.quantitySpinEdit.TabIndex = 11;
-            // 
-            // colid
-            // 
-            this.colid.FieldName = "id";
-            this.colid.MinWidth = 25;
-            this.colid.Name = "colid";
-            this.colid.OptionsColumn.AllowEdit = false;
-            this.colid.Visible = true;
-            this.colid.VisibleIndex = 0;
-            this.colid.Width = 94;
-            // 
-            // colupdateDate
-            // 
-            this.colupdateDate.FieldName = "updateDate";
-            this.colupdateDate.MinWidth = 25;
-            this.colupdateDate.Name = "colupdateDate";
-            this.colupdateDate.OptionsColumn.AllowEdit = false;
-            this.colupdateDate.Visible = true;
-            this.colupdateDate.VisibleIndex = 1;
-            this.colupdateDate.Width = 94;
-            // 
-            // colbuyDate
-            // 
-            this.colbuyDate.FieldName = "buyDate";
-            this.colbuyDate.MinWidth = 25;
-            this.colbuyDate.Name = "colbuyDate";
-            this.colbuyDate.OptionsColumn.AllowEdit = false;
-            this.colbuyDate.Visible = true;
-            this.colbuyDate.VisibleIndex = 2;
-            this.colbuyDate.Width = 94;
-            // 
-            // colname
-            // 
-            this.colname.FieldName = "name";
-            this.colname.MinWidth = 25;
-            this.colname.Name = "colname";
-            this.colname.OptionsColumn.AllowEdit = false;
-            this.colname.Visible = true;
-            this.colname.VisibleIndex = 3;
-            this.colname.Width = 94;
-            // 
-            // colphone
-            // 
-            this.colphone.FieldName = "phone";
-            this.colphone.MinWidth = 25;
-            this.colphone.Name = "colphone";
-            this.colphone.OptionsColumn.AllowEdit = false;
-            this.colphone.Visible = true;
-            this.colphone.VisibleIndex = 4;
-            this.colphone.Width = 94;
-            // 
-            // coladdress
-            // 
-            this.coladdress.FieldName = "address";
-            this.coladdress.MinWidth = 25;
-            this.coladdress.Name = "coladdress";
-            this.coladdress.OptionsColumn.AllowEdit = false;
-            this.coladdress.Visible = true;
-            this.coladdress.VisibleIndex = 5;
-            this.coladdress.Width = 94;
-            // 
-            // colnote
-            // 
-            this.colnote.FieldName = "note";
-            this.colnote.MinWidth = 25;
-            this.colnote.Name = "colnote";
-            this.colnote.OptionsColumn.AllowEdit = false;
-            this.colnote.Visible = true;
-            this.colnote.VisibleIndex = 6;
-            this.colnote.Width = 94;
-            // 
-            // coluserID
-            // 
-            this.coluserID.FieldName = "userID";
-            this.coluserID.MinWidth = 25;
-            this.coluserID.Name = "coluserID";
-            this.coluserID.OptionsColumn.AllowEdit = false;
-            this.coluserID.Visible = true;
-            this.coluserID.VisibleIndex = 7;
-            this.coluserID.Width = 94;
-            // 
-            // colstatusOrderId
-            // 
-            this.colstatusOrderId.FieldName = "statusOrderId";
-            this.colstatusOrderId.MinWidth = 25;
-            this.colstatusOrderId.Name = "colstatusOrderId";
-            this.colstatusOrderId.OptionsColumn.AllowEdit = false;
-            this.colstatusOrderId.Visible = true;
-            this.colstatusOrderId.VisibleIndex = 8;
-            this.colstatusOrderId.Width = 94;
-            // 
-            // coldeliveryDate
-            // 
-            this.coldeliveryDate.FieldName = "deliveryDate";
-            this.coldeliveryDate.MinWidth = 25;
-            this.coldeliveryDate.Name = "coldeliveryDate";
-            this.coldeliveryDate.OptionsColumn.AllowEdit = false;
-            this.coldeliveryDate.Visible = true;
-            this.coldeliveryDate.VisibleIndex = 9;
-            this.coldeliveryDate.Width = 94;
-            // 
-            // colactive
-            // 
-            this.colactive.FieldName = "active";
-            this.colactive.MinWidth = 25;
-            this.colactive.Name = "colactive";
-            this.colactive.OptionsColumn.AllowEdit = false;
-            this.colactive.Visible = true;
-            this.colactive.VisibleIndex = 10;
-            this.colactive.Width = 94;
-            // 
-            // colemployeeId
-            // 
-            this.colemployeeId.FieldName = "employeeId";
-            this.colemployeeId.MinWidth = 25;
-            this.colemployeeId.Name = "colemployeeId";
-            this.colemployeeId.OptionsColumn.AllowEdit = false;
-            this.colemployeeId.Visible = true;
-            this.colemployeeId.VisibleIndex = 11;
-            this.colemployeeId.Width = 94;
-            // 
-            // colpayment
-            // 
-            this.colpayment.FieldName = "payment";
-            this.colpayment.MinWidth = 25;
-            this.colpayment.Name = "colpayment";
-            this.colpayment.OptionsColumn.AllowEdit = false;
-            this.colpayment.Visible = true;
-            this.colpayment.VisibleIndex = 12;
-            this.colpayment.Width = 94;
-            // 
-            // colisPaid
-            // 
-            this.colisPaid.FieldName = "isPaid";
-            this.colisPaid.MinWidth = 25;
-            this.colisPaid.Name = "colisPaid";
-            this.colisPaid.OptionsColumn.AllowEdit = false;
-            this.colisPaid.Visible = true;
-            this.colisPaid.VisibleIndex = 13;
-            this.colisPaid.Width = 94;
             // 
             // InvoiceForm
             // 
