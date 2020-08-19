@@ -8,6 +8,7 @@ namespace ClothesAdmin
 {
     public partial class InvoiceXReport : DevExpress.XtraReports.UI.XtraReport
     {
+        private int orderId;
         public InvoiceXReport(int orderId)
         {
             InitializeComponent();

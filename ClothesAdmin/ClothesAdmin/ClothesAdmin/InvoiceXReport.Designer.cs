@@ -48,6 +48,12 @@
             this.pageInfo1 = new DevExpress.XtraReports.UI.XRPageInfo();
             this.pageInfo2 = new DevExpress.XtraReports.UI.XRPageInfo();
             this.ReportHeader = new DevExpress.XtraReports.UI.ReportHeaderBand();
+            this.lbIsPaid = new DevExpress.XtraReports.UI.XRLabel();
+            this.lbPayment = new DevExpress.XtraReports.UI.XRLabel();
+            this.lbPrice = new DevExpress.XtraReports.UI.XRLabel();
+            this.lbAddress = new DevExpress.XtraReports.UI.XRLabel();
+            this.lbPhone = new DevExpress.XtraReports.UI.XRLabel();
+            this.lbName = new DevExpress.XtraReports.UI.XRLabel();
             this.label1 = new DevExpress.XtraReports.UI.XRLabel();
             this.GroupHeader1 = new DevExpress.XtraReports.UI.GroupHeaderBand();
             this.table1 = new DevExpress.XtraReports.UI.XRTable();
@@ -71,19 +77,9 @@
             this.tableCell14 = new DevExpress.XtraReports.UI.XRTableCell();
             this.sP_ReportGetInvoiceDetailTableAdapter1 = new ClothesAdmin.ClothesDataSetTableAdapters.SP_ReportGetInvoiceDetailTableAdapter();
             this.clothesDataSet1 = new ClothesAdmin.ClothesDataSet();
-            this.clothesDataSet2 = new ClothesAdmin.ClothesDataSet();
-            this.categoryTableAdapter1 = new ClothesAdmin.ClothesDataSetTableAdapters.CategoryTableAdapter();
-            this.clothesDataSet3 = new ClothesAdmin.ClothesDataSet();
-            this.lbAddress = new DevExpress.XtraReports.UI.XRLabel();
-            this.lbPhone = new DevExpress.XtraReports.UI.XRLabel();
-            this.lbName = new DevExpress.XtraReports.UI.XRLabel();
-            this.lbPrice = new DevExpress.XtraReports.UI.XRLabel();
-            this.lbPayment = new DevExpress.XtraReports.UI.XRLabel();
             ((System.ComponentModel.ISupportInitialize)(this.table1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.table2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.clothesDataSet1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.clothesDataSet2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.clothesDataSet3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
             // 
             // sqlDataSource1
@@ -160,12 +156,12 @@
             this.xrLabel3,
             this.xrLabel2,
             this.xrLabel1});
-            this.TopMargin.HeightF = 149.5F;
+            this.TopMargin.HeightF = 195.3333F;
             this.TopMargin.Name = "TopMargin";
             // 
             // xrLabel5
             // 
-            this.xrLabel5.LocationFloat = new DevExpress.Utils.PointFloat(41.63648F, 117.3334F);
+            this.xrLabel5.LocationFloat = new DevExpress.Utils.PointFloat(0F, 128.1667F);
             this.xrLabel5.Multiline = true;
             this.xrLabel5.Name = "xrLabel5";
             this.xrLabel5.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
@@ -174,7 +170,7 @@
             // 
             // xrLabel4
             // 
-            this.xrLabel4.LocationFloat = new DevExpress.Utils.PointFloat(41.63653F, 87.33327F);
+            this.xrLabel4.LocationFloat = new DevExpress.Utils.PointFloat(0F, 98.1666F);
             this.xrLabel4.Multiline = true;
             this.xrLabel4.Name = "xrLabel4";
             this.xrLabel4.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
@@ -183,7 +179,7 @@
             // 
             // xrLabel3
             // 
-            this.xrLabel3.LocationFloat = new DevExpress.Utils.PointFloat(41.63653F, 64.33327F);
+            this.xrLabel3.LocationFloat = new DevExpress.Utils.PointFloat(0F, 75.1666F);
             this.xrLabel3.Multiline = true;
             this.xrLabel3.Name = "xrLabel3";
             this.xrLabel3.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
@@ -192,7 +188,7 @@
             // 
             // xrLabel2
             // 
-            this.xrLabel2.LocationFloat = new DevExpress.Utils.PointFloat(41.63653F, 41.33331F);
+            this.xrLabel2.LocationFloat = new DevExpress.Utils.PointFloat(0F, 52.16665F);
             this.xrLabel2.Multiline = true;
             this.xrLabel2.Name = "xrLabel2";
             this.xrLabel2.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
@@ -203,7 +199,7 @@
             // 
             this.xrLabel1.Font = new System.Drawing.Font("Arial", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.xrLabel1.ForeColor = System.Drawing.Color.DarkBlue;
-            this.xrLabel1.LocationFloat = new DevExpress.Utils.PointFloat(41.63653F, 17.99998F);
+            this.xrLabel1.LocationFloat = new DevExpress.Utils.PointFloat(0F, 28.83331F);
             this.xrLabel1.Multiline = true;
             this.xrLabel1.Name = "xrLabel1";
             this.xrLabel1.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
@@ -239,14 +235,82 @@
             // ReportHeader
             // 
             this.ReportHeader.Controls.AddRange(new DevExpress.XtraReports.UI.XRControl[] {
+            this.lbIsPaid,
+            this.lbPayment,
+            this.lbPrice,
             this.lbAddress,
             this.lbPhone,
             this.lbName,
-            this.lbPrice,
-            this.lbPayment,
             this.label1});
-            this.ReportHeader.HeightF = 244.8333F;
+            this.ReportHeader.HeightF = 276.8333F;
             this.ReportHeader.Name = "ReportHeader";
+            // 
+            // lbIsPaid
+            // 
+            this.lbIsPaid.LocationFloat = new DevExpress.Utils.PointFloat(101.6365F, 174.6667F);
+            this.lbIsPaid.Multiline = true;
+            this.lbIsPaid.Name = "lbIsPaid";
+            this.lbIsPaid.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
+            this.lbIsPaid.SizeF = new System.Drawing.SizeF(603.3636F, 23F);
+            this.lbIsPaid.StylePriority.UseTextAlignment = false;
+            this.lbIsPaid.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopRight;
+            // 
+            // lbPayment
+            // 
+            this.lbPayment.LocationFloat = new DevExpress.Utils.PointFloat(101.6365F, 151.6667F);
+            this.lbPayment.Multiline = true;
+            this.lbPayment.Name = "lbPayment";
+            this.lbPayment.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
+            this.lbPayment.SizeF = new System.Drawing.SizeF(603.3636F, 23F);
+            this.lbPayment.StylePriority.UseTextAlignment = false;
+            this.lbPayment.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopRight;
+            // 
+            // lbPrice
+            // 
+            this.lbPrice.Font = new System.Drawing.Font("Arial", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbPrice.ForeColor = System.Drawing.Color.DarkBlue;
+            this.lbPrice.LocationFloat = new DevExpress.Utils.PointFloat(260.8334F, 219.6666F);
+            this.lbPrice.Multiline = true;
+            this.lbPrice.Name = "lbPrice";
+            this.lbPrice.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
+            this.lbPrice.SizeF = new System.Drawing.SizeF(444.1667F, 23F);
+            this.lbPrice.StylePriority.UseFont = false;
+            this.lbPrice.StylePriority.UseForeColor = false;
+            this.lbPrice.StylePriority.UseTextAlignment = false;
+            this.lbPrice.Text = "Total price: ";
+            this.lbPrice.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopRight;
+            // 
+            // lbAddress
+            // 
+            this.lbAddress.LocationFloat = new DevExpress.Utils.PointFloat(101.6363F, 84.49989F);
+            this.lbAddress.Multiline = true;
+            this.lbAddress.Name = "lbAddress";
+            this.lbAddress.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
+            this.lbAddress.SizeF = new System.Drawing.SizeF(603.3636F, 23F);
+            this.lbAddress.StylePriority.UseTextAlignment = false;
+            this.lbAddress.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopRight;
+            // 
+            // lbPhone
+            // 
+            this.lbPhone.LocationFloat = new DevExpress.Utils.PointFloat(101.6363F, 118.3334F);
+            this.lbPhone.Multiline = true;
+            this.lbPhone.Name = "lbPhone";
+            this.lbPhone.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
+            this.lbPhone.SizeF = new System.Drawing.SizeF(603.3636F, 23F);
+            this.lbPhone.StylePriority.UseTextAlignment = false;
+            this.lbPhone.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopRight;
+            // 
+            // lbName
+            // 
+            this.lbName.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbName.LocationFloat = new DevExpress.Utils.PointFloat(101.6365F, 47.33322F);
+            this.lbName.Multiline = true;
+            this.lbName.Name = "lbName";
+            this.lbName.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
+            this.lbName.SizeF = new System.Drawing.SizeF(603.3636F, 23F);
+            this.lbName.StylePriority.UseFont = false;
+            this.lbName.StylePriority.UseTextAlignment = false;
+            this.lbName.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopRight;
             // 
             // label1
             // 
@@ -352,7 +416,7 @@
             // 
             this.Detail.Controls.AddRange(new DevExpress.XtraReports.UI.XRControl[] {
             this.table2});
-            this.Detail.HeightF = 50.83344F;
+            this.Detail.HeightF = 26.33352F;
             this.Detail.Name = "Detail";
             // 
             // table2
@@ -365,7 +429,7 @@
             this.table2.OddStyleName = "DetailData3_Odd";
             this.table2.Rows.AddRange(new DevExpress.XtraReports.UI.XRTableRow[] {
             this.tableRow2});
-            this.table2.SizeF = new System.Drawing.SizeF(704.9998F, 25F);
+            this.table2.SizeF = new System.Drawing.SizeF(704.9999F, 25F);
             this.table2.StylePriority.UseBorders = false;
             // 
             // tableRow2
@@ -443,7 +507,7 @@
             new DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[Price]")});
             this.tableCell14.Name = "tableCell14";
             this.tableCell14.StyleName = "DetailData1";
-            this.tableCell14.Weight = 0.25386324116181125D;
+            this.tableCell14.Weight = 0.2538633350620581D;
             // 
             // sP_ReportGetInvoiceDetailTableAdapter1
             // 
@@ -453,77 +517,6 @@
             // 
             this.clothesDataSet1.DataSetName = "ClothesDataSet";
             this.clothesDataSet1.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
-            // clothesDataSet2
-            // 
-            this.clothesDataSet2.DataSetName = "ClothesDataSet";
-            this.clothesDataSet2.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
-            // categoryTableAdapter1
-            // 
-            this.categoryTableAdapter1.ClearBeforeFill = true;
-            // 
-            // clothesDataSet3
-            // 
-            this.clothesDataSet3.DataSetName = "ClothesDataSet";
-            this.clothesDataSet3.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
-            // lbAddress
-            // 
-            this.lbAddress.LocationFloat = new DevExpress.Utils.PointFloat(41.63648F, 85.66666F);
-            this.lbAddress.Multiline = true;
-            this.lbAddress.Name = "lbAddress";
-            this.lbAddress.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
-            this.lbAddress.SizeF = new System.Drawing.SizeF(603.3636F, 23F);
-            this.lbAddress.StylePriority.UseTextAlignment = false;
-            this.lbAddress.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopRight;
-            // 
-            // lbPhone
-            // 
-            this.lbPhone.LocationFloat = new DevExpress.Utils.PointFloat(41.63648F, 108.6666F);
-            this.lbPhone.Multiline = true;
-            this.lbPhone.Name = "lbPhone";
-            this.lbPhone.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
-            this.lbPhone.SizeF = new System.Drawing.SizeF(603.3636F, 23F);
-            this.lbPhone.StylePriority.UseTextAlignment = false;
-            this.lbPhone.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopRight;
-            // 
-            // lbName
-            // 
-            this.lbName.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbName.LocationFloat = new DevExpress.Utils.PointFloat(41.63643F, 62.66658F);
-            this.lbName.Multiline = true;
-            this.lbName.Name = "lbName";
-            this.lbName.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
-            this.lbName.SizeF = new System.Drawing.SizeF(603.3636F, 23F);
-            this.lbName.StylePriority.UseFont = false;
-            this.lbName.StylePriority.UseTextAlignment = false;
-            this.lbName.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopRight;
-            // 
-            // lbPrice
-            // 
-            this.lbPrice.Font = new System.Drawing.Font("Arial", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbPrice.ForeColor = System.Drawing.Color.DarkBlue;
-            this.lbPrice.LocationFloat = new DevExpress.Utils.PointFloat(200.8334F, 173.3333F);
-            this.lbPrice.Multiline = true;
-            this.lbPrice.Name = "lbPrice";
-            this.lbPrice.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
-            this.lbPrice.SizeF = new System.Drawing.SizeF(444.1667F, 23F);
-            this.lbPrice.StylePriority.UseFont = false;
-            this.lbPrice.StylePriority.UseForeColor = false;
-            this.lbPrice.StylePriority.UseTextAlignment = false;
-            this.lbPrice.Text = "Total price: ";
-            this.lbPrice.TextAlignment = DevExpress.XtraPrinting.TextAlignment.BottomRight;
-            // 
-            // lbPayment
-            // 
-            this.lbPayment.LocationFloat = new DevExpress.Utils.PointFloat(41.63653F, 150.3333F);
-            this.lbPayment.Multiline = true;
-            this.lbPayment.Name = "lbPayment";
-            this.lbPayment.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
-            this.lbPayment.SizeF = new System.Drawing.SizeF(603.3636F, 23F);
-            this.lbPayment.StylePriority.UseTextAlignment = false;
-            this.lbPayment.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopRight;
             // 
             // InvoiceXReport
             // 
@@ -535,14 +528,12 @@
             this.Detail});
             this.ComponentStorage.AddRange(new System.ComponentModel.IComponent[] {
             this.sqlDataSource1,
-            this.clothesDataSet1,
-            this.clothesDataSet2,
-            this.clothesDataSet3});
+            this.clothesDataSet1});
             this.DataAdapter = this.sP_ReportGetInvoiceDetailTableAdapter1;
             this.DataMember = "SP_ReportGetInvoiceDetail";
             this.DataSource = this.clothesDataSet1;
             this.Font = new System.Drawing.Font("Arial", 9.75F);
-            this.Margins = new System.Drawing.Printing.Margins(66, 81, 150, 100);
+            this.Margins = new System.Drawing.Printing.Margins(66, 79, 195, 100);
             this.StyleSheet.AddRange(new DevExpress.XtraReports.UI.XRControlStyle[] {
             this.Title,
             this.DetailCaption1,
@@ -553,8 +544,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.table1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.table2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.clothesDataSet1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.clothesDataSet2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.clothesDataSet3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this)).EndInit();
 
         }
@@ -600,13 +589,11 @@
         private DevExpress.XtraReports.UI.XRLabel xrLabel1;
         private ClothesDataSetTableAdapters.SP_ReportGetInvoiceDetailTableAdapter sP_ReportGetInvoiceDetailTableAdapter1;
         private ClothesDataSet clothesDataSet1;
-        private ClothesDataSet clothesDataSet2;
-        private ClothesDataSetTableAdapters.CategoryTableAdapter categoryTableAdapter1;
-        private ClothesDataSet clothesDataSet3;
+        public DevExpress.XtraReports.UI.XRLabel lbPayment;
+        public DevExpress.XtraReports.UI.XRLabel lbPrice;
         public DevExpress.XtraReports.UI.XRLabel lbAddress;
         public DevExpress.XtraReports.UI.XRLabel lbPhone;
         public DevExpress.XtraReports.UI.XRLabel lbName;
-        public DevExpress.XtraReports.UI.XRLabel lbPrice;
-        public DevExpress.XtraReports.UI.XRLabel lbPayment;
+        public DevExpress.XtraReports.UI.XRLabel lbIsPaid;
     }
 }
