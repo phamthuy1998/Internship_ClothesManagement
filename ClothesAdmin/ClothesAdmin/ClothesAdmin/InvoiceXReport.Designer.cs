@@ -39,13 +39,17 @@
             this.DetailData3_Odd = new DevExpress.XtraReports.UI.XRControlStyle();
             this.PageInfo = new DevExpress.XtraReports.UI.XRControlStyle();
             this.TopMargin = new DevExpress.XtraReports.UI.TopMarginBand();
+            this.xrLabel5 = new DevExpress.XtraReports.UI.XRLabel();
+            this.xrLabel4 = new DevExpress.XtraReports.UI.XRLabel();
+            this.xrLabel3 = new DevExpress.XtraReports.UI.XRLabel();
+            this.xrLabel2 = new DevExpress.XtraReports.UI.XRLabel();
+            this.xrLabel1 = new DevExpress.XtraReports.UI.XRLabel();
             this.BottomMargin = new DevExpress.XtraReports.UI.BottomMarginBand();
-            this.ReportHeader = new DevExpress.XtraReports.UI.ReportHeaderBand();
-            this.GroupHeader1 = new DevExpress.XtraReports.UI.GroupHeaderBand();
-            this.Detail = new DevExpress.XtraReports.UI.DetailBand();
             this.pageInfo1 = new DevExpress.XtraReports.UI.XRPageInfo();
             this.pageInfo2 = new DevExpress.XtraReports.UI.XRPageInfo();
+            this.ReportHeader = new DevExpress.XtraReports.UI.ReportHeaderBand();
             this.label1 = new DevExpress.XtraReports.UI.XRLabel();
+            this.GroupHeader1 = new DevExpress.XtraReports.UI.GroupHeaderBand();
             this.table1 = new DevExpress.XtraReports.UI.XRTable();
             this.tableRow1 = new DevExpress.XtraReports.UI.XRTableRow();
             this.tableCell1 = new DevExpress.XtraReports.UI.XRTableCell();
@@ -55,6 +59,7 @@
             this.tableCell5 = new DevExpress.XtraReports.UI.XRTableCell();
             this.tableCell6 = new DevExpress.XtraReports.UI.XRTableCell();
             this.tableCell7 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.Detail = new DevExpress.XtraReports.UI.DetailBand();
             this.table2 = new DevExpress.XtraReports.UI.XRTable();
             this.tableRow2 = new DevExpress.XtraReports.UI.XRTableRow();
             this.tableCell8 = new DevExpress.XtraReports.UI.XRTableCell();
@@ -64,20 +69,21 @@
             this.tableCell12 = new DevExpress.XtraReports.UI.XRTableCell();
             this.tableCell13 = new DevExpress.XtraReports.UI.XRTableCell();
             this.tableCell14 = new DevExpress.XtraReports.UI.XRTableCell();
-            this.xrLabel1 = new DevExpress.XtraReports.UI.XRLabel();
-            this.xrLabel2 = new DevExpress.XtraReports.UI.XRLabel();
-            this.xrLabel3 = new DevExpress.XtraReports.UI.XRLabel();
-            this.xrLabel4 = new DevExpress.XtraReports.UI.XRLabel();
-            this.xrLabel5 = new DevExpress.XtraReports.UI.XRLabel();
+            this.sP_ReportGetInvoiceDetailTableAdapter1 = new ClothesAdmin.ClothesDataSetTableAdapters.SP_ReportGetInvoiceDetailTableAdapter();
+            this.clothesDataSet1 = new ClothesAdmin.ClothesDataSet();
+            this.clothesDataSet2 = new ClothesAdmin.ClothesDataSet();
+            this.categoryTableAdapter1 = new ClothesAdmin.ClothesDataSetTableAdapters.CategoryTableAdapter();
+            this.clothesDataSet3 = new ClothesAdmin.ClothesDataSet();
             this.lbAddress = new DevExpress.XtraReports.UI.XRLabel();
             this.lbPhone = new DevExpress.XtraReports.UI.XRLabel();
             this.lbName = new DevExpress.XtraReports.UI.XRLabel();
             this.lbPrice = new DevExpress.XtraReports.UI.XRLabel();
-            this.sP_ReportGetInvoiceDetailTableAdapter1 = new ClothesAdmin.ClothesDataSetTableAdapters.SP_ReportGetInvoiceDetailTableAdapter();
-            this.clothesDataSet1 = new ClothesAdmin.ClothesDataSet();
+            this.lbPayment = new DevExpress.XtraReports.UI.XRLabel();
             ((System.ComponentModel.ISupportInitialize)(this.table1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.table2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.clothesDataSet1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.clothesDataSet2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.clothesDataSet3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
             // 
             // sqlDataSource1
@@ -149,16 +155,62 @@
             // TopMargin
             // 
             this.TopMargin.Controls.AddRange(new DevExpress.XtraReports.UI.XRControl[] {
-            this.lbName,
-            this.lbPhone,
-            this.lbAddress,
             this.xrLabel5,
             this.xrLabel4,
             this.xrLabel3,
             this.xrLabel2,
             this.xrLabel1});
-            this.TopMargin.HeightF = 292F;
+            this.TopMargin.HeightF = 149.5F;
             this.TopMargin.Name = "TopMargin";
+            // 
+            // xrLabel5
+            // 
+            this.xrLabel5.LocationFloat = new DevExpress.Utils.PointFloat(41.63648F, 117.3334F);
+            this.xrLabel5.Multiline = true;
+            this.xrLabel5.Name = "xrLabel5";
+            this.xrLabel5.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
+            this.xrLabel5.SizeF = new System.Drawing.SizeF(603.3636F, 22.99999F);
+            this.xrLabel5.Text = "Facebook: Phạm Thủy (https://www.facebook.com/PhamThuy.ptithcm)";
+            // 
+            // xrLabel4
+            // 
+            this.xrLabel4.LocationFloat = new DevExpress.Utils.PointFloat(41.63653F, 87.33327F);
+            this.xrLabel4.Multiline = true;
+            this.xrLabel4.Name = "xrLabel4";
+            this.xrLabel4.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
+            this.xrLabel4.SizeF = new System.Drawing.SizeF(603.3636F, 22.99999F);
+            this.xrLabel4.Text = "Email: phamthithuyptithcm@gmail.com";
+            // 
+            // xrLabel3
+            // 
+            this.xrLabel3.LocationFloat = new DevExpress.Utils.PointFloat(41.63653F, 64.33327F);
+            this.xrLabel3.Multiline = true;
+            this.xrLabel3.Name = "xrLabel3";
+            this.xrLabel3.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
+            this.xrLabel3.SizeF = new System.Drawing.SizeF(603.3636F, 23F);
+            this.xrLabel3.Text = "Phone: 0373865759";
+            // 
+            // xrLabel2
+            // 
+            this.xrLabel2.LocationFloat = new DevExpress.Utils.PointFloat(41.63653F, 41.33331F);
+            this.xrLabel2.Multiline = true;
+            this.xrLabel2.Name = "xrLabel2";
+            this.xrLabel2.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
+            this.xrLabel2.SizeF = new System.Drawing.SizeF(603.3636F, 23F);
+            this.xrLabel2.Text = "Address: 97, Man Thien street, Hiep Phu, district 9, Ho Chi Minh city";
+            // 
+            // xrLabel1
+            // 
+            this.xrLabel1.Font = new System.Drawing.Font("Arial", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.xrLabel1.ForeColor = System.Drawing.Color.DarkBlue;
+            this.xrLabel1.LocationFloat = new DevExpress.Utils.PointFloat(41.63653F, 17.99998F);
+            this.xrLabel1.Multiline = true;
+            this.xrLabel1.Name = "xrLabel1";
+            this.xrLabel1.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
+            this.xrLabel1.SizeF = new System.Drawing.SizeF(603.3636F, 23F);
+            this.xrLabel1.StylePriority.UseFont = false;
+            this.xrLabel1.StylePriority.UseForeColor = false;
+            this.xrLabel1.Text = "PTShop - The best of clothes online shop";
             // 
             // BottomMargin
             // 
@@ -166,29 +218,6 @@
             this.pageInfo1,
             this.pageInfo2});
             this.BottomMargin.Name = "BottomMargin";
-            // 
-            // ReportHeader
-            // 
-            this.ReportHeader.Controls.AddRange(new DevExpress.XtraReports.UI.XRControl[] {
-            this.label1});
-            this.ReportHeader.HeightF = 60F;
-            this.ReportHeader.Name = "ReportHeader";
-            // 
-            // GroupHeader1
-            // 
-            this.GroupHeader1.Controls.AddRange(new DevExpress.XtraReports.UI.XRControl[] {
-            this.table1});
-            this.GroupHeader1.GroupUnion = DevExpress.XtraReports.UI.GroupUnion.WithFirstDetail;
-            this.GroupHeader1.HeightF = 28F;
-            this.GroupHeader1.Name = "GroupHeader1";
-            // 
-            // Detail
-            // 
-            this.Detail.Controls.AddRange(new DevExpress.XtraReports.UI.XRControl[] {
-            this.lbPrice,
-            this.table2});
-            this.Detail.HeightF = 120.0001F;
-            this.Detail.Name = "Detail";
             // 
             // pageInfo1
             // 
@@ -207,6 +236,18 @@
             this.pageInfo2.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopRight;
             this.pageInfo2.TextFormatString = "Page {0} of {1}";
             // 
+            // ReportHeader
+            // 
+            this.ReportHeader.Controls.AddRange(new DevExpress.XtraReports.UI.XRControl[] {
+            this.lbAddress,
+            this.lbPhone,
+            this.lbName,
+            this.lbPrice,
+            this.lbPayment,
+            this.label1});
+            this.ReportHeader.HeightF = 244.8333F;
+            this.ReportHeader.Name = "ReportHeader";
+            // 
             // label1
             // 
             this.label1.Font = new System.Drawing.Font("Arial", 19.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -220,6 +261,14 @@
             this.label1.StylePriority.UseTextAlignment = false;
             this.label1.Text = "Invoice detail";
             this.label1.TextAlignment = DevExpress.XtraPrinting.TextAlignment.BottomCenter;
+            // 
+            // GroupHeader1
+            // 
+            this.GroupHeader1.Controls.AddRange(new DevExpress.XtraReports.UI.XRControl[] {
+            this.table1});
+            this.GroupHeader1.GroupUnion = DevExpress.XtraReports.UI.GroupUnion.WithFirstDetail;
+            this.GroupHeader1.HeightF = 28F;
+            this.GroupHeader1.Name = "GroupHeader1";
             // 
             // table1
             // 
@@ -299,6 +348,13 @@
             this.tableCell7.Text = "Price";
             this.tableCell7.Weight = 0.25386334520450154D;
             // 
+            // Detail
+            // 
+            this.Detail.Controls.AddRange(new DevExpress.XtraReports.UI.XRControl[] {
+            this.table2});
+            this.Detail.HeightF = 50.83344F;
+            this.Detail.Name = "Detail";
+            // 
             // table2
             // 
             this.table2.Borders = ((DevExpress.XtraPrinting.BorderSide)((((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
@@ -309,7 +365,7 @@
             this.table2.OddStyleName = "DetailData3_Odd";
             this.table2.Rows.AddRange(new DevExpress.XtraReports.UI.XRTableRow[] {
             this.tableRow2});
-            this.table2.SizeF = new System.Drawing.SizeF(704.9999F, 25F);
+            this.table2.SizeF = new System.Drawing.SizeF(704.9998F, 25F);
             this.table2.StylePriority.UseBorders = false;
             // 
             // tableRow2
@@ -387,70 +443,44 @@
             new DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[Price]")});
             this.tableCell14.Name = "tableCell14";
             this.tableCell14.StyleName = "DetailData1";
-            this.tableCell14.Weight = 0.2538633350620581D;
+            this.tableCell14.Weight = 0.25386324116181125D;
             // 
-            // xrLabel1
+            // sP_ReportGetInvoiceDetailTableAdapter1
             // 
-            this.xrLabel1.Font = new System.Drawing.Font("Arial", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.xrLabel1.ForeColor = System.Drawing.Color.DarkBlue;
-            this.xrLabel1.LocationFloat = new DevExpress.Utils.PointFloat(41.6363F, 53.83332F);
-            this.xrLabel1.Multiline = true;
-            this.xrLabel1.Name = "xrLabel1";
-            this.xrLabel1.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
-            this.xrLabel1.SizeF = new System.Drawing.SizeF(603.3636F, 23F);
-            this.xrLabel1.StylePriority.UseFont = false;
-            this.xrLabel1.StylePriority.UseForeColor = false;
-            this.xrLabel1.Text = "PTShop - The best of clothes online shop";
+            this.sP_ReportGetInvoiceDetailTableAdapter1.ClearBeforeFill = true;
             // 
-            // xrLabel2
+            // clothesDataSet1
             // 
-            this.xrLabel2.LocationFloat = new DevExpress.Utils.PointFloat(41.6363F, 77.16665F);
-            this.xrLabel2.Multiline = true;
-            this.xrLabel2.Name = "xrLabel2";
-            this.xrLabel2.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
-            this.xrLabel2.SizeF = new System.Drawing.SizeF(603.3636F, 23F);
-            this.xrLabel2.Text = "Address: 97, Man Thien street, Hiep Phu, district 9, Ho Chi Minh city";
+            this.clothesDataSet1.DataSetName = "ClothesDataSet";
+            this.clothesDataSet1.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
-            // xrLabel3
+            // clothesDataSet2
             // 
-            this.xrLabel3.LocationFloat = new DevExpress.Utils.PointFloat(41.6363F, 100.1666F);
-            this.xrLabel3.Multiline = true;
-            this.xrLabel3.Name = "xrLabel3";
-            this.xrLabel3.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
-            this.xrLabel3.SizeF = new System.Drawing.SizeF(603.3636F, 23F);
-            this.xrLabel3.Text = "Phone: 0373865759";
+            this.clothesDataSet2.DataSetName = "ClothesDataSet";
+            this.clothesDataSet2.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
-            // xrLabel4
+            // categoryTableAdapter1
             // 
-            this.xrLabel4.LocationFloat = new DevExpress.Utils.PointFloat(41.6363F, 123.1666F);
-            this.xrLabel4.Multiline = true;
-            this.xrLabel4.Name = "xrLabel4";
-            this.xrLabel4.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
-            this.xrLabel4.SizeF = new System.Drawing.SizeF(603.3636F, 22.99999F);
-            this.xrLabel4.Text = "Email: phamthithuyptithcm@gmail.com";
+            this.categoryTableAdapter1.ClearBeforeFill = true;
             // 
-            // xrLabel5
+            // clothesDataSet3
             // 
-            this.xrLabel5.LocationFloat = new DevExpress.Utils.PointFloat(41.63628F, 153.1667F);
-            this.xrLabel5.Multiline = true;
-            this.xrLabel5.Name = "xrLabel5";
-            this.xrLabel5.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
-            this.xrLabel5.SizeF = new System.Drawing.SizeF(603.3636F, 22.99999F);
-            this.xrLabel5.Text = "Facebook: Phạm Thủy (https://www.facebook.com/PhamThuy.ptithcm)";
+            this.clothesDataSet3.DataSetName = "ClothesDataSet";
+            this.clothesDataSet3.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
             // lbAddress
             // 
-            this.lbAddress.LocationFloat = new DevExpress.Utils.PointFloat(41.6363F, 235.6667F);
+            this.lbAddress.LocationFloat = new DevExpress.Utils.PointFloat(41.63648F, 85.66666F);
             this.lbAddress.Multiline = true;
             this.lbAddress.Name = "lbAddress";
-            this.lbAddress.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 96F);
+            this.lbAddress.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
             this.lbAddress.SizeF = new System.Drawing.SizeF(603.3636F, 23F);
             this.lbAddress.StylePriority.UseTextAlignment = false;
             this.lbAddress.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopRight;
             // 
             // lbPhone
             // 
-            this.lbPhone.LocationFloat = new DevExpress.Utils.PointFloat(41.6363F, 258.6667F);
+            this.lbPhone.LocationFloat = new DevExpress.Utils.PointFloat(41.63648F, 108.6666F);
             this.lbPhone.Multiline = true;
             this.lbPhone.Name = "lbPhone";
             this.lbPhone.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
@@ -461,7 +491,7 @@
             // lbName
             // 
             this.lbName.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbName.LocationFloat = new DevExpress.Utils.PointFloat(41.63628F, 212.6666F);
+            this.lbName.LocationFloat = new DevExpress.Utils.PointFloat(41.63643F, 62.66658F);
             this.lbName.Multiline = true;
             this.lbName.Name = "lbName";
             this.lbName.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
@@ -474,23 +504,26 @@
             // 
             this.lbPrice.Font = new System.Drawing.Font("Arial", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbPrice.ForeColor = System.Drawing.Color.DarkBlue;
-            this.lbPrice.LocationFloat = new DevExpress.Utils.PointFloat(250.8333F, 54.6666F);
+            this.lbPrice.LocationFloat = new DevExpress.Utils.PointFloat(200.8334F, 173.3333F);
             this.lbPrice.Multiline = true;
             this.lbPrice.Name = "lbPrice";
             this.lbPrice.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
             this.lbPrice.SizeF = new System.Drawing.SizeF(444.1667F, 23F);
             this.lbPrice.StylePriority.UseFont = false;
             this.lbPrice.StylePriority.UseForeColor = false;
+            this.lbPrice.StylePriority.UseTextAlignment = false;
             this.lbPrice.Text = "Total price: ";
+            this.lbPrice.TextAlignment = DevExpress.XtraPrinting.TextAlignment.BottomRight;
             // 
-            // sP_ReportGetInvoiceDetailTableAdapter1
+            // lbPayment
             // 
-            this.sP_ReportGetInvoiceDetailTableAdapter1.ClearBeforeFill = true;
-            // 
-            // clothesDataSet1
-            // 
-            this.clothesDataSet1.DataSetName = "ClothesDataSet";
-            this.clothesDataSet1.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            this.lbPayment.LocationFloat = new DevExpress.Utils.PointFloat(41.63653F, 150.3333F);
+            this.lbPayment.Multiline = true;
+            this.lbPayment.Name = "lbPayment";
+            this.lbPayment.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
+            this.lbPayment.SizeF = new System.Drawing.SizeF(603.3636F, 23F);
+            this.lbPayment.StylePriority.UseTextAlignment = false;
+            this.lbPayment.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopRight;
             // 
             // InvoiceXReport
             // 
@@ -502,12 +535,14 @@
             this.Detail});
             this.ComponentStorage.AddRange(new System.ComponentModel.IComponent[] {
             this.sqlDataSource1,
-            this.clothesDataSet1});
+            this.clothesDataSet1,
+            this.clothesDataSet2,
+            this.clothesDataSet3});
             this.DataAdapter = this.sP_ReportGetInvoiceDetailTableAdapter1;
             this.DataMember = "SP_ReportGetInvoiceDetail";
             this.DataSource = this.clothesDataSet1;
             this.Font = new System.Drawing.Font("Arial", 9.75F);
-            this.Margins = new System.Drawing.Printing.Margins(66, 79, 292, 100);
+            this.Margins = new System.Drawing.Printing.Margins(66, 81, 150, 100);
             this.StyleSheet.AddRange(new DevExpress.XtraReports.UI.XRControlStyle[] {
             this.Title,
             this.DetailCaption1,
@@ -518,6 +553,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.table1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.table2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.clothesDataSet1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.clothesDataSet2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.clothesDataSet3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this)).EndInit();
 
         }
@@ -561,11 +598,15 @@
         private DevExpress.XtraReports.UI.XRLabel xrLabel3;
         private DevExpress.XtraReports.UI.XRLabel xrLabel2;
         private DevExpress.XtraReports.UI.XRLabel xrLabel1;
-        public DevExpress.XtraReports.UI.XRLabel lbPrice;
-        public DevExpress.XtraReports.UI.XRLabel lbName;
-        public DevExpress.XtraReports.UI.XRLabel lbPhone;
-        public DevExpress.XtraReports.UI.XRLabel lbAddress;
         private ClothesDataSetTableAdapters.SP_ReportGetInvoiceDetailTableAdapter sP_ReportGetInvoiceDetailTableAdapter1;
         private ClothesDataSet clothesDataSet1;
+        private ClothesDataSet clothesDataSet2;
+        private ClothesDataSetTableAdapters.CategoryTableAdapter categoryTableAdapter1;
+        private ClothesDataSet clothesDataSet3;
+        public DevExpress.XtraReports.UI.XRLabel lbAddress;
+        public DevExpress.XtraReports.UI.XRLabel lbPhone;
+        public DevExpress.XtraReports.UI.XRLabel lbName;
+        public DevExpress.XtraReports.UI.XRLabel lbPrice;
+        public DevExpress.XtraReports.UI.XRLabel lbPayment;
     }
 }

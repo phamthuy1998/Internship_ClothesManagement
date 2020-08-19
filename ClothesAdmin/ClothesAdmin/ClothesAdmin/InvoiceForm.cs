@@ -210,19 +210,21 @@ namespace ClothesAdmin
                 }
                 try
                 {
-                    var address = ((DataRowView)this.invoiceBindingSource.Current).Row["address"].ToString();
-                    var name = ((DataRowView)this.invoiceBindingSource.Current).Row["name"].ToString();
-                    var phone = ((DataRowView)this.invoiceBindingSource.Current).Row["phone"].ToString();
-                    int totalPrice = 0;
-                    for (int i = 0; i < invoiceGridControl.Rows.Count; ++i)
-                    {
-                        totalPrice += Convert.ToInt32(invoiceGridControl.Rows[i].Cells[1].Value);
-                    }
+                    var address =addressTextEdit.Text.ToString();
+                    var name = nameTextEdit.Text.ToString();
+                    var phone = phoneTextEdit.Text.ToString();
+                    Program.myReader = Program.ExecSqlDataReader("SELECT format(SUM(unitPrice), 'N0')AS totalProduct FROM  InvoiceItem WHERE orderId ="+idSpinEdit.Value);
+                    if (Program.myReader == null) return;
+                    Program.myReader.Read();
+                    if (Program.myReader == null) return;
+                    var totalprice = Program.myReader.GetString(0);
+
                     InvoiceXReport invoiceReport = new InvoiceXReport(Convert.ToInt16(orderId));
                     invoiceReport.lbName.Text = "Name: "+name;
                     invoiceReport.lbAddress.Text = "Address: "+ address;
                     invoiceReport.lbPhone.Text = "Phone: "+phone;
-                    invoiceReport.lbPrice.Text = "Total price: ";
+                    invoiceReport.lbPayment.Text = "Payment: " + phone;
+                    invoiceReport.lbPrice.Text = "Total price: "+ totalprice+" vnđ";
 
                     ReportPrintTool report = new ReportPrintTool(invoiceReport);
                     report.ShowPreviewDialog();
