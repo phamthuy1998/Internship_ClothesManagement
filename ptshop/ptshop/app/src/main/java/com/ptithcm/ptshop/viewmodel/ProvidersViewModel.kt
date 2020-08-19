@@ -54,5 +54,4 @@ class ProvidersViewModel(private val repo: ProvidersRepository) : ViewModel() {
             }
         }
     }
-
 }

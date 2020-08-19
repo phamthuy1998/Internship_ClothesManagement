@@ -11,7 +11,6 @@ import kotlinx.coroutines.launch
 
 class ShopViewModel(private val repository : ShopRepository)  : ViewModel() {
 
-
     val categoriesLiveData = MediatorLiveData<ArrayList<Category>>()
     val networkState = MutableLiveData<Boolean>()
     val error = MutableLiveData<Pair<String, Int?>>()

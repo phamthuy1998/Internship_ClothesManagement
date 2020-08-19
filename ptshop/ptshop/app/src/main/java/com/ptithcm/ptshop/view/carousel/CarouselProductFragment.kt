@@ -209,40 +209,4 @@ class CarouselProductFragment : BaseFragment<FragmentCarouselProductBinding>(),
             keySearch = KEY_EMPTY
         )
     }
-
-//    private fun initBrandRefine(): ArrayList<BrandsRefine>? {
-//        val brandRefines = arrayListOf<BrandsRefine>()
-//        when (typeCarousel) {
-//            TypeCarousel.BRAND -> {
-//                if (vendorBrand?.stores?.isNotEmpty() == true) {
-//                    vendorBrand?.stores?.forEach { item ->
-//                        val brandRefine = BrandsRefine()
-//                        brandRefine.brandId = vendorBrand?.id
-//                        brandRefine.storeId = item.id
-//                        brandRefine.name =
-//                            "${vendorBrand?.name} (${item.brand_name})"
-//                        brandRefines.add(brandRefine)
-//                    }
-//                }
-//
-//            }
-//            else -> {
-//                val brandRefine = BrandsRefine()
-//                brandRefine.brandId = vendorBrand?.id
-//                brandRefine.storeId = vendorBrand?.store_id
-//                if (vendorBrand?.name?.isNotEmpty() == true) {
-//                    if (vendorBrand?.name?.contains("${vendorBrand?.brand_name}") == false) {
-//                        brandRefine.name = "${vendorBrand?.name} (${vendorBrand?.brand_name})"
-//                    } else {
-//                        brandRefine.name = vendorBrand?.name
-//                    }
-//                } else {
-//                    brandRefine.name = vendorBrand?.brand_name
-//                }
-//                brandRefines.add(brandRefine)
-//            }
-//        }
-//        return brandRefines
-//    }
-
 }

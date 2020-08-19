@@ -30,11 +30,6 @@
         tools:layout="@layout/fragment_over_view" />
 
     <fragment
-        android:id="@+id/fragment_carousel_detail"
-        android:name="com.ptithcm.ptshop.view.carousel.CarouselDetailFragment"
-        tools:layout="@layout/fragment_carousel_detail" />
-
-    <fragment
         android:id="@+id/sizeGuideFragment"
         android:name="com.ptithcm.ptshop.view.sizeguide.SizeGuideFragment"
         android:label="SizeGuideFragment"

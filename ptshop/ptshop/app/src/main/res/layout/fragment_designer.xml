@@ -13,8 +13,8 @@
             android:id="@+id/swDesigner"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            app:layout_constraintBottom_toTopOf="@id/containerLoadmore"
             app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
             <androidx.recyclerview.widget.RecyclerView
@@ -24,11 +24,11 @@
                 android:clipToPadding="false"
                 android:nestedScrollingEnabled="false"
                 android:paddingBottom="@dimen/layout_margin_16dp"
+                tools:listitem="@layout/item_designer"
                 app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
                 app:spanCount="3" />
 
         </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
-
 
         <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/btnFab"
@@ -47,37 +47,6 @@
             app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@drawable/ic_up_arrow"
             tools:visibility="visible" />
-
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/containerLoadmore"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_marginBottom="@dimen/layout_margin_4dp"
-            android:translationZ="@dimen/layout_margin_8dp"
-            android:visibility="gone"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent">
-
-            <pl.droidsonroids.gif.GifImageView
-                android:id="@+id/progressBar"
-                android:layout_width="@dimen/size_100dp"
-                android:layout_height="@dimen/size_100dp"
-                android:src="@drawable/loading"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/tvLoading"
-                style="@style/normal_text"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/layout_margin_16dp"
-                android:text="@string/loading_more"
-                app:layout_constraintTop_toBottomOf="@id/progressBar" />
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

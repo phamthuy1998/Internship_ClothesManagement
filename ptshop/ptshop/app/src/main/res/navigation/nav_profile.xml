@@ -60,25 +60,7 @@
     <include app:graph="@navigation/nav_invoices" />
 
     <include app:graph="@navigation/nav_payment_methods" />
-    <fragment
-        android:id="@+id/brandProfileFragment"
-        android:name="com.ptithcm.ptshop.view.profile.BrandProfileFragment"
-        android:label="BrandProfileFragment"
-        tools:layout="@layout/fragment_carousel_detail">
-        <action
-            android:id="@+id/action_refine"
-            app:destination="@id/nav_refine"
-            app:enterAnim="@anim/slide_in_up"
-            app:exitAnim="@anim/slide_out_left"
-            app:popEnterAnim="@anim/slide_in_left"
-            app:popExitAnim="@anim/slide_in_down" />
-        <action android:id="@+id/action_product_detail"
-            app:destination="@id/fragment_product_detail"
-            app:enterAnim="@anim/slide_in_up"
-            app:exitAnim="@anim/slide_out_left"
-            app:popEnterAnim="@anim/slide_in_left"
-            app:popExitAnim="@anim/slide_in_down" />
-    </fragment>
+
     <fragment
         android:id="@+id/fragment_product_detail"
         android:name="com.ptithcm.ptshop.view.wishlist.ProductDetailFragment"

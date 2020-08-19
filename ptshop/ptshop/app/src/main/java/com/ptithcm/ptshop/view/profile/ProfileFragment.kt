@@ -20,9 +20,7 @@ import com.bumptech.glide.Glide
 import com.ptithcm.core.BuildConfig
 import com.ptithcm.core.CoreApplication
 import com.ptithcm.core.model.Account
-import com.ptithcm.core.model.Carousel
 import com.ptithcm.core.model.Profile
-import com.ptithcm.core.model.TypeCarousel
 import com.ptithcm.core.param.UpdateDetailParam
 import com.ptithcm.ptshop.R
 import com.ptithcm.ptshop.base.BaseActivity
@@ -70,35 +68,19 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>(), View.OnClickList
             viewBinding.btnNav.visible()
             isShowLoading(false)
         }
-        //move to brand profile
-        if (currentProfile?.user?.brand != null) {
-            (requireActivity() as? MainActivity)?.apply {
-                viewBinding.layoutToolbar.toolbar.gone()
-            }
-            val typeCarousel=if(currentProfile?.user?.brand?.stores.isNullOrEmpty()) TypeCarousel.STORE else TypeCarousel.BRAND
-            navController.navigate(
-                R.id.brandProfileFragment,
-                bundleOf(
-                    KEY_ARGUMENT to Carousel(
-                        brand_id = currentProfile?.user?.brand?.id,
-                        gender = -1,
-                        type = typeCarousel.value
-                    )
-                )
-            )
-        } else {
-            val glideApp = Glide.with(context!!)
-            glideApp.load(currentProfile?.user?.cover)
-                .placeholder(R.color.white)
-                .centerCrop()
-                .error(R.drawable.bg_login)
-                .into(viewBinding.profileCustomer.cover)
 
-            glideApp.load(currentProfile?.user?.photo)
-                .placeholder(R.color.white)
-                .error(R.drawable.bg_login)
-                .into(viewBinding.profileCustomer.avatar)
-        }
+        val glideApp = Glide.with(context!!)
+        glideApp.load(currentProfile?.user?.cover)
+            .placeholder(R.color.white)
+            .centerCrop()
+            .error(R.drawable.bg_login)
+            .into(viewBinding.profileCustomer.cover)
+
+        glideApp.load(currentProfile?.user?.photo)
+            .placeholder(R.color.white)
+            .error(R.drawable.bg_login)
+            .into(viewBinding.profileCustomer.avatar)
+
         setupToolbar()
     }
 
@@ -121,38 +103,22 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>(), View.OnClickList
 
         })
         userViewModel.getProfileLiveData.observe(this, Observer {
-            CoreApplication.instance.profile?.user=it
-            currentProfile=CoreApplication.instance.profile
-            if (currentProfile?.user?.brand != null) {
-                (requireActivity() as? MainActivity)?.apply {
-                    viewBinding.layoutToolbar.toolbar.gone()
-                }
-                val typeCarousel=if(currentProfile?.user?.brand?.stores.isNullOrEmpty()) TypeCarousel.STORE else TypeCarousel.BRAND
-                navController.navigate(
-                    R.id.brandProfileFragment,
-                    bundleOf(
-                        KEY_ARGUMENT to Carousel(
-                            brand_id = currentProfile?.user?.brand?.id,
-                            gender = -1,
-                            type = typeCarousel.value
-                        )
-                    )
-                )
-            }
+            CoreApplication.instance.profile?.user = it
+            currentProfile = CoreApplication.instance.profile
             userViewModel.getProfileLiveData.removeObservers(this)
         })
         userViewModel.updateDetailLiveData.observe(this, Observer {
             CoreApplication.instance.saveUser(currentProfile ?: return@Observer)
         })
         userViewModel.error.observe(this, Observer {
-            if (it.second == ERROR_CODE_404){
+            if (it.second == ERROR_CODE_404) {
                 (requireActivity() as? MainActivity)?.isShowErrorNetwork(true)
             } else {
                 messageHandler?.runMessageErrorHandler(it.first)
             }
         })
         authViewModel.error.observe(activity!!, Observer {
-            if (it.second == ERROR_CODE_404){
+            if (it.second == ERROR_CODE_404) {
                 (requireActivity() as? MainActivity)?.isShowErrorNetwork(true)
             } else {
                 Toast.makeText(requireContext(), it.first, Toast.LENGTH_SHORT).show()
@@ -183,16 +149,28 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>(), View.OnClickList
                 navController.navigate(R.id.changePasswordFragment)
             }
             R.id.customer_service_btn -> {
-                navController.navigate(R.id.documentFragment, bundleOf(KEY_ARGUMENT to resources.getString(R.string.customer_service)))
+                navController.navigate(
+                    R.id.documentFragment,
+                    bundleOf(KEY_ARGUMENT to resources.getString(R.string.customer_service))
+                )
             }
             R.id.delivery_return_btn -> {
-                navController.navigate(R.id.documentFragment, bundleOf(KEY_ARGUMENT to resources.getString(R.string.delivery_and_returns)))
+                navController.navigate(
+                    R.id.documentFragment,
+                    bundleOf(KEY_ARGUMENT to resources.getString(R.string.delivery_and_returns))
+                )
             }
             R.id.about_us_btn -> {
-                navController.navigate(R.id.documentFragment, bundleOf(KEY_ARGUMENT to resources.getString(R.string.about_us)))
+                navController.navigate(
+                    R.id.documentFragment,
+                    bundleOf(KEY_ARGUMENT to resources.getString(R.string.about_us))
+                )
             }
             R.id.terms_btn -> {
-                navController.navigate(R.id.documentFragment, bundleOf(KEY_ARGUMENT to resources.getString(R.string.terms_and_conditions)))
+                navController.navigate(
+                    R.id.documentFragment,
+                    bundleOf(KEY_ARGUMENT to resources.getString(R.string.terms_and_conditions))
+                )
             }
             R.id.address_book_btn -> {
                 navController.navigate(R.id.nav_book_address)

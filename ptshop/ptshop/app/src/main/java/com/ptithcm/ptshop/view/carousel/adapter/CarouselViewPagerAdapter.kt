@@ -7,8 +7,7 @@ import com.ptithcm.ptshop.view.carousel.CarouselAboutFragment
 import com.ptithcm.ptshop.view.carousel.CarouselProductFragment
 
 class CarouselViewPagerAdapter(
-    fm: FragmentManager,
-    private val isFromBrandProfile: Boolean = false
+    fm: FragmentManager
 ) :
     FragmentPagerAdapter(fm, BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT) {
 

@@ -9,7 +9,6 @@ import androidx.appcompat.widget.AppCompatImageButton
 import androidx.core.content.ContextCompat
 import androidx.core.os.bundleOf
 import androidx.lifecycle.Observer
-import com.ptithcm.core.CoreApplication
 import com.ptithcm.core.model.ProductClothes
 import com.ptithcm.core.model.ProductClothesDetail
 import com.ptithcm.core.util.ObjectHandler
@@ -55,9 +54,6 @@ class ProductDetailFragment : BaseFragment<FragmentProductDetailBinding>() {
         setUpViewPager()
         bindProduct()
         setUpToolBar()
-        //disable add to cart when login as brand
-        viewBinding.btnAddToCard.visibility =
-            if (CoreApplication.instance.profile?.user?.brand != null) View.GONE else View.VISIBLE
         viewBinding.tvOriginPrice.paintFlags = Paint.STRIKE_THRU_TEXT_FLAG
         if (product == null) viewBinding.btnAddToCard.disable()
     }

@@ -222,7 +222,6 @@ class ShoppingBagFragment : BaseFragment<FragmentShoppingBagBinding>(), View.OnC
             ShoppingCardAdapter.ERROR -> {
                 (data as? Result.Error)?.let {
                     viewBinding.root.showErrorSnackBar(it.message)
-//                    messageHandler?.runMessageErrorHandler(it.message)
                 }
             }
 

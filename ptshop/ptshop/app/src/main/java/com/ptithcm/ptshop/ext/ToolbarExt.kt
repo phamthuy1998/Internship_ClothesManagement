@@ -22,11 +22,8 @@ fun initToolBar(
     toolbar?.findViewById<AppCompatImageButton>(R.id.ivBack)?.apply {
         if (hasBack) this.visible() else this.gone()
     }
-    toolbar?.findViewById<AppCompatTextView>(R.id.tvBackRight)?.apply {
-        if (hasBackRight) this.visible() else this.gone()
-    }
     toolbar?.findViewById<AppCompatImageButton>(R.id.ivLeft)?.apply {
-        if (hasLeft) this.visible() else this.gone()
+        this.gone()
     }
     toolbar?.findViewById<AppCompatImageButton>(R.id.ivRight)?.apply {
         if ((hasRight) or isProductPage) this.visible() else this.gone()
