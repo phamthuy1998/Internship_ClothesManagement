@@ -29,14 +29,14 @@ namespace ClothesManagement.Controllers
         [Route("api/allInvoice")]
         [AcceptVerbs("GET")]
         [HttpGet]
-        public async Task<ListResponse<SP_GetAllInvoice_Result>> getInvoicePaging(Nullable<int> pageSize = 20, Nullable<int> pageNumber = 1, Nullable<int> statusId = null, int? accountId = null)
+        public async Task<ListResponse<SP_GetAllInvoice_Result1>> getInvoicePaging(Nullable<int> pageSize = 20, Nullable<int> pageNumber = 1, Nullable<int> statusId = null, int? accountId = null)
         {
             if (pageSize <= 0 || pageSize > 100) pageSize = 20;
             if (pageNumber <= 0) pageNumber = 1;
 
             var listResponse = (await Task.Run(() => entities.SP_GetAllInvoice(statusId, pageNumber, pageSize, accountId).ToList()));
             var count = (await Task.Run(() => entities.SP_GetAllInvoiceCount(statusId, accountId).FirstOrDefault()));
-            return new ListResponse<SP_GetAllInvoice_Result>()
+            return new ListResponse<SP_GetAllInvoice_Result1>()
             {
                 count = count,
                 results = listResponse
@@ -71,6 +71,8 @@ namespace ClothesManagement.Controllers
                         deliveryDate = invoiceDeatail.deliveryDate,
                         price = invoiceDeatail.price,
                         statusOrderId = invoiceDeatail.statusOrderId,
+                        isPaid = invoiceDeatail.isPaid,
+                        payment = invoiceDeatail.payment,
                         statusInvoice = invoiceDeatail.statusInvoice,
                         products = listProducts
 

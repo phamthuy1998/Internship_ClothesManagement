@@ -121,7 +121,6 @@ namespace ClothesAdmin
                     + roleIdSpinEdit.Text.Trim() + ", N'"
                     + passwordTextEdit.Text.Trim() + "', N'"
                     + usernameTextEdit.Text.Trim() + "'";
-                MessageBox.Show(sql, "sql", MessageBoxButtons.OK);
                 Program.myReader = Program.ExecSqlDataReader(sql);
                 if (Program.myReader == null) return;
                 Program.myReader.Read();

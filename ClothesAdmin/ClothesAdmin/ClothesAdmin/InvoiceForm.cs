@@ -213,16 +213,20 @@ namespace ClothesAdmin
                     var address = ((DataRowView)this.invoiceBindingSource.Current).Row["address"].ToString();
                     var name = ((DataRowView)this.invoiceBindingSource.Current).Row["name"].ToString();
                     var phone = ((DataRowView)this.invoiceBindingSource.Current).Row["phone"].ToString();
-                    int totalPrice = 0;
-                    for (int i = 0; i < invoiceGridControl.Rows.Count; ++i)
-                    {
-                        totalPrice += Convert.ToInt32(invoiceGridControl.Rows[i].Cells[1].Value);
-                    }
                     InvoiceXReport invoiceReport = new InvoiceXReport(Convert.ToInt16(orderId));
-                    invoiceReport.lbName.Text = "Name: "+name;
-                    invoiceReport.lbAddress.Text = "Address: "+ address;
-                    invoiceReport.lbPhone.Text = "Phone: "+phone;
-                    invoiceReport.lbPrice.Text = "Total price: ";
+
+                    Program.myReader = Program.ExecSqlDataReader("SELECT format(SUM(unitPrice), 'N0')AS totalProduct FROM  InvoiceItem WHERE orderId =" + idSpinEdit.Value);
+                    if (Program.myReader == null) return;
+                    Program.myReader.Read();
+                    if (Program.myReader == null) return;
+                    var totalprice = Program.myReader.GetString(0);
+
+                    invoiceReport.lbName.Text = "Name: " + name;
+                    invoiceReport.lbAddress.Text = "Address: " + address;
+                    invoiceReport.lbPhone.Text = "Phone: " + phone;
+                    invoiceReport.lbPrice.Text = "Total price: "+ totalprice;
+                    invoiceReport.lbPayment.Text = "Payment: " + paymentTextBox.Text;
+                    invoiceReport.lbIsPaid.Text = "Status: " + tvStatus.Text;
 
                     ReportPrintTool report = new ReportPrintTool(invoiceReport);
                     report.ShowPreviewDialog();
@@ -237,6 +241,13 @@ namespace ClothesAdmin
                 MessageBox.Show("Không có invoice item!", "THÔNG BÁO", MessageBoxButtons.OK);
                 return;
             }
+        }
+
+        private void isPaidTextBox_TextChanged(object sender, EventArgs e)
+        {
+            if (isPaidTextBox.Text == "1")
+                tvStatus.Text = " Paid";
+            else tvStatus.Text = "UnPaid";
         }
     }
 }
