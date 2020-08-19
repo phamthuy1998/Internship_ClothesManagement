@@ -991,7 +991,7 @@
           <FunctionImport Name="SP_GetEmail" ReturnType="Collection(String)">
           <Parameter Name="userId" Mode="In" Type="Int32" />
           </FunctionImport>
-          <FunctionImport Name="SP_GetAllInvoice" ReturnType="Collection(ClothesManamentModel1.SP_GetAllInvoice_Result)">
+          <FunctionImport Name="SP_GetAllInvoice" ReturnType="Collection(ClothesManamentModel1.SP_GetAllInvoice_Result1)">
             <Parameter Name="statusId" Mode="In" Type="Int32" />
             <Parameter Name="currentPage" Mode="In" Type="Int32" />
             <Parameter Name="PageSize" Mode="In" Type="Int32" />
@@ -1001,7 +1001,7 @@
             <Parameter Name="statusId" Mode="In" Type="Int32" />
             <Parameter Name="AccountID" Mode="In" Type="Int32" />
           </FunctionImport>
-          <FunctionImport Name="SP_GetInvoiceDetail" ReturnType="Collection(ClothesManamentModel1.SP_GetInvoiceDetail_Result)">
+          <FunctionImport Name="SP_GetInvoiceDetail" ReturnType="Collection(ClothesManamentModel1.SP_GetInvoiceDetail_Result1)">
           <Parameter Name="inovoiceId" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="SP_GetProductInvoice" ReturnType="Collection(ClothesManamentModel1.SP_GetProductInvoice_Result1)">
@@ -1973,6 +1973,35 @@
           <Property Type="Int32" Name="quantity" Nullable="true" />
           <Property Type="String" Name="thumnail" Nullable="true" MaxLength="200" />
         </ComplexType>
+        <ComplexType Name="SP_GetInvoiceDetail_Result1">
+          <Property Type="Int32" Name="id" Nullable="false" />
+          <Property Type="DateTime" Name="updateDate" Nullable="true" />
+          <Property Type="DateTime" Name="buyDate" Nullable="true" />
+          <Property Type="String" Name="name" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="phone" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="address" Nullable="true" MaxLength="200" />
+          <Property Type="String" Name="note" Nullable="true" MaxLength="200" />
+          <Property Type="DateTime" Name="deliveryDate" Nullable="true" />
+          <Property Type="Double" Name="price" Nullable="true" />
+          <Property Type="Int32" Name="statusOrderId" Nullable="true" />
+          <Property Type="Int32" Name="isPaid" Nullable="true" />
+          <Property Type="String" Name="payment" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="statusInvoice" Nullable="false" MaxLength="12" />
+        </ComplexType>
+        <ComplexType Name="SP_GetAllInvoice_Result1">
+          <Property Type="Int32" Name="id" Nullable="false" />
+          <Property Type="DateTime" Name="updateDate" Nullable="true" />
+          <Property Type="DateTime" Name="buyDate" Nullable="true" />
+          <Property Type="String" Name="name" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="phone" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="address" Nullable="true" MaxLength="200" />
+          <Property Type="DateTime" Name="deliveryDate" Nullable="true" />
+          <Property Type="Double" Name="price" Nullable="true" />
+          <Property Type="Int32" Name="statusOrderId" Nullable="true" />
+          <Property Type="Int32" Name="isPaid" Nullable="true" />
+          <Property Type="String" Name="payment" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="statusInvoice" Nullable="false" MaxLength="12" />
+        </ComplexType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -2253,8 +2282,8 @@
           <FunctionImportMapping FunctionImportName="SP_GetEmail" FunctionName="ClothesManamentModel1.Store.SP_GetEmail">
           </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="SP_GetAllInvoice" FunctionName="ClothesManamentModel1.Store.SP_GetAllInvoice">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="ClothesManamentModel1.SP_GetAllInvoice_Result">
+          <ResultMapping>
+              <ComplexTypeMapping TypeName="ClothesManamentModel1.SP_GetAllInvoice_Result1">
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="updateDate" ColumnName="updateDate" />
                 <ScalarProperty Name="buyDate" ColumnName="buyDate" />
@@ -2264,14 +2293,16 @@
                 <ScalarProperty Name="deliveryDate" ColumnName="deliveryDate" />
                 <ScalarProperty Name="price" ColumnName="price" />
                 <ScalarProperty Name="statusOrderId" ColumnName="statusOrderId" />
+                <ScalarProperty Name="isPaid" ColumnName="isPaid" />
+                <ScalarProperty Name="payment" ColumnName="payment" />
                 <ScalarProperty Name="statusInvoice" ColumnName="statusInvoice" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="SP_GetAllInvoiceCount" FunctionName="ClothesManamentModel1.Store.SP_GetAllInvoiceCount" />
           <FunctionImportMapping FunctionImportName="SP_GetInvoiceDetail" FunctionName="ClothesManamentModel1.Store.SP_GetInvoiceDetail">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="ClothesManamentModel1.SP_GetInvoiceDetail_Result">
+          <ResultMapping>
+              <ComplexTypeMapping TypeName="ClothesManamentModel1.SP_GetInvoiceDetail_Result1">
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="updateDate" ColumnName="updateDate" />
                 <ScalarProperty Name="buyDate" ColumnName="buyDate" />
@@ -2282,6 +2313,8 @@
                 <ScalarProperty Name="deliveryDate" ColumnName="deliveryDate" />
                 <ScalarProperty Name="price" ColumnName="price" />
                 <ScalarProperty Name="statusOrderId" ColumnName="statusOrderId" />
+                <ScalarProperty Name="isPaid" ColumnName="isPaid" />
+                <ScalarProperty Name="payment" ColumnName="payment" />
                 <ScalarProperty Name="statusInvoice" ColumnName="statusInvoice" />
               </ComplexTypeMapping>
             </ResultMapping>

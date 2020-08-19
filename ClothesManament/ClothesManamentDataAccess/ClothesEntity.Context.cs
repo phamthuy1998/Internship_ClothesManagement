@@ -594,7 +594,7 @@ namespace ClothesManamentDataAccess
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<string>("SP_GetEmail", userIdParameter);
         }
     
-        public virtual ObjectResult<SP_GetAllInvoice_Result> SP_GetAllInvoice(Nullable<int> statusId, Nullable<int> currentPage, Nullable<int> pageSize, Nullable<int> accountID)
+        public virtual ObjectResult<SP_GetAllInvoice_Result1> SP_GetAllInvoice(Nullable<int> statusId, Nullable<int> currentPage, Nullable<int> pageSize, Nullable<int> accountID)
         {
             var statusIdParameter = statusId.HasValue ?
                 new ObjectParameter("statusId", statusId) :
@@ -612,7 +612,7 @@ namespace ClothesManamentDataAccess
                 new ObjectParameter("AccountID", accountID) :
                 new ObjectParameter("AccountID", typeof(int));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_GetAllInvoice_Result>("SP_GetAllInvoice", statusIdParameter, currentPageParameter, pageSizeParameter, accountIDParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_GetAllInvoice_Result1>("SP_GetAllInvoice", statusIdParameter, currentPageParameter, pageSizeParameter, accountIDParameter);
         }
     
         public virtual ObjectResult<Nullable<int>> SP_GetAllInvoiceCount(Nullable<int> statusId, Nullable<int> accountID)
@@ -628,13 +628,13 @@ namespace ClothesManamentDataAccess
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("SP_GetAllInvoiceCount", statusIdParameter, accountIDParameter);
         }
     
-        public virtual ObjectResult<SP_GetInvoiceDetail_Result> SP_GetInvoiceDetail(Nullable<int> inovoiceId)
+        public virtual ObjectResult<SP_GetInvoiceDetail_Result1> SP_GetInvoiceDetail(Nullable<int> inovoiceId)
         {
             var inovoiceIdParameter = inovoiceId.HasValue ?
                 new ObjectParameter("inovoiceId", inovoiceId) :
                 new ObjectParameter("inovoiceId", typeof(int));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_GetInvoiceDetail_Result>("SP_GetInvoiceDetail", inovoiceIdParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_GetInvoiceDetail_Result1>("SP_GetInvoiceDetail", inovoiceIdParameter);
         }
     
         public virtual ObjectResult<SP_GetProductInvoice_Result1> SP_GetProductInvoice(Nullable<int> inovoiceId)
