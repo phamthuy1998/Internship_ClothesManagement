@@ -1,12 +1,15 @@
 package com.ptithcm.ptshop.util
 
+import android.content.res.ColorStateList
 import android.graphics.Paint
+import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.appcompat.widget.AppCompatSpinner
 import androidx.appcompat.widget.AppCompatTextView
 import androidx.core.text.HtmlCompat
 import androidx.databinding.BindingAdapter
+import com.ptithcm.core.model.Color
 import com.ptithcm.core.model.PromotionType
 import com.ptithcm.core.util.PriceFormat
 import com.ptithcm.ptshop.R
@@ -117,5 +120,17 @@ object BindingAdapterText {
             view.context.getString(stringRes),
             HtmlCompat.FROM_HTML_MODE_COMPACT
         )
+    }
+
+    @JvmStatic
+    @BindingAdapter("setColorProduct")
+    fun setColorProduct(view: View, color: Color?) {
+        try {
+            view.backgroundTintList =
+                ColorStateList.valueOf(android.graphics.Color.parseColor(color?.colorHex))
+        } catch (e: Exception) {
+            view.backgroundTintList =
+                ColorStateList.valueOf(android.graphics.Color.parseColor("#000000"))
+        }
     }
 }

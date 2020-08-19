@@ -52,9 +52,6 @@ class SizesFragment : BaseFragment<FragmentSizesBinding>(), View.OnClickListener
 
     override fun bindViewModel() {
         super.bindViewModel()
-        refineViewModel.sizeType.observe(this, Observer {
-            sizeType = it
-        })
         viewModel.productFilterLiveData.observe(this, Observer {
             val sizesArray = if (sizeType == 0) it.size
             else it.size?.filter { item -> item.size_type == sizeType } as? ArrayList<Size>
@@ -72,7 +69,6 @@ class SizesFragment : BaseFragment<FragmentSizesBinding>(), View.OnClickListener
 
             R.id.btnApply -> {
                 sizesSelected()
-                refineViewModel.refineLiveData.value = Pair(refineParam ?: RefineParam(), false)
                 navController.popBackStack()
             }
         }

@@ -4,7 +4,9 @@ import androidx.lifecycle.MediatorLiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import androidx.paging.PagedList
 import com.ptithcm.core.model.Account
+import com.ptithcm.core.model.InvoiceDetail
 import com.ptithcm.core.model.ShoppingAddress
 import com.ptithcm.core.model.User
 import com.ptithcm.core.model.wish.ObjectResponse
@@ -12,6 +14,9 @@ import com.ptithcm.core.param.ChangePassParam
 import com.ptithcm.core.param.EditAccountParam
 import com.ptithcm.core.param.UpdateAddressParam
 import com.ptithcm.core.repository.UserRepository
+import com.ptithcm.core.util.INIT_PAGE
+import com.ptithcm.core.util.PAGE_SIZE
+import com.ptithcm.core.vo.ItemViewModel
 import com.ptithcm.core.vo.Result
 import kotlinx.coroutines.launch
 
@@ -158,6 +163,55 @@ class UserViewModel(private val repository: UserRepository) : ViewModel() {
                     }
                     is Result.Success -> {
                         updateAddressResultLiveData.value = it.data?.message
+                    }
+                }
+            }
+        }
+    }
+
+    val invoicesLiveData = MediatorLiveData<PagedList<ItemViewModel>>()
+    val invoiceLoadStatusX = MutableLiveData<Result<ItemViewModel>>()
+    val networkState = MutableLiveData<Boolean>()
+
+    fun getPagingInvoices(
+            statusId: Int = 1,
+            pageSize: Int = PAGE_SIZE,
+            pageNumber: Int = INIT_PAGE
+    ) {
+        viewModelScope.launch {
+            val request =
+                    repository.getPagingAllInvoices(pageSize, pageNumber, statusId)
+            invoicesLiveData.addSource(request.result) {
+                invoicesLiveData.value = it
+            }
+            invoicesLiveData.addSource(request.status) {
+                invoiceLoadStatusX.value = it
+                when (it) {
+                    is Result.Loading -> {
+                        networkState.value = true
+                    }
+                    is Result.Error -> {
+                        networkState.value = false
+                    }
+                    is Result.Success -> {
+                        networkState.value = false
+                    }
+                }
+            }
+        }
+    }
+
+    val invoiceDetailLiveData = MediatorLiveData<InvoiceDetail>()
+
+    fun getInvoiceDetail(invoiceId: Int?) {
+        viewModelScope.launch {
+            invoiceDetailLiveData.addSource(repository.getInvoiceDetail(invoiceId)) {
+                when (it) {
+                    is Result.Error -> {
+                        error.value = Pair(it.message, it.code)
+                    }
+                    is Result.Success -> {
+                        invoiceDetailLiveData.value = it.data?.data
                     }
                 }
             }

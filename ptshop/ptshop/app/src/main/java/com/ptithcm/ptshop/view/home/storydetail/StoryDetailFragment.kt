@@ -32,12 +32,12 @@ import com.ptithcm.ptshop.viewmodel.HomeViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import java.util.*
 
-class StoryDetailFragment: BaseFragment<ActivityStoryDetailBinding>(), View.OnClickListener {
+class StoryDetailFragment : BaseFragment<ActivityStoryDetailBinding>(), View.OnClickListener {
 
     override val layoutId: Int
         get() = R.layout.activity_story_detail
 
-    private lateinit var sheetBehavior : BottomSheetBehavior<LinearLayout>
+    private lateinit var sheetBehavior: BottomSheetBehavior<LinearLayout>
 
     private val homeViewModel: HomeViewModel by viewModel()
 
@@ -65,17 +65,17 @@ class StoryDetailFragment: BaseFragment<ActivityStoryDetailBinding>(), View.OnCl
 
     private var story: Stories? = null
 
-    private var brandID: Int?=null
+    private var brandID: Int? = null
 
-    private var typeCarousel: String?=null
+    private var typeCarousel: String? = null
 
     private var isFromBrandProfile = false
 
-    private var currentState= -1
+    private var currentState = -1
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        if (arguments != null){
+        if (arguments != null) {
             arguments?.getParcelable<Stories>(KEY_ARGUMENT)?.apply {
                 story = this
                 val ids = arrayListOf<Int>()
@@ -88,7 +88,7 @@ class StoryDetailFragment: BaseFragment<ActivityStoryDetailBinding>(), View.OnCl
             brandID = arguments?.getInt(KEY_ID)
             typeCarousel = arguments?.getString(KEY_TYPE)
             isFromBrandProfile = arguments?.getBoolean(IS_FROM_BRAND_PROFILE) ?: false
-        }else {
+        } else {
             (activity as? StoryDetailActivity)?.apply {
                 story = storyObj
                 brandID = brandId
@@ -130,15 +130,16 @@ class StoryDetailFragment: BaseFragment<ActivityStoryDetailBinding>(), View.OnCl
 
         showBottomSheet()
 
-        (activity as? StoryDetailActivity)?.onBackPressedDispatcher?.addCallback(this,object : OnBackPressedCallback(true){
-            override fun handleOnBackPressed() {
-                if (sheetBehavior.state == BottomSheetBehavior.STATE_EXPANDED){
-                    sheetBehavior.state = BottomSheetBehavior.STATE_COLLAPSED
-                }else{
-                    activity?.finish()
+        (activity as? StoryDetailActivity)?.onBackPressedDispatcher?.addCallback(this,
+            object : OnBackPressedCallback(true) {
+                override fun handleOnBackPressed() {
+                    if (sheetBehavior.state == BottomSheetBehavior.STATE_EXPANDED) {
+                        sheetBehavior.state = BottomSheetBehavior.STATE_COLLAPSED
+                    } else {
+                        activity?.finish()
+                    }
                 }
-            }
-        })
+            })
     }
 
     override fun bindViewModel() {
@@ -171,7 +172,7 @@ class StoryDetailFragment: BaseFragment<ActivityStoryDetailBinding>(), View.OnCl
         })
     }
 
-    private fun setUpVP(){
+    private fun setUpVP() {
         val upload = viewBinding.story?.uploads?.find {
             it.url?.contains(checkVidExtension) == true
         }
@@ -184,16 +185,16 @@ class StoryDetailFragment: BaseFragment<ActivityStoryDetailBinding>(), View.OnCl
         viewBinding.indicator.setupWithViewPager(viewBinding.vpImage)
     }
 
-    private fun setUpToolBar(){
+    private fun setUpToolBar() {
         (activity as? StoryDetailActivity)?.apply {
             viewBinding.layoutToolbar.toolbar.gone()
-            transparentStatusBar(isFull = false,isBlack =  true)
+            transparentStatusBar(isFull = false, isBlack = true)
             window.clearFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS)
         }
     }
 
-    override fun onClick(v: View?){
-        when(v?.id){
+    override fun onClick(v: View?) {
+        when (v?.id) {
             R.id.ivClose -> {
                 if (!navController.popBackStack())
                     activity?.finish()
@@ -202,7 +203,7 @@ class StoryDetailFragment: BaseFragment<ActivityStoryDetailBinding>(), View.OnCl
                 sheetBehavior.state = BottomSheetBehavior.STATE_COLLAPSED
             }
             R.id.tvBrandName -> {
-                if(typeCarousel==TypeCarousel.STORE.value){
+                if (typeCarousel == TypeCarousel.STORE.value) {
                     navController.navigateAnimation(
                         R.id.nav_carousel_detail,
                         bundle = bundleOf(
@@ -213,8 +214,7 @@ class StoryDetailFragment: BaseFragment<ActivityStoryDetailBinding>(), View.OnCl
                             )
                         )
                     )
-                }
-                else{
+                } else {
                     navController.navigateAnimation(
                         R.id.nav_carousel_detail,
                         bundle = bundleOf(
@@ -241,7 +241,7 @@ class StoryDetailFragment: BaseFragment<ActivityStoryDetailBinding>(), View.OnCl
         }
     }
 
-    private fun showDeletePopUp(){
+    private fun showDeletePopUp() {
         (requireActivity() as? BaseActivity<*>)?.showPopup(
             PopUp(
                 R.layout.layout_pop_up_delete_story,
@@ -250,7 +250,7 @@ class StoryDetailFragment: BaseFragment<ActivityStoryDetailBinding>(), View.OnCl
         )
     }
 
-    private fun popEvent(popupBinding: ViewDataBinding?){
+    private fun popEvent(popupBinding: ViewDataBinding?) {
         (popupBinding as? LayoutPopUpDeleteStoryBinding)?.apply {
             left = getString(R.string.cancel)
             right = getString(R.string.delete)
@@ -261,11 +261,16 @@ class StoryDetailFragment: BaseFragment<ActivityStoryDetailBinding>(), View.OnCl
 
     }
 
-    private fun bindingTags(tags: ArrayList<Tag>?){
+    private fun bindingTags(tags: ArrayList<Tag>?) {
         tags?.forEachIndexed { index, it ->
-            val binding = DataBindingUtil.inflate<ItemTagBinding>(LayoutInflater.from(context), R.layout.item_tag, null, false)
+            val binding = DataBindingUtil.inflate<ItemTagBinding>(
+                LayoutInflater.from(context),
+                R.layout.item_tag,
+                null,
+                false
+            )
             binding.tvTag.text = it.name?.toLowerCase(Locale.getDefault())?.capitalize()
-            if (index > 0){
+            if (index > 0) {
                 binding.root.layoutParams = LinearLayout.LayoutParams(
                     LinearLayout.LayoutParams.WRAP_CONTENT,
                     LinearLayout.LayoutParams.WRAP_CONTENT
@@ -277,10 +282,11 @@ class StoryDetailFragment: BaseFragment<ActivityStoryDetailBinding>(), View.OnCl
         }
     }
 
-    private fun showBottomSheet(){
-        sheetBehavior = BottomSheetBehavior.from(viewBinding.includeShopTheLook.root as LinearLayout)
+    private fun showBottomSheet() {
+        sheetBehavior =
+            BottomSheetBehavior.from(viewBinding.includeShopTheLook.root as LinearLayout)
 
-        sheetBehavior.bottomSheetCallback = object : BottomSheetBehavior.BottomSheetCallback(){
+        sheetBehavior.addBottomSheetCallback(object : BottomSheetBehavior.BottomSheetCallback() {
             override fun onSlide(bottomSheet: View, slideOffset: Float) {
 
             }
@@ -288,36 +294,41 @@ class StoryDetailFragment: BaseFragment<ActivityStoryDetailBinding>(), View.OnCl
             override fun onStateChanged(bottomSheet: View, newState: Int) {
                 viewBinding.backGround.gone()
                 currentState = -1
-                when(newState){
+                when (newState) {
                     BottomSheetBehavior.STATE_EXPANDED -> {
                         currentState = newState
                         showBackGround()
                     }
-                    BottomSheetBehavior.STATE_HALF_EXPANDED -> { }
+                    BottomSheetBehavior.STATE_HALF_EXPANDED -> {
+                    }
                     BottomSheetBehavior.STATE_DRAGGING -> {
                         showBackGround()
                     }
-                    BottomSheetBehavior.STATE_HIDDEN -> {}
+                    BottomSheetBehavior.STATE_HIDDEN -> {
+                    }
                     BottomSheetBehavior.STATE_COLLAPSED -> {
                         viewBinding.includeShopTheLook.clShopTheLook.visible()
                     }
-                    BottomSheetBehavior.STATE_SETTLING -> {}
+                    BottomSheetBehavior.STATE_SETTLING -> {
+                    }
                 }
             }
         }
+        )
 
-        viewBinding.includeShopTheLook.root.findViewById<ConstraintLayout>(R.id.clShopTheLook)?.apply {
-            setOnClickListener {
-                showBackGround()
-                sheetBehavior.state = BottomSheetBehavior.STATE_EXPANDED
+        viewBinding.includeShopTheLook.root.findViewById<ConstraintLayout>(R.id.clShopTheLook)
+            ?.apply {
+                setOnClickListener {
+                    showBackGround()
+                    sheetBehavior.state = BottomSheetBehavior.STATE_EXPANDED
+                }
             }
-        }
 
         sheetBehavior.apply {
             isFitToContents = true
             isHideable = false
             halfExpandedRatio = 0.5f
-            if (currentState != -1){
+            if (currentState != -1) {
                 showBackGround()
                 state = BottomSheetBehavior.STATE_EXPANDED
             }
@@ -326,15 +337,15 @@ class StoryDetailFragment: BaseFragment<ActivityStoryDetailBinding>(), View.OnCl
         setRvBottomSheet()
     }
 
-    private fun showBackGround(){
+    private fun showBackGround() {
         viewBinding.backGround.visible()
         viewBinding.includeShopTheLook.clShopTheLook.inVisible()
     }
 
-    private fun setRvBottomSheet(){
+    private fun setRvBottomSheet() {
         viewBinding.includeShopTheLook.rvStoryProducts.apply {
             adapter = productAdapter
-            layoutManager = LinearLayoutManager(context,LinearLayoutManager.HORIZONTAL, false)
+            layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
             itemAnimator?.changeDuration = 0
         }
     }

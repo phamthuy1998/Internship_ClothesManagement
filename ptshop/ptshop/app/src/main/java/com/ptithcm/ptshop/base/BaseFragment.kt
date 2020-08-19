@@ -63,4 +63,7 @@ abstract class BaseFragment<ViewBinding: ViewDataBinding> : Fragment() {
         imm?.hideSoftInputFromWindow(activity?.currentFocus?.windowToken, 0)
     }
 
+    fun showErrorNetwork() {
+        (requireActivity() as? MainActivity)?.isShowErrorNetwork(true)
+    }
 }

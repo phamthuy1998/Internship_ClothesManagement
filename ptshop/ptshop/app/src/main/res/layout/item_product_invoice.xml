@@ -9,17 +9,17 @@
 
         <variable
             name="item"
-            type="com.ptithcm.core.model.ProductClothesDetail" />
+            type="com.ptithcm.core.model.InvoiceProductDetail" />
 
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingStart="@dimen/layout_margin_16dp"
-        android:paddingEnd="@dimen/layout_margin_16dp"
         android:background="@color/white"
-        android:paddingTop="@dimen/layout_margin_8dp">
+        android:paddingStart="@dimen/layout_margin_16dp"
+        android:paddingTop="@dimen/layout_margin_8dp"
+        android:paddingEnd="@dimen/layout_margin_16dp">
 
         <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/ivProduct"
@@ -37,41 +37,13 @@
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/tvPrice"
             style="@style/normal_text.bold"
-            price="@{item.price}"
-            setVisible="@{item.valuePromotion == 0.0}"
+            price="@{item.unitPrice}"
             android:layout_marginStart="@dimen/layout_margin_8dp"
             android:textSize="@dimen/text_size_18sp"
             app:layout_constraintBottom_toBottomOf="@id/ivClose"
             app:layout_constraintStart_toEndOf="@id/ivProduct"
             app:layout_constraintTop_toTopOf="@id/ivClose"
             tools:text="27.84" />
-
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/tvDiscountPrice"
-            style="@style/normal_text.bold"
-            price="@{item.price}"
-            promo="@{item.valuePromotion}"
-            promoType="@{item.typePromotion}"
-            setVisible="@{item.valuePromotion != 0.0}"
-            android:layout_marginStart="@dimen/layout_margin_8dp"
-            android:textColor="@color/colorTextDiscount"
-            android:textSize="@dimen/text_size_18sp"
-            app:layout_constraintBottom_toBottomOf="@id/ivClose"
-            app:layout_constraintStart_toEndOf="@id/ivProduct"
-            app:layout_constraintTop_toTopOf="@id/ivClose"
-            tools:text="$39.19" />
-
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/tvOriginPrice"
-            style="@style/normal_text"
-            price="@{item.price}"
-            setPaintFlagsStrike="@{true}"
-            setVisible="@{item.valuePromotion != 0.0}"
-            android:layout_marginStart="@dimen/layout_margin_8dp"
-            android:textSize="@dimen/text_size_18sp"
-            app:layout_constraintStart_toEndOf="@id/tvDiscountPrice"
-            app:layout_constraintTop_toTopOf="@id/tvDiscountPrice"
-            tools:text="$70.54" />
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/tvVendor"
@@ -92,7 +64,7 @@
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/tvTittle"
             style="@style/normal_text.grey"
-            android:text="@{item.provider.brandName}"
+            android:visibility="gone"
             app:layout_constraintStart_toStartOf="@id/tvVendor"
             app:layout_constraintTop_toBottomOf="@id/tvVendor"
             tools:text="snapprodtest02" />
@@ -111,7 +83,7 @@
             android:layout_height="@dimen/layout_margin_12dp"
             android:layout_marginStart="@dimen/layout_margin_12dp"
             android:background="@drawable/bg_circle"
-            setColorProduct="@{item.selectedColor}"
+            setColorProduct="@{item.color}"
             app:layout_constraintBottom_toBottomOf="@id/tvTitleColor"
             app:layout_constraintStart_toEndOf="@id/bOption"
             app:layout_constraintTop_toTopOf="@id/tvTitleColor" />
@@ -121,12 +93,11 @@
             style="@style/normal_text"
             android:layout_width="wrap_content"
             android:layout_marginStart="@dimen/layout_margin_8dp"
-            android:text="@{item.quantityInCart.colorName}"
+            android:text="@{item.color.colorName}"
             android:textAlignment="textStart"
             app:layout_constraintBottom_toBottomOf="@id/vColor"
             app:layout_constraintStart_toEndOf="@id/vColor"
-            app:layout_constraintTop_toTopOf="@id/vColor"
-            tools:text="black" />
+            app:layout_constraintTop_toTopOf="@id/vColor" />
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/tvTitleSize"
@@ -140,12 +111,11 @@
             style="@style/normal_text"
             android:layout_width="wrap_content"
             android:layout_marginStart="@dimen/layout_margin_12dp"
+            android:text="@{item.size.sizeName}"
             android:textAlignment="textStart"
             android:textAllCaps="true"
-            android:text="@{item.quantityInCart.sizeName}"
             app:layout_constraintBaseline_toBaselineOf="@id/tvTitleSize"
-            app:layout_constraintStart_toEndOf="@id/bOption"
-            tools:text="xs" />
+            app:layout_constraintStart_toEndOf="@id/bOption" />
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/tvQuantity"
@@ -153,10 +123,10 @@
             android:layout_width="wrap_content"
             android:layout_marginStart="@dimen/layout_margin_12dp"
             android:layout_marginEnd="@dimen/layout_margin_8dp"
-            android:text="@{@string/quantity_x(item.quantityInCart.quantity.toString())}"
+            android:text="@{@string/quantity_x(item.quantity.toString())}"
             android:textAlignment="textStart"
-            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintBottom_toBottomOf="@id/tvTitleSize"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@id/tvTitleColor"
             tools:text="x 2" />
 

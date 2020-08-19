@@ -113,8 +113,6 @@
         <com.ptithcm.ptshop.widget.LoadingButton
             android:id="@+id/btnCheckOut"
             style="@style/black_btn"
-            android:background="@drawable/button_selector"
-            android:enabled="false"
             android:visibility="gone"
             android:onClick="@{fragment::onClick}"
             android:layout_width="match_parent"
@@ -125,8 +123,7 @@
             android:layout_marginEnd="@dimen/layout_margin_16dp"
             app:text="@string/place_order"
             tools:visibility="visible"
-            app:isShowTextBehind="true"
-            app:outOfStock="true"/>
+            app:isShowTextBehind="true" />
 
     </LinearLayout>
 </layout>

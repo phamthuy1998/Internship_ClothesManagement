@@ -53,7 +53,10 @@
     <string name="customer_service">Customer Service</string>
     <string name="payment_methods">Payment Methods</string>
     <string name="invoices">Invoices</string>
+    <string name="invoice">Invoice</string>
     <string name="address_book">Address Book</string>
+    <string name="invoice_book">Invoice Book</string>
+    <string name="invoice_detail">Invoice Detail</string>
     <string name="change_password">Change Password</string>
     <string name="my_details">My Details</string>
     <string name="hi">Hi,</string>
@@ -186,7 +189,7 @@
     <string name="some_item_changed_in_cart">Some items in cart has been changed price or quantity. Please check again!</string>
     <string name="item_selected_no_quantity">There is no product of this selection in stock</string>
     <string name="place_order">Place Order</string>
-    <string name="select_delivery_method">Select Delivery Method</string>
+    <string name="select_delivery_method">Select Payment Method</string>
     <string name="seller_condition"><![CDATA[
         Seller\'s <font><u>Terms and Conditions</u> </font>
     ]]></string>
@@ -267,7 +270,7 @@
     <string name="remove_discount"><![CDATA[
         Don\'t need anymore? <u>Remove</u>
     ]]></string>
-    <string name="login_to_add_wish_list">Please login to add product to your wishlist</string>
+    <string name="login_to_add_wish_list">Please login to add product to your favorite</string>
     <string name="unavailable">UNAVAILABLE</string>
     <string name="shipping_tax">Shipping Tax</string>
     <string name="sync_basket">Syncing up your cart…</string>
@@ -290,6 +293,7 @@
     <string name="number_card">****-****-****-%s</string>
     <string name="discount_info">Type = \"Buy %1s get %2s\" /Buy items = \"Collections\"/Get items=\"Collections</string>
     <string name="select_payment_method">Please select a payment method to purchase</string>
+    <string name="select_address">Please select shipping address.</string>
     <string name="select_payment_method_credit_card">Please add credit card to purchase</string>
     <string name="invalid_method">Invalid billing address</string>
     <string name="unknown_credit">Unknown (****)</string>
@@ -306,4 +310,5 @@
     <string name="province">Province</string>
     <string name="information">Information</string>
     <string name="discount">Discount</string>
+    <string name="bought_date">Bought Date</string>
 </resources>

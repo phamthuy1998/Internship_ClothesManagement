@@ -5,7 +5,7 @@ apply plugin: 'kotlin-android-extensions'
 
 android {
     compileSdkVersion 29
-    buildToolsVersion "29.0.2"
+    buildToolsVersion "29.0.1"
 
     defaultConfig {
         minSdkVersion 24
@@ -43,14 +43,14 @@ android {
         staging{
             buildConfigField "String", "SERVER_URL", '"https://api-staging.snapshop.com"'
             buildConfigField "String", "IMG_URL", '"file://"'
-            buildConfigField "String", "SERVER_CLOTHES_URL", '"http://192.168.1.4:88/api/"'
+            buildConfigField "String", "SERVER_CLOTHES_URL", '"http://192.168.1.6:88/api/"'
             buildConfigField "String", "AWS_URL_IMAGE", '"https://snapshop-staging.s3.amazonaws.com/"'
             buildConfigField "String", "AWS_BUCKET", '"snapshop-staging"'
             buildConfigField "String", "IDENTITY_POOL_ID", '"eu-west-1:117ec97f-e345-46dc-a919-afa8bded04fd"'
             buildConfigField "String", "PUBLISHABLE_KEY", '"pk_test_51HEO9yAUHa3z0jaSN65DnD7ZtQW0uSgoIcQ4J86ee3BPB8TkMuB8cI2pmJnW4i85yPgDqVWjrkHy8WCIBwXy9iGB00viqPHgKx"'
         }
         prod{
-            buildConfigField "String", "SERVER_CLOTHES_URL", '"http://192.168.1.4:88/api/"'
+            buildConfigField "String", "SERVER_CLOTHES_URL", '"http://192.168.1.6:88/api/"'
             buildConfigField "String", "SERVER_URL", '"https://api.snapshop.me"'
             buildConfigField "String", "AWS_URL_IMAGE", '"https://snapshop-prod.s3.amazonaws.com/"'
             buildConfigField "String", "AWS_BUCKET", '"snapshop-prod"'
@@ -62,7 +62,7 @@ android {
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation 'androidx.appcompat:appcompat:1.1.0'
+    implementation 'androidx.appcompat:appcompat:1.2.0'
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test:runner:1.2.0'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
@@ -114,6 +114,8 @@ dependencies {
 
     debugCompile 'com.readystatesoftware.chuck:library:1.1.0'
     releaseCompile 'com.readystatesoftware.chuck:library-no-op:1.1.0'
+
+    api "joda-time:joda-time:2.10.6"
 
 }
 repositories {

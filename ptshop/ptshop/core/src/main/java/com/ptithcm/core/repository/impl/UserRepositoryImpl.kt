@@ -7,10 +7,7 @@ import com.ptithcm.core.api.ApiClothesService
 import com.ptithcm.core.api.ApiService
 import com.ptithcm.core.data.remote.BaseDataSourceFactory
 import com.ptithcm.core.data.remote.NetworkBoundResource
-import com.ptithcm.core.model.Account
-import com.ptithcm.core.model.Invoice
-import com.ptithcm.core.model.ShoppingAddress
-import com.ptithcm.core.model.User
+import com.ptithcm.core.model.*
 import com.ptithcm.core.model.wish.ObjectResponse
 import com.ptithcm.core.param.ChangePassParam
 import com.ptithcm.core.param.EditAccountParam
@@ -92,22 +89,22 @@ class UserRepositoryImpl (val api: ApiService, val apiClothes: ApiClothesService
 
     override suspend fun getPagingAllInvoices(
         pageSize: Int,
-        statusId: Int,
-        accountId: Int
+        pageNumber: Int,
+        statusId: Int
     ): Listing<ItemViewModel> {
         val sourceFactory =
-            object :
-                BaseDataSourceFactory<Invoice, ItemViewModel>(status = MutableLiveData()) {
-                override suspend fun createXCall(page: Int): Response<ListResponse<Invoice>> {
-                    return apiClothes.getAllInvoices(pageSize, page, statusId)
-                }
+                object :
+                        BaseDataSourceFactory<Invoice, ItemViewModel>(status = MutableLiveData()) {
+                    override suspend fun createXCall(page: Int): Response<ListResponse<Invoice>> {
+                        return apiClothes.getAllInvoices(pageSize, page, statusId)
+                    }
 
-                override suspend fun handleXResponse(
-                    items: ListResponse<Invoice>, firstLoad: Boolean
-                ): List<ItemViewModel> {
-                    return items.results
+                    override suspend fun handleXResponse(
+                            items: ListResponse<Invoice>, firstLoad: Boolean
+                    ): List<ItemViewModel> {
+                        return items.results
+                    }
                 }
-            }
 
         val pagedLiveData = sourceFactory.toLiveData(pageSize = PAGE_SIZE)
 
@@ -118,5 +115,14 @@ class UserRepositoryImpl (val api: ApiService, val apiClothes: ApiClothesService
                 sourceFactory.sourceLiveData.value?.invalidate()
             }
         )
+    }
+
+    override suspend fun getInvoiceDetail(invoiceId: Int?): LiveData<Result<ObjectResponse<InvoiceDetail>>> {
+        return object :
+            NetworkBoundResource<ObjectResponse<InvoiceDetail>, ObjectResponse<InvoiceDetail>>() {
+            override fun processResponse(response: ObjectResponse<InvoiceDetail>) = response
+            override suspend fun createCall(): Response<ObjectResponse<InvoiceDetail>> =
+                apiClothes.getInvoiceDetail(invoiceId)
+        }.build().asLiveData()
     }
 }

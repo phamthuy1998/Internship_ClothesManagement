@@ -8,7 +8,6 @@ import android.widget.AdapterView
 import androidx.databinding.ViewDataBinding
 import androidx.lifecycle.ViewModelProviders
 import com.ptithcm.core.BuildConfig
-import com.ptithcm.core.CoreApplication
 import com.ptithcm.core.model.CreditCard
 import com.ptithcm.core.util.ObjectHandler
 import com.ptithcm.ptshop.R
@@ -219,7 +218,7 @@ class CreditCardDetailFragment : BaseFragment<FragmentDetailCreditCardBinding>()
             }
             R.id.btnOk -> {
                 (requireActivity() as? BaseActivity<*>)?.closePopup()
-                CoreApplication.instance.cart?.creditCard = null
+                listenerViewModel.changePayment.value = CreditCard()
                 navController.popBackStack()
             }
             R.id.ivRight -> {

@@ -8,4 +8,9 @@
         android:id="@+id/invoiceBookFragment"
         android:name="com.ptithcm.ptshop.view.invoices.InvoicesBookFragment"
         android:label="InvoiceBookFragment" />
+
+    <fragment
+        android:id="@+id/invoiceDetailFragment"
+        android:name="com.ptithcm.ptshop.view.invoices.InvoiceDetailFragment"
+        android:label="InvoiceDetailFragment" />
 </navigation>

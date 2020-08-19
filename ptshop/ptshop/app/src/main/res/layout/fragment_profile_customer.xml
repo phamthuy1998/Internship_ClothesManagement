@@ -168,8 +168,9 @@
                 android:drawableStart="@drawable/ic_invoice"
                 android:drawableEnd="@drawable/ic_right_arrow"
                 android:gravity="center_vertical"
+                android:drawableTint="@color/black"
                 android:onClick="@{(v) -> parentFragment.onClick(v)}"
-                android:text="@string/invoices"
+                android:text="@string/invoice_book"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/payment_method_btn" />
 

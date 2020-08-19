@@ -77,7 +77,6 @@ class ColoursFragment : BaseFragment<FragmentColoursBinding>(), View.OnClickList
             }
             R.id.btnApply -> {
                 coloursSelected()
-                refineViewModel.refineLiveData.value = Pair(refineParam ?: RefineParam(), false)
                 navController.popBackStack()
             }
         }

@@ -54,9 +54,6 @@ class MainCategoriesRefineFragment : BaseFragment<FragmentMainCategoriesRefineBi
 
     override fun bindViewModel() {
         super.bindViewModel()
-        viewModelRefine.categoriesParamLiveData.observe(this, Observer {
-            viewModel.requestMainCategories(it.first.copyCategoryRefine(), it.second)
-        })
         viewModel.categoriesMainRefineLiveData.observe(this, Observer {
             initChoose(it)
             categoriesSelected?.addAll(refineParam?.categories ?: arrayListOf())
@@ -81,15 +78,13 @@ class MainCategoriesRefineFragment : BaseFragment<FragmentMainCategoriesRefineBi
 
             R.id.btnApply -> {
                 refineParam?.categories = categoriesSelected
-                viewModelRefine.refineLiveData.value = Pair(refineParam, false)
                 navController.popBackStack()
             }
         }
     }
 
     private fun setupToolbar() {
-        val title = viewModelRefine.categoriesParamLiveData.value?.first?.name
-            ?: getString(R.string.all_categories)
+        val title = getString(R.string.all_categories)
         (requireActivity() as? BaseActivity<*>)?.apply {
             initToolbar(hasBackRight = false, hasLeft = false, hasRight = false)
             setupToolbar(if (title.contains(VIEW_ALL)) title.substringAfterLast(VIEW_ALL) else title)
