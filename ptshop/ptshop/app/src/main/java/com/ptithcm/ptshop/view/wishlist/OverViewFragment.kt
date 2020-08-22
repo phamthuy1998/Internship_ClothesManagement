@@ -1,7 +1,6 @@
 package com.ptithcm.ptshop.view.wishlist
 
 import android.view.View
-import com.ptithcm.core.model.Image
 import com.ptithcm.ptshop.R
 import com.ptithcm.ptshop.base.BaseFragment
 import com.ptithcm.ptshop.databinding.FragmentOverViewBinding
@@ -30,10 +29,11 @@ class OverViewFragment: BaseFragment<FragmentOverViewBinding>() {
     }
 
     private fun setUpViewpager(){
-        val list = arguments?.getParcelableArrayList<Image>("list")
+        val list = arguments?.getStringArrayList("list")
         val pos = arguments?.getInt("pos", 0) ?: 0
 
-        viewBinding.vpImage.adapter = ImageZoomPagerAdapter( childFragmentManager,list as ArrayList<Image>)
+        viewBinding.vpImage.adapter =
+            ImageZoomPagerAdapter(childFragmentManager, list ?: arrayListOf())
         viewBinding.vpImage.currentItem = pos
         viewBinding.indicator.setupWithViewPager(viewBinding.vpImage)
     }

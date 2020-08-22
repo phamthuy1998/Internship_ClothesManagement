@@ -64,6 +64,7 @@ class ProductDetailFragment : BaseFragment<FragmentProductDetailBinding>() {
             viewBinding.item = productDetail
             setUpToolBar()
             bindProduct()
+            setUpViewPager()
         })
     }
 

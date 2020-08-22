@@ -8,7 +8,7 @@ import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.SimpleItemAnimator
-import com.ptithcm.core.model.Product
+import com.ptithcm.core.model.ProductClothes
 import com.ptithcm.core.util.ObjectHandler
 import com.ptithcm.ptshop.R
 import com.ptithcm.ptshop.base.BaseActivity
@@ -36,7 +36,7 @@ class WishListFragment : BaseFragment<FragmentWishListBinding>() {
     private val adapter = WishListAdapter { it: Any?, pos: Int? ->
         when (it) {
             // click to see detail
-            is Product -> {
+            is ProductClothes -> {
                 navController.navigateAnimation(
                     R.id.nav_product,
                     bundle = bundleOf(KEY_ARGUMENT to it)
