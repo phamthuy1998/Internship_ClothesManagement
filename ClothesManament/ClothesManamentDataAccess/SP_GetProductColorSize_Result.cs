@@ -10,19 +10,19 @@
 namespace ClothesManamentDataAccess
 {
     using System;
-    using System.Collections.Generic;
     
-    public partial class ImportCouponDetail
+    public partial class SP_GetProductColorSize_Result
     {
-        public int idCoupon { get; set; }
-        public int idProduct { get; set; }
+        public int productID { get; set; }
+        public string title { get; set; }
+        public int sizeId { get; set; }
+        public string sizeName { get; set; }
+        public int colorID { get; set; }
+        public string colorName { get; set; }
         public Nullable<int> quantity { get; set; }
-        public Nullable<double> price { get; set; }
-        public int colorId { get; set; }
-        public int sizeID { get; set; }
-    
-        public virtual ImportCoupon ImportCoupon { get; set; }
-        public virtual Product Product { get; set; }
-        public virtual ProductSizeColor ProductSizeColor { get; set; }
+        public Nullable<int> active { get; set; }
+        public string colorHex { get; set; }
+        public string name { get; set; }
+        public string brandName { get; set; }
     }
 }

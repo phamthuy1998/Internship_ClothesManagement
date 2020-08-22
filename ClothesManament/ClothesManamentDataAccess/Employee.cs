@@ -18,6 +18,7 @@ namespace ClothesManamentDataAccess
         public Employee()
         {
             this.ImportCoupons = new HashSet<ImportCoupon>();
+            this.Invoices = new HashSet<Invoice>();
         }
     
         public int id { get; set; }
@@ -31,9 +32,12 @@ namespace ClothesManamentDataAccess
         public Nullable<int> isWorking { get; set; }
         public Nullable<int> idAccount { get; set; }
         public string avatar { get; set; }
+        public Nullable<int> active { get; set; }
     
         public virtual Account Account { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ImportCoupon> ImportCoupons { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Invoice> Invoices { get; set; }
     }
 }

@@ -45,6 +45,7 @@ namespace ClothesManamentDataAccess
         public virtual DbSet<Size> Sizes { get; set; }
         public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
         public virtual DbSet<Role> Roles { get; set; }
+        public virtual DbSet<InvoiceStatu> InvoiceStatus { get; set; }
     
         public virtual ObjectResult<Nullable<int>> ChangePassword(Nullable<int> userId, string oldPass, string newPass)
         {
@@ -861,6 +862,28 @@ namespace ClothesManamentDataAccess
                 new ObjectParameter("email", typeof(string));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("SP_AuthAccount", emailParameter);
+        }
+    
+        public virtual ObjectResult<Nullable<double>> Sp_GetPriceInvoice(Nullable<int> orderID)
+        {
+            var orderIDParameter = orderID.HasValue ?
+                new ObjectParameter("orderID", orderID) :
+                new ObjectParameter("orderID", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<double>>("Sp_GetPriceInvoice", orderIDParameter);
+        }
+    
+        public virtual ObjectResult<SP_GetProductColorSize_Result> SP_GetProductColorSize(Nullable<int> categoryId, Nullable<int> providerId)
+        {
+            var categoryIdParameter = categoryId.HasValue ?
+                new ObjectParameter("categoryId", categoryId) :
+                new ObjectParameter("categoryId", typeof(int));
+    
+            var providerIdParameter = providerId.HasValue ?
+                new ObjectParameter("providerId", providerId) :
+                new ObjectParameter("providerId", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_GetProductColorSize_Result>("SP_GetProductColorSize", categoryIdParameter, providerIdParameter);
         }
     }
 }

@@ -12,12 +12,9 @@ namespace ClothesManamentDataAccess
     using System;
     using System.Collections.Generic;
     
-    public partial class Image
+    public partial class InvoiceStatu
     {
         public int id { get; set; }
-        public string imageUrl { get; set; }
-        public Nullable<int> productId { get; set; }
-    
-        public virtual Product Product { get; set; }
+        public string statusName { get; set; }
     }
 }

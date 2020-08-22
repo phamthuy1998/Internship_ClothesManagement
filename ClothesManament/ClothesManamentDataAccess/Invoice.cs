@@ -31,9 +31,13 @@ namespace ClothesManamentDataAccess
         public Nullable<int> statusOrderId { get; set; }
         public Nullable<System.DateTime> deliveryDate { get; set; }
         public Nullable<int> active { get; set; }
+        public Nullable<int> employeeId { get; set; }
+        public string payment { get; set; }
+        public Nullable<int> isPaid { get; set; }
     
         public virtual Account Account { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<InvoiceItem> InvoiceItems { get; set; }
+        public virtual Employee Employee { get; set; }
     }
 }
