@@ -41,9 +41,9 @@ namespace ClothesManament.Controllers
 
             var listImage = entities.SP_ImagesOfProduct(productID).ToList();
             var providerDetail = entities.SP_GetProviderDetail(productDetail.providerId).FirstOrDefault();
-            var colors = entities.SP_GetColorsOfProduct(productDetail.providerId).ToList();
-            var sizes = entities.SP_GetSizesOfProduct(productDetail.providerId).ToList();
-            var colorsSizes = entities.SP_GetSizesColorsOfProduct(productDetail.providerId).ToList();
+            var colors = entities.SP_GetColorsOfProduct(productID).ToList();
+            var sizes = entities.SP_GetSizesOfProduct(productID).ToList();
+            var colorsSizes = entities.SP_GetSizesColorsOfProduct(productID).ToList();
 
             return new Models.ProductDetail()
             {
@@ -263,9 +263,9 @@ namespace ClothesManament.Controllers
             }
             var listImage = await Task.Run(() => entities.SP_ImagesOfProduct(productID).ToList());
             var providerDetail = await Task.Run(() => entities.SP_GetProviderDetail(productDetail.providerId).FirstOrDefault());
-            var colors = await Task.Run(() => entities.SP_GetColorsOfProduct(productDetail.id).ToList());
-            var sizes = await Task.Run(() => entities.SP_GetSizesOfProduct(productDetail.providerId).ToList());
-            var colorsSizes = await Task.Run(() => entities.SP_GetSizesColorsOfProduct(productDetail.providerId).ToList());
+            var colors = await Task.Run(() => entities.SP_GetColorsOfProduct(productID).ToList());
+            var sizes = await Task.Run(() => entities.SP_GetSizesOfProduct(productID).ToList());
+            var colorsSizes = await Task.Run(() => entities.SP_GetSizesColorsOfProduct(productID).ToList());
 
             return new ResponseObjectModel<Models.ProductDetail>()
             {

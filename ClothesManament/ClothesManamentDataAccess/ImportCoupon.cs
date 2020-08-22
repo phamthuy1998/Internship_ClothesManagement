@@ -21,7 +21,7 @@ namespace ClothesManamentDataAccess
         }
     
         public int id { get; set; }
-        public int date { get; set; }
+        public Nullable<System.DateTime> date { get; set; }
         public Nullable<int> employeeId { get; set; }
     
         public virtual Employee Employee { get; set; }

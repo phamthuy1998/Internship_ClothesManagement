@@ -142,32 +142,40 @@ namespace ClothesManagement.Controllers
                 };
             }
 
-            var email = (await Task.Run(() => entities.SP_GetEmail(orderParam.accountID).FirstOrDefault()));
-            var name = entities.Accounts.FirstOrDefault(x => x.email == email);
-            MailMessage msg = new MailMessage();
-            msg.From = new MailAddress("congnghephanmemptithcm@gmail.com");
-            msg.To.Add(email);
-            msg.Subject = "Xác nhận đơn hàng";
-            MemoryCacheHelper.Add("orderParam", orderParam, DateTimeOffset.UtcNow.AddHours(1));
-
-            msg.Body = createEmailBody(name.username);
+            //var email = (await Task.Run(() => entities.SP_GetEmail(orderParam.accountID).FirstOrDefault()));
+            //var name = entities.Accounts.FirstOrDefault(x => x.email == email);
+            //MailMessage msg = new MailMessage();
+            //msg.From = new MailAddress("congnghephanmemptithcm@gmail.com");
+            //msg.To.Add(email);
+            //msg.Subject = "Xác nhận đơn hàng";
+            //MemoryCacheHelper.Add("orderParam", orderParam, DateTimeOffset.UtcNow.AddHours(1));
+            //msg.Body = createEmailBody(name.username);
             //msg.Priority = MailPriority.High;
-            msg.IsBodyHtml = true;
+            //msg.IsBodyHtml = true;
 
-            using (SmtpClient client = new SmtpClient())
+            //using (SmtpClient client = new SmtpClient())
+            //{
+            //    client.EnableSsl = true;
+            //    client.UseDefaultCredentials = false;
+            //    client.Credentials = new NetworkCredential("congnghephanmemptithcm@gmail.com", "quankhung123");
+            //    client.Host = "smtp.gmail.com";
+            //    client.Port = 587;
+            //    client.DeliveryMethod = SmtpDeliveryMethod.Network;
+            //    client.Send(msg);
+            //    await client.SendMailAsync(msg);
+            //    await Task.FromResult(0);
+            //}
+
+            var messageStr = "";// "Đơn hàng đã được gứi tới " + email + ", vui lòng kiểm tra email để xác nhận đơn hàng!";
+            var orderId = entities.SP_AddOrder(orderParam.accountID, orderParam.address, orderParam.phone, orderParam.name, orderParam.note).FirstOrDefault();
+            var totalPrice = entities.Sp_GetPriceInvoice(orderId);
+            ProductOrder product = new ProductOrder();
+            for (int i = 0; i < orderParam.products.Count; i++)
             {
-                client.EnableSsl = true;
-                client.UseDefaultCredentials = false;
-                client.Credentials = new NetworkCredential("congnghephanmemptithcm@gmail.com", "quankhung123");
-                client.Host = "smtp.gmail.com";
-                client.Port = 587;
-                client.DeliveryMethod = SmtpDeliveryMethod.Network;
-                //client.Send(msg);
-                await client.SendMailAsync(msg);
-                await Task.FromResult(0);
+                product = orderParam.products[i];
+                entities.SP_AddOrderItem(orderId, product.productId, product.colorId, product.sizeId, product.quantity);
             }
 
-            var messageStr = "Đơn hàng đã được gứi tới " + email + ", vui lòng kiểm tra email để xác nhận đơn hàng!";
             var statusStr = true;
             if (orderParam.tokenCard != null && !orderParam.tokenCard.Trim().Equals(""))
             {
@@ -175,10 +183,10 @@ namespace ClothesManagement.Controllers
 
                 var options = new ChargeCreateOptions
                 {
-                    Amount = 100000,
+                    Amount = long.Parse(totalPrice.ToString()),
                     Currency = "vnd",
                     Source = orderParam.tokenCard,
-                    Description = "My First Test Charge (created for API docs)",
+                    Description = "Thanh toan don hang kh id: "+orderParam.accountID,
                 };
                 var service = new ChargeService();
                 Charge charge = service.Create(options);
@@ -192,6 +200,15 @@ namespace ClothesManagement.Controllers
                     messageStr = "Thanh toán thành công.";
                     statusStr = true;
                 }
+            }else
+            {
+                return new ResponseObjectModel<int>()
+                {
+                    message = "đặt hàng thành công",
+                    status = true,
+                    code = 200,
+                    data = 1
+                };
             }
 
             return new ResponseObjectModel<int>()
@@ -201,28 +218,6 @@ namespace ClothesManagement.Controllers
                 code = 200,
                 data = 1
             };
-        }
-
-        private string createEmailBody(string userName, string message)
-        {
-            string body = string.Empty;
-            using (StreamReader reader = new StreamReader(HttpContext.Current.Server.MapPath("/Views/Home/htmlTemplate.cshtml")))
-            {
-                body = reader.ReadToEnd();
-            }
-            body = body.Replace("{UserName}", userName);
-            body = body.Replace("{message}", message);
-            return body;
-        }
-
-
-        [HttpGet]
-        [AcceptVerbs("GET")]
-        [Route("api/getStatusDetail")]
-        public String getStatusOrder()
-        {
-            String res = MemoryCacheHelper.GetValue("orderParam") as String;
-            return res;
         }
 
         [Route("api/confirmOrder")]
@@ -262,5 +257,29 @@ namespace ClothesManagement.Controllers
                 return "Đặt hàng thàng công";
             }
         }
+
+        private string createEmailBody(string userName, string message)
+        {
+            string body = string.Empty;
+            using (StreamReader reader = new StreamReader(HttpContext.Current.Server.MapPath("/Views/Home/htmlTemplate.cshtml")))
+            {
+                body = reader.ReadToEnd();
+            }
+            body = body.Replace("{UserName}", userName);
+            body = body.Replace("{message}", message);
+            return body;
+        }
+
+
+        [HttpGet]
+        [AcceptVerbs("GET")]
+        [Route("api/getStatusDetail")]
+        public String getStatusOrder()
+        {
+            String res = MemoryCacheHelper.GetValue("orderParam") as String;
+            return res;
+        }
+
+
     }
 }
