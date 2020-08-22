@@ -44,6 +44,7 @@ class ShoppingBagFragment : BaseFragment<FragmentShoppingBagBinding>(), View.OnC
         viewBinding.fragment = this
         viewBinding.layoutEmpty.btnStartShopping.setOnClickListener(this)
         isLogin = ObjectHandler.isLogin()
+        ObjectHandler.getCartFromPref()
         val countBags = ObjectHandler.getNumberItem()
         setUpToolBar(countBags)
         setUpRv()

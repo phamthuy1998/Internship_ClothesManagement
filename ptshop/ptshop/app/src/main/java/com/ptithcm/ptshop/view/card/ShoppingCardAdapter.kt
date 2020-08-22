@@ -40,8 +40,7 @@ class ShoppingCardAdapter(val listener: ((Int, Any?) -> Unit)? = null) :
     }
 
     fun submitList(list: ArrayList<ProductClothesDetail>) {
-        productList.clear()
-        productList.addAll(list)
+        productList = list
         notifyDataSetChanged()
     }
 

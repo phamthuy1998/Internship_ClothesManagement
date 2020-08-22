@@ -69,8 +69,8 @@ open class CoreApplication : Application() {
     }
 
     fun clearCart() {
-        this.cart = null
-        prefsUtil.cart = null
+        this.cart = Cart()
+        prefsUtil.cart = Cart()
     }
 
     fun saveCartToPref(cart: Cart?) {
