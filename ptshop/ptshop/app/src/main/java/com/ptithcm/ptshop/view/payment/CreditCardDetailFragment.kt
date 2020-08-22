@@ -213,12 +213,11 @@ class CreditCardDetailFragment : BaseFragment<FragmentDetailCreditCardBinding>()
                     }
             }
             R.id.btnCancel -> {
-                listenerViewModel.changePayment.value = null
                 (requireActivity() as? BaseActivity<*>)?.closePopup()
             }
             R.id.btnOk -> {
                 (requireActivity() as? BaseActivity<*>)?.closePopup()
-                listenerViewModel.changePayment.value = CreditCard()
+                listenerViewModel.changePayment.value = null
                 navController.popBackStack()
             }
             R.id.ivRight -> {

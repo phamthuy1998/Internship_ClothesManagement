@@ -16,6 +16,7 @@ import com.ptithcm.ptshop.R
 import com.ptithcm.ptshop.base.BaseActivity
 import com.ptithcm.ptshop.base.BaseFragment
 import com.ptithcm.ptshop.constant.KEY_ARGUMENT
+import com.ptithcm.ptshop.constant.KEY_DESIGNER
 import com.ptithcm.ptshop.databinding.FragmentProductDetailBinding
 import com.ptithcm.ptshop.ext.*
 import com.ptithcm.ptshop.view.MainActivity
@@ -119,6 +120,12 @@ class ProductDetailFragment : BaseFragment<FragmentProductDetailBinding>() {
                         messageHandler?.runMessageErrorHandler(getString(R.string.login_to_add_wish_list))
                     }
                 }
+            }
+            R.id.tvTitleToolbar -> {
+                navController.navigateAnimation(
+                    R.id.nav_carousel_detail,
+                    bundle = bundleOf(KEY_ARGUMENT to productDetail?.provider, KEY_DESIGNER to true)
+                )
             }
         }
     }
