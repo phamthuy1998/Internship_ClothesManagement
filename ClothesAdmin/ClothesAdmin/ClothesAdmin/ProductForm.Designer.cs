@@ -75,11 +75,13 @@
             this.coladdDate = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colsold = new DevExpress.XtraGrid.Columns.GridColumn();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.btnSaveImg = new System.Windows.Forms.Button();
+            this.btnImageList = new System.Windows.Forms.Button();
+            this.btnChangeImg = new System.Windows.Forms.LinkLabel();
             this.providerComboBox = new System.Windows.Forms.ComboBox();
             this.providerBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.categoryComboBox = new System.Windows.Forms.ComboBox();
             this.categoryBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.btnListImages = new System.Windows.Forms.LinkLabel();
             this.btnCancelAddProvider = new System.Windows.Forms.Button();
             this.btnSizeColor = new System.Windows.Forms.Button();
             this.btnSaveAddProvider = new System.Windows.Forms.Button();
@@ -584,9 +586,11 @@
             // panel1
             // 
             this.panel1.AutoScroll = true;
+            this.panel1.Controls.Add(this.btnSaveImg);
+            this.panel1.Controls.Add(this.btnImageList);
+            this.panel1.Controls.Add(this.btnChangeImg);
             this.panel1.Controls.Add(this.providerComboBox);
             this.panel1.Controls.Add(this.categoryComboBox);
-            this.panel1.Controls.Add(this.btnListImages);
             this.panel1.Controls.Add(this.btnCancelAddProvider);
             this.panel1.Controls.Add(this.btnSizeColor);
             this.panel1.Controls.Add(this.btnSaveAddProvider);
@@ -622,6 +626,46 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(942, 751);
             this.panel1.TabIndex = 0;
+            // 
+            // btnSaveImg
+            // 
+            this.btnSaveImg.BackColor = System.Drawing.Color.White;
+            this.btnSaveImg.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSaveImg.ForeColor = System.Drawing.Color.DarkBlue;
+            this.btnSaveImg.Location = new System.Drawing.Point(776, 566);
+            this.btnSaveImg.Name = "btnSaveImg";
+            this.btnSaveImg.Size = new System.Drawing.Size(147, 52);
+            this.btnSaveImg.TabIndex = 62;
+            this.btnSaveImg.Text = "Save and get link";
+            this.btnSaveImg.UseVisualStyleBackColor = false;
+            this.btnSaveImg.Click += new System.EventHandler(this.btnSaveImg_Click);
+            // 
+            // btnImageList
+            // 
+            this.btnImageList.BackColor = System.Drawing.Color.White;
+            this.btnImageList.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnImageList.ForeColor = System.Drawing.Color.DarkGreen;
+            this.btnImageList.ImageAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.btnImageList.Location = new System.Drawing.Point(572, 645);
+            this.btnImageList.Name = "btnImageList";
+            this.btnImageList.Size = new System.Drawing.Size(171, 63);
+            this.btnImageList.TabIndex = 61;
+            this.btnImageList.Text = "Image list";
+            this.btnImageList.UseVisualStyleBackColor = false;
+            this.btnImageList.Click += new System.EventHandler(this.btnImageList_Click);
+            // 
+            // btnChangeImg
+            // 
+            this.btnChangeImg.AutoSize = true;
+            this.btnChangeImg.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnChangeImg.LinkColor = System.Drawing.SystemColors.MenuHighlight;
+            this.btnChangeImg.Location = new System.Drawing.Point(606, 577);
+            this.btnChangeImg.Name = "btnChangeImg";
+            this.btnChangeImg.Size = new System.Drawing.Size(151, 25);
+            this.btnChangeImg.TabIndex = 60;
+            this.btnChangeImg.TabStop = true;
+            this.btnChangeImg.Text = "Choose image";
+            this.btnChangeImg.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.btnChangeImg_LinkClicked);
             // 
             // providerComboBox
             // 
@@ -659,25 +703,12 @@
             this.categoryBindingSource.DataMember = "Category";
             this.categoryBindingSource.DataSource = this.clothesDataSet;
             // 
-            // btnListImages
-            // 
-            this.btnListImages.AutoSize = true;
-            this.btnListImages.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnListImages.LinkColor = System.Drawing.SystemColors.MenuHighlight;
-            this.btnListImages.Location = new System.Drawing.Point(717, 425);
-            this.btnListImages.Name = "btnListImages";
-            this.btnListImages.Size = new System.Drawing.Size(104, 25);
-            this.btnListImages.TabIndex = 59;
-            this.btnListImages.TabStop = true;
-            this.btnListImages.Text = "Image list";
-            this.btnListImages.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.btnListImages_LinkClicked);
-            // 
             // btnCancelAddProvider
             // 
             this.btnCancelAddProvider.BackColor = System.Drawing.Color.White;
             this.btnCancelAddProvider.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnCancelAddProvider.ForeColor = System.Drawing.Color.Crimson;
-            this.btnCancelAddProvider.Location = new System.Drawing.Point(409, 613);
+            this.btnCancelAddProvider.Location = new System.Drawing.Point(362, 599);
             this.btnCancelAddProvider.Name = "btnCancelAddProvider";
             this.btnCancelAddProvider.Size = new System.Drawing.Size(123, 52);
             this.btnCancelAddProvider.TabIndex = 58;
@@ -691,7 +722,7 @@
             this.btnSizeColor.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSizeColor.ForeColor = System.Drawing.Color.DarkViolet;
             this.btnSizeColor.ImageAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.btnSizeColor.Location = new System.Drawing.Point(687, 488);
+            this.btnSizeColor.Location = new System.Drawing.Point(752, 645);
             this.btnSizeColor.Name = "btnSizeColor";
             this.btnSizeColor.Size = new System.Drawing.Size(171, 63);
             this.btnSizeColor.TabIndex = 57;
@@ -704,7 +735,7 @@
             this.btnSaveAddProvider.BackColor = System.Drawing.Color.White;
             this.btnSaveAddProvider.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSaveAddProvider.ForeColor = System.Drawing.Color.ForestGreen;
-            this.btnSaveAddProvider.Location = new System.Drawing.Point(191, 613);
+            this.btnSaveAddProvider.Location = new System.Drawing.Point(144, 599);
             this.btnSaveAddProvider.Name = "btnSaveAddProvider";
             this.btnSaveAddProvider.Size = new System.Drawing.Size(123, 52);
             this.btnSaveAddProvider.TabIndex = 57;
@@ -718,10 +749,11 @@
             this.thumbnailProduct.ErrorImage = global::ClothesAdmin.Properties.Resources.no_image;
             this.thumbnailProduct.Location = new System.Drawing.Point(572, 82);
             this.thumbnailProduct.Name = "thumbnailProduct";
-            this.thumbnailProduct.Size = new System.Drawing.Size(351, 319);
+            this.thumbnailProduct.Size = new System.Drawing.Size(351, 469);
             this.thumbnailProduct.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.thumbnailProduct.TabIndex = 51;
             this.thumbnailProduct.TabStop = false;
+            this.thumbnailProduct.Click += new System.EventHandler(this.thumbnailProduct_Click);
             // 
             // detailRichTextBox
             // 
@@ -1104,7 +1136,6 @@
         private System.Windows.Forms.PictureBox thumbnailProduct;
         private System.Windows.Forms.Button btnCancelAddProvider;
         private System.Windows.Forms.Button btnSaveAddProvider;
-        private System.Windows.Forms.LinkLabel btnListImages;
         private System.Windows.Forms.BindingSource favoriteProductBindingSource;
         private ClothesDataSetTableAdapters.FavoriteProductTableAdapter favoriteProductTableAdapter;
         private System.Windows.Forms.BindingSource imageBindingSource;
@@ -1122,5 +1153,8 @@
         private ClothesDataSetTableAdapters.ProviderTableAdapter providerTableAdapter;
         private System.Windows.Forms.ComboBox providerComboBox;
         private System.Windows.Forms.Button btnSizeColor;
+        private System.Windows.Forms.LinkLabel btnChangeImg;
+        private System.Windows.Forms.Button btnImageList;
+        private System.Windows.Forms.Button btnSaveImg;
     }
 }

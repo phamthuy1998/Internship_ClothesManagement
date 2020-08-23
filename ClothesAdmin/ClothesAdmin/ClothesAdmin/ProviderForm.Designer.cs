@@ -84,6 +84,8 @@
             this.btnExitProvider = new DevExpress.XtraBars.BarButtonItem();
             this.btnSaveAddProvider = new System.Windows.Forms.Button();
             this.btnCancelAddProvider = new System.Windows.Forms.Button();
+            this.btnSaveImg = new System.Windows.Forms.Button();
+            this.btnChangeImg = new System.Windows.Forms.LinkLabel();
             idLabel = new System.Windows.Forms.Label();
             imageUrlLabel = new System.Windows.Forms.Label();
             brandNameLabel = new System.Windows.Forms.Label();
@@ -239,10 +241,10 @@
             // 
             this.barDockControl4.CausesValidation = false;
             this.barDockControl4.Dock = System.Windows.Forms.DockStyle.Right;
-            this.barDockControl4.Location = new System.Drawing.Point(1900, 30);
+            this.barDockControl4.Location = new System.Drawing.Point(1900, 33);
             this.barDockControl4.Manager = null;
             this.barDockControl4.Margin = new System.Windows.Forms.Padding(2);
-            this.barDockControl4.Size = new System.Drawing.Size(0, 693);
+            this.barDockControl4.Size = new System.Drawing.Size(0, 690);
             // 
             // barManager
             // 
@@ -320,7 +322,7 @@
             this.barDockControl1.Location = new System.Drawing.Point(0, 0);
             this.barDockControl1.Manager = this.barManager;
             this.barDockControl1.Margin = new System.Windows.Forms.Padding(2);
-            this.barDockControl1.Size = new System.Drawing.Size(1900, 30);
+            this.barDockControl1.Size = new System.Drawing.Size(1900, 33);
             // 
             // barDockControl2
             // 
@@ -335,19 +337,19 @@
             // 
             this.barDockControl3.CausesValidation = false;
             this.barDockControl3.Dock = System.Windows.Forms.DockStyle.Left;
-            this.barDockControl3.Location = new System.Drawing.Point(0, 30);
+            this.barDockControl3.Location = new System.Drawing.Point(0, 33);
             this.barDockControl3.Manager = this.barManager;
             this.barDockControl3.Margin = new System.Windows.Forms.Padding(2);
-            this.barDockControl3.Size = new System.Drawing.Size(0, 693);
+            this.barDockControl3.Size = new System.Drawing.Size(0, 690);
             // 
             // barDockControl5
             // 
             this.barDockControl5.CausesValidation = false;
             this.barDockControl5.Dock = System.Windows.Forms.DockStyle.Right;
-            this.barDockControl5.Location = new System.Drawing.Point(1900, 30);
+            this.barDockControl5.Location = new System.Drawing.Point(1900, 33);
             this.barDockControl5.Manager = this.barManager;
             this.barDockControl5.Margin = new System.Windows.Forms.Padding(2);
-            this.barDockControl5.Size = new System.Drawing.Size(0, 693);
+            this.barDockControl5.Size = new System.Drawing.Size(0, 690);
             // 
             // btnSua
             // 
@@ -415,11 +417,11 @@
             // 
             this.providerGridControl.DataSource = this.providerBindingSource;
             this.providerGridControl.Dock = System.Windows.Forms.DockStyle.Left;
-            this.providerGridControl.Location = new System.Drawing.Point(0, 30);
+            this.providerGridControl.Location = new System.Drawing.Point(0, 33);
             this.providerGridControl.MainView = this.gridView1;
             this.providerGridControl.MenuManager = this.barManager;
             this.providerGridControl.Name = "providerGridControl";
-            this.providerGridControl.Size = new System.Drawing.Size(865, 693);
+            this.providerGridControl.Size = new System.Drawing.Size(865, 690);
             this.providerGridControl.TabIndex = 13;
             this.providerGridControl.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridView1});
@@ -583,6 +585,7 @@
             // 
             // imageProvider
             // 
+            this.imageProvider.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.imageProvider.Cursor = System.Windows.Forms.Cursors.No;
             this.imageProvider.ErrorImage = global::ClothesAdmin.Properties.Resources.no_image;
             this.imageProvider.InitialImage = global::ClothesAdmin.Properties.Resources.no_image;
@@ -628,11 +631,39 @@
             this.btnCancelAddProvider.UseVisualStyleBackColor = false;
             this.btnCancelAddProvider.Click += new System.EventHandler(this.btnCancelAddProvider_Click);
             // 
+            // btnSaveImg
+            // 
+            this.btnSaveImg.BackColor = System.Drawing.Color.White;
+            this.btnSaveImg.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSaveImg.ForeColor = System.Drawing.Color.DarkBlue;
+            this.btnSaveImg.Location = new System.Drawing.Point(1705, 453);
+            this.btnSaveImg.Name = "btnSaveImg";
+            this.btnSaveImg.Size = new System.Drawing.Size(147, 52);
+            this.btnSaveImg.TabIndex = 64;
+            this.btnSaveImg.Text = "Save and get link";
+            this.btnSaveImg.UseVisualStyleBackColor = false;
+            this.btnSaveImg.Click += new System.EventHandler(this.btnSaveImg_Click);
+            // 
+            // btnChangeImg
+            // 
+            this.btnChangeImg.AutoSize = true;
+            this.btnChangeImg.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnChangeImg.LinkColor = System.Drawing.SystemColors.MenuHighlight;
+            this.btnChangeImg.Location = new System.Drawing.Point(1535, 464);
+            this.btnChangeImg.Name = "btnChangeImg";
+            this.btnChangeImg.Size = new System.Drawing.Size(151, 25);
+            this.btnChangeImg.TabIndex = 63;
+            this.btnChangeImg.TabStop = true;
+            this.btnChangeImg.Text = "Choose image";
+            this.btnChangeImg.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.btnChangeImg_LinkClicked);
+            // 
             // ProviderForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1900, 723);
+            this.Controls.Add(this.btnSaveImg);
+            this.Controls.Add(this.btnChangeImg);
             this.Controls.Add(this.imageProvider);
             this.Controls.Add(this.btnCancelAddProvider);
             this.Controls.Add(this.btnSaveAddProvider);
@@ -726,5 +757,7 @@
         private DevExpress.XtraBars.BarButtonItem btnExitProvider;
         private System.Windows.Forms.Button btnCancelAddProvider;
         private System.Windows.Forms.Button btnSaveAddProvider;
+        private System.Windows.Forms.Button btnSaveImg;
+        private System.Windows.Forms.LinkLabel btnChangeImg;
     }
 }

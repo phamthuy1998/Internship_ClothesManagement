@@ -466,6 +466,7 @@
             this.colbuyDate.FieldName = "buyDate";
             this.colbuyDate.MinWidth = 25;
             this.colbuyDate.Name = "colbuyDate";
+            this.colbuyDate.OptionsColumn.AllowEdit = false;
             this.colbuyDate.Visible = true;
             this.colbuyDate.VisibleIndex = 2;
             this.colbuyDate.Width = 94;
@@ -475,6 +476,7 @@
             this.colname.FieldName = "name";
             this.colname.MinWidth = 25;
             this.colname.Name = "colname";
+            this.colname.OptionsColumn.AllowEdit = false;
             this.colname.Visible = true;
             this.colname.VisibleIndex = 3;
             this.colname.Width = 94;
@@ -484,6 +486,7 @@
             this.colphone.FieldName = "phone";
             this.colphone.MinWidth = 25;
             this.colphone.Name = "colphone";
+            this.colphone.OptionsColumn.AllowEdit = false;
             this.colphone.Visible = true;
             this.colphone.VisibleIndex = 4;
             this.colphone.Width = 94;
@@ -493,6 +496,7 @@
             this.coladdress.FieldName = "address";
             this.coladdress.MinWidth = 25;
             this.coladdress.Name = "coladdress";
+            this.coladdress.OptionsColumn.AllowEdit = false;
             this.coladdress.Visible = true;
             this.coladdress.VisibleIndex = 5;
             this.coladdress.Width = 94;
@@ -502,6 +506,7 @@
             this.colnote.FieldName = "note";
             this.colnote.MinWidth = 25;
             this.colnote.Name = "colnote";
+            this.colnote.OptionsColumn.AllowEdit = false;
             this.colnote.Visible = true;
             this.colnote.VisibleIndex = 6;
             this.colnote.Width = 94;
@@ -511,6 +516,7 @@
             this.coluserID.FieldName = "userID";
             this.coluserID.MinWidth = 25;
             this.coluserID.Name = "coluserID";
+            this.coluserID.OptionsColumn.AllowEdit = false;
             this.coluserID.Visible = true;
             this.coluserID.VisibleIndex = 7;
             this.coluserID.Width = 94;
@@ -520,6 +526,7 @@
             this.colstatusOrderId.FieldName = "statusOrderId";
             this.colstatusOrderId.MinWidth = 25;
             this.colstatusOrderId.Name = "colstatusOrderId";
+            this.colstatusOrderId.OptionsColumn.AllowEdit = false;
             this.colstatusOrderId.Visible = true;
             this.colstatusOrderId.VisibleIndex = 8;
             this.colstatusOrderId.Width = 94;
@@ -529,6 +536,7 @@
             this.coldeliveryDate.FieldName = "deliveryDate";
             this.coldeliveryDate.MinWidth = 25;
             this.coldeliveryDate.Name = "coldeliveryDate";
+            this.coldeliveryDate.OptionsColumn.AllowEdit = false;
             this.coldeliveryDate.Visible = true;
             this.coldeliveryDate.VisibleIndex = 9;
             this.coldeliveryDate.Width = 94;
@@ -538,6 +546,7 @@
             this.colactive.FieldName = "active";
             this.colactive.MinWidth = 25;
             this.colactive.Name = "colactive";
+            this.colactive.OptionsColumn.AllowEdit = false;
             this.colactive.Visible = true;
             this.colactive.VisibleIndex = 10;
             this.colactive.Width = 94;
@@ -547,6 +556,7 @@
             this.colemployeeId.FieldName = "employeeId";
             this.colemployeeId.MinWidth = 25;
             this.colemployeeId.Name = "colemployeeId";
+            this.colemployeeId.OptionsColumn.AllowEdit = false;
             this.colemployeeId.Visible = true;
             this.colemployeeId.VisibleIndex = 11;
             this.colemployeeId.Width = 94;

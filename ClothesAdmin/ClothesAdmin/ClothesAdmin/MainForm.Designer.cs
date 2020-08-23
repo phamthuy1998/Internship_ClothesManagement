@@ -45,6 +45,7 @@
             this.ribbon = new DevExpress.XtraBars.Ribbon.RibbonControl();
             this.backstageViewControl1 = new DevExpress.XtraBars.Ribbon.BackstageViewControl();
             this.backstageViewClientControl1 = new DevExpress.XtraBars.Ribbon.BackstageViewClientControl();
+            this.btnSaveImg = new System.Windows.Forms.Button();
             this.tvAvatar = new DevExpress.XtraEditors.TextEdit();
             this.employeeBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.clothesDataSet = new ClothesAdmin.ClothesDataSet();
@@ -98,6 +99,7 @@
             this.btnProductStatistic = new DevExpress.XtraBars.BarButtonItem();
             this.btnImportCouponStattistic = new DevExpress.XtraBars.BarButtonItem();
             this.btnInvoiceStatis = new DevExpress.XtraBars.BarButtonItem();
+            this.btnStatistic1 = new DevExpress.XtraBars.BarButtonItem();
             this.rbHome = new DevExpress.XtraBars.Ribbon.RibbonPage();
             this.ribbonPageGroup1 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.ribbonPageGroup4 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
@@ -110,9 +112,8 @@
             this.rbHRM = new DevExpress.XtraBars.Ribbon.RibbonPage();
             this.ribbonPageGroup2 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.ribbonPage1 = new DevExpress.XtraBars.Ribbon.RibbonPage();
-            this.ribbonPageGroup10 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
-            this.ribbonPageGroup11 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.ribbonPageGroup12 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
+            this.ribbonPageGroup10 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.ribbonPage3 = new DevExpress.XtraBars.Ribbon.RibbonPage();
             this.ribbonPage5 = new DevExpress.XtraBars.Ribbon.RibbonPage();
             this.ribbonPage7 = new DevExpress.XtraBars.Ribbon.RibbonPage();
@@ -178,7 +179,7 @@
             // firstNameLabel
             // 
             firstNameLabel.AutoSize = true;
-            firstNameLabel.Location = new System.Drawing.Point(100, 259);
+            firstNameLabel.Location = new System.Drawing.Point(107, 326);
             firstNameLabel.Name = "firstNameLabel";
             firstNameLabel.Size = new System.Drawing.Size(71, 17);
             firstNameLabel.TabIndex = 7;
@@ -187,7 +188,7 @@
             // lastNameLabel
             // 
             lastNameLabel.AutoSize = true;
-            lastNameLabel.Location = new System.Drawing.Point(100, 300);
+            lastNameLabel.Location = new System.Drawing.Point(107, 367);
             lastNameLabel.Name = "lastNameLabel";
             lastNameLabel.Size = new System.Drawing.Size(74, 17);
             lastNameLabel.TabIndex = 9;
@@ -196,7 +197,7 @@
             // phoneLabel
             // 
             phoneLabel.AutoSize = true;
-            phoneLabel.Location = new System.Drawing.Point(100, 342);
+            phoneLabel.Location = new System.Drawing.Point(107, 409);
             phoneLabel.Name = "phoneLabel";
             phoneLabel.Size = new System.Drawing.Size(49, 17);
             phoneLabel.TabIndex = 11;
@@ -205,7 +206,7 @@
             // addressLabel
             // 
             addressLabel.AutoSize = true;
-            addressLabel.Location = new System.Drawing.Point(100, 382);
+            addressLabel.Location = new System.Drawing.Point(107, 449);
             addressLabel.Name = "addressLabel";
             addressLabel.Size = new System.Drawing.Size(60, 17);
             addressLabel.TabIndex = 13;
@@ -214,7 +215,7 @@
             // birthdayLabel
             // 
             birthdayLabel.AutoSize = true;
-            birthdayLabel.Location = new System.Drawing.Point(100, 427);
+            birthdayLabel.Location = new System.Drawing.Point(107, 494);
             birthdayLabel.Name = "birthdayLabel";
             birthdayLabel.Size = new System.Drawing.Size(60, 17);
             birthdayLabel.TabIndex = 19;
@@ -223,7 +224,7 @@
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new System.Drawing.Point(100, 217);
+            label1.Location = new System.Drawing.Point(107, 284);
             label1.Name = "label1";
             label1.Size = new System.Drawing.Size(70, 17);
             label1.TabIndex = 7;
@@ -317,10 +318,11 @@
             this.btnInvoiceStatistic,
             this.btnProductStatistic,
             this.btnImportCouponStattistic,
-            this.btnInvoiceStatis});
+            this.btnInvoiceStatis,
+            this.btnStatistic1});
             this.ribbon.Location = new System.Drawing.Point(0, 0);
             this.ribbon.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.ribbon.MaxItemId = 294;
+            this.ribbon.MaxItemId = 295;
             this.ribbon.Name = "ribbon";
             this.ribbon.Pages.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPage[] {
             this.rbHome,
@@ -347,12 +349,13 @@
             this.backstageViewControl1.OwnerControl = this.ribbon;
             this.backstageViewControl1.SelectedTab = this.backstageViewTabItem1;
             this.backstageViewControl1.SelectedTabIndex = 0;
-            this.backstageViewControl1.Size = new System.Drawing.Size(950, 679);
+            this.backstageViewControl1.Size = new System.Drawing.Size(1112, 900);
             this.backstageViewControl1.TabIndex = 3;
             this.backstageViewControl1.VisibleInDesignTime = true;
             // 
             // backstageViewClientControl1
             // 
+            this.backstageViewClientControl1.Controls.Add(this.btnSaveImg);
             this.backstageViewClientControl1.Controls.Add(this.tvAvatar);
             this.backstageViewClientControl1.Controls.Add(label1);
             this.backstageViewClientControl1.Controls.Add(firstNameLabel);
@@ -370,14 +373,27 @@
             this.backstageViewClientControl1.Controls.Add(this.picAvater);
             this.backstageViewClientControl1.Location = new System.Drawing.Point(200, 78);
             this.backstageViewClientControl1.Name = "backstageViewClientControl1";
-            this.backstageViewClientControl1.Size = new System.Drawing.Size(749, 600);
+            this.backstageViewClientControl1.Size = new System.Drawing.Size(911, 821);
             this.backstageViewClientControl1.TabIndex = 1;
             this.backstageViewClientControl1.Load += new System.EventHandler(this.backstageViewClientControl1_Load_1);
+            // 
+            // btnSaveImg
+            // 
+            this.btnSaveImg.BackColor = System.Drawing.Color.White;
+            this.btnSaveImg.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSaveImg.ForeColor = System.Drawing.Color.DarkBlue;
+            this.btnSaveImg.Location = new System.Drawing.Point(397, 212);
+            this.btnSaveImg.Name = "btnSaveImg";
+            this.btnSaveImg.Size = new System.Drawing.Size(147, 42);
+            this.btnSaveImg.TabIndex = 63;
+            this.btnSaveImg.Text = "Save and get link";
+            this.btnSaveImg.UseVisualStyleBackColor = false;
+            this.btnSaveImg.Click += new System.EventHandler(this.btnSaveImg_Click);
             // 
             // tvAvatar
             // 
             this.tvAvatar.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.employeeBindingSource, "avatar", true));
-            this.tvAvatar.Location = new System.Drawing.Point(243, 212);
+            this.tvAvatar.Location = new System.Drawing.Point(250, 279);
             this.tvAvatar.MenuManager = this.ribbon;
             this.tvAvatar.Name = "tvAvatar";
             this.tvAvatar.Size = new System.Drawing.Size(441, 22);
@@ -397,7 +413,7 @@
             // firstNameTextEdit
             // 
             this.firstNameTextEdit.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.employeeBindingSource, "firstName", true));
-            this.firstNameTextEdit.Location = new System.Drawing.Point(243, 256);
+            this.firstNameTextEdit.Location = new System.Drawing.Point(250, 323);
             this.firstNameTextEdit.MenuManager = this.ribbon;
             this.firstNameTextEdit.Name = "firstNameTextEdit";
             this.firstNameTextEdit.Size = new System.Drawing.Size(269, 22);
@@ -406,7 +422,7 @@
             // lastNameTextEdit
             // 
             this.lastNameTextEdit.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.employeeBindingSource, "lastName", true));
-            this.lastNameTextEdit.Location = new System.Drawing.Point(243, 297);
+            this.lastNameTextEdit.Location = new System.Drawing.Point(250, 364);
             this.lastNameTextEdit.MenuManager = this.ribbon;
             this.lastNameTextEdit.Name = "lastNameTextEdit";
             this.lastNameTextEdit.Size = new System.Drawing.Size(184, 22);
@@ -415,7 +431,7 @@
             // phoneTextEdit
             // 
             this.phoneTextEdit.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.employeeBindingSource, "phone", true));
-            this.phoneTextEdit.Location = new System.Drawing.Point(243, 339);
+            this.phoneTextEdit.Location = new System.Drawing.Point(250, 406);
             this.phoneTextEdit.MenuManager = this.ribbon;
             this.phoneTextEdit.Name = "phoneTextEdit";
             this.phoneTextEdit.Size = new System.Drawing.Size(184, 22);
@@ -424,7 +440,7 @@
             // addressTextEdit
             // 
             this.addressTextEdit.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.employeeBindingSource, "address", true));
-            this.addressTextEdit.Location = new System.Drawing.Point(243, 379);
+            this.addressTextEdit.Location = new System.Drawing.Point(250, 446);
             this.addressTextEdit.MenuManager = this.ribbon;
             this.addressTextEdit.Name = "addressTextEdit";
             this.addressTextEdit.Size = new System.Drawing.Size(441, 22);
@@ -434,7 +450,7 @@
             // 
             this.birthdayDateEdit.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.employeeBindingSource, "birthday", true));
             this.birthdayDateEdit.EditValue = null;
-            this.birthdayDateEdit.Location = new System.Drawing.Point(243, 424);
+            this.birthdayDateEdit.Location = new System.Drawing.Point(250, 491);
             this.birthdayDateEdit.MenuManager = this.ribbon;
             this.birthdayDateEdit.Name = "birthdayDateEdit";
             this.birthdayDateEdit.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
@@ -448,7 +464,7 @@
             // 
             this.linkChangeAvatar.AutoSize = true;
             this.linkChangeAvatar.LinkColor = System.Drawing.SystemColors.MenuHighlight;
-            this.linkChangeAvatar.Location = new System.Drawing.Point(302, 182);
+            this.linkChangeAvatar.Location = new System.Drawing.Point(278, 225);
             this.linkChangeAvatar.Name = "linkChangeAvatar";
             this.linkChangeAvatar.Size = new System.Drawing.Size(101, 17);
             this.linkChangeAvatar.TabIndex = 5;
@@ -460,7 +476,7 @@
             // 
             this.btnSaveInfo.BackColor = System.Drawing.Color.White;
             this.btnSaveInfo.ForeColor = System.Drawing.SystemColors.MenuHighlight;
-            this.btnSaveInfo.Location = new System.Drawing.Point(273, 499);
+            this.btnSaveInfo.Location = new System.Drawing.Point(280, 566);
             this.btnSaveInfo.Name = "btnSaveInfo";
             this.btnSaveInfo.Size = new System.Drawing.Size(154, 40);
             this.btnSaveInfo.TabIndex = 4;
@@ -470,15 +486,16 @@
             // 
             // picAvater
             // 
+            this.picAvater.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.picAvater.ErrorImage = global::ClothesAdmin.Properties.Resources.no_image;
             this.picAvater.InitialImage = global::ClothesAdmin.Properties.Resources.no_image;
-            this.picAvater.Location = new System.Drawing.Point(278, 13);
-            this.picAvater.MaximumSize = new System.Drawing.Size(153, 143);
+            this.picAvater.Location = new System.Drawing.Point(319, 8);
             this.picAvater.Name = "picAvater";
-            this.picAvater.Size = new System.Drawing.Size(153, 143);
-            this.picAvater.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.picAvater.Size = new System.Drawing.Size(153, 182);
+            this.picAvater.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
             this.picAvater.TabIndex = 0;
             this.picAvater.TabStop = false;
+            this.picAvater.Click += new System.EventHandler(this.picAvater_Click);
             // 
             // backstageViewClientControl2
             // 
@@ -491,7 +508,7 @@
             this.backstageViewClientControl2.Controls.Add(this.usernameTextEdit);
             this.backstageViewClientControl2.Location = new System.Drawing.Point(200, 62);
             this.backstageViewClientControl2.Name = "backstageViewClientControl2";
-            this.backstageViewClientControl2.Size = new System.Drawing.Size(750, 617);
+            this.backstageViewClientControl2.Size = new System.Drawing.Size(912, 838);
             this.backstageViewClientControl2.TabIndex = 4;
             this.backstageViewClientControl2.Load += new System.EventHandler(this.backstageViewClientControl2_Load);
             // 
@@ -787,8 +804,19 @@
             // 
             this.btnInvoiceStatis.Caption = "Invoice";
             this.btnInvoiceStatis.Id = 293;
+            this.btnInvoiceStatis.ImageOptions.Image = global::ClothesAdmin.Properties.Resources.invoice;
+            this.btnInvoiceStatis.ImageOptions.LargeImage = global::ClothesAdmin.Properties.Resources.invoice;
             this.btnInvoiceStatis.Name = "btnInvoiceStatis";
             this.btnInvoiceStatis.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnInvoiceStatis_ItemClick);
+            // 
+            // btnStatistic1
+            // 
+            this.btnStatistic1.Caption = "Product";
+            this.btnStatistic1.Id = 294;
+            this.btnStatistic1.ImageOptions.Image = global::ClothesAdmin.Properties.Resources.dress;
+            this.btnStatistic1.ImageOptions.LargeImage = global::ClothesAdmin.Properties.Resources.dress;
+            this.btnStatistic1.Name = "btnStatistic1";
+            this.btnStatistic1.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnStatistic1_ItemClick);
             // 
             // rbHome
             // 
@@ -863,28 +891,22 @@
             // ribbonPage1
             // 
             this.ribbonPage1.Groups.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPageGroup[] {
-            this.ribbonPageGroup10,
-            this.ribbonPageGroup11,
-            this.ribbonPageGroup12});
+            this.ribbonPageGroup12,
+            this.ribbonPageGroup10});
             this.ribbonPage1.Name = "ribbonPage1";
             this.ribbonPage1.Text = "Statistics";
-            // 
-            // ribbonPageGroup10
-            // 
-            this.ribbonPageGroup10.ItemLinks.Add(this.btnProductStatistic);
-            this.ribbonPageGroup10.Name = "ribbonPageGroup10";
-            // 
-            // ribbonPageGroup11
-            // 
-            this.ribbonPageGroup11.ItemLinks.Add(this.btnImportCouponStattistic);
-            this.ribbonPageGroup11.Name = "ribbonPageGroup11";
-            this.ribbonPageGroup11.Text = "ribbonPageGroup11";
             // 
             // ribbonPageGroup12
             // 
             this.ribbonPageGroup12.ItemLinks.Add(this.btnInvoiceStatis);
             this.ribbonPageGroup12.Name = "ribbonPageGroup12";
             this.ribbonPageGroup12.Text = "ribbonPageGroup12";
+            // 
+            // ribbonPageGroup10
+            // 
+            this.ribbonPageGroup10.ItemLinks.Add(this.btnStatistic1);
+            this.ribbonPageGroup10.Name = "ribbonPageGroup10";
+            this.ribbonPageGroup10.Text = "ribbonPageGroup10";
             // 
             // ribbonPage3
             // 
@@ -993,6 +1015,7 @@
             this.tableAdapterManager.ImportCouponDetailTableAdapter = null;
             this.tableAdapterManager.ImportCouponTableAdapter = null;
             this.tableAdapterManager.InvoiceItemTableAdapter = null;
+            this.tableAdapterManager.InvoiceStatusTableAdapter = null;
             this.tableAdapterManager.InvoiceTableAdapter = null;
             this.tableAdapterManager.ProductSizeColorTableAdapter = null;
             this.tableAdapterManager.ProductTableAdapter = null;
@@ -1196,11 +1219,12 @@
         private DevExpress.XtraBars.BarButtonItem btnProductStatistic;
         private DevExpress.XtraBars.BarButtonItem btnImportCouponStattistic;
         private DevExpress.XtraBars.Ribbon.RibbonPage ribbonPage1;
-        private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroup10;
-        private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroup11;
         private DevExpress.XtraBars.Ribbon.RibbonPage ribbonPage6;
         private DevExpress.XtraBars.BarButtonItem btnInvoiceStatis;
         private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroup12;
         private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroup8;
+        private System.Windows.Forms.Button btnSaveImg;
+        private DevExpress.XtraBars.BarButtonItem btnStatistic1;
+        private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroup10;
     }
 }

@@ -50,6 +50,11 @@ namespace ClothesAdmin
             // TODO: This line of code loads data into the 'clothesDataSet.ImportCouponDetail' table. You can move, or remove it, as needed.
             this.importCouponDetailTableAdapter.Fill(this.clothesDataSet.ImportCouponDetail);
             // TODO: This line of code loads data into the 'clothesDataSet.ImportCoupon' table. You can move, or remove it, as needed.
+            // TODO: This line of code loads data into the 'clothesDataSet.Size' table. You can move, or remove it, as needed.
+
+            this.sizeTableAdapter.Fill(this.clothesDataSet.Size);
+            // TODO: This line of code loads data into the 'clothesDataSet.Color' table. You can move, or remove it, as needed.
+            this.colorTableAdapter.Fill(this.clothesDataSet.Color);// , Convert.ToInt16(productComboBox.SelectedValue), Convert.ToInt16(sizeComboBox.SelectedValue)
 
             if (employeeComboBox1.SelectedIndex > 0)
             {
@@ -65,11 +70,7 @@ namespace ClothesAdmin
                 catch (Exception ex) { }
             }
           
-            // TODO: This line of code loads data into the 'clothesDataSet.Size' table. You can move, or remove it, as needed.
-            this.sizeTableAdapter.FillBy(this.clothesDataSet.Size, Convert.ToInt16(productComboBox.SelectedValue));
-            // TODO: This line of code loads data into the 'clothesDataSet.Color' table. You can move, or remove it, as needed.
-            this.colorTableAdapter.FillBy(this.clothesDataSet.Color, Convert.ToInt16(productComboBox.SelectedValue), Convert.ToInt16(sizeComboBox.SelectedValue));
-        }
+            }
 
         private void loadDataItem()
         {
@@ -78,6 +79,10 @@ namespace ClothesAdmin
             // TODO: This line of code loads data into the 'clothesDataSet.ImportCouponDetail' table. You can move, or remove it, as needed.
             this.importCouponDetailTableAdapter.Fill(this.clothesDataSet.ImportCouponDetail);
             // TODO: This line of code loads data into the 'clothesDataSet.ImportCoupon' table. You can move, or remove it, as needed.
+            this.sizeTableAdapter.FillBy(this.clothesDataSet.Size, Convert.ToInt16(productComboBox.SelectedValue));
+            // TODO: This line of code loads data into the 'clothesDataSet.Color' table. You can move, or remove it, as needed.
+            this.colorTableAdapter.FillBy(this.clothesDataSet.Color, Convert.ToInt16(productComboBox.SelectedValue), Convert.ToInt16(sizeComboBox.SelectedValue));
+
         }
 
         private void btnSaveIport_Click(object sender, EventArgs e)
@@ -224,12 +229,9 @@ namespace ClothesAdmin
         {
             try
             {
-                idProductSpinEdit.Value = Convert.ToInt32(idProductSpinEdit.EditValue);
+                idProductSpinEdit.Value = Convert.ToInt32(productComboBox.SelectedValue);
                 sizeIDTextBox.Text = sizeComboBox.SelectedValue.ToString();
-                this.sizeTableAdapter.FillBy(this.clothesDataSet.Size, Convert.ToInt16(productComboBox.SelectedValue));
-                // TODO: This line of code loads data into the 'clothesDataSet.Color' table. You can move, or remove it, as needed.
-                this.colorTableAdapter.FillBy(this.clothesDataSet.Color, Convert.ToInt16(productComboBox.SelectedValue), Convert.ToInt16(sizeComboBox.SelectedValue));
-
+               
             }
             catch (Exception ex) { }
         }
@@ -273,7 +275,7 @@ namespace ClothesAdmin
             {
                 sizeIDTextBox.Text = sizeComboBox.SelectedValue.ToString();
                 // TODO: This line of code loads data into the 'clothesDataSet.Color' table. You can move, or remove it, as needed.
-                this.colorTableAdapter.FillBy(this.clothesDataSet.Color, Convert.ToInt16(productComboBox.SelectedValue), Convert.ToInt16(sizeComboBox.SelectedValue));
+                //this.colorTableAdapter.FillBy(this.clothesDataSet.Color, Convert.ToInt16(productComboBox.SelectedValue), Convert.ToInt16(sizeComboBox.SelectedValue));
 
             }
             catch (Exception ex) { }
@@ -288,6 +290,11 @@ namespace ClothesAdmin
                 colorIdTextBox.Text = colorComboBox.SelectedValue.ToString();
             }
             catch (Exception ex) { }
+        }
+
+        private void panel5_Paint(object sender, PaintEventArgs e)
+        {
+
         }
     }
 }

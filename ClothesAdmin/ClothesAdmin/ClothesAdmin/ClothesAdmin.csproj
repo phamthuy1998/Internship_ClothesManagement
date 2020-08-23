@@ -279,6 +279,12 @@
     <Compile Include="InvoiceXReport.Designer.cs">
       <DependentUpon>InvoiceXReport.cs</DependentUpon>
     </Compile>
+    <Compile Include="LoadingDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="LoadingDialog.Designer.cs">
+      <DependentUpon>LoadingDialog.cs</DependentUpon>
+    </Compile>
     <Compile Include="LoginForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -326,6 +332,12 @@
     </Compile>
     <Compile Include="ProductImageForm.Designer.cs">
       <DependentUpon>ProductImageForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ProductReport.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ProductReport.Designer.cs">
+      <DependentUpon>ProductReport.cs</DependentUpon>
     </Compile>
     <Compile Include="ProductSizeColor.cs">
       <DependentUpon>ClothesModel.tt</DependentUpon>
@@ -460,6 +472,9 @@
     <EmbeddedResource Include="InvoiceXReport.resx">
       <DependentUpon>InvoiceXReport.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="LoadingDialog.resx">
+      <DependentUpon>LoadingDialog.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="LoginForm.resx">
       <DependentUpon>LoginForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -471,6 +486,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ProductImageForm.resx">
       <DependentUpon>ProductImageForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ProductReport.resx">
+      <DependentUpon>ProductReport.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ProductStatisticForm.resx">
       <DependentUpon>ProductStatisticForm.cs</DependentUpon>
