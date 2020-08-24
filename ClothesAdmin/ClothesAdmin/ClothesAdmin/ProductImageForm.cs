@@ -8,6 +8,8 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using DevExpress.XtraEditors;
+using System.Drawing.Imaging;
+using Firebase.Storage;
 
 namespace ClothesAdmin
 {
@@ -37,7 +39,7 @@ namespace ClothesAdmin
 
         private void ProductImageForm_Load(object sender, EventArgs e)
         {
-            
+
             loadData();
 
         }
@@ -131,8 +133,56 @@ namespace ClothesAdmin
         {
             try
             {
-                productComboBox.SelectedValue = Convert.ToInt32( productIdTextBox.Text);
-            }catch(Exception ex) { }
+                productComboBox.SelectedValue = Convert.ToInt32(productIdTextBox.Text);
+            }
+            catch (Exception ex) { }
+        }
+
+        private void btnChangeImg_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            OpenFileDialog ofd = new OpenFileDialog();
+            ofd.Title = "Select image";
+            ofd.Filter = "Image Files(*.jpg|*.jpg|*.png|*.jpeg";
+            if (ofd.ShowDialog() == DialogResult.OK)
+            {
+                System.Drawing.Image img = new Bitmap(ofd.FileName);
+                picImage.Image = img.GetThumbnailImage(351, 469, null, new IntPtr());
+            }
+        }
+
+        private async void btnSaveImg_Click(object sender, EventArgs e)
+        {
+
+            if (imageUrlTextBox.Text == null || picImage.Image == null || picImage.Image == Properties.Resources.no_image)
+            {
+                MessageBox.Show("Chưa có hình ảnh, không thể upload", "THÔNG BÁO", MessageBoxButtons.OK);
+                return;
+            }
+            var stream = new System.IO.MemoryStream();
+            picImage.Image.Save(stream, ImageFormat.Jpeg);
+            stream.Position = 0;
+            var task = new FirebaseStorage("ptshop-8b8b3.appspot.com")
+                            .Child("product")
+                            .Child("product_" + idTextBox.Text + "_" + productIdTextBox.Text + ".jpg")
+                            .PutAsync(stream);
+            // Track progress of the upload
+            task.Progress.ProgressChanged += (s, ex) =>
+            {
+                Console.WriteLine($"Progress: {ex.Percentage} %");
+            };
+
+            // await the task to wait until upload completes and get the download url
+            try
+            {
+                var downloadUrl = await task;
+                imageUrlTextBox.Text = downloadUrl;
+                MessageBox.Show("Upload thành công!\n Link: " + downloadUrl, "THÔNG BÁO", MessageBoxButtons.OK);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Err: " + ex.Message, "THÔNG BÁO", MessageBoxButtons.OK);
+
+            }
         }
     }
 }
