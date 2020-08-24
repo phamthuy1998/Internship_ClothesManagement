@@ -1,4 +1,4 @@
-package com.ptithcm.ptshop.view.carousel.adapter
+package com.ptithcm.ptshop.view.search.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -16,7 +16,7 @@ import com.ptithcm.ptshop.base.NetworkStateItemViewHolder
 import com.ptithcm.ptshop.databinding.ItemProductCarouselBinding
 import com.ptithcm.ptshop.databinding.LayoutCountItemProductBinding
 
-class CarouselProductPagedAdapter(
+class SearchProductPagedAdapter(
     private val listener: (product: ProductClothes?, isRefine: Boolean) -> Unit,
     private val listenerAddProduct: ((product: ProductClothes?, position: Int) -> Unit)? = null
 ) :
@@ -94,7 +94,7 @@ class CarouselProductPagedAdapter(
             }
 
             is NetworkStateItemViewHolder -> {
-                holder.bindTo(networkState = networkState )
+                holder.bindTo(networkState = networkState)
             }
         }
     }

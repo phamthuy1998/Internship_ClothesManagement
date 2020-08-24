@@ -7,15 +7,16 @@ import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.ptithcm.core.CoreApplication
+import com.ptithcm.core.model.Filter
 import com.ptithcm.core.model.ProductClothes
-import com.ptithcm.core.model.SearchParams
-import com.ptithcm.core.util.INIT_PAGE
-import com.ptithcm.core.util.PAGE_SIZE
+import com.ptithcm.core.param.ProductsOfProviderRequestParam
 import com.ptithcm.core.vo.Result
 import com.ptithcm.ptshop.R
 import com.ptithcm.ptshop.base.BaseActivity
 import com.ptithcm.ptshop.base.BaseFragment
-import com.ptithcm.ptshop.constant.*
+import com.ptithcm.ptshop.constant.KEY_ARGUMENT
+import com.ptithcm.ptshop.constant.KEY_IS_SHOW_FILTER_BY
+import com.ptithcm.ptshop.constant.KEY_SEARCH
 import com.ptithcm.ptshop.databinding.FragmentCarouselProductBinding
 import com.ptithcm.ptshop.ext.*
 import com.ptithcm.ptshop.util.ScrollHandler
@@ -39,19 +40,12 @@ class CarouselProductFragment : BaseFragment<FragmentCarouselProductBinding>(),
 
     private lateinit var productAdapter: CarouselProductPagedAdapter
     private lateinit var scrollListener: RecyclerView.OnScrollListener
-    private var filterParam: SearchParams? = null
-    private var isInitRefine = true
-    private var isRequestRefine = false
+    private var filterParam: Filter? = Filter()
     private var scrollHandler: ScrollHandler? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        viewModel.getPagingProductsProvider(
-            providersViewModel.provider?.id ?: 0,
-            20,
-            1,
-            CoreApplication.instance.account?.id ?: 0
-        )
+        initRequest()
     }
 
     override fun bindEvent() {
@@ -64,8 +58,7 @@ class CarouselProductFragment : BaseFragment<FragmentCarouselProductBinding>(),
 
     override fun bindViewModel() {
         viewModel.productsProviderLiveData.observe(this, Observer {
-            if (!isRequestRefine)
-                productAdapter.submitList(it)
+            productAdapter.submitList(it)
         })
 
         viewModel.productLoadStatusX.observe(this, Observer {
@@ -81,19 +74,12 @@ class CarouselProductFragment : BaseFragment<FragmentCarouselProductBinding>(),
             }
         })
 
-        viewModel.refineProductLiveData.observe(this, Observer {
-            if (isRequestRefine) {
-                productAdapter.submitList(it)
-            }
-        })
-
         if (!refineViewModel.filterLiveData.hasObservers())
             refineViewModel.filterLiveData.observe(this, Observer {
                 it?.let {
-                    filterParam = it.first
                     if (it.second) {
-                        isRequestRefine = it.second
-                        viewModel.getPagingRefineProduct(it.first)
+                        filterParam = it.first
+                        initRequest(filterParam)
                     }
                 }
             })
@@ -163,9 +149,6 @@ class CarouselProductFragment : BaseFragment<FragmentCarouselProductBinding>(),
 
     private fun eventListener(product: ProductClothes?, isRefine: Boolean) {
         if (isRefine) {
-            if (isInitRefine)
-                filterParam = initRefineParam()
-
             navController.navigateAnimation(
                 R.id.nav_refine,
                 bundle = bundleOf(
@@ -173,7 +156,6 @@ class CarouselProductFragment : BaseFragment<FragmentCarouselProductBinding>(),
                     KEY_IS_SHOW_FILTER_BY to false
                 )
             )
-            this.isInitRefine = false
         } else {
             navController.navigateAnimation(
                 R.id.fragment_product_detail,
@@ -197,16 +179,12 @@ class CarouselProductFragment : BaseFragment<FragmentCarouselProductBinding>(),
         }
     }
 
-    private fun initRefineParam(): SearchParams {
-        return SearchParams(
+    private fun initRequest(filter: Filter? = null) {
+        val request = ProductsOfProviderRequestParam(
+            providerID = providersViewModel.provider?.id,
             accountId = CoreApplication.instance.account?.id,
-            idTypeSearch = providersViewModel.provider?.id,
-            typeSearch = SEARCH_BY_DESIGNER,
-            typeFilter = null,
-            typeSearchFilter = 2,
-            pageNumber = INIT_PAGE,
-            pageSize = PAGE_SIZE,
-            keySearch = KEY_EMPTY
+            filter = filter
         )
+        viewModel.getPagingProductsProvider(request)
     }
 }

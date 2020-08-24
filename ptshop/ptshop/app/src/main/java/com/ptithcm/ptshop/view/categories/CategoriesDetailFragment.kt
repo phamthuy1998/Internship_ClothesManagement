@@ -8,10 +8,9 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.ptithcm.core.CoreApplication
 import com.ptithcm.core.model.Category
+import com.ptithcm.core.model.Filter
 import com.ptithcm.core.model.ProductClothes
-import com.ptithcm.core.model.SearchParams
-import com.ptithcm.core.util.INIT_PAGE
-import com.ptithcm.core.util.PAGE_SIZE
+import com.ptithcm.core.param.ProductsOfCategoryRequestParam
 import com.ptithcm.ptshop.R
 import com.ptithcm.ptshop.base.BaseActivity
 import com.ptithcm.ptshop.base.BaseFragment
@@ -22,7 +21,6 @@ import com.ptithcm.ptshop.util.ScrollHandler
 import com.ptithcm.ptshop.view.MainActivity
 import com.ptithcm.ptshop.view.categories.adapter.CategoriesPagedAdapter
 import com.ptithcm.ptshop.viewmodel.CarouselDetailViewModel
-import com.ptithcm.ptshop.viewmodel.ProductFilterViewModel
 import com.ptithcm.ptshop.viewmodel.RefineViewModel
 import com.ptithcm.ptshop.viewmodel.WishListViewModel
 import org.koin.androidx.viewmodel.ext.android.sharedViewModel
@@ -36,20 +34,17 @@ class CategoriesDetailFragment : BaseFragment<FragmentCategoriesDetailBinding>()
     private lateinit var adapter: CategoriesPagedAdapter
 
     private val viewModelProduct: CarouselDetailViewModel by viewModel()
-    private val viewModelFilter: ProductFilterViewModel by sharedViewModel(from = { requireActivity() })
     private val viewModelRefine: RefineViewModel by sharedViewModel(from = { requireActivity() })
     private val wishListViewModel: WishListViewModel by viewModel()
 
     private lateinit var category: Category
-    private var filterParam: SearchParams? = null
-    private var isInitRefine = true
-    private var isRequestRefine = false
+    private var filterParam: Filter? = Filter()
     private lateinit var scrollListener: RecyclerView.OnScrollListener
     private var scrollHandler: ScrollHandler? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        initView()
+        initRequest()
     }
 
     override fun bindEvent() {
@@ -61,14 +56,10 @@ class CategoriesDetailFragment : BaseFragment<FragmentCategoriesDetailBinding>()
         viewBinding.btnFab.setOnClickListener(this)
     }
 
-    override fun bindViewModelOnce() {
-    }
-
     override fun bindViewModel() {
         super.bindViewModel()
         viewModelProduct.productsCategoriesLiveData.observe(this, Observer {
-            if (!isRequestRefine)
-                adapter.submitList(it)
+            adapter.submitList(it)
         })
 
         viewModelProduct.productLoadStatusX.observe(this, Observer {
@@ -86,19 +77,12 @@ class CategoriesDetailFragment : BaseFragment<FragmentCategoriesDetailBinding>()
             (requireActivity() as? MainActivity)?.isShowLoading(it)
         })
 
-        viewModelProduct.refineProductLiveData.observe(this, Observer {
-            if (isRequestRefine) {
-                adapter.submitList(it)
-            }
-        })
-
         if (!viewModelRefine.filterLiveData.hasObservers())
             viewModelRefine.filterLiveData.observe(this, Observer {
                 it?.let {
-                    filterParam = it.first
                     if (it.second) {
-                        isRequestRefine = it.second
-                        viewModelProduct.getPagingRefineProduct(it.first)
+                        filterParam = it.first
+                        initRequest(filterParam)
                     }
                 }
             })
@@ -126,7 +110,6 @@ class CategoriesDetailFragment : BaseFragment<FragmentCategoriesDetailBinding>()
         (requireActivity() as? MainActivity)?.apply {
             viewBinding.btnNav.visible()
             initToolBar(viewBinding.layoutToolbar.toolbar, hasBackRight = false)
-            viewModelFilter.requestAllCategories(null)
             if (arguments?.getBoolean(IS_PRODUCT) == true) {
                 setupToolbar(
                     viewBinding.layoutToolbar.toolbar, KEY_EMPTY,
@@ -154,14 +137,14 @@ class CategoriesDetailFragment : BaseFragment<FragmentCategoriesDetailBinding>()
         }
     }
 
-    private fun initView() {
+    private fun initRequest(filter: Filter? = null) {
         category = arguments?.getParcelable(KEY_ARGUMENT) ?: Category()
-        viewModelProduct.getPagingProductsCategories(
-            category.id ?: 1,
-            20,
-            1,
-            CoreApplication.instance.account?.id ?: 0
+        val request = ProductsOfCategoryRequestParam(
+            categoryID = category.id,
+            accountId = CoreApplication.instance.account?.id,
+            filter = filter
         )
+        viewModelProduct.getPagingProductsCategories(request)
     }
 
     private fun intiAdapter() {
@@ -207,9 +190,6 @@ class CategoriesDetailFragment : BaseFragment<FragmentCategoriesDetailBinding>()
 
     private fun eventListener(product: ProductClothes?, isRefine: Boolean) {
         if (isRefine) {
-            if (isInitRefine)
-                filterParam = initRefineParam()
-
             navController.navigateAnimation(
                 R.id.nav_refine,
                 bundle = bundleOf(
@@ -217,26 +197,12 @@ class CategoriesDetailFragment : BaseFragment<FragmentCategoriesDetailBinding>()
                     KEY_IS_SHOW_FILTER_BY to false
                 )
             )
-            this.isInitRefine = false
         } else {
             navController.navigateAnimation(
                 R.id.fragment_product_detail,
                 bundle = bundleOf(KEY_ARGUMENT to product)
             )
         }
-    }
-
-    private fun initRefineParam(): SearchParams {
-        return SearchParams(
-            accountId = CoreApplication.instance.account?.id,
-            idTypeSearch = category.id,
-            typeSearch = SEARCH_BY_CATEGORIES,
-            typeFilter = null,
-            typeSearchFilter = 2,
-            pageNumber = INIT_PAGE,
-            pageSize = PAGE_SIZE,
-            keySearch = KEY_EMPTY
-        )
     }
 
     private fun listenerAddProduct(product: ProductClothes?) {

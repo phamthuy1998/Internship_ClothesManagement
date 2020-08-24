@@ -5,16 +5,9 @@ import kotlinx.android.parcel.Parcelize
 
 @Parcelize
 data class SearchParams(
+    var keySearch: String? = "",
     var accountId: Int?,
-    var idTypeSearch: Int?,
-    var keySearch: String?,
-    var pageNumber: Int?,
-    var pageSize: Int?,
-    var typeFilter: Int?,
-    var typeSearch: Int?,
-    var typeSearchFilter: Int?
-) : Parcelable {
-    fun clearData() {
-        typeFilter = null
-    }
-}
+    var pageNumber: Int? = 1,
+    var pageSize: Int? = 20,
+    var filter: Filter? = null
+) : Parcelable
