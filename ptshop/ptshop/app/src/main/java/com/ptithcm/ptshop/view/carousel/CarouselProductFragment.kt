@@ -80,6 +80,7 @@ class CarouselProductFragment : BaseFragment<FragmentCarouselProductBinding>(),
                     if (it.second) {
                         filterParam = it.first
                         initRequest(filterParam)
+                        refineViewModel.filterLiveData.value = Pair(filterParam, false)
                     }
                 }
             })
@@ -179,7 +180,7 @@ class CarouselProductFragment : BaseFragment<FragmentCarouselProductBinding>(),
         }
     }
 
-    private fun initRequest(filter: Filter? = null) {
+    private fun initRequest(filter: Filter? = Filter()) {
         val request = ProductsOfProviderRequestParam(
             providerID = providersViewModel.provider?.id,
             accountId = CoreApplication.instance.account?.id,

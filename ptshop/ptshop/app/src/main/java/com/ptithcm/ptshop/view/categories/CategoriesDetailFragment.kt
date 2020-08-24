@@ -83,6 +83,7 @@ class CategoriesDetailFragment : BaseFragment<FragmentCategoriesDetailBinding>()
                     if (it.second) {
                         filterParam = it.first
                         initRequest(filterParam)
+                        viewModelRefine.filterLiveData.value = Pair(filterParam, false)
                     }
                 }
             })
@@ -137,7 +138,7 @@ class CategoriesDetailFragment : BaseFragment<FragmentCategoriesDetailBinding>()
         }
     }
 
-    private fun initRequest(filter: Filter? = null) {
+    private fun initRequest(filter: Filter? = Filter()) {
         category = arguments?.getParcelable(KEY_ARGUMENT) ?: Category()
         val request = ProductsOfCategoryRequestParam(
             categoryID = category.id,
