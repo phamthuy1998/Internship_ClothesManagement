@@ -39,7 +39,7 @@ interface ApiClothesService {
     @POST("/api/allProductsOfCategory")
     suspend fun getProducts(@Body param: ProductsOfCategoryRequestParam): Response<ListResponse<ProductClothes>>
 
-    @GET("/api/allProductsOfProvider")
+    @POST("/api/allProductsOfProvider")
     suspend fun getProductsProvider(@Body param: ProductsOfProviderRequestParam): Response<ListResponse<ProductClothes>>
 
     @GET("/api/productDetail")
@@ -53,7 +53,7 @@ interface ApiClothesService {
         @Body ids: List<Int>
     ): Response<ArrayList<ProductClothesDetail>>
 
-    @POST("/api/get-products")
+    @POST("/api/products-search")
     suspend fun getRefineProducts(
         @Body searchParams: SearchParams?
     ): Response<ListResponse<ProductClothes>>

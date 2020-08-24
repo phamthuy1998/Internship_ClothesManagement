@@ -9,5 +9,5 @@ data class SearchParams(
     var accountId: Int?,
     var pageNumber: Int? = 1,
     var pageSize: Int? = 20,
-    var filter: Filter? = null
+    var filter: Filter? = Filter()
 ) : Parcelable

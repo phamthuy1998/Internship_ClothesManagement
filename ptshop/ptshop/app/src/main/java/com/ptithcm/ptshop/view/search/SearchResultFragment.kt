@@ -62,7 +62,7 @@ class SearchResultFragment : BaseFragment<FragmentSearchResultBinding>() {
 
     override fun bindViewModel() {
         super.bindViewModel()
-        viewModelProduct.productsCategoriesLiveData.observe(this, Observer {
+        viewModelProduct.refineProductLiveData.observe(this, Observer {
             adapter.submitList(it)
         })
 
@@ -87,6 +87,7 @@ class SearchResultFragment : BaseFragment<FragmentSearchResultBinding>() {
                     if (it.second) {
                         filterParam = it.first
                         initRequest(keySearch = key, filter = filterParam)
+                        viewModelRefine.filterLiveData.value = Pair(filterParam, false)
                     }
                 }
             })
@@ -198,7 +199,7 @@ class SearchResultFragment : BaseFragment<FragmentSearchResultBinding>() {
         }
     }
 
-    private fun initRequest(keySearch: String? = "", filter: Filter? = null) {
+    private fun initRequest(keySearch: String? = "", filter: Filter? = Filter()) {
         val request = SearchParams(
             keySearch = keySearch,
             accountId = CoreApplication.instance.account?.id,
