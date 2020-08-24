@@ -7,6 +7,7 @@ using System.Web;
 using Newtonsoft.Json;
 using System.Threading.Tasks;
 using System.Collections.Generic;
+using ClothesManagement.Models;
 
 namespace ClothesManament.Controllers
 {
@@ -71,14 +72,28 @@ namespace ClothesManament.Controllers
         }
 
         [Route("api/allProductsOfCategory")]
-        [AcceptVerbs("GET")]
-        [HttpGet]
-        public async Task<ListResponse<SP_GetProductOfCategory_Result1>> getProductListPaging(int pageSize, int pageNumber, int categoryID, int? accountId = null)
+        [AcceptVerbs("POST")]
+        [HttpPost]
+        public async Task<ListResponse<SP_GetProductOfCategory_Result1>> getProductListPaging(ProductApiCategory productParam)
         {
-            if (pageSize <= 0 || pageSize > 100) pageSize = 20;
-            if (pageNumber <= 0) pageNumber = 1;
-            var listResponse = (await Task.Run(() => entities.SP_GetProductOfCategory(categoryID, pageNumber, pageSize, accountId).ToList()));
-            var count = (await Task.Run(() => entities.SP_GetProductOfCategoryCount(categoryID).FirstOrDefault()));
+            if (productParam == null)
+            {
+                return new ListResponse<SP_GetProductOfCategory_Result1>()
+                {
+                    count = 0,
+                    results = null
+                };
+            }
+            if (productParam?.pageSize <= 0 || productParam?.pageSize > 100) productParam.pageSize = 20;
+            if (productParam?.pageNumber <= 0) productParam.pageNumber = 1;
+            var listResponse = (await Task.Run(() => entities.SP_GetProductOfCategoryFilter(
+                productParam.categoryID,
+                productParam.pageNumber,
+                productParam.pageSize,
+                productParam.accountId,
+                productParam.filter.sortBy).ToList()
+              ));
+            var count = (await Task.Run(() => entities.SP_GetProductOfCategoryCount(productParam.categoryID).FirstOrDefault()));
             return new ListResponse<SP_GetProductOfCategory_Result1>()
             {
                 count = count,
@@ -87,16 +102,28 @@ namespace ClothesManament.Controllers
         }
 
         [Route("api/allProductsOfProvider")]
-        [AcceptVerbs("GET")]
-        [HttpGet]
-        public async Task<ListResponse<SP_GetProductOfCategory_Result1>> getProductProviderListPaging(int? pageSize = null, int? pageNumber = null, int? providerId = null, int? accountId = null)
+        [AcceptVerbs("POST")]
+        [HttpPost]
+        public async Task<ListResponse<SP_GetProductOfCategory_Result1>> getProductProviderListPaging(ProductApi productParam)
         {
-            if (pageSize <= 0 || pageSize > 100 || pageSize == null) pageSize = 20;
-            if (pageNumber <= 0 || pageNumber == null) pageNumber = 1;
-            if (providerId == null) providerId = 1;
+            if (productParam == null)
+            {
+                return new ListResponse<SP_GetProductOfCategory_Result1>()
+                {
+                    count = 0,
+                    results = null
+                };
+            }
+            if (productParam?.pageSize <= 0 || productParam?.pageSize > 100) productParam.pageSize = 20;
+            if (productParam?.pageNumber <= 0) productParam.pageNumber = 1;
 
-            var listResponse = (await Task.Run(() => entities.SP_GetProductsOfProvider(providerId, pageNumber, pageSize, accountId).ToList()));
-            var count = (await Task.Run(() => entities.SP_GetProductsOfProviderCount(providerId).FirstOrDefault()));
+            var listResponse = (await Task.Run(() => entities.SP_GetProductsOfProviderFilter(
+                productParam.providerID,
+                productParam.pageNumber,
+                productParam.pageSize,
+                productParam.accountId,
+                productParam.filter.sortBy).ToList()));
+            var count = (await Task.Run(() => entities.SP_GetProductsOfProviderCount(productParam.providerID).FirstOrDefault()));
             return new ListResponse<SP_GetProductOfCategory_Result1>()
             {
                 count = count,
@@ -104,68 +131,35 @@ namespace ClothesManament.Controllers
             };
         }
 
-        [Route("api/get-products")]
+        [Route("api/products-search")]
         [AcceptVerbs("POST")]
         [HttpPost]
-        public async Task<ListResponse<SP_GetProductOfCategory_Result1>> getProductSearchFilter(FilterSearch objSearchFilter)
+        public async Task<ListResponse<SP_GetProductOfCategory_Result1>> getProductSearchFilter(ProductApiSearch searchFilter)
         {
-            if (objSearchFilter.pageSize <= 0 || objSearchFilter.pageSize > 100 || objSearchFilter.pageSize == null) objSearchFilter.pageSize = 20;
-            if (objSearchFilter.pageNumber <= 0 || objSearchFilter.pageNumber == null) objSearchFilter.pageNumber = 1;
-
-            if (objSearchFilter.typeSearchFilter == null)
+            if (searchFilter == null)
             {
-                // in category
-                if (objSearchFilter.typeSearch == 1)
-                {
-                    var listResponse = (await Task.Run(() =>
-                    entities.SP_GetProductOfCategory(objSearchFilter.idTypeSearch, objSearchFilter.pageNumber, objSearchFilter.pageSize, objSearchFilter.accountId).ToList()));
-                    var count = (await Task.Run(() => entities.SP_GetProductOfCategoryCount(objSearchFilter.idTypeSearch).FirstOrDefault()));
-                    return new ListResponse<SP_GetProductOfCategory_Result1>()
-                    {
-                        count = count,
-                        results = listResponse
-                    };
-                }
-                else if (objSearchFilter.typeSearch == 2)
-                {
-                    var listResponse = (await Task.Run(() => entities.SP_GetProductsOfProvider(objSearchFilter.idTypeSearch, objSearchFilter.pageNumber, objSearchFilter.pageSize, objSearchFilter.accountId).ToList()));
-                    var count = (await Task.Run(() => entities.SP_GetProductsOfProviderCount(objSearchFilter.idTypeSearch).FirstOrDefault()));
-                    return new ListResponse<SP_GetProductOfCategory_Result1>()
-                    {
-                        count = count,
-                        results = listResponse
-                    };
-                }
-                else
-                {
-                    return new ListResponse<SP_GetProductOfCategory_Result1>()
-                    {
-                        count = 0,
-                        results = null
-                    };
-                }
-            }
-            else
-            {
-                if (objSearchFilter.keySearch != null) objSearchFilter.keySearch = "%" + objSearchFilter.keySearch + "%";
-                var listResponse = (await Task.Run(() =>
-                entities.SP_GetProductSearchFilter(objSearchFilter.typeSearch,
-                                                    objSearchFilter.keySearch,
-                                                    objSearchFilter.typeFilter,
-                                                    objSearchFilter.idTypeSearch,
-                                                    objSearchFilter.pageNumber,
-                                                    objSearchFilter.pageSize,
-                                                    objSearchFilter.accountId
-                ).ToList()));
-                var count = (await Task.Run(() =>
-                    entities.SP_GetProductSearchFilterCount(objSearchFilter.typeSearch, objSearchFilter.keySearch, objSearchFilter.idTypeSearch)
-                    .FirstOrDefault()));
                 return new ListResponse<SP_GetProductOfCategory_Result1>()
                 {
-                    count = count,
-                    results = listResponse
+                    count = 0,
+                    results = null
                 };
             }
+            if (searchFilter?.pageSize <= 0 || searchFilter?.pageSize > 100) searchFilter.pageSize = 20;
+            if (searchFilter?.pageNumber <= 0) searchFilter.pageNumber = 1;
+            if (searchFilter.keySearch != null) searchFilter.keySearch = "%" + searchFilter.keySearch + "%";
+            var listResponse = (await Task.Run(() => entities.SP_SearchFilter(
+              searchFilter.keySearch,
+              searchFilter.pageNumber,
+              searchFilter.pageSize,
+              searchFilter.accountId,
+              searchFilter.filter?.sortBy).ToList()));
+            var counter = (await Task.Run(() => entities.SP_SearchFilterCounter(searchFilter.keySearch).FirstOrDefault()));
+            if (counter == null||counter == -1) counter = 0;
+            return new ListResponse<SP_GetProductOfCategory_Result1>()
+            {
+                count = counter,
+                results = listResponse
+            };
         }
 
         [Route("api/favoriteProducts")]
