@@ -279,12 +279,16 @@
     <Compile Include="Models\ChangeAccountInfoParam.cs" />
     <Compile Include="Models\ChangePassParam.cs" />
     <Compile Include="Models\EmailModel.cs" />
+    <Compile Include="Models\FilterObj.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ListResponse.cs" />
     <Compile Include="Models\AccountInfo.cs" />
     <Compile Include="Models\MemoryCacheHelper.cs" />
     <Compile Include="Models\FilterSearch.cs" />
     <Compile Include="Models\OrderDetail.cs" />
+    <Compile Include="Models\ProductApiCategory.cs" />
+    <Compile Include="Models\ProductApiSearch.cs" />
+    <Compile Include="Models\ProductApi.cs" />
     <Compile Include="Models\ProductOrder.cs" />
     <Compile Include="Models\OrderParam.cs" />
     <Compile Include="Models\ProductDetail.cs" />
