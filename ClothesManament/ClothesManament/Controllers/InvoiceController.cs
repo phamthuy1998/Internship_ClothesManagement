@@ -186,25 +186,27 @@ namespace ClothesManagement.Controllers
             //}
 
             var messageStr = "";// "Đơn hàng đã được gứi tới " + email + ", vui lòng kiểm tra email để xác nhận đơn hàng!";
-            var orderId = entities.SP_AddOrder(orderParam.accountID, orderParam.address, orderParam.phone, orderParam.name, orderParam.note).FirstOrDefault();
-
-            ProductOrder product = new ProductOrder();
-            for (int i = 0; i < orderParam.products.Count; i++)
-            {
-                try
-                {
-                    product = orderParam.products[i];
-                    var result = entities.SP_AddOrderItem(orderId, product.productId, product.colorId, product.sizeId, product.quantity);
-                }
-                catch (Exception e)
-                {
-
-                }
-            }
-            var totalPrice = entities.Sp_GetPriceInvoice(orderId).FirstOrDefault();
+            
             var statusStr = true;
             if (orderParam.tokenCard != null && !orderParam.tokenCard.Trim().Equals(""))
             {
+                var orderId = entities.SP_AddOrder(orderParam.accountID, orderParam.address, orderParam.phone, orderParam.name, orderParam.note, "Thanh toán online", 1).FirstOrDefault();
+
+                ProductOrder product = new ProductOrder();
+                for (int i = 0; i < orderParam.products.Count; i++)
+                {
+                    try
+                    {
+                        product = orderParam.products[i];
+                        var result = entities.SP_AddOrderItem(orderId, product.productId, product.colorId, product.sizeId, product.quantity);
+                    }
+                    catch (Exception e)
+                    {
+
+                    }
+                }
+                var totalPrice = entities.Sp_GetPriceInvoice(orderId).FirstOrDefault();
+
                 StripeConfiguration.ApiKey = "sk_test_51HEO9yAUHa3z0jaSDqZ2wNWozw2iEFIMgbPluEpQ6ipK9UplKlbg7laoC2RydTqAZWAw0ddfnAeBM0ATgpUKkztl00vrsHJVWN";
 
                 var options = new ChargeCreateOptions
@@ -229,6 +231,23 @@ namespace ClothesManagement.Controllers
             }
             else
             {
+                var orderId = entities.SP_AddOrder(orderParam.accountID, orderParam.address, orderParam.phone, orderParam.name, orderParam.note, "Thanh toán khi nhận hàng", 0).FirstOrDefault();
+
+                ProductOrder product = new ProductOrder();
+                for (int i = 0; i < orderParam.products.Count; i++)
+                {
+                    try
+                    {
+                        product = orderParam.products[i];
+                        var result = entities.SP_AddOrderItem(orderId, product.productId, product.colorId, product.sizeId, product.quantity);
+                    }
+                    catch (Exception e)
+                    {
+
+                    }
+                }
+                var totalPrice = entities.Sp_GetPriceInvoice(orderId).FirstOrDefault();
+
                 return new ResponseObjectModel<int>()
                 {
                     message = "đặt hàng thành công",
@@ -272,7 +291,7 @@ namespace ClothesManagement.Controllers
             }
             else
             {
-                var orderId = entities.SP_AddOrder(orderParam.accountID, orderParam.address, orderParam.phone, orderParam.name, orderParam.note).FirstOrDefault();
+                var orderId = 1;//entities.SP_AddOrder(orderParam.accountID, orderParam.address, orderParam.phone, orderParam.name, orderParam.note).FirstOrDefault();
                 ProductOrder product = new ProductOrder();
                 for (int i = 0; i < orderParam.products.Count; i++)
                 {

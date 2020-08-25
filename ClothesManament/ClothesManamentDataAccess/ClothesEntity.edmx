@@ -544,6 +544,8 @@ warning 6002: The table/view 'ClothesManament.dbo.ImportCouponDetail' does not h
           <Parameter Name="phone" Type="nvarchar" Mode="In" />
           <Parameter Name="name" Type="nvarchar" Mode="In" />
           <Parameter Name="note" Type="nvarchar" Mode="In" />
+          <Parameter Name="payment" Type="nvarchar" Mode="In" />
+          <Parameter Name="isPaid" Type="int" Mode="In" />
         </Function>
         <Function Name="SP_AddOrderItem" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="invoiceId" Type="int" Mode="In" />
@@ -893,6 +895,8 @@ warning 6002: The table/view 'ClothesManament.dbo.ImportCouponDetail' does not h
             <Parameter Name="phone" Mode="In" Type="String" />
             <Parameter Name="name" Mode="In" Type="String" />
             <Parameter Name="note" Mode="In" Type="String" />
+            <Parameter Name="payment" Mode="In" Type="String" />
+            <Parameter Name="isPaid" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="SP_AddOrderItem">
             <Parameter Name="invoiceId" Mode="In" Type="Int32" />
@@ -1252,7 +1256,7 @@ warning 6002: The table/view 'ClothesManament.dbo.ImportCouponDetail' does not h
           <Parameter Name="keySearch" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="SP_SearchFilterCounter" ReturnType="Collection(Int32)">
-            <Parameter Name="keySearch" Mode="In" Type="String" />
+          <Parameter Name="keySearch" Mode="In" Type="String" />
           </FunctionImport>
           </EntityContainer>
         <ComplexType Name="getCategoryByGender_Result">

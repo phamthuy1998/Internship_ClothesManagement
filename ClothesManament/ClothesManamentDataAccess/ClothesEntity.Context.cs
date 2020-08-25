@@ -91,7 +91,7 @@ namespace ClothesManamentDataAccess
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<getCategoryGender_Result1>("getCategoryGender", genderIDParameter);
         }
     
-        public virtual ObjectResult<Nullable<int>> SP_AddOrder(Nullable<int> userId, string address, string phone, string name, string note)
+        public virtual ObjectResult<Nullable<int>> SP_AddOrder(Nullable<int> userId, string address, string phone, string name, string note, string payment, Nullable<int> isPaid)
         {
             var userIdParameter = userId.HasValue ?
                 new ObjectParameter("userId", userId) :
@@ -113,7 +113,15 @@ namespace ClothesManamentDataAccess
                 new ObjectParameter("note", note) :
                 new ObjectParameter("note", typeof(string));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("SP_AddOrder", userIdParameter, addressParameter, phoneParameter, nameParameter, noteParameter);
+            var paymentParameter = payment != null ?
+                new ObjectParameter("payment", payment) :
+                new ObjectParameter("payment", typeof(string));
+    
+            var isPaidParameter = isPaid.HasValue ?
+                new ObjectParameter("isPaid", isPaid) :
+                new ObjectParameter("isPaid", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("SP_AddOrder", userIdParameter, addressParameter, phoneParameter, nameParameter, noteParameter, paymentParameter, isPaidParameter);
         }
     
         public virtual int SP_AddOrderItem(Nullable<int> invoiceId, Nullable<int> productId, Nullable<int> colorId, Nullable<int> sizeId, Nullable<int> quantity)
