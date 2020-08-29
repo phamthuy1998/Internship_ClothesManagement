@@ -259,5 +259,15 @@ namespace ClothesAdmin
         {
             statusOrderIdSpinEdit.Value = 2;
         }
+
+        private void colorComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void sizeComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }

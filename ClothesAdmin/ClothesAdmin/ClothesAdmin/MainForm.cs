@@ -29,6 +29,7 @@ namespace ClothesAdmin
         private AccountsForm accountsForm = null;
         private ProviderForm providerForm = null;
         private ProductStatisticForm productStatisticForm = null;
+         private WarehouseFormcs warehouseFormcs = null;
         public MainForm()
         {
             InitializeComponent();
@@ -400,6 +401,19 @@ namespace ClothesAdmin
                 productStatisticForm = new ProductStatisticForm();
                 productStatisticForm.MdiParent = this;
                 productStatisticForm.Show();
+            }
+            else form.Activate();
+        }
+
+        private void btnWarehouse_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            form = this.CheckExists(typeof(WarehouseFormcs));
+            if (form == null)
+            {
+                IsMdiContainer = true;
+                warehouseFormcs = new WarehouseFormcs();
+                warehouseFormcs.MdiParent = this;
+                warehouseFormcs.Show();
             }
             else form.Activate();
         }

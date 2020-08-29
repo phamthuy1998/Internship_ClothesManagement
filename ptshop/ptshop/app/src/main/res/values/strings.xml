@@ -311,4 +311,9 @@
     <string name="information">Information</string>
     <string name="discount">Discount</string>
     <string name="bought_date">Bought Date</string>
+    <string name="has_received">Has received</string>
+    <string name="shipped">Shipped</string>
+    <string name="canceled">Canceled</string>
+    <string name="all_invoices">All invoices</string>
+    <string name="emptyInvoice">The list of orders is empty</string>
 </resources>

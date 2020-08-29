@@ -41,7 +41,7 @@ namespace ClothesAdmin
                 this.employeeTableAdapter.Fill(this.clothesDataSet.Employee);
             }
             catch (Exception ex) { }
-         
+
 
             // TODO: This line of code loads data into the 'clothesDataSet.Product' table. You can move, or remove it, as needed.
             this.productTableAdapter.FillBy(this.clothesDataSet.Product);
@@ -69,8 +69,8 @@ namespace ClothesAdmin
                 }
                 catch (Exception ex) { }
             }
-          
-            }
+
+        }
 
         private void loadDataItem()
         {
@@ -218,22 +218,15 @@ namespace ClothesAdmin
 
         private void idProductSpinEdit_EditValueChanged(object sender, EventArgs e)
         {
-            try
-            {
+            if (Convert.ToInt32(idProductSpinEdit.Value) > 0)
                 productComboBox.SelectedValue = Convert.ToInt32(idProductSpinEdit.Value);
-            }
-            catch (Exception ex) { }
         }
 
         private void productComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            try
-            {
+            if (productComboBox.SelectedValue != null)
                 idProductSpinEdit.Value = Convert.ToInt32(productComboBox.SelectedValue);
-                sizeIDTextBox.Text = sizeComboBox.SelectedValue.ToString();
-               
-            }
-            catch (Exception ex) { }
+
         }
 
         private void employeeComboBox1_SelectedIndexChanged(object sender, EventArgs e)
@@ -251,7 +244,8 @@ namespace ClothesAdmin
             try
             {
                 sizeComboBox.SelectedValue = Convert.ToInt32(sizeIDTextBox.Text);
-            }catch(Exception ex)
+            }
+            catch (Exception ex)
             {
 
             }
@@ -279,12 +273,12 @@ namespace ClothesAdmin
 
             }
             catch (Exception ex) { }
-            
-          }
+
+        }
 
         private void colorComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-           
+
             try
             {
                 colorIdTextBox.Text = colorComboBox.SelectedValue.ToString();

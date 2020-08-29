@@ -27,6 +27,9 @@ class InvoicesBookFragment : BaseFragment<FragmentInvoicesBookBinding>() {
         requireActivity() as BaseActivity<*>
     }
 
+    private var invoiceTitle: String? = ""
+    private var invoiceStatusId: Int? = 0
+
     private val adapter = InvoicesPagedAdapter { it: Invoice?, _: Int? ->
         navController.navigateAnimation(
             R.id.invoiceDetailFragment,
@@ -38,7 +41,12 @@ class InvoicesBookFragment : BaseFragment<FragmentInvoicesBookBinding>() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        userViewModel.getPagingInvoices()
+        val bundle = this.arguments
+        if (bundle != null) {
+            invoiceTitle = bundle.getString("invoiceTitle", "")
+            invoiceStatusId = bundle.getInt("invoiceId", 0)
+            userViewModel.getPagingInvoices(statusId = invoiceStatusId ?: 0)
+        }
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -53,15 +61,18 @@ class InvoicesBookFragment : BaseFragment<FragmentInvoicesBookBinding>() {
     private fun initAdapter() {
         viewBinding.rvInvoices.adapter = adapter
         viewBinding.swlRefresh.setOnRefreshListener {
-            userViewModel.getPagingInvoices()
+            userViewModel.getPagingInvoices(statusId = invoiceStatusId ?: 0)
         }
     }
 
     override fun bindViewModel() {
         userViewModel.invoicesLiveData.observe(this, Observer {
-            mActivity.isShowLoading(false)
-            viewBinding.swlRefresh.isRefreshing = false
-            adapter.submitList(it)
+            if (it != null && it.size != 0) {
+                mActivity.isShowLoading(false)
+                viewBinding.swlRefresh.isRefreshing = false
+                viewBinding.tvEmpty.gone()
+                adapter.submitList(it)
+            } else viewBinding.tvEmpty.visible()
         })
 
         userViewModel.invoiceLoadStatusX.observe(this, Observer {
@@ -73,6 +84,7 @@ class InvoicesBookFragment : BaseFragment<FragmentInvoicesBookBinding>() {
                     }
                     mActivity.isShowLoading(false)
                 }
+                is Result.Loading -> mActivity.isShowLoading(true)
                 else -> mActivity.isShowLoading(false)
             }
         })
@@ -88,7 +100,8 @@ class InvoicesBookFragment : BaseFragment<FragmentInvoicesBookBinding>() {
             )
             setupToolbar(
                 viewBinding.layoutToolbar.toolbar,
-                getString(R.string.invoice_book).capitalize()
+//                getString(R.string.invoice_book).capitalize()
+                invoiceTitle ?: ""
             )
         }
     }

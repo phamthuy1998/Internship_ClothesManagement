@@ -28,6 +28,7 @@ class ProvidersViewModel(private val repo: ProvidersRepository) : ViewModel() {
                         error.value = Pair(it.message, it.code)
                     }
                     is Result.Success -> {
+                        isLoading.value = false
                         providersResult.postValue(it.data)
                     }
                 }

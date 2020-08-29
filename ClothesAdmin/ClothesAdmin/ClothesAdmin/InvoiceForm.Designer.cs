@@ -107,6 +107,7 @@
             this.colpayment = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colisPaid = new DevExpress.XtraGrid.Columns.GridColumn();
             this.panel3 = new System.Windows.Forms.Panel();
+            this.btnChangeStatus = new System.Windows.Forms.Button();
             this.tvStatus = new System.Windows.Forms.TextBox();
             this.isPaidTextBox = new System.Windows.Forms.TextBox();
             this.paymentTextBox = new System.Windows.Forms.TextBox();
@@ -136,7 +137,6 @@
             this.sizeIdSpinEdit = new DevExpress.XtraEditors.SpinEdit();
             this.unitPriceSpinEdit = new DevExpress.XtraEditors.SpinEdit();
             this.quantitySpinEdit = new DevExpress.XtraEditors.SpinEdit();
-            this.btnChangeStatus = new System.Windows.Forms.Button();
             employeeIdLabel = new System.Windows.Forms.Label();
             idLabel = new System.Windows.Forms.Label();
             updateDateLabel = new System.Windows.Forms.Label();
@@ -958,6 +958,19 @@
             this.panel3.Size = new System.Drawing.Size(1242, 488);
             this.panel3.TabIndex = 2;
             // 
+            // btnChangeStatus
+            // 
+            this.btnChangeStatus.BackColor = System.Drawing.Color.White;
+            this.btnChangeStatus.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnChangeStatus.ForeColor = System.Drawing.Color.ForestGreen;
+            this.btnChangeStatus.Location = new System.Drawing.Point(948, 258);
+            this.btnChangeStatus.Name = "btnChangeStatus";
+            this.btnChangeStatus.Size = new System.Drawing.Size(200, 52);
+            this.btnChangeStatus.TabIndex = 64;
+            this.btnChangeStatus.Text = "Change status";
+            this.btnChangeStatus.UseVisualStyleBackColor = false;
+            this.btnChangeStatus.Click += new System.EventHandler(this.btnChangeStatus_Click);
+            // 
             // tvStatus
             // 
             this.tvStatus.Enabled = false;
@@ -1246,6 +1259,7 @@
             this.sizeComboBox.Size = new System.Drawing.Size(300, 24);
             this.sizeComboBox.TabIndex = 59;
             this.sizeComboBox.ValueMember = "id";
+            this.sizeComboBox.SelectedIndexChanged += new System.EventHandler(this.sizeComboBox_SelectedIndexChanged);
             // 
             // colorComboBox
             // 
@@ -1259,6 +1273,7 @@
             this.colorComboBox.Size = new System.Drawing.Size(300, 24);
             this.colorComboBox.TabIndex = 59;
             this.colorComboBox.ValueMember = "id";
+            this.colorComboBox.SelectedIndexChanged += new System.EventHandler(this.colorComboBox_SelectedIndexChanged);
             // 
             // productComboBox
             // 
@@ -1378,19 +1393,6 @@
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.quantitySpinEdit.Size = new System.Drawing.Size(125, 24);
             this.quantitySpinEdit.TabIndex = 11;
-            // 
-            // btnChangeStatus
-            // 
-            this.btnChangeStatus.BackColor = System.Drawing.Color.White;
-            this.btnChangeStatus.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnChangeStatus.ForeColor = System.Drawing.Color.ForestGreen;
-            this.btnChangeStatus.Location = new System.Drawing.Point(948, 258);
-            this.btnChangeStatus.Name = "btnChangeStatus";
-            this.btnChangeStatus.Size = new System.Drawing.Size(200, 52);
-            this.btnChangeStatus.TabIndex = 64;
-            this.btnChangeStatus.Text = "Change status";
-            this.btnChangeStatus.UseVisualStyleBackColor = false;
-            this.btnChangeStatus.Click += new System.EventHandler(this.btnChangeStatus_Click);
             // 
             // InvoiceForm
             // 

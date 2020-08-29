@@ -241,3 +241,5 @@ D:\internship\Internship_ClothesManagement\ClothesAdmin\ClothesAdmin\ClothesAdmi
 D:\internship\Internship_ClothesManagement\ClothesAdmin\ClothesAdmin\ClothesAdmin\obj\Debug\ClothesAdmin.InvoiceXReport.resources
 D:\internship\Internship_ClothesManagement\ClothesAdmin\ClothesAdmin\ClothesAdmin\obj\Debug\ClothesAdmin.LoadingDialog.resources
 D:\internship\Internship_ClothesManagement\ClothesAdmin\ClothesAdmin\ClothesAdmin\obj\Debug\ClothesAdmin.ProductReport.resources
+D:\internship\Internship_ClothesManagement\ClothesAdmin\ClothesAdmin\ClothesAdmin\obj\Debug\ClothesAdmin.WarehouseFormcs.resources
+D:\internship\Internship_ClothesManagement\ClothesAdmin\ClothesAdmin\ClothesAdmin\obj\Debug\ClothesAdmin.WarehouseReport.resources

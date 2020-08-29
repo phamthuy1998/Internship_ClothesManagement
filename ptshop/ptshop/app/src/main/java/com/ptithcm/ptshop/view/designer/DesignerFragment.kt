@@ -74,7 +74,7 @@ class DesignerFragment : BaseFragment<FragmentDesignerBinding>() {
         })
 
         providersViewModel.error.observe(this, Observer {
-            isError = true
+            isError =  true
             (requireActivity() as? MainActivity)?.isShowErrorNetwork(true)
         })
     }
@@ -87,6 +87,7 @@ class DesignerFragment : BaseFragment<FragmentDesignerBinding>() {
         viewBinding.swDesigner.setOnRefreshListener {
             isError = false
             getProviders()
+            viewBinding.swDesigner.isRefreshing = false
         }
     }
 

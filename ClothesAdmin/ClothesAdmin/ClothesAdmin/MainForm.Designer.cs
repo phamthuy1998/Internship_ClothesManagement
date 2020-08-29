@@ -141,6 +141,7 @@
             this.ribbonPage4 = new DevExpress.XtraBars.Ribbon.RibbonPage();
             this.ribbonPage6 = new DevExpress.XtraBars.Ribbon.RibbonPage();
             this.ribbonPageGroup8 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
+            this.btnWarehouse = new DevExpress.XtraBars.BarButtonItem();
             firstNameLabel = new System.Windows.Forms.Label();
             lastNameLabel = new System.Windows.Forms.Label();
             phoneLabel = new System.Windows.Forms.Label();
@@ -319,10 +320,11 @@
             this.btnProductStatistic,
             this.btnImportCouponStattistic,
             this.btnInvoiceStatis,
-            this.btnStatistic1});
+            this.btnStatistic1,
+            this.btnWarehouse});
             this.ribbon.Location = new System.Drawing.Point(0, 0);
             this.ribbon.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.ribbon.MaxItemId = 295;
+            this.ribbon.MaxItemId = 296;
             this.ribbon.Name = "ribbon";
             this.ribbon.Pages.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPage[] {
             this.rbHome,
@@ -905,6 +907,7 @@
             // ribbonPageGroup10
             // 
             this.ribbonPageGroup10.ItemLinks.Add(this.btnStatistic1);
+            this.ribbonPageGroup10.ItemLinks.Add(this.btnWarehouse);
             this.ribbonPageGroup10.Name = "ribbonPageGroup10";
             this.ribbonPageGroup10.Text = "ribbonPageGroup10";
             // 
@@ -1070,6 +1073,13 @@
             this.ribbonPageGroup8.Name = "ribbonPageGroup8";
             this.ribbonPageGroup8.Text = "      Invoice      ";
             // 
+            // btnWarehouse
+            // 
+            this.btnWarehouse.Caption = "Warehouse";
+            this.btnWarehouse.Id = 295;
+            this.btnWarehouse.Name = "btnWarehouse";
+            this.btnWarehouse.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnWarehouse_ItemClick);
+            // 
             // MainForm
             // 
             this.ActiveGlowColor = System.Drawing.Color.White;
@@ -1226,5 +1236,6 @@
         private System.Windows.Forms.Button btnSaveImg;
         private DevExpress.XtraBars.BarButtonItem btnStatistic1;
         private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroup10;
+        private DevExpress.XtraBars.BarButtonItem btnWarehouse;
     }
 }

@@ -12,8 +12,13 @@
             type="com.ptithcm.ptshop.view.profile.ProfileFragment" />
 
         <variable
+            name="showInvoice"
+            type="Boolean" />
+
+        <variable
             name="profile"
             type="com.ptithcm.core.model.Profile" />
+
         <variable
             name="account"
             type="com.ptithcm.core.model.Account" />
@@ -32,9 +37,9 @@
                 android:id="@+id/cover"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
+                android:onClick="@{(v) -> parentFragment.onClick(v)}"
                 android:scaleType="centerCrop"
                 android:src="@drawable/bg_login"
-                android:onClick="@{(v) -> parentFragment.onClick(v)}"
                 app:layout_constraintDimensionRatio="2.8"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -44,15 +49,15 @@
                 android:id="@+id/avatar"
                 android:layout_width="100dp"
                 android:layout_height="100dp"
+                android:onClick="@{(v) -> parentFragment.onClick(v)}"
                 android:scaleType="centerCrop"
                 android:src="@drawable/bg_login"
                 app:civ_border_color="#FFFFFF"
                 app:civ_border_width="2dp"
-                android:onClick="@{(v) -> parentFragment.onClick(v)}"
+                app:layout_constraintBottom_toBottomOf="@id/cover"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/cover"
-                app:layout_constraintBottom_toBottomOf="@id/cover"/>
+                app:layout_constraintTop_toBottomOf="@id/cover" />
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/textHi"
@@ -103,10 +108,10 @@
                 android:layout_height="wrap_content"
                 android:drawableStart="@drawable/ic_pass_field_black"
                 android:drawableEnd="@drawable/ic_right_arrow"
-                android:gravity="center_vertical"
                 android:drawablePadding="17dp"
-                android:paddingStart="@dimen/size_18dp"
+                android:gravity="center_vertical"
                 android:onClick="@{(v) -> parentFragment.onClick(v)}"
+                android:paddingStart="@dimen/size_18dp"
                 android:text="@string/change_password"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/details_btn" />
@@ -135,8 +140,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="0.5dp"
                 android:layout_marginStart="16dp"
-                android:visibility="gone"
                 android:background="@color/gray_stroke"
+                android:visibility="gone"
                 app:layout_constraintTop_toBottomOf="@id/address_book_btn" />
 
             <androidx.appcompat.widget.AppCompatTextView
@@ -147,9 +152,9 @@
                 android:drawableStart="@drawable/ic_payment_method"
                 android:drawableEnd="@drawable/ic_right_arrow"
                 android:gravity="center_vertical"
-                android:visibility="gone"
                 android:onClick="@{(v) -> parentFragment.onClick(v)}"
                 android:text="@string/payment_methods"
+                android:visibility="gone"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/address_book_btn" />
 
@@ -167,19 +172,128 @@
                 android:layout_height="wrap_content"
                 android:drawableStart="@drawable/ic_invoice"
                 android:drawableEnd="@drawable/ic_right_arrow"
-                android:gravity="center_vertical"
                 android:drawableTint="@color/black"
+                android:gravity="center_vertical"
                 android:onClick="@{(v) -> parentFragment.onClick(v)}"
                 android:text="@string/invoice_book"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/payment_method_btn" />
+
+            <LinearLayout
+                android:id="@+id/llInvoice"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="40dp"
+                android:orientation="vertical"
+                android:visibility="gone"
+                tools:visibility="visible"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/invoice">
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0.5dp"
+                    android:layout_marginStart="16dp"
+                    android:background="@color/gray_stroke"
+                    app:layout_constraintTop_toBottomOf="@id/llInvoice" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/allInvoice"
+                    style="@style/textProfile"
+                    android:padding="@dimen/layout_margin_10dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:drawableEnd="@drawable/ic_right_arrow"
+                    android:drawableTint="@color/black"
+                    android:gravity="center_vertical"
+                    android:onClick="@{(v) -> parentFragment.onClick(v)}"
+                    android:text="@string/all_invoices" />
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0.5dp"
+                    android:layout_marginStart="16dp"
+                    android:background="@color/gray_stroke"
+                    app:layout_constraintTop_toBottomOf="@id/invoice" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/invoiceReceive"
+                    style="@style/textProfile"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="@dimen/layout_margin_10dp"
+                    android:drawableEnd="@drawable/ic_right_arrow"
+                    android:drawableTint="@color/black"
+                    android:gravity="center_vertical"
+                    android:onClick="@{(v) -> parentFragment.onClick(v)}"
+                    android:text="@string/has_received" />
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0.5dp"
+                    android:layout_marginStart="16dp"
+                    android:background="@color/gray_stroke"
+                    app:layout_constraintTop_toBottomOf="@id/invoice" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/invoiceDelivery"
+                    android:padding="@dimen/layout_margin_10dp"
+                    style="@style/textProfile"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:drawableEnd="@drawable/ic_right_arrow"
+                    android:drawableTint="@color/black"
+                    android:gravity="center_vertical"
+                    android:onClick="@{(v) -> parentFragment.onClick(v)}"
+                    android:text="@string/shipping" />
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0.5dp"
+                    android:layout_marginStart="16dp"
+                    android:background="@color/gray_stroke"
+                    app:layout_constraintTop_toBottomOf="@id/invoice" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/invoiceShipped"
+                    style="@style/textProfile"
+                    android:layout_width="match_parent"
+                    android:padding="@dimen/layout_margin_10dp"
+                    android:layout_height="wrap_content"
+                    android:drawableEnd="@drawable/ic_right_arrow"
+                    android:drawableTint="@color/black"
+                    android:gravity="center_vertical"
+                    android:onClick="@{(v) -> parentFragment.onClick(v)}"
+                    android:text="@string/shipped" />
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0.5dp"
+                    android:layout_marginStart="16dp"
+                    android:background="@color/gray_stroke"
+                    app:layout_constraintTop_toBottomOf="@id/invoice" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/invoiceCancel"
+                    style="@style/textProfile"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="@dimen/layout_margin_10dp"
+                    android:drawableEnd="@drawable/ic_right_arrow"
+                    android:drawableTint="@color/black"
+                    android:gravity="center_vertical"
+                    android:onClick="@{(v) -> parentFragment.onClick(v)}"
+                    android:text="@string/canceled" />
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0.5dp"
+                    android:layout_marginStart="16dp"
+                    android:background="@color/gray_stroke"
+                    app:layout_constraintTop_toBottomOf="@id/invoice" />
+
+            </LinearLayout>
 
             <View
                 android:layout_width="match_parent"
                 android:layout_height="0.5dp"
                 android:layout_marginStart="16dp"
                 android:background="@color/gray_stroke"
-                app:layout_constraintTop_toBottomOf="@id/invoice" />
+                app:layout_constraintTop_toTopOf="@id/customer_service_btn" />
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/customer_service_btn"
@@ -192,8 +306,14 @@
                 android:onClick="@{(v) -> parentFragment.onClick(v)}"
                 android:text="@string/customer_service"
                 app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/invoice" />
+                app:layout_constraintTop_toBottomOf="@id/llInvoice" />
 
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.5dp"
+                android:layout_marginStart="16dp"
+                android:background="@color/gray_stroke"
+                app:layout_constraintTop_toBottomOf="@id/invoice" />
             <View
                 android:layout_width="match_parent"
                 android:layout_height="0.5dp"
@@ -220,6 +340,7 @@
                 android:layout_marginStart="16dp"
                 android:background="@color/gray_stroke"
                 app:layout_constraintTop_toBottomOf="@id/delivery_return_btn" />
+
             <View
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/layout_margin_16dp"
@@ -234,8 +355,8 @@
                 android:layout_marginTop="@dimen/layout_margin_16dp"
                 android:drawableStart="@drawable/ic_about_us"
                 android:drawableEnd="@drawable/ic_right_arrow"
-                android:gravity="center_vertical"
                 android:drawablePadding="19dp"
+                android:gravity="center_vertical"
                 android:onClick="@{(v) -> parentFragment.onClick(v)}"
                 android:text="@string/about_us"
                 app:layout_constraintLeft_toLeftOf="parent"

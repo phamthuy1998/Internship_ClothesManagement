@@ -31,23 +31,36 @@
 
         </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
+
         <LinearLayout
             android:id="@+id/layoutLoading"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="horizontal"
-            android:visibility="gone"
+            android:background="@color/white"
             android:gravity="center_horizontal"
-            android:background="@color/white">
+            android:orientation="horizontal"
+            android:visibility="gone">
 
             <pl.droidsonroids.gif.GifImageView
                 android:id="@+id/progressBar"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/loading"
-                android:layout_marginTop="@dimen/layout_margin_32dp"/>
+                android:layout_marginTop="@dimen/layout_margin_32dp"
+                android:src="@drawable/loading" />
 
         </LinearLayout>
+
+        <TextView
+            android:id="@+id/tvEmpty"
+            style="@style/textProfile"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@color/colorBackground"
+            android:text="@string/emptyInvoice"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

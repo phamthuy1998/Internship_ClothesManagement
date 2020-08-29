@@ -445,6 +445,18 @@
     <Compile Include="sysdiagram.cs">
       <DependentUpon>ClothesModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="WarehouseFormcs.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="WarehouseFormcs.Designer.cs">
+      <DependentUpon>WarehouseFormcs.cs</DependentUpon>
+    </Compile>
+    <Compile Include="WarehouseReport.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="WarehouseReport.Designer.cs">
+      <DependentUpon>WarehouseReport.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="AccountsForm.resx">
       <DependentUpon>AccountsForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -518,6 +530,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="SizeForm.resx">
       <DependentUpon>SizeForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WarehouseFormcs.resx">
+      <DependentUpon>WarehouseFormcs.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WarehouseReport.resx">
+      <DependentUpon>WarehouseReport.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="App.config" />
     <None Include="ClassDiagram1.cd" />

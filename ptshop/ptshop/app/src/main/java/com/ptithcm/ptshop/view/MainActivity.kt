@@ -36,18 +36,6 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
         if (savedInstanceState == null) {
             setupBottomNavigationBar()
         }
-
-//        val splashDialog =
-//            Dialog(this, android.R.style.Theme_NoTitleBar_Fullscreen)
-//        splashDialog.setContentView(R.layout.activity_splash)
-////
-//        splashDialog.show()
-////
-//        Handler().postDelayed({
-//            window.decorView.setBackgroundColor(com.ptithcm.core.model.Color.WHITE)
-//            splashDialog.dismiss()
-//        }, 2500)
-////
         brandViewModel.getBrands()
         brandViewModel.getStories()
         viewModel.getProductFilter()
