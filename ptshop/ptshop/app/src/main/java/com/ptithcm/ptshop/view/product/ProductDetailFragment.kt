@@ -1,4 +1,4 @@
-package com.ptithcm.ptshop.view.wishlist
+package com.ptithcm.ptshop.view.product
 
 import android.graphics.Paint
 import android.os.Bundle
@@ -21,6 +21,7 @@ import com.ptithcm.ptshop.databinding.FragmentProductDetailBinding
 import com.ptithcm.ptshop.ext.*
 import com.ptithcm.ptshop.view.MainActivity
 import com.ptithcm.ptshop.view.home.StoryDetailActivity
+import com.ptithcm.ptshop.view.wishlist.ColorSpinnerAdapter
 import com.ptithcm.ptshop.view.wishlist.overview.ProductionClothesBannersPagerAdapter
 import com.ptithcm.ptshop.viewmodel.ShoppingViewModel
 import com.ptithcm.ptshop.viewmodel.WishListViewModel
@@ -51,7 +52,7 @@ class ProductDetailFragment : BaseFragment<FragmentProductDetailBinding>() {
     }
 
     override fun bindEvent() {
-        viewBinding.fragment = this
+        viewBinding.fragment = this@ProductDetailFragment
         setUpViewPager()
         bindProduct()
         setUpToolBar()

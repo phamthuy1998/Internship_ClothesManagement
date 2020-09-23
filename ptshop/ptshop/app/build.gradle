@@ -170,6 +170,7 @@ dependencies {
     implementation "androidx.camera:camera-camera2:${camerax_version}"
 
     implementation 'com.github.chrisbanes.photoview:library:1.2.4'
+    implementation 'com.sendbird.sdk:sendbird-android-sdk:3.0.145'
 
 }
 apply plugin: 'com.google.gms.google-services'

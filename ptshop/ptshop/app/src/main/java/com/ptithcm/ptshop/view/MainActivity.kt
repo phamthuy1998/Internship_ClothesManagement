@@ -101,6 +101,7 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
 //            setupAction
 //            BarWithNavController(navController)
 //        })
+
         currentNavController = controller
         updateUIBottomNav()
     }

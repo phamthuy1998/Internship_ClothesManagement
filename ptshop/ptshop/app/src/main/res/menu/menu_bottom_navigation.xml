@@ -19,6 +19,12 @@
         android:id="@+id/nav_designer"
         android:icon="@drawable/designer_selector"
         android:orderInCategory="2"
+        android:contentDescription="@string/message"
+        android:title="@string/message"/>
+    <item
+        android:id="@+id/nav_message"
+        android:icon="@drawable/designer_selector"
+        android:orderInCategory="5"
         android:contentDescription="@string/designer"
         android:title="@string/designer"/>
 

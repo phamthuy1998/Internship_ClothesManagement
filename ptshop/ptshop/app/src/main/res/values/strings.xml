@@ -311,4 +311,5 @@
     <string name="information">Information</string>
     <string name="discount">Discount</string>
     <string name="bought_date">Bought Date</string>
+    <string name="message">MESSAGE</string>
 </resources>

@@ -12,7 +12,7 @@
 
     <fragment
         android:id="@+id/fragment_product_detail"
-        android:name="com.ptithcm.ptshop.view.wishlist.ProductDetailFragment"
+        android:name="com.ptithcm.ptshop.view.product.ProductDetailFragment"
         tools:layout="@layout/fragment_product_detail" />
 
     <include app:graph="@navigation/nav_refine" />

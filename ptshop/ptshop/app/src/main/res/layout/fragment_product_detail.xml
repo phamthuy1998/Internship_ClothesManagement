@@ -13,7 +13,7 @@
 
         <variable
             name="fragment"
-            type="com.ptithcm.ptshop.view.wishlist.ProductDetailFragment" />
+            type="com.ptithcm.ptshop.view.product.ProductDetailFragment" />
 
         <variable
             name="hasQuantity"

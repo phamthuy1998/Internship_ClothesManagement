@@ -133,4 +133,16 @@ object BindingAdapterText {
                 ColorStateList.valueOf(android.graphics.Color.parseColor("#000000"))
         }
     }
+
+    @JvmStatic
+    @BindingAdapter("setColorProduct")
+    fun setColorProduct(view: View, color: String?) {
+        try {
+            view.backgroundTintList =
+                ColorStateList.valueOf(android.graphics.Color.parseColor(color))
+        } catch (e: Exception) {
+            view.backgroundTintList =
+                ColorStateList.valueOf(android.graphics.Color.parseColor("#000000"))
+        }
+    }
 }
