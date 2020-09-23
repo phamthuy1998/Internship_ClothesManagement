@@ -131,7 +131,7 @@ class CarouselProductPagedAdapter(
 
     override fun getItemCount(): Int = super.getItemCount() + if (hasExtraRow()) 1 else 0
 
-    inner class ProductsViewHolder(val viewBinding: ItemProductCarouselBinding) :
+    class ProductsViewHolder(val viewBinding: ItemProductCarouselBinding) :
         RecyclerView.ViewHolder(viewBinding.root) {
 
         fun bind(product: ProductClothes?) {
@@ -139,7 +139,7 @@ class CarouselProductPagedAdapter(
         }
     }
 
-    inner class CountViewHolder(val viewBinding: LayoutCountItemProductBinding) :
+    class CountViewHolder(val viewBinding: LayoutCountItemProductBinding) :
         RecyclerView.ViewHolder(viewBinding.root) {
 
         fun bind(data: CountViewModel?) {

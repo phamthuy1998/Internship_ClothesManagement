@@ -8,6 +8,7 @@ using DevExpress.LookAndFeel;
 using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
+using System.Net;
 
 namespace ClothesAdmin
 {
@@ -30,6 +31,7 @@ namespace ClothesAdmin
 
         static void Main()
         {
+            ServicePointManager.SecurityProtocol = (SecurityProtocolType)3072;
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
 

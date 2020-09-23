@@ -3,10 +3,7 @@ package com.ptithcm.core.api
 import com.ptithcm.core.CoreApplication
 import com.ptithcm.core.model.*
 import com.ptithcm.core.model.wish.ObjectResponse
-import com.ptithcm.core.param.ChangePassParam
-import com.ptithcm.core.param.EditAccountParam
-import com.ptithcm.core.param.LogInParam
-import com.ptithcm.core.param.RequestCheckoutParam
+import com.ptithcm.core.param.*
 import com.ptithcm.core.vo.ListResponse
 import retrofit2.Response
 import retrofit2.http.*
@@ -39,21 +36,11 @@ interface ApiClothesService {
 
     /*-----------------------------*/
     /* Product*/
-    @GET("/api/allProductsOfCategory")
-    suspend fun getProducts(
-        @Query("categoryID") categoryID: Int,
-        @Query("pageSize") pageSize: Int = 20,
-        @Query("pageNumber") pageNumber: Int = 1,
-        @Query("accountId") accountId: Int
-    ): Response<ListResponse<ProductClothes>>
+    @POST("/api/allProductsOfCategory")
+    suspend fun getProducts(@Body param: ProductsOfCategoryRequestParam): Response<ListResponse<ProductClothes>>
 
-    @GET("/api/allProductsOfProvider")
-    suspend fun getProductsProvider(
-        @Query("providerId") providerId: Int,
-        @Query("pageSize") pageSize: Int = 20,
-        @Query("pageNumber") pageNumber: Int = 1,
-        @Query("accountId") accountId: Int
-    ): Response<ListResponse<ProductClothes>>
+    @POST("/api/allProductsOfProvider")
+    suspend fun getProductsProvider(@Body param: ProductsOfProviderRequestParam): Response<ListResponse<ProductClothes>>
 
     @GET("/api/productDetail")
     suspend fun getProductDetail(
@@ -66,7 +53,7 @@ interface ApiClothesService {
         @Body ids: List<Int>
     ): Response<ArrayList<ProductClothesDetail>>
 
-    @POST("/api/get-products")
+    @POST("/api/products-search")
     suspend fun getRefineProducts(
         @Body searchParams: SearchParams?
     ): Response<ListResponse<ProductClothes>>

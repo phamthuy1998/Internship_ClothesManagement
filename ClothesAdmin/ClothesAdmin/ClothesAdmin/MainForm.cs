@@ -8,6 +8,8 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using DevExpress.XtraBars;
+using System.Drawing.Imaging;
+using Firebase.Storage;
 
 namespace ClothesAdmin
 {
@@ -144,7 +146,14 @@ namespace ClothesAdmin
 
         private void linkChangeAvatar_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-
+            OpenFileDialog ofd = new OpenFileDialog();
+            ofd.Title = "Select image";
+            ofd.Filter = "Image Files(*.jpg|*.jpg|*.png|*.jpeg";
+            if (ofd.ShowDialog() == DialogResult.OK)
+            {
+                System.Drawing.Image img = new Bitmap(ofd.FileName);
+                picAvater.Image = img.GetThumbnailImage(153, 182, null, new IntPtr());
+            }
         }
 
         private void recentItemControl1_SelectedTabChanged(object sender, DevExpress.XtraBars.Ribbon.RecentItemEventArgs e)
@@ -331,6 +340,58 @@ namespace ClothesAdmin
         }
 
         private void btnProductStatistic_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            form = this.CheckExists(typeof(ProductStatisticForm));
+            if (form == null)
+            {
+                IsMdiContainer = true;
+                productStatisticForm = new ProductStatisticForm();
+                productStatisticForm.MdiParent = this;
+                productStatisticForm.Show();
+            }
+            else form.Activate();
+        }
+
+        private async void btnSaveImg_Click(object sender, EventArgs e)
+        {
+            if (tvAvatar.Text == null || picAvater.Image == null || picAvater.Image == Properties.Resources.no_image)
+            {
+                MessageBox.Show("Chưa có hình ảnh, không thể upload", "THÔNG BÁO", MessageBoxButtons.OK);
+                return;
+            }
+            var stream = new System.IO.MemoryStream();
+            picAvater.Image.Save(stream, ImageFormat.Jpeg);
+            stream.Position = 0;
+            var task = new FirebaseStorage("ptshop-8b8b3.appspot.com")
+                            .Child("account")
+                            .Child("account_" + Program.accountLogin.idEmployee + ".jpg")
+                            .PutAsync(stream);
+            // Track progress of the upload
+            task.Progress.ProgressChanged += (s, ex) =>
+            {
+                Console.WriteLine($"Progress: {ex.Percentage} %");
+            };
+
+            // await the task to wait until upload completes and get the download url
+            try
+            {
+                var downloadUrl = await task;
+                tvAvatar.Text = downloadUrl;
+                MessageBox.Show("Upload thành công!\n Link: " + downloadUrl, "THÔNG BÁO", MessageBoxButtons.OK);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Err: " + ex.Message, "THÔNG BÁO", MessageBoxButtons.OK);
+
+            }
+        }
+
+        private void picAvater_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnStatistic1_ItemClick(object sender, ItemClickEventArgs e)
         {
             form = this.CheckExists(typeof(ProductStatisticForm));
             if (form == null)

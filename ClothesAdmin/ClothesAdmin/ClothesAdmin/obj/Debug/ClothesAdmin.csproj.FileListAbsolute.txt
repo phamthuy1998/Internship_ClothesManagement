@@ -239,3 +239,5 @@ D:\internship\Internship_ClothesManagement\ClothesAdmin\ClothesAdmin\ClothesAdmi
 D:\internship\Internship_ClothesManagement\ClothesAdmin\ClothesAdmin\ClothesAdmin\bin\Debug\Newtonsoft.Json.xml
 D:\internship\Internship_ClothesManagement\ClothesAdmin\ClothesAdmin\ClothesAdmin\bin\Debug\System.Diagnostics.DiagnosticSource.xml
 D:\internship\Internship_ClothesManagement\ClothesAdmin\ClothesAdmin\ClothesAdmin\obj\Debug\ClothesAdmin.InvoiceXReport.resources
+D:\internship\Internship_ClothesManagement\ClothesAdmin\ClothesAdmin\ClothesAdmin\obj\Debug\ClothesAdmin.LoadingDialog.resources
+D:\internship\Internship_ClothesManagement\ClothesAdmin\ClothesAdmin\ClothesAdmin\obj\Debug\ClothesAdmin.ProductReport.resources

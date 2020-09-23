@@ -1,25 +1,17 @@
 package com.ptithcm.core.model
 
 import android.os.Parcelable
-import com.ptithcm.core.util.capitalize
 import kotlinx.android.parcel.Parcelize
 
 @Parcelize
 data class Filter(
-    var text: String? = "",
-    var value: Int? = 0,
-    var categories: ArrayList<Categories>? = arrayListOf(),
-    var order: Int? = 0
+    var sortBy: Int? = null,
+    var categories: List<Int>? = listOf(),
+    var providers: List<Int>? = listOf()
 ) : Parcelable {
-
-    fun copyMainCategory(): MainCategories {
-        return MainCategories(
-            text = text?.capitalize(),
-            order = order,
-            value = value,
-            isExpand = false,
-            childCategories = arrayListOf(),
-            isChoose = false
-        )
+    fun clearData() {
+        sortBy = null
+        categories = listOf()
+        providers = listOf()
     }
 }

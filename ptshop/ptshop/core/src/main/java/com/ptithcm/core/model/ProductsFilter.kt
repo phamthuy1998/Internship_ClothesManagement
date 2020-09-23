@@ -3,7 +3,7 @@ package com.ptithcm.core.model
 data class ProductsFilter(
     var main_category: ArrayList<MainCategories>? = arrayListOf(),
     var category: ArrayList<Categories>? = arrayListOf(),
-    var filters: ArrayList<Filter>? = arrayListOf(),
+    var filters: ArrayList<ExFilter>? = arrayListOf(),
     var colour: ArrayList<Colour>? = arrayListOf(),
     var size: ArrayList<Size>? = arrayListOf(),
     var gender: ArrayList<GenderFilter>? = arrayListOf(),

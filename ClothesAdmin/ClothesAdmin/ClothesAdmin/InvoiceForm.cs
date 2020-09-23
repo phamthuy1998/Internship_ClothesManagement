@@ -178,6 +178,11 @@ namespace ClothesAdmin
         private void statusOrderIdSpinEdit_EditValueChanged(object sender, EventArgs e)
         {
             statusOrderCombobox.SelectedIndex = Convert.ToInt32(statusOrderIdSpinEdit.Value - 1);
+            if (statusOrderIdSpinEdit.Value == 1)
+            {
+                btnChangeStatus.Visible = true;
+            }
+            else btnChangeStatus.Visible = false;
         }
 
         private void statusOrderCombobox_SelectedIndexChanged(object sender, EventArgs e)
@@ -248,6 +253,11 @@ namespace ClothesAdmin
             if (isPaidTextBox.Text == "1")
                 tvStatus.Text = " Paid";
             else tvStatus.Text = "UnPaid";
+        }
+
+        private void btnChangeStatus_Click(object sender, EventArgs e)
+        {
+            statusOrderIdSpinEdit.Value = 2;
         }
     }
 }

@@ -136,6 +136,7 @@
             this.sizeIdSpinEdit = new DevExpress.XtraEditors.SpinEdit();
             this.unitPriceSpinEdit = new DevExpress.XtraEditors.SpinEdit();
             this.quantitySpinEdit = new DevExpress.XtraEditors.SpinEdit();
+            this.btnChangeStatus = new System.Windows.Forms.Button();
             employeeIdLabel = new System.Windows.Forms.Label();
             idLabel = new System.Windows.Forms.Label();
             updateDateLabel = new System.Windows.Forms.Label();
@@ -588,6 +589,7 @@
             this.tableAdapterManager.ImportCouponDetailTableAdapter = null;
             this.tableAdapterManager.ImportCouponTableAdapter = null;
             this.tableAdapterManager.InvoiceItemTableAdapter = this.invoiceItemTableAdapter;
+            this.tableAdapterManager.InvoiceStatusTableAdapter = null;
             this.tableAdapterManager.InvoiceTableAdapter = this.invoiceTableAdapter;
             this.tableAdapterManager.ProductSizeColorTableAdapter = null;
             this.tableAdapterManager.ProductTableAdapter = null;
@@ -916,6 +918,7 @@
             // 
             this.panel3.AutoScroll = true;
             this.panel3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel3.Controls.Add(this.btnChangeStatus);
             this.panel3.Controls.Add(this.tvStatus);
             this.panel3.Controls.Add(isPaidLabel);
             this.panel3.Controls.Add(this.isPaidTextBox);
@@ -1002,6 +1005,7 @@
             // statusOrderCombobox
             // 
             this.statusOrderCombobox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.statusOrderCombobox.Enabled = false;
             this.statusOrderCombobox.FormattingEnabled = true;
             this.statusOrderCombobox.Location = new System.Drawing.Point(158, 273);
             this.statusOrderCombobox.Name = "statusOrderCombobox";
@@ -1375,6 +1379,19 @@
             this.quantitySpinEdit.Size = new System.Drawing.Size(125, 24);
             this.quantitySpinEdit.TabIndex = 11;
             // 
+            // btnChangeStatus
+            // 
+            this.btnChangeStatus.BackColor = System.Drawing.Color.White;
+            this.btnChangeStatus.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnChangeStatus.ForeColor = System.Drawing.Color.ForestGreen;
+            this.btnChangeStatus.Location = new System.Drawing.Point(948, 258);
+            this.btnChangeStatus.Name = "btnChangeStatus";
+            this.btnChangeStatus.Size = new System.Drawing.Size(200, 52);
+            this.btnChangeStatus.TabIndex = 64;
+            this.btnChangeStatus.Text = "Change status";
+            this.btnChangeStatus.UseVisualStyleBackColor = false;
+            this.btnChangeStatus.Click += new System.EventHandler(this.btnChangeStatus_Click);
+            // 
             // InvoiceForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -1517,5 +1534,6 @@
         private DevExpress.XtraGrid.Columns.GridColumn colemployeeId;
         private DevExpress.XtraGrid.Columns.GridColumn colpayment;
         private DevExpress.XtraGrid.Columns.GridColumn colisPaid;
+        private System.Windows.Forms.Button btnChangeStatus;
     }
 }

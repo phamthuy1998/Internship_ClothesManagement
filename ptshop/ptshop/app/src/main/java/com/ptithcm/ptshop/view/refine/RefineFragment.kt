@@ -3,9 +3,7 @@ package com.ptithcm.ptshop.view.refine
 import android.os.Bundle
 import android.view.View
 import androidx.core.view.isVisible
-import com.ptithcm.core.model.SearchParams
-import com.ptithcm.core.util.INIT_PAGE
-import com.ptithcm.core.util.PAGE_SIZE
+import com.ptithcm.core.model.Filter
 import com.ptithcm.ptshop.R
 import com.ptithcm.ptshop.base.BaseActivity
 import com.ptithcm.ptshop.base.BaseFragment
@@ -23,14 +21,14 @@ class RefineFragment : BaseFragment<FragmentRefineBinding>(), View.OnClickListen
 
     private val viewModel: RefineViewModel by sharedViewModel(from = { requireActivity() })
 
-    private var searchParam: SearchParams? = null
+    private var filterParam: Filter? = null
     private var isShowFilterBy: Boolean = false
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         viewModel.filterLiveData.value = null
 
         arguments?.run {
-            searchParam = clone(getParcelable(KEY_SEARCH))
+            filterParam = clone(getParcelable(KEY_SEARCH))
             isShowFilterBy = getBoolean(KEY_IS_SHOW_FILTER_BY, false)
         }
     }
@@ -39,13 +37,13 @@ class RefineFragment : BaseFragment<FragmentRefineBinding>(), View.OnClickListen
         setupToolbar()
         viewBinding.gFilter.isVisible = isShowFilterBy
         initEvent()
-        init(searchParam)
+        init(filterParam)
     }
 
     override fun onClick(view: View?) {
         when (view?.id) {
             R.id.tvClear -> {
-                searchParam?.clearData()
+                filterParam?.clearData()
                 clearView()
             }
             R.id.tvCategories -> {
@@ -89,12 +87,10 @@ class RefineFragment : BaseFragment<FragmentRefineBinding>(), View.OnClickListen
                     viewBinding.ivRightOldItems.isSelected -> OLDEST
                     else -> null
                 }
-                searchParam?.run {
-                    this.typeFilter = typeFilter
-                    pageNumber = INIT_PAGE
-                    pageSize = PAGE_SIZE
+                filterParam?.run {
+                    this.sortBy = typeFilter
                 }
-                viewModel.filterLiveData.value = Pair(searchParam, true)
+                viewModel.filterLiveData.value = Pair(filterParam, true)
 
                 navController.popBackStack()
             }
@@ -142,14 +138,14 @@ class RefineFragment : BaseFragment<FragmentRefineBinding>(), View.OnClickListen
     private fun onClickToolbarEvent(view: View) {
         when (view.id) {
             R.id.ivBack -> {
-                viewModel.filterLiveData.value = Pair(searchParam, false)
+                viewModel.filterLiveData.value = Pair(filterParam, false)
                 navController.popBackStack()
             }
         }
     }
 
-    private fun init(searchParams: SearchParams?) {
-        when (searchParams?.typeFilter) {
+    private fun init(filter: Filter?) {
+        when (filter?.sortBy) {
             PRICE_ASC -> viewBinding.ivRightPriceLow.isSelected = true
             PRICE_DESC -> viewBinding.ivRightPriceHigh.isSelected = true
             NEWEST -> viewBinding.ivRightNewItems.isSelected = true

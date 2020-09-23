@@ -105,6 +105,8 @@
           <Property Name="date" Type="date" />
           <Property Name="employeeId" Type="int" />
         </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'ClothesManament.dbo.ImportCouponDetail' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="ImportCouponDetail">
           <Key>
             <PropertyRef Name="idCoupon" />
@@ -358,22 +360,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_ImportCouponDetail_ProductSizeColor">
-          <End Role="ProductSizeColor" Type="Self.ProductSizeColor" Multiplicity="1" />
-          <End Role="ImportCouponDetail" Type="Self.ImportCouponDetail" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="ProductSizeColor">
-              <PropertyRef Name="productID" />
-              <PropertyRef Name="sizeId" />
-              <PropertyRef Name="colorID" />
-            </Principal>
-            <Dependent Role="ImportCouponDetail">
-              <PropertyRef Name="idProduct" />
-              <PropertyRef Name="sizeID" />
-              <PropertyRef Name="colorId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_Invoice_Account">
           <End Role="Account" Type="Self.Account" Multiplicity="0..1" />
           <End Role="Invoice" Type="Self.Invoice" Multiplicity="*" />
@@ -558,6 +544,8 @@
           <Parameter Name="phone" Type="nvarchar" Mode="In" />
           <Parameter Name="name" Type="nvarchar" Mode="In" />
           <Parameter Name="note" Type="nvarchar" Mode="In" />
+          <Parameter Name="payment" Type="nvarchar" Mode="In" />
+          <Parameter Name="isPaid" Type="int" Mode="In" />
         </Function>
         <Function Name="SP_AddOrderItem" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="invoiceId" Type="int" Mode="In" />
@@ -658,9 +646,17 @@
           <Parameter Name="currentPage" Type="int" Mode="In" />
           <Parameter Name="PageSize" Type="int" Mode="In" />
           <Parameter Name="AccountID" Type="int" Mode="In" />
+          <Parameter Name="sortBy" Type="int" Mode="In" />
         </Function>
         <Function Name="SP_GetProductOfCategoryCount" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="categoryId" Type="int" Mode="In" />
+        </Function>
+        <Function Name="SP_GetProductOfCategoryFilter" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="categoryId" Type="int" Mode="In" />
+          <Parameter Name="currentPage" Type="int" Mode="In" />
+          <Parameter Name="PageSize" Type="int" Mode="In" />
+          <Parameter Name="AccountID" Type="int" Mode="In" />
+          <Parameter Name="sortBy" Type="int" Mode="In" />
         </Function>
         <Function Name="SP_GetProductSearchFilter" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="typeId" Type="int" Mode="In" />
@@ -681,9 +677,17 @@
           <Parameter Name="currentPage" Type="int" Mode="In" />
           <Parameter Name="PageSize" Type="int" Mode="In" />
           <Parameter Name="AccountID" Type="int" Mode="In" />
+          <Parameter Name="sortBy" Type="int" Mode="In" />
         </Function>
         <Function Name="SP_GetProductsOfProviderCount" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="provderId" Type="int" Mode="In" />
+        </Function>
+        <Function Name="SP_GetProductsOfProviderFilter" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="providerId" Type="int" Mode="In" />
+          <Parameter Name="currentPage" Type="int" Mode="In" />
+          <Parameter Name="PageSize" Type="int" Mode="In" />
+          <Parameter Name="AccountID" Type="int" Mode="In" />
+          <Parameter Name="sortBy" Type="int" Mode="In" />
         </Function>
         <Function Name="SP_GetProviderDetail" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="providerId" Type="int" Mode="In" />
@@ -725,6 +729,19 @@
           <Parameter Name="owner_id" Type="int" Mode="In" />
           <Parameter Name="new_diagramname" Type="nvarchar" Mode="In" />
         </Function>
+        <Function Name="SP_SearchFilter" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="keySearch" Type="nvarchar" Mode="In" />
+          <Parameter Name="currentPage" Type="int" Mode="In" />
+          <Parameter Name="PageSize" Type="int" Mode="In" />
+          <Parameter Name="AccountID" Type="int" Mode="In" />
+          <Parameter Name="sortBy" Type="int" Mode="In" />
+        </Function>
+        <Function Name="SP_SearchFilterCount" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="keySearch" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="SP_SearchFilterCounter" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="keySearch" Type="nvarchar" Mode="In" />
+        </Function>
         <Function Name="SP_UpdateAccInfo" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="userId" Type="int" Mode="In" />
           <Parameter Name="name" Type="nvarchar" Mode="In" />
@@ -751,7 +768,6 @@
           <EntitySet Name="FavoriteProduct" EntityType="Self.FavoriteProduct" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Image" EntityType="Self.Image" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ImportCoupon" EntityType="Self.ImportCoupon" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="ImportCouponDetail" EntityType="Self.ImportCouponDetail" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Invoice" EntityType="Self.Invoice" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="InvoiceItem" EntityType="Self.InvoiceItem" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="InvoiceStatus" EntityType="Self.InvoiceStatus" Schema="dbo" store:Type="Tables" />
@@ -763,6 +779,16 @@
           <EntitySet Name="Role" EntityType="Self.Role" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Size" EntityType="Self.Size" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ImportCouponDetail" EntityType="Self.ImportCouponDetail" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [ImportCouponDetail].[idCoupon] AS [idCoupon], 
+    [ImportCouponDetail].[idProduct] AS [idProduct], 
+    [ImportCouponDetail].[colorId] AS [colorId], 
+    [ImportCouponDetail].[sizeID] AS [sizeID], 
+    [ImportCouponDetail].[quantity] AS [quantity], 
+    [ImportCouponDetail].[price] AS [price]
+    FROM [dbo].[ImportCouponDetail] AS [ImportCouponDetail]</DefiningQuery>
+          </EntitySet>
           <AssociationSet Name="FK_Account_Role" Association="Self.FK_Account_Role">
             <End Role="Role" EntitySet="Role" />
             <End Role="Account" EntitySet="Account" />
@@ -797,10 +823,6 @@
           </AssociationSet>
           <AssociationSet Name="FK_ImportCouponDetail_ImportCoupon" Association="Self.FK_ImportCouponDetail_ImportCoupon">
             <End Role="ImportCoupon" EntitySet="ImportCoupon" />
-            <End Role="ImportCouponDetail" EntitySet="ImportCouponDetail" />
-          </AssociationSet>
-          <AssociationSet Name="FK_ImportCouponDetail_ProductSizeColor" Association="Self.FK_ImportCouponDetail_ProductSizeColor">
-            <End Role="ProductSizeColor" EntitySet="ProductSizeColor" />
             <End Role="ImportCouponDetail" EntitySet="ImportCouponDetail" />
           </AssociationSet>
           <AssociationSet Name="FK_Invoice_Account" Association="Self.FK_Invoice_Account">
@@ -873,6 +895,8 @@
             <Parameter Name="phone" Mode="In" Type="String" />
             <Parameter Name="name" Mode="In" Type="String" />
             <Parameter Name="note" Mode="In" Type="String" />
+            <Parameter Name="payment" Mode="In" Type="String" />
+            <Parameter Name="isPaid" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="SP_AddOrderItem">
             <Parameter Name="invoiceId" Mode="In" Type="Int32" />
@@ -931,6 +955,7 @@
             <Parameter Name="currentPage" Mode="In" Type="Int32" />
             <Parameter Name="PageSize" Mode="In" Type="Int32" />
             <Parameter Name="AccountID" Mode="In" Type="Int32" />
+            <Parameter Name="sortBy" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="SP_GetProductOfCategoryCount" ReturnType="Collection(Int32)">
           <Parameter Name="categoryId" Mode="In" Type="Int32" />
@@ -940,6 +965,7 @@
             <Parameter Name="currentPage" Mode="In" Type="Int32" />
             <Parameter Name="PageSize" Mode="In" Type="Int32" />
             <Parameter Name="AccountID" Mode="In" Type="Int32" />
+            <Parameter Name="sortBy" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="SP_GetProductsOfProviderCount" ReturnType="Collection(Int32)">
           <Parameter Name="provderId" Mode="In" Type="Int32" />
@@ -1204,6 +1230,33 @@
           <FunctionImport Name="SP_GetProductColorSize" ReturnType="Collection(ClothesManamentModel1.SP_GetProductColorSize_Result)">
             <Parameter Name="categoryId" Mode="In" Type="Int32" />
             <Parameter Name="providerId" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="SP_GetProductOfCategoryFilter" ReturnType="Collection(ClothesManamentModel1.SP_GetProductOfCategory_Result1)">
+            <Parameter Name="categoryId" Mode="In" Type="Int32" />
+            <Parameter Name="currentPage" Mode="In" Type="Int32" />
+            <Parameter Name="PageSize" Mode="In" Type="Int32" />
+            <Parameter Name="AccountID" Mode="In" Type="Int32" />
+            <Parameter Name="sortBy" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="SP_GetProductsOfProviderFilter" ReturnType="Collection(ClothesManamentModel1.SP_GetProductOfCategory_Result1)">
+            <Parameter Name="providerId" Mode="In" Type="Int32" />
+            <Parameter Name="currentPage" Mode="In" Type="Int32" />
+            <Parameter Name="PageSize" Mode="In" Type="Int32" />
+            <Parameter Name="AccountID" Mode="In" Type="Int32" />
+            <Parameter Name="sortBy" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="SP_SearchFilter" ReturnType="Collection(ClothesManamentModel1.SP_GetProductOfCategory_Result1)">
+            <Parameter Name="keySearch" Mode="In" Type="String" />
+            <Parameter Name="currentPage" Mode="In" Type="Int32" />
+            <Parameter Name="PageSize" Mode="In" Type="Int32" />
+            <Parameter Name="AccountID" Mode="In" Type="Int32" />
+            <Parameter Name="sortBy" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="SP_SearchFilterCount">
+          <Parameter Name="keySearch" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="SP_SearchFilterCounter" ReturnType="Collection(Int32)">
+          <Parameter Name="keySearch" Mode="In" Type="String" />
           </FunctionImport>
           </EntityContainer>
         <ComplexType Name="getCategoryByGender_Result">
@@ -2703,6 +2756,56 @@
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SP_GetProductOfCategoryFilter" FunctionName="ClothesManamentModel1.Store.SP_GetProductOfCategoryFilter" >
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ClothesManamentModel1.SP_GetProductOfCategory_Result1">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="title" ColumnName="title" />
+                <ScalarProperty Name="detail" ColumnName="detail" />
+                <ScalarProperty Name="rating" ColumnName="rating" />
+                <ScalarProperty Name="sold" ColumnName="sold" />
+                <ScalarProperty Name="price" ColumnName="price" />
+                <ScalarProperty Name="thumnail" ColumnName="thumnail" />
+                <ScalarProperty Name="isLike" ColumnName="isLike" />
+                <ScalarProperty Name="promotion" ColumnName="promotion" />
+                <ScalarProperty Name="typePromotion" ColumnName="typePromotion" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SP_GetProductsOfProviderFilter" FunctionName="ClothesManamentModel1.Store.SP_GetProductsOfProviderFilter" >
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ClothesManamentModel1.SP_GetProductOfCategory_Result1">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="title" ColumnName="title" />
+                <ScalarProperty Name="detail" ColumnName="detail" />
+                <ScalarProperty Name="rating" ColumnName="rating" />
+                <ScalarProperty Name="sold" ColumnName="sold" />
+                <ScalarProperty Name="price" ColumnName="price" />
+                <ScalarProperty Name="thumnail" ColumnName="thumnail" />
+                <ScalarProperty Name="isLike" ColumnName="isLike" />
+                <ScalarProperty Name="promotion" ColumnName="promotion" />
+                <ScalarProperty Name="typePromotion" ColumnName="typePromotion" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SP_SearchFilter" FunctionName="ClothesManamentModel1.Store.SP_SearchFilter" >
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ClothesManamentModel1.SP_GetProductOfCategory_Result1">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="title" ColumnName="title" />
+                <ScalarProperty Name="detail" ColumnName="detail" />
+                <ScalarProperty Name="rating" ColumnName="rating" />
+                <ScalarProperty Name="sold" ColumnName="sold" />
+                <ScalarProperty Name="price" ColumnName="price" />
+                <ScalarProperty Name="thumnail" ColumnName="thumnail" />
+                <ScalarProperty Name="isLike" ColumnName="isLike" />
+                <ScalarProperty Name="promotion" ColumnName="promotion" />
+                <ScalarProperty Name="typePromotion" ColumnName="typePromotion" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SP_SearchFilterCount" FunctionName="ClothesManamentModel1.Store.SP_SearchFilterCount" />
+          <FunctionImportMapping FunctionImportName="SP_SearchFilterCounter" FunctionName="ClothesManamentModel1.Store.SP_SearchFilterCounter" />
           </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

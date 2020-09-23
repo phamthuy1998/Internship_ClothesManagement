@@ -110,6 +110,8 @@
             this.productTableAdapter = new ClothesAdmin.ClothesDataSetTableAdapters.ProductTableAdapter();
             this.sizeTableAdapter = new ClothesAdmin.ClothesDataSetTableAdapters.SizeTableAdapter();
             this.colorTableAdapter = new ClothesAdmin.ClothesDataSetTableAdapters.ColorTableAdapter();
+            this.sizeBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
+            this.colorBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             idLabel = new System.Windows.Forms.Label();
             employeeIdLabel = new System.Windows.Forms.Label();
             idCouponLabel = new System.Windows.Forms.Label();
@@ -150,6 +152,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.idProductSpinEdit.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.quantitySpinEdit.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.priceSpinEdit.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.sizeBindingSource1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.colorBindingSource1)).BeginInit();
             this.SuspendLayout();
             // 
             // idLabel
@@ -746,6 +750,7 @@
             // 
             // panel5
             // 
+            this.panel5.AutoScroll = true;
             this.panel5.ContextMenuStrip = this.contextMenuStrip1;
             this.panel5.Controls.Add(colorIdLabel);
             this.panel5.Controls.Add(this.colorIdTextBox);
@@ -772,6 +777,7 @@
             this.panel5.Name = "panel5";
             this.panel5.Size = new System.Drawing.Size(963, 393);
             this.panel5.TabIndex = 3;
+            this.panel5.Paint += new System.Windows.Forms.PaintEventHandler(this.panel5_Paint);
             // 
             // colorIdTextBox
             // 
@@ -785,7 +791,7 @@
             // 
             // colorComboBox
             // 
-            this.colorComboBox.DataSource = this.colorBindingSource;
+            this.colorComboBox.DataSource = this.colorBindingSource1;
             this.colorComboBox.DisplayMember = "colorName";
             this.colorComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.colorComboBox.FormattingEnabled = true;
@@ -803,7 +809,7 @@
             // 
             // sizeComboBox
             // 
-            this.sizeComboBox.DataSource = this.sizeBindingSource;
+            this.sizeComboBox.DataSource = this.sizeBindingSource1;
             this.sizeComboBox.DisplayMember = "sizeName";
             this.sizeComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.sizeComboBox.FormattingEnabled = true;
@@ -988,6 +994,16 @@
             // 
             this.colorTableAdapter.ClearBeforeFill = true;
             // 
+            // sizeBindingSource1
+            // 
+            this.sizeBindingSource1.DataMember = "Size";
+            this.sizeBindingSource1.DataSource = this.clothesDataSet;
+            // 
+            // colorBindingSource1
+            // 
+            this.colorBindingSource1.DataMember = "Color";
+            this.colorBindingSource1.DataSource = this.clothesDataSet;
+            // 
             // ImportCuponForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -1032,6 +1048,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.idProductSpinEdit.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.quantitySpinEdit.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.priceSpinEdit.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.sizeBindingSource1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.colorBindingSource1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1105,5 +1123,7 @@
         private ClothesDataSetTableAdapters.ColorTableAdapter colorTableAdapter;
         private System.Windows.Forms.TextBox colorIdTextBox;
         private System.Windows.Forms.ComboBox colorComboBox;
+        private System.Windows.Forms.BindingSource colorBindingSource1;
+        private System.Windows.Forms.BindingSource sizeBindingSource1;
     }
 }

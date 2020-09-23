@@ -91,7 +91,7 @@ namespace ClothesManamentDataAccess
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<getCategoryGender_Result1>("getCategoryGender", genderIDParameter);
         }
     
-        public virtual ObjectResult<Nullable<int>> SP_AddOrder(Nullable<int> userId, string address, string phone, string name, string note)
+        public virtual ObjectResult<Nullable<int>> SP_AddOrder(Nullable<int> userId, string address, string phone, string name, string note, string payment, Nullable<int> isPaid)
         {
             var userIdParameter = userId.HasValue ?
                 new ObjectParameter("userId", userId) :
@@ -113,7 +113,15 @@ namespace ClothesManamentDataAccess
                 new ObjectParameter("note", note) :
                 new ObjectParameter("note", typeof(string));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("SP_AddOrder", userIdParameter, addressParameter, phoneParameter, nameParameter, noteParameter);
+            var paymentParameter = payment != null ?
+                new ObjectParameter("payment", payment) :
+                new ObjectParameter("payment", typeof(string));
+    
+            var isPaidParameter = isPaid.HasValue ?
+                new ObjectParameter("isPaid", isPaid) :
+                new ObjectParameter("isPaid", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("SP_AddOrder", userIdParameter, addressParameter, phoneParameter, nameParameter, noteParameter, paymentParameter, isPaidParameter);
         }
     
         public virtual int SP_AddOrderItem(Nullable<int> invoiceId, Nullable<int> productId, Nullable<int> colorId, Nullable<int> sizeId, Nullable<int> quantity)
@@ -288,7 +296,7 @@ namespace ClothesManamentDataAccess
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_GetProductInfoDetail_Result1>("SP_GetProductInfoDetail", productIDParameter, accountIDParameter);
         }
     
-        public virtual ObjectResult<SP_GetProductOfCategory_Result1> SP_GetProductOfCategory(Nullable<int> categoryId, Nullable<int> currentPage, Nullable<int> pageSize, Nullable<int> accountID)
+        public virtual ObjectResult<SP_GetProductOfCategory_Result1> SP_GetProductOfCategory(Nullable<int> categoryId, Nullable<int> currentPage, Nullable<int> pageSize, Nullable<int> accountID, Nullable<int> sortBy)
         {
             var categoryIdParameter = categoryId.HasValue ?
                 new ObjectParameter("categoryId", categoryId) :
@@ -306,7 +314,11 @@ namespace ClothesManamentDataAccess
                 new ObjectParameter("AccountID", accountID) :
                 new ObjectParameter("AccountID", typeof(int));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_GetProductOfCategory_Result1>("SP_GetProductOfCategory", categoryIdParameter, currentPageParameter, pageSizeParameter, accountIDParameter);
+            var sortByParameter = sortBy.HasValue ?
+                new ObjectParameter("sortBy", sortBy) :
+                new ObjectParameter("sortBy", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_GetProductOfCategory_Result1>("SP_GetProductOfCategory", categoryIdParameter, currentPageParameter, pageSizeParameter, accountIDParameter, sortByParameter);
         }
     
         public virtual ObjectResult<Nullable<int>> SP_GetProductOfCategoryCount(Nullable<int> categoryId)
@@ -318,7 +330,7 @@ namespace ClothesManamentDataAccess
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("SP_GetProductOfCategoryCount", categoryIdParameter);
         }
     
-        public virtual ObjectResult<SP_GetProductOfCategory_Result1> SP_GetProductsOfProvider(Nullable<int> providerId, Nullable<int> currentPage, Nullable<int> pageSize, Nullable<int> accountID)
+        public virtual ObjectResult<SP_GetProductOfCategory_Result1> SP_GetProductsOfProvider(Nullable<int> providerId, Nullable<int> currentPage, Nullable<int> pageSize, Nullable<int> accountID, Nullable<int> sortBy)
         {
             var providerIdParameter = providerId.HasValue ?
                 new ObjectParameter("providerId", providerId) :
@@ -336,7 +348,11 @@ namespace ClothesManamentDataAccess
                 new ObjectParameter("AccountID", accountID) :
                 new ObjectParameter("AccountID", typeof(int));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_GetProductOfCategory_Result1>("SP_GetProductsOfProvider", providerIdParameter, currentPageParameter, pageSizeParameter, accountIDParameter);
+            var sortByParameter = sortBy.HasValue ?
+                new ObjectParameter("sortBy", sortBy) :
+                new ObjectParameter("sortBy", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_GetProductOfCategory_Result1>("SP_GetProductsOfProvider", providerIdParameter, currentPageParameter, pageSizeParameter, accountIDParameter, sortByParameter);
         }
     
         public virtual ObjectResult<Nullable<int>> SP_GetProductsOfProviderCount(Nullable<int> provderId)
@@ -884,6 +900,99 @@ namespace ClothesManamentDataAccess
                 new ObjectParameter("providerId", typeof(int));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_GetProductColorSize_Result>("SP_GetProductColorSize", categoryIdParameter, providerIdParameter);
+        }
+    
+        public virtual ObjectResult<SP_GetProductOfCategory_Result1> SP_GetProductOfCategoryFilter(Nullable<int> categoryId, Nullable<int> currentPage, Nullable<int> pageSize, Nullable<int> accountID, Nullable<int> sortBy)
+        {
+            var categoryIdParameter = categoryId.HasValue ?
+                new ObjectParameter("categoryId", categoryId) :
+                new ObjectParameter("categoryId", typeof(int));
+    
+            var currentPageParameter = currentPage.HasValue ?
+                new ObjectParameter("currentPage", currentPage) :
+                new ObjectParameter("currentPage", typeof(int));
+    
+            var pageSizeParameter = pageSize.HasValue ?
+                new ObjectParameter("PageSize", pageSize) :
+                new ObjectParameter("PageSize", typeof(int));
+    
+            var accountIDParameter = accountID.HasValue ?
+                new ObjectParameter("AccountID", accountID) :
+                new ObjectParameter("AccountID", typeof(int));
+    
+            var sortByParameter = sortBy.HasValue ?
+                new ObjectParameter("sortBy", sortBy) :
+                new ObjectParameter("sortBy", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_GetProductOfCategory_Result1>("SP_GetProductOfCategoryFilter", categoryIdParameter, currentPageParameter, pageSizeParameter, accountIDParameter, sortByParameter);
+        }
+    
+        public virtual ObjectResult<SP_GetProductOfCategory_Result1> SP_GetProductsOfProviderFilter(Nullable<int> providerId, Nullable<int> currentPage, Nullable<int> pageSize, Nullable<int> accountID, Nullable<int> sortBy)
+        {
+            var providerIdParameter = providerId.HasValue ?
+                new ObjectParameter("providerId", providerId) :
+                new ObjectParameter("providerId", typeof(int));
+    
+            var currentPageParameter = currentPage.HasValue ?
+                new ObjectParameter("currentPage", currentPage) :
+                new ObjectParameter("currentPage", typeof(int));
+    
+            var pageSizeParameter = pageSize.HasValue ?
+                new ObjectParameter("PageSize", pageSize) :
+                new ObjectParameter("PageSize", typeof(int));
+    
+            var accountIDParameter = accountID.HasValue ?
+                new ObjectParameter("AccountID", accountID) :
+                new ObjectParameter("AccountID", typeof(int));
+    
+            var sortByParameter = sortBy.HasValue ?
+                new ObjectParameter("sortBy", sortBy) :
+                new ObjectParameter("sortBy", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_GetProductOfCategory_Result1>("SP_GetProductsOfProviderFilter", providerIdParameter, currentPageParameter, pageSizeParameter, accountIDParameter, sortByParameter);
+        }
+    
+        public virtual ObjectResult<SP_GetProductOfCategory_Result1> SP_SearchFilter(string keySearch, Nullable<int> currentPage, Nullable<int> pageSize, Nullable<int> accountID, Nullable<int> sortBy)
+        {
+            var keySearchParameter = keySearch != null ?
+                new ObjectParameter("keySearch", keySearch) :
+                new ObjectParameter("keySearch", typeof(string));
+    
+            var currentPageParameter = currentPage.HasValue ?
+                new ObjectParameter("currentPage", currentPage) :
+                new ObjectParameter("currentPage", typeof(int));
+    
+            var pageSizeParameter = pageSize.HasValue ?
+                new ObjectParameter("PageSize", pageSize) :
+                new ObjectParameter("PageSize", typeof(int));
+    
+            var accountIDParameter = accountID.HasValue ?
+                new ObjectParameter("AccountID", accountID) :
+                new ObjectParameter("AccountID", typeof(int));
+    
+            var sortByParameter = sortBy.HasValue ?
+                new ObjectParameter("sortBy", sortBy) :
+                new ObjectParameter("sortBy", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_GetProductOfCategory_Result1>("SP_SearchFilter", keySearchParameter, currentPageParameter, pageSizeParameter, accountIDParameter, sortByParameter);
+        }
+    
+        public virtual int SP_SearchFilterCount(string keySearch)
+        {
+            var keySearchParameter = keySearch != null ?
+                new ObjectParameter("keySearch", keySearch) :
+                new ObjectParameter("keySearch", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("SP_SearchFilterCount", keySearchParameter);
+        }
+    
+        public virtual ObjectResult<Nullable<int>> SP_SearchFilterCounter(string keySearch)
+        {
+            var keySearchParameter = keySearch != null ?
+                new ObjectParameter("keySearch", keySearch) :
+                new ObjectParameter("keySearch", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("SP_SearchFilterCounter", keySearchParameter);
         }
     }
 }

@@ -36,10 +36,10 @@
                 android:id="@+id/btn_close"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/layout_margin_32dp"
                 android:layout_marginStart="@dimen/layout_margin_16dp"
-                android:padding="@dimen/layout_margin_2dp"
+                android:layout_marginTop="@dimen/layout_margin_32dp"
                 android:onClick="@{(v) -> fragment.onClick(v)}"
+                android:padding="@dimen/layout_margin_2dp"
                 android:translationZ="1dp"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
@@ -48,7 +48,7 @@
             <View
                 android:id="@+id/vLogo"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/layout_margin_40dp"
+                android:layout_height="0dp"
                 android:background="@color/white"
                 android:translationZ="1dp"
                 app:layout_constraintBottom_toBottomOf="@id/ivLogo"
@@ -58,7 +58,7 @@
                 android:id="@+id/ivLogo"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/image_50dp"
-                android:src="@drawable/logo_flash"
+                android:src="@drawable/logo_pt"
                 android:translationZ="1dp"
                 app:layout_constraintBottom_toBottomOf="@id/bg_login"
                 app:layout_constraintTop_toTopOf="@id/bg_login" />
@@ -79,10 +79,10 @@
                 android:ellipsize="end"
                 android:gravity="center_vertical"
                 android:hint="@string/email"
-                android:text="phamthithuy4444@gmail.com"
                 android:inputType="textEmailAddress"
                 android:paddingStart="@dimen/layout_margin_16dp"
                 android:paddingEnd="@dimen/layout_margin_64dp"
+                android:text="phamthithuy4444@gmail.com"
                 android:textCursorDrawable="@drawable/gray_cursor"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -106,11 +106,11 @@
                 android:drawableStart="@drawable/ic_password_field_gray"
                 android:ellipsize="end"
                 android:hint="@string/password"
-                android:text="lqhLQ4965"
                 android:imeOptions="actionGo"
                 android:inputType="textPassword"
                 android:paddingStart="@dimen/layout_margin_16dp"
                 android:paddingEnd="@dimen/layout_margin_64dp"
+                android:text="thuythuy"
                 android:textCursorDrawable="@drawable/gray_cursor"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -120,9 +120,9 @@
                 android:id="@+id/toggle_password"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:padding="@dimen/layout_margin_16dp"
                 android:layout_marginEnd="@dimen/layout_margin_4dp"
                 android:onClick="@{(v) -> fragment.onClick(v)}"
+                android:padding="@dimen/layout_margin_16dp"
                 android:src="@{isShowPassword ? @drawable/ic_eye_pass_show : @drawable/ic_eye_pass_hide}"
                 app:layout_constraintBottom_toBottomOf="@id/edt_password"
                 app:layout_constraintEnd_toEndOf="@id/edt_password"
@@ -130,8 +130,8 @@
                 tools:src="@drawable/ic_eyes_password" />
 
             <TextView
-                style="@style/normal_text"
                 android:id="@+id/btn_forgot_pass"
+                style="@style/normal_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/layout_margin_16dp"
@@ -144,16 +144,16 @@
 
             <com.ptithcm.ptshop.widget.LoadingButton
                 android:id="@+id/btn_sign_in"
-                android:clickable="true"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/layout_margin_16dp"
                 android:layout_marginTop="@dimen/layout_margin_16dp"
                 android:layout_marginRight="@dimen/layout_margin_16dp"
+                android:clickable="true"
+                android:focusable="true"
                 android:onClick="@{(v) -> fragment.onClick(v)}"
-                app:text="@string/sign_in"
                 app:layout_constraintTop_toBottomOf="@id/btn_forgot_pass"
-                android:focusable="true" />
+                app:text="@string/sign_in" />
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/tvDontAccount"
@@ -161,8 +161,8 @@
                 android:layout_marginTop="@dimen/layout_margin_8dp"
                 android:gravity="center"
                 android:padding="@dimen/layout_margin_8dp"
-                android:textColorLink="@color/black"
                 android:text="@string/dont_have_account"
+                android:textColorLink="@color/black"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/btn_sign_in" />

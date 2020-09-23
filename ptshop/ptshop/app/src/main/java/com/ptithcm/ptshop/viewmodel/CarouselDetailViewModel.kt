@@ -6,6 +6,8 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.paging.PagedList
 import com.ptithcm.core.model.SearchParams
+import com.ptithcm.core.param.ProductsOfCategoryRequestParam
+import com.ptithcm.core.param.ProductsOfProviderRequestParam
 import com.ptithcm.core.repository.CarouselDetailRepository
 import com.ptithcm.core.vo.ItemViewModel
 import com.ptithcm.core.vo.Result
@@ -17,15 +19,11 @@ class CarouselDetailViewModel(private val repository: CarouselDetailRepository) 
     val productLoadStatusX = MutableLiveData<Result<ItemViewModel>>()
 
     val productsCategoriesLiveData = MediatorLiveData<PagedList<ItemViewModel>>()
-    fun getPagingProductsCategories(
-        categoryID: Int,
-        pageSize: Int,
-        pageNumber: Int,
-        accountId: Int
-    ) {
+    fun getPagingProductsCategories(param: ProductsOfCategoryRequestParam?) {
+        param ?: return
         viewModelScope.launch {
             val request =
-                repository.getPagingProductsCarousel(categoryID, pageSize, pageNumber, accountId)
+                repository.getPagingProductsCarousel(param)
             productsCategoriesLiveData.addSource(request.result) {
                 productsCategoriesLiveData.value = it
             }
@@ -47,15 +45,11 @@ class CarouselDetailViewModel(private val repository: CarouselDetailRepository) 
     }
 
     val productsProviderLiveData = MediatorLiveData<PagedList<ItemViewModel>>()
-    fun getPagingProductsProvider(
-        providerId: Int,
-        pageSize: Int,
-        pageNumber: Int,
-        accountId: Int
-    ) {
+    fun getPagingProductsProvider(param: ProductsOfProviderRequestParam?) {
+        param ?: return
         viewModelScope.launch {
             val request =
-                repository.getPagingProductsProvider(providerId, pageSize, pageNumber, accountId)
+                repository.getPagingProductsProvider(param)
             productsProviderLiveData.addSource(request.result) {
                 productsProviderLiveData.value = it
             }
@@ -78,7 +72,8 @@ class CarouselDetailViewModel(private val repository: CarouselDetailRepository) 
 
     val refineProductLiveData = MediatorLiveData<PagedList<ItemViewModel>>()
     val networkStateRefine = MutableLiveData<Boolean>()
-    fun getPagingRefineProduct(searchParams: SearchParams?) {
+    fun searchPagingProducts(searchParams: SearchParams?) {
+        searchParams ?: return
         viewModelScope.launch {
             val request = repository.getPagingRefineProduct(searchParams)
             refineProductLiveData.addSource(request.result) {

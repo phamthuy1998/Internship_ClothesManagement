@@ -7,6 +7,8 @@ import com.ptithcm.core.data.remote.BaseDataSourceFactory
 import com.ptithcm.core.model.CountViewModel
 import com.ptithcm.core.model.ProductClothes
 import com.ptithcm.core.model.SearchParams
+import com.ptithcm.core.param.ProductsOfCategoryRequestParam
+import com.ptithcm.core.param.ProductsOfProviderRequestParam
 import com.ptithcm.core.repository.CarouselDetailRepository
 import com.ptithcm.core.util.PAGE_SIZE
 import com.ptithcm.core.vo.ItemViewModel
@@ -18,18 +20,13 @@ class CarouselDetailRepositoryImpl(
     private val clothesApi: ApiClothesService
 ) : CarouselDetailRepository {
     override suspend fun getPagingProductsCarousel(
-        categoryID: Int,
-        pageSize: Int,
-        pageNumber: Int,
-        accountId: Int
+        param: ProductsOfCategoryRequestParam
     ): Listing<ItemViewModel> {
         val sourceFactory =
             object :
                 BaseDataSourceFactory<ProductClothes, ItemViewModel>(status = MutableLiveData()) {
                 override suspend fun createXCall(page: Int): Response<ListResponse<ProductClothes>> {
-                    return clothesApi.getProducts(
-                        categoryID, pageSize, page, accountId
-                    )
+                    return clothesApi.getProducts(param.apply { pageNumber = page })
                 }
 
                 override suspend fun handleXResponse(
@@ -59,18 +56,13 @@ class CarouselDetailRepositoryImpl(
     }
 
     override suspend fun getPagingProductsProvider(
-        providerId: Int,
-        pageSize: Int,
-        pageNumber: Int,
-        accountId: Int
+        param: ProductsOfProviderRequestParam
     ): Listing<ItemViewModel> {
         val sourceFactory =
             object :
                 BaseDataSourceFactory<ProductClothes, ItemViewModel>(status = MutableLiveData()) {
                 override suspend fun createXCall(page: Int): Response<ListResponse<ProductClothes>> {
-                    return clothesApi.getProductsProvider(
-                        providerId, pageSize, page, accountId
-                    )
+                    return clothesApi.getProductsProvider(param.apply { pageNumber = page })
                 }
 
                 override suspend fun handleXResponse(
@@ -99,12 +91,12 @@ class CarouselDetailRepositoryImpl(
         )
     }
 
-    override suspend fun getPagingRefineProduct(searchParams: SearchParams?): Listing<ItemViewModel> {
+    override suspend fun getPagingRefineProduct(searchParam: SearchParams?): Listing<ItemViewModel> {
         val sourceFactory =
             object :
                 BaseDataSourceFactory<ProductClothes, ItemViewModel>(status = MutableLiveData()) {
                 override suspend fun createXCall(page: Int): Response<ListResponse<ProductClothes>> {
-                    return clothesApi.getRefineProducts(searchParams.apply {
+                    return clothesApi.getRefineProducts(searchParam.apply {
                         this?.pageNumber = page
                     })
                 }
