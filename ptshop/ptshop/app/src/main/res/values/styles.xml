@@ -8,6 +8,7 @@
         <item name="colorAccent">@color/progress_line</item>
         <item name="colorControlActivated">@color/progress_line</item>
         <item name="windowActionBar">false</item>
+        <item name="android:windowFullscreen">true</item>
         <item name="windowNoTitle">true</item>
     </style>
 

@@ -89,4 +89,9 @@
         android:name="com.ptithcm.ptshop.view.document.DocumentFragment"
         tools:layout="@layout/fragment_document"
         android:label="DocumentFragment" />
+    <fragment
+        android:id="@+id/questionFragment"
+        android:name="com.ptithcm.ptshop.view.question.QuestionFragment"
+        android:label="QuestionFragment" />
+    <include app:graph="@navigation/nav_login" />
 </navigation>

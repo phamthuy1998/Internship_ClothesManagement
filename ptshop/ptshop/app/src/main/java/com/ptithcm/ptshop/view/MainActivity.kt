@@ -85,6 +85,7 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
             R.navigation.nav_shop,
             R.navigation.nav_designer,
             R.navigation.nav_wish,
+            R.navigation.nav_message,
             R.navigation.nav_profile
         )
 

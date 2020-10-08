@@ -32,9 +32,10 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>() {
     private var fromShoppingBag = false
     private val authViewModel: AuthenticateViewModel by viewModel()
     private var typeface: Typeface? = null
-
+private var fromQuestionFragment = false
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        fromQuestionFragment = arguments?.get("fromQuestionFragment") as Boolean? ?:false
         (requireActivity() as? BaseActivity<*>)?.apply {
             window.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE)
             transparentStatusBar(isFull = false, isBlack = true)
@@ -63,7 +64,7 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>() {
 
                 (activity as? MainActivity)?.updateUIBottomNav()
                 navController.popBackStack()
-                if (fromShoppingBag) {
+                if (fromShoppingBag||fromQuestionFragment) {
                     return@Observer
                 }
                 if (fromRegister)

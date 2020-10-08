@@ -77,5 +77,13 @@
 
     <include
         app:graph="@navigation/nav_login"/>
+    <fragment
+        android:id="@+id/questionFragment"
+        android:name="com.ptithcm.ptshop.view.question.QuestionFragment"
+        android:label="QuestionFragment" />
+    <fragment
+        android:id="@+id/loginFragment"
+        android:name="com.ptithcm.ptshop.view.login.LoginFragment"
+        android:label="LoginFragment" />
 
 </navigation>

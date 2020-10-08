@@ -92,8 +92,8 @@
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/tvDesc"
                     style="@style/normal_text.grey"
-                    android:layout_marginTop="@dimen/layout_margin_8dp"
                     android:layout_width="0dp"
+                    android:layout_marginTop="@dimen/layout_margin_8dp"
                     android:layout_marginEnd="@dimen/layout_margin_16dp"
                     android:text="@{item.provider.brandName}"
                     app:layout_constraintEnd_toStartOf="@id/tvPrice"
@@ -145,12 +145,12 @@
 
                     <androidx.appcompat.widget.AppCompatSpinner
                         android:id="@+id/btnColor"
+                        setVisible="@{btnColorVisible}"
                         android:layout_width="@dimen/no_padding"
                         android:layout_height="wrap_content"
                         android:background="@drawable/background_spinner"
                         android:overlapAnchor="false"
                         android:spinnerMode="dropdown"
-                        setVisible="@{btnColorVisible}"
                         app:layout_constraintEnd_toStartOf="@+id/btnSize"
                         app:layout_constraintHorizontal_weight="2"
                         app:layout_constraintStart_toStartOf="parent"
@@ -158,13 +158,13 @@
 
                     <androidx.appcompat.widget.AppCompatSpinner
                         android:id="@+id/btnSize"
+                        setVisible="@{btnSizeVisible}"
                         android:layout_width="@dimen/no_padding"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="@dimen/layout_margin_8dp"
                         android:background="@drawable/background_spinner"
                         android:overlapAnchor="false"
                         android:spinnerMode="dropdown"
-                        setVisible="@{btnSizeVisible}"
                         app:layout_constraintEnd_toStartOf="@+id/btnQuantity"
                         app:layout_constraintHorizontal_weight="2"
                         app:layout_constraintStart_toEndOf="@id/btnColor"
@@ -216,12 +216,13 @@
                     <androidx.appcompat.widget.AppCompatTextView
                         android:id="@+id/tvDescription"
                         style="@style/normal_text"
+                        setTextHtml="@{item.detail}"
+                        android:autoLink="all"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:lineSpacingExtra="@dimen/size_8dp"
                         android:onClick="@{fragment::onClick}"
                         android:paddingBottom="@dimen/layout_margin_16dp"
-                        setTextHtml="@{item.detail}"
                         android:textAlignment="viewStart"
                         android:visibility="gone" />
 
@@ -247,10 +248,23 @@
                         android:textAlignment="viewStart"
                         android:visibility="gone" />
 
+                    <androidx.appcompat.widget.AppCompatButton
+                        android:id="@+id/btnQuestions"
+                        style="@style/Button_Borderless_Bold"
+                        android:onClick="@{(v) -> fragment.onClick(v)}"
+                        android:text="@string/comment"
+                        android:textSize="@dimen/text_size_12sp" />
+
+                    <androidx.appcompat.widget.AppCompatButton
+                        android:id="@+id/btnRating"
+                        style="@style/Button_Borderless_Bold"
+                        android:onClick="@{(v) -> fragment.onClick(v)}"
+                        android:text="@string/rating"
+                        android:textSize="@dimen/text_size_12sp" />
+
                 </LinearLayout>
 
             </androidx.constraintlayout.widget.ConstraintLayout>
-
         </androidx.core.widget.NestedScrollView>
 
         <com.ptithcm.ptshop.widget.LoadingButton
@@ -266,6 +280,5 @@
             android:onClick="@{fragment::onClick}"
             app:isShowTextBehind="true"
             app:text="@{hasQuantity ? @string/add_to_cart : isAvailable ? @string/out_of_stock : @string/unavailable}" />
-
     </LinearLayout>
 </layout>

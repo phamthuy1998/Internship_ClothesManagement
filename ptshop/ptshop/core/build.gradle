@@ -43,7 +43,7 @@ android {
         staging{
             buildConfigField "String", "SERVER_URL", '"https://api-staging.snapshop.com"'
             buildConfigField "String", "IMG_URL", '"file://"'
-            buildConfigField "String", "SERVER_CLOTHES_URL", '"http://192.168.1.51:88/api/' +
+            buildConfigField "String", "SERVER_CLOTHES_URL", '"http://192.168.1.46:88/api/' +
                     ':88/api/"'
             buildConfigField "String", "AWS_URL_IMAGE", '"https://snapshop-stpaging.s3.amazonaws.com/"'
             buildConfigField "String", "AWS_BUCKET", '"snapshop-staging"'
@@ -51,7 +51,7 @@ android {
             buildConfigField "String", "PUBLISHABLE_KEY", '"pk_test_51HEO9yAUHa3z0jaSN65DnD7ZtQW0uSgoIcQ4J86ee3BPB8TkMuB8cI2pmJnW4i85yPgDqVWjrkHy8WCIBwXy9iGB00viqPHgKx"'
         }
         prod{
-            buildConfigField "String", "SERVER_CLOTHES_URL", '"http://192.168.1.51:88/api/"'
+            buildConfigField "String", "SERVER_CLOTHES_URL", '"http://192.168.1.46:88/api/"'
             buildConfigField "String", "SERVER_URL", '"https://api.snapshop.me"'
             buildConfigField "String", "AWS_URL_IMAGE", '"https://snapshop-prod.s3.amazonaws.com/"'
             buildConfigField "String", "AWS_BUCKET", '"snapshop-prod"'

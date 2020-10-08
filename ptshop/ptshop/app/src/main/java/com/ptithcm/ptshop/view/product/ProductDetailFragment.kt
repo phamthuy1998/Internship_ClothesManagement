@@ -2,6 +2,7 @@ package com.ptithcm.ptshop.view.product
 
 import android.graphics.Paint
 import android.os.Bundle
+import android.util.Patterns
 import android.view.View
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
@@ -21,12 +22,15 @@ import com.ptithcm.ptshop.databinding.FragmentProductDetailBinding
 import com.ptithcm.ptshop.ext.*
 import com.ptithcm.ptshop.view.MainActivity
 import com.ptithcm.ptshop.view.home.StoryDetailActivity
+import com.ptithcm.ptshop.view.textlink.AutoLinkMode
 import com.ptithcm.ptshop.view.wishlist.ColorSpinnerAdapter
 import com.ptithcm.ptshop.view.wishlist.overview.ProductionClothesBannersPagerAdapter
 import com.ptithcm.ptshop.viewmodel.ShoppingViewModel
 import com.ptithcm.ptshop.viewmodel.WishListViewModel
 import kotlinx.android.synthetic.main.activity_main.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
+import java.util.regex.Pattern
+
 
 class ProductDetailFragment : BaseFragment<FragmentProductDetailBinding>() {
 
@@ -52,6 +56,7 @@ class ProductDetailFragment : BaseFragment<FragmentProductDetailBinding>() {
     }
 
     override fun bindEvent() {
+
         viewBinding.fragment = this@ProductDetailFragment
         setUpViewPager()
         bindProduct()
@@ -89,6 +94,15 @@ class ProductDetailFragment : BaseFragment<FragmentProductDetailBinding>() {
             }
             R.id.btnDesc, R.id.tvDescription -> {
                 toggleDrawable(viewBinding.btnDesc, viewBinding.tvDescription.expandOrCollapse())
+            }
+            R.id.btnQuestions -> {
+                navController.navigateAnimation(
+                    R.id.questionFragment,
+                    bundle = bundleOf("productId" to productDetail?.id)
+                )
+            }
+            R.id.btnRating -> {
+                navController.navigateAnimation(R.id.sizeGuideFragment)
             }
             R.id.btnAboutBrand, R.id.tvAboutBrand -> {
                 toggleDrawable(

@@ -55,6 +55,7 @@
     <string name="invoices">Invoices</string>
     <string name="invoice">Invoice</string>
     <string name="address_book">Address Book</string>
+    <string name="question_product">Question about product</string>
     <string name="invoice_book">Invoice Book</string>
     <string name="invoice_detail">Invoice Detail</string>
     <string name="change_password">Change Password</string>
@@ -102,6 +103,8 @@
     <string name="logout_me_out">Log me out</string>
     <string name="error_empty">%s can\'t be empty</string>
     <string name="invalid_email">Invalid email</string>
+    <string name="addQuestionSuccess">Add question success</string>
+    <string name="addQuestionFail">Add question failure</string>
     <string name="invalid_phone">Invalid phone</string>
     <string name="password_size">%s must be at least 8 characters</string>
     <string name="password_upper_case">%s must be at least 1 Uppercase character</string>
@@ -312,4 +315,15 @@
     <string name="discount">Discount</string>
     <string name="bought_date">Bought Date</string>
     <string name="message">MESSAGE</string>
+    <string name="comment">Comment</string>
+    <string name="rating">Rating</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="provider">PROVIDER</string>
+    <string name="questions_hint">Add questions here</string>
+    <string name="reply">Reply</string>
+    <string name="show_all_replies">Show replies</string>
+    <string name="hide_replies">Hide replies</string>
+    <string name="admin">Admin </string>
+    <string name="no_question">No question</string>
 </resources>

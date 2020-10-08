@@ -36,5 +36,14 @@
         tools:layout="@layout/fragment_size_guide" />
 
     <include app:graph="@navigation/nav_shopping_card" />
+    <fragment
+        android:id="@+id/questionFragment"
+        android:name="com.ptithcm.ptshop.view.question.QuestionFragment"
+        android:label="QuestionFragment" />
+    <fragment
+        android:id="@+id/loginFragment"
+        android:name="com.ptithcm.ptshop.view.login.LoginFragment"
+        android:label="LoginFragment" />
+    <include app:graph="@navigation/nav_login" />
 
 </navigation>

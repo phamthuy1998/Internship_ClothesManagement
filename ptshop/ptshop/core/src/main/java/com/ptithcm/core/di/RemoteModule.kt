@@ -31,11 +31,9 @@ val remoteModule = module {
         createServiceClothes<ApiClothesService>(get())
     }
 
-
     single {
         createOkHttpClient(get())
     }
-
 
     single { createAmazonS3Client(get()) }
 

@@ -33,5 +33,14 @@
         android:id="@+id/fragment_story_detail"
         android:name="com.ptithcm.ptshop.view.home.storydetail.StoryDetailFragment"
         tools:layout="@layout/activity_story_detail" />
+    <fragment
+        android:id="@+id/questionFragment"
+        android:name="com.ptithcm.ptshop.view.question.QuestionFragment"
+        android:label="QuestionFragment" />
+    <fragment
+        android:id="@+id/loginFragment"
+        android:name="com.ptithcm.ptshop.view.login.LoginFragment"
+        android:label="LoginFragment" />
+    <include app:graph="@navigation/nav_login" />
 
 </navigation>

@@ -22,5 +22,15 @@
         tools:layout="@layout/fragment_size_guide"
         android:name="com.ptithcm.ptshop.view.sizeguide.SizeGuideFragment"
         android:label="SizeGuideFragment" />
+    <fragment
+        android:id="@+id/questionFragment"
+        tools:layout="@layout/fragment_question"
+        android:name="com.ptithcm.ptshop.view.question.QuestionFragment"
+        android:label="QuestionFragment" />
+    <fragment
+        android:id="@+id/loginFragment"
+        android:name="com.ptithcm.ptshop.view.login.LoginFragment"
+        android:label="LoginFragment" />
+    <include app:graph="@navigation/nav_login" />
 
 </navigation>

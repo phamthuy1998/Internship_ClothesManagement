@@ -112,5 +112,24 @@ interface ApiClothesService {
 
     @POST("/api/addInvoice")
     suspend fun requestCheckout(@Body param: RequestCheckoutParam): Response<ObjectResponse<Any>>
+
+
+    /*-----------------------------*/
+    /* Question*/
+    @GET("/api/getQuestions")
+    suspend fun getAllQuestion(
+        @Query("pageSize") pageSize: Int = 20,
+        @Query("pageNumber") pageNumber: Int = 1,
+        @Query("productId") productId: Int
+    ): Response<ListResponse<Question>>
+
+    @POST("/api/addQuestion")
+    suspend fun addQuestion(@Body param: Question): Response<ObjectResponse<Int>>
+
+    @PUT("/api/updateQuestion")
+    suspend fun updateQuestion(@Body param: Question): Response<ObjectResponse<Int>>
+
+    @DELETE("/api/delQuestion")
+    suspend fun delQuestion(@Query("questionID") addressId: Int?): Response<ObjectResponse<Int>>
 }
 
