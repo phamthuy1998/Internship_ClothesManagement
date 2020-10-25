@@ -55,7 +55,7 @@
                 tools:text=""/>
 
             <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/btnCancel"
+                android:id="@+id/btnOk"
                 style="@style/SemiBold.Size14"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -63,12 +63,12 @@
                 android:padding="@dimen/layout_margin_16dp"
                 android:text="@{left}"
                 android:textColor="@color/blue"
-                app:layout_constraintEnd_toStartOf="@id/btnOk"
+                app:layout_constraintEnd_toStartOf="@id/btnCancel"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/tvTitle" />
 
             <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/btnOk"
+                android:id="@+id/btnCancel"
                 style="@style/SemiBold.Size14"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -77,14 +77,14 @@
                 android:text="@{right}"
                 android:textColor="@color/red"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@id/btnCancel"
+                app:layout_constraintStart_toEndOf="@id/btnOk"
                 app:layout_constraintTop_toBottomOf="@id/tvTitle" />
 
             <View
                 android:id="@+id/vLine1"
                 style="@style/divider"
                 android:layout_width="match_parent"
-                app:layout_constraintBottom_toTopOf="@id/btnCancel"
+                app:layout_constraintBottom_toTopOf="@id/btnOk"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent" />
 
@@ -93,8 +93,8 @@
                 android:layout_width="1dp"
                 android:layout_height="0dp"
                 android:background="@color/gray_stroke"
-                app:layout_constraintBottom_toBottomOf="@id/btnOk"
-                app:layout_constraintEnd_toStartOf="@id/btnOk"
+                app:layout_constraintBottom_toBottomOf="@id/btnCancel"
+                app:layout_constraintEnd_toStartOf="@id/btnCancel"
                 app:layout_constraintTop_toBottomOf="@id/vLine1" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>

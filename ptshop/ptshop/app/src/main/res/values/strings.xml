@@ -92,6 +92,8 @@
     <string name="product">PRODUCTS</string>
     <string name="stories">STORIES</string>
     <string name="about">ABOUT</string>
+    <string name="editQuestionErr">Can\'t edit this question</string>
+    <string name="editQuestionSuccess">Edit question successful</string>
     <string name="loading_more">Loading more…</string>
     <string name="biography">Biography</string>
     <string name="terms_and_return_policy">Terms And Return Policy</string>
@@ -112,6 +114,7 @@
     <string name="sign_up_success">Successfully Registration</string>
     <string name="update_detail_success">Update successfully</string>
     <string name="changePass_success">Update password successfully</string>
+    <string name="confirmDelQuestion">Are you sure you want to delete this question</string>
     <string name="address_line_1">Address Line 1*</string>
     <string name="address_line_2_optional">Address Line 2 (optional)</string>
     <string name="country_area">Country Area</string>
@@ -322,8 +325,9 @@
     <string name="provider">PROVIDER</string>
     <string name="questions_hint">Add questions here</string>
     <string name="reply">Reply</string>
-    <string name="show_all_replies">Show replies</string>
+    <string name="show_all_replies">Show %d replies</string>
     <string name="hide_replies">Hide replies</string>
     <string name="admin">Admin </string>
     <string name="no_question">No question</string>
+    <string name="edit">Edit</string>
 </resources>

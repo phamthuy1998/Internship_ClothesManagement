@@ -212,10 +212,10 @@ class CreditCardDetailFragment : BaseFragment<FragmentDetailCreditCardBinding>()
                         tokenizeCard(cardToSave)
                     }
             }
-            R.id.btnCancel -> {
+            R.id.btnOk -> {
                 (requireActivity() as? BaseActivity<*>)?.closePopup()
             }
-            R.id.btnOk -> {
+            R.id.btnCancel -> {
                 (requireActivity() as? BaseActivity<*>)?.closePopup()
                 listenerViewModel.changePayment.value = null
                 navController.popBackStack()

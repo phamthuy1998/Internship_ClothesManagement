@@ -208,7 +208,7 @@
 
                     <androidx.appcompat.widget.AppCompatButton
                         android:id="@+id/btnDesc"
-                        style="@style/Button_Borderless_Bold"
+                        style="@style/TextNormal"
                         android:onClick="@{(v) -> fragment.onClick(v)}"
                         android:text="@string/description"
                         android:textSize="@dimen/text_size_12sp" />
@@ -232,7 +232,7 @@
 
                     <androidx.appcompat.widget.AppCompatButton
                         android:id="@+id/btnAboutBrand"
-                        style="@style/Button_Borderless_Bold"
+                        style="@style/TextNormal"
                         android:onClick="@{(v) -> fragment.onClick(v)}"
                         android:text="@string/about_brand"
                         android:textSize="@dimen/text_size_12sp" />
@@ -250,14 +250,14 @@
 
                     <androidx.appcompat.widget.AppCompatButton
                         android:id="@+id/btnQuestions"
-                        style="@style/Button_Borderless_Bold"
+                        style="@style/TextNormal"
                         android:onClick="@{(v) -> fragment.onClick(v)}"
                         android:text="@string/comment"
                         android:textSize="@dimen/text_size_12sp" />
 
                     <androidx.appcompat.widget.AppCompatButton
                         android:id="@+id/btnRating"
-                        style="@style/Button_Borderless_Bold"
+                        style="@style/TextNormal"
                         android:onClick="@{(v) -> fragment.onClick(v)}"
                         android:text="@string/rating"
                         android:textSize="@dimen/text_size_12sp" />

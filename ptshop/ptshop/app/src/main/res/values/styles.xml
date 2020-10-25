@@ -292,6 +292,10 @@
         <item name="android:textSize">@dimen/text_size_15sp</item>
         <item name="android:paddingEnd">@dimen/layout_margin_18dp</item>
     </style>
+    <style name="TextNormal" parent="Button_Borderless_Bold">
+        <item name="android:textColor">@color/black</item>
+        <item name="android:textStyle">bold</item>
+    </style>
 
     <style name="Button_Corner_Active">
         <item name="android:layout_width">wrap_content</item>

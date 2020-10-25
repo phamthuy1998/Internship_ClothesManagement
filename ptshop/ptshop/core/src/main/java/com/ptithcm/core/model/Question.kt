@@ -10,11 +10,12 @@ data class Question(
     var roleId: Int? = null,
     var subQuestions: ArrayList<Question>? = null,
     var username: String? = null,
+    var productID: Int? = null,
+
     @Transient
     var showReplies: Boolean = false,
     @Transient
-    var showTextShowReply: Boolean = subQuestions?.size?:0>0 && !showReplies,
-    var productID: Int? = null
+    var showTextShowReply: Boolean = subQuestions?.size?:0>0 && !showReplies
 ){
     fun isHideQuestions() = showReplies && (subQuestions?.size?:0)>0
 }

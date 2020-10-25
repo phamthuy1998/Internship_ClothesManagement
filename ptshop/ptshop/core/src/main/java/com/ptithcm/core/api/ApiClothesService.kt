@@ -130,6 +130,14 @@ interface ApiClothesService {
     suspend fun updateQuestion(@Body param: Question): Response<ObjectResponse<Int>>
 
     @DELETE("/api/delQuestion")
-    suspend fun delQuestion(@Query("questionID") addressId: Int?): Response<ObjectResponse<Int>>
+    suspend fun delQuestion(
+        @Query("questionID") addressId: Int?,
+        @Query("isSubQuestion") isSubQuestion: Int?
+    ): Response<ObjectResponse<Int>>
+
+    @DELETE("/api/getQuestionsCount")
+    suspend fun getQuestionCount(
+        @Query("productId") productId: Int?
+    ): Response<ObjectResponse<Int>>
 }
 

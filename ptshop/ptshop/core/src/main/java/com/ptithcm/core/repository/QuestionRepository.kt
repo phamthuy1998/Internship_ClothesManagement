@@ -15,5 +15,6 @@ interface QuestionRepository {
     suspend fun getQuestions(productID: Int): LiveData<Result<ListResponse<Question>>>
     suspend fun addQuestion(question: Question): LiveData<Result<ObjectResponse<Int>>>
     suspend fun updateQuestion(question: Question): LiveData<Result<ObjectResponse<Int>>>
-    suspend fun delQuestion(questionID: Int): LiveData<Result<ObjectResponse<Int>>>
+    suspend fun delQuestion(questionID: Int, isSubQuestion: Int): LiveData<Result<ObjectResponse<Int>>>
+    suspend fun getQuestionCount(questionID: Int): LiveData<Result<ObjectResponse<Int>>>
 }

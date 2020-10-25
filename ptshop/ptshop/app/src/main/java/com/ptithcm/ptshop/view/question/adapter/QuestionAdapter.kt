@@ -1,10 +1,11 @@
 package com.ptithcm.ptshop.view.question.adapter
 
-import android.content.Context
+import android.annotation.SuppressLint
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
-import android.widget.BaseAdapter
+import androidx.appcompat.view.menu.MenuPopupHelper
+import androidx.appcompat.widget.AppCompatImageView
+import androidx.appcompat.widget.PopupMenu
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.ptithcm.core.model.Question
@@ -12,13 +13,18 @@ import com.ptithcm.ptshop.R
 import com.ptithcm.ptshop.base.BaseViewAdapter
 import com.ptithcm.ptshop.databinding.LayoutQuestionItemBinding
 import com.ptithcm.ptshop.databinding.LayoutQuestionSubItemBinding
+import java.lang.reflect.Field
 
+const val REPLY_QUESTION = 1
+const val DEL_QUESTION = 2
+const val EDIT_QUESTION = 3
 
 class QuestionAdapter(
-    val listener: ((item: Question?, position: Int?, typeEvent: Int) -> Unit)? = null
+    val listener: ((item: Question?, position: Int?, typeEvent: Int, isSubQuestion: Boolean?, subQuestionPos: Int?) -> Unit)? = null,
+    val accID: Int?
 ) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
-    var questionList = arrayListOf<Question>()
+    private var questionList = arrayListOf<Question>()
 
     var currentPosition: Int? = null
 
@@ -56,7 +62,7 @@ class QuestionAdapter(
         if (position != null) {
             if (question != null) {
                 questionList[position].subQuestions?.add(question)
-                questionList[position].showReplies= true
+                questionList[position].showReplies = true
 
             }
             notifyItemChanged(position)
@@ -76,22 +82,22 @@ class QuestionAdapter(
     inner class ItemViewHolder(val binding: LayoutQuestionItemBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
-        fun bind(item: Question) {
+        @SuppressLint("RestrictedApi")
+        fun bind(questionItem: Question) {
             binding.apply {
-                question = item
-
-
+                question = questionItem
+                accountID = accID
                 btnReply.setOnClickListener {
                     currentPosition = adapterPosition
-                    listener?.invoke(item, adapterPosition, 1)
+                    listener?.invoke(questionItem, adapterPosition, REPLY_QUESTION, false, null)
                 }
 
                 btnHideQuestion.setOnClickListener {
                     currentPosition = adapterPosition
-                    item.showReplies = !item.showReplies
+                    questionItem.showReplies = !questionItem.showReplies
                     notifyItemChanged(adapterPosition)
                 }
-                if (item.subQuestions?.size ?: 0 > 0) {
+                if (questionItem.subQuestions?.size ?: 0 > 0) {
                     val viewPool = RecyclerView.RecycledViewPool()
                     rvSubQuestion.apply {
                         adapter = BaseViewAdapter<LayoutQuestionSubItemBinding, List<Question>>(
@@ -102,10 +108,17 @@ class QuestionAdapter(
                                     false
                                 )
                             },
-                            data = item.subQuestions,
+                            data = questionItem.subQuestions,
                             bindFunc = { binding, item, position ->
-                                binding.question = item?.get(position)
-                                binding.executePendingBindings()
+                                binding.apply {
+                                    question = item?.get(position)
+                                    accountID = accID
+                                    btnMoreSubQuestion.setOnClickListener {
+                                        currentPosition = adapterPosition
+                                        showPopup(questionItem.subQuestions?.get(position), btnMoreSubQuestion, true, position)
+                                    }
+                                    executePendingBindings()
+                                }
                             },
                             getItemCountFunc = null,
                             getItemIdFunc = null
@@ -114,8 +127,42 @@ class QuestionAdapter(
                         setRecycledViewPool(viewPool)
                     }
                 }
+                btnMore.setOnClickListener {
+                    currentPosition = adapterPosition
+                    showPopup(questionItem, btnMore, false, null)
+                }
                 executePendingBindings()
             }
+        }
+
+        @SuppressLint("RestrictedApi")
+        private fun showPopup(item: Question?, btnMore: AppCompatImageView, isSubQuestion: Boolean?, subQuestionPos: Int?) {
+            val popup = PopupMenu(btnMore.context, btnMore)
+            popup.menuInflater.inflate(R.menu.menu_question_item, popup.menu)
+
+            popup.setOnMenuItemClickListener { menuItem ->
+                when (menuItem.itemId) {
+                    R.id.menuEdit -> {
+                        listener?.invoke(item, adapterPosition, EDIT_QUESTION, isSubQuestion, subQuestionPos)
+                        true
+                    }
+                    R.id.menuDel -> {
+                        listener?.invoke(item, adapterPosition, DEL_QUESTION, isSubQuestion, subQuestionPos)
+                        true
+                    }
+
+                    else -> false
+                }
+            }
+            try {
+                val mFieldPopup: Field = popup.javaClass.getDeclaredField("mPopup")
+                mFieldPopup.isAccessible = true
+                val mPopup: MenuPopupHelper = mFieldPopup.get(popup) as MenuPopupHelper
+                mPopup.setForceShowIcon(true)
+            } catch (e: Exception) {
+            }
+
+            popup.show()
         }
     }
 }

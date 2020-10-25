@@ -80,9 +80,9 @@ class QuestionsViewModel(private val repository: QuestionRepository) : ViewModel
         }
     }
 
-    fun delQuestion(questionID: Int) {
+    fun delQuestion(questionID: Int, isSubQuestion: Int) {
         viewModelScope.launch {
-            listQuestion.addSource(repository.delQuestion(questionID)) {
+            listQuestion.addSource(repository.delQuestion(questionID,isSubQuestion)) {
                 when (it) {
                     is Result.Loading -> {
                         networkState.value = true

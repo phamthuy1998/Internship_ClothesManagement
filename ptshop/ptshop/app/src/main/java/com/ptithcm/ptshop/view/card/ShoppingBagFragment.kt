@@ -101,13 +101,13 @@ class ShoppingBagFragment : BaseFragment<FragmentShoppingBagBinding>(), View.OnC
                 viewBinding.btnCheckOut.isLoading = true
                 basketViewModel.getAllProductsInCart(ObjectHandler.getAllIdProdsInCart())
             }
-            R.id.btnCancel -> {
+            R.id.btnOk -> {
                 (requireActivity() as? BaseActivity<*>)?.closePopup()
                 adapter.removeItem(adapter.curProduct)
                 ObjectHandler.saveCartToPref()
                 setUpToolBar(ObjectHandler.cartSize())
             }
-            R.id.btnOk -> {
+            R.id.btnCancel -> {
                 (requireActivity() as? BaseActivity<*>)?.closePopup()
             }
             R.id.btnStartShopping -> {

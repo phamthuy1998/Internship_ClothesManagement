@@ -3,16 +3,24 @@ package com.ptithcm.ptshop.view.question
 import android.os.Bundle
 import android.view.View
 import androidx.core.os.bundleOf
+import androidx.databinding.ViewDataBinding
 import androidx.lifecycle.Observer
 import com.ptithcm.core.CoreApplication
 import com.ptithcm.core.model.Question
+import com.ptithcm.ptshop.MainApplication
 import com.ptithcm.ptshop.R
+import com.ptithcm.ptshop.base.BaseActivity
 import com.ptithcm.ptshop.base.BaseFragment
 import com.ptithcm.ptshop.constant.ERROR_CODE_404
 import com.ptithcm.ptshop.databinding.FragmentQuestionBinding
+import com.ptithcm.ptshop.databinding.LayoutPopUpBinding
 import com.ptithcm.ptshop.ext.*
+import com.ptithcm.ptshop.util.PopUp
 import com.ptithcm.ptshop.view.MainActivity
+import com.ptithcm.ptshop.view.question.adapter.DEL_QUESTION
+import com.ptithcm.ptshop.view.question.adapter.EDIT_QUESTION
 import com.ptithcm.ptshop.view.question.adapter.QuestionAdapter
+import com.ptithcm.ptshop.view.question.adapter.REPLY_QUESTION
 import com.ptithcm.ptshop.viewmodel.QuestionsViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -23,23 +31,52 @@ class QuestionFragment : BaseFragment<FragmentQuestionBinding>() {
     private var productId: Int? = null
     private var question: Question? = null
     private var posAddSubQuestion: Int? = null
+    private var posUpdateQuestion: Int? = null
     private var _parentQuestionID: Int? = null
+    private var editQuestion: Question? = null
     private val adapter: QuestionAdapter by lazy {
-        QuestionAdapter(this::adapterEvent)
+        QuestionAdapter(this::adapterEvent, CoreApplication.instance.account?.id)
     }
 
-    private fun adapterEvent(item: Question?, position: Int?, typeEvent: Int) {
+    private fun adapterEvent(
+        item: Question?,
+        position: Int?,
+        typeEvent: Int,
+        isSubQuestion: Boolean?,
+        subQuestionPos: Int?
+    ) {
         when (typeEvent) {
-            1 -> {
-                viewBinding.edtQuestion.setText("@ ${item?.username}")
+            REPLY_QUESTION -> {
+                viewBinding.edtQuestion.setText("@ ${item?.username} ")
                 _parentQuestionID = item?.questionID
                 posAddSubQuestion = position
                 requireActivity().showKeyBoard()
-                viewBinding.edtQuestion.setCursorEnd( viewBinding.edtQuestion.text.toString())
+                viewBinding.edtQuestion.setCursorEnd(viewBinding.edtQuestion.text.toString())
             }
-            2 -> {
+            DEL_QUESTION -> {
+                (requireActivity() as? BaseActivity<*>)?.showPopup(
+                    PopUp(R.layout.layout_pop_up, messageQueue = { popupBinding ->
+                        (popupBinding as? LayoutPopUpBinding)?.apply {
+                            title = getString(R.string.confirmDelQuestion)
+                            left = getString(R.string.ok)
+                            right = getString(R.string.cancel)
+                            btnOk.setOnClickListener {
+                                item?.questionID?.let { it1 ->
+                                    viewModel.delQuestion(it1, if (isSubQuestion == true) 1 else 0)
+                                }
+                            }
+                            btnCancel.setOnClickListener {
+                                (requireActivity() as? BaseActivity<*>)?.closePopup()
+                            }
+                        }
+
+                    })
+                )
             }
-            3 -> {
+            EDIT_QUESTION -> {
+                posUpdateQuestion = position
+                editQuestion = item
+                viewBinding.edtQuestion.setText(item?.question)
             }
         }
     }
@@ -54,8 +91,9 @@ class QuestionFragment : BaseFragment<FragmentQuestionBinding>() {
     }
 
     private fun initViews() {
-        viewBinding.constraintLayout.setOnClickListener {
+        viewBinding.swlRefresh.setOnTouchListener { v, event ->
             requireActivity().hideKeyboard()
+            true
         }
 
         var questionStr = ""
@@ -74,19 +112,29 @@ class QuestionFragment : BaseFragment<FragmentQuestionBinding>() {
                     username = CoreApplication.instance.account?.username
                     question = questionStr
                     productID = productId
-                    parentQuestionID =_parentQuestionID
+                    parentQuestionID = _parentQuestionID
                 }
-                question?.let { it1 -> viewModel.addQuestion(it1) }
+                if (editQuestion == null) {
+                    question?.let { it1 -> viewModel.addQuestion(it1) }
 
-                if (posAddSubQuestion == null) {
-                    question?.let { it1 -> adapter.addQuestion(it1) }
+                    if (posAddSubQuestion == null) {
+                        question?.let { it1 -> adapter.addQuestion(it1) }
+                    } else {
+                        adapter.addSubQuestion(question, posAddSubQuestion)
+                    }
                 } else {
-                    adapter.addSubQuestion(question, posAddSubQuestion)
+                    editQuestion?.question = questionStr
+                    editQuestion?.let { it1 -> viewModel.updateQuestion(it1) }
+                    posUpdateQuestion?.let { it1 -> adapter.notifyItemChanged(it1) }
+                    posUpdateQuestion = null
                 }
+
                 viewBinding.rvQuestion.smoothScrollToPosition(adapter.itemCount)
             } else {
                 messageHandler?.runMessageErrorHandler(getString(R.string.error_empty, "Question"))
             }
+            editQuestion = null
+            viewBinding.edtQuestion.setText("")
         }
     }
 
@@ -132,6 +180,17 @@ class QuestionFragment : BaseFragment<FragmentQuestionBinding>() {
                 (requireActivity() as? MainActivity)?.isShowErrorNetwork(true)
             } else {
                 messageHandler?.runMessageHandler(it.first)
+            }
+        })
+
+        viewModel.updateQuestionResult.observe(this, Observer {
+            viewBinding.progressbar.gone()
+            editQuestion = null
+            if (it?.data ?: 0 > 0) {
+                messageHandler?.runMessageHandler(getString(R.string.editQuestionSuccess))
+
+            } else {
+                messageHandler?.runMessageErrorHandler(getString(R.string.editQuestionErr))
             }
         })
 
