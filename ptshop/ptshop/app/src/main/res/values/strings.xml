@@ -336,4 +336,9 @@
     <string name="edit">Edit</string>
     <string name="write_reviews">Write reviews</string>
     <string name="no_rating_yet">No rating yet</string>
+    <string name="has_received">Has received</string>
+    <string name="shipped">Shipped</string>
+    <string name="canceled">Canceled</string>
+    <string name="all_invoices">All invoices</string>
+    <string name="emptyInvoice">The list of orders is empty</string>
 </resources>
