@@ -3,14 +3,24 @@ package com.ptithcm.ptshop.util
 import android.graphics.Color
 import android.graphics.drawable.Drawable
 import android.graphics.drawable.GradientDrawable
+import android.media.ThumbnailUtils
+import android.provider.MediaStore
+import android.text.format.DateUtils
 import android.view.View
 import androidx.appcompat.widget.AppCompatButton
 import androidx.appcompat.widget.AppCompatImageView
+import androidx.appcompat.widget.AppCompatTextView
+import androidx.core.content.ContextCompat
 import androidx.core.view.isInvisible
 import androidx.core.view.isVisible
 import androidx.databinding.BindingAdapter
 import com.bumptech.glide.Glide
+import com.ptithcm.ptshop.R
+import com.ptithcm.ptshop.view.rating.adapter.RatingAdapter.Companion.DATE_INPUT_FORMAT
 import java.io.File
+import java.text.ParseException
+import java.text.SimpleDateFormat
+import java.util.*
 
 object BindingAdapterImage {
 
@@ -25,6 +35,67 @@ object BindingAdapterImage {
                 .load(File(url))
                 .thumbnail(Glide.with(imageView.context).load(url))
                 .placeholder(placeHolder)
+                .into(imageView)
+        }
+    }
+
+    @JvmStatic
+    @BindingAdapter(value = ["dateTime", "dateTimeEdit"], requireAll = false)
+    fun dateTime(textView: AppCompatTextView, dateTime: String?, dateTimeEdit: String?) {
+
+        // set date time
+        val now = Calendar.getInstance().time
+        val sdfDue = SimpleDateFormat(DATE_INPUT_FORMAT, Locale.ENGLISH)
+        sdfDue.timeZone = TimeZone.getTimeZone("UTC")
+        var due: Date? = null
+        try {
+            due = sdfDue.parse(dateTimeEdit ?: dateTime ?: "")
+            if (due.time > now.time) {
+                textView.text = if (dateTimeEdit != null)
+                    textView.context.getString(R.string.timeEdited)
+                else textView.context.getString(R.string.time)
+            } else {
+                textView.text = if (dateTimeEdit != null)
+                    textView.context.getString(
+                        R.string.timeEditedValue,
+                        DateUtils.getRelativeTimeSpanString(
+                            due.time,
+                            now.time,
+                            DateUtils.SECOND_IN_MILLIS
+                        )
+                    )
+                else DateUtils.getRelativeTimeSpanString(
+                    due.time,
+                    now.time,
+                    DateUtils.SECOND_IN_MILLIS
+                )
+            }
+        } catch (e: ParseException) {
+            e.printStackTrace()
+        }
+    }
+
+    @JvmStatic
+    @BindingAdapter(value = ["imageThumbURLVideo"], requireAll = false)
+    fun imageThumbURLVideo(imageView: AppCompatImageView, urlVideo: String?) {
+        if (urlVideo == null || urlVideo.isEmpty()) {
+            imageView.setImageDrawable(
+                ContextCompat.getDrawable(
+                    imageView.context,
+                    R.drawable.ic_place_holder
+                )
+            )
+        } else {
+            Glide
+                .with(imageView.context)
+                .load(File(urlVideo))
+                .thumbnail(Glide.with(imageView.context).load(urlVideo))
+                .placeholder(
+                    ContextCompat.getDrawable(
+                        imageView.context,
+                        R.drawable.ic_place_holder
+                    )
+                )
                 .into(imageView)
         }
     }

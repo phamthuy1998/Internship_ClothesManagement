@@ -85,4 +85,5 @@
     <dimen name="fast_scroll_overlay_text_size">100dp</dimen>
 
     <dimen name="padding_20dp">20dp</dimen>
+    <dimen name="margin6">6dp</dimen>
 </resources>

@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <import type="com.ptithcm.ptshop.ext.ArrayListExtKt" />
+
+        <import type="com.ptithcm.core.model.SubRating" />
+
+        <variable
+            name="item"
+            type="com.ptithcm.core.model.Rating" />
+
+        <variable
+            name="accountID"
+            type="Integer" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvUsername"
+            style="@style/normal_text.bold"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/padding_20dp"
+            android:layout_marginTop="20dp"
+            android:text="@{item.username}"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="annaPham" />
+
+        <RatingBar
+            android:id="@+id/ratingBar"
+            style="?android:attr/ratingBarStyleSmall"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/layout_margin_10dp"
+            android:isIndicator="true"
+            android:rating="@{item.rating}"
+            app:layout_constraintStart_toStartOf="@id/tvUsername"
+            app:layout_constraintTop_toBottomOf="@id/tvUsername" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvDate"
+            style="@style/normal_text.grey"
+            dateTime="@{item.dateRating}"
+            dateTimeEdit="@{item.dateEdit}"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            app:layout_constraintStart_toEndOf="@id/ratingBar"
+            app:layout_constraintTop_toTopOf="@id/ratingBar"
+            tools:text="20/20/2020" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/btnMore"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/layout_margin_10dp"
+            android:padding="@dimen/layout_margin_10dp"
+            android:src="@drawable/ic_menu"
+            android:visibility="@{accountID == item.accountID ? View.VISIBLE : View.GONE}"
+            app:layout_constraintBottom_toBottomOf="@id/tvUsername"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/tvUsername" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvReview"
+            style="@style/normal_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/padding_20dp"
+            android:layout_marginVertical="@dimen/layout_margin_10dp"
+            android:text="@{item.comment}"
+            android:textAlignment="viewStart"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@id/tvUsername"
+            app:layout_constraintTop_toBottomOf="@id/ratingBar"
+            tools:text="some test change jhhhu" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/ivImage1"
+            imageUrl="@{item.imageUrl1}"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginTop="@dimen/padding_20dp"
+            android:adjustViewBounds="true"
+            android:scaleType="centerCrop"
+            android:src="@drawable/ic_place_holder"
+            android:visibility="@{item.imageUrl1.empty ? View.GONE: View.VISIBLE}"
+            app:layout_constraintDimensionRatio="1:1"
+            app:layout_constraintEnd_toStartOf="@id/ivImage2"
+            app:layout_constraintStart_toStartOf="@id/tvUsername"
+            app:layout_constraintTop_toBottomOf="@id/tvReview"
+            app:layout_constraintVertical_chainStyle="packed"
+            app:layout_constraintWidth_percent="0.28" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/ivImage2"
+            imageUrl="@{item.imageUrl2}"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:adjustViewBounds="true"
+            android:scaleType="centerCrop"
+            android:src="@drawable/ic_place_holder"
+            android:visibility="@{item.imageUrl2.empty ? View.GONE: View.VISIBLE}"
+            app:layout_constraintDimensionRatio="1:1"
+            app:layout_constraintEnd_toStartOf="@id/ivImageVideo"
+            app:layout_constraintStart_toEndOf="@id/ivImage1"
+            app:layout_constraintTop_toTopOf="@id/ivImage1"
+            app:layout_constraintVertical_chainStyle="packed"
+            app:layout_constraintWidth_percent="0.28" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/ivImageVideo"
+            imageThumbURLVideo="@{item.videoUrl}"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginEnd="@dimen/padding_20dp"
+            android:adjustViewBounds="true"
+            android:scaleType="centerCrop"
+            android:src="@drawable/ic_place_holder"
+            android:visibility="@{item.videoUrl.empty ? View.GONE: View.VISIBLE}"
+            app:layout_constraintDimensionRatio="1:1"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/ivImage2"
+            app:layout_constraintTop_toTopOf="@id/ivImage1"
+            app:layout_constraintVertical_chainStyle="packed"
+            app:layout_constraintWidth_percent="0.28" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/ivPlayVideo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_play_button"
+            app:layout_constraintBottom_toBottomOf="@id/ivImageVideo"
+            app:layout_constraintEnd_toEndOf="@id/ivImageVideo"
+            app:layout_constraintStart_toStartOf="@id/ivImageVideo"
+            app:layout_constraintTop_toTopOf="@id/ivImageVideo" />
+
+        <androidx.constraintlayout.widget.Group
+            isVisible="@{item.getItemSubRatingWithPosition(0) != null}"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:constraint_referenced_ids="viewReply, tvUsernameReply, tvDateReply,tvReviewReply" />
+
+        <View
+            android:id="@+id/viewReply"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginStart="@dimen/size_40dp"
+            android:layout_marginTop="@dimen/padding_20dp"
+            android:layout_marginEnd="@dimen/padding_20dp"
+            android:background="@drawable/item_rounded_question_gray"
+            app:layout_constraintBottom_toBottomOf="@id/tvReviewReply"
+            app:layout_constraintTop_toBottomOf="@id/ivImage1" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvUsernameReply"
+            style="@style/normal_text.bold"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/padding_20dp"
+            android:layout_marginTop="20dp"
+            android:text="@string/app_name"
+            app:layout_constraintStart_toStartOf="@id/viewReply"
+            app:layout_constraintTop_toTopOf="@id/viewReply"/>
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvDateReply"
+            style="@style/normal_text.grey"
+            dateTime="@{item.getItemSubRatingWithPosition(0).dateRating}"
+            dateTimeEdit="@{item.getItemSubRatingWithPosition(0).dateEdit}"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            app:layout_constraintStart_toEndOf="@id/tvUsernameReply"
+            app:layout_constraintTop_toTopOf="@id/tvUsernameReply"
+            tools:text="20/20/2020" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvReviewReply"
+            style="@style/normal_text"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/layout_margin_10dp"
+            android:layout_marginBottom="@dimen/size_30dp"
+            android:text="@{item.getItemSubRatingWithPosition(0).comment}"
+            android:textAlignment="viewStart"
+            app:layout_constraintBottom_toBottomOf="@id/viewReply"
+            app:layout_constraintEnd_toEndOf="@id/viewReply"
+            app:layout_constraintStart_toStartOf="@id/tvUsernameReply"
+            app:layout_constraintTop_toBottomOf="@id/tvUsernameReply"
+            tools:text="some test change jhhhu" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/layout_margin_5dp"
+            android:layout_marginTop="@dimen/layout_margin_10dp"
+            android:background="@color/gray_section"
+            app:layout_constraintTop_toBottomOf="@id/viewReply" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

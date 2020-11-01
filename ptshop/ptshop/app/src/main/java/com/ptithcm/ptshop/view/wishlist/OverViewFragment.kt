@@ -10,7 +10,7 @@ import com.ptithcm.ptshop.view.MainActivity
 import com.ptithcm.ptshop.view.home.StoryDetailActivity
 import com.ptithcm.ptshop.view.wishlist.overview.ImageZoomPagerAdapter
 
-class OverViewFragment: BaseFragment<FragmentOverViewBinding>() {
+class OverViewFragment : BaseFragment<FragmentOverViewBinding>() {
 
     override val layoutId: Int
         get() = R.layout.fragment_over_view
@@ -28,18 +28,18 @@ class OverViewFragment: BaseFragment<FragmentOverViewBinding>() {
         }
     }
 
-    private fun setUpViewpager(){
+    private fun setUpViewpager() {
         val list = arguments?.getStringArrayList("list")
         val pos = arguments?.getInt("pos", 0) ?: 0
-
+        val fromRating = arguments?.getBoolean("fromRating", false) ?: false
         viewBinding.vpImage.adapter =
             ImageZoomPagerAdapter(childFragmentManager, list ?: arrayListOf())
         viewBinding.vpImage.currentItem = pos
         viewBinding.indicator.setupWithViewPager(viewBinding.vpImage)
     }
 
-    fun onClick(v: View?){
-        when(v?.id){
+    fun onClick(v: View?) {
+        when (v?.id) {
             R.id.ivClose -> {
                 navController.popBackStack()
             }

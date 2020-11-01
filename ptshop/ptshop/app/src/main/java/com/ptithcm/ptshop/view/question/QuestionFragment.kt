@@ -3,11 +3,9 @@ package com.ptithcm.ptshop.view.question
 import android.os.Bundle
 import android.view.View
 import androidx.core.os.bundleOf
-import androidx.databinding.ViewDataBinding
 import androidx.lifecycle.Observer
 import com.ptithcm.core.CoreApplication
 import com.ptithcm.core.model.Question
-import com.ptithcm.ptshop.MainApplication
 import com.ptithcm.ptshop.R
 import com.ptithcm.ptshop.base.BaseActivity
 import com.ptithcm.ptshop.base.BaseFragment
@@ -17,15 +15,18 @@ import com.ptithcm.ptshop.databinding.LayoutPopUpBinding
 import com.ptithcm.ptshop.ext.*
 import com.ptithcm.ptshop.util.PopUp
 import com.ptithcm.ptshop.view.MainActivity
-import com.ptithcm.ptshop.view.question.adapter.DEL_QUESTION
-import com.ptithcm.ptshop.view.question.adapter.EDIT_QUESTION
+import com.ptithcm.ptshop.view.question.adapter.ITEM_DEL
+import com.ptithcm.ptshop.view.question.adapter.ITEM_EDIT
+import com.ptithcm.ptshop.view.rating.adapter.RatingAdapter
+import com.ptithcm.ptshop.view.question.adapter.ITEM_REPLY
 import com.ptithcm.ptshop.view.question.adapter.QuestionAdapter
-import com.ptithcm.ptshop.view.question.adapter.REPLY_QUESTION
 import com.ptithcm.ptshop.viewmodel.QuestionsViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class QuestionFragment : BaseFragment<FragmentQuestionBinding>() {
+
     override val layoutId: Int = R.layout.fragment_question
+
     private val viewModel: QuestionsViewModel by viewModel()
 
     private var productId: Int? = null
@@ -34,26 +35,33 @@ class QuestionFragment : BaseFragment<FragmentQuestionBinding>() {
     private var posUpdateQuestion: Int? = null
     private var _parentQuestionID: Int? = null
     private var editQuestion: Question? = null
-    private val adapter: QuestionAdapter by lazy {
+
+      private val adapter: QuestionAdapter by lazy {
         QuestionAdapter(this::adapterEvent, CoreApplication.instance.account?.id)
+    }
+
+
+    override fun onStop() {
+        super.onStop()
+        viewBinding.shimmerViewContainer.stopShimmer()
+        viewBinding.shimmerViewContainer.gone()
     }
 
     private fun adapterEvent(
         item: Question?,
         position: Int?,
         typeEvent: Int,
-        isSubQuestion: Boolean?,
-        subQuestionPos: Int?
+        isSubQuestion: Boolean?
     ) {
         when (typeEvent) {
-            REPLY_QUESTION -> {
+            ITEM_REPLY -> {
                 viewBinding.edtQuestion.setText("@ ${item?.username} ")
                 _parentQuestionID = item?.questionID
                 posAddSubQuestion = position
                 requireActivity().showKeyBoard()
                 viewBinding.edtQuestion.setCursorEnd(viewBinding.edtQuestion.text.toString())
             }
-            DEL_QUESTION -> {
+            ITEM_DEL -> {
                 (requireActivity() as? BaseActivity<*>)?.showPopup(
                     PopUp(R.layout.layout_pop_up, messageQueue = { popupBinding ->
                         (popupBinding as? LayoutPopUpBinding)?.apply {
@@ -73,7 +81,7 @@ class QuestionFragment : BaseFragment<FragmentQuestionBinding>() {
                     })
                 )
             }
-            EDIT_QUESTION -> {
+            ITEM_EDIT -> {
                 posUpdateQuestion = position
                 editQuestion = item
                 viewBinding.edtQuestion.setText(item?.question)
@@ -81,10 +89,18 @@ class QuestionFragment : BaseFragment<FragmentQuestionBinding>() {
         }
     }
 
+    override fun onResume() {
+        super.onResume()
+        viewBinding.shimmerViewContainer.startShimmer()
+        viewBinding.shimmerViewContainer.visible()
+    }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         productId = arguments?.get("productId") as Int?
         productId?.let { viewModel.getQuestion(it) }
+        viewBinding.shimmerViewContainer.startShimmer()
+        viewBinding.shimmerViewContainer.visible()
         setupToolbar()
         initAdapter()
         initViews()
@@ -167,6 +183,8 @@ class QuestionFragment : BaseFragment<FragmentQuestionBinding>() {
             if (it == null) {
                 viewBinding.tvNoQuestions.visible()
             } else {
+                viewBinding.shimmerViewContainer.startShimmer()
+                viewBinding.shimmerViewContainer.gone()
                 viewBinding.tvNoQuestions.gone()
                 adapter.submitList(it)
             }

@@ -135,9 +135,36 @@ interface ApiClothesService {
         @Query("isSubQuestion") isSubQuestion: Int?
     ): Response<ObjectResponse<Int>>
 
-    @DELETE("/api/getQuestionsCount")
+    @GET("/api/getQuestionsCount")
     suspend fun getQuestionCount(
         @Query("productId") productId: Int?
     ): Response<ObjectResponse<Int>>
+
+
+    /*-----------------------------*/
+    /* Rating */
+    @GET("/api/getRating")
+    suspend fun getRatings(
+        @Query("pageSize") pageSize: Int = 20,
+        @Query("pageNumber") pageNumber: Int = 1,
+        @Query("productId") productId: Int
+    ): Response<ListResponse<Rating>>
+
+    @POST("/api/addRating")
+    suspend fun addRating(@Body param: Rating): Response<ObjectResponse<Int>>
+
+    @PUT("/api/updateRating")
+    suspend fun updateRating(@Body param: Rating): Response<ObjectResponse<Int>>
+
+    @DELETE("/api/delRating")
+    suspend fun delRating(
+        @Query("ratingID") ratingID: Int?
+    ): Response<ObjectResponse<Int>>
+
+    @GET("/api/getRatingProduct")
+    suspend fun getRatingProduct(
+        @Query("productId") productId: Int?
+    ): Response<ObjectResponse<Float>>
+
 }
 

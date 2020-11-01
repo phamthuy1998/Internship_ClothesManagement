@@ -15,12 +15,12 @@ import com.ptithcm.ptshop.databinding.LayoutQuestionItemBinding
 import com.ptithcm.ptshop.databinding.LayoutQuestionSubItemBinding
 import java.lang.reflect.Field
 
-const val REPLY_QUESTION = 1
-const val DEL_QUESTION = 2
-const val EDIT_QUESTION = 3
+const val ITEM_REPLY = 1
+const val ITEM_DEL = 2
+const val ITEM_EDIT = 3
 
 class QuestionAdapter(
-    val listener: ((item: Question?, position: Int?, typeEvent: Int, isSubQuestion: Boolean?, subQuestionPos: Int?) -> Unit)? = null,
+    val listener: ((item: Question?, position: Int?, typeEvent: Int, isSubQuestion: Boolean?) -> Unit)? = null,
     val accID: Int?
 ) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
@@ -89,7 +89,7 @@ class QuestionAdapter(
                 accountID = accID
                 btnReply.setOnClickListener {
                     currentPosition = adapterPosition
-                    listener?.invoke(questionItem, adapterPosition, REPLY_QUESTION, false, null)
+                    listener?.invoke(questionItem, adapterPosition, ITEM_REPLY, false)
                 }
 
                 btnHideQuestion.setOnClickListener {
@@ -115,7 +115,7 @@ class QuestionAdapter(
                                     accountID = accID
                                     btnMoreSubQuestion.setOnClickListener {
                                         currentPosition = adapterPosition
-                                        showPopup(questionItem.subQuestions?.get(position), btnMoreSubQuestion, true, position)
+                                        showPopup(questionItem.subQuestions?.get(position), btnMoreSubQuestion, true)
                                     }
                                     executePendingBindings()
                                 }
@@ -129,25 +129,25 @@ class QuestionAdapter(
                 }
                 btnMore.setOnClickListener {
                     currentPosition = adapterPosition
-                    showPopup(questionItem, btnMore, false, null)
+                    showPopup(questionItem, btnMore, false)
                 }
                 executePendingBindings()
             }
         }
 
         @SuppressLint("RestrictedApi")
-        private fun showPopup(item: Question?, btnMore: AppCompatImageView, isSubQuestion: Boolean?, subQuestionPos: Int?) {
+        private fun showPopup(item: Question?, btnMore: AppCompatImageView, isSubQuestion: Boolean?) {
             val popup = PopupMenu(btnMore.context, btnMore)
             popup.menuInflater.inflate(R.menu.menu_question_item, popup.menu)
 
             popup.setOnMenuItemClickListener { menuItem ->
                 when (menuItem.itemId) {
                     R.id.menuEdit -> {
-                        listener?.invoke(item, adapterPosition, EDIT_QUESTION, isSubQuestion, subQuestionPos)
+                        listener?.invoke(item, adapterPosition, ITEM_EDIT, isSubQuestion)
                         true
                     }
                     R.id.menuDel -> {
-                        listener?.invoke(item, adapterPosition, DEL_QUESTION, isSubQuestion, subQuestionPos)
+                        listener?.invoke(item, adapterPosition, ITEM_DEL, isSubQuestion)
                         true
                     }
 

@@ -25,4 +25,5 @@ val appModule = module {
     viewModel { ListenerViewModel() }
     viewModel { ProvidersViewModel(get()) }
     viewModel { QuestionsViewModel(get()) }
+    viewModel { RatingViewModel(get()) }
 }

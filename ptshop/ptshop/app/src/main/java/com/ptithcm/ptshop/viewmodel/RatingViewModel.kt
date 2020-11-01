@@ -4,26 +4,26 @@ import androidx.lifecycle.MediatorLiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.ptithcm.core.model.Question
+import com.ptithcm.core.model.Rating
 import com.ptithcm.core.model.wish.ObjectResponse
-import com.ptithcm.core.repository.QuestionRepository
+import com.ptithcm.core.repository.RatingRepository
 import com.ptithcm.core.vo.Result
 import kotlinx.coroutines.launch
 
-class QuestionsViewModel(private val repository: QuestionRepository) : ViewModel() {
+class RatingViewModel(private val repository: RatingRepository) : ViewModel() {
 
     val error = MutableLiveData<Pair<String, Int?>>()
     val networkState = MutableLiveData<Boolean>()
 
-    val listQuestion = MediatorLiveData<ArrayList<Question>>()
-    val addQuestionResult = MediatorLiveData<ObjectResponse<Int>>()
-    val updateQuestionResult = MediatorLiveData<ObjectResponse<Int>>()
-    val delQuestionResult = MediatorLiveData<ObjectResponse<Int>>()
-    val questionCount = MediatorLiveData<ObjectResponse<Int>>()
+    val ratingList = MediatorLiveData<ArrayList<Rating>>()
+    val addRatingResult = MediatorLiveData<ObjectResponse<Int>>()
+    val updateRatingResult = MediatorLiveData<ObjectResponse<Int>>()
+    val delRatingResult = MediatorLiveData<ObjectResponse<Int>>()
+    val ratingAverage = MediatorLiveData<ObjectResponse<Float>>()
 
-    fun getQuestion(productID: Int) {
+    fun getRatings(productID: Int) {
         viewModelScope.launch {
-            listQuestion.addSource(repository.getQuestions(productID)) {
+            ratingList.addSource(repository.getRatings(productID)) {
                 when (it) {
                     is Result.Loading -> {
                         networkState.value = true
@@ -34,16 +34,16 @@ class QuestionsViewModel(private val repository: QuestionRepository) : ViewModel
                     }
                     is Result.Success -> {
                         networkState.value = false
-                        listQuestion.value = it.data?.results
+                        ratingList.value = it.data?.results
                     }
                 }
             }
         }
     }
 
-    fun addQuestion(question: Question) {
+    fun addRating(rating: Rating) {
         viewModelScope.launch {
-            listQuestion.addSource(repository.addQuestion(question)) {
+            addRatingResult.addSource(repository.addRating(rating)) {
                 when (it) {
                     is Result.Loading -> {
                         networkState.value = true
@@ -54,16 +54,16 @@ class QuestionsViewModel(private val repository: QuestionRepository) : ViewModel
                     }
                     is Result.Success -> {
                         networkState.value = false
-                        addQuestionResult.value = it.data
+                        addRatingResult.value = it.data
                     }
                 }
             }
         }
     }
 
-    fun updateQuestion(question: Question) {
+    fun updateRating(rating: Rating) {
         viewModelScope.launch {
-            listQuestion.addSource(repository.updateQuestion(question)) {
+            updateRatingResult.addSource(repository.updateRating(rating)) {
                 when (it) {
                     is Result.Loading -> {
                         networkState.value = true
@@ -74,16 +74,16 @@ class QuestionsViewModel(private val repository: QuestionRepository) : ViewModel
                     }
                     is Result.Success -> {
                         networkState.value = false
-                        updateQuestionResult.value = it.data
+                        updateRatingResult.value = it.data
                     }
                 }
             }
         }
     }
 
-    fun delQuestion(questionID: Int, isSubQuestion: Int) {
+    fun delRating(ratingID: Int) {
         viewModelScope.launch {
-            listQuestion.addSource(repository.delQuestion(questionID,isSubQuestion)) {
+            delRatingResult.addSource(repository.delRating(ratingID)) {
                 when (it) {
                     is Result.Loading -> {
                         networkState.value = true
@@ -94,15 +94,15 @@ class QuestionsViewModel(private val repository: QuestionRepository) : ViewModel
                     }
                     is Result.Success -> {
                         networkState.value = false
-                        delQuestionResult.value = it.data
+                        delRatingResult.value = it.data
                     }
                 }
             }
         }
     }
-    fun getQuestionCount(questionID: Int) {
+    fun getRatingProduct(productId: Int) {
         viewModelScope.launch {
-            questionCount.addSource(repository.getQuestionCount(questionID)) {
+            ratingAverage.addSource(repository.getRatingProduct(productId)) {
                 when (it) {
                     is Result.Loading -> {
                         networkState.value = true
@@ -113,7 +113,7 @@ class QuestionsViewModel(private val repository: QuestionRepository) : ViewModel
                     }
                     is Result.Success -> {
                         networkState.value = false
-                        questionCount.value = it.data
+                        ratingAverage.value = it.data
                     }
                 }
             }

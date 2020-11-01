@@ -23,4 +23,5 @@ val repositoryModule = module {
     single<UploadRepository> { UploadRepositoryImpl(get()) }
     single<ProvidersRepository> { ProvidersRepositoryImpl(get()) }
     single<QuestionRepository> { QuestionRepositoryImpl(get()) }
+    single<RatingRepository> { RatingRepositoryImpl(get()) }
 }
