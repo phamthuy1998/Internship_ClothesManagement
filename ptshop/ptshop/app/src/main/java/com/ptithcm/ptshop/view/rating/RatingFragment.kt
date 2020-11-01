@@ -1,35 +1,23 @@
 package com.ptithcm.ptshop.view.rating
 
-import android.os.Bundle
-import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import androidx.core.os.bundleOf
 import androidx.lifecycle.Observer
 import com.ptithcm.core.CoreApplication
-import com.ptithcm.core.model.Question
 import com.ptithcm.core.model.Rating
+import com.ptithcm.core.model.RatingAvg
 import com.ptithcm.ptshop.R
-import com.ptithcm.ptshop.base.BaseActivity
 import com.ptithcm.ptshop.base.BaseFragment
 import com.ptithcm.ptshop.constant.ERROR_CODE_404
-import com.ptithcm.ptshop.constant.IS_PRODUCT
-import com.ptithcm.ptshop.constant.KEY_EMPTY
-import com.ptithcm.ptshop.databinding.FragmentQuestionBinding
 import com.ptithcm.ptshop.databinding.FragmentRatingBinding
-import com.ptithcm.ptshop.databinding.LayoutPopUpBinding
 import com.ptithcm.ptshop.ext.*
-import com.ptithcm.ptshop.util.PopUp
 import com.ptithcm.ptshop.view.MainActivity
 import com.ptithcm.ptshop.view.question.adapter.ITEM_DEL
 import com.ptithcm.ptshop.view.question.adapter.ITEM_EDIT
-import com.ptithcm.ptshop.view.question.adapter.ITEM_REPLY
-import com.ptithcm.ptshop.view.question.adapter.QuestionAdapter
 import com.ptithcm.ptshop.view.rating.adapter.RatingAdapter
 import com.ptithcm.ptshop.view.rating.adapter.RatingAdapter.Companion.ITEM_IMAGE
-import com.ptithcm.ptshop.viewmodel.QuestionsViewModel
 import com.ptithcm.ptshop.viewmodel.RatingViewModel
+import kotlinx.android.synthetic.main.activity_main.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class RatingFragment : BaseFragment<FragmentRatingBinding>() {
@@ -62,11 +50,10 @@ class RatingFragment : BaseFragment<FragmentRatingBinding>() {
                 listImage.add(item?.imageUrl2 ?: "")
                 listImage.add(item?.videoUrl ?: "")
                 navController.navigate(
-                    R.id.fragment_over_view,
+                    R.id.imageVideoFragment,
                     bundleOf(
                         "list" to listImage,
-                        "pos" to posImage,
-                        "fromRating" to true
+                        "pos" to posImage
                     )
                 )
             }
@@ -83,6 +70,7 @@ class RatingFragment : BaseFragment<FragmentRatingBinding>() {
         super.onResume()
         viewBinding.shimmerViewContainer.startShimmer()
         viewBinding.shimmerViewContainer.visible()
+        activity?.btnNav?.visibility = View.GONE
     }
 
     override fun bindEvent() {
@@ -113,7 +101,6 @@ class RatingFragment : BaseFragment<FragmentRatingBinding>() {
 
     private fun setupToolbar() {
         (requireActivity() as? MainActivity)?.apply {
-            viewBinding.btnNav.visible()
             initToolBar(viewBinding.layoutToolbar.toolbar, hasBackRight = false)
             setupToolbar(
                 viewBinding.layoutToolbar.toolbar,
@@ -141,6 +128,7 @@ class RatingFragment : BaseFragment<FragmentRatingBinding>() {
             } else {
                 viewBinding.groupNoRating.gone()
                 adapter.submitList(it)
+                setRatingAverage(it)
             }
         })
         viewModel.networkState.observe(this, Observer {
@@ -154,5 +142,47 @@ class RatingFragment : BaseFragment<FragmentRatingBinding>() {
                 messageHandler?.runMessageHandler(it.first)
             }
         })
+    }
+
+    private fun setRatingAverage(arrRatings: java.util.ArrayList<Rating>?) {
+        val ratingAvg = RatingAvg()
+        ratingAvg.totalRating = arrRatings?.size?.toFloat()
+        if (ratingAvg.totalRating == null || ratingAvg.totalRating == 0F) return
+        var rating1Count = 0F
+        var rating2Count = 0F
+        var rating3Count = 0F
+        var rating4Count = 0F
+        var rating5Count = 0F
+        arrRatings?.forEach { rating: Rating ->
+            when (rating.rating) {
+                1 -> rating1Count++
+                2 -> rating2Count++
+                3 -> rating3Count++
+                4 -> rating4Count++
+                5 -> rating5Count++
+            }
+        }
+        ratingAvg.rating1Count = rating1Count
+        ratingAvg.rating2Count = rating2Count
+        ratingAvg.rating3Count = rating3Count
+        ratingAvg.rating4Count = rating4Count
+        ratingAvg.rating5Count = rating5Count
+        ratingAvg.ratingAvg =
+            (rating1Count + rating2Count * 2 + rating3Count * 3 + rating4Count * 4 + rating5Count * 5.toFloat()).div(
+                ratingAvg.totalRating ?: 0F
+            )
+
+        ratingAvg.rating5Percent =
+            ratingAvg.rating5Count?.div(ratingAvg.totalRating ?: 1F)?.times(100)?.toInt() ?: 0
+        ratingAvg.rating4Percent =
+            ratingAvg.rating4Count?.div(ratingAvg.totalRating ?: 1F)?.times(100)?.toInt() ?: 0
+        ratingAvg.rating3Percent =
+            ratingAvg.rating3Count?.div(ratingAvg.totalRating ?: 1F)?.times(100)?.toInt() ?: 0
+        ratingAvg.rating2Percent =
+            ratingAvg.rating2Count?.div(ratingAvg.totalRating ?: 1F)?.times(100)?.toInt() ?: 0
+        ratingAvg.rating1Percent =
+            ratingAvg.rating1Count?.div(ratingAvg.totalRating ?: 1F)?.times(100)?.toInt() ?: 0
+
+        adapter.setDataRating(ratingAvg)
     }
 }

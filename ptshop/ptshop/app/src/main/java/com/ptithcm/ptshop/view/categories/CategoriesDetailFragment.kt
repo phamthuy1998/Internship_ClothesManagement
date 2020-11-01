@@ -23,6 +23,7 @@ import com.ptithcm.ptshop.view.categories.adapter.CategoriesPagedAdapter
 import com.ptithcm.ptshop.viewmodel.CarouselDetailViewModel
 import com.ptithcm.ptshop.viewmodel.RefineViewModel
 import com.ptithcm.ptshop.viewmodel.WishListViewModel
+import kotlinx.android.synthetic.main.activity_main.*
 import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -45,6 +46,11 @@ class CategoriesDetailFragment : BaseFragment<FragmentCategoriesDetailBinding>()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         initRequest()
+    }
+
+    override fun onResume() {
+        super.onResume()
+        activity?.btnNav?.visibility = View.GONE
     }
 
     override fun bindEvent() {
@@ -109,7 +115,6 @@ class CategoriesDetailFragment : BaseFragment<FragmentCategoriesDetailBinding>()
 
     private fun setupToolbar() {
         (requireActivity() as? MainActivity)?.apply {
-            viewBinding.btnNav.visible()
             initToolBar(viewBinding.layoutToolbar.toolbar, hasBackRight = false)
             if (arguments?.getBoolean(IS_PRODUCT) == true) {
                 setupToolbar(

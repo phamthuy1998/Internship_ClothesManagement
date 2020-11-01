@@ -16,6 +16,10 @@
         tools:layout="@layout/fragment_over_view"/>
 
     <include app:graph="@navigation/nav_carousel_detail" />
+    <fragment
+        android:id="@+id/imageVideoFragment"
+        android:name="com.ptithcm.ptshop.view.rating.ImageVideoFragment"
+        tools:layout="@layout/fragment_image_video"/>
 
     <fragment
         android:id="@+id/sizeGuideFragment"

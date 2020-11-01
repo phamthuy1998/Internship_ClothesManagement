@@ -74,6 +74,10 @@
         android:id="@+id/fragment_confirm_checkout"
         android:name="com.ptithcm.ptshop.view.card.ConfirmCheckoutFragment"
         tools:layout="@layout/fragment_confirm_checkout" />
+    <fragment
+        android:id="@+id/imageVideoFragment"
+        android:name="com.ptithcm.ptshop.view.rating.ImageVideoFragment"
+        tools:layout="@layout/fragment_image_video"/>
 
     <include
         app:graph="@navigation/nav_login"/>

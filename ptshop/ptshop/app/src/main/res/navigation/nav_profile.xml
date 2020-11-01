@@ -89,6 +89,10 @@
         android:name="com.ptithcm.ptshop.view.document.DocumentFragment"
         tools:layout="@layout/fragment_document"
         android:label="DocumentFragment" />
+    <fragment
+        android:id="@+id/imageVideoFragment"
+        android:name="com.ptithcm.ptshop.view.rating.ImageVideoFragment"
+        tools:layout="@layout/fragment_image_video"/>
 
     <fragment
         android:id="@+id/ratingFragment"

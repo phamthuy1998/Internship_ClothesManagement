@@ -55,6 +55,8 @@ class ProductDetailFragment : BaseFragment<FragmentProductDetailBinding>() {
         product?.id?.let { questionsViewModel.getQuestionCount(it) }
     }
 
+
+
     override fun bindEvent() {
 
         viewBinding.fragment = this@ProductDetailFragment
@@ -89,11 +91,15 @@ class ProductDetailFragment : BaseFragment<FragmentProductDetailBinding>() {
         questionsViewModel.questionCount.observe(this, Observer {
             if (it.data ?: 0 != 0) {
                 viewBinding.btnQuestions.text = getString(R.string.commentCount, it.data)
-            }else
+            } else
                 viewBinding.btnQuestions.text = getString(R.string.comment)
         })
 
+    }
 
+    override fun onResume() {
+        super.onResume()
+        activity?.btnNav?.visibility = View.GONE
     }
 
     fun onClick(v: View?) {
@@ -174,9 +180,9 @@ class ProductDetailFragment : BaseFragment<FragmentProductDetailBinding>() {
                 childFragmentManager,
                 it.images ?: arrayListOf()
             ) { list, pos ->
-                navController.navigate(
+                navController.navigateAnimation(
                     R.id.fragment_over_view,
-                    bundleOf(
+                    bundle = bundleOf(
                         "list" to list,
                         "pos" to pos
                     )

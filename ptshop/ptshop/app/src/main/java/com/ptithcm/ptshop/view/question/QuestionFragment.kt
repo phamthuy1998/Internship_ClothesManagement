@@ -21,6 +21,7 @@ import com.ptithcm.ptshop.view.rating.adapter.RatingAdapter
 import com.ptithcm.ptshop.view.question.adapter.ITEM_REPLY
 import com.ptithcm.ptshop.view.question.adapter.QuestionAdapter
 import com.ptithcm.ptshop.viewmodel.QuestionsViewModel
+import kotlinx.android.synthetic.main.activity_main.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class QuestionFragment : BaseFragment<FragmentQuestionBinding>() {
@@ -91,6 +92,7 @@ class QuestionFragment : BaseFragment<FragmentQuestionBinding>() {
 
     override fun onResume() {
         super.onResume()
+        activity?.btnNav?.visibility = View.GONE
         viewBinding.shimmerViewContainer.startShimmer()
         viewBinding.shimmerViewContainer.visible()
     }

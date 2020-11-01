@@ -27,6 +27,11 @@
         android:name="com.ptithcm.ptshop.view.sizeguide.SizeGuideFragment"
         android:label="SizeGuideFragment"
         tools:layout="@layout/fragment_size_guide" />
+    <fragment
+        android:id="@+id/imageVideoFragment"
+        android:name="com.ptithcm.ptshop.view.rating.ImageVideoFragment"
+        tools:layout="@layout/fragment_image_video"/>
+
 
     <include app:graph="@navigation/nav_search" />
     <include app:graph="@navigation/nav_shopping_card" />

@@ -1,4 +1,4 @@
-package com.ptithcm.ptshop.view.home.storydetail
+package com.ptithcm.ptshop.view.rating.adapter
 
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
@@ -6,17 +6,21 @@ import androidx.fragment.app.FragmentPagerAdapter
 import com.ptithcm.core.BuildConfig
 import com.ptithcm.core.model.Upload
 import com.ptithcm.ptshop.view.wishlist.overview.ImageFragment
+import com.ptithcm.ptshop.view.wishlist.overview.ImageZoomFragment
 import com.ptithcm.ptshop.view.wishlist.overview.VideoFragment
 
-class StoryImgPageAdapter(fragmentManager: FragmentManager, private val uploads: List<Upload>) :
+class ImgVideoPageAdapter(
+    fragmentManager: FragmentManager,
+    private val urlList: List<String>
+) :
     FragmentPagerAdapter(fragmentManager, BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT) {
 
     override fun getItem(position: Int): Fragment {
-        val url = "${BuildConfig.AWS_URL_IMAGE}${uploads[position].url}"
-        return if (url.contains(".mov"))
+        val url = urlList[position]
+        return if (url.contains(".mov") || url.contains(".mp4"))
             VideoFragment.newInstance(url)
-        else ImageFragment.newInstance(url, isForStoryDetail = true)
+        else ImageZoomFragment.newInstance(url)
     }
 
-    override fun getCount(): Int = uploads.size
+    override fun getCount(): Int = urlList.size
 }

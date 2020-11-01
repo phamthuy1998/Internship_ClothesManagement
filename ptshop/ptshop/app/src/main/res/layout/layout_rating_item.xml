@@ -204,7 +204,7 @@
             android:layout_width="match_parent"
             android:layout_height="@dimen/layout_margin_5dp"
             android:layout_marginTop="@dimen/layout_margin_10dp"
-            android:background="@color/gray_section"
+            android:background="@color/gray2"
             app:layout_constraintTop_toBottomOf="@id/viewReply" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>

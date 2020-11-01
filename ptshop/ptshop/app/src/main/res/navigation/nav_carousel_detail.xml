@@ -22,6 +22,10 @@
         android:id="@+id/fragment_over_view"
         android:name="com.ptithcm.ptshop.view.wishlist.OverViewFragment"
         tools:layout="@layout/fragment_over_view"/>
+    <fragment
+        android:id="@+id/imageVideoFragment"
+        android:name="com.ptithcm.ptshop.view.rating.ImageVideoFragment"
+        tools:layout="@layout/fragment_image_video"/>
 
     <fragment
         android:id="@+id/sizeGuideFragment"

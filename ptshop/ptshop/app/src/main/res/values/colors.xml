@@ -26,4 +26,5 @@
     <color name="color_tag_bg">#9a9898</color>
     <color name="greenDark1">#0A390C</color>
     <color name="yellow">#E8B724</color>
+    <color name="gray2">#DDDDDD</color>
 </resources>

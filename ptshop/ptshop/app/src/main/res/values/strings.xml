@@ -324,6 +324,8 @@
     <string name="comment">Question</string>
     <string name="commentCount">Question\t\t\t\t(%d)</string>
     <string name="rating">Rating</string>
+    <string name="ratingInt">%d ratings</string>
+    <string name="rating1">1 rating</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="provider">PROVIDER</string>

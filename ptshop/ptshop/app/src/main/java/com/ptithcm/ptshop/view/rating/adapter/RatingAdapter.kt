@@ -9,6 +9,7 @@ import androidx.appcompat.widget.PopupMenu
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.ptithcm.core.model.Rating
+import com.ptithcm.core.model.RatingAvg
 import com.ptithcm.core.model.SubRating
 import com.ptithcm.ptshop.R
 import com.ptithcm.ptshop.databinding.ItemRatingStatisticBinding
@@ -32,8 +33,8 @@ class RatingAdapter(
     }
 
     private var ratingList = arrayListOf<Rating>()
-
-    var currentPosition: Int? = null
+    private var currentPosition: Int? = null
+    private var ratingAvg: RatingAvg? = null
 
     override fun getItemId(position: Int): Long =
         ratingList[position].ratingID.hashCode().toLong()
@@ -76,8 +77,8 @@ class RatingAdapter(
         }
     }
 
-    fun setDataRating() {
-
+    fun setDataRating(_ratingAvg: RatingAvg) {
+        ratingAvg = _ratingAvg
         notifyItemChanged(0)
     }
 
@@ -177,7 +178,45 @@ class RatingAdapter(
     inner class HeaderViewHolder(val binding: ItemRatingStatisticBinding) :
         RecyclerView.ViewHolder(binding.root) {
         fun bind() {
+            if (ratingAvg != null) {
+                binding.apply {
+                    tvRatingAverage.text = (ratingAvg?.ratingAvg ?: 0).toString()
+                    rbAverage.rating = ratingAvg?.ratingAvg ?: 0F
+                    tvRatingCount.text = if (ratingAvg?.totalRating == 1F)
+                        itemView.context.getString(R.string.rating1)
+                    else itemView.context.getString(
+                        R.string.ratingInt,
+                        ratingAvg?.totalRating?.toInt()
+                    )
+                    tvrating5.text = (ratingAvg?.rating5Count?.toInt() ?: 0).toString()
+                    tvRating4.text = (ratingAvg?.rating4Count?.toInt() ?: 0).toString()
+                    tvRating3.text = (ratingAvg?.rating3Count?.toInt() ?: 0).toString()
+                    tvRating2.text = (ratingAvg?.rating2Count ?.toInt()?: 0).toString()
+                    tvRating1.text = (ratingAvg?.rating1Count?.toInt() ?: 0).toString()
+                    seekBar5.progress = ratingAvg?.rating5Percent ?: 0
+                    seekBar4.progress = ratingAvg?.rating4Percent ?: 0
+                    seekBar3.progress = ratingAvg?.rating3Percent ?: 0
+                    seekBar2.progress = ratingAvg?.rating2Percent ?: 0
+                    seekBar1.progress = ratingAvg?.rating1Percent ?: 0
 
+                    if (ratingAvg?.rating5Percent != 0) seekBar5.thumb.mutate().alpha = 255
+                    else seekBar5.thumb.mutate().alpha = 0
+
+                    if (ratingAvg?.rating4Percent != 0) seekBar4.thumb.mutate().alpha = 255
+                    else seekBar4.thumb.mutate().alpha = 0
+
+                    if (ratingAvg?.rating3Percent != 0) seekBar3.thumb.mutate().alpha = 255
+                    else seekBar3.thumb.mutate().alpha = 0
+
+                    if (ratingAvg?.rating2Percent != 0) seekBar2.thumb.mutate().alpha = 255
+                    else seekBar2.thumb.mutate().alpha = 0
+
+                    if (ratingAvg?.rating1Percent != 0) seekBar1.thumb.mutate().alpha = 255
+                    else seekBar1.thumb.mutate().alpha = 0
+
+                    executePendingBindings()
+                }
+            }
         }
     }
 }
