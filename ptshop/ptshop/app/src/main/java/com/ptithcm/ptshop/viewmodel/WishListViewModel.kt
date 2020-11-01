@@ -16,6 +16,8 @@ class WishListViewModel(val repo: WishListRepository): ViewModel() {
     val error = MutableLiveData<Pair<String, Int?>>()
     val networkState = MutableLiveData<Boolean>()
 
+    var productWishListChange= MutableLiveData<Pair<Int, Boolean>>()
+
     fun getWishList() {
         viewModelScope.launch {
             wishListResult.addSource(repo.getWishList()) {

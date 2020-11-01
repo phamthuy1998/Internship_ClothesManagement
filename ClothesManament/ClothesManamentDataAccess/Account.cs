@@ -22,6 +22,8 @@ namespace ClothesManamentDataAccess
             this.Employees = new HashSet<Employee>();
             this.Invoices = new HashSet<Invoice>();
             this.Products = new HashSet<Product>();
+            this.Ratings = new HashSet<Rating>();
+            this.Questions = new HashSet<Question>();
         }
     
         public int id { get; set; }
@@ -43,5 +45,9 @@ namespace ClothesManamentDataAccess
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Product> Products { get; set; }
         public virtual Role Role { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Rating> Ratings { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Question> Questions { get; set; }
     }
 }

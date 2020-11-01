@@ -18,16 +18,18 @@ namespace ClothesAdmin
             InitializeComponent();
         }
 
-        private void importCouponBindingNavigatorSaveItem_Click(object sender, EventArgs e)
-        {
-            this.Validate();
-            this.importCouponBindingSource.EndEdit();
-            this.tableAdapterManager.UpdateAll(this.clothesDataSet);
+        //private void importCouponBindingNavigatorSaveItem_Click(object sender, EventArgs e)
+        //{
+        //    this.Validate();
+        //    this.importCouponBindingSource.EndEdit();
+        //    this.tableAdapterManager.UpdateAll(this.clothesDataSet);
 
-        }
+        //}
 
         private void ImportCuponForm_Load(object sender, EventArgs e)
         {
+            // TODO: This line of code loads data into the 'clothesDataSet.Provider' table. You can move, or remove it, as needed.
+            this.providerTableAdapter.Fill(this.clothesDataSet.Provider);
             employeeComboBox1.SelectedIndex = -1;
             loadData();
         }
@@ -44,7 +46,8 @@ namespace ClothesAdmin
 
 
             // TODO: This line of code loads data into the 'clothesDataSet.Product' table. You can move, or remove it, as needed.
-            this.productTableAdapter.FillBy(this.clothesDataSet.Product);
+            if (providerIdTextBox.Text != "")
+                this.productTableAdapter.FillBy1(this.clothesDataSet.Product, Convert.ToInt16(providerIdTextBox.Text));
             // TODO: This line of code loads data into the 'clothesDataSet.ImportCouponDetail' table. You can move, or remove it, as needed.
             this.importCouponDetailTableAdapter.Fill(this.clothesDataSet.ImportCouponDetail);
             // TODO: This line of code loads data into the 'clothesDataSet.ImportCouponDetail' table. You can move, or remove it, as needed.
@@ -82,7 +85,6 @@ namespace ClothesAdmin
             this.sizeTableAdapter.FillBy(this.clothesDataSet.Size, Convert.ToInt16(productComboBox.SelectedValue));
             // TODO: This line of code loads data into the 'clothesDataSet.Color' table. You can move, or remove it, as needed.
             this.colorTableAdapter.FillBy(this.clothesDataSet.Color, Convert.ToInt16(productComboBox.SelectedValue), Convert.ToInt16(sizeComboBox.SelectedValue));
-
         }
 
         private void btnSaveIport_Click(object sender, EventArgs e)
@@ -183,6 +185,13 @@ namespace ClothesAdmin
         private void addProductPromoToolStripMenuItem_Click(object sender, EventArgs e)
         {
             importCouponDetailBindingSource.AddNew();
+            if (productComboBox.SelectedValue != null)
+                idProductSpinEdit.Value = Convert.ToInt32(productComboBox.SelectedValue);
+            if (sizeComboBox.SelectedValue!= null)
+                sizeIDTextBox.Text = sizeComboBox.SelectedValue.ToString();
+            if (colorComboBox.SelectedValue!=null)
+                colorIdTextBox.Text = colorComboBox.SelectedValue.ToString();
+
         }
 
         private void deleteProductPromoToolStripMenuItem_Click(object sender, EventArgs e)
@@ -218,8 +227,8 @@ namespace ClothesAdmin
 
         private void idProductSpinEdit_EditValueChanged(object sender, EventArgs e)
         {
-            if (Convert.ToInt32(idProductSpinEdit.Value) > 0)
-                productComboBox.SelectedValue = Convert.ToInt32(idProductSpinEdit.Value);
+            //if (Convert.ToInt32(idProductSpinEdit.Value) > 0)
+            //    productComboBox.SelectedValue = Convert.ToInt32(idProductSpinEdit.Value);
         }
 
         private void productComboBox_SelectedIndexChanged(object sender, EventArgs e)
@@ -241,53 +250,38 @@ namespace ClothesAdmin
 
         private void sizeIDTextBox_TextChanged(object sender, EventArgs e)
         {
-            try
-            {
-                sizeComboBox.SelectedValue = Convert.ToInt32(sizeIDTextBox.Text);
-            }
-            catch (Exception ex)
-            {
-
-            }
+            //if (sizeIDTextBox.Text!=""&&Convert.ToInt32(sizeIDTextBox.Text)>0 )
+            //     sizeComboBox.SelectedValue = Convert.ToInt32(sizeIDTextBox.Text);
         }
 
         private void colorIdTextBox_TextChanged(object sender, EventArgs e)
         {
-            try
-            {
-                colorComboBox.SelectedValue = Convert.ToInt32(colorIdTextBox.Text);
-            }
-            catch (Exception ex)
-            {
-
-            }
+            //if (colorIdTextBox.Text != "" && Convert.ToInt32(colorIdTextBox.Text) > 0)
+            //    colorComboBox.SelectedValue = Convert.ToInt32(colorIdTextBox.Text);
         }
 
         private void sizeComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            try
-            {
+            if (sizeComboBox.SelectedValue != null)
                 sizeIDTextBox.Text = sizeComboBox.SelectedValue.ToString();
-                // TODO: This line of code loads data into the 'clothesDataSet.Color' table. You can move, or remove it, as needed.
-                //this.colorTableAdapter.FillBy(this.clothesDataSet.Color, Convert.ToInt16(productComboBox.SelectedValue), Convert.ToInt16(sizeComboBox.SelectedValue));
-
-            }
-            catch (Exception ex) { }
-
         }
 
         private void colorComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-
-            try
-            {
+            if (colorComboBox.SelectedValue!=null)
                 colorIdTextBox.Text = colorComboBox.SelectedValue.ToString();
-            }
-            catch (Exception ex) { }
         }
 
-        private void panel5_Paint(object sender, PaintEventArgs e)
+        private void providerComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
+            if(providerComboBox.SelectedValue!=null)
+            providerIdTextBox.Text = providerComboBox.SelectedValue.ToString();
+        }
+
+        private void providerIdTextBox_TextChanged(object sender, EventArgs e)
+        {
+            if (providerIdTextBox.Text != "")
+                this.productTableAdapter.FillBy1(this.clothesDataSet.Product, Convert.ToInt16(providerIdTextBox.Text));
 
         }
     }

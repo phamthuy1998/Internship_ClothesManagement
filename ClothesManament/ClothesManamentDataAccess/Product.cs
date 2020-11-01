@@ -23,6 +23,8 @@ namespace ClothesManamentDataAccess
             this.ProductSizeColors = new HashSet<ProductSizeColor>();
             this.Accounts = new HashSet<Account>();
             this.Promotions = new HashSet<Promotion>();
+            this.Ratings = new HashSet<Rating>();
+            this.Questions = new HashSet<Question>();
         }
     
         public int id { get; set; }
@@ -52,5 +54,9 @@ namespace ClothesManamentDataAccess
         public virtual ICollection<Account> Accounts { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Promotion> Promotions { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Rating> Ratings { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Question> Questions { get; set; }
     }
 }

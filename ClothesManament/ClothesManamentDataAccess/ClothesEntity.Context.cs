@@ -46,6 +46,8 @@ namespace ClothesManamentDataAccess
         public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
         public virtual DbSet<Role> Roles { get; set; }
         public virtual DbSet<InvoiceStatu> InvoiceStatus { get; set; }
+        public virtual DbSet<Rating> Ratings { get; set; }
+        public virtual DbSet<Question> Questions { get; set; }
     
         public virtual ObjectResult<Nullable<int>> ChangePassword(Nullable<int> userId, string oldPass, string newPass)
         {
@@ -993,6 +995,219 @@ namespace ClothesManamentDataAccess
                 new ObjectParameter("keySearch", typeof(string));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("SP_SearchFilterCounter", keySearchParameter);
+        }
+    
+        public virtual ObjectResult<SP_GetRatings_Result5> SP_GetRatings(Nullable<int> currentPage, Nullable<int> pageSize, Nullable<int> productId)
+        {
+            var currentPageParameter = currentPage.HasValue ?
+                new ObjectParameter("currentPage", currentPage) :
+                new ObjectParameter("currentPage", typeof(int));
+    
+            var pageSizeParameter = pageSize.HasValue ?
+                new ObjectParameter("PageSize", pageSize) :
+                new ObjectParameter("PageSize", typeof(int));
+    
+            var productIdParameter = productId.HasValue ?
+                new ObjectParameter("productId", productId) :
+                new ObjectParameter("productId", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_GetRatings_Result5>("SP_GetRatings", currentPageParameter, pageSizeParameter, productIdParameter);
+        }
+    
+        public virtual ObjectResult<Nullable<int>> SP_GetRatingsCount(Nullable<int> productId)
+        {
+            var productIdParameter = productId.HasValue ?
+                new ObjectParameter("productId", productId) :
+                new ObjectParameter("productId", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("SP_GetRatingsCount", productIdParameter);
+        }
+    
+        public virtual ObjectResult<SP_GetSubRating_Result2> SP_GetSubRating(Nullable<int> ratingId)
+        {
+            var ratingIdParameter = ratingId.HasValue ?
+                new ObjectParameter("ratingId", ratingId) :
+                new ObjectParameter("ratingId", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_GetSubRating_Result2>("SP_GetSubRating", ratingIdParameter);
+        }
+    
+        public virtual int SP_AddRating(Nullable<int> accountId, Nullable<int> rating, string comment, Nullable<int> productID, string imageUrl1, string imageUrl2, string imageUrl3, string videoUrl, Nullable<int> parentId)
+        {
+            var accountIdParameter = accountId.HasValue ?
+                new ObjectParameter("accountId", accountId) :
+                new ObjectParameter("accountId", typeof(int));
+    
+            var ratingParameter = rating.HasValue ?
+                new ObjectParameter("rating", rating) :
+                new ObjectParameter("rating", typeof(int));
+    
+            var commentParameter = comment != null ?
+                new ObjectParameter("comment", comment) :
+                new ObjectParameter("comment", typeof(string));
+    
+            var productIDParameter = productID.HasValue ?
+                new ObjectParameter("productID", productID) :
+                new ObjectParameter("productID", typeof(int));
+    
+            var imageUrl1Parameter = imageUrl1 != null ?
+                new ObjectParameter("imageUrl1", imageUrl1) :
+                new ObjectParameter("imageUrl1", typeof(string));
+    
+            var imageUrl2Parameter = imageUrl2 != null ?
+                new ObjectParameter("imageUrl2", imageUrl2) :
+                new ObjectParameter("imageUrl2", typeof(string));
+    
+            var imageUrl3Parameter = imageUrl3 != null ?
+                new ObjectParameter("imageUrl3", imageUrl3) :
+                new ObjectParameter("imageUrl3", typeof(string));
+    
+            var videoUrlParameter = videoUrl != null ?
+                new ObjectParameter("videoUrl", videoUrl) :
+                new ObjectParameter("videoUrl", typeof(string));
+    
+            var parentIdParameter = parentId.HasValue ?
+                new ObjectParameter("parentId", parentId) :
+                new ObjectParameter("parentId", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("SP_AddRating", accountIdParameter, ratingParameter, commentParameter, productIDParameter, imageUrl1Parameter, imageUrl2Parameter, imageUrl3Parameter, videoUrlParameter, parentIdParameter);
+        }
+    
+        public virtual int SP_UpdateRating(Nullable<int> ratingId, Nullable<int> rating, string comment, string imageUrl1, string imageUrl2, string imageUrl3, string videoUrl, Nullable<int> parentId)
+        {
+            var ratingIdParameter = ratingId.HasValue ?
+                new ObjectParameter("ratingId", ratingId) :
+                new ObjectParameter("ratingId", typeof(int));
+    
+            var ratingParameter = rating.HasValue ?
+                new ObjectParameter("rating", rating) :
+                new ObjectParameter("rating", typeof(int));
+    
+            var commentParameter = comment != null ?
+                new ObjectParameter("comment", comment) :
+                new ObjectParameter("comment", typeof(string));
+    
+            var imageUrl1Parameter = imageUrl1 != null ?
+                new ObjectParameter("imageUrl1", imageUrl1) :
+                new ObjectParameter("imageUrl1", typeof(string));
+    
+            var imageUrl2Parameter = imageUrl2 != null ?
+                new ObjectParameter("imageUrl2", imageUrl2) :
+                new ObjectParameter("imageUrl2", typeof(string));
+    
+            var imageUrl3Parameter = imageUrl3 != null ?
+                new ObjectParameter("imageUrl3", imageUrl3) :
+                new ObjectParameter("imageUrl3", typeof(string));
+    
+            var videoUrlParameter = videoUrl != null ?
+                new ObjectParameter("videoUrl", videoUrl) :
+                new ObjectParameter("videoUrl", typeof(string));
+    
+            var parentIdParameter = parentId.HasValue ?
+                new ObjectParameter("parentId", parentId) :
+                new ObjectParameter("parentId", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("SP_UpdateRating", ratingIdParameter, ratingParameter, commentParameter, imageUrl1Parameter, imageUrl2Parameter, imageUrl3Parameter, videoUrlParameter, parentIdParameter);
+        }
+    
+        public virtual ObjectResult<Nullable<int>> SP_DelRating(Nullable<int> ratingId)
+        {
+            var ratingIdParameter = ratingId.HasValue ?
+                new ObjectParameter("ratingId", ratingId) :
+                new ObjectParameter("ratingId", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("SP_DelRating", ratingIdParameter);
+        }
+    
+        public virtual int SP_AddQuestion(Nullable<int> accountID, string question, Nullable<int> parentQuestionID, Nullable<int> productID)
+        {
+            var accountIDParameter = accountID.HasValue ?
+                new ObjectParameter("accountID", accountID) :
+                new ObjectParameter("accountID", typeof(int));
+    
+            var questionParameter = question != null ?
+                new ObjectParameter("question", question) :
+                new ObjectParameter("question", typeof(string));
+    
+            var parentQuestionIDParameter = parentQuestionID.HasValue ?
+                new ObjectParameter("parentQuestionID", parentQuestionID) :
+                new ObjectParameter("parentQuestionID", typeof(int));
+    
+            var productIDParameter = productID.HasValue ?
+                new ObjectParameter("productID", productID) :
+                new ObjectParameter("productID", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("SP_AddQuestion", accountIDParameter, questionParameter, parentQuestionIDParameter, productIDParameter);
+        }
+    
+        public virtual ObjectResult<Nullable<int>> SP_DelQuestion(Nullable<int> questionId, Nullable<int> isSubQuestion)
+        {
+            var questionIdParameter = questionId.HasValue ?
+                new ObjectParameter("questionId", questionId) :
+                new ObjectParameter("questionId", typeof(int));
+    
+            var isSubQuestionParameter = isSubQuestion.HasValue ?
+                new ObjectParameter("isSubQuestion", isSubQuestion) :
+                new ObjectParameter("isSubQuestion", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("SP_DelQuestion", questionIdParameter, isSubQuestionParameter);
+        }
+    
+        public virtual ObjectResult<SP_GetQuestion_Result1> SP_GetQuestion(Nullable<int> currentPage, Nullable<int> pageSize, Nullable<int> productId)
+        {
+            var currentPageParameter = currentPage.HasValue ?
+                new ObjectParameter("currentPage", currentPage) :
+                new ObjectParameter("currentPage", typeof(int));
+    
+            var pageSizeParameter = pageSize.HasValue ?
+                new ObjectParameter("PageSize", pageSize) :
+                new ObjectParameter("PageSize", typeof(int));
+    
+            var productIdParameter = productId.HasValue ?
+                new ObjectParameter("productId", productId) :
+                new ObjectParameter("productId", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_GetQuestion_Result1>("SP_GetQuestion", currentPageParameter, pageSizeParameter, productIdParameter);
+        }
+    
+        public virtual ObjectResult<SP_GetSubQuestion_Result1> SP_GetSubQuestion(Nullable<int> questionID)
+        {
+            var questionIDParameter = questionID.HasValue ?
+                new ObjectParameter("questionID", questionID) :
+                new ObjectParameter("questionID", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_GetSubQuestion_Result1>("SP_GetSubQuestion", questionIDParameter);
+        }
+    
+        public virtual int SP_UpdateQuestion(Nullable<int> questionID, string question)
+        {
+            var questionIDParameter = questionID.HasValue ?
+                new ObjectParameter("questionID", questionID) :
+                new ObjectParameter("questionID", typeof(int));
+    
+            var questionParameter = question != null ?
+                new ObjectParameter("question", question) :
+                new ObjectParameter("question", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("SP_UpdateQuestion", questionIDParameter, questionParameter);
+        }
+    
+        public virtual ObjectResult<Nullable<int>> SP_GetQuestionCount(Nullable<int> productId)
+        {
+            var productIdParameter = productId.HasValue ?
+                new ObjectParameter("productId", productId) :
+                new ObjectParameter("productId", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("SP_GetQuestionCount", productIdParameter);
+        }
+    
+        public virtual ObjectResult<Nullable<double>> SP_GetRatingProduct(Nullable<int> productId)
+        {
+            var productIdParameter = productId.HasValue ?
+                new ObjectParameter("productId", productId) :
+                new ObjectParameter("productId", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<double>>("SP_GetRatingProduct", productIdParameter);
         }
     }
 }

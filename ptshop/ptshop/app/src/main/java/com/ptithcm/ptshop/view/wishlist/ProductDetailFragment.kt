@@ -62,7 +62,7 @@ class ProductDetailFragment : BaseFragment<FragmentProductDetailBinding>() {
     override fun bindViewModelOnce() {
         shoppingViewModel.detailResult.observe(this, Observer {
             productDetail = it
-            viewBinding.item = productDetail
+//            viewBinding.item = productDetail
             setUpToolBar()
             bindProduct()
             setUpViewPager()
@@ -116,6 +116,10 @@ class ProductDetailFragment : BaseFragment<FragmentProductDetailBinding>() {
                     if (isLogin) {
                         isSelected = isSelected.not()
                         wishListViewModel.addAndRemoveToWishList(productDetail?.id)
+                        wishListViewModel.productWishListChange.value = Pair(
+                            wishListViewModel.productWishListChange.value?.first ?: 0,
+                            isSelected
+                        )
                     } else {
                         messageHandler?.runMessageErrorHandler(getString(R.string.login_to_add_wish_list))
                     }
@@ -268,7 +272,6 @@ class ProductDetailFragment : BaseFragment<FragmentProductDetailBinding>() {
         )
 
         val realQuantity = (quantityFromBE - quantityFromLocal).coerceIn(0..Int.MAX_VALUE)
-
         viewBinding.hasQuantity = realQuantity != 0
         setQuantity(realQuantity)
     }

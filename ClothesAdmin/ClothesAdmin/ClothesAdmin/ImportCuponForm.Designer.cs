@@ -43,6 +43,7 @@
             System.Windows.Forms.Label label4;
             System.Windows.Forms.Label label5;
             System.Windows.Forms.Label colorIdLabel;
+            System.Windows.Forms.Label providerIdLabel;
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ImportCuponForm));
             this.barManager = new DevExpress.XtraBars.BarManager(this.components);
             this.bar2 = new DevExpress.XtraBars.Bar();
@@ -67,6 +68,7 @@
             this.colid = new DevExpress.XtraGrid.Columns.GridColumn();
             this.coldate = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colemployeeId = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colproviderId = new DevExpress.XtraGrid.Columns.GridColumn();
             this.importCouponDetailGridControl = new DevExpress.XtraGrid.GridControl();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.addProductPromoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -81,6 +83,9 @@
             this.colquantity = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colprice = new DevExpress.XtraGrid.Columns.GridColumn();
             this.panel4 = new System.Windows.Forms.Panel();
+            this.providerComboBox = new System.Windows.Forms.ComboBox();
+            this.providerBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.providerIdTextBox = new System.Windows.Forms.TextBox();
             this.dateDateEdit = new DevExpress.XtraEditors.DateEdit();
             this.employeeComboBox = new System.Windows.Forms.ComboBox();
             this.employeeBindingSource = new System.Windows.Forms.BindingSource(this.components);
@@ -91,9 +96,9 @@
             this.panel5 = new System.Windows.Forms.Panel();
             this.colorIdTextBox = new System.Windows.Forms.TextBox();
             this.colorComboBox = new System.Windows.Forms.ComboBox();
-            this.colorBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.colorBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             this.sizeComboBox = new System.Windows.Forms.ComboBox();
-            this.sizeBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.sizeBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             this.sizeIDTextBox = new System.Windows.Forms.TextBox();
             this.productComboBox = new System.Windows.Forms.ComboBox();
             this.productBindingSource = new System.Windows.Forms.BindingSource(this.components);
@@ -103,6 +108,8 @@
             this.idProductSpinEdit = new DevExpress.XtraEditors.SpinEdit();
             this.quantitySpinEdit = new DevExpress.XtraEditors.SpinEdit();
             this.priceSpinEdit = new DevExpress.XtraEditors.SpinEdit();
+            this.colorBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.sizeBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.importCouponTableAdapter = new ClothesAdmin.ClothesDataSetTableAdapters.ImportCouponTableAdapter();
             this.tableAdapterManager = new ClothesAdmin.ClothesDataSetTableAdapters.TableAdapterManager();
             this.employeeTableAdapter = new ClothesAdmin.ClothesDataSetTableAdapters.EmployeeTableAdapter();
@@ -110,8 +117,7 @@
             this.productTableAdapter = new ClothesAdmin.ClothesDataSetTableAdapters.ProductTableAdapter();
             this.sizeTableAdapter = new ClothesAdmin.ClothesDataSetTableAdapters.SizeTableAdapter();
             this.colorTableAdapter = new ClothesAdmin.ClothesDataSetTableAdapters.ColorTableAdapter();
-            this.sizeBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
-            this.colorBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
+            this.providerTableAdapter = new ClothesAdmin.ClothesDataSetTableAdapters.ProviderTableAdapter();
             idLabel = new System.Windows.Forms.Label();
             employeeIdLabel = new System.Windows.Forms.Label();
             idCouponLabel = new System.Windows.Forms.Label();
@@ -126,6 +132,7 @@
             label4 = new System.Windows.Forms.Label();
             label5 = new System.Windows.Forms.Label();
             colorIdLabel = new System.Windows.Forms.Label();
+            providerIdLabel = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.barManager)).BeginInit();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.employeeBindingSource1)).BeginInit();
@@ -139,21 +146,22 @@
             ((System.ComponentModel.ISupportInitialize)(this.importCouponDetailBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView2)).BeginInit();
             this.panel4.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.providerBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dateDateEdit.Properties.CalendarTimeProperties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dateDateEdit.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.employeeBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.idSpinEdit.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.employeeIdSpinEdit.Properties)).BeginInit();
             this.panel5.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.colorBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.sizeBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.colorBindingSource1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.sizeBindingSource1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.productBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.idCouponSpinEdit.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.idProductSpinEdit.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.quantitySpinEdit.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.priceSpinEdit.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.sizeBindingSource1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.colorBindingSource1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.colorBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.sizeBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // idLabel
@@ -282,6 +290,15 @@
             colorIdLabel.TabIndex = 59;
             colorIdLabel.Text = "Color ID";
             // 
+            // providerIdLabel
+            // 
+            providerIdLabel.AutoSize = true;
+            providerIdLabel.Location = new System.Drawing.Point(73, 163);
+            providerIdLabel.Name = "providerIdLabel";
+            providerIdLabel.Size = new System.Drawing.Size(79, 17);
+            providerIdLabel.TabIndex = 59;
+            providerIdLabel.Text = "provider Id:";
+            // 
             // barManager
             // 
             this.barManager.Bars.AddRange(new DevExpress.XtraBars.Bar[] {
@@ -358,7 +375,7 @@
             this.barDockControl1.Location = new System.Drawing.Point(0, 0);
             this.barDockControl1.Manager = this.barManager;
             this.barDockControl1.Margin = new System.Windows.Forms.Padding(2);
-            this.barDockControl1.Size = new System.Drawing.Size(1940, 33);
+            this.barDockControl1.Size = new System.Drawing.Size(1940, 30);
             // 
             // barDockControl2
             // 
@@ -373,19 +390,19 @@
             // 
             this.barDockControl3.CausesValidation = false;
             this.barDockControl3.Dock = System.Windows.Forms.DockStyle.Left;
-            this.barDockControl3.Location = new System.Drawing.Point(0, 33);
+            this.barDockControl3.Location = new System.Drawing.Point(0, 30);
             this.barDockControl3.Manager = this.barManager;
             this.barDockControl3.Margin = new System.Windows.Forms.Padding(2);
-            this.barDockControl3.Size = new System.Drawing.Size(0, 869);
+            this.barDockControl3.Size = new System.Drawing.Size(0, 872);
             // 
             // barDockControl5
             // 
             this.barDockControl5.CausesValidation = false;
             this.barDockControl5.Dock = System.Windows.Forms.DockStyle.Right;
-            this.barDockControl5.Location = new System.Drawing.Point(1940, 33);
+            this.barDockControl5.Location = new System.Drawing.Point(1940, 30);
             this.barDockControl5.Manager = this.barManager;
             this.barDockControl5.Margin = new System.Windows.Forms.Padding(2);
-            this.barDockControl5.Size = new System.Drawing.Size(0, 869);
+            this.barDockControl5.Size = new System.Drawing.Size(0, 872);
             // 
             // btnSua
             // 
@@ -407,7 +424,7 @@
             this.panel1.Controls.Add(this.employeeComboBox1);
             this.panel1.Controls.Add(label3);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel1.Location = new System.Drawing.Point(0, 33);
+            this.panel1.Location = new System.Drawing.Point(0, 30);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(1940, 68);
             this.panel1.TabIndex = 4;
@@ -446,12 +463,12 @@
             this.tableLayoutPanel1.Controls.Add(this.panel4, 0, 1);
             this.tableLayoutPanel1.Controls.Add(this.panel5, 1, 1);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 101);
+            this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 98);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 2;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(1940, 801);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(1940, 804);
             this.tableLayoutPanel1.TabIndex = 5;
             // 
             // importCouponGridControl
@@ -462,7 +479,7 @@
             this.importCouponGridControl.MainView = this.gridView1;
             this.importCouponGridControl.MenuManager = this.barManager;
             this.importCouponGridControl.Name = "importCouponGridControl";
-            this.importCouponGridControl.Size = new System.Drawing.Size(962, 393);
+            this.importCouponGridControl.Size = new System.Drawing.Size(962, 394);
             this.importCouponGridControl.TabIndex = 3;
             this.importCouponGridControl.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridView1});
@@ -477,7 +494,8 @@
             this.gridView1.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
             this.colid,
             this.coldate,
-            this.colemployeeId});
+            this.colemployeeId,
+            this.colproviderId});
             this.gridView1.GridControl = this.importCouponGridControl;
             this.gridView1.Name = "gridView1";
             // 
@@ -511,6 +529,16 @@
             this.colemployeeId.VisibleIndex = 2;
             this.colemployeeId.Width = 94;
             // 
+            // colproviderId
+            // 
+            this.colproviderId.FieldName = "providerId";
+            this.colproviderId.MinWidth = 25;
+            this.colproviderId.Name = "colproviderId";
+            this.colproviderId.OptionsColumn.AllowEdit = false;
+            this.colproviderId.Visible = true;
+            this.colproviderId.VisibleIndex = 3;
+            this.colproviderId.Width = 94;
+            // 
             // importCouponDetailGridControl
             // 
             this.importCouponDetailGridControl.ContextMenuStrip = this.contextMenuStrip1;
@@ -520,7 +548,7 @@
             this.importCouponDetailGridControl.MainView = this.gridView2;
             this.importCouponDetailGridControl.MenuManager = this.barManager;
             this.importCouponDetailGridControl.Name = "importCouponDetailGridControl";
-            this.importCouponDetailGridControl.Size = new System.Drawing.Size(963, 393);
+            this.importCouponDetailGridControl.Size = new System.Drawing.Size(963, 394);
             this.importCouponDetailGridControl.TabIndex = 3;
             this.importCouponDetailGridControl.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridView2});
@@ -638,6 +666,9 @@
             // 
             // panel4
             // 
+            this.panel4.Controls.Add(this.providerComboBox);
+            this.panel4.Controls.Add(providerIdLabel);
+            this.panel4.Controls.Add(this.providerIdTextBox);
             this.panel4.Controls.Add(dateLabel);
             this.panel4.Controls.Add(this.dateDateEdit);
             this.panel4.Controls.Add(this.employeeComboBox);
@@ -649,10 +680,39 @@
             this.panel4.Controls.Add(employeeIdLabel);
             this.panel4.Controls.Add(this.employeeIdSpinEdit);
             this.panel4.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel4.Location = new System.Drawing.Point(4, 404);
+            this.panel4.Location = new System.Drawing.Point(4, 405);
             this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(962, 393);
+            this.panel4.Size = new System.Drawing.Size(962, 395);
             this.panel4.TabIndex = 2;
+            // 
+            // providerComboBox
+            // 
+            this.providerComboBox.DataBindings.Add(new System.Windows.Forms.Binding("SelectedValue", this.importCouponBindingSource, "providerId", true));
+            this.providerComboBox.DataSource = this.providerBindingSource;
+            this.providerComboBox.DisplayMember = "brandName";
+            this.providerComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.providerComboBox.FormattingEnabled = true;
+            this.providerComboBox.Location = new System.Drawing.Point(537, 163);
+            this.providerComboBox.Name = "providerComboBox";
+            this.providerComboBox.Size = new System.Drawing.Size(332, 24);
+            this.providerComboBox.TabIndex = 60;
+            this.providerComboBox.ValueMember = "id";
+            this.providerComboBox.SelectedIndexChanged += new System.EventHandler(this.providerComboBox_SelectedIndexChanged);
+            // 
+            // providerBindingSource
+            // 
+            this.providerBindingSource.DataMember = "Provider";
+            this.providerBindingSource.DataSource = this.clothesDataSet;
+            // 
+            // providerIdTextBox
+            // 
+            this.providerIdTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.importCouponBindingSource, "providerId", true));
+            this.providerIdTextBox.Enabled = false;
+            this.providerIdTextBox.Location = new System.Drawing.Point(173, 163);
+            this.providerIdTextBox.Name = "providerIdTextBox";
+            this.providerIdTextBox.Size = new System.Drawing.Size(125, 22);
+            this.providerIdTextBox.TabIndex = 60;
+            this.providerIdTextBox.TextChanged += new System.EventHandler(this.providerIdTextBox_TextChanged);
             // 
             // dateDateEdit
             // 
@@ -692,7 +752,7 @@
             this.btnCancelImport.BackColor = System.Drawing.Color.White;
             this.btnCancelImport.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnCancelImport.ForeColor = System.Drawing.Color.Crimson;
-            this.btnCancelImport.Location = new System.Drawing.Point(489, 166);
+            this.btnCancelImport.Location = new System.Drawing.Point(518, 253);
             this.btnCancelImport.Name = "btnCancelImport";
             this.btnCancelImport.Size = new System.Drawing.Size(123, 52);
             this.btnCancelImport.TabIndex = 58;
@@ -705,7 +765,7 @@
             this.btnSaveIport.BackColor = System.Drawing.Color.White;
             this.btnSaveIport.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSaveIport.ForeColor = System.Drawing.Color.ForestGreen;
-            this.btnSaveIport.Location = new System.Drawing.Point(271, 166);
+            this.btnSaveIport.Location = new System.Drawing.Point(300, 253);
             this.btnSaveIport.Name = "btnSaveIport";
             this.btnSaveIport.Size = new System.Drawing.Size(123, 52);
             this.btnSaveIport.TabIndex = 57;
@@ -773,11 +833,10 @@
             this.panel5.Controls.Add(priceLabel);
             this.panel5.Controls.Add(this.priceSpinEdit);
             this.panel5.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel5.Location = new System.Drawing.Point(973, 404);
+            this.panel5.Location = new System.Drawing.Point(973, 405);
             this.panel5.Name = "panel5";
-            this.panel5.Size = new System.Drawing.Size(963, 393);
+            this.panel5.Size = new System.Drawing.Size(963, 395);
             this.panel5.TabIndex = 3;
-            this.panel5.Paint += new System.Windows.Forms.PaintEventHandler(this.panel5_Paint);
             // 
             // colorIdTextBox
             // 
@@ -791,6 +850,7 @@
             // 
             // colorComboBox
             // 
+            this.colorComboBox.DataBindings.Add(new System.Windows.Forms.Binding("SelectedValue", this.importCouponDetailBindingSource, "colorId", true));
             this.colorComboBox.DataSource = this.colorBindingSource1;
             this.colorComboBox.DisplayMember = "colorName";
             this.colorComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
@@ -802,13 +862,14 @@
             this.colorComboBox.ValueMember = "id";
             this.colorComboBox.SelectedIndexChanged += new System.EventHandler(this.colorComboBox_SelectedIndexChanged);
             // 
-            // colorBindingSource
+            // colorBindingSource1
             // 
-            this.colorBindingSource.DataMember = "Color";
-            this.colorBindingSource.DataSource = this.clothesDataSet;
+            this.colorBindingSource1.DataMember = "Color";
+            this.colorBindingSource1.DataSource = this.clothesDataSet;
             // 
             // sizeComboBox
             // 
+            this.sizeComboBox.DataBindings.Add(new System.Windows.Forms.Binding("SelectedValue", this.importCouponDetailBindingSource, "sizeID", true));
             this.sizeComboBox.DataSource = this.sizeBindingSource1;
             this.sizeComboBox.DisplayMember = "sizeName";
             this.sizeComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
@@ -820,10 +881,10 @@
             this.sizeComboBox.ValueMember = "id";
             this.sizeComboBox.SelectedIndexChanged += new System.EventHandler(this.sizeComboBox_SelectedIndexChanged);
             // 
-            // sizeBindingSource
+            // sizeBindingSource1
             // 
-            this.sizeBindingSource.DataMember = "Size";
-            this.sizeBindingSource.DataSource = this.clothesDataSet;
+            this.sizeBindingSource1.DataMember = "Size";
+            this.sizeBindingSource1.DataSource = this.clothesDataSet;
             // 
             // sizeIDTextBox
             // 
@@ -837,6 +898,7 @@
             // 
             // productComboBox
             // 
+            this.productComboBox.DataBindings.Add(new System.Windows.Forms.Binding("SelectedValue", this.importCouponDetailBindingSource, "idProduct", true));
             this.productComboBox.DataSource = this.productBindingSource;
             this.productComboBox.DisplayMember = "title";
             this.productComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
@@ -946,6 +1008,16 @@
             this.priceSpinEdit.Size = new System.Drawing.Size(196, 24);
             this.priceSpinEdit.TabIndex = 7;
             // 
+            // colorBindingSource
+            // 
+            this.colorBindingSource.DataMember = "Color";
+            this.colorBindingSource.DataSource = this.clothesDataSet;
+            // 
+            // sizeBindingSource
+            // 
+            this.sizeBindingSource.DataMember = "Size";
+            this.sizeBindingSource.DataSource = this.clothesDataSet;
+            // 
             // importCouponTableAdapter
             // 
             this.importCouponTableAdapter.ClearBeforeFill = true;
@@ -964,6 +1036,7 @@
             this.tableAdapterManager.ImportCouponDetailTableAdapter = this.importCouponDetailTableAdapter;
             this.tableAdapterManager.ImportCouponTableAdapter = this.importCouponTableAdapter;
             this.tableAdapterManager.InvoiceItemTableAdapter = null;
+            this.tableAdapterManager.InvoiceStatusTableAdapter = null;
             this.tableAdapterManager.InvoiceTableAdapter = null;
             this.tableAdapterManager.ProductSizeColorTableAdapter = null;
             this.tableAdapterManager.ProductTableAdapter = this.productTableAdapter;
@@ -994,15 +1067,9 @@
             // 
             this.colorTableAdapter.ClearBeforeFill = true;
             // 
-            // sizeBindingSource1
+            // providerTableAdapter
             // 
-            this.sizeBindingSource1.DataMember = "Size";
-            this.sizeBindingSource1.DataSource = this.clothesDataSet;
-            // 
-            // colorBindingSource1
-            // 
-            this.colorBindingSource1.DataMember = "Color";
-            this.colorBindingSource1.DataSource = this.clothesDataSet;
+            this.providerTableAdapter.ClearBeforeFill = true;
             // 
             // ImportCuponForm
             // 
@@ -1034,6 +1101,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.gridView2)).EndInit();
             this.panel4.ResumeLayout(false);
             this.panel4.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.providerBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dateDateEdit.Properties.CalendarTimeProperties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dateDateEdit.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.employeeBindingSource)).EndInit();
@@ -1041,15 +1109,15 @@
             ((System.ComponentModel.ISupportInitialize)(this.employeeIdSpinEdit.Properties)).EndInit();
             this.panel5.ResumeLayout(false);
             this.panel5.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.colorBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.sizeBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.colorBindingSource1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.sizeBindingSource1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.productBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.idCouponSpinEdit.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.idProductSpinEdit.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.quantitySpinEdit.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.priceSpinEdit.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.sizeBindingSource1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.colorBindingSource1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.colorBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.sizeBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1101,11 +1169,6 @@
         private System.Windows.Forms.ToolStripMenuItem addProductPromoToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem deleteProductPromoToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem reloadToolStripMenuItem;
-        private DevExpress.XtraGrid.GridControl importCouponGridControl;
-        private DevExpress.XtraGrid.Views.Grid.GridView gridView1;
-        private DevExpress.XtraGrid.Columns.GridColumn colid;
-        private DevExpress.XtraGrid.Columns.GridColumn coldate;
-        private DevExpress.XtraGrid.Columns.GridColumn colemployeeId;
         private DevExpress.XtraEditors.DateEdit dateDateEdit;
         private System.Windows.Forms.ComboBox employeeComboBox1;
         private System.Windows.Forms.BindingSource employeeBindingSource1;
@@ -1125,5 +1188,15 @@
         private System.Windows.Forms.ComboBox colorComboBox;
         private System.Windows.Forms.BindingSource colorBindingSource1;
         private System.Windows.Forms.BindingSource sizeBindingSource1;
+        private DevExpress.XtraGrid.GridControl importCouponGridControl;
+        private DevExpress.XtraGrid.Views.Grid.GridView gridView1;
+        private DevExpress.XtraGrid.Columns.GridColumn colid;
+        private DevExpress.XtraGrid.Columns.GridColumn coldate;
+        private DevExpress.XtraGrid.Columns.GridColumn colemployeeId;
+        private DevExpress.XtraGrid.Columns.GridColumn colproviderId;
+        private System.Windows.Forms.TextBox providerIdTextBox;
+        private System.Windows.Forms.BindingSource providerBindingSource;
+        private ClothesDataSetTableAdapters.ProviderTableAdapter providerTableAdapter;
+        private System.Windows.Forms.ComboBox providerComboBox;
     }
 }

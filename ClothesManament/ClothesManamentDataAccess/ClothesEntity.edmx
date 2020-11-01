@@ -225,6 +225,35 @@ warning 6002: The table/view 'ClothesManament.dbo.ImportCouponDetail' does not h
           <Property Name="address" Type="nvarchar" MaxLength="200" />
           <Property Name="active" Type="int" />
         </EntityType>
+        <EntityType Name="Question">
+          <Key>
+            <PropertyRef Name="questionID" />
+          </Key>
+          <Property Name="questionID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="accountID" Type="int" />
+          <Property Name="question" Type="nvarchar" MaxLength="1000" />
+          <Property Name="dateComment" Type="date" />
+          <Property Name="dateEdit" Type="date" />
+          <Property Name="parentQuestionID" Type="int" />
+          <Property Name="productID" Type="int" />
+        </EntityType>
+        <EntityType Name="Rating">
+          <Key>
+            <PropertyRef Name="ratingID" />
+          </Key>
+          <Property Name="ratingID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="accountID" Type="int" />
+          <Property Name="rating" Type="int" />
+          <Property Name="comment" Type="nvarchar" MaxLength="1000" />
+          <Property Name="dateRating" Type="datetime" />
+          <Property Name="dateEdit" Type="datetime" />
+          <Property Name="productID" Type="int" />
+          <Property Name="imageUrl1" Type="nvarchar" MaxLength="200" />
+          <Property Name="imageUrl2" Type="nvarchar" MaxLength="200" />
+          <Property Name="imageUrl3" Type="nvarchar" MaxLength="200" />
+          <Property Name="videoUrl" Type="nvarchar" MaxLength="200" />
+          <Property Name="parentId" Type="int" />
+        </EntityType>
         <EntityType Name="Role">
           <Key>
             <PropertyRef Name="roleId" />
@@ -273,6 +302,30 @@ warning 6002: The table/view 'ClothesManament.dbo.ImportCouponDetail' does not h
             </Principal>
             <Dependent Role="Address">
               <PropertyRef Name="accountId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Comment_Account">
+          <End Role="Account" Type="Self.Account" Multiplicity="0..1" />
+          <End Role="Question" Type="Self.Question" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Account">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Question">
+              <PropertyRef Name="accountID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Comment_Product">
+          <End Role="Product" Type="Self.Product" Multiplicity="0..1" />
+          <End Role="Question" Type="Self.Question" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Product">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Question">
+              <PropertyRef Name="productID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -496,6 +549,30 @@ warning 6002: The table/view 'ClothesManament.dbo.ImportCouponDetail' does not h
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Rating_Account">
+          <End Role="Account" Type="Self.Account" Multiplicity="0..1" />
+          <End Role="Rating" Type="Self.Rating" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Account">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Rating">
+              <PropertyRef Name="accountID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Rating_Product">
+          <End Role="Product" Type="Self.Product" Multiplicity="0..1" />
+          <End Role="Rating" Type="Self.Rating" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Product">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Rating">
+              <PropertyRef Name="productID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Function Name="ChangePassword" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="userId" Type="int" Mode="In" />
           <Parameter Name="oldPass" Type="varchar" Mode="In" />
@@ -554,6 +631,23 @@ warning 6002: The table/view 'ClothesManament.dbo.ImportCouponDetail' does not h
           <Parameter Name="sizeId" Type="int" Mode="In" />
           <Parameter Name="quantity" Type="int" Mode="In" />
         </Function>
+        <Function Name="SP_AddQuestion" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="accountID" Type="int" Mode="In" />
+          <Parameter Name="question" Type="nvarchar" Mode="In" />
+          <Parameter Name="parentQuestionID" Type="int" Mode="In" />
+          <Parameter Name="productID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="SP_AddRating" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="accountId" Type="int" Mode="In" />
+          <Parameter Name="rating" Type="int" Mode="In" />
+          <Parameter Name="comment" Type="nvarchar" Mode="In" />
+          <Parameter Name="productID" Type="int" Mode="In" />
+          <Parameter Name="imageUrl1" Type="nvarchar" Mode="In" />
+          <Parameter Name="imageUrl2" Type="nvarchar" Mode="In" />
+          <Parameter Name="imageUrl3" Type="nvarchar" Mode="In" />
+          <Parameter Name="videoUrl" Type="nvarchar" Mode="In" />
+          <Parameter Name="parentId" Type="int" Mode="In" />
+        </Function>
         <Function Name="sp_alterdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
           <Parameter Name="owner_id" Type="int" Mode="In" />
@@ -581,6 +675,13 @@ warning 6002: The table/view 'ClothesManament.dbo.ImportCouponDetail' does not h
         </Function>
         <Function Name="SP_DelAddress" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="addressId" Type="int" Mode="In" />
+        </Function>
+        <Function Name="SP_DelQuestion" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="questionId" Type="int" Mode="In" />
+          <Parameter Name="isSubQuestion" Type="int" Mode="In" />
+        </Function>
+        <Function Name="SP_DelRating" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ratingId" Type="int" Mode="In" />
         </Function>
         <Function Name="sp_dropdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
@@ -693,11 +794,36 @@ warning 6002: The table/view 'ClothesManament.dbo.ImportCouponDetail' does not h
           <Parameter Name="providerId" Type="int" Mode="In" />
         </Function>
         <Function Name="SP_GetProviders" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="SP_GetQuestion" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="currentPage" Type="int" Mode="In" />
+          <Parameter Name="PageSize" Type="int" Mode="In" />
+          <Parameter Name="productId" Type="int" Mode="In" />
+        </Function>
+        <Function Name="SP_GetQuestionCount" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="productId" Type="int" Mode="In" />
+        </Function>
+        <Function Name="SP_GetRatingProduct" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="productId" Type="int" Mode="In" />
+        </Function>
+        <Function Name="SP_GetRatings" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="currentPage" Type="int" Mode="In" />
+          <Parameter Name="PageSize" Type="int" Mode="In" />
+          <Parameter Name="productId" Type="int" Mode="In" />
+        </Function>
+        <Function Name="SP_GetRatingsCount" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="productId" Type="int" Mode="In" />
+        </Function>
         <Function Name="SP_GetSizesColorsOfProduct" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="productId" Type="int" Mode="In" />
         </Function>
         <Function Name="SP_GetSizesOfProduct" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="productId" Type="int" Mode="In" />
+        </Function>
+        <Function Name="SP_GetSubQuestion" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="questionID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="SP_GetSubRating" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ratingId" Type="int" Mode="In" />
         </Function>
         <Function Name="sp_helpdiagramdefinition" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
@@ -748,6 +874,20 @@ warning 6002: The table/view 'ClothesManament.dbo.ImportCouponDetail' does not h
           <Parameter Name="phone" Type="nvarchar" Mode="In" />
           <Parameter Name="email" Type="nvarchar" Mode="In" />
         </Function>
+        <Function Name="SP_UpdateQuestion" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="questionID" Type="int" Mode="In" />
+          <Parameter Name="question" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="SP_UpdateRating" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ratingId" Type="int" Mode="In" />
+          <Parameter Name="rating" Type="int" Mode="In" />
+          <Parameter Name="comment" Type="nvarchar" Mode="In" />
+          <Parameter Name="imageUrl1" Type="nvarchar" Mode="In" />
+          <Parameter Name="imageUrl2" Type="nvarchar" Mode="In" />
+          <Parameter Name="imageUrl3" Type="nvarchar" Mode="In" />
+          <Parameter Name="videoUrl" Type="nvarchar" Mode="In" />
+          <Parameter Name="parentId" Type="int" Mode="In" />
+        </Function>
         <Function Name="sp_upgraddiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="SPGetAccountInfoByUserId" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="userId" Type="int" Mode="In" />
@@ -776,6 +916,8 @@ warning 6002: The table/view 'ClothesManament.dbo.ImportCouponDetail' does not h
           <EntitySet Name="Promotion" EntityType="Self.Promotion" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PromotionItem" EntityType="Self.PromotionItem" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Provider" EntityType="Self.Provider" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Question" EntityType="Self.Question" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Rating" EntityType="Self.Rating" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Role" EntityType="Self.Role" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Size" EntityType="Self.Size" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
@@ -796,6 +938,14 @@ warning 6002: The table/view 'ClothesManament.dbo.ImportCouponDetail' does not h
           <AssociationSet Name="FK_Address_Account1" Association="Self.FK_Address_Account1">
             <End Role="Account" EntitySet="Account" />
             <End Role="Address" EntitySet="Address" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Comment_Account" Association="Self.FK_Comment_Account">
+            <End Role="Account" EntitySet="Account" />
+            <End Role="Question" EntitySet="Question" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Comment_Product" Association="Self.FK_Comment_Product">
+            <End Role="Product" EntitySet="Product" />
+            <End Role="Question" EntitySet="Question" />
           </AssociationSet>
           <AssociationSet Name="FK_Customer_Account" Association="Self.FK_Customer_Account">
             <End Role="Account" EntitySet="Account" />
@@ -868,6 +1018,14 @@ warning 6002: The table/view 'ClothesManament.dbo.ImportCouponDetail' does not h
           <AssociationSet Name="FK_PromotionItem_Promotion" Association="Self.FK_PromotionItem_Promotion">
             <End Role="Promotion" EntitySet="Promotion" />
             <End Role="PromotionItem" EntitySet="PromotionItem" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Rating_Account" Association="Self.FK_Rating_Account">
+            <End Role="Account" EntitySet="Account" />
+            <End Role="Rating" EntitySet="Rating" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Rating_Product" Association="Self.FK_Rating_Product">
+            <End Role="Product" EntitySet="Product" />
+            <End Role="Rating" EntitySet="Rating" />
           </AssociationSet>
         </EntityContainer>
       </Schema></edmx:StorageModels>
@@ -1258,6 +1416,87 @@ warning 6002: The table/view 'ClothesManament.dbo.ImportCouponDetail' does not h
           <FunctionImport Name="SP_SearchFilterCounter" ReturnType="Collection(Int32)">
           <Parameter Name="keySearch" Mode="In" Type="String" />
           </FunctionImport>
+          <EntitySet Name="Ratings" EntityType="ClothesManamentModel1.Rating" />
+          <AssociationSet Name="FK_Rating_Account" Association="ClothesManamentModel1.FK_Rating_Account">
+            <End Role="Account" EntitySet="Accounts" />
+            <End Role="Rating" EntitySet="Ratings" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Rating_Product" Association="ClothesManamentModel1.FK_Rating_Product">
+            <End Role="Product" EntitySet="Products" />
+            <End Role="Rating" EntitySet="Ratings" />
+          </AssociationSet>
+          <FunctionImport Name="SP_GetRatings" ReturnType="Collection(ClothesManamentModel1.SP_GetRatings_Result5)">
+            <Parameter Name="currentPage" Mode="In" Type="Int32" />
+            <Parameter Name="PageSize" Mode="In" Type="Int32" />
+            <Parameter Name="productId" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="SP_GetRatingsCount" ReturnType="Collection(Int32)">
+          <Parameter Name="productId" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="SP_GetSubRating" ReturnType="Collection(ClothesManamentModel1.SP_GetSubRating_Result2)">
+          <Parameter Name="ratingId" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="SP_AddRating">
+            <Parameter Name="accountId" Mode="In" Type="Int32" />
+            <Parameter Name="rating" Mode="In" Type="Int32" />
+            <Parameter Name="comment" Mode="In" Type="String" />
+            <Parameter Name="productID" Mode="In" Type="Int32" />
+            <Parameter Name="imageUrl1" Mode="In" Type="String" />
+            <Parameter Name="imageUrl2" Mode="In" Type="String" />
+            <Parameter Name="imageUrl3" Mode="In" Type="String" />
+            <Parameter Name="videoUrl" Mode="In" Type="String" />
+            <Parameter Name="parentId" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="SP_UpdateRating">
+            <Parameter Name="ratingId" Mode="In" Type="Int32" />
+            <Parameter Name="rating" Mode="In" Type="Int32" />
+            <Parameter Name="comment" Mode="In" Type="String" />
+            <Parameter Name="imageUrl1" Mode="In" Type="String" />
+            <Parameter Name="imageUrl2" Mode="In" Type="String" />
+            <Parameter Name="imageUrl3" Mode="In" Type="String" />
+            <Parameter Name="videoUrl" Mode="In" Type="String" />
+            <Parameter Name="parentId" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="SP_DelRating" ReturnType="Collection(Int32)">
+          <Parameter Name="ratingId" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="SP_AddQuestion">
+            <Parameter Name="accountID" Mode="In" Type="Int32" />
+            <Parameter Name="question" Mode="In" Type="String" />
+            <Parameter Name="parentQuestionID" Mode="In" Type="Int32" />
+            <Parameter Name="productID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="SP_DelQuestion" ReturnType="Collection(Int32)">
+            <Parameter Name="questionId" Mode="In" Type="Int32" />
+            <Parameter Name="isSubQuestion" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="SP_GetQuestion" ReturnType="Collection(ClothesManamentModel1.SP_GetQuestion_Result1)">
+            <Parameter Name="currentPage" Mode="In" Type="Int32" />
+            <Parameter Name="PageSize" Mode="In" Type="Int32" />
+            <Parameter Name="productId" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="SP_GetSubQuestion" ReturnType="Collection(ClothesManamentModel1.SP_GetSubQuestion_Result1)">
+          <Parameter Name="questionID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="SP_UpdateQuestion">
+            <Parameter Name="questionID" Mode="In" Type="Int32" />
+            <Parameter Name="question" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="SP_GetQuestionCount" ReturnType="Collection(Int32)">
+          <Parameter Name="productId" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <EntitySet Name="Questions" EntityType="ClothesManamentModel1.Question" />
+          <AssociationSet Name="FK_Comment_Account1" Association="ClothesManamentModel1.FK_Comment_Account1">
+            <End Role="Account" EntitySet="Accounts" />
+            <End Role="Question" EntitySet="Questions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Comment_Product1" Association="ClothesManamentModel1.FK_Comment_Product1">
+            <End Role="Product" EntitySet="Products" />
+            <End Role="Question" EntitySet="Questions" />
+          </AssociationSet>
+          <FunctionImport Name="SP_GetRatingProduct" ReturnType="Collection(Double)">
+          <Parameter Name="productId" Mode="In" Type="Int32" />
+          </FunctionImport>
           </EntityContainer>
         <ComplexType Name="getCategoryByGender_Result">
           <Property Type="Int32" Name="id" Nullable="false" />
@@ -1585,6 +1824,8 @@ warning 6002: The table/view 'ClothesManament.dbo.ImportCouponDetail' does not h
           <NavigationProperty Name="Products" Relationship="ClothesManamentModel1.FavoriteProduct" FromRole="Account" ToRole="Product" />
           <Property Name="isAccuracy" Type="Int32" />
           <NavigationProperty Name="Role" Relationship="ClothesManamentModel1.FK_Account_Role" FromRole="Account" ToRole="Role" />
+          <NavigationProperty Name="Ratings" Relationship="ClothesManamentModel1.FK_Rating_Account" FromRole="Account" ToRole="Rating" />
+          <NavigationProperty Name="Questions" Relationship="ClothesManamentModel1.FK_Comment_Account1" FromRole="Account" ToRole="Question" />
         </EntityType>
         <EntityType Name="Address">
           <Key>
@@ -1756,6 +1997,8 @@ warning 6002: The table/view 'ClothesManament.dbo.ImportCouponDetail' does not h
           <NavigationProperty Name="ProductSizeColors" Relationship="ClothesManamentModel1.FK_ProductSizeColor_Product" FromRole="Product" ToRole="ProductSizeColor" />
           <NavigationProperty Name="Accounts" Relationship="ClothesManamentModel1.FavoriteProduct" FromRole="Product" ToRole="Account" />
           <NavigationProperty Name="Promotions" Relationship="ClothesManamentModel1.PromotionItem" FromRole="Product" ToRole="Promotion" />
+          <NavigationProperty Name="Ratings" Relationship="ClothesManamentModel1.FK_Rating_Product" FromRole="Product" ToRole="Rating" />
+          <NavigationProperty Name="Questions" Relationship="ClothesManamentModel1.FK_Comment_Product1" FromRole="Product" ToRole="Question" />
         </EntityType>
         <EntityType Name="ProductSizeColor">
           <Key>
@@ -2156,6 +2399,238 @@ warning 6002: The table/view 'ClothesManament.dbo.ImportCouponDetail' does not h
           <Property Type="String" Name="colorHex" Nullable="true" MaxLength="50" />
           <Property Type="String" Name="name" Nullable="true" MaxLength="50" />
           <Property Type="String" Name="brandName" Nullable="true" MaxLength="50" />
+        </ComplexType>
+        <EntityType Name="Rating">
+          <Key>
+            <PropertyRef Name="ratingID" />
+          </Key>
+          <Property Name="ratingID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="accountID" Type="Int32" />
+          <Property Name="rating1" Type="Int32" />
+          <Property Name="comment" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+          <Property Name="dateRating" Type="DateTime" Precision="3" />
+          <Property Name="productID" Type="Int32" />
+          <Property Name="imageUrl1" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="imageUrl2" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="imageUrl3" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="videoUrl" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="parentId" Type="Int32" />
+          <NavigationProperty Name="Account" Relationship="ClothesManamentModel1.FK_Rating_Account" FromRole="Rating" ToRole="Account" />
+          <NavigationProperty Name="Product" Relationship="ClothesManamentModel1.FK_Rating_Product" FromRole="Rating" ToRole="Product" />
+          <Property Name="dateEdit" Type="DateTime" Precision="3" />
+        </EntityType>
+        <Association Name="FK_Rating_Account">
+          <End Type="ClothesManamentModel1.Account" Role="Account" Multiplicity="0..1" />
+          <End Type="ClothesManamentModel1.Rating" Role="Rating" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Account">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Rating">
+              <PropertyRef Name="accountID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Rating_Product">
+          <End Type="ClothesManamentModel1.Product" Role="Product" Multiplicity="0..1" />
+          <End Type="ClothesManamentModel1.Rating" Role="Rating" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Product">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Rating">
+              <PropertyRef Name="productID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <ComplexType Name="SP_GetRatings_Result">
+          <Property Type="Int32" Name="ratingID" Nullable="false" />
+          <Property Type="Int32" Name="accountID" Nullable="true" />
+          <Property Type="Int32" Name="rating" Nullable="true" />
+          <Property Type="Int32" Name="productID" Nullable="true" />
+          <Property Type="String" Name="imageUrl1" Nullable="true" MaxLength="200" />
+          <Property Type="String" Name="imageUrl2" Nullable="true" MaxLength="200" />
+          <Property Type="String" Name="imageUrl3" Nullable="true" MaxLength="200" />
+          <Property Type="String" Name="videoUrl" Nullable="true" MaxLength="200" />
+        </ComplexType>
+        <ComplexType Name="SP_GetSubRating_Result">
+          <Property Type="Int32" Name="ratingID" Nullable="false" />
+          <Property Type="Int32" Name="accountID" Nullable="true" />
+          <Property Type="Int32" Name="rating" Nullable="true" />
+          <Property Type="Int32" Name="productID" Nullable="true" />
+          <Property Type="String" Name="imageUrl1" Nullable="true" MaxLength="200" />
+          <Property Type="String" Name="imageUrl2" Nullable="true" MaxLength="200" />
+          <Property Type="String" Name="imageUrl3" Nullable="true" MaxLength="200" />
+          <Property Type="String" Name="videoUrl" Nullable="true" MaxLength="200" />
+        </ComplexType>
+        <ComplexType Name="SP_GetRatings_Result1">
+          <Property Type="Int32" Name="ratingID" Nullable="false" />
+          <Property Type="Int32" Name="accountID" Nullable="true" />
+          <Property Type="Int32" Name="rating" Nullable="true" />
+          <Property Type="String" Name="comment" Nullable="true" MaxLength="1000" />
+          <Property Type="Int32" Name="productID" Nullable="true" />
+          <Property Type="String" Name="imageUrl1" Nullable="true" MaxLength="200" />
+          <Property Type="String" Name="imageUrl2" Nullable="true" MaxLength="200" />
+          <Property Type="String" Name="imageUrl3" Nullable="true" MaxLength="200" />
+          <Property Type="String" Name="videoUrl" Nullable="true" MaxLength="200" />
+        </ComplexType>
+        <ComplexType Name="SP_GetRatings_Result2">
+          <Property Type="Int32" Name="ratingID" Nullable="false" />
+          <Property Type="Int32" Name="accountID" Nullable="true" />
+          <Property Type="Int32" Name="rating" Nullable="true" />
+          <Property Type="String" Name="comment" Nullable="true" MaxLength="1000" />
+          <Property Type="Int32" Name="productID" Nullable="true" />
+          <Property Type="String" Name="imageUrl1" Nullable="true" MaxLength="200" />
+          <Property Type="String" Name="imageUrl2" Nullable="true" MaxLength="200" />
+          <Property Type="String" Name="imageUrl3" Nullable="true" MaxLength="200" />
+          <Property Type="String" Name="videoUrl" Nullable="true" MaxLength="200" />
+          <Property Type="Int32" Name="parentId" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="SP_GetRatings_Result3">
+          <Property Type="Int32" Name="ratingID" Nullable="false" />
+          <Property Type="Int32" Name="accountID" Nullable="true" />
+          <Property Type="Int32" Name="rating" Nullable="true" />
+          <Property Type="String" Name="comment" Nullable="true" MaxLength="1000" />
+          <Property Type="DateTime" Name="dateRating" Nullable="true" Precision="23" />
+          <Property Type="DateTime" Name="dateEdit" Nullable="true" Precision="23" />
+          <Property Type="Int32" Name="productID" Nullable="true" />
+          <Property Type="String" Name="imageUrl1" Nullable="true" MaxLength="200" />
+          <Property Type="String" Name="imageUrl2" Nullable="true" MaxLength="200" />
+          <Property Type="String" Name="imageUrl3" Nullable="true" MaxLength="200" />
+          <Property Type="String" Name="videoUrl" Nullable="true" MaxLength="200" />
+          <Property Type="Int32" Name="parentId" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="SP_GetRatings_Result4">
+          <Property Type="Int32" Name="ratingID" Nullable="false" />
+          <Property Type="Int32" Name="accountID" Nullable="true" />
+          <Property Type="String" Name="username" Nullable="true" MaxLength="50" />
+          <Property Type="Int32" Name="rating" Nullable="true" />
+          <Property Type="String" Name="comment" Nullable="true" MaxLength="1000" />
+          <Property Type="DateTime" Name="dateRating" Nullable="true" Precision="23" />
+          <Property Type="DateTime" Name="dateEdit" Nullable="true" Precision="23" />
+          <Property Type="Int32" Name="productID" Nullable="true" />
+          <Property Type="String" Name="imageUrl1" Nullable="true" MaxLength="200" />
+          <Property Type="String" Name="imageUrl2" Nullable="true" MaxLength="200" />
+          <Property Type="String" Name="imageUrl3" Nullable="true" MaxLength="200" />
+          <Property Type="String" Name="videoUrl" Nullable="true" MaxLength="200" />
+          <Property Type="Int32" Name="parentId" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="SP_GetSubRating_Result1">
+          <Property Type="Int32" Name="ratingID" Nullable="false" />
+          <Property Type="Int32" Name="accountID" Nullable="true" />
+          <Property Type="String" Name="username" Nullable="true" MaxLength="50" />
+          <Property Type="Int32" Name="rating" Nullable="true" />
+          <Property Type="Int32" Name="productID" Nullable="true" />
+          <Property Type="String" Name="imageUrl1" Nullable="true" MaxLength="200" />
+          <Property Type="String" Name="imageUrl2" Nullable="true" MaxLength="200" />
+          <Property Type="String" Name="imageUrl3" Nullable="true" MaxLength="200" />
+          <Property Type="String" Name="videoUrl" Nullable="true" MaxLength="200" />
+        </ComplexType>
+        <ComplexType Name="SP_GetQuestion_Result">
+          <Property Type="Int32" Name="questionID" Nullable="false" />
+          <Property Type="Int32" Name="accountID" Nullable="true" />
+          <Property Type="String" Name="username" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="question" Nullable="true" MaxLength="1000" />
+          <Property Type="DateTime" Name="dateComment" Nullable="true" />
+          <Property Type="DateTime" Name="dateEdit" Nullable="true" />
+          <Property Type="Int32" Name="parentQuestionID" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="SP_GetSubQuestion_Result">
+          <Property Type="Int32" Name="questionID" Nullable="false" />
+          <Property Type="Int32" Name="accountID" Nullable="true" />
+          <Property Type="String" Name="username" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="question" Nullable="true" MaxLength="1000" />
+          <Property Type="DateTime" Name="dateComment" Nullable="true" />
+          <Property Type="DateTime" Name="dateEdit" Nullable="true" />
+          <Property Type="Int32" Name="parentQuestionID" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="SP_GetQuestion_Result1">
+          <Property Type="Int32" Name="questionID" Nullable="false" />
+          <Property Type="Int32" Name="accountID" Nullable="true" />
+          <Property Type="String" Name="username" Nullable="true" MaxLength="50" />
+          <Property Type="Int32" Name="roleId" Nullable="true" />
+          <Property Type="String" Name="question" Nullable="true" MaxLength="1000" />
+          <Property Type="DateTime" Name="dateComment" Nullable="true" />
+          <Property Type="DateTime" Name="dateEdit" Nullable="true" />
+          <Property Type="Int32" Name="parentQuestionID" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="SP_GetSubQuestion_Result1">
+          <Property Type="Int32" Name="questionID" Nullable="false" />
+          <Property Type="Int32" Name="accountID" Nullable="true" />
+          <Property Type="String" Name="username" Nullable="true" MaxLength="50" />
+          <Property Type="Int32" Name="roleId" Nullable="true" />
+          <Property Type="String" Name="question" Nullable="true" MaxLength="1000" />
+          <Property Type="DateTime" Name="dateComment" Nullable="true" />
+          <Property Type="DateTime" Name="dateEdit" Nullable="true" />
+          <Property Type="Int32" Name="parentQuestionID" Nullable="true" />
+        </ComplexType>
+        <EntityType Name="Question">
+          <Key>
+            <PropertyRef Name="questionID" />
+          </Key>
+          <Property Name="questionID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="accountID" Type="Int32" />
+          <Property Name="question1" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+          <Property Name="dateComment" Type="DateTime" Precision="0" />
+          <Property Name="dateEdit" Type="DateTime" Precision="0" />
+          <Property Name="parentQuestionID" Type="Int32" />
+          <Property Name="productID" Type="Int32" />
+          <NavigationProperty Name="Account" Relationship="ClothesManamentModel1.FK_Comment_Account1" FromRole="Question" ToRole="Account" />
+          <NavigationProperty Name="Product" Relationship="ClothesManamentModel1.FK_Comment_Product1" FromRole="Question" ToRole="Product" />
+        </EntityType>
+        <Association Name="FK_Comment_Account1">
+          <End Type="ClothesManamentModel1.Account" Role="Account" Multiplicity="0..1" />
+          <End Type="ClothesManamentModel1.Question" Role="Question" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Account">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Question">
+              <PropertyRef Name="accountID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Comment_Product1">
+          <End Type="ClothesManamentModel1.Product" Role="Product" Multiplicity="0..1" />
+          <End Type="ClothesManamentModel1.Question" Role="Question" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Product">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Question">
+              <PropertyRef Name="productID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <ComplexType Name="SP_GetSubRating_Result2">
+          <Property Type="Int32" Name="ratingID" Nullable="false" />
+          <Property Type="Int32" Name="accountID" Nullable="true" />
+          <Property Type="String" Name="username" Nullable="true" MaxLength="50" />
+          <Property Type="Int32" Name="rating" Nullable="true" />
+          <Property Type="String" Name="comment" Nullable="true" MaxLength="1000" />
+          <Property Type="DateTime" Name="dateRating" Nullable="true" Precision="23" />
+          <Property Type="DateTime" Name="dateEdit" Nullable="true" Precision="23" />
+          <Property Type="Int32" Name="productID" Nullable="true" />
+          <Property Type="String" Name="imageUrl1" Nullable="true" MaxLength="200" />
+          <Property Type="String" Name="imageUrl2" Nullable="true" MaxLength="200" />
+          <Property Type="String" Name="imageUrl3" Nullable="true" MaxLength="200" />
+          <Property Type="String" Name="videoUrl" Nullable="true" MaxLength="200" />
+          <Property Type="Int32" Name="parentId" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="SP_GetRatings_Result5">
+          <Property Type="Int32" Name="ratingID" Nullable="false" />
+          <Property Type="Int32" Name="accountID" Nullable="true" />
+          <Property Type="String" Name="username" Nullable="true" MaxLength="50" />
+          <Property Type="Int32" Name="rating" Nullable="true" />
+          <Property Type="String" Name="comment" Nullable="true" MaxLength="1000" />
+          <Property Type="DateTime" Name="dateRating" Nullable="true" Precision="23" />
+          <Property Type="DateTime" Name="dateEdit" Nullable="true" Precision="23" />
+          <Property Type="Int32" Name="productID" Nullable="true" />
+          <Property Type="String" Name="imageUrl1" Nullable="true" MaxLength="200" />
+          <Property Type="String" Name="imageUrl2" Nullable="true" MaxLength="200" />
+          <Property Type="String" Name="imageUrl3" Nullable="true" MaxLength="200" />
+          <Property Type="String" Name="videoUrl" Nullable="true" MaxLength="200" />
+          <Property Type="Int32" Name="parentId" Nullable="true" />
         </ComplexType>
         </Schema>
     </edmx:ConceptualModels>
@@ -2806,6 +3281,112 @@ warning 6002: The table/view 'ClothesManament.dbo.ImportCouponDetail' does not h
           </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="SP_SearchFilterCount" FunctionName="ClothesManamentModel1.Store.SP_SearchFilterCount" />
           <FunctionImportMapping FunctionImportName="SP_SearchFilterCounter" FunctionName="ClothesManamentModel1.Store.SP_SearchFilterCounter" />
+          <EntitySetMapping Name="Ratings">
+            <EntityTypeMapping TypeName="ClothesManamentModel1.Rating">
+              <MappingFragment StoreEntitySet="Rating">
+                <ScalarProperty Name="dateEdit" ColumnName="dateEdit" />
+                <ScalarProperty Name="parentId" ColumnName="parentId" />
+                <ScalarProperty Name="videoUrl" ColumnName="videoUrl" />
+                <ScalarProperty Name="imageUrl3" ColumnName="imageUrl3" />
+                <ScalarProperty Name="imageUrl2" ColumnName="imageUrl2" />
+                <ScalarProperty Name="imageUrl1" ColumnName="imageUrl1" />
+                <ScalarProperty Name="productID" ColumnName="productID" />
+                <ScalarProperty Name="dateRating" ColumnName="dateRating" />
+                <ScalarProperty Name="comment" ColumnName="comment" />
+                <ScalarProperty Name="rating1" ColumnName="rating" />
+                <ScalarProperty Name="accountID" ColumnName="accountID" />
+                <ScalarProperty Name="ratingID" ColumnName="ratingID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="SP_GetRatings" FunctionName="ClothesManamentModel1.Store.SP_GetRatings">
+          <ResultMapping>
+              <ComplexTypeMapping TypeName="ClothesManamentModel1.SP_GetRatings_Result5">
+                <ScalarProperty Name="ratingID" ColumnName="ratingID" />
+                <ScalarProperty Name="accountID" ColumnName="accountID" />
+                <ScalarProperty Name="username" ColumnName="username" />
+                <ScalarProperty Name="rating" ColumnName="rating" />
+                <ScalarProperty Name="comment" ColumnName="comment" />
+                <ScalarProperty Name="dateRating" ColumnName="dateRating" />
+                <ScalarProperty Name="dateEdit" ColumnName="dateEdit" />
+                <ScalarProperty Name="productID" ColumnName="productID" />
+                <ScalarProperty Name="imageUrl1" ColumnName="imageUrl1" />
+                <ScalarProperty Name="imageUrl2" ColumnName="imageUrl2" />
+                <ScalarProperty Name="imageUrl3" ColumnName="imageUrl3" />
+                <ScalarProperty Name="videoUrl" ColumnName="videoUrl" />
+                <ScalarProperty Name="parentId" ColumnName="parentId" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SP_GetRatingsCount" FunctionName="ClothesManamentModel1.Store.SP_GetRatingsCount" />
+          <FunctionImportMapping FunctionImportName="SP_GetSubRating" FunctionName="ClothesManamentModel1.Store.SP_GetSubRating">
+          <ResultMapping>
+              <ComplexTypeMapping TypeName="ClothesManamentModel1.SP_GetSubRating_Result2">
+                <ScalarProperty Name="ratingID" ColumnName="ratingID" />
+                <ScalarProperty Name="accountID" ColumnName="accountID" />
+                <ScalarProperty Name="username" ColumnName="username" />
+                <ScalarProperty Name="rating" ColumnName="rating" />
+                <ScalarProperty Name="comment" ColumnName="comment" />
+                <ScalarProperty Name="dateRating" ColumnName="dateRating" />
+                <ScalarProperty Name="dateEdit" ColumnName="dateEdit" />
+                <ScalarProperty Name="productID" ColumnName="productID" />
+                <ScalarProperty Name="imageUrl1" ColumnName="imageUrl1" />
+                <ScalarProperty Name="imageUrl2" ColumnName="imageUrl2" />
+                <ScalarProperty Name="imageUrl3" ColumnName="imageUrl3" />
+                <ScalarProperty Name="videoUrl" ColumnName="videoUrl" />
+                <ScalarProperty Name="parentId" ColumnName="parentId" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SP_AddRating" FunctionName="ClothesManamentModel1.Store.SP_AddRating" />
+          <FunctionImportMapping FunctionImportName="SP_UpdateRating" FunctionName="ClothesManamentModel1.Store.SP_UpdateRating" />
+          <FunctionImportMapping FunctionImportName="SP_DelRating" FunctionName="ClothesManamentModel1.Store.SP_DelRating" />
+          <FunctionImportMapping FunctionImportName="SP_AddQuestion" FunctionName="ClothesManamentModel1.Store.SP_AddQuestion" />
+          <FunctionImportMapping FunctionImportName="SP_DelQuestion" FunctionName="ClothesManamentModel1.Store.SP_DelQuestion" />
+          <FunctionImportMapping FunctionImportName="SP_GetQuestion" FunctionName="ClothesManamentModel1.Store.SP_GetQuestion">
+          <ResultMapping>
+              <ComplexTypeMapping TypeName="ClothesManamentModel1.SP_GetQuestion_Result1">
+                <ScalarProperty Name="questionID" ColumnName="questionID" />
+                <ScalarProperty Name="accountID" ColumnName="accountID" />
+                <ScalarProperty Name="username" ColumnName="username" />
+                <ScalarProperty Name="roleId" ColumnName="roleId" />
+                <ScalarProperty Name="question" ColumnName="question" />
+                <ScalarProperty Name="dateComment" ColumnName="dateComment" />
+                <ScalarProperty Name="dateEdit" ColumnName="dateEdit" />
+                <ScalarProperty Name="parentQuestionID" ColumnName="parentQuestionID" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SP_GetSubQuestion" FunctionName="ClothesManamentModel1.Store.SP_GetSubQuestion">
+          <ResultMapping>
+              <ComplexTypeMapping TypeName="ClothesManamentModel1.SP_GetSubQuestion_Result1">
+                <ScalarProperty Name="questionID" ColumnName="questionID" />
+                <ScalarProperty Name="accountID" ColumnName="accountID" />
+                <ScalarProperty Name="username" ColumnName="username" />
+                <ScalarProperty Name="roleId" ColumnName="roleId" />
+                <ScalarProperty Name="question" ColumnName="question" />
+                <ScalarProperty Name="dateComment" ColumnName="dateComment" />
+                <ScalarProperty Name="dateEdit" ColumnName="dateEdit" />
+                <ScalarProperty Name="parentQuestionID" ColumnName="parentQuestionID" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SP_UpdateQuestion" FunctionName="ClothesManamentModel1.Store.SP_UpdateQuestion" />
+          <FunctionImportMapping FunctionImportName="SP_GetQuestionCount" FunctionName="ClothesManamentModel1.Store.SP_GetQuestionCount" />
+          <EntitySetMapping Name="Questions">
+            <EntityTypeMapping TypeName="ClothesManamentModel1.Question">
+              <MappingFragment StoreEntitySet="Question">
+                <ScalarProperty Name="productID" ColumnName="productID" />
+                <ScalarProperty Name="parentQuestionID" ColumnName="parentQuestionID" />
+                <ScalarProperty Name="dateEdit" ColumnName="dateEdit" />
+                <ScalarProperty Name="dateComment" ColumnName="dateComment" />
+                <ScalarProperty Name="question1" ColumnName="question" />
+                <ScalarProperty Name="accountID" ColumnName="accountID" />
+                <ScalarProperty Name="questionID" ColumnName="questionID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="SP_GetRatingProduct" FunctionName="ClothesManamentModel1.Store.SP_GetRatingProduct" />
           </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

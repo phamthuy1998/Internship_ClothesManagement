@@ -67,14 +67,14 @@
     <Shape ID="DesignTable:SP_GetAccEmployeeInfo" ZOrder="11" X="0" Y="0" Height="90" Width="158" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="0" />
     <Shape ID="DesignTable:SP_AddEmployee" ZOrder="10" X="15553" Y="0" Height="135" Width="300" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="76" />
     <Shape ID="DesignTable:SP_UpdateEmployee" ZOrder="9" X="15923" Y="0" Height="135" Width="300" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="76" />
-    <Shape ID="DesignTable:ImportCoupon" ZOrder="83" X="732" Y="1808" Height="158" Width="272" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="99" />
+    <Shape ID="DesignTable:ImportCoupon" ZOrder="83" X="732" Y="1808" Height="204" Width="272" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="122" />
     <Shape ID="DesignTable:SP_GetInvoice" ZOrder="6" X="16293" Y="0" Height="158" Width="300" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="99" />
     <Shape ID="DesignTable:SP_ReportGetInvoiceDetail" ZOrder="5" X="16663" Y="0" Height="296" Width="300" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="237" />
     <Shape ID="DesignTable:SP_StatisticProduct" ZOrder="4" X="17033" Y="0" Height="365" Width="300" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="306" />
     <Shape ID="DesignTable:InvoiceStatus" ZOrder="3" X="17403" Y="0" Height="135" Width="262" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="76" />
     <Shape ID="DesignTable:Sp_GetPriceInvoice" ZOrder="2" X="0" Y="0" Height="90" Width="158" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="0" />
-    <Shape ID="DesignSources:QueriesTableAdapter" ZOrder="14" X="15183" Y="70" Height="194" Width="300" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="259" />
     <Shape ID="DesignTable:SP_InventoryProduct" ZOrder="1" X="17735" Y="0" Height="204" Width="300" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="145" />
+    <Shape ID="DesignSources:QueriesTableAdapter" ZOrder="14" X="15183" Y="70" Height="194" Width="300" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="259" />
   </Shapes>
   <Connectors>
     <Connector ID="DesignRelation:FK_Account_Role" ZOrder="34" LineWidth="11">
