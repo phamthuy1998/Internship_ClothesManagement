@@ -215,7 +215,7 @@ class CheckoutFragment : BaseFragment<FragmentCheckoutBinding>(), View.OnClickLi
                 )
             }
 
-            R.id.btnCancel -> {
+            R.id.btnOk -> {
                 navController.popBackStack()
             }
         }

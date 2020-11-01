@@ -73,7 +73,7 @@ BaseActivity<ViewBinding : ViewDataBinding> : AppCompatActivity(), NetworkListen
 
     private fun popUpErrorEvent(popupBinding: ViewDataBinding?){
         (popupBinding as? LayoutNoInternetBinding)?.apply {
-            btnOk.setOnClickListener {
+            btnCancel.setOnClickListener {
                 closePopup()
             }
         }

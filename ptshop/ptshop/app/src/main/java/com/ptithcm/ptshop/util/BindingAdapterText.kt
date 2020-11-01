@@ -8,6 +8,7 @@ import android.widget.TextView
 import androidx.appcompat.widget.AppCompatSpinner
 import androidx.appcompat.widget.AppCompatTextView
 import androidx.core.text.HtmlCompat
+import androidx.core.view.isVisible
 import androidx.databinding.BindingAdapter
 import com.ptithcm.core.model.Color
 import com.ptithcm.core.model.PromotionType
@@ -132,5 +133,23 @@ object BindingAdapterText {
             view.backgroundTintList =
                 ColorStateList.valueOf(android.graphics.Color.parseColor("#000000"))
         }
+    }
+
+    @JvmStatic
+    @BindingAdapter("setColorProduct")
+    fun setColorProduct(view: View, color: String?) {
+        try {
+            view.backgroundTintList =
+                ColorStateList.valueOf(android.graphics.Color.parseColor(color))
+        } catch (e: Exception) {
+            view.backgroundTintList =
+                ColorStateList.valueOf(android.graphics.Color.parseColor("#000000"))
+        }
+    }
+
+    @JvmStatic
+    @BindingAdapter("isVisible")
+    fun isVisible(view: View, isVisible: Boolean?) {
+        view.isVisible = isVisible ?: false
     }
 }

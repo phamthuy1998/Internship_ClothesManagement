@@ -1,4 +1,4 @@
-package com.ptithcm.ptshop.view.wishlist
+package com.ptithcm.ptshop.view.product
 
 import android.graphics.Paint
 import android.os.Bundle
@@ -21,11 +21,14 @@ import com.ptithcm.ptshop.databinding.FragmentProductDetailBinding
 import com.ptithcm.ptshop.ext.*
 import com.ptithcm.ptshop.view.MainActivity
 import com.ptithcm.ptshop.view.home.StoryDetailActivity
+import com.ptithcm.ptshop.view.wishlist.ColorSpinnerAdapter
 import com.ptithcm.ptshop.view.wishlist.overview.ProductionClothesBannersPagerAdapter
+import com.ptithcm.ptshop.viewmodel.QuestionsViewModel
 import com.ptithcm.ptshop.viewmodel.ShoppingViewModel
 import com.ptithcm.ptshop.viewmodel.WishListViewModel
 import kotlinx.android.synthetic.main.activity_main.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
+
 
 class ProductDetailFragment : BaseFragment<FragmentProductDetailBinding>() {
 
@@ -34,6 +37,7 @@ class ProductDetailFragment : BaseFragment<FragmentProductDetailBinding>() {
 
     private val wishListViewModel: WishListViewModel by viewModel()
     private val shoppingViewModel: ShoppingViewModel by viewModel()
+    private val questionsViewModel: QuestionsViewModel by viewModel()
 
     private var product: ProductClothes? = null
     private var productDetail: ProductClothesDetail? = null
@@ -48,10 +52,12 @@ class ProductDetailFragment : BaseFragment<FragmentProductDetailBinding>() {
         }
         activity?.btnNav?.visibility = View.GONE
         (activity as? BaseActivity<*>)?.isShowLoading(false)
+        product?.id?.let { questionsViewModel.getQuestionCount(it) }
     }
 
     override fun bindEvent() {
-        viewBinding.fragment = this
+
+        viewBinding.fragment = this@ProductDetailFragment
         setUpViewPager()
         bindProduct()
         setUpToolBar()
@@ -79,6 +85,15 @@ class ProductDetailFragment : BaseFragment<FragmentProductDetailBinding>() {
         shoppingViewModel.error.observe(this, Observer {
             (requireActivity() as? MainActivity)?.isShowErrorNetwork(true)
         })
+
+        questionsViewModel.questionCount.observe(this, Observer {
+            if (it.data ?: 0 != 0) {
+                viewBinding.btnQuestions.text = getString(R.string.commentCount, it.data)
+            }else
+                viewBinding.btnQuestions.text = getString(R.string.comment)
+        })
+
+
     }
 
     fun onClick(v: View?) {
@@ -88,6 +103,18 @@ class ProductDetailFragment : BaseFragment<FragmentProductDetailBinding>() {
             }
             R.id.btnDesc, R.id.tvDescription -> {
                 toggleDrawable(viewBinding.btnDesc, viewBinding.tvDescription.expandOrCollapse())
+            }
+            R.id.btnQuestions -> {
+                navController.navigateAnimation(
+                    R.id.questionFragment,
+                    bundle = bundleOf("productId" to productDetail?.id)
+                )
+            }
+            R.id.btnRating -> {
+                navController.navigateAnimation(
+                    R.id.ratingFragment,
+                    bundle = bundleOf("productId" to productDetail?.id)
+                )
             }
             R.id.btnAboutBrand, R.id.tvAboutBrand -> {
                 toggleDrawable(

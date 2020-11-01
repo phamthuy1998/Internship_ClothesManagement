@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginHorizontal="@dimen/padding_20dp">
+
+    <View
+        android:id="@+id/viewItem"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="@dimen/layout_margin_10dp"
+        android:background="@drawable/item_rounded_question_gray"
+        app:layout_constraintBottom_toBottomOf="@id/btnReply"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <View
+        android:id="@+id/tvUsername"
+        style="@style/normal_text.bold"
+        android:layout_width="100dp"
+        android:layout_height="20dp"
+        android:layout_margin="20dp"
+        android:background="#dddddd"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <View
+        android:id="@+id/tvDate"
+        style="@style/normal_text.grey"
+        android:layout_width="100dp"
+        android:layout_height="20dp"
+        android:layout_margin="20dp"
+        android:background="#dddddd"
+        app:layout_constraintEnd_toStartOf="@id/btnMore"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <View
+        android:id="@+id/btnMore"
+        android:layout_width="@dimen/image_50dp"
+        android:layout_height="20dp"
+        android:layout_margin="@dimen/padding_20dp"
+        android:background="#dddddd"
+        android:padding="@dimen/layout_margin_10dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <View
+        android:id="@+id/tvQuestion"
+        style="@style/normal_text"
+        android:layout_width="match_parent"
+        android:background="#dddddd"
+        android:layout_height="@dimen/padding_20dp"
+        android:layout_marginHorizontal="@dimen/padding_20dp"
+        android:layout_marginVertical="@dimen/layout_margin_10dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@id/tvUsername"
+        app:layout_constraintTop_toBottomOf="@id/tvUsername"
+        tools:text="some test change jhhhu" />
+
+    <View
+        android:id="@+id/btnReply"
+        android:background="#dddddd"
+        style="@style/normal_text"
+        android:layout_width="@dimen/image_50dp"
+        android:layout_height="@dimen/padding_20dp"
+        android:layout_marginHorizontal="@dimen/padding_20dp"
+        android:layout_marginVertical="@dimen/layout_margin_10dp"
+        android:padding="@dimen/layout_margin_10dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvQuestion" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

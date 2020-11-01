@@ -178,10 +178,10 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>(), View.OnClickList
             R.id.address_book_btn -> {
                 navController.navigate(R.id.nav_book_address)
             }
-            R.id.btnCancel, R.id.tvCancel -> {
+            R.id.btnOk, R.id.tvCancel -> {
                 (requireActivity() as? BaseActivity<*>)?.closePopup()
             }
-            R.id.btnOk -> {
+            R.id.btnCancel -> {
                 authViewModel.logOut()
             }
             R.id.payment_method_btn -> {

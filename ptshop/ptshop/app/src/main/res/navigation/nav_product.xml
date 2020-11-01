@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/fragment_product_detail"
-        android:name="com.ptithcm.ptshop.view.wishlist.ProductDetailFragment"
+        android:name="com.ptithcm.ptshop.view.product.ProductDetailFragment"
         tools:layout="@layout/fragment_product_detail"/>
 
     <fragment
@@ -22,5 +22,27 @@
         tools:layout="@layout/fragment_size_guide"
         android:name="com.ptithcm.ptshop.view.sizeguide.SizeGuideFragment"
         android:label="SizeGuideFragment" />
+    <fragment
+        android:id="@+id/questionFragment"
+        tools:layout="@layout/fragment_question"
+        android:name="com.ptithcm.ptshop.view.question.QuestionFragment"
+        android:label="QuestionFragment" />
+
+    <fragment
+        android:id="@+id/ratingFragment"
+        android:name="com.ptithcm.ptshop.view.rating.RatingFragment"
+        android:label="RatingFragment" />
+
+    <fragment
+        android:id="@+id/createReviewFragment"
+        android:name="com.ptithcm.ptshop.view.rating.CreateReviewFragment"
+        tools:layout="@layout/fragment_create_review"
+        android:label="CreateReviewFragment" />
+
+    <fragment
+        android:id="@+id/loginFragment"
+        android:name="com.ptithcm.ptshop.view.login.LoginFragment"
+        android:label="LoginFragment" />
+    <include app:graph="@navigation/nav_login" />
 
 </navigation>

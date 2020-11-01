@@ -230,12 +230,12 @@ class StoryDetailFragment : BaseFragment<ActivityStoryDetailBinding>(), View.OnC
             R.id.ivDelete -> {
                 showDeletePopUp()
             }
-            R.id.btnOk -> {
+            R.id.btnCancel -> {
                 // todo delete not working at the moment
                 (activity as? BaseActivity<*>)?.closePopup()
                 homeViewModel.deleteStory(story?.id)
             }
-            R.id.btnCancel -> {
+            R.id.btnOk -> {
                 (activity as? BaseActivity<*>)?.closePopup()
             }
         }
