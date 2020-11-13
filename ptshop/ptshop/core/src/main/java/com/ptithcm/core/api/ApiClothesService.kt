@@ -154,7 +154,7 @@ interface ApiClothesService {
     suspend fun addRating(@Body param: Rating): Response<ObjectResponse<Int>>
 
     @PUT("/api/updateRating")
-    suspend fun updateRating(@Body param: Rating): Response<ObjectResponse<Int>>
+    suspend fun updateRating(@Body ratingObj: Rating): Response<ObjectResponse<Int>>
 
     @DELETE("/api/delRating")
     suspend fun delRating(
@@ -164,7 +164,21 @@ interface ApiClothesService {
     @GET("/api/getRatingProduct")
     suspend fun getRatingProduct(
         @Query("productId") productId: Int?
-    ): Response<ObjectResponse<Float>>
+    ): Response<ObjectResponse<RatingProduct>>
+
+    @GET("/api/getRatingDetail")
+    suspend fun getRatingDetail(
+        @Query("ratingId") ratingId: Int?
+    ): Response<ObjectResponse<Rating>>
+
+    @GET("/api/checkRatingProduct")
+    suspend fun checkRatingProduct(
+        @Query("productId") productId: Int?,
+        @Query("accId") accId: Int?,
+        @Query("colorId") colorId: Int?,
+        @Query("sizeId") sizeId: Int?,
+        @Query("orderId") orderId: Int?
+    ): Response<ObjectResponse<Int>>
 
 }
 

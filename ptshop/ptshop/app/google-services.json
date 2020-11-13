@@ -1,34 +1,34 @@
 {
   "project_info": {
-    "project_number": "1092234998089",
-    "firebase_url": "https://ptshop-c1b6c.firebaseio.com",
-    "project_id": "ptshop-c1b6c",
-    "storage_bucket": "ptshop-c1b6c.appspot.com"
+    "project_number": "750568243524",
+    "firebase_url": "https://ptshop-8b8b3.firebaseio.com",
+    "project_id": "ptshop-8b8b3",
+    "storage_bucket": "ptshop-8b8b3.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:1092234998089:android:a98f14990172f6c04eea98",
+        "mobilesdk_app_id": "1:750568243524:android:5acaa4a82a4fad6ff25711",
         "android_client_info": {
           "package_name": "com.ptithcm.ptshop"
         }
       },
       "oauth_client": [
         {
-          "client_id": "1092234998089-3smb6g8ckfe6hfifv2f5r6tqrtqle472.apps.googleusercontent.com",
+          "client_id": "750568243524-fkv856104t4v10hoqi590u707eh7q0km.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyCvS0yFoHMTUr8kUjIMBhP1Ni8FQhh3lNU"
+          "current_key": "AIzaSyDRA3dpLbRTJxBAJKWHEGkxwaB3j986bZc"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "1092234998089-3smb6g8ckfe6hfifv2f5r6tqrtqle472.apps.googleusercontent.com",
+              "client_id": "750568243524-fkv856104t4v10hoqi590u707eh7q0km.apps.googleusercontent.com",
               "client_type": 3
             }
           ]

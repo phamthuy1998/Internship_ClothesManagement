@@ -1,19 +1,24 @@
 package com.ptithcm.ptshop.view.invoices
 
+import androidx.core.os.bundleOf
 import androidx.core.view.isVisible
 import androidx.lifecycle.Observer
 import com.ptithcm.core.model.InvoiceDetail
+import com.ptithcm.core.model.InvoiceProductDetail
 import com.ptithcm.core.util.PriceFormat.priceFormat
 import com.ptithcm.ptshop.R
 import com.ptithcm.ptshop.base.BaseFragment
 import com.ptithcm.ptshop.constant.KEY_ARGUMENT
 import com.ptithcm.ptshop.databinding.FragmentInvoiceDetailBinding
 import com.ptithcm.ptshop.ext.initToolBar
+import com.ptithcm.ptshop.ext.navigateAnimation
 import com.ptithcm.ptshop.ext.setupToolbar
 import com.ptithcm.ptshop.ext.visible
 import com.ptithcm.ptshop.util.DateUtils
 import com.ptithcm.ptshop.view.MainActivity
 import com.ptithcm.ptshop.view.home.StoryDetailActivity
+import com.ptithcm.ptshop.view.invoices.ProductInvoiceAdapter.Companion.ITEM_CLICK
+import com.ptithcm.ptshop.view.invoices.ProductInvoiceAdapter.Companion.ITEM_WRITE_REVIEW
 import com.ptithcm.ptshop.viewmodel.UserViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -22,11 +27,29 @@ class InvoiceDetailFragment : BaseFragment<FragmentInvoiceDetailBinding>() {
     override val layoutId: Int
         get() = R.layout.fragment_invoice_detail
 
-    private val productInvoiceAdapter = ProductInvoiceAdapter()
+    private val productInvoiceAdapter = ProductInvoiceAdapter(this::itemClick)
 
     private val userViewModel: UserViewModel by viewModel()
 
     private var invoiceDetail: InvoiceDetail? = null
+
+    private fun itemClick(item: InvoiceProductDetail, type: Int) {
+        if(type ==ITEM_CLICK){
+            navController.navigateAnimation(
+                R.id.fragment_product_detail,
+                bundle = bundleOf(
+                    "productId" to item.id
+                )
+            )
+        }else if(type==ITEM_WRITE_REVIEW) {
+            navController.navigateAnimation(
+                R.id.createReviewFragment,
+                bundle = bundleOf(
+                    "product" to item
+                )
+            )
+        }
+    }
 
     override fun bindEvent() {
         setUpRv()

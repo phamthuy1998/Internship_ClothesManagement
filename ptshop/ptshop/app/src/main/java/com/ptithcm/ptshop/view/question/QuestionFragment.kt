@@ -17,7 +17,6 @@ import com.ptithcm.ptshop.util.PopUp
 import com.ptithcm.ptshop.view.MainActivity
 import com.ptithcm.ptshop.view.question.adapter.ITEM_DEL
 import com.ptithcm.ptshop.view.question.adapter.ITEM_EDIT
-import com.ptithcm.ptshop.view.rating.adapter.RatingAdapter
 import com.ptithcm.ptshop.view.question.adapter.ITEM_REPLY
 import com.ptithcm.ptshop.view.question.adapter.QuestionAdapter
 import com.ptithcm.ptshop.viewmodel.QuestionsViewModel
@@ -73,6 +72,7 @@ class QuestionFragment : BaseFragment<FragmentQuestionBinding>() {
                                 item?.questionID?.let { it1 ->
                                     viewModel.delQuestion(it1, if (isSubQuestion == true) 1 else 0)
                                 }
+                                (requireActivity() as? BaseActivity<*>)?.closePopup()
                             }
                             btnCancel.setOnClickListener {
                                 (requireActivity() as? BaseActivity<*>)?.closePopup()

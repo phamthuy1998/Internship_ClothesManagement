@@ -99,7 +99,6 @@
             app:layout_constraintEnd_toStartOf="@id/ivImage2"
             app:layout_constraintStart_toStartOf="@id/tvUsername"
             app:layout_constraintTop_toBottomOf="@id/tvReview"
-            app:layout_constraintVertical_chainStyle="packed"
             app:layout_constraintWidth_percent="0.28" />
 
         <androidx.appcompat.widget.AppCompatImageView
@@ -107,15 +106,14 @@
             imageUrl="@{item.imageUrl2}"
             android:layout_width="0dp"
             android:layout_height="0dp"
+            android:layout_marginStart="@dimen/layout_margin_10dp"
+            android:layout_marginTop="@dimen/padding_20dp"
             android:adjustViewBounds="true"
             android:scaleType="centerCrop"
             android:src="@drawable/ic_place_holder"
-            android:visibility="@{item.imageUrl2.empty ? View.GONE: View.VISIBLE}"
             app:layout_constraintDimensionRatio="1:1"
-            app:layout_constraintEnd_toStartOf="@id/ivImageVideo"
             app:layout_constraintStart_toEndOf="@id/ivImage1"
-            app:layout_constraintTop_toTopOf="@id/ivImage1"
-            app:layout_constraintVertical_chainStyle="packed"
+            app:layout_constraintTop_toBottomOf="@id/tvReview"
             app:layout_constraintWidth_percent="0.28" />
 
         <androidx.appcompat.widget.AppCompatImageView
@@ -123,20 +121,19 @@
             imageThumbURLVideo="@{item.videoUrl}"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:layout_marginEnd="@dimen/padding_20dp"
+            android:layout_marginStart="@dimen/layout_margin_10dp"
+            android:layout_marginTop="@dimen/padding_20dp"
             android:adjustViewBounds="true"
             android:scaleType="centerCrop"
             android:src="@drawable/ic_place_holder"
-            android:visibility="@{item.videoUrl.empty ? View.GONE: View.VISIBLE}"
             app:layout_constraintDimensionRatio="1:1"
-            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@id/ivImage2"
-            app:layout_constraintTop_toTopOf="@id/ivImage1"
-            app:layout_constraintVertical_chainStyle="packed"
+            app:layout_constraintTop_toBottomOf="@id/tvReview"
             app:layout_constraintWidth_percent="0.28" />
 
         <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/ivPlayVideo"
+            isVisible="@{!item.videoIsNullOrEmpty()}"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@drawable/ic_play_button"
@@ -171,7 +168,7 @@
             android:layout_marginTop="20dp"
             android:text="@string/app_name"
             app:layout_constraintStart_toStartOf="@id/viewReply"
-            app:layout_constraintTop_toTopOf="@id/viewReply"/>
+            app:layout_constraintTop_toTopOf="@id/viewReply" />
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/tvDateReply"

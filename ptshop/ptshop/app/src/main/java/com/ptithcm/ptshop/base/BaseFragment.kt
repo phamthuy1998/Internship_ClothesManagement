@@ -66,4 +66,6 @@ abstract class BaseFragment<ViewBinding: ViewDataBinding> : Fragment() {
     fun showErrorNetwork() {
         (requireActivity() as? MainActivity)?.isShowErrorNetwork(true)
     }
+
+
 }

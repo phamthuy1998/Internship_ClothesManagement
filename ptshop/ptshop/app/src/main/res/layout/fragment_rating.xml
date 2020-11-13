@@ -12,7 +12,7 @@
             android:id="@+id/swlRefresh"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            app:layout_constraintBottom_toTopOf="@id/viewRating"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.0"
             tools:layout_editor_absoluteX="-82dp"
@@ -64,50 +64,6 @@
             </LinearLayout>
         </com.facebook.shimmer.ShimmerFrameLayout>
 
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:background="#AAAAAA"
-            app:layout_constraintBottom_toTopOf="@id/viewRating" />
-
-        <View
-            android:id="@+id/viewRating"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:background="@color/white"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintTop_toTopOf="@id/ratingBar" />
-
-        <androidx.constraintlayout.widget.Group
-            android:id="@+id/groupWriteRating"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:constraint_referenced_ids="ratingBar, tvWriteReview, viewRating" />
-
-        <RatingBar
-            android:id="@+id/ratingBar"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/layout_margin_16dp"
-            android:layout_marginBottom="@dimen/layout_margin_10dp"
-            android:numStars="5"
-            android:paddingTop="@dimen/layout_margin_10dp"
-            android:stepSize="1"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
-
-        <TextView
-            android:id="@+id/tvWriteReview"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="@dimen/layout_margin_16dp"
-            android:padding="@dimen/layout_margin_10dp"
-            android:text="@string/write_reviews"
-            android:textColor="@color/blue"
-            app:layout_constraintBottom_toBottomOf="@id/ratingBar"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@id/ratingBar"
-            app:layout_constraintVertical_bias="0.428" />
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/tvNoReviews"
@@ -119,7 +75,7 @@
             android:paddingVertical="@dimen/layout_margin_14dp"
             android:text="@string/no_rating_yet"
             android:textColor="@color/black_alpha"
-            app:layout_constraintBottom_toTopOf="@id/viewRating"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />

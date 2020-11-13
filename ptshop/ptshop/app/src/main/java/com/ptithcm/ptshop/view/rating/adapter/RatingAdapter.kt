@@ -114,6 +114,8 @@ class RatingAdapter(
         notifyItemRemoved(position)
     }
 
+    fun getListItem() = ratingList
+
     inner class ItemViewHolder(val binding: LayoutRatingItemBinding) :
         RecyclerView.ViewHolder(binding.root) {
 

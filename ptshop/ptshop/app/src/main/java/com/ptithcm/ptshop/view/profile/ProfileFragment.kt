@@ -6,8 +6,6 @@ import android.net.Uri
 import android.os.Bundle
 import android.provider.MediaStore
 import android.view.View
-import android.view.animation.Animation
-import android.view.animation.AnimationUtils
 import android.widget.Toast
 import androidx.core.content.FileProvider
 import androidx.core.os.bundleOf
@@ -188,47 +186,27 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>(), View.OnClickList
                 navController.navigate(R.id.nav_payment_methods)
             }
             R.id.invoice -> {
-                showInvoice = !showInvoice
-                if (showInvoice) {
-                    val slideDown: Animation =
-                        AnimationUtils.loadAnimation(requireContext(), R.anim.slide_in_down)
-
-                    viewBinding.profileCustomer.llInvoice.visible()
-                    viewBinding.profileCustomer.llInvoice.startAnimation(slideDown)
-                } else {
-                    val slideUp: Animation =
-                        AnimationUtils.loadAnimation(requireContext(), R.anim.slide_in_up)
-                    viewBinding.profileCustomer.llInvoice.startAnimation(slideUp)
-                    viewBinding.profileCustomer.llInvoice.gone()
-                }
-            }
-            R.id.allInvoice->{
                 val bundle = Bundle()
-                bundle.putString("invoiceTitle", "All invoices")
                 bundle.putInt("invoiceId", 0)
                 navController.navigate(R.id.nav_invoices, bundle)
             }
-            R.id.invoiceReceive->{
+            R.id.invoiceReceive -> {
                 val bundle = Bundle()
-                bundle.putString("invoiceTitle", "The order has received")
                 bundle.putInt("invoiceId", 1)
                 navController.navigate(R.id.nav_invoices, bundle)
             }
-            R.id.invoiceDelivery->{
+            R.id.invoiceDelivery -> {
                 val bundle = Bundle()
-                bundle.putString("invoiceTitle", "The orders are being delivered")
                 bundle.putInt("invoiceId", 2)
                 navController.navigate(R.id.nav_invoices, bundle)
             }
-            R.id.invoiceShipped->{
+            R.id.invoiceShipped -> {
                 val bundle = Bundle()
-                bundle.putString("invoiceTitle", "The order has shipped")
                 bundle.putInt("invoiceId", 3)
                 navController.navigate(R.id.nav_invoices, bundle)
             }
-            R.id.invoiceCancel->{
+            R.id.invoiceCancel -> {
                 val bundle = Bundle()
-                bundle.putString("invoiceTitle", "The order has canceled")
                 bundle.putInt("invoiceId", 4)
                 navController.navigate(R.id.nav_invoices, bundle)
             }

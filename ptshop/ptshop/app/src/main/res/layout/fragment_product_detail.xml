@@ -126,6 +126,32 @@
                     app:layout_constraintTop_toBottomOf="@id/tvPrice"
                     tool:text="$220.00" />
 
+                <RatingBar
+                    android:id="@+id/rbAverage"
+                    style="?android:attr/ratingBarStyleSmall"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:isIndicator="true"
+                    android:onClick="@{(v) -> fragment.onClick(v)}"
+                    app:layout_constraintBottom_toBottomOf="@id/tvSizeGuide"
+                    app:layout_constraintStart_toStartOf="@id/tvVendor"
+                    tool:rating="5" />
+
+                <TextView
+                    android:id="@+id/tvRatingCount"
+                    style="@style/TextAppearance.MaterialComponents.Caption"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:onClick="@{(v) -> fragment.onClick(v)}"
+                    android:paddingHorizontal="@dimen/layout_margin_10dp"
+                    android:textColor="@color/black_alpha"
+                    app:layout_constraintBottom_toBottomOf="@id/rbAverage"
+                    app:layout_constraintStart_toEndOf="@id/rbAverage"
+                    app:layout_constraintTop_toTopOf="@id/rbAverage"
+                    tool:text="5 nhận xét" />
+
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/tvSizeGuide"
                     style="@style/normal_text.grey"

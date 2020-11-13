@@ -3,8 +3,6 @@ package com.ptithcm.ptshop.util
 import android.graphics.Color
 import android.graphics.drawable.Drawable
 import android.graphics.drawable.GradientDrawable
-import android.media.ThumbnailUtils
-import android.provider.MediaStore
 import android.text.format.DateUtils
 import android.view.View
 import androidx.appcompat.widget.AppCompatButton
@@ -16,6 +14,8 @@ import androidx.core.view.isVisible
 import androidx.databinding.BindingAdapter
 import com.bumptech.glide.Glide
 import com.ptithcm.ptshop.R
+import com.ptithcm.ptshop.ext.gone
+import com.ptithcm.ptshop.ext.visible
 import com.ptithcm.ptshop.view.rating.adapter.RatingAdapter.Companion.DATE_INPUT_FORMAT
 import java.io.File
 import java.text.ParseException
@@ -28,14 +28,33 @@ object BindingAdapterImage {
     @BindingAdapter(value = ["imageUrl", "placeHolder"], requireAll = false)
     fun setImageUrl(imageView: AppCompatImageView, url: String?, placeHolder: Drawable?) {
         if (url == null || url.isEmpty()) {
-            imageView.setImageDrawable(placeHolder)
+            imageView.gone()
         } else {
-            Glide
+            imageView.visible()
+            if (placeHolder == null)
+                Glide
+                    .with(imageView.context)
+                    .load(File(url))
+                    .thumbnail(Glide.with(imageView.context).load(url))
+                    .placeholder(
+                        ContextCompat.getDrawable(
+                            imageView.context,
+                            R.drawable.ic_place_holder
+                        )
+                    )
+                    .into(imageView)
+            else Glide
                 .with(imageView.context)
                 .load(File(url))
                 .thumbnail(Glide.with(imageView.context).load(url))
-                .placeholder(placeHolder)
+                .placeholder(
+                    ContextCompat.getDrawable(
+                        imageView.context,
+                        R.drawable.ic_place_holder
+                    )
+                )
                 .into(imageView)
+
         }
     }
 
@@ -79,24 +98,19 @@ object BindingAdapterImage {
     @BindingAdapter(value = ["imageThumbURLVideo"], requireAll = false)
     fun imageThumbURLVideo(imageView: AppCompatImageView, urlVideo: String?) {
         if (urlVideo == null || urlVideo.isEmpty()) {
-            imageView.setImageDrawable(
-                ContextCompat.getDrawable(
-                    imageView.context,
-                    R.drawable.ic_place_holder
-                )
-            )
+            imageView.gone()
         } else {
-            Glide
-                .with(imageView.context)
-                .load(File(urlVideo))
-                .thumbnail(Glide.with(imageView.context).load(urlVideo))
-                .placeholder(
-                    ContextCompat.getDrawable(
-                        imageView.context,
-                        R.drawable.ic_place_holder
+                Glide
+                    .with(imageView.context)
+                    .load(File(urlVideo))
+                    .thumbnail(Glide.with(imageView.context).load(urlVideo))
+                    .placeholder(
+                        ContextCompat.getDrawable(
+                            imageView.context,
+                            R.drawable.ic_place_holder
+                        )
                     )
-                )
-                .into(imageView)
+                    .into(imageView)
         }
     }
 

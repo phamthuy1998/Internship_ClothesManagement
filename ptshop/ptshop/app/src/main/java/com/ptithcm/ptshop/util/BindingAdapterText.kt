@@ -5,8 +5,10 @@ import android.graphics.Paint
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.appcompat.widget.AppCompatImageView
 import androidx.appcompat.widget.AppCompatSpinner
 import androidx.appcompat.widget.AppCompatTextView
+import androidx.core.content.ContextCompat
 import androidx.core.text.HtmlCompat
 import androidx.core.view.isVisible
 import androidx.databinding.BindingAdapter
@@ -151,5 +153,11 @@ object BindingAdapterText {
     @BindingAdapter("isVisible")
     fun isVisible(view: View, isVisible: Boolean?) {
         view.isVisible = isVisible ?: false
+    }
+
+    @JvmStatic
+    @BindingAdapter("isVisibleClear")
+    fun isVisibleClear(view: View, imageId: AppCompatImageView) {
+        imageId.drawable!= ContextCompat.getDrawable(view.context, R.drawable.ic_place_holder)
     }
 }

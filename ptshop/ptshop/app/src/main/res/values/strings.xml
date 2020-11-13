@@ -326,6 +326,13 @@
     <string name="rating">Rating</string>
     <string name="ratingInt">%d ratings</string>
     <string name="rating1">1 rating</string>
+    <string name="no_rating">No rating yet</string>
+    <string name="addSuccess">Add success</string>
+    <string name="addFail">Add fail</string>
+    <string name="errRating">You must rating to continue</string>
+
+    <string name="errCmt">You must key on comment to continue</string>
+    <string name="productType">Product type</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="provider">PROVIDER</string>
@@ -343,4 +350,8 @@
     <string name="canceled">Canceled</string>
     <string name="all_invoices">All invoices</string>
     <string name="emptyInvoice">The list of orders is empty</string>
+    <string name="add_comment_here">Add comment here</string>
+    <string name="add_video">Add video</string>
+    <string name="add_photo">Add photo</string>
+    <string name="post">Post</string>
 </resources>

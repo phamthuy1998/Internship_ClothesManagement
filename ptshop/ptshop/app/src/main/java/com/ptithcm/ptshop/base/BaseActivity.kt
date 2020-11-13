@@ -1,6 +1,9 @@
 package com.ptithcm.ptshop.base
 
+import android.graphics.Rect
 import android.os.Bundle
+import android.view.MotionEvent
+import android.widget.EditText
 import androidx.annotation.LayoutRes
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
@@ -10,12 +13,13 @@ import com.ptithcm.core.util.AppEvent
 import com.ptithcm.core.util.NetworkListener
 import com.ptithcm.ptshop.R
 import com.ptithcm.ptshop.databinding.LayoutNoInternetBinding
+import com.ptithcm.ptshop.ext.hideKeyboard
 import com.ptithcm.ptshop.ext.isShowLoading
 import com.ptithcm.ptshop.util.BottomPopupDialog
 import com.ptithcm.ptshop.util.PopUp
 import com.ptithcm.ptshop.util.PopupDialog
 import com.ptithcm.ptshop.view.MainActivity
-import java.util.ArrayList
+import java.util.*
 
 abstract class
 BaseActivity<ViewBinding : ViewDataBinding> : AppCompatActivity(), NetworkListener {
@@ -34,6 +38,20 @@ BaseActivity<ViewBinding : ViewDataBinding> : AppCompatActivity(), NetworkListen
         viewBinding.lifecycleOwner = this
         bindView()
         bindViewModel()
+    }
+
+    override fun dispatchTouchEvent(event: MotionEvent?): Boolean {
+        if (event?.action == MotionEvent.ACTION_DOWN) {
+            val v = currentFocus
+            if (v is EditText) {
+                val outRect = Rect()
+                v.getGlobalVisibleRect(outRect)
+                if (!outRect.contains(event.rawX.toInt(), event.rawY.toInt())) {
+                    hideKeyboard()
+                }
+            }
+        }
+        return super.dispatchTouchEvent(event)
     }
 
     open fun bindView() {}
@@ -71,7 +89,7 @@ BaseActivity<ViewBinding : ViewDataBinding> : AppCompatActivity(), NetworkListen
         showPopup(PopUp(R.layout.layout_no_internet, messageQueue = this::popUpErrorEvent))
     }
 
-    private fun popUpErrorEvent(popupBinding: ViewDataBinding?){
+    private fun popUpErrorEvent(popupBinding: ViewDataBinding?) {
         (popupBinding as? LayoutNoInternetBinding)?.apply {
             btnCancel.setOnClickListener {
                 closePopup()

@@ -18,7 +18,6 @@ namespace ClothesManamentDataAccess
         public ProductSizeColor()
         {
             this.InvoiceItems = new HashSet<InvoiceItem>();
-            this.ImportCouponDetails = new HashSet<ImportCouponDetail>();
         }
     
         public int productID { get; set; }
@@ -29,11 +28,9 @@ namespace ClothesManamentDataAccess
         public Nullable<int> active { get; set; }
     
         public virtual Color Color { get; set; }
-        public virtual Product Product { get; set; }
-        public virtual Size Size { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<InvoiceItem> InvoiceItems { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<ImportCouponDetail> ImportCouponDetails { get; set; }
+        public virtual Product Product { get; set; }
+        public virtual Size Size { get; set; }
     }
 }

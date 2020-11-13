@@ -5,14 +5,23 @@
     package="com.ptithcm.ptshop">
 
     <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.CAMERA" />
+<!--    <uses-permission android:name="android.permission.CAMERA" />-->
     <uses-permission android:name="android.permission.RECORD_AUDIO" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-feature android:name="android.hardware.camera"
+        android:required="true" />
     <uses-permission
         android:name="android.permission.BIND_TEXT_SERVICE"
         tools:ignore="ProtectedPermissions" />
+
+    <uses-feature
+        android:name="android.hardware.camera.any"
+        android:required="true" />
+    <uses-feature
+        android:name="android.hardware.camera.autofocus"
+        android:required="false" />
 
     <dist:module dist:instant="true" />
 <!-- android:usesCleartextTraffic="true" all links -->
@@ -67,7 +76,6 @@
                 android:name="android.support.FILE_PROVIDER_PATHS"
                 android:resource="@xml/file_provider_paths" />
         </provider>
-
         <service
             android:name="com.amazonaws.mobileconnectors.s3.transferutility.TransferService"
             android:enabled="true" />

@@ -8,7 +8,16 @@ import com.ptithcm.core.model.InvoiceProductDetail
 import com.ptithcm.ptshop.R
 import com.ptithcm.ptshop.databinding.ItemProductInvoiceBinding
 
-class ProductInvoiceAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+class ProductInvoiceAdapter(
+    var listener: ((item: InvoiceProductDetail, type: Int) -> Unit?)? = null
+) :
+    RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+
+    companion object {
+        const val ITEM_CLICK = 1
+        const val ITEM_WRITE_REVIEW = 2
+    }
+
     private val products = arrayListOf<InvoiceProductDetail>()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
@@ -39,8 +48,12 @@ class ProductInvoiceAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
         RecyclerView.ViewHolder(binding.root) {
 
         fun bind(item: InvoiceProductDetail) {
-            binding.item = item
-            binding.executePendingBindings()
+            binding.apply {
+                this.item = item
+                binding.root.setOnClickListener { listener?.invoke(item, ITEM_CLICK) }
+                tvWriteReview.setOnClickListener { listener?.invoke(item, ITEM_WRITE_REVIEW) }
+                executePendingBindings()
+            }
         }
     }
 }

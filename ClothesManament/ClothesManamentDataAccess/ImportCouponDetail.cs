@@ -16,13 +16,11 @@ namespace ClothesManamentDataAccess
     {
         public int idCoupon { get; set; }
         public int idProduct { get; set; }
-        public Nullable<int> quantity { get; set; }
-        public Nullable<double> price { get; set; }
         public int colorId { get; set; }
         public int sizeID { get; set; }
+        public Nullable<int> quantity { get; set; }
+        public Nullable<double> price { get; set; }
     
         public virtual ImportCoupon ImportCoupon { get; set; }
-        public virtual Product Product { get; set; }
-        public virtual ProductSizeColor ProductSizeColor { get; set; }
     }
 }

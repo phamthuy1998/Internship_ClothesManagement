@@ -11,6 +11,7 @@ import androidx.core.os.bundleOf
 import androidx.lifecycle.Observer
 import com.ptithcm.core.model.ProductClothes
 import com.ptithcm.core.model.ProductClothesDetail
+import com.ptithcm.core.model.RatingProduct
 import com.ptithcm.core.util.ObjectHandler
 import com.ptithcm.ptshop.R
 import com.ptithcm.ptshop.base.BaseActivity
@@ -24,6 +25,7 @@ import com.ptithcm.ptshop.view.home.StoryDetailActivity
 import com.ptithcm.ptshop.view.wishlist.ColorSpinnerAdapter
 import com.ptithcm.ptshop.view.wishlist.overview.ProductionClothesBannersPagerAdapter
 import com.ptithcm.ptshop.viewmodel.QuestionsViewModel
+import com.ptithcm.ptshop.viewmodel.RatingViewModel
 import com.ptithcm.ptshop.viewmodel.ShoppingViewModel
 import com.ptithcm.ptshop.viewmodel.WishListViewModel
 import kotlinx.android.synthetic.main.activity_main.*
@@ -38,6 +40,7 @@ class ProductDetailFragment : BaseFragment<FragmentProductDetailBinding>() {
     private val wishListViewModel: WishListViewModel by viewModel()
     private val shoppingViewModel: ShoppingViewModel by viewModel()
     private val questionsViewModel: QuestionsViewModel by viewModel()
+    private val ratingViewModel: RatingViewModel by viewModel()
 
     private var product: ProductClothes? = null
     private var productDetail: ProductClothesDetail? = null
@@ -50,14 +53,25 @@ class ProductDetailFragment : BaseFragment<FragmentProductDetailBinding>() {
             product = it
             shoppingViewModel.getProdDetail(it.id)
         }
+        val productId = (arguments?.getInt("productId") as? Int)
+        if (productId != null) {
+            shoppingViewModel.getProdDetail(productId)
+        }
         activity?.btnNav?.visibility = View.GONE
         (activity as? BaseActivity<*>)?.isShowLoading(false)
         product?.id?.let { questionsViewModel.getQuestionCount(it) }
+        product?.id?.let { ratingViewModel.getRatingProduct(it) }
     }
 
 
-
     override fun bindEvent() {
+        viewBinding.rbAverage.setOnTouchListener { v, event ->
+            navController.navigateAnimation(
+                R.id.ratingFragment,
+                bundle = bundleOf("productDetail" to productDetail)
+            )
+            false
+        }
 
         viewBinding.fragment = this@ProductDetailFragment
         setUpViewPager()
@@ -87,6 +101,12 @@ class ProductDetailFragment : BaseFragment<FragmentProductDetailBinding>() {
         shoppingViewModel.error.observe(this, Observer {
             (requireActivity() as? MainActivity)?.isShowErrorNetwork(true)
         })
+        ratingViewModel.error.observe(this, Observer {
+            (requireActivity() as? MainActivity)?.isShowErrorNetwork(true)
+        })
+        ratingViewModel.ratingAverage.observe(this, Observer {
+            setDataRating(it.data ?: return@Observer)
+        })
 
         questionsViewModel.questionCount.observe(this, Observer {
             if (it.data ?: 0 != 0) {
@@ -95,6 +115,19 @@ class ProductDetailFragment : BaseFragment<FragmentProductDetailBinding>() {
                 viewBinding.btnQuestions.text = getString(R.string.comment)
         })
 
+    }
+
+    private fun setDataRating(rating: RatingProduct) {
+        viewBinding.tvRatingCount.text =
+            when {
+                (rating.ratingCount?.toInt() ?: 0) > 1 -> getString(
+                    R.string.ratingInt,
+                    rating.ratingCount?.toInt()
+                )
+                (rating.ratingCount?.toInt() ?: 0) == 1 -> getString(R.string.rating1)
+                else -> getString(R.string.no_rating)
+            }
+        viewBinding.rbAverage.rating = rating.rating?.toFloat() ?: 0F
     }
 
     override fun onResume() {
@@ -116,10 +149,10 @@ class ProductDetailFragment : BaseFragment<FragmentProductDetailBinding>() {
                     bundle = bundleOf("productId" to productDetail?.id)
                 )
             }
-            R.id.btnRating -> {
+            R.id.tvRatingCount, R.id.btnRating -> {
                 navController.navigateAnimation(
                     R.id.ratingFragment,
-                    bundle = bundleOf("productId" to productDetail?.id)
+                    bundle = bundleOf("productDetail" to productDetail)
                 )
             }
             R.id.btnAboutBrand, R.id.tvAboutBrand -> {

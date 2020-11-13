@@ -304,6 +304,9 @@
     <Compile Include="SP_GetProductInvoice_Result1.cs">
       <DependentUpon>ClothesEntity.tt</DependentUpon>
     </Compile>
+    <Compile Include="SP_GetProductInvoice_Result2.cs">
+      <DependentUpon>ClothesEntity.tt</DependentUpon>
+    </Compile>
     <Compile Include="SP_GetProductOfCategory_Result.cs">
       <DependentUpon>ClothesEntity.tt</DependentUpon>
     </Compile>
@@ -331,6 +334,9 @@
     <Compile Include="SP_GetQuestion_Result1.cs">
       <DependentUpon>ClothesEntity.tt</DependentUpon>
     </Compile>
+    <Compile Include="SP_GetRatingDetail_Result.cs">
+      <DependentUpon>ClothesEntity.tt</DependentUpon>
+    </Compile>
     <Compile Include="SP_GetRatings_Result.cs">
       <DependentUpon>ClothesEntity.tt</DependentUpon>
     </Compile>
@@ -347,6 +353,9 @@
       <DependentUpon>ClothesEntity.tt</DependentUpon>
     </Compile>
     <Compile Include="SP_GetRatings_Result5.cs">
+      <DependentUpon>ClothesEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SP_GetRatings_Result6.cs">
       <DependentUpon>ClothesEntity.tt</DependentUpon>
     </Compile>
     <Compile Include="SP_GetSizesColorsOfProduct_Result.cs">

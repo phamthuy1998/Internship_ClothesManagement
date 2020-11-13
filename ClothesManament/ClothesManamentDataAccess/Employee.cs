@@ -26,12 +26,12 @@ namespace ClothesManamentDataAccess
         public string lastName { get; set; }
         public string phone { get; set; }
         public string address { get; set; }
+        public string avatar { get; set; }
         public Nullable<System.DateTime> dateEnd { get; set; }
         public Nullable<System.DateTime> dateBegin { get; set; }
         public Nullable<System.DateTime> birthday { get; set; }
         public Nullable<int> isWorking { get; set; }
         public Nullable<int> idAccount { get; set; }
-        public string avatar { get; set; }
         public Nullable<int> active { get; set; }
     
         public virtual Account Account { get; set; }

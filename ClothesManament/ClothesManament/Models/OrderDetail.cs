@@ -21,6 +21,6 @@ namespace ClothesManament.Models
         public Nullable<int> isPaid { get; set; }
         public string payment { get; set; }
         public string statusInvoice { get; set; }
-        public List<SP_GetProductInvoice_Result1> products { get; set; }
+        public List<SP_GetProductInvoice_Result2> products { get; set; }
     }
 }

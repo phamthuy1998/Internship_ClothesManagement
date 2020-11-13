@@ -4,13 +4,17 @@ import android.view.View
 import androidx.core.os.bundleOf
 import androidx.lifecycle.Observer
 import com.ptithcm.core.CoreApplication
+import com.ptithcm.core.model.ProductClothesDetail
 import com.ptithcm.core.model.Rating
 import com.ptithcm.core.model.RatingAvg
 import com.ptithcm.ptshop.R
+import com.ptithcm.ptshop.base.BaseActivity
 import com.ptithcm.ptshop.base.BaseFragment
 import com.ptithcm.ptshop.constant.ERROR_CODE_404
 import com.ptithcm.ptshop.databinding.FragmentRatingBinding
+import com.ptithcm.ptshop.databinding.LayoutPopUpBinding
 import com.ptithcm.ptshop.ext.*
+import com.ptithcm.ptshop.util.PopUp
 import com.ptithcm.ptshop.view.MainActivity
 import com.ptithcm.ptshop.view.question.adapter.ITEM_DEL
 import com.ptithcm.ptshop.view.question.adapter.ITEM_EDIT
@@ -26,9 +30,18 @@ class RatingFragment : BaseFragment<FragmentRatingBinding>() {
 
     private val viewModel: RatingViewModel by viewModel()
 
-    private var productId: Int? = null
+    private var productDetail: ProductClothesDetail? = null
     private val adapter: RatingAdapter by lazy {
         RatingAdapter(this::adapterEvent, CoreApplication.instance.account?.id)
+    }
+
+    companion object {
+        var fragment: RatingFragment? = null
+        fun newInstance(productDetail: ProductClothesDetail): RatingFragment? {
+            if (fragment == null) fragment = RatingFragment()
+            fragment?.productDetail = productDetail
+            return fragment
+        }
     }
 
     private fun adapterEvent(
@@ -39,10 +52,36 @@ class RatingFragment : BaseFragment<FragmentRatingBinding>() {
     ) {
         when (typeEvent) {
             ITEM_DEL -> {
+                (requireActivity() as? BaseActivity<*>)?.showPopup(
+                    PopUp(R.layout.layout_pop_up, messageQueue = { popupBinding ->
+                        (popupBinding as? LayoutPopUpBinding)?.apply {
+                            title = getString(R.string.confirmDelQuestion)
+                            left = getString(R.string.ok)
+                            right = getString(R.string.cancel)
+                            btnOk.setOnClickListener {
+                                item?.ratingID?.let { ratingID ->
+                                    viewModel.delRating(ratingID)
+                                }
+                                (requireActivity() as? BaseActivity<*>)?.closePopup()
+                                adapter.removeItem(position)
+                                refreshData()
+                            }
+                            btnCancel.setOnClickListener {
+                                (requireActivity() as? BaseActivity<*>)?.closePopup()
+                            }
+                        }
+
+                    })
+                )
 
             }
             ITEM_EDIT -> {
-
+                navController.navigate(
+                    R.id.createReviewFragment,
+                    bundleOf(
+                        "rating" to item
+                    )
+                )
             }
             ITEM_IMAGE -> {
                 val listImage: ArrayList<String> = arrayListOf()
@@ -76,27 +115,32 @@ class RatingFragment : BaseFragment<FragmentRatingBinding>() {
     override fun bindEvent() {
         super.bindEvent()
         setupToolbar()
-        productId = arguments?.get("productId") as Int?
-        viewModel.getRatings(productId ?: return)
+        productDetail = arguments?.get("productDetail") as ProductClothesDetail?
         setupRecyclerview()
-        viewBinding.tvWriteReview.setOnClickListener {
-            navController.navigateAnimation(
-                R.id.createReviewFragment,
-                bundle = bundleOf(
-                    "productId" to productId,
-                    "rating" to viewBinding.ratingBar.rating
-                )
-            )
-        }
-        viewBinding.ratingBar.setOnRatingBarChangeListener { ratingBar, rating, fromUser ->
-            navController.navigateAnimation(
-                R.id.createReviewFragment,
-                bundle = bundleOf(
-                    "productId" to productId,
-                    "rating" to viewBinding.ratingBar.rating
-                )
-            )
-        }
+        refreshData()
+        /*   viewBinding.tvWriteReview.setOnClickListener {
+               navController.navigateAnimation(
+                   R.id.createReviewFragment,
+                   bundle = bundleOf(
+                       "productDetail" to productDetail,
+                       "rating" to viewBinding.ratingBar.rating
+                   )
+               )
+           }
+           viewBinding.ratingBar.setOnRatingBarChangeListener { ratingBar, rating, fromUser ->
+               navController.navigateAnimation(
+                   R.id.createReviewFragment,
+                   bundle = bundleOf(
+                       "productDetail" to productDetail,
+                       "rating" to viewBinding.ratingBar.rating
+                   )
+               )
+           }*/
+    }
+
+    private fun refreshData() {
+        viewModel.getRatings(productDetail?.id ?: return)
+//        viewModel.checkRating(productDetail?.id ?: 0, CoreApplication.instance.account?.id ?: 0)
     }
 
     private fun setupToolbar() {
@@ -106,15 +150,20 @@ class RatingFragment : BaseFragment<FragmentRatingBinding>() {
                 viewBinding.layoutToolbar.toolbar,
                 getString(R.string.rating)
             )
+            initToolbar(
+                hasBackRight = false,
+                hasLeft = false,
+                hasRight = false,
+                hasCount = false,
+                isProductPage = false
+            )
         }
     }
 
 
     private fun setupRecyclerview() {
         viewBinding.rvReview.adapter = adapter
-        viewBinding.swlRefresh.setOnRefreshListener {
-            viewModel.getRatings(productId ?: return@setOnRefreshListener)
-        }
+        viewBinding.swlRefresh.setOnRefreshListener { refreshData() }
     }
 
     override fun bindViewModel() {
@@ -134,6 +183,11 @@ class RatingFragment : BaseFragment<FragmentRatingBinding>() {
         viewModel.networkState.observe(this, Observer {
             if (it == true) viewBinding.progressbar.visible() else viewBinding.progressbar.gone()
         })
+//        viewModel.checkRating.observe(this, Observer {
+//            if (it.data != "0") {
+//                viewBinding.groupWriteRating.gone()
+//            } else viewBinding.groupWriteRating.visible()
+//        })
         viewModel.error.observe(this, Observer {
             viewBinding.progressbar.gone()
             if (it.second == ERROR_CODE_404) {
@@ -144,9 +198,13 @@ class RatingFragment : BaseFragment<FragmentRatingBinding>() {
         })
     }
 
-    private fun setRatingAverage(arrRatings: java.util.ArrayList<Rating>?) {
+    private fun setRatingAverage(
+        arrRatings: java.util.ArrayList<Rating>?,
+        fromAdapter: Boolean = false
+    ) {
         val ratingAvg = RatingAvg()
         ratingAvg.totalRating = arrRatings?.size?.toFloat()
+        if (fromAdapter) ratingAvg.totalRating = ratingAvg.totalRating?.minus(1)
         if (ratingAvg.totalRating == null || ratingAvg.totalRating == 0F) return
         var rating1Count = 0F
         var rating2Count = 0F
@@ -171,7 +229,7 @@ class RatingFragment : BaseFragment<FragmentRatingBinding>() {
             (rating1Count + rating2Count * 2 + rating3Count * 3 + rating4Count * 4 + rating5Count * 5.toFloat()).div(
                 ratingAvg.totalRating ?: 0F
             )
-
+        ratingAvg.ratingAvg = ratingAvg.ratingAvg?.round(2)
         ratingAvg.rating5Percent =
             ratingAvg.rating5Count?.div(ratingAvg.totalRating ?: 1F)?.times(100)?.toInt() ?: 0
         ratingAvg.rating4Percent =

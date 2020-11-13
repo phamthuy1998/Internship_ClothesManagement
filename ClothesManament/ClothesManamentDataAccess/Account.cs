@@ -18,12 +18,12 @@ namespace ClothesManamentDataAccess
         public Account()
         {
             this.Addresses = new HashSet<Address>();
+            this.Questions = new HashSet<Question>();
             this.Customers = new HashSet<Customer>();
             this.Employees = new HashSet<Employee>();
             this.Invoices = new HashSet<Invoice>();
-            this.Products = new HashSet<Product>();
             this.Ratings = new HashSet<Rating>();
-            this.Questions = new HashSet<Question>();
+            this.Products = new HashSet<Product>();
         }
     
         public int id { get; set; }
@@ -31,11 +31,14 @@ namespace ClothesManamentDataAccess
         public Nullable<int> roleId { get; set; }
         public string password { get; set; }
         public string username { get; set; }
-        public Nullable<int> active { get; set; }
         public Nullable<int> isAccuracy { get; set; }
+        public Nullable<int> active { get; set; }
     
+        public virtual Role Role { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Address> Addresses { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Question> Questions { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Customer> Customers { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
@@ -43,11 +46,8 @@ namespace ClothesManamentDataAccess
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Invoice> Invoices { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Product> Products { get; set; }
-        public virtual Role Role { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Rating> Ratings { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Question> Questions { get; set; }
+        public virtual ICollection<Product> Products { get; set; }
     }
 }

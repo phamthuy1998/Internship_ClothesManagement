@@ -27,6 +27,14 @@ class InvoicesBookFragment : BaseFragment<FragmentInvoicesBookBinding>() {
         requireActivity() as BaseActivity<*>
     }
 
+    companion object {
+        fun newInstance(invoiceId: Int): InvoicesBookFragment =   InvoicesBookFragment().apply {
+            arguments = Bundle().apply {
+                putInt("invoiceId", invoiceId)
+            }
+        }
+    }
+
     private var invoiceTitle: String? = ""
     private var invoiceStatusId: Int? = 0
 
@@ -41,21 +49,32 @@ class InvoicesBookFragment : BaseFragment<FragmentInvoicesBookBinding>() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        val bundle = this.arguments
-        if (bundle != null) {
-            invoiceTitle = bundle.getString("invoiceTitle", "")
-            invoiceStatusId = bundle.getInt("invoiceId", 0)
-            userViewModel.getPagingInvoices(statusId = invoiceStatusId ?: 0)
-        }
+       arguments?.let {
+           invoiceStatusId = it.getInt("invoiceId", 0)
+           userViewModel.getPagingInvoices(statusId = invoiceStatusId ?: 0)
+       }
     }
+
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        mActivity.btnNav?.visibility = View.GONE
         mActivity.isShowLoading(true)
-
         setupToolbar()
         initAdapter()
+    }
+
+    override fun onResume() {
+        super.onResume()
+        mActivity.btnNav?.visibility = View.GONE
+        invoiceTitle = when (invoiceStatusId) {
+            0 -> getString(R.string.all_invoices)
+            1 -> getString(R.string.has_received)
+            2 -> getString(R.string.shipping)
+            3 -> getString(R.string.shipped)
+            4 -> getString(R.string.canceled)
+            else -> return
+        }
+        setupToolbar()
     }
 
     private fun initAdapter() {
@@ -67,9 +86,9 @@ class InvoicesBookFragment : BaseFragment<FragmentInvoicesBookBinding>() {
 
     override fun bindViewModel() {
         userViewModel.invoicesLiveData.observe(this, Observer {
+            viewBinding.swlRefresh.isRefreshing = false
+            mActivity.isShowLoading(false)
             if (it != null && it.size != 0) {
-                mActivity.isShowLoading(false)
-                viewBinding.swlRefresh.isRefreshing = false
                 viewBinding.tvEmpty.gone()
                 adapter.submitList(it)
             } else viewBinding.tvEmpty.visible()

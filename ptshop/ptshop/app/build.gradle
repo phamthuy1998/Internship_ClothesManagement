@@ -3,6 +3,7 @@ apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-kapt'
 apply plugin: 'kotlin-android-extensions'
 apply plugin: 'ly.img.android.pesdk'
+apply plugin: 'com.google.gms.google-services'
 
 
 buildscript {
@@ -173,6 +174,24 @@ dependencies {
     implementation 'com.github.chrisbanes.photoview:library:1.2.4'
     implementation 'com.sendbird.sdk:sendbird-android-sdk:3.0.145'
     implementation 'com.facebook.shimmer:shimmer:0.5.0'
+
+    implementation platform('com.google.firebase:firebase-bom:26.0.0')
+    implementation 'com.google.firebase:firebase-analytics'
+
+    /*-----Crashlytics-----*/
+    // Recommended: Add the Firebase SDK for Google Analytics.
+    implementation 'com.google.firebase:firebase-analytics-ktx:18.0.0'
+
+    // Add the SDKs for any other Firebase products you want to use in your app
+    // For example, to use Firebase Authentication and Cloud Firestore
+    implementation 'com.google.firebase:firebase-auth:20.0.0'
+    implementation 'com.google.firebase:firebase-firestore:22.0.0'
+    implementation 'com.google.firebase:firebase-core:18.0.0'
+    // Getting a "Could not find" error? Make sure that you've added
+    // Google's Maven repository to your root-level build.gradle file
+    implementation 'com.google.firebase:firebase-database:19.5.1'
+    implementation 'com.google.firebase:firebase-messaging:21.0.0'
+    implementation 'com.google.firebase:firebase-storage-ktx:19.2.0'
 
 }
 apply plugin: 'com.google.gms.google-services'

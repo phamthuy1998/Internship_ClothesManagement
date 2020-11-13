@@ -14,15 +14,22 @@ namespace ClothesManamentDataAccess
     
     public partial class InvoiceItem
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public InvoiceItem()
+        {
+            this.Ratings = new HashSet<Rating>();
+        }
+    
         public int orderId { get; set; }
         public int productId { get; set; }
-        public Nullable<double> unitPrice { get; set; }
-        public Nullable<int> quantity { get; set; }
         public int colorId { get; set; }
         public int sizeId { get; set; }
+        public Nullable<double> unitPrice { get; set; }
+        public Nullable<int> quantity { get; set; }
     
         public virtual Invoice Invoice { get; set; }
-        public virtual Product Product { get; set; }
         public virtual ProductSizeColor ProductSizeColor { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Rating> Ratings { get; set; }
     }
 }

@@ -18,13 +18,10 @@ namespace ClothesManamentDataAccess
         public Product()
         {
             this.Images = new HashSet<Image>();
-            this.ImportCouponDetails = new HashSet<ImportCouponDetail>();
-            this.InvoiceItems = new HashSet<InvoiceItem>();
+            this.Questions = new HashSet<Question>();
             this.ProductSizeColors = new HashSet<ProductSizeColor>();
             this.Accounts = new HashSet<Account>();
             this.Promotions = new HashSet<Promotion>();
-            this.Ratings = new HashSet<Rating>();
-            this.Questions = new HashSet<Question>();
         }
     
         public int id { get; set; }
@@ -44,9 +41,7 @@ namespace ClothesManamentDataAccess
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Image> Images { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<ImportCouponDetail> ImportCouponDetails { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<InvoiceItem> InvoiceItems { get; set; }
+        public virtual ICollection<Question> Questions { get; set; }
         public virtual Provider Provider { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ProductSizeColor> ProductSizeColors { get; set; }
@@ -54,9 +49,5 @@ namespace ClothesManamentDataAccess
         public virtual ICollection<Account> Accounts { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Promotion> Promotions { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Rating> Ratings { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Question> Questions { get; set; }
     }
 }

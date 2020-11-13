@@ -11,3 +11,7 @@ fun Long.convertMillieToHMmSs(): String{
         String.format("%02d:%02d", minute, second)
     }
 }
+
+fun Double.round(decimals: Int = 2): Double = "%.${decimals}f".format(this).toDouble()
+
+fun Float.round(decimals: Int = 2): Float = "%.${decimals}f".format(this).toFloat()

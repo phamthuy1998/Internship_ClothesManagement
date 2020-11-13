@@ -22,8 +22,8 @@ namespace ClothesManamentDataAccess
         public string street { get; set; }
         public string name { get; set; }
         public string phone { get; set; }
-        public Nullable<int> active { get; set; }
         public Nullable<int> isDefault { get; set; }
+        public Nullable<int> active { get; set; }
     
         public virtual Account Account { get; set; }
     }

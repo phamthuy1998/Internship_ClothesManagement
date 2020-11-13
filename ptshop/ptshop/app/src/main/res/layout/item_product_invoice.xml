@@ -79,11 +79,11 @@
 
         <View
             android:id="@+id/vColor"
+            setColorProduct="@{item.colorHex}"
             android:layout_width="@dimen/layout_margin_12dp"
             android:layout_height="@dimen/layout_margin_12dp"
             android:layout_marginStart="@dimen/layout_margin_12dp"
             android:background="@drawable/bg_circle"
-            setColorProduct="@{item.colorHex}"
             app:layout_constraintBottom_toBottomOf="@id/tvTitleColor"
             app:layout_constraintStart_toEndOf="@id/bOption"
             app:layout_constraintTop_toTopOf="@id/tvTitleColor" />
@@ -154,6 +154,23 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@drawable/ic_round_button" />
+
+        <TextView
+            android:id="@+id/tvWriteReview"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/layout_margin_10dp"
+            android:layout_marginBottom="@dimen/layout_margin_10dp"
+            android:drawablePadding="@dimen/layout_margin_10dp"
+            android:gravity="center_vertical"
+            android:padding="@dimen/layout_margin_10dp"
+            android:text="@string/write_reviews"
+            android:textColor="@color/blue"
+            app:drawableStartCompat="@drawable/ic_five_stars"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvSize" />
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

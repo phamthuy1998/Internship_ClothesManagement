@@ -14,3 +14,8 @@ data class RatingAvg(
     var rating2Percent: Int? = 0,
     var rating1Percent: Int? = 0
 )
+
+data class RatingProduct(
+    var rating: Double? = null,
+    var ratingCount: Double? = null
+)

@@ -35,19 +35,19 @@ namespace ClothesManamentDataAccess
         public virtual DbSet<Employee> Employees { get; set; }
         public virtual DbSet<Image> Images { get; set; }
         public virtual DbSet<ImportCoupon> ImportCoupons { get; set; }
-        public virtual DbSet<ImportCouponDetail> ImportCouponDetails { get; set; }
         public virtual DbSet<Invoice> Invoices { get; set; }
         public virtual DbSet<InvoiceItem> InvoiceItems { get; set; }
+        public virtual DbSet<InvoiceStatu> InvoiceStatus { get; set; }
         public virtual DbSet<Product> Products { get; set; }
         public virtual DbSet<ProductSizeColor> ProductSizeColors { get; set; }
         public virtual DbSet<Promotion> Promotions { get; set; }
         public virtual DbSet<Provider> Providers { get; set; }
+        public virtual DbSet<Question> Questions { get; set; }
+        public virtual DbSet<Rating> Ratings { get; set; }
+        public virtual DbSet<Role> Roles { get; set; }
         public virtual DbSet<Size> Sizes { get; set; }
         public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
-        public virtual DbSet<Role> Roles { get; set; }
-        public virtual DbSet<InvoiceStatu> InvoiceStatus { get; set; }
-        public virtual DbSet<Rating> Ratings { get; set; }
-        public virtual DbSet<Question> Questions { get; set; }
+        public virtual DbSet<ImportCouponDetail> ImportCouponDetails { get; set; }
     
         public virtual ObjectResult<Nullable<int>> ChangePassword(Nullable<int> userId, string oldPass, string newPass)
         {
@@ -656,13 +656,13 @@ namespace ClothesManamentDataAccess
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_GetInvoiceDetail_Result1>("SP_GetInvoiceDetail", inovoiceIdParameter);
         }
     
-        public virtual ObjectResult<SP_GetProductInvoice_Result1> SP_GetProductInvoice(Nullable<int> inovoiceId)
+        public virtual ObjectResult<SP_GetProductInvoice_Result2> SP_GetProductInvoice(Nullable<int> inovoiceId)
         {
             var inovoiceIdParameter = inovoiceId.HasValue ?
                 new ObjectParameter("inovoiceId", inovoiceId) :
                 new ObjectParameter("inovoiceId", typeof(int));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_GetProductInvoice_Result1>("SP_GetProductInvoice", inovoiceIdParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_GetProductInvoice_Result2>("SP_GetProductInvoice", inovoiceIdParameter);
         }
     
         public virtual ObjectResult<Nullable<int>> SP_CheckInvoiceExist(Nullable<int> inovoiceId)
@@ -997,7 +997,7 @@ namespace ClothesManamentDataAccess
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("SP_SearchFilterCounter", keySearchParameter);
         }
     
-        public virtual ObjectResult<SP_GetRatings_Result5> SP_GetRatings(Nullable<int> currentPage, Nullable<int> pageSize, Nullable<int> productId)
+        public virtual ObjectResult<SP_GetRatings_Result6> SP_GetRatings(Nullable<int> currentPage, Nullable<int> pageSize, Nullable<int> productId)
         {
             var currentPageParameter = currentPage.HasValue ?
                 new ObjectParameter("currentPage", currentPage) :
@@ -1011,7 +1011,7 @@ namespace ClothesManamentDataAccess
                 new ObjectParameter("productId", productId) :
                 new ObjectParameter("productId", typeof(int));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_GetRatings_Result5>("SP_GetRatings", currentPageParameter, pageSizeParameter, productIdParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_GetRatings_Result6>("SP_GetRatings", currentPageParameter, pageSizeParameter, productIdParameter);
         }
     
         public virtual ObjectResult<Nullable<int>> SP_GetRatingsCount(Nullable<int> productId)
@@ -1032,7 +1032,7 @@ namespace ClothesManamentDataAccess
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_GetSubRating_Result2>("SP_GetSubRating", ratingIdParameter);
         }
     
-        public virtual int SP_AddRating(Nullable<int> accountId, Nullable<int> rating, string comment, Nullable<int> productID, string imageUrl1, string imageUrl2, string imageUrl3, string videoUrl, Nullable<int> parentId)
+        public virtual int SP_AddRating(Nullable<int> accountId, Nullable<int> rating, string comment, Nullable<int> productID, Nullable<int> orderId, Nullable<int> colorId, Nullable<int> sizeId, string imageUrl1, string imageUrl2, string imageUrl3, string videoUrl, Nullable<int> parentId)
         {
             var accountIdParameter = accountId.HasValue ?
                 new ObjectParameter("accountId", accountId) :
@@ -1049,6 +1049,18 @@ namespace ClothesManamentDataAccess
             var productIDParameter = productID.HasValue ?
                 new ObjectParameter("productID", productID) :
                 new ObjectParameter("productID", typeof(int));
+    
+            var orderIdParameter = orderId.HasValue ?
+                new ObjectParameter("orderId", orderId) :
+                new ObjectParameter("orderId", typeof(int));
+    
+            var colorIdParameter = colorId.HasValue ?
+                new ObjectParameter("colorId", colorId) :
+                new ObjectParameter("colorId", typeof(int));
+    
+            var sizeIdParameter = sizeId.HasValue ?
+                new ObjectParameter("sizeId", sizeId) :
+                new ObjectParameter("sizeId", typeof(int));
     
             var imageUrl1Parameter = imageUrl1 != null ?
                 new ObjectParameter("imageUrl1", imageUrl1) :
@@ -1070,7 +1082,7 @@ namespace ClothesManamentDataAccess
                 new ObjectParameter("parentId", parentId) :
                 new ObjectParameter("parentId", typeof(int));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("SP_AddRating", accountIdParameter, ratingParameter, commentParameter, productIDParameter, imageUrl1Parameter, imageUrl2Parameter, imageUrl3Parameter, videoUrlParameter, parentIdParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("SP_AddRating", accountIdParameter, ratingParameter, commentParameter, productIDParameter, orderIdParameter, colorIdParameter, sizeIdParameter, imageUrl1Parameter, imageUrl2Parameter, imageUrl3Parameter, videoUrlParameter, parentIdParameter);
         }
     
         public virtual int SP_UpdateRating(Nullable<int> ratingId, Nullable<int> rating, string comment, string imageUrl1, string imageUrl2, string imageUrl3, string videoUrl, Nullable<int> parentId)
@@ -1208,6 +1220,40 @@ namespace ClothesManamentDataAccess
                 new ObjectParameter("productId", typeof(int));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<double>>("SP_GetRatingProduct", productIdParameter);
+        }
+    
+        public virtual ObjectResult<Nullable<int>> SP_CheckRating(Nullable<int> accId, Nullable<int> productID, Nullable<int> colorId, Nullable<int> sizeId, Nullable<int> orderId)
+        {
+            var accIdParameter = accId.HasValue ?
+                new ObjectParameter("accId", accId) :
+                new ObjectParameter("accId", typeof(int));
+    
+            var productIDParameter = productID.HasValue ?
+                new ObjectParameter("productID", productID) :
+                new ObjectParameter("productID", typeof(int));
+    
+            var colorIdParameter = colorId.HasValue ?
+                new ObjectParameter("colorId", colorId) :
+                new ObjectParameter("colorId", typeof(int));
+    
+            var sizeIdParameter = sizeId.HasValue ?
+                new ObjectParameter("sizeId", sizeId) :
+                new ObjectParameter("sizeId", typeof(int));
+    
+            var orderIdParameter = orderId.HasValue ?
+                new ObjectParameter("orderId", orderId) :
+                new ObjectParameter("orderId", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("SP_CheckRating", accIdParameter, productIDParameter, colorIdParameter, sizeIdParameter, orderIdParameter);
+        }
+    
+        public virtual ObjectResult<SP_GetRatingDetail_Result> SP_GetRatingDetail(Nullable<int> ratingId)
+        {
+            var ratingIdParameter = ratingId.HasValue ?
+                new ObjectParameter("ratingId", ratingId) :
+                new ObjectParameter("ratingId", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_GetRatingDetail_Result>("SP_GetRatingDetail", ratingIdParameter);
         }
     }
 }
