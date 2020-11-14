@@ -63,3 +63,4 @@
 -keep class androidx.lifecycle.** { *; }
 -dontwarn androidx.lifecycle.*
 -keepnames class android.arch.lifecycle.ViewModel
+
