@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tool="http://schemas.android.com/tools">
+    <data>
+        <import type="android.view.View"/>
+
+        <variable
+            name="product"
+            type="com.ptithcm.core.model.ProductClothes" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/wishListContainer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:paddingBottom="@dimen/layout_margin_24dp">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/ivWishList"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            app:imageUrl="@{product.thumnail}"
+            app:placeHolder="@{@drawable/ic_place_holder}"
+            android:adjustViewBounds="true"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintDimensionRatio="0.9"
+            app:layout_constraintVertical_bias="0" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvTitleWishList"
+            style="@style/normal_text.bold"
+            android:text="@{product.title}"
+            android:textAlignment="center"
+            android:layout_marginTop="@dimen/layout_margin_8dp"
+            android:textAllCaps="true"
+            app:layout_constraintTop_toBottomOf="@id/ivWishList"
+            app:layout_constraintStart_toStartOf="@id/ivWishList"
+            app:layout_constraintEnd_toEndOf="@id/ivWishList"
+            tool:text="BIBI CHEMNITZ"/>
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvDescWishList"
+            style="@style/normal_text.grey"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:textAlignment="center"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:visibility="gone"
+            app:layout_constraintTop_toBottomOf="@id/tvTitleWishList"
+            app:layout_constraintStart_toStartOf="@id/ivWishList"
+            app:layout_constraintEnd_toEndOf="@id/ivWishList"
+            tool:text="Hiber Jogger - Orange" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvPrice"
+            style="@style/normal_text.bold"
+            price="@{product.price}"
+            setVisible="@{product.promotion == 0.0}"
+            android:layout_marginTop="@dimen/layout_margin_8dp"
+            android:textSize="@dimen/text_size_13sp"
+            app:layout_constraintTop_toBottomOf="@+id/tvDescWishList"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            tool:text="$72.20" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvDiscountPrice"
+            style="@style/normal_text.SemiBold"
+            price="@{product.price}"
+            promo="@{product.promotion}"
+            promoType="@{product.typePromotion}"
+            android:textColor="@color/colorTextDiscount"
+            android:textSize="@dimen/text_size_13sp"
+            setVisible="@{product.promotion != 0.0}"
+            android:layout_marginTop="@dimen/layout_margin_8dp"
+            app:layout_constraintStart_toStartOf="@id/tvPrice"
+            app:layout_constraintEnd_toStartOf="@id/tvOriginPrice"
+            app:layout_constraintTop_toBottomOf="@id/tvPrice"
+            tool:text="$39.19" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvOriginPrice"
+            style="@style/normal_text.SemiBold"
+            price="@{product.price}"
+            setPaintFlagsStrike="@{true}"
+            setVisible="@{product.promotion != 0.0}"
+            android:layout_marginStart="@dimen/layout_margin_8dp"
+            android:textSize="@dimen/text_size_13sp"
+            app:layout_constraintTop_toTopOf="@id/tvDiscountPrice"
+            app:layout_constraintStart_toEndOf="@id/tvDiscountPrice"
+            app:layout_constraintEnd_toEndOf="@id/tvPrice"
+            tool:text="$70.54" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/ivClose"
+            android:layout_width="@dimen/size_24dp"
+            android:layout_height="@dimen/size_24dp"
+            android:layout_marginTop="@dimen/layout_margin_4dp"
+            android:layout_marginEnd="@dimen/layout_margin_4dp"
+            app:srcCompat="@drawable/ic_round_button"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

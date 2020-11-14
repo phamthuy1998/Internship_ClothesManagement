@@ -1,0 +1,201 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="item"
+            type="com.ptithcm.core.model.ProductClothesDetail" />
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="@dimen/layout_margin_8dp">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/ivProduct"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginBottom="@dimen/layout_margin_16dp"
+            app:imageUrl="@{item.thumnail}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintDimensionRatio="0.6"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintWidth_percent="0.3"
+            app:placeHolder="@{@drawable/ic_place_holder}" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/ivClose"
+            android:layout_width="@dimen/size_24dp"
+            android:layout_height="@dimen/size_24dp"
+            android:layout_marginTop="@dimen/layout_margin_4dp"
+            android:layout_marginEnd="@dimen/layout_margin_4dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/ic_round_button" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvPrice"
+            style="@style/normal_text.bold"
+            price="@{item.price}"
+            setVisible="@{item.valuePromotion == 0.0}"
+            android:layout_marginStart="@dimen/layout_margin_8dp"
+            android:textSize="@dimen/text_size_18sp"
+            app:layout_constraintBottom_toBottomOf="@id/ivClose"
+            app:layout_constraintStart_toEndOf="@id/ivProduct"
+            app:layout_constraintTop_toTopOf="@id/ivClose"
+            tools:text="27.84" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvDiscountPrice"
+            style="@style/normal_text.bold"
+            price="@{item.price}"
+            promo="@{item.valuePromotion}"
+            promoType="@{item.typePromotion}"
+            setVisible="@{item.valuePromotion != 0.0}"
+            android:layout_marginStart="@dimen/layout_margin_8dp"
+            android:textColor="@color/colorTextDiscount"
+            android:textSize="@dimen/text_size_18sp"
+            app:layout_constraintBottom_toBottomOf="@id/ivClose"
+            app:layout_constraintStart_toEndOf="@id/ivProduct"
+            app:layout_constraintTop_toTopOf="@id/ivClose"
+            tools:text="$39.19" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvOriginPrice"
+            style="@style/normal_text"
+            price="@{item.price}"
+            setPaintFlagsStrike="@{true}"
+            setVisible="@{item.valuePromotion != 0.0}"
+            android:layout_marginStart="@dimen/layout_margin_8dp"
+            android:textSize="@dimen/text_size_18sp"
+            app:layout_constraintStart_toEndOf="@id/tvDiscountPrice"
+            app:layout_constraintTop_toTopOf="@id/tvDiscountPrice"
+            tools:text="$70.54" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvVendor"
+            style="@style/normal_text.SemiBold"
+            android:layout_width="@dimen/no_padding"
+            android:layout_marginStart="@dimen/layout_margin_8dp"
+            android:layout_marginTop="@dimen/layout_margin_8dp"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:text="@{item.title.toUpperCase()}"
+            android:textAlignment="viewStart"
+            android:textAllCaps="true"
+            app:layout_constraintEnd_toEndOf="@id/ivClose"
+            app:layout_constraintStart_toEndOf="@id/ivProduct"
+            app:layout_constraintTop_toBottomOf="@id/ivClose"
+            tools:text="TOPS &amp; SHIRTS MEN" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvTittle"
+            style="@style/normal_text.grey"
+            android:text="@{item.provider.brandName}"
+            app:layout_constraintStart_toStartOf="@id/tvVendor"
+            app:layout_constraintTop_toBottomOf="@id/tvVendor"
+            tools:text="snapprodtest02" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="@dimen/no_padding"
+            android:id="@+id/clOption"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/layout_margin_16dp"
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toEndOf="@id/ivClose"
+            app:layout_constraintStart_toStartOf="@id/tvTittle"
+            app:layout_constraintTop_toBottomOf="@id/tvTittle">
+
+            <androidx.appcompat.widget.AppCompatSpinner
+                android:id="@+id/btnQuantity"
+                android:layout_width="@dimen/no_padding"
+                android:layout_height="wrap_content"
+                android:background="@drawable/background_spinner"
+                android:overlapAnchor="false"
+                android:padding="@dimen/no_padding"
+                android:spinnerMode="dropdown"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintWidth_percent="0.48" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvQuantity"
+                style="@style/normal_text"
+                android:layout_width="@dimen/no_padding"
+                android:layout_height="@dimen/no_padding"
+                android:background="@drawable/background_spinner"
+                android:clickable="true"
+                android:focusable="true"
+                android:gravity="center"
+                app:layout_constraintBottom_toBottomOf="@id/btnQuantity"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintWidth_percent="0.48"
+                tools:text="QTY 1" />
+
+            <androidx.appcompat.widget.AppCompatSpinner
+                android:id="@+id/btnSize"
+                android:layout_width="@dimen/no_padding"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="6dp"
+                android:background="@drawable/background_spinner"
+                android:overlapAnchor="false"
+                android:padding="@dimen/no_padding"
+                android:spinnerMode="dropdown"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@id/btnQuantity"
+                app:layout_constraintWidth_percent="0.48" />
+
+            <androidx.appcompat.widget.AppCompatSpinner
+                android:id="@+id/btnColor"
+                android:layout_width="@dimen/no_padding"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/layout_margin_8dp"
+                android:background="@drawable/background_spinner"
+                android:overlapAnchor="false"
+                android:padding="@dimen/no_padding"
+                android:spinnerMode="dropdown"
+                app:layout_constraintStart_toStartOf="@id/btnQuantity"
+                app:layout_constraintTop_toBottomOf="@id/btnQuantity"
+                app:layout_constraintWidth_percent="0.48" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvErrorMessage"
+            style="@style/normal_text"
+            hasChangeQuantity="@{item.hasChangedQuantity}"
+            hasChangedPrice="@{item.hasChangedPrice}"
+            setVisible="@{item.hasChanged}"
+            android:layout_width="0dp"
+            android:layout_marginTop="@dimen/layout_margin_16dp"
+            android:paddingBottom="@dimen/layout_margin_16dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/layout_margin_16dp"
+            android:layout_marginEnd="@dimen/layout_margin_4dp"
+            android:layout_marginBottom="@dimen/layout_margin_16dp"
+            android:textAlignment="textEnd"
+            android:textSize="@dimen/text_size_10sp"
+            app:layout_constraintTop_toBottomOf="@id/clOption"
+            android:textColor="@color/red"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/ivProduct"
+            tools:text="@string/error_price_quantity_has_been_changed" />
+
+        <View
+            style="@style/divider"
+            android:layout_height="0.6dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

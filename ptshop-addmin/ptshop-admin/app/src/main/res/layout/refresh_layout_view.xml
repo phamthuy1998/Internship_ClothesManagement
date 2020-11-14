@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+        <import type="android.view.View" />
+        <variable
+            name="text"
+            type="String" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center">
+
+        <pl.droidsonroids.gif.GifImageView
+            android:layout_width="@dimen/image_50dp"
+            android:layout_height="@dimen/image_50dp"
+            android:src="@drawable/loading_view_button" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            style="@style/normal_text"
+            android:text="@{text}"
+            android:textSize="@dimen/text_size_14sp"
+            android:visibility="@{text == `` ? View.GONE : View.VISIBLE}"/>
+
+    </LinearLayout>
+</layout>

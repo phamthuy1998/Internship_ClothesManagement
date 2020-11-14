@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="fragment"
+            type="com.ptithcm.ptshop.view.card.CheckoutFragment" />
+
+        <variable
+            name="discount"
+            type="com.ptithcm.core.model.Discount" />
+
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/colorBackground"
+        android:orientation="vertical">
+
+        <com.dinuscxj.refresh.RecyclerRefreshLayout
+            android:id="@+id/swipeRfCheckout"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1">
+
+            <androidx.core.widget.NestedScrollView
+                android:id="@+id/nestedScrollView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:fillViewport="true">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/clContainer"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:paddingTop="@dimen/layout_margin_16dp"
+                    android:paddingBottom="@dimen/size_100dp"
+                    android:clipToPadding="false"
+                    android:visibility="visible"
+                    tools:visibility="visible">
+
+                    <include
+                        android:id="@+id/shipping_address"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        layout="@layout/item_shipping_address"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/rvProductCheckout"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/layout_margin_16dp"
+                        android:nestedScrollingEnabled="false"
+                        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                        app:layout_constraintTop_toBottomOf="@id/shipping_address"
+                        tools:itemCount="1"
+                        tools:listitem="@layout/item_product_checkout" />
+
+                    <include
+                        android:id="@+id/includePayment"
+                        layout="@layout/item_payment_checkout"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/layout_margin_16dp"
+                        app:layout_constraintTop_toBottomOf="@id/rvProductCheckout" />
+
+                    <include
+                        android:id="@+id/includeDiscount"
+                        layout="@layout/item_discount_code"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/layout_margin_16dp"
+                        android:visibility="gone"
+                        app:layout_constraintTop_toBottomOf="@id/includePayment" />
+
+                    <include
+                        android:id="@+id/includeHasDiscount"
+                        layout="@layout/item_have_discount_code"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:visibility="gone"
+                        app:layout_constraintTop_toTopOf="@id/includeDiscount"
+                        app:layout_constraintBottom_toBottomOf="@id/includeDiscount" />
+
+                    <include
+                        android:id="@+id/includeNote"
+                        layout="@layout/item_checkout_note"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/layout_margin_16dp"
+                        app:layout_constraintTop_toBottomOf="@id/includeDiscount" />
+
+                    <include
+                        android:id="@+id/includeTaxCheckout"
+                        layout="@layout/layout_tax_checkout"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        app:layout_constraintTop_toBottomOf="@id/includeNote" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </androidx.core.widget.NestedScrollView>
+
+        </com.dinuscxj.refresh.RecyclerRefreshLayout>
+
+        <com.ptithcm.ptshop.widget.LoadingButton
+            android:id="@+id/btnCheckOut"
+            style="@style/black_btn"
+            android:visibility="gone"
+            android:onClick="@{fragment::onClick}"
+            android:layout_width="match_parent"
+            android:layout_gravity="bottom"
+            android:layout_marginTop="@dimen/layout_margin_32dp"
+            android:layout_marginBottom="@dimen/layout_margin_16dp"
+            android:layout_marginStart="@dimen/layout_margin_16dp"
+            android:layout_marginEnd="@dimen/layout_margin_16dp"
+            app:text="@string/place_order"
+            tools:visibility="visible"
+            app:isShowTextBehind="true" />
+
+    </LinearLayout>
+</layout>

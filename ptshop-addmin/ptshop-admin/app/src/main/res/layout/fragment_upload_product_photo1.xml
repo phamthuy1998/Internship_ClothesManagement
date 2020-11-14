@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="isCaptured"
+            type="Boolean" />
+
+        <variable
+            name="isFront"
+            type="Boolean" />
+
+        <variable
+            name="fragment"
+            type="com.ptithcm.ptshop.view.photo.UploadPhotoFragment1" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/ctlContainer"
+        tools:background="@color/black"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextureView
+            android:id="@+id/textureView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+        <androidx.appcompat.widget.AppCompatImageButton
+            android:id="@+id/btnRotateCamera"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/layout_margin_6dp"
+            android:onClick="@{(v) -> fragment.onClick(v)}"
+            android:background="@color/trans"
+            android:src="@drawable/ic_camera_switch"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.appcompat.widget.AppCompatImageButton
+            android:id="@+id/btnToggleSplash"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@color/trans"
+            android:layout_marginEnd="@dimen/layout_margin_2dp"
+            android:onClick="@{(v) -> fragment.onClick(v)}"
+            android:visibility="@{isCaptured == true || isFront == true ? View.GONE : View.VISIBLE }"
+            android:src="@drawable/ic_flash_auto"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvE"
+            style="@style/Size17.White"
+            android:text="@string/hc_e"
+            app:layout_constraintTop_toTopOf="@+id/btnRotateCamera"
+            app:layout_constraintBottom_toBottomOf="@id/btnRotateCamera"
+            app:layout_constraintStart_toEndOf="@id/btnRotateCamera"
+            android:layout_width="6dp"
+            android:layout_height="wrap_content"/>
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btnTakePhoto"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_marginBottom="@dimen/layout_margin_32dp"
+            android:onClick="@{(v) -> fragment.onClick(v)}"
+            android:background="@drawable/btn_take_photo"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/ivResult"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginStart="@dimen/layout_margin_6dp"
+            android:layout_marginEnd="@dimen/layout_margin_6dp"
+            android:layout_marginBottom="@dimen/layout_margin_4dp"
+            android:scaleType="centerCrop"
+            android:visibility="gone"
+            app:layout_constraintBottom_toTopOf="@id/btnRetake"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            style="@style/normal_text"
+            android:id="@+id/btnRetake"
+            android:layout_width="90dp"
+            android:layout_height="40dp"
+            android:background="@color/gray"
+            android:fontFamily="@font/havelock_regular"
+            android:layout_marginEnd="@dimen/layout_margin_4dp"
+            android:text="@string/retake"
+            android:onClick="@{(v) -> fragment.onClick(v)}"
+            android:visibility="gone"
+            android:layout_marginBottom="@dimen/layout_margin_4dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/glCenter" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            style="@style/Size15.White"
+            android:background="@color/black"
+            android:id="@+id/btnUpload"
+            android:layout_width="90dp"
+            android:layout_marginBottom="@dimen/layout_margin_4dp"
+            android:layout_height="40dp"
+            android:fontFamily="@font/havelock_regular"
+            android:layout_marginStart="@dimen/layout_margin_4dp"
+            android:text="@string/upload"
+            android:onClick="@{(v) -> fragment.onClick(v)}"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@id/glCenter" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/glCenter"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.5" />
+
+        <androidx.constraintlayout.widget.Group
+            android:id="@+id/groupNoCaptured"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="@{isCaptured ? View.GONE : View.VISIBLE}"
+            app:constraint_referenced_ids="textureView,btnTakePhoto,btnRotateCamera,tvE" />
+
+        <androidx.constraintlayout.widget.Group
+            android:id="@+id/groupCaptured"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="@{isCaptured ? View.VISIBLE : View.GONE}"
+            app:constraint_referenced_ids="ivResult,btnRetake,btnUpload" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="brand"
+            type="com.ptithcm.core.model.Designer" />
+
+        <variable
+            name="isChoose"
+            type="Boolean" />
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvName"
+            style="@style/normal_text"
+            android:layout_width="0dp"
+            android:padding="@dimen/layout_margin_16dp"
+            android:text="@{brand.name}"
+            android:layout_marginEnd="@dimen/layout_margin_32dp"
+            android:textAlignment="textStart"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:textAllCaps="true" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/ivApply"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/ic_check_black_24dp"
+            android:padding="@dimen/layout_margin_16dp"
+            android:visibility="@{isChoose == true ? View.VISIBLE : View.GONE}"
+            app:layout_constraintBottom_toBottomOf="@id/tvName"
+            app:layout_constraintEnd_toEndOf="@id/tvName"
+            app:layout_constraintTop_toTopOf="@id/tvName" />
+
+        <View
+            android:id="@+id/vLine"
+            style="@style/divider"
+            android:layout_height="0.6dp"
+            android:layout_marginStart="@dimen/layout_margin_16dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvName" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

@@ -1,0 +1,203 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="fragment"
+            type="com.ptithcm.ptshop.view.payment.CreditCardDetailFragment" />
+
+        <import type="android.text.TextUtils" />
+
+        <variable
+            name="isValidCardNumer"
+            type="Boolean" />
+
+        <variable
+            name="isValidForm"
+            type="Boolean" />
+
+        <variable
+            name="isValidName"
+            type="Boolean" />
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/background">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/container"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/white"
+                android:clickable="true"
+                android:focusableInTouchMode="true">
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/textView"
+                    style="@style/normal_text.bold"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/layout_margin_16dp"
+                    android:padding="@dimen/layout_margin_16dp"
+                    android:text="@string/your_credit_card_details"
+                    android:textAlignment="viewStart"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <com.stripe.android.view.CardNumberEditText
+                    android:id="@+id/et_card_number"
+                    style="@style/normal_text.EditText.Register"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="start"
+                    android:layout_marginTop="0dp"
+                    android:focusable="true"
+                    android:focusableInTouchMode="true"
+                    android:hint="@string/card_number"
+                    android:imeOptions="actionNext"
+                    android:inputType="number"
+                    android:maxLength="19"
+                    android:textCursorDrawable="@drawable/gray_cursor"
+                    android:visibility="visible"
+                    app:layout_constraintTop_toBottomOf="@id/textView"
+                    tools:ignore="UnusedAttribute"
+                    tools:importantForAccessibility="yes" />
+
+                <androidx.constraintlayout.widget.Guideline
+                    android:id="@+id/guideline1"
+                    android:layout_width="@dimen/layout_margin_1dp"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    app:layout_constraintGuide_percent="0.75" />
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/mCardIconImageView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/ic_visa"
+                    app:layout_constraintBottom_toBottomOf="@id/et_card_number"
+                    app:layout_constraintLeft_toLeftOf="@id/guideline1"
+                    app:layout_constraintRight_toRightOf="@id/guideline1"
+                    app:layout_constraintTop_toTopOf="@id/et_card_number" />
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/layout_margin_8dp"
+                    android:src="@drawable/ic_checked"
+                    android:visibility="@{isValidCardNumer ? View.VISIBLE : View.GONE}"
+                    app:layout_constraintBottom_toBottomOf="@id/et_card_number"
+                    app:layout_constraintEnd_toEndOf="@id/et_card_number"
+                    app:layout_constraintTop_toTopOf="@id/et_card_number" />
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/edt_Name"
+                    style="@style/normal_text.EditText.Register"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ellipsize="end"
+                    android:gravity="center_vertical"
+                    android:hint="@string/name_on_card"
+                    android:inputType="textCapCharacters"
+                    android:maxLines="1"
+                    android:paddingRight="@dimen/layout_margin_48dp"
+                    android:textCursorDrawable="@drawable/gray_cursor"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/et_card_number" />
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/layout_margin_8dp"
+                    android:src="@drawable/ic_checked"
+                    android:visibility="@{isValidName?View.VISIBLE:View.GONE}"
+                    app:layout_constraintBottom_toBottomOf="@id/edt_Name"
+                    app:layout_constraintEnd_toEndOf="@id/edt_Name"
+                    app:layout_constraintTop_toTopOf="@id/edt_Name" />
+
+                <androidx.constraintlayout.widget.Guideline
+                    android:id="@+id/guideline2"
+                    android:layout_width="@dimen/layout_margin_1dp"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    app:layout_constraintGuide_percent="0.5" />
+
+                <androidx.appcompat.widget.AppCompatSpinner
+                    android:id="@+id/spExpiryDate"
+                    style="@style/ButtonSelect"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/layout_margin_32dp"
+                    android:layout_marginTop="@dimen/layout_margin_16dp"
+                    android:layout_marginEnd="@dimen/layout_margin_16dp"
+                    android:background="@drawable/background_spinner"
+                    android:dropDownVerticalOffset="48dp"
+                    android:minHeight="@dimen/layout_margin_48dp"
+                    app:layout_constraintEnd_toStartOf="@id/guideline2"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/edt_Name" />
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/edt_CVV"
+                    style="@style/normal_text.EditText.Register"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/layout_margin_16dp"
+                    android:ellipsize="end"
+                    android:gravity="center_vertical"
+                    android:hint="@string/cvv"
+                    android:inputType="number"
+                    android:maxLength="3"
+                    android:maxLines="1"
+                    android:textCursorDrawable="@drawable/gray_cursor"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/guideline2"
+                    app:layout_constraintTop_toBottomOf="@id/edt_Name" />
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/imgCheckCVV"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/layout_margin_8dp"
+                    android:src="@drawable/ic_checked"
+                    app:layout_constraintBottom_toBottomOf="@id/edt_CVV"
+                    app:layout_constraintEnd_toEndOf="@id/edt_CVV"
+                    app:layout_constraintTop_toTopOf="@id/edt_CVV" />
+
+                <View
+                    android:id="@+id/divider1"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/layout_margin_1dp"
+                    android:layout_marginTop="@dimen/layout_margin_16dp"
+                    android:background="@color/gray"
+                    app:layout_constraintTop_toBottomOf="@id/spExpiryDate" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </ScrollView>
+
+        <com.ptithcm.ptshop.widget.LoadingButton
+            android:id="@+id/btnAddPayment"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/layout_margin_32dp"
+            android:alpha="@{isValidForm?1f:0.5f}"
+            android:enabled="@{isValidForm}"
+            android:onClick="@{(v) -> fragment.onClick(v)}"
+            app:isShowTextBehind="true"
+            android:layout_marginBottom="@dimen/layout_margin_16dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:text="@string/save_and_continue" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

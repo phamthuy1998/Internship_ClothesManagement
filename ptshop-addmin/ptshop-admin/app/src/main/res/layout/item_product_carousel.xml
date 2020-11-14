@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="product"
+            type="com.ptithcm.core.model.ProductClothes" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="@dimen/layout_margin_8dp">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/ivImage"
+            android:layout_width="@dimen/image_200dp"
+            android:layout_height="@dimen/image_250dp"
+            android:src="@drawable/img_banner"
+            app:imageUrl="@{product.thumnail}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:placeHolder="@{@drawable/ic_place_holder}" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/ivStar"
+            selected="@{product.isLike() == 1 ? true : false}"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/layout_margin_16dp"
+            android:padding="@dimen/layout_margin_16dp"
+            android:src="@drawable/bg_star_active"
+            app:layout_constraintEnd_toEndOf="@id/ivImage"
+            app:layout_constraintTop_toTopOf="@id/ivImage" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvName"
+            style="@style/normal_text.SemiBold"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/layout_margin_8dp"
+            android:text="@{product.title}"
+            android:textAllCaps="true"
+            android:textSize="@dimen/text_size_11sp"
+            app:layout_constraintTop_toBottomOf="@id/ivImage" />
+
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvPriceBase"
+            style="@style/normal_text.SemiBold"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/layout_margin_4dp"
+            android:textSize="@dimen/text_size_11sp"
+            price="@{product.price}"
+            setVisible="@{product.promotion == 0.0}"
+            app:layout_constraintTop_toBottomOf="@id/tvName" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvPrice"
+            style="@style/normal_text.SemiBold"
+            price="@{product.price}"
+            promo="@{product.promotion}"
+            promoType="@{product.typePromotion}"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/layout_margin_4dp"
+            android:textAlignment="viewEnd"
+            android:textColor="@color/colorTextDiscount"
+            android:textSize="@dimen/text_size_11sp"
+            setVisible="@{product.promotion != 0.0}"
+            app:layout_constraintEnd_toStartOf="@id/tvPriceCash"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvPriceBase" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvPriceCash"
+            style="@style/normal_text.SemiBold"
+            price="@{product.price}"
+            setPaintFlagsStrike="@{true}"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            setVisible="@{product.promotion != 0.0}"
+            android:padding="@dimen/layout_margin_4dp"
+            android:textAlignment="viewStart"
+            android:textSize="@dimen/text_size_11sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/tvPrice"
+            app:layout_constraintTop_toBottomOf="@id/tvPriceBase" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

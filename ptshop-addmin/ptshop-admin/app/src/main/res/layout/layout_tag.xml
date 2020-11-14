@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+    <data>
+        <import type="com.ptithcm.core.util.StringUtilKt"/>
+        <variable
+            name="item"
+            type="com.ptithcm.core.model.Tag" />
+    </data>
+    <TextView xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/tvTag"
+        style="@style/normal_text"
+        android:textColor="@color/white"
+        android:background="@color/gray_dark"
+        android:padding="2dp"
+        android:text="@{StringUtilKt.capitalize(item.name)}"
+        android:layout_marginBottom="@dimen/layout_margin_8dp"
+        tools:text="Beach wear New In!" />
+</layout>

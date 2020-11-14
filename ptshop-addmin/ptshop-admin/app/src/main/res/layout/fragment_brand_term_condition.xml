@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/term_condition"
+            style="@style/normal_text"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:textAlignment="viewStart"
+            android:textSize="@dimen/text_size_14sp"
+            android:padding="@dimen/layout_margin_16dp"/>
+
+    </androidx.core.widget.NestedScrollView>
+
+</layout>

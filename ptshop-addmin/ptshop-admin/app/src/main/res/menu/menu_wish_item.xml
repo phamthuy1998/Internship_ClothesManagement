@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/itemWished"
+        android:icon="@drawable/background_wish_menu"
+        android:title="@string/wished"
+        app:showAsAction="always"
+        />
+</menu>

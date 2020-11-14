@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="title"
+            type="String" />
+
+        <variable
+            name="option1"
+            type="String" />
+
+        <variable
+            name="option2"
+            type="String" />
+
+        <variable
+            name="delete"
+            type="String" />
+
+    </data>
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/trans"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:padding="@dimen/layout_margin_12dp">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_corner_10dp"
+            android:padding="0dp">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvTitle"
+                style="@style/SF_Size14.Gray"
+                android:layout_marginTop="@dimen/layout_margin_14dp"
+                android:text="@{title}"
+                android:textAllCaps="false"
+                android:visibility="@{title == null ? View.GONE : View.VISIBLE}"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="Title" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/tvOption1"
+                android:textAppearance="@style/SF.Size20"
+                android:background="@color/trans"
+                android:textColor="@color/blue"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/layout_margin_16dp"
+                android:padding="@dimen/layout_margin_14dp"
+                android:text="@{option1}"
+                android:textAlignment="center"
+                android:visibility="@{option1 == null  ? View.GONE : View.VISIBLE}"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tvTitle"
+                tools:text="Option 1" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/tvOption2"
+                android:textAppearance="@style/SF.Size20"
+                android:background="@color/trans"
+                android:textColor="@color/blue"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/layout_margin_14dp"
+                android:text="@{option2}"
+                android:textAlignment="center"
+                android:visibility="@{option2 == null ? View.GONE : View.VISIBLE}"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tvOption1"
+                tools:text="Option 2" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/tvDelete"
+                android:textAppearance="@style/SF.Size20"
+                android:background="@color/trans"
+                android:textColor="@color/red"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/layout_margin_14dp"
+                android:text="@{delete}"
+                android:textAlignment="center"
+                android:visibility="@{delete == null ? View.GONE : View.VISIBLE}"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tvOption2"
+                tools:text="Delete" />
+
+            <View
+                android:id="@+id/vLine1"
+                style="@style/divider"
+                android:visibility="@{(title == null || option1 == null)? View.GONE : View.VISIBLE}"
+                android:layout_width="0dp"
+                app:layout_constraintBottom_toTopOf="@id/tvOption1"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <View
+                android:id="@+id/vLine2"
+                style="@style/divider"
+                android:visibility="@{(option1 == null || option2 == null) ? View.GONE : View.VISIBLE}"
+                android:layout_width="0dp"
+                app:layout_constraintBottom_toTopOf="@id/tvOption2"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <View
+                android:id="@+id/vLine3"
+                style="@style/divider"
+                android:layout_width="0dp"
+                android:visibility="@{(option2 == null || delete == null) ? View.GONE : View.VISIBLE}"
+                app:layout_constraintBottom_toTopOf="@id/tvDelete"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/tvCancel"
+            android:textAppearance="@style/SF_SemiBold.Size20"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/layout_margin_12dp"
+            android:background="@drawable/bg_corner_10dp"
+            android:padding="@dimen/layout_margin_14dp"
+            android:text="@string/cancel"
+            android:textAlignment="center"
+            android:textColor="@color/blue"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvOption2" />
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+</layout>

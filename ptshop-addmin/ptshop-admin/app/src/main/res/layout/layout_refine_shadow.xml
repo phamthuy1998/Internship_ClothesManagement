@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+        <com.google.android.material.appbar.AppBarLayout
+            android:id="@+id/container"
+            android:layout_width="match_parent"
+            android:layout_height="?android:attr/actionBarSize"
+            android:background="@color/white">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                style="@style/normal_text"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:letterSpacing="0.1"
+                android:textColor="#404245"
+                android:drawableStart="@drawable/ic_filter"
+                android:drawablePadding="@dimen/layout_margin_8dp"
+                android:gravity="center"
+                android:text="@string/refine"
+                android:textAlignment="center" />
+
+        </com.google.android.material.appbar.AppBarLayout>
+
+</layout>

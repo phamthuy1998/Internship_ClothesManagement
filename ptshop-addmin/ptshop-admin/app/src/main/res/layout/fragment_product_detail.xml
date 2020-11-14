@@ -1,0 +1,310 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tool="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="item"
+            type="com.ptithcm.core.model.ProductClothesDetail" />
+
+        <variable
+            name="fragment"
+            type="com.ptithcm.ptshop.view.product.ProductDetailFragment" />
+
+        <variable
+            name="hasQuantity"
+            type="Boolean" />
+
+        <variable
+            name="isAvailable"
+            type="Boolean" />
+
+        <variable
+            name="btnColorVisible"
+            type="Boolean" />
+
+        <variable
+            name="btnSizeVisible"
+            type="Boolean" />
+
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:paddingStart="@dimen/layout_margin_32dp"
+                android:paddingTop="@dimen/layout_margin_32dp"
+                android:paddingEnd="@dimen/layout_margin_32dp">
+
+                <androidx.viewpager.widget.ViewPager
+                    android:id="@+id/vpImage"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    app:layout_constraintDimensionRatio=".9"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <com.google.android.material.tabs.TabLayout
+                    android:id="@+id/indicator"
+                    android:layout_width="wrap_content"
+                    android:layout_height="8dp"
+                    android:layout_marginStart="@dimen/layout_margin_16dp"
+                    android:layout_marginTop="@dimen/layout_margin_8dp"
+                    android:layout_marginEnd="@dimen/layout_margin_16dp"
+                    android:background="@android:color/transparent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/vpImage"
+                    app:tabBackground="@drawable/indicator_selector"
+                    app:tabGravity="center"
+                    app:tabIndicatorHeight="0dp"
+                    app:tabMaxWidth="15dp"
+                    app:tabPadding="0dp" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tvVendor"
+                    style="@style/normal_text.SemiBold"
+                    android:layout_width="0dp"
+                    android:layout_marginEnd="@dimen/layout_margin_16dp"
+                    android:text="@{item.title.toUpperCase()}"
+                    android:textAlignment="textStart"
+                    app:layout_constraintEnd_toStartOf="@id/tvPrice"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/indicator"
+                    tool:text="BALENCIAGA" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tvDesc"
+                    style="@style/normal_text.grey"
+                    android:layout_width="0dp"
+                    android:layout_marginTop="@dimen/layout_margin_8dp"
+                    android:layout_marginEnd="@dimen/layout_margin_16dp"
+                    android:text="@{item.provider.brandName}"
+                    app:layout_constraintEnd_toStartOf="@id/tvPrice"
+                    app:layout_constraintStart_toStartOf="@id/tvVendor"
+                    app:layout_constraintTop_toBottomOf="@id/tvVendor"
+                    tool:text="Street Jacket" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tvPrice"
+                    style="@style/normal_text.SemiBold"
+                    price="@{item.price}"
+                    promo="@{item.valuePromotion}"
+                    promoType="@{item.typePromotion}"
+                    setVisible="@{item.valuePromotion != 0.0}"
+                    android:textColor="@color/colorTextDiscount"
+                    android:textSize="@dimen/text_size_16sp"
+                    app:layout_constraintBaseline_toBaselineOf="@id/tvVendor"
+                    app:layout_constraintEnd_toEndOf="@id/vpImage"
+                    app:layout_constraintTop_toTopOf="@id/tvVendor"
+                    tool:text="$72.14" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tvOriginPrice"
+                    style="@style/normal_text"
+                    price="@{item.price}"
+                    setPaintFlagsStrike="@{true}"
+                    setVisible="@{item.valuePromotion != 0.0}"
+                    app:layout_constraintBaseline_toBaselineOf="@id/tvDesc"
+                    app:layout_constraintEnd_toEndOf="@id/tvPrice"
+                    app:layout_constraintTop_toBottomOf="@id/tvPrice"
+                    tool:text="$220.00" />
+
+                <RatingBar
+                    android:id="@+id/rbAverage"
+                    style="?android:attr/ratingBarStyleSmall"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:isIndicator="true"
+                    android:onClick="@{(v) -> fragment.onClick(v)}"
+                    app:layout_constraintBottom_toBottomOf="@id/tvSizeGuide"
+                    app:layout_constraintStart_toStartOf="@id/tvVendor"
+                    tool:rating="5" />
+
+                <TextView
+                    android:id="@+id/tvRatingCount"
+                    style="@style/TextAppearance.MaterialComponents.Caption"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:onClick="@{(v) -> fragment.onClick(v)}"
+                    android:paddingHorizontal="@dimen/layout_margin_10dp"
+                    android:textColor="@color/black_alpha"
+                    app:layout_constraintBottom_toBottomOf="@id/rbAverage"
+                    app:layout_constraintStart_toEndOf="@id/rbAverage"
+                    app:layout_constraintTop_toTopOf="@id/rbAverage"
+                    tool:text="5 nhận xét" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tvSizeGuide"
+                    style="@style/normal_text.grey"
+                    android:layout_marginTop="@dimen/layout_margin_16dp"
+                    android:onClick="@{fragment::onClick}"
+                    android:text="@string/size_guide"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tvDesc" />
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/lnGroupBtn"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/layout_margin_16dp"
+                    android:orientation="horizontal"
+                    app:layout_constraintTop_toBottomOf="@id/tvSizeGuide">
+
+                    <androidx.appcompat.widget.AppCompatSpinner
+                        android:id="@+id/btnColor"
+                        setVisible="@{btnColorVisible}"
+                        android:layout_width="@dimen/no_padding"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/background_spinner"
+                        android:overlapAnchor="false"
+                        android:spinnerMode="dropdown"
+                        app:layout_constraintEnd_toStartOf="@+id/btnSize"
+                        app:layout_constraintHorizontal_weight="2"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <androidx.appcompat.widget.AppCompatSpinner
+                        android:id="@+id/btnSize"
+                        setVisible="@{btnSizeVisible}"
+                        android:layout_width="@dimen/no_padding"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/layout_margin_8dp"
+                        android:background="@drawable/background_spinner"
+                        android:overlapAnchor="false"
+                        android:spinnerMode="dropdown"
+                        app:layout_constraintEnd_toStartOf="@+id/btnQuantity"
+                        app:layout_constraintHorizontal_weight="2"
+                        app:layout_constraintStart_toEndOf="@id/btnColor"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <androidx.appcompat.widget.AppCompatSpinner
+                        android:id="@+id/btnQuantity"
+                        android:layout_width="@dimen/no_padding"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/layout_margin_8dp"
+                        android:background="@drawable/background_spinner"
+                        android:overlapAnchor="false"
+                        android:spinnerMode="dropdown"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_weight="1.2"
+                        app:layout_constraintStart_toEndOf="@id/btnSize"
+                        app:layout_constraintTop_toTopOf="@+id/btnSize" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/tvQuantity"
+                        style="@style/normal_text.SemiBold"
+                        android:layout_width="@dimen/no_padding"
+                        android:layout_height="@dimen/no_padding"
+                        android:background="@drawable/background_spinner"
+                        android:gravity="center"
+                        app:layout_constraintBottom_toBottomOf="@id/btnQuantity"
+                        app:layout_constraintEnd_toEndOf="@id/btnQuantity"
+                        app:layout_constraintStart_toStartOf="@id/btnQuantity"
+                        app:layout_constraintTop_toTopOf="@id/btnQuantity"
+                        tool:text="x 1" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <LinearLayout
+                    android:id="@+id/lnScript"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/layout_margin_16dp"
+                    android:orientation="vertical"
+                    app:layout_constraintTop_toBottomOf="@id/lnGroupBtn">
+
+                    <androidx.appcompat.widget.AppCompatButton
+                        android:id="@+id/btnDesc"
+                        style="@style/TextNormal"
+                        android:onClick="@{(v) -> fragment.onClick(v)}"
+                        android:text="@string/description"
+                        android:textSize="@dimen/text_size_12sp" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/tvDescription"
+                        style="@style/normal_text"
+                        setTextHtml="@{item.detail}"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:autoLink="all"
+                        android:lineSpacingExtra="@dimen/size_8dp"
+                        android:onClick="@{fragment::onClick}"
+                        android:paddingBottom="@dimen/layout_margin_16dp"
+                        android:textAlignment="viewStart"
+                        android:visibility="gone" />
+
+                    <View
+                        style="@style/divider"
+                        android:layout_width="match_parent" />
+
+                    <androidx.appcompat.widget.AppCompatButton
+                        android:id="@+id/btnAboutBrand"
+                        style="@style/TextNormal"
+                        android:onClick="@{(v) -> fragment.onClick(v)}"
+                        android:text="@string/about_brand"
+                        android:textSize="@dimen/text_size_12sp" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/tvAboutBrand"
+                        style="@style/normal_text"
+                        android:layout_width="match_parent"
+                        android:lineSpacingExtra="@dimen/size_8dp"
+                        android:onClick="@{fragment::onClick}"
+                        android:paddingBottom="@dimen/layout_margin_16dp"
+                        android:text="@{item.provider.infomation}"
+                        android:textAlignment="viewStart"
+                        android:visibility="gone" />
+
+                    <androidx.appcompat.widget.AppCompatButton
+                        android:id="@+id/btnQuestions"
+                        style="@style/TextNormal"
+                        android:onClick="@{(v) -> fragment.onClick(v)}"
+                        android:text="@string/comment"
+                        android:textSize="@dimen/text_size_12sp" />
+
+                    <androidx.appcompat.widget.AppCompatButton
+                        android:id="@+id/btnRating"
+                        style="@style/TextNormal"
+                        android:onClick="@{(v) -> fragment.onClick(v)}"
+                        android:text="@string/rating"
+                        android:textSize="@dimen/text_size_12sp" />
+
+                </LinearLayout>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.core.widget.NestedScrollView>
+
+        <com.ptithcm.ptshop.widget.LoadingButton
+            android:id="@+id/btnAddToCard"
+            style="@style/black_btn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/layout_margin_32dp"
+            android:layout_marginTop="@dimen/layout_margin_32dp"
+            android:layout_marginEnd="@dimen/layout_margin_32dp"
+            android:layout_marginBottom="@dimen/layout_margin_32dp"
+            android:background="@drawable/button_selector"
+            android:onClick="@{fragment::onClick}"
+            app:isShowTextBehind="true"
+            app:text="@{hasQuantity ? @string/add_to_cart : isAvailable ? @string/out_of_stock : @string/unavailable}" />
+    </LinearLayout>
+</layout>

@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_categories_detail"
+    app:startDestination="@id/fragment_categories_detail">
+
+    <fragment
+        android:id="@+id/fragment_categories_detail"
+        android:name="com.ptithcm.ptshop.view.categories.CategoriesDetailFragment"
+        tools:layout="@layout/fragment_categories_detail" />
+
+    <fragment
+        android:id="@+id/fragment_product_detail"
+        android:name="com.ptithcm.ptshop.view.product.ProductDetailFragment"
+        tools:layout="@layout/fragment_product_detail" />
+
+    <include app:graph="@navigation/nav_refine" />
+    <include app:graph="@navigation/nav_product" />
+    <fragment
+        android:id="@+id/fragment_over_view"
+        android:name="com.ptithcm.ptshop.view.wishlist.OverViewFragment"
+        tools:layout="@layout/fragment_over_view" />
+
+    <fragment
+        android:id="@+id/sizeGuideFragment"
+        android:name="com.ptithcm.ptshop.view.sizeguide.SizeGuideFragment"
+        android:label="SizeGuideFragment"
+        tools:layout="@layout/fragment_size_guide" />
+    <fragment
+        android:id="@+id/imageVideoFragment"
+        android:name="com.ptithcm.ptshop.view.rating.ImageVideoFragment"
+        tools:layout="@layout/fragment_image_video"/>
+
+
+    <include app:graph="@navigation/nav_search" />
+    <include app:graph="@navigation/nav_shopping_card" />
+    <fragment
+        android:id="@+id/questionFragment"
+        android:name="com.ptithcm.ptshop.view.question.QuestionFragment"
+        android:label="QuestionFragment" />
+    <fragment
+        android:id="@+id/ratingFragment"
+        android:name="com.ptithcm.ptshop.view.rating.RatingFragment"
+        android:label="RatingFragment" />
+    <fragment
+        android:id="@+id/createReviewFragment"
+        android:name="com.ptithcm.ptshop.view.rating.CreateReviewFragment"
+        tools:layout="@layout/fragment_create_review"
+        android:label="CreateReviewFragment" />
+
+    <fragment
+        android:id="@+id/loginFragment"
+        android:name="com.ptithcm.ptshop.view.login.LoginFragment"
+        android:label="LoginFragment" />
+    <include app:graph="@navigation/nav_login" />
+
+</navigation>

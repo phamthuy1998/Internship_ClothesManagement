@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tool="http://schemas.android.com/tools">
+    <data>
+        <import type="android.view.View"/>
+
+        <variable
+            name="item"
+            type="com.ptithcm.core.model.Product" />
+
+        <variable
+            name="vendor"
+            type="String" />
+
+        <variable
+            name="title"
+            type="String" />
+
+        <variable
+            name="locale"
+            type="java.util.Locale" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/wishListContainer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:paddingBottom="@dimen/layout_margin_24dp"
+        android:layout_marginEnd="@dimen/layout_margin_16dp">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/ivWishList"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_marginStart="@dimen/layout_margin_16dp"
+            android:layout_marginEnd="@dimen/layout_margin_16dp"
+            android:minWidth="@dimen/size_200dp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintDimensionRatio="0.85"
+            app:layout_constraintVertical_bias="0"/>
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvTitleWishList"
+            style="@style/normal_text.bold"
+            android:layout_width="0dp"
+            android:text="@{title}"
+            android:textAlignment="center"
+            android:layout_marginTop="@dimen/layout_margin_4dp"
+            android:maxLines="1"
+            android:ellipsize="end"
+            android:textAllCaps="true"
+            app:layout_constraintTop_toBottomOf="@id/ivWishList"
+            app:layout_constraintStart_toStartOf="@id/ivWishList"
+            app:layout_constraintEnd_toEndOf="@id/ivWishList"
+            tool:text="BIBI CHEMNITZ"/>
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvDescWishList"
+            style="@style/normal_text.grey"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAlignment="center"
+            android:maxLines="1"
+            android:text="@{vendor}"
+            android:layout_marginTop="@dimen/layout_margin_4dp"
+            android:textSize="@dimen/text_size_10sp"
+            app:layout_constraintTop_toBottomOf="@id/tvTitleWishList"
+            app:layout_constraintStart_toStartOf="@id/ivWishList"
+            app:layout_constraintEnd_toEndOf="@id/ivWishList"
+            tool:text="Hiber Jogger - Orange" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvPrice"
+            style="@style/normal_text.bold"
+            android:visibility="@{item.variants.get(0).compare_at_price_after_tax == null ? View.VISIBLE : View.GONE}"
+            app:layout_constraintTop_toBottomOf="@+id/tvDescWishList"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            tool:text="$72.20"/>
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvDiscountPrice"
+            style="@style/normal_text.bold"
+            android:visibility="@{item.variants[0].compare_at_price_after_tax != null ? View.VISIBLE : View.GONE}"
+            android:textColor="@color/colorTextDiscount"
+            app:layout_constraintStart_toStartOf="@id/tvPrice"
+            app:layout_constraintEnd_toStartOf="@id/tvOriginPrice"
+            app:layout_constraintTop_toBottomOf="@id/tvPrice"
+            tool:text="$39.19" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvOriginPrice"
+            style="@style/normal_text.bold"
+            android:visibility="@{item.variants.get(0).compare_at_price_after_tax != null ? View.VISIBLE : View.GONE}"
+            android:layout_marginStart="@dimen/layout_margin_8dp"
+            app:layout_constraintTop_toTopOf="@id/tvDiscountPrice"
+            app:layout_constraintStart_toEndOf="@id/tvDiscountPrice"
+            app:layout_constraintEnd_toEndOf="@id/tvPrice"
+            tool:text="$70.54"/>
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

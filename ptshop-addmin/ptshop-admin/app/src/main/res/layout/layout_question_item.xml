@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="question"
+            type="com.ptithcm.core.model.Question" />
+        <variable
+            name="accountID"
+            type="Integer" />
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/padding_20dp">
+
+        <View
+            android:id="@+id/viewItem"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginTop="@dimen/layout_margin_10dp"
+            android:background="@drawable/item_rounded_question_gray"
+            app:layout_constraintBottom_toBottomOf="@id/btnReply"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvUsername"
+            style="@style/normal_text.bold"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="20dp"
+            android:text="@{question.username}"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="annaPham" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvDate"
+            style="@style/normal_text.grey"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="20dp"
+            android:text="@{question.dateEdit !=null ? `Date edit` + question.dateEdit : question.dateComment}"
+            app:layout_constraintEnd_toStartOf="@id/btnMore"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="20/20/2020" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/btnMore"
+            android:visibility="@{accountID == question.accountID ? View.VISIBLE : View.GONE}"
+            android:layout_width="wrap_content"
+            android:layout_margin="@dimen/layout_margin_10dp"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_menu"
+            android:padding="@dimen/layout_margin_10dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvQuestion"
+            style="@style/normal_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/padding_20dp"
+            android:layout_marginVertical="@dimen/layout_margin_10dp"
+            android:text="@{question.question}"
+            android:textAlignment="viewStart"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@id/tvUsername"
+            app:layout_constraintTop_toBottomOf="@id/tvUsername"
+            tools:text="some test change jhhhu" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/btnReply"
+            style="@style/normal_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/padding_20dp"
+            android:layout_marginVertical="@dimen/layout_margin_10dp"
+            android:padding="@dimen/layout_margin_10dp"
+            android:text="@string/reply"
+            android:textAlignment="viewStart"
+            android:textColor="@color/blue"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvQuestion" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvSubQuestion"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginStart="@dimen/padding_20dp"
+            android:orientation="vertical"
+            android:visibility="@{question.showReplies ? View.VISIBLE : View.GONE}"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@id/viewItem"
+            app:layout_constraintTop_toBottomOf="@id/viewItem"
+            tools:itemCount="2"
+            tools:listitem="@layout/layout_question_sub_item" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/btnHideQuestion"
+            style="@style/normal_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="@dimen/layout_margin_10dp"
+            android:padding="@dimen/layout_margin_10dp"
+            android:text="@{question.isHideQuestions() ? @string/hide_replies: String.format(@string/show_all_replies,question.subQuestions.size() )}"
+            android:textAlignment="viewStart"
+            android:textColor="@color/blue"
+            android:visibility="@{question.subQuestions.size()>0 ? View.VISIBLE : View.GONE}"
+            app:layout_constraintStart_toStartOf="@id/tvQuestion"
+            app:layout_constraintTop_toBottomOf="@id/rvSubQuestion" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

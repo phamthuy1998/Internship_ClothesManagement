@@ -1,0 +1,2 @@
+include ':app', ':core', ':spannedgridlayout'
+rootProject.name='Snap Shop'

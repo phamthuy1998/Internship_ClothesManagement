@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="story"
+            type="com.ptithcm.core.model.Stories" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="@dimen/layout_margin_1dp"
+        android:clipToPadding="false">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/ivItemHomeSmall"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:adjustViewBounds="true"
+            android:scaleType="centerCrop" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvTitle"
+            style="@style/normal_text.Bold.Shadow"
+            android:layout_width="0dp"
+            android:ellipsize="end"
+            android:maxLines="2"
+            android:paddingStart="@dimen/layout_margin_16dp"
+            android:paddingEnd="@dimen/layout_margin_16dp"
+            android:text="@{story.title}"
+            android:textAlignment="textStart"
+            android:textColor="@color/white"
+            app:layout_constraintBottom_toTopOf="@+id/tvLabel"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            tools:text="upload from mobile asdasdasdasdasdas asdasdasdas asdasdasdas" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvLabel"
+            style="@style/normal_text.all_cap.color"
+            android:layout_width="0dp"
+            android:layout_marginBottom="@dimen/layout_margin_16dp"
+            android:paddingStart="@dimen/layout_margin_16dp"
+            android:paddingEnd="0dp"
+            android:shadowColor="@color/black"
+            android:shadowDx="1"
+            android:shadowDy="1"
+            android:shadowRadius="15"
+            android:text="@{story.brand.brand_name}"
+            android:textSize="@dimen/text_size_12sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            tools:text="MC LABELS" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

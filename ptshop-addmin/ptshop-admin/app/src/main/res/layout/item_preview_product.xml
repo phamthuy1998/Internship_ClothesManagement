@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout>
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="item"
+            type="com.ptithcm.core.model.Product" />
+
+        <variable
+            name="locale"
+            type="java.util.Locale" />
+    </data>
+
+    <mobile.sarproj.com.layout.SwipeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/swipe_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/layout_margin_4dp"
+        app:draggedItem="@id/drag_item"
+        app:isContinuousSwipe="true"
+        app:rightItem="@id/tvRemove"
+        app:swipeDirection="left">
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/red">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvRemove"
+                style="@style/Size15.White"
+                android:layout_width="90dp"
+                android:layout_height="match_parent"
+                android:layout_gravity="end"
+                android:text="@string/remove"
+                android:gravity="center"
+                android:textAlignment="center" />
+
+        </FrameLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            xmlns:tools="http://schemas.android.com/tools"
+            android:id="@+id/drag_item"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:orientation="vertical">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/ivProduct"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                app:layout_constraintDimensionRatio="1:1"
+                android:layout_marginStart="@dimen/layout_margin_40dp"
+                android:layout_marginTop="@dimen/layout_margin_10dp"
+                android:layout_marginEnd="@dimen/layout_margin_40dp"
+                android:layout_marginBottom="@dimen/layout_margin_10dp"
+                android:scaleType="fitCenter"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/guideline"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvNoImage"
+                android:background="@color/trans"
+                app:layout_constraintTop_toTopOf="parent"
+                style="@style/Size10"
+                android:textColor="#555555"
+                android:fontFamily="@font/montserrat_medium"
+                android:visibility="@{item.image.get(0).src == null || item.image.get(0).src == `` ? View.VISIBLE : View.GONE}"
+                android:text="@string/no_product_image"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/guideline"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideline"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_percent="0.38" />
+
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/layout_margin_12dp"
+                android:layout_marginEnd="@dimen/layout_margin_12dp"
+                android:layout_marginBottom="@dimen/layout_margin_12dp"
+                android:orientation="vertical"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/guideline"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tvPrice"
+                    style="@style/Size15"
+                    android:textSize="@dimen/text_size_16sp"
+                    android:fontFamily="@font/havelock_medium"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:textPrice="@{item.variants.get(0).price}"
+                    app:locale="@{locale}"
+                    tools:text="$31.54" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tvStore"
+                    style="@style/Size13"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignBottom="@id/tvPrice"
+                    android:layout_marginTop="@dimen/layout_margin_4dp"
+                    android:ellipsize="end"
+                    android:fontFamily="@font/havelock_regular"
+                    android:singleLine="true"
+                    android:text="@{item.brand.brand_name}"
+                    android:textAllCaps="true"
+                    tools:text="SnapShop Store" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    style="@style/Size13"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:ellipsize="end"
+                    android:fontFamily="@font/havelock_medium"
+                    android:singleLine="true"
+                    android:text="@{item.title}"
+                    android:textAllCaps="true"
+                    tools:text="Skirts - long women" />
+
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </mobile.sarproj.com.layout.SwipeLayout>
+
+
+</layout>

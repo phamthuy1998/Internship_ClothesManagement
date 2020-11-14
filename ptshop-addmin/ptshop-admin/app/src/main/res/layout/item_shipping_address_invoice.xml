@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/shippingAddressContainer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:padding="@dimen/layout_margin_8dp">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/shippingAddressText"
+            style="@style/normal_text.bold"
+            android:layout_width="0dp"
+            android:layout_marginStart="@dimen/layout_margin_8dp"
+            android:layout_marginTop="@dimen/layout_margin_8dp"
+            android:text="@string/shipping_address"
+            android:textAlignment="viewStart"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.constraintlayout.widget.Barrier
+            android:id="@+id/barrier"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:barrierDirection="end"
+            app:constraint_referenced_ids="tvTitleName, tvTitlePhone, tvTitleAddress" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvTitleName"
+            style="@style/normal_text.grey"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/layout_margin_12dp"
+            android:layout_marginTop="@dimen/layout_margin_12dp"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:text="Name:"
+            android:textAlignment="center"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/shippingAddressText" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvName"
+            style="@style/normal_text"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/layout_margin_8dp"
+            android:layout_marginEnd="@dimen/layout_margin_8dp"
+            android:maxLines="1"
+            android:textAlignment="textStart"
+            app:layout_constraintBaseline_toBaselineOf="@id/tvTitleName"
+            app:layout_constraintStart_toEndOf="@id/barrier"
+            tools:text="Thuỷ" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvTitlePhone"
+            style="@style/normal_text.grey"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/layout_margin_8dp"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:text="Phone:"
+            android:textAlignment="center"
+            app:layout_constraintStart_toStartOf="@id/tvTitleName"
+            app:layout_constraintTop_toBottomOf="@id/tvTitleName" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvPhone"
+            style="@style/normal_text"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/layout_margin_8dp"
+            android:layout_marginEnd="@dimen/layout_margin_12dp"
+            android:maxLines="1"
+            android:textAlignment="textStart"
+            app:layout_constraintBaseline_toBaselineOf="@id/tvTitlePhone"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/barrier"
+            tools:text="0123456789" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvTitleAddress"
+            style="@style/normal_text.grey"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/layout_margin_8dp"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:text="Address:"
+            android:textAlignment="center"
+            app:layout_constraintStart_toStartOf="@id/tvTitleName"
+            app:layout_constraintTop_toBottomOf="@id/tvTitlePhone" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvAddress"
+            style="@style/normal_text"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/layout_margin_8dp"
+            android:layout_marginEnd="@dimen/layout_margin_12dp"
+            android:lineSpacingExtra="2dp"
+            android:textAlignment="textStart"
+            app:layout_constraintBaseline_toBaselineOf="@id/tvTitleAddress"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/barrier"
+            tools:text="0123456789" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

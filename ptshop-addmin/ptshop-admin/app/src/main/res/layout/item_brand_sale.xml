@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tool="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="title"
+            type="String" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:background="@color/colorTextDiscount"
+            app:layout_constraintTop_toTopOf="@id/tvTitle"
+            app:layout_constraintBottom_toBottomOf="@id/tvTitle" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/ivBargain"
+            android:layout_width="@dimen/image_50dp"
+            android:layout_height="@dimen/image_50dp"
+            android:src="@drawable/ic_bargain"
+            app:layout_constraintHorizontal_bias="0.05"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvTitle"
+            style="@style/normal_text.bold"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@{title}"
+            android:textSize="@dimen/text_size_10sp"
+            android:lines="1"
+            android:ellipsize="end"
+            android:textAlignment="viewStart"
+            android:layout_marginEnd="@dimen/layout_margin_8dp"
+            android:paddingTop="@dimen/layout_margin_8dp"
+            android:paddingBottom="@dimen/layout_margin_8dp"
+            android:paddingStart="@dimen/layout_margin_8dp"
+            android:paddingEnd="@dimen/no_padding"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@id/ivBargain"
+            app:layout_constraintEnd_toEndOf="parent"
+            tool:text='Type = "Percentage"/Apply = "Specific collections"' />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

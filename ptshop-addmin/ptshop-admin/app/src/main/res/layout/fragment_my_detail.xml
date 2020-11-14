@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="account"
+            type="com.ptithcm.core.model.Account" />
+
+        <variable
+            name="fragment"
+            type="com.ptithcm.ptshop.view.mydetail.MyDetailFragment" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/edtName"
+            style="@style/normal_text.EditText.Register"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/layout_margin_40dp"
+            android:textCursorDrawable="@drawable/gray_cursor"
+            android:drawableStart="@drawable/ic_name_field"
+            android:gravity="center_vertical"
+            android:hint="@string/name"
+            android:text="@{account.name}"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/edtPhone"
+            style="@style/normal_text.EditText.Register"
+            android:textCursorDrawable="@drawable/gray_cursor"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:drawableStart="@drawable/ic_name_field"
+            android:gravity="center_vertical"
+            android:hint="@string/phone"
+            android:inputType="phone"
+            android:text="@{account.phone}"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/edtName" />
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/edt_email"
+            style="@style/normal_text.EditText.Register"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:drawableStart="@drawable/ic_email"
+            android:gravity="center_vertical"
+            android:textCursorDrawable="@drawable/gray_cursor"
+            android:text="@{account.email}"
+            android:hint="@string/email"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/edtPhone" />
+
+        <com.ptithcm.ptshop.widget.LoadingButton
+            android:id="@+id/btn_update"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/layout_margin_32dp"
+            android:layout_marginTop="@dimen/layout_margin_40dp"
+            android:layout_marginRight="@dimen/layout_margin_32dp"
+            android:onClick="@{(v) -> fragment.onClick(v)}"
+            app:text="@string/save_changes"
+            android:layout_marginBottom="@dimen/layout_margin_64dp"
+            app:layout_constraintBottom_toBottomOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+
+        <import type="android.view.View" />
+
+    </data>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/background">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/background"
+            android:gravity="center_horizontal"
+            android:orientation="vertical">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                style="@style/SemiBold.Size14"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/size_16dp"
+                android:text="@string/kidswear_shoe_size_chart" />
+
+            <ScrollView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:scrollbars="none">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:divider="@drawable/table_divider"
+                    android:gravity="center_horizontal"
+                    android:orientation="horizontal"
+                    android:showDividers="middle">
+
+                    <TableLayout
+                        android:id="@+id/fixed_column"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:divider="@drawable/table_divider"
+                        android:showDividers="middle"
+                        android:stretchColumns="*" />
+
+                    <HorizontalScrollView
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content">
+
+                        <TableLayout
+                            android:id="@+id/scrollable_part"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:divider="@drawable/table_divider"
+                            android:showDividers="middle"
+                            android:stretchColumns="*" />
+                    </HorizontalScrollView>
+                </LinearLayout>
+            </ScrollView>
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                style="@style/Size13"
+                android:padding="@dimen/layout_margin_8dp"
+                android:textAlignment="viewStart"
+                android:text="@string/please_note_this_is_an_approximate_size_conversion_guide_conversions_may_vary_from_brand_to_brand_for_further_information_or_advice_contact_customer_care"/>
+        </LinearLayout>
+    </ScrollView>
+</layout>

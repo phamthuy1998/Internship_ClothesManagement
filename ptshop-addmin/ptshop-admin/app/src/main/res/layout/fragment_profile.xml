@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:bind="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="isLogin"
+            type="Boolean" />
+
+        <variable
+            name="account"
+            type="com.ptithcm.core.model.Account" />
+
+        <variable
+            name="fragment"
+            type="com.ptithcm.ptshop.view.profile.ProfileFragment" />
+
+    </data>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <include
+            android:id="@+id/profile_preLogin"
+            layout="@layout/fragment_profile_prelogin"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            setVisible="@{!isLogin}"
+            bind:parentFragment="@{fragment}" />
+
+        <include
+            android:id="@+id/profile_customer"
+            layout="@layout/fragment_profile_customer"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            setVisible="@{isLogin}"
+            bind:account="@{account}"
+            bind:parentFragment="@{fragment}" />
+    </FrameLayout>
+
+</layout>

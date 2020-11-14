@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_refine"
+    app:startDestination="@id/fragment_refine">
+
+    <fragment
+        android:id="@+id/fragment_refine"
+        android:name="com.ptithcm.ptshop.view.refine.RefineFragment"
+        tools:layout="@layout/fragment_refine">
+
+        <action
+            android:id="@+id/action_fragment_colours"
+            app:destination="@id/fragment_colours"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
+
+        <action
+            android:id="@+id/action_fragment_sizes"
+            app:destination="@id/fragment_sizes"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
+
+        <action
+            android:id="@+id/action_fragment_gender"
+            app:destination="@id/fragment_genders"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
+
+        <action
+            android:id="@+id/action_fragment_all_categories_refine"
+            app:destination="@id/fragment_all_categories_refine"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
+
+        <action
+            android:id="@+id/action_fragment_main_categories_refine"
+            app:destination="@id/fragment_main_categories_refine"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
+
+        <action
+            android:id="@+id/action_fragment_categories_refine"
+            app:destination="@id/fragment_categories_refine"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/fragment_colours"
+        android:name="com.ptithcm.ptshop.view.refine.ColoursFragment"
+        tools:layout="@layout/fragment_colours" />
+
+    <fragment
+        android:id="@+id/fragment_sizes"
+        android:name="com.ptithcm.ptshop.view.refine.SizesFragment"
+        tools:layout="@layout/fragment_sizes" />
+
+    <fragment
+        android:id="@+id/fragment_genders"
+        android:name="com.ptithcm.ptshop.view.refine.GenderFragment"
+        tools:layout="@layout/fragment_gender"/>
+
+    <fragment
+        android:id="@+id/fragment_all_categories_refine"
+        android:name="com.ptithcm.ptshop.view.allcategories.AllCategoriesRefineFragment"
+        tools:layout="@layout/fragment_all_categories_refine"/>
+
+    <fragment
+        android:id="@+id/fragment_main_categories_refine"
+        android:name="com.ptithcm.ptshop.view.allcategories.MainCategoriesRefineFragment"
+        tools:layout="@layout/fragment_main_categories_refine"/>
+
+    <fragment
+        android:id="@+id/fragment_categories_refine"
+        android:name="com.ptithcm.ptshop.view.allcategories.CategoriesRefineFragment"
+        tools:layout="@layout/fragment_categories_refine"/>
+
+    <fragment
+        android:id="@+id/fragment_brand_refine"
+        android:name="com.ptithcm.ptshop.view.refine.RefineBrandsFragment"
+        tools:layout="@layout/fragment_refine_brands"/>
+
+    <fragment
+        android:id="@+id/fragment_brand_refine_stories"
+        android:name="com.ptithcm.ptshop.view.refine.RefineBrandStoreFragment"
+        tools:layout="@layout/fragment_refine_brands_stories"/>
+
+</navigation>

@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="provider"
+            type="com.ptithcm.core.model.Provider" />
+    </data>
+
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
+        android:id="@+id/container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <com.google.android.material.appbar.AppBarLayout
+            android:id="@+id/appBarLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:stateListAnimator="@null">
+
+            <com.google.android.material.appbar.CollapsingToolbarLayout
+                android:id="@+id/collapsingToolbarLayout"
+                style="@style/normal_text.Toolbar.Shadow"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:collapsedTitleGravity="center_vertical|center_horizontal"
+                app:collapsedTitleTextAppearance="@style/normal_text.Toolbar.Collapsing.Collapse"
+                app:expandedTitleGravity="center_vertical|center_horizontal"
+                app:expandedTitleTextAppearance="@style/normal_text.Toolbar.Collapsing.Expand"
+                app:layout_scrollFlags="scroll|exitUntilCollapsed|snap">
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/imageViewCollapsing"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/image_300dp"
+                    android:scaleType="centerCrop"
+                    app:imageUrl="@{provider.imageUrl}"
+                    app:layout_collapseMode="parallax"
+                    app:placeHolder="@{@drawable/snapshop_splash}" />
+                <!--                    app:placeHolder="@{isStore ? @drawable/place_holder_store : @drawable/snapshop_splash}" />-->
+
+                <androidx.appcompat.widget.Toolbar
+                    android:id="@+id/toolbar"
+                    style="@style/normal_text.Toolbar.Shadow"
+                    android:layout_width="match_parent"
+                    android:layout_height="?android:actionBarSize"
+                    android:layout_marginTop="@dimen/layout_margin_32dp"
+                    android:layout_marginBottom="@dimen/layout_margin_32dp"
+                    app:contentInsetEnd="0dp"
+                    app:contentInsetStart="0dp"
+                    app:layout_collapseMode="pin"
+                    app:popupTheme="@style/ThemeOverlay.MaterialComponents">
+
+                    <androidx.appcompat.widget.AppCompatImageButton
+                        android:id="@+id/ivBack"
+                        android:layout_width="@dimen/layout_margin_40dp"
+                        android:layout_height="@dimen/layout_margin_40dp"
+                        android:layout_gravity="start"
+                        android:layout_marginStart="@dimen/layout_margin_8dp"
+                        android:background="@drawable/bg_btn_circle_active"
+                        android:src="@drawable/ic_back" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/tvBackRight"
+                        style="@style/normal_text.Toolbar.Regular"
+                        android:layout_width="@dimen/layout_margin_40dp"
+                        android:layout_height="@dimen/layout_margin_40dp"
+                        android:layout_marginStart="@dimen/layout_margin_16dp"
+                        android:background="@drawable/bg_btn_circle_active"
+                        android:visibility="invisible" />
+
+                    <RelativeLayout
+                        android:id="@+id/rlBags"
+                        android:layout_width="@dimen/layout_margin_40dp"
+                        android:layout_height="@dimen/layout_margin_40dp"
+                        android:layout_gravity="end"
+                        android:layout_marginEnd="@dimen/layout_margin_8dp">
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/tvCount"
+                            style="@style/normal_text"
+                            android:layout_alignParentEnd="true"
+                            android:layout_marginTop="@dimen/layout_margin_4dp"
+                            android:background="@drawable/ic_num_item_in_bag"
+                            android:textColor="@color/white"
+                            android:textSize="@dimen/text_size_10sp" />
+
+                        <androidx.appcompat.widget.AppCompatImageButton
+                            android:id="@+id/ivRight"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:background="@drawable/bg_btn_circle_active"
+                            android:src="@drawable/ic_shopping_bag" />
+
+                    </RelativeLayout>
+
+                    <androidx.appcompat.widget.AppCompatImageButton
+                        android:id="@+id/ivLeft"
+                        android:layout_width="@dimen/layout_margin_40dp"
+                        android:layout_height="@dimen/layout_margin_40dp"
+                        android:layout_gravity="end"
+                        android:layout_marginEnd="@dimen/layout_margin_16dp"
+                        android:background="@drawable/bg_btn_circle_active"
+                        android:src="@drawable/ic_search" />
+
+                </androidx.appcompat.widget.Toolbar>
+
+            </com.google.android.material.appbar.CollapsingToolbarLayout>
+
+            <com.google.android.material.tabs.TabLayout
+                android:id="@+id/tabLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                app:tabGravity="fill"
+                app:tabIndicatorColor="@color/black"
+                app:tabIndicatorFullWidth="true"
+                app:tabMinWidth="0dp"
+                app:tabMode="fixed"
+                app:tabSelectedTextColor="@color/black"
+                app:tabTextAppearance="@style/normal_text.TabLayout" />
+
+            <View
+                android:id="@+id/vLine"
+                style="@style/divider"
+                android:layout_width="match_parent" />
+
+        </com.google.android.material.appbar.AppBarLayout>
+
+        <androidx.viewpager.widget.ViewPager
+            android:id="@+id/viewPager"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior" />
+
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+
+</layout>

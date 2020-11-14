@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/appBarLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:stateListAnimator="@null">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?android:actionBarSize"
+            android:background="@color/white"
+            app:contentInsetEnd="0dp"
+            app:contentInsetStart="0dp"
+            app:popupTheme="@style/ThemeOverlay.MaterialComponents">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <androidx.appcompat.widget.AppCompatImageButton
+                    android:id="@+id/ivBack"
+                    android:layout_width="@dimen/layout_margin_40dp"
+                    android:layout_height="@dimen/layout_margin_40dp"
+                    android:layout_marginStart="@dimen/layout_margin_8dp"
+                    android:background="@drawable/bg_btn_circle_active"
+                    android:src="@drawable/ic_back"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tvTitleToolbar"
+                    style="@style/normal_text.Toolbar"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/background_title_selector"
+                    android:letterSpacing="0.1"
+                    android:text="@string/app_name"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/ivLogo"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:visibility="gone"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintWidth_percent="0.5"
+                    app:srcCompat="@drawable/logo_flash" />
+
+                <androidx.appcompat.widget.AppCompatImageButton
+                    android:id="@+id/ivLeft"
+                    android:layout_width="@dimen/layout_margin_40dp"
+                    android:layout_height="@dimen/layout_margin_40dp"
+                    android:background="@drawable/bg_btn_circle_active"
+                    android:src="@drawable/ic_search"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@id/ivRight"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <androidx.appcompat.widget.AppCompatImageButton
+                    android:id="@+id/ivRight"
+                    android:layout_width="@dimen/layout_margin_40dp"
+                    android:layout_height="@dimen/layout_margin_40dp"
+                    android:layout_marginEnd="@dimen/layout_margin_8dp"
+                    android:background="@drawable/bg_btn_circle_active"
+                    android:src="@drawable/ic_shopping_bag"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tvClear"
+                    style="@style/normal_text.Toolbar.Regular"
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/layout_margin_40dp"
+                    android:layout_marginEnd="@dimen/layout_margin_16dp"
+                    android:background="@drawable/bg_btn_circle_active"
+                    android:gravity="center_vertical"
+                    android:text="@string/clear"
+                    android:textAllCaps="false"
+                    android:visibility="gone"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tvCount"
+                    style="@style/normal_text"
+                    android:layout_marginTop="@dimen/layout_margin_4dp"
+                    android:layout_marginEnd="@dimen/layout_margin_4dp"
+                    android:background="@drawable/ic_num_item_in_bag"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/text_size_10sp"
+                    app:layout_constraintEnd_toEndOf="@id/ivRight"
+                    app:layout_constraintTop_toTopOf="@id/ivRight" />
+
+                <View
+                    android:id="@+id/vLine"
+                    style="@style/divider"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </androidx.appcompat.widget.Toolbar>
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+</layout>

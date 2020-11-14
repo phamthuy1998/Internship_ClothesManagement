@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <data>
+        <variable
+            name="fragment"
+            type="com.ptithcm.ptshop.view.search.SearchFragment" />
+    </data>
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <androidx.appcompat.widget.AppCompatImageButton
+            android:id="@+id/btnFab"
+            android:layout_width="@dimen/image_50dp"
+            android:layout_height="@dimen/image_50dp"
+            android:layout_gravity="center_horizontal"
+            android:background="@drawable/background_fab_top"
+            android:backgroundTint="@color/white"
+            android:elevation="3dp"
+            android:src="@drawable/ic_up_arrow"
+            android:translationZ="3dp"
+            android:visibility="invisible"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/ivBack"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_btn_circle_active"
+            android:padding="@dimen/layout_margin_16dp"
+            android:src="@drawable/ic_back"
+            android:translationZ="10dp"
+            android:onClick="@{fragment::onClick}"
+            app:layout_constraintBottom_toBottomOf="@id/edtSearchInput"
+            app:layout_constraintStart_toStartOf="@id/edtSearchInput"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.appcompat.widget.AppCompatEditText
+            android:id="@+id/edtSearchInput"
+            style="@style/normal_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@null"
+            android:hint="Search all product"
+            android:paddingStart="@dimen/layout_margin_48dp"
+            android:paddingTop="@dimen/layout_margin_16dp"
+            android:paddingEnd="@dimen/layout_margin_16dp"
+            android:ellipsize="end"
+            android:imeOptions="actionSearch"
+            android:singleLine="true"
+            android:paddingBottom="@dimen/layout_margin_16dp"
+            android:textAlignment="viewStart"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/ivSearch"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/layout_margin_16dp"
+            android:src="@drawable/ic_search"
+            android:onClick="@{fragment::onClick}"
+            app:layout_constraintBottom_toBottomOf="@id/edtSearchInput"
+            app:layout_constraintEnd_toEndOf="@id/edtSearchInput"
+            app:layout_constraintTop_toTopOf="@id/edtSearchInput" />
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/ivCancel"
+            android:padding="@dimen/layout_margin_8dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintRight_toLeftOf="@id/ivSearch"
+            app:layout_constraintTop_toTopOf="@id/edtSearchInput"
+            app:layout_constraintBottom_toBottomOf="@id/edtSearchInput"
+            android:src="@drawable/ic_cancel_edt"
+            android:visibility="gone"
+            android:layout_marginRight="@dimen/layout_margin_16dp"
+            android:onClick="@{fragment::onClick}"/>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

@@ -1,0 +1,254 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/glRating"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.3" />
+
+        <RatingBar
+            android:id="@+id/rb5"
+            style="?android:attr/ratingBarStyleSmall"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/padding_20dp"
+            android:clickable="false"
+            android:isIndicator="true"
+            android:rating="5"
+            app:layout_constraintStart_toStartOf="@id/glRating"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <SeekBar
+            android:id="@+id/seekBar5"
+            android:layout_width="@dimen/size_150dp"
+            android:layout_height="wrap_content"
+            android:max="100"
+            android:progress="0"
+            android:progressBackgroundTint="@color/gray2"
+            android:progressDrawable="@drawable/seek_bar_progress"
+            android:splitTrack="false"
+            android:thumb="@drawable/seekbar_thumb1"
+            app:layout_constraintBottom_toBottomOf="@id/rb5"
+            app:layout_constraintStart_toEndOf="@id/rb5"
+            app:layout_constraintTop_toTopOf="@id/rb5" />
+
+        <TextView
+            android:id="@+id/tvrating5"
+            style="@style/textTabLayout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/layout_margin_10dp"
+            android:textColor="@color/black"
+            app:layout_constraintBottom_toBottomOf="@id/rb5"
+            app:layout_constraintStart_toEndOf="@id/seekBar5"
+            app:layout_constraintTop_toTopOf="@id/rb5"
+            tools:text="10" />
+
+        <RatingBar
+            android:id="@+id/rb4"
+            style="?android:attr/ratingBarStyleSmall"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/layout_margin_15dp"
+            android:clickable="false"
+            android:isIndicator="true"
+            android:rating="4"
+            app:layout_constraintStart_toStartOf="@id/glRating"
+            app:layout_constraintTop_toBottomOf="@id/rb5" />
+
+        <SeekBar
+            android:id="@+id/seekBar4"
+            android:layout_width="@dimen/size_150dp"
+            android:layout_height="wrap_content"
+            android:max="100"
+            android:progress="0"
+            android:progressBackgroundTint="@color/gray2"
+            android:progressDrawable="@drawable/seek_bar_progress"
+            android:splitTrack="false"
+            android:thumb="@drawable/seekbar_thumb1"
+            app:layout_constraintBottom_toBottomOf="@id/rb4"
+            app:layout_constraintStart_toEndOf="@id/rb4"
+            app:layout_constraintTop_toTopOf="@id/rb4" />
+
+        <TextView
+            android:id="@+id/tvRating4"
+            style="@style/textTabLayout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/layout_margin_10dp"
+            android:textColor="@color/black"
+            app:layout_constraintBottom_toBottomOf="@id/rb4"
+            app:layout_constraintStart_toEndOf="@id/seekBar4"
+            app:layout_constraintTop_toTopOf="@id/rb4"
+            tools:text="10" />
+
+        <RatingBar
+            android:id="@+id/rb3"
+            style="?android:attr/ratingBarStyleSmall"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/layout_margin_15dp"
+            android:clickable="false"
+            android:isIndicator="true"
+            android:rating="3"
+            app:layout_constraintStart_toStartOf="@id/glRating"
+            app:layout_constraintTop_toBottomOf="@id/rb4" />
+
+        <SeekBar
+            android:id="@+id/seekBar3"
+            android:layout_width="@dimen/size_150dp"
+            android:layout_height="wrap_content"
+            android:max="100"
+            android:progress="0"
+            android:progressBackgroundTint="@color/gray2"
+            android:progressDrawable="@drawable/seek_bar_progress"
+            android:splitTrack="false"
+            android:thumb="@drawable/seekbar_thumb1"
+            app:layout_constraintBottom_toBottomOf="@id/rb3"
+            app:layout_constraintStart_toEndOf="@id/rb3"
+            app:layout_constraintTop_toTopOf="@id/rb3" />
+
+        <TextView
+            android:id="@+id/tvRating3"
+            style="@style/textTabLayout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/layout_margin_10dp"
+            android:textColor="@color/black"
+            app:layout_constraintBottom_toBottomOf="@id/rb3"
+            app:layout_constraintStart_toEndOf="@id/seekBar3"
+            app:layout_constraintTop_toTopOf="@id/rb3"
+            tools:text="10" />
+
+        <RatingBar
+            android:id="@+id/rb2"
+            style="?android:attr/ratingBarStyleSmall"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/layout_margin_15dp"
+            android:clickable="false"
+            android:isIndicator="true"
+            android:rating="2"
+            app:layout_constraintStart_toStartOf="@id/glRating"
+            app:layout_constraintTop_toBottomOf="@id/rb3" />
+
+        <SeekBar
+            android:id="@+id/seekBar2"
+            android:layout_width="@dimen/size_150dp"
+            android:layout_height="wrap_content"
+            android:max="100"
+            android:progress="0"
+            android:progressBackgroundTint="@color/gray2"
+            android:progressDrawable="@drawable/seek_bar_progress"
+            android:splitTrack="false"
+            android:thumb="@drawable/seekbar_thumb1"
+            app:layout_constraintBottom_toBottomOf="@id/rb2"
+            app:layout_constraintStart_toEndOf="@id/rb2"
+            app:layout_constraintTop_toTopOf="@id/rb2" />
+
+        <TextView
+            android:id="@+id/tvRating2"
+            style="@style/textTabLayout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/layout_margin_10dp"
+            android:textColor="@color/black"
+            app:layout_constraintBottom_toBottomOf="@id/rb2"
+            app:layout_constraintStart_toEndOf="@id/seekBar2"
+            app:layout_constraintTop_toTopOf="@id/rb2"
+            tools:text="10" />
+
+        <RatingBar
+            android:id="@+id/rb1"
+            style="?android:attr/ratingBarStyleSmall"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/layout_margin_15dp"
+            android:clickable="false"
+            android:isIndicator="true"
+            android:rating="1"
+            app:layout_constraintStart_toStartOf="@id/glRating"
+            app:layout_constraintTop_toBottomOf="@id/rb2" />
+
+        <SeekBar
+            android:id="@+id/seekBar1"
+            android:layout_width="@dimen/size_150dp"
+            android:layout_height="wrap_content"
+            android:max="100"
+            android:progress="0"
+            android:progressBackgroundTint="@color/gray2"
+            android:progressDrawable="@drawable/seek_bar_progress"
+            android:splitTrack="false"
+            android:thumb="@drawable/seekbar_thumb1"
+            app:layout_constraintBottom_toBottomOf="@id/rb1"
+            app:layout_constraintStart_toEndOf="@id/rb1"
+            app:layout_constraintTop_toTopOf="@id/rb1" />
+
+        <TextView
+            android:id="@+id/tvRating1"
+            style="@style/textTabLayout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/layout_margin_10dp"
+            android:textColor="@color/black"
+            app:layout_constraintBottom_toBottomOf="@id/rb1"
+            app:layout_constraintStart_toEndOf="@id/seekBar1"
+            app:layout_constraintTop_toTopOf="@id/rb1"
+            tools:text="10" />
+
+
+        <TextView
+            android:id="@+id/tvRatingAverage"
+            style="@style/TextAppearance.MaterialComponents.Headline4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black"
+            app:layout_constraintBottom_toBottomOf="@id/rb1"
+            app:layout_constraintEnd_toStartOf="@id/rb1"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@id/rb5"
+            tools:text="3.5" />
+
+        <RatingBar
+            android:id="@+id/rbAverage"
+            style="?android:attr/ratingBarStyleSmall"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin6"
+            android:clickable="false"
+            android:isIndicator="true"
+            app:layout_constraintEnd_toEndOf="@id/tvRatingAverage"
+            app:layout_constraintStart_toStartOf="@id/tvRatingAverage"
+            app:layout_constraintTop_toBottomOf="@id/tvRatingAverage"
+            tools:rating="5" />
+
+        <TextView
+            android:id="@+id/tvRatingCount"
+            style="@style/TextAppearance.MaterialComponents.Caption"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black_alpha"
+            app:layout_constraintEnd_toEndOf="@id/tvRatingAverage"
+            app:layout_constraintStart_toStartOf="@id/tvRatingAverage"
+            app:layout_constraintTop_toBottomOf="@id/rbAverage"
+            tools:text="5 nhận xét" />
+
+
+        <View
+            android:id="@+id/viewLine"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/layout_margin_10dp"
+            android:layout_marginTop="@dimen/padding_20dp"
+            android:background="@color/gray2"
+            app:layout_constraintTop_toBottomOf="@id/rb1" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

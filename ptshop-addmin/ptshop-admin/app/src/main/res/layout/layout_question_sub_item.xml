@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="question"
+            type="com.ptithcm.core.model.Question" />
+
+        <variable
+            name="accountID"
+            type="Integer" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/padding_20dp"
+        android:paddingBottom="@dimen/layout_margin_10dp">
+
+        <View
+            android:id="@+id/viewItem"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginTop="@dimen/layout_margin_10dp"
+            android:background="@drawable/item_rounded_question_gray"
+            app:layout_constraintBottom_toBottomOf="@id/tvQuestion"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvUsername"
+            style="@style/normal_text.bold"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="20dp"
+            android:text="@{question.roleId != 3 ?@string/admin+ question.username: question.username}"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="annaPham" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvDate"
+            style="@style/normal_text.grey"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="20dp"
+            android:text="@{question.dateEdit !=null ? `Date edit` + question.dateEdit : question.dateComment}"
+            app:layout_constraintEnd_toStartOf="@id/btnMoreSubQuestion"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="20/20/2020" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/btnMoreSubQuestion"
+            android:layout_width="wrap_content"
+            android:layout_margin="@dimen/layout_margin_10dp"
+            android:visibility="@{accountID == question.accountID ? View.VISIBLE : View.GONE}"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_menu"
+            android:padding="@dimen/layout_margin_10dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvQuestion"
+            style="@style/normal_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/padding_20dp"
+            android:text="@{question.question}"
+            android:textAlignment="viewStart"
+            app:layout_constraintBottom_toBottomOf="@id/viewItem"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@id/tvUsername"
+            app:layout_constraintTop_toBottomOf="@id/tvUsername"
+            tools:text="some test change jhhhu" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

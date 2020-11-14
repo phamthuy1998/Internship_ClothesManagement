@@ -1,0 +1,291 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="fragment"
+            type="com.ptithcm.ptshop.view.rating.CreateReviewFragment" />
+
+        <variable
+            name="item"
+            type="com.ptithcm.core.model.InvoiceProductDetail" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/ivProduct"
+            imageUrl="@{item.thumnail}"
+            placeHolder="place"
+            android:layout_width="@dimen/size_80dp"
+            android:layout_height="@dimen/size_80dp"
+            android:layout_margin="@dimen/layout_margin_10dp"
+            android:onClick="@{fragment::onClick}"
+            android:scaleType="centerCrop"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvProductName"
+            style="@style/SF.Size16"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/size_100dp"
+            android:layout_marginEnd="@dimen/layout_margin_10dp"
+            android:ellipsize="end"
+            android:maxLines="2"
+            android:text="@{item.title}"
+            android:textAlignment="textStart"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@id/ivProduct"
+            tools:text="Á khoác kaki kem phiên bản cơ bản" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvProductSize"
+            style="@style/normal_text"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/layout_margin_5dp"
+            android:ellipsize="end"
+            android:maxLines="2"
+            android:text="@{@string/productType + `: `+ item.colorName+ ` ` + item.sizeName}"
+            android:textAlignment="textStart"
+            app:layout_constraintEnd_toEndOf="@id/tvProductName"
+            app:layout_constraintStart_toStartOf="@id/tvProductName"
+            app:layout_constraintTop_toBottomOf="@id/tvProductName"
+            tools:text="Phân loại: Kem nhạt, L" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/vColor"
+            setColorProduct="@{item.colorHex}"
+            android:layout_width="@dimen/layout_margin_12dp"
+            android:layout_height="@dimen/layout_margin_12dp"
+            android:layout_marginTop="@dimen/layout_margin_10dp"
+            android:background="@drawable/bg_circle"
+            android:shadowColor="@color/black_alpha"
+            android:shadowRadius="5"
+            app:layout_constraintStart_toStartOf="@id/tvProductSize"
+            app:layout_constraintTop_toBottomOf="@id/tvProductSize" />
+
+        <androidx.constraintlayout.widget.Barrier
+            android:id="@+id/barrierProduct"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:barrierDirection="bottom"
+            app:constraint_referenced_ids="tvProductSize, ivProduct" />
+
+        <View
+            android:id="@+id/lineProduct"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="@dimen/layout_margin_10dp"
+            android:background="@color/gray2"
+            app:layout_constraintTop_toBottomOf="@id/barrierProduct" />
+
+        <RatingBar
+            android:id="@+id/ratingBar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/size_30dp"
+            android:numStars="5"
+            android:stepSize="1"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/lineProduct" />
+
+        <androidx.appcompat.widget.AppCompatEditText
+            android:id="@+id/edtComment"
+            style="@style/normal_text.EditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/padding_20dp"
+            android:gravity="top"
+            android:hint="@string/add_comment_here"
+            android:inputType="textMultiLine"
+            android:lines="5"
+            android:maxLength="1000"
+            android:maxLines="5"
+            android:minLines="5"
+            android:paddingHorizontal="@dimen/padding_20dp"
+            android:paddingVertical="@dimen/layout_margin_14dp"
+            android:scrollbars="vertical"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/ratingBar" />
+
+        <!-- <androidx.appcompat.widget.AppCompatTextView
+             android:id="@+id/btnPhoto"
+             style="@style/SF.Size16"
+             android:layout_width="0dp"
+             android:layout_height="wrap_content"
+             android:layout_margin="@dimen/size_20dp"
+             android:background="@drawable/rounded_border_edittext"
+             android:drawableTop="@drawable/ic_camera"
+             android:onClick="@{fragment::onClick}"
+             android:padding="@dimen/layout_margin_10dp"
+             android:text="@string/add_photo"
+             app:layout_constraintEnd_toStartOf="@id/btnGallary"
+             app:layout_constraintHorizontal_chainStyle="packed"
+             app:layout_constraintStart_toStartOf="parent"
+             app:layout_constraintTop_toBottomOf="@id/edtComment" />
+
+         <androidx.appcompat.widget.AppCompatTextView
+             android:id="@+id/btnGallary"
+             style="@style/SF.Size16"
+             android:layout_width="0dp"
+             android:layout_height="wrap_content"
+             android:layout_marginEnd="@dimen/size_20dp"
+             android:background="@drawable/rounded_border_edittext"
+             android:drawableTop="@drawable/ic_gallery"
+             android:onClick="@{fragment::onClick}"
+             android:padding="@dimen/layout_margin_10dp"
+             android:text="@string/library"
+             app:layout_constraintEnd_toEndOf="parent"
+             app:layout_constraintHorizontal_chainStyle="packed"
+             app:layout_constraintStart_toEndOf="@id/btnPhoto"
+             app:layout_constraintTop_toTopOf="@id/btnPhoto" />
+
+         <androidx.constraintlayout.widget.Group
+             android:id="@+id/groupPhoto"
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+             app:constraint_referenced_ids="btnPhoto, btnGallary" />-->
+
+        <!--
+                <androidx.constraintlayout.widget.Group
+                    android:id="@+id/groupImage"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:visibility="gone"
+                    app:constraint_referenced_ids="ivImage1, ivImage2, ivImageVideo, ivPlayVideo"
+                    tools:visibility="visible" />
+        -->
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/ivImage1"
+            imageUrl="@{}"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginTop="@dimen/padding_20dp"
+            android:adjustViewBounds="true"
+            android:onClick="@{fragment::onClick}"
+            android:scaleType="centerCrop"
+            android:src="@drawable/ic_place_holder"
+            app:layout_constraintDimensionRatio="1:1"
+            app:layout_constraintEnd_toStartOf="@id/ivImage2"
+            app:layout_constraintStart_toStartOf="@id/edtComment"
+            app:layout_constraintTop_toBottomOf="@id/edtComment"
+            app:layout_constraintWidth_percent="0.28" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/ivClearImg1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="@{fragment::onClick}"
+            android:padding="@dimen/layout_margin_10dp"
+            android:src="@drawable/ic_cancel_edt"
+            android:visibility="gone"
+            app:layout_constraintEnd_toEndOf="@id/ivImage1"
+            app:layout_constraintTop_toTopOf="@id/ivImage1"
+            tools:visibility="visible" />
+
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/ivImage2"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginStart="@dimen/layout_margin_10dp"
+            android:layout_marginTop="@dimen/padding_20dp"
+            android:adjustViewBounds="true"
+            android:onClick="@{fragment::onClick}"
+            android:scaleType="centerCrop"
+            android:src="@drawable/ic_place_holder"
+            app:layout_constraintDimensionRatio="1:1"
+            app:layout_constraintStart_toEndOf="@id/ivImage1"
+            app:layout_constraintTop_toBottomOf="@id/edtComment"
+            app:layout_constraintWidth_percent="0.28" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/ivClearImg2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="@{fragment::onClick}"
+            android:padding="@dimen/layout_margin_10dp"
+            android:src="@drawable/ic_cancel_edt"
+            android:visibility="gone"
+            app:layout_constraintEnd_toEndOf="@id/ivImage2"
+            app:layout_constraintTop_toTopOf="@id/ivImage2"
+            tools:visibility="visible" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/ivImageVideo"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginStart="@dimen/layout_margin_10dp"
+            android:layout_marginTop="@dimen/padding_20dp"
+            android:adjustViewBounds="true"
+            android:onClick="@{fragment::onClick}"
+            android:scaleType="centerCrop"
+            android:src="@drawable/ic_place_holder"
+            app:layout_constraintDimensionRatio="1:1"
+            app:layout_constraintStart_toEndOf="@id/ivImage2"
+            app:layout_constraintTop_toBottomOf="@id/edtComment"
+            app:layout_constraintWidth_percent="0.28" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/ivClearVideo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="@{fragment::onClick}"
+            android:padding="@dimen/layout_margin_10dp"
+            android:src="@drawable/ic_cancel_edt"
+            android:visibility="gone"
+            app:layout_constraintEnd_toEndOf="@id/ivImageVideo"
+            app:layout_constraintTop_toTopOf="@id/ivImageVideo"
+            tools:visibility="visible" />
+
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/ivPlayVideo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="@{fragment::onClick}"
+            android:src="@drawable/ic_play_button"
+            app:layout_constraintBottom_toBottomOf="@id/ivImageVideo"
+            app:layout_constraintEnd_toEndOf="@id/ivImageVideo"
+            app:layout_constraintStart_toStartOf="@id/ivImageVideo"
+            app:layout_constraintTop_toTopOf="@id/ivImageVideo" />
+
+        <com.ptithcm.ptshop.widget.LoadingButton
+            android:id="@+id/btnAddReview"
+            style="@style/black_btn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/layout_margin_32dp"
+            android:background="@drawable/button_selector"
+            android:onClick="@{fragment::onClick}"
+            app:isShowTextBehind="true"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:text="@string/post" />
+
+        <LinearLayout
+            android:id="@+id/layoutLoading"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/black_alpha"
+            android:gravity="center_horizontal"
+            android:orientation="horizontal"
+            android:visibility="gone"
+            tools:visibility="visible">
+
+            <ProgressBar
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center" />
+        </LinearLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!--Layout-->
+    <dimen name="no_padding">0dp</dimen>
+    <dimen name="layout_margin_1dp">1dp</dimen>
+    <dimen name="layout_margin_2dp">2dp</dimen>
+    <dimen name="layout_margin_3dp">3dp</dimen>
+    <dimen name="layout_margin_4dp">4dp</dimen>
+    <dimen name="layout_margin_5dp">5dp</dimen>
+    <dimen name="layout_margin_6dp">6dp</dimen>
+    <dimen name="layout_margin_16dp">16dp</dimen>
+    <dimen name="layout_margin_18dp">18dp</dimen>
+    <dimen name="layout_margin_8dp">8dp</dimen>
+    <dimen name="layout_margin_12dp">12dp</dimen>
+    <dimen name="layout_margin_10dp">10dp</dimen>
+    <dimen name="layout_margin_13dp">13dp</dimen>
+    <dimen name="layout_margin_14dp">14dp</dimen>
+    <dimen name="layout_margin_15dp">15dp</dimen>
+    <dimen name="layout_margin_24dp">24dp</dimen>
+    <dimen name="layout_margin_32dp">32dp</dimen>
+    <dimen name="layout_margin_28dp">28dp</dimen>
+    <dimen name="layout_margin_45dp">45dp</dimen>
+    <dimen name="layout_margin_64dp">64dp</dimen>
+    <dimen name="layout_margin_72dp">72dp</dimen>
+    <dimen name="layout_margin_104dp">104dp</dimen>
+    <dimen name="layout_margin_128dp">128dp</dimen>
+    <dimen name="layout_margin_80dp">80dp</dimen>
+    <dimen name="layout_margin_48dp">48dp</dimen>
+    <dimen name="layout_margin_40dp">40dp</dimen>
+
+    <!--Font-->
+    <dimen name="text_size_9sp">9sp</dimen>
+    <dimen name="text_size_10sp">10sp</dimen>
+    <dimen name="text_size_11sp">11sp</dimen>
+    <dimen name="text_size_12sp">12sp</dimen>
+    <dimen name="text_size_13sp">13sp</dimen>
+    <dimen name="text_size_14sp">14sp</dimen>
+    <dimen name="text_size_15sp">15sp</dimen>
+    <dimen name="text_size_16sp">16sp</dimen>
+    <dimen name="text_size_17sp">17sp</dimen>
+    <dimen name="text_size_18sp">18sp</dimen>
+    <dimen name="text_size_19sp">19sp</dimen>
+    <dimen name="text_size_20sp">20sp</dimen>
+    <dimen name="text_size_21sp">21sp</dimen>
+    <dimen name="text_size_22sp">22sp</dimen>
+    <dimen name="text_size_23sp">23sp</dimen>
+    <dimen name="text_size_24sp">24sp</dimen>
+    <dimen name="text_size_25sp">25sp</dimen>
+    <dimen name="text_size_26sp">26sp</dimen>
+    <dimen name="text_size_27sp">27sp</dimen>
+    <dimen name="text_size_40sp">40sp</dimen>
+
+    <!--Icon-->
+    <dimen name="size_8dp">8dp</dimen>
+    <dimen name="size_16dp">16dp</dimen>
+    <dimen name="size_18dp">18dp</dimen>
+    <dimen name="size_20dp">20dp</dimen>
+    <dimen name="size_24dp">24dp</dimen>
+    <dimen name="size_30dp">30dp</dimen>
+    <dimen name="size_32dp">32dp</dimen>
+    <dimen name="size_36dp">36dp</dimen>
+    <dimen name="size_48dp">48dp</dimen>
+    <dimen name="size_40dp">40dp</dimen>
+    <dimen name="size_60dp">60dp</dimen>
+    <dimen name="size_80dp">80dp</dimen>
+    <dimen name="size_70dp">70dp</dimen>
+    <dimen name="size_100dp">100dp</dimen>
+    <dimen name="size_150dp">150dp</dimen>
+    <dimen name="size_180dp">180dp</dimen>
+    <dimen name="size_200dp">200dp</dimen>
+
+    <!--Image-->
+    <dimen name="image_50dp">50dp</dimen>
+    <dimen name="image_65dp">65dp</dimen>
+    <dimen name="image_200dp">200dp</dimen>
+    <dimen name="image_270dp">270dp</dimen>
+    <dimen name="image_250dp">250dp</dimen>
+    <dimen name="image_300dp">300dp</dimen>
+    <dimen name="image_350dp">350dp</dimen>
+    <dimen name="image_330dp">330dp</dimen>
+    <dimen name="image_400dp">400dp</dimen>
+
+    <dimen name="design_bottom_navigation_icon_size" tools:override="true">19dp</dimen>
+
+    <dimen name="fast_scroll_overlay_text_size">100dp</dimen>
+
+    <dimen name="padding_20dp">20dp</dimen>
+    <dimen name="margin6">6dp</dimen>
+</resources>

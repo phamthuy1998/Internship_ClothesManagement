@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="subtotal"
+            type="String" />
+
+        <variable
+            name="discount"
+            type="String" />
+
+        <variable
+            name="shipping"
+            type="String" />
+
+        <variable
+            name="total"
+            type="String" />
+
+        <variable
+            name="status"
+            type="String" />
+
+        <variable
+            name="shippingTax"
+            type="String" />
+
+        <variable
+            name="merchantdiscount"
+            type="String" />
+
+        <variable
+            name="boughtDate"
+            type="String" />
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/layout_margin_16dp">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvSubtotal"
+            style="@style/normal_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/sub_total"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvSubTotalPrice"
+            style="@style/normal_text"
+            android:text="@{@string/price_format(subtotal)}"
+            app:layout_constraintBaseline_toBaselineOf="@id/tvSubtotal"
+            app:layout_constraintEnd_toEndOf="parent"
+            tools:text="146.29" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvDiscount"
+            style="@style/normal_text"
+            setVisible="@{discount != null}"
+            android:layout_marginTop="@dimen/layout_margin_8dp"
+            android:text="@string/discount"
+            app:layout_constraintStart_toStartOf="@id/tvSubtotal"
+            app:layout_constraintTop_toBottomOf="@id/tvSubtotal" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvDiscountPrice"
+            style="@style/normal_text"
+            setVisible="@{discount != null}"
+            android:text="@{`-`+ @string/price_format(discount)}"
+            app:layout_constraintBaseline_toBaselineOf="@id/tvDiscount"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvShipping"
+            style="@style/normal_text"
+            android:layout_marginTop="@dimen/layout_margin_8dp"
+            android:text="@string/shipping"
+            app:layout_constraintStart_toStartOf="@id/tvDiscount"
+            app:layout_constraintTop_toBottomOf="@id/tvDiscount" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvShippingPrice"
+            style="@style/normal_text"
+            android:text="free"
+            app:layout_constraintBaseline_toBaselineOf="@id/tvShipping"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <View
+            android:id="@+id/divider2"
+            style="@style/divider"
+            android:layout_marginTop="@dimen/layout_margin_8dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvShipping" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvTotal"
+            style="@style/normal_text.bold"
+            android:layout_marginTop="@dimen/layout_margin_8dp"
+            android:text="@string/total"
+            android:textAllCaps="true"
+            app:layout_constraintStart_toStartOf="@id/divider2"
+            app:layout_constraintTop_toBottomOf="@id/divider2" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvTotalPrice"
+            style="@style/normal_text.bold"
+            android:text="@{@string/price_format(total)}"
+            app:layout_constraintBaseline_toBaselineOf="@id/tvTotal"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <View
+            android:id="@+id/divider3"
+            style="@style/divider"
+            android:layout_marginTop="@dimen/layout_margin_8dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvTotal" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvTitleBoughtDate"
+            style="@style/normal_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/layout_margin_8dp"
+            android:text="@string/bought_date"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/divider3" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvBoughtDate"
+            style="@style/normal_text"
+            android:text="@{boughtDate}"
+            app:layout_constraintBaseline_toBaselineOf="@id/tvTitleBoughtDate"
+            app:layout_constraintEnd_toEndOf="parent"
+            tools:text="28/06/1994" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvTitleStatus"
+            style="@style/normal_text.bold"
+            android:layout_marginTop="@dimen/layout_margin_8dp"
+            android:text="@string/chuck_status"
+            android:textAllCaps="true"
+            app:layout_constraintStart_toStartOf="@id/divider2"
+            app:layout_constraintTop_toBottomOf="@id/tvTitleBoughtDate" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvStatus"
+            style="@style/normal_text.bold"
+            android:text="@{status}"
+            android:textAllCaps="true"
+            app:layout_constraintBaseline_toBaselineOf="@id/tvTitleStatus"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

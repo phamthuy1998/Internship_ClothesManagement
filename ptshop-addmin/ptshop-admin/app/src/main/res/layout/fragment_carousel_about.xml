@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="information"
+            type="String" />
+
+    </data>
+
+    <androidx.core.widget.NestedScrollView
+        android:id="@+id/nestedScrollView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingBottom="@dimen/layout_margin_16dp">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvInformation"
+                style="@style/normal_text"
+                android:layout_width="0dp"
+                android:layout_margin="@dimen/layout_margin_16dp"
+                android:background="@drawable/bg_text_corner"
+                setTextHtml="@{information}"
+                android:textAlignment="textStart"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <!--            <androidx.appcompat.widget.AppCompatTextView-->
+            <!--                android:id="@+id/tvBioTitle"-->
+            <!--                style="@style/normal_text.Toolbar.Regular"-->
+            <!--                android:layout_width="0dp"-->
+            <!--                android:layout_margin="@dimen/layout_margin_16dp"-->
+            <!--                android:text="@string/biography"-->
+            <!--                android:textAlignment="textStart"-->
+            <!--                app:layout_constraintEnd_toEndOf="parent"-->
+            <!--                app:layout_constraintStart_toStartOf="parent"-->
+            <!--                app:layout_constraintTop_toTopOf="parent" />-->
+
+            <!--            <androidx.appcompat.widget.AppCompatTextView-->
+            <!--                android:id="@+id/tvBioDescription"-->
+            <!--                style="@style/normal_text"-->
+            <!--                android:layout_width="0dp"-->
+            <!--                android:layout_margin="@dimen/layout_margin_16dp"-->
+            <!--                android:text="@{bio}"-->
+            <!--                android:background="@drawable/bg_text_corner"-->
+            <!--                android:textAlignment="textStart"-->
+            <!--                app:layout_constraintEnd_toEndOf="parent"-->
+            <!--                app:layout_constraintStart_toStartOf="parent"-->
+            <!--                app:layout_constraintTop_toBottomOf="@id/tvBioTitle" />-->
+
+            <!--            <androidx.appcompat.widget.AppCompatTextView-->
+            <!--                android:id="@+id/tvTermTitle"-->
+            <!--                style="@style/normal_text.Toolbar.Regular"-->
+            <!--                android:layout_width="0dp"-->
+            <!--                android:layout_margin="@dimen/layout_margin_16dp"-->
+            <!--                android:text="@string/terms_and_return_policy"-->
+            <!--                android:textAlignment="textStart"-->
+            <!--                app:layout_constraintEnd_toEndOf="parent"-->
+            <!--                app:layout_constraintStart_toStartOf="parent"-->
+            <!--              app:layout_constraintTop_toBottomOf="@id/tvBioDescription" />-->
+
+            <!--            <androidx.appcompat.widget.AppCompatTextView-->
+            <!--                android:id="@+id/tvTermDescription"-->
+            <!--                style="@style/normal_text"-->
+            <!--                android:layout_width="0dp"-->
+            <!--                android:layout_margin="@dimen/layout_margin_16dp"-->
+            <!--                android:text="@{term}"-->
+            <!--                android:background="@drawable/bg_text_corner"-->
+            <!--                android:textAlignment="textStart"-->
+            <!--                app:layout_constraintEnd_toEndOf="parent"-->
+            <!--                app:layout_constraintStart_toStartOf="parent"-->
+            <!--                app:layout_constraintTop_toBottomOf="@id/tvTermTitle" />-->
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.core.widget.NestedScrollView>
+
+</layout>

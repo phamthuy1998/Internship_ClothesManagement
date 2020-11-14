@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!--    <item-->
+    <!--        android:id="@+id/nav_home"-->
+    <!--        android:icon="@drawable/home_selector"-->
+    <!--        android:orderInCategory="1"-->
+    <!--        android:contentDescription="@string/home"-->
+    <!--        android:title="@string/home"/>-->
+
+    <item
+        android:id="@+id/nav_shop"
+        android:contentDescription="@string/clothing"
+        android:icon="@drawable/clothing_selector"
+        android:orderInCategory="1"
+        android:title="@string/clothing" />
+
+    <item
+        android:id="@+id/nav_designer"
+        android:contentDescription="@string/provider"
+        android:icon="@drawable/designer_selector"
+        android:orderInCategory="2"
+        android:title="@string/provider" />
+
+    <item
+        android:id="@+id/nav_wish"
+        android:contentDescription="@string/wishlist"
+        android:icon="@drawable/wishlist_selector"
+        android:orderInCategory="3"
+        android:title="@string/wishlist" />
+
+    <item
+        android:id="@+id/nav_message"
+        android:contentDescription="@string/message"
+        android:icon="@drawable/message_selector"
+        android:orderInCategory="4"
+        android:title="@string/message" />
+
+
+    <item
+        android:id="@+id/nav_profile"
+        android:contentDescription="@string/profile"
+        android:icon="@drawable/profile_selector"
+        android:orderInCategory="5"
+        android:title="@string/profile" />
+</menu>
