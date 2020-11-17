@@ -7,16 +7,16 @@
 
     <fragment android:id="@+id/fragment_home"
         tools:layout="@layout/fragment_home"
-        android:name="com.ptithcm.ptshop.view.home.HomeFragment"/>
+        android:name="com.ptithcm.admin.view.home.HomeFragment"/>
 
     <fragment
         android:id="@+id/fragment_story_detail"
-        android:name="com.ptithcm.ptshop.view.home.storydetail.StoryDetailFragment"
+        android:name="com.ptithcm.admin.view.home.storydetail.StoryDetailFragment"
         tools:layout="@layout/activity_story_detail" />
 
     <fragment
         android:id="@+id/fragment_refine_home"
-        android:name="com.ptithcm.ptshop.view.refine.HomeRefineFragment"
+        android:name="com.ptithcm.admin.view.refine.HomeRefineFragment"
         tools:layout="@layout/fragment_refine_home"/>
 
     <include app:graph="@navigation/nav_carousel_detail" />
@@ -25,7 +25,7 @@
 
     <fragment
         android:id="@+id/sizeGuideFragment"
-        android:name="com.ptithcm.ptshop.view.sizeguide.SizeGuideFragment"
+        android:name="com.ptithcm.admin.view.sizeguide.SizeGuideFragment"
         android:label="SizeGuideFragment" />
 
 </navigation>

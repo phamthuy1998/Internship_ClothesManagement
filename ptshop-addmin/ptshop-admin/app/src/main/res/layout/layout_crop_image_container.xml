@@ -11,7 +11,7 @@
             android:adjustViewBounds="true"
             android:scaleType="center"/>
 
-    <com.ptithcm.ptshop.widget.CropOverlayView
+    <com.ptithcm.admin.widget.CropOverlayView
             android:id="@+id/cropOverlayView"
             android:layout_width="match_parent"
             android:layout_height="match_parent"/>

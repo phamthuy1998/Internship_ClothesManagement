@@ -7,11 +7,11 @@
 
     <fragment android:id="@+id/fragment_shop"
         tools:layout="@layout/fragment_shop"
-        android:name="com.ptithcm.ptshop.view.shop.ShopFragment" />
+        android:name="com.ptithcm.admin.view.shop.ShopFragment" />
 
     <fragment android:id="@+id/fragment_all_categories"
         tools:layout="@layout/fragment_all_categories"
-        android:name="com.ptithcm.ptshop.view.allcategories.AllCategoriesFragment">
+        android:name="com.ptithcm.admin.view.allcategories.AllCategoriesFragment">
 
         <action android:id="@+id/action_categories_detail"
             app:destination="@id/nav_categories_detail"

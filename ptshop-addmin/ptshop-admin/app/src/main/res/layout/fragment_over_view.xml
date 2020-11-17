@@ -5,14 +5,14 @@
     <data>
         <variable
             name="fragment"
-            type="com.ptithcm.ptshop.view.wishlist.OverViewFragment" />
+            type="com.ptithcm.admin.view.wishlist.OverViewFragment" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <com.ptithcm.ptshop.widget.SnapshopViewPager
+        <com.ptithcm.admin.widget.SnapshopViewPager
             android:id="@+id/vpImage"
             android:layout_width="match_parent"
             android:layout_height="0dp"

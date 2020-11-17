@@ -11,8 +11,8 @@
             type="String" />
         <variable
             name="type"
-            type="com.ptithcm.ptshop.util.CheckPaymentMethodType" />
-        <import type="com.ptithcm.ptshop.util.CheckPaymentMethodType"/>
+            type="com.ptithcm.admin.util.CheckPaymentMethodType" />
+        <import type="com.ptithcm.admin.util.CheckPaymentMethodType"/>
     </data>
     <FrameLayout
         android:layout_width="match_parent"

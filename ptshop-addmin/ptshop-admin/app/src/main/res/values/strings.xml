@@ -354,4 +354,6 @@
     <string name="add_video">Add video</string>
     <string name="add_photo">Add photo</string>
     <string name="post">Post</string>
+    <string name="productTitle">PRODUCT</string>
+    <string name="invoiceTitle">INVOICE</string>
 </resources>

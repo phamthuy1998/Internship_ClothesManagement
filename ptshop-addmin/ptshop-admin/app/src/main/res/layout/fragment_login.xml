@@ -17,7 +17,7 @@
 
         <variable
             name="fragment"
-            type="com.ptithcm.ptshop.view.login.LoginFragment" />
+            type="com.ptithcm.admin.view.login.LoginFragment" />
     </data>
 
     <ScrollView
@@ -142,7 +142,7 @@
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/edt_password" />
 
-            <com.ptithcm.ptshop.widget.LoadingButton
+            <com.ptithcm.admin.widget.LoadingButton
                 android:id="@+id/btn_sign_in"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

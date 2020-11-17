@@ -13,7 +13,7 @@
         android:contentDescription="@string/clothing"
         android:icon="@drawable/clothing_selector"
         android:orderInCategory="1"
-        android:title="@string/clothing" />
+        android:title="@string/productTitle" />
 
     <item
         android:id="@+id/nav_designer"
@@ -23,11 +23,11 @@
         android:title="@string/provider" />
 
     <item
-        android:id="@+id/nav_wish"
-        android:contentDescription="@string/wishlist"
-        android:icon="@drawable/wishlist_selector"
+        android:id="@+id/nav_invoices"
+        android:contentDescription="@string/invoiceTitle"
+        android:icon="@drawable/invoice_selector"
         android:orderInCategory="3"
-        android:title="@string/wishlist" />
+        android:title="@string/invoiceTitle" />
 
     <item
         android:id="@+id/nav_message"
@@ -35,7 +35,6 @@
         android:icon="@drawable/message_selector"
         android:orderInCategory="4"
         android:title="@string/message" />
-
 
     <item
         android:id="@+id/nav_profile"

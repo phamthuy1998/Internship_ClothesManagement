@@ -12,7 +12,7 @@
 
         <variable
             name="fragment"
-            type="com.ptithcm.ptshop.view.mydetail.MyDetailFragment" />
+            type="com.ptithcm.admin.view.mydetail.MyDetailFragment" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -61,7 +61,7 @@
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintTop_toBottomOf="@id/edtPhone" />
 
-        <com.ptithcm.ptshop.widget.LoadingButton
+        <com.ptithcm.admin.widget.LoadingButton
             android:id="@+id/btn_update"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

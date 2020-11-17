@@ -8,9 +8,11 @@ import com.amazonaws.regions.Region
 import com.amazonaws.regions.Regions
 import com.amazonaws.services.s3.AmazonS3Client
 import com.facebook.stetho.okhttp3.StethoInterceptor
+import com.jakewharton.retrofit2.adapter.kotlin.coroutines.CoroutineCallAdapterFactory
 import com.ptithcm.core.BuildConfig
 import com.ptithcm.core.api.ApiClothesService
 import com.ptithcm.core.api.ApiService
+import com.ptithcm.core.api.NotificationApi
 import com.readystatesoftware.chuck.ChuckInterceptor
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
@@ -25,6 +27,14 @@ val remoteModule = module {
 
     single {
         createService<ApiService>(get(),BuildConfig.SERVER_URL)
+    }
+
+    single {
+        createService<ApiService>(get(),BuildConfig.SERVER_URL)
+    }
+
+    single {
+        retrofit()
     }
 
     single {
@@ -117,6 +127,24 @@ inline fun <reified T> createServiceClothes(context: Context): T {
         .build()
     return retrofit.create(T::class.java)
 }
+
+private fun retrofit(): NotificationApi {
+    val logger = HttpLoggingInterceptor()
+    logger.level = HttpLoggingInterceptor.Level.BASIC
+
+    val client = OkHttpClient.Builder()
+        .addInterceptor(logger)
+        .build()
+
+    return Retrofit.Builder()
+        .baseUrl(BuildConfig.FCM_BASE_API)
+        .client(client)
+        .addCallAdapterFactory(CoroutineCallAdapterFactory())
+        .addConverterFactory(GsonConverterFactory.create())
+        .build()
+        .create(NotificationApi::class.java)
+}
+
 
 inline fun <reified T> createService(): T {
     val retrofit = Retrofit.Builder()

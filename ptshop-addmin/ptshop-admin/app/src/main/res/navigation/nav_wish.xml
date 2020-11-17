@@ -9,7 +9,7 @@
     <include app:graph="@navigation/nav_categories_detail" />
     <fragment android:id="@+id/fragment_wishlist"
         tools:layout="@layout/fragment_wish_list"
-        android:name="com.ptithcm.ptshop.view.wishlist.WishListFragment">
+        android:name="com.ptithcm.admin.view.wishlist.WishListFragment">
         <action
             android:id="@+id/wishList_to_detail"
             app:destination="@id/fragment_product_detail"/>

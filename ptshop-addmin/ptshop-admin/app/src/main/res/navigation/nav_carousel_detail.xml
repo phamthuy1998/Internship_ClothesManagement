@@ -7,7 +7,7 @@
 
     <fragment android:id="@+id/fragment_carousel_detail"
         tools:layout="@layout/fragment_carousel_detail"
-        android:name="com.ptithcm.ptshop.view.carousel.CarouselDetailFragment"/>
+        android:name="com.ptithcm.admin.view.carousel.CarouselDetailFragment"/>
 
     <include app:graph="@navigation/nav_refine" />
     <include app:graph="@navigation/nav_search" />
@@ -15,45 +15,45 @@
 
     <fragment
         android:id="@+id/fragment_product_detail"
-        android:name="com.ptithcm.ptshop.view.product.ProductDetailFragment"
+        android:name="com.ptithcm.admin.view.product.ProductDetailFragment"
         tools:layout="@layout/fragment_product_detail"/>
 
     <fragment
         android:id="@+id/fragment_over_view"
-        android:name="com.ptithcm.ptshop.view.wishlist.OverViewFragment"
+        android:name="com.ptithcm.admin.view.wishlist.OverViewFragment"
         tools:layout="@layout/fragment_over_view"/>
     <fragment
         android:id="@+id/imageVideoFragment"
-        android:name="com.ptithcm.ptshop.view.rating.ImageVideoFragment"
+        android:name="com.ptithcm.admin.view.rating.ImageVideoFragment"
         tools:layout="@layout/fragment_image_video"/>
 
     <fragment
         android:id="@+id/sizeGuideFragment"
         tools:layout="@layout/fragment_size_guide"
-        android:name="com.ptithcm.ptshop.view.sizeguide.SizeGuideFragment"
+        android:name="com.ptithcm.admin.view.sizeguide.SizeGuideFragment"
         android:label="SizeGuideFragment" />
 
     <fragment
         android:id="@+id/fragment_story_detail"
-        android:name="com.ptithcm.ptshop.view.home.storydetail.StoryDetailFragment"
+        android:name="com.ptithcm.admin.view.home.storydetail.StoryDetailFragment"
         tools:layout="@layout/activity_story_detail" />
     <fragment
         android:id="@+id/questionFragment"
-        android:name="com.ptithcm.ptshop.view.question.QuestionFragment"
+        android:name="com.ptithcm.admin.view.question.QuestionFragment"
         android:label="QuestionFragment" />
     <fragment
         android:id="@+id/ratingFragment"
-        android:name="com.ptithcm.ptshop.view.rating.RatingFragment"
+        android:name="com.ptithcm.admin.view.rating.RatingFragment"
         android:label="RatingFragment" />
     <fragment
         android:id="@+id/createReviewFragment"
-        android:name="com.ptithcm.ptshop.view.rating.CreateReviewFragment"
+        android:name="com.ptithcm.admin.view.rating.CreateReviewFragment"
         tools:layout="@layout/fragment_create_review"
         android:label="CreateReviewFragment" />
 
     <fragment
         android:id="@+id/loginFragment"
-        android:name="com.ptithcm.ptshop.view.login.LoginFragment"
+        android:name="com.ptithcm.admin.view.login.LoginFragment"
         android:label="LoginFragment" />
     <include app:graph="@navigation/nav_login" />
 

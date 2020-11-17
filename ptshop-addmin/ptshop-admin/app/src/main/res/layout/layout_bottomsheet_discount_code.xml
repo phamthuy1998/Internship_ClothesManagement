@@ -52,7 +52,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"/>
 
-        <com.ptithcm.ptshop.widget.LoadingButton
+        <com.ptithcm.admin.widget.LoadingButton
             android:id="@+id/btnApply"
             android:layout_width="0dp"
             android:layout_height="wrap_content"

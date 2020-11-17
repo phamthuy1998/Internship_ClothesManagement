@@ -14,7 +14,7 @@
 
         <variable
             name="fragment"
-            type="com.ptithcm.ptshop.view.addressbook.ShippingAddressDetailFragment" />
+            type="com.ptithcm.admin.view.addressbook.ShippingAddressDetailFragment" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -152,7 +152,7 @@
             </androidx.constraintlayout.widget.ConstraintLayout>
         </ScrollView>
 
-        <com.ptithcm.ptshop.widget.LoadingButton
+        <com.ptithcm.admin.widget.LoadingButton
             android:id="@+id/btn_update_address"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

@@ -41,7 +41,7 @@ android {
 
     productFlavors{
         staging{
-            buildConfigField "String", "SERVER_CLOTHES_URL", '"http://192.168.1.47:88/api/"'
+            buildConfigField "String", "SERVER_CLOTHES_URL", '"http://192.168.1.5:88/api/"'
             buildConfigField "String", "SERVER_URL", '"https://api-staging.snapshop.com"'
             buildConfigField "String", "IMG_URL", '"file://"'
             buildConfigField "String", "AWS_URL_IMAGE", '"https://snapshop-staging.s3.amazonaws.com/"'
@@ -51,7 +51,7 @@ android {
         }
 
         prod{
-            buildConfigField "String", "SERVER_CLOTHES_URL", '"http://192.168.1.47:88/api/"'
+            buildConfigField "String", "SERVER_CLOTHES_URL", '"http://192.168.1.5:88/api/"'
             buildConfigField "String", "SERVER_URL", '"https://api.snapshop.me"'
             buildConfigField "String", "AWS_URL_IMAGE", '"https://snapshop-prod.s3.amazonaws.com/"'
             buildConfigField "String", "AWS_BUCKET", '"snapshop-prod"'
@@ -118,8 +118,8 @@ dependencies {
 
     api "joda-time:joda-time:2.10.6"
     // send bird
-    api  'com.sendbird.sdk:sendbird-android-sdk:3.0.150'
-    api 'com.sendbird.sdk:uikit:1.2.3'
+//    api  'com.sendbird.sdk:sendbird-android-sdk:3.0.150'
+//    api 'com.sendbird.sdk:uikit:1.2.3'
 }
 repositories {
     mavenCentral()

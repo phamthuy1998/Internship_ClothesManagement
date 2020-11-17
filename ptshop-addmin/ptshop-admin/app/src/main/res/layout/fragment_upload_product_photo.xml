@@ -18,7 +18,7 @@
 
         <variable
             name="fragment"
-            type="com.ptithcm.ptshop.view.uploadproduct.UploadPhotoFragment" />
+            type="com.ptithcm.admin.view.uploadproduct.UploadPhotoFragment" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

@@ -7,7 +7,7 @@
 
         <variable
             name="data"
-            type="com.ptithcm.ptshop.view.refine.ColoursFragment" />
+            type="com.ptithcm.admin.view.refine.ColoursFragment" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

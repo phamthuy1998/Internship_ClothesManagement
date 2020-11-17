@@ -5,7 +5,7 @@
 
     <data>
 
-        <import type="com.ptithcm.ptshop.util.DateUtils"/>
+        <import type="com.ptithcm.admin.util.DateUtils"/>
 
         <variable
             name="item"

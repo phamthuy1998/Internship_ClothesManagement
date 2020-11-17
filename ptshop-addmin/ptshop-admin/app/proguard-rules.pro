@@ -55,7 +55,7 @@
 -keep class com.ptithcm.core.model.** { *; }
 -keep class com.ptithcm.core.param.** { *; }
 -keep class com.ptithcm.core.vo.** { *; }
--keep class com.ptithcm.ptshop.constant.** { *; }
+-keep class com.ptithcm.admin.constant.** { *; }
 -keep class com.ptithcm.core.util.** { *; }
 
 # Koin

@@ -8,7 +8,7 @@
 
         <variable
             name="data"
-            type="com.ptithcm.ptshop.view.refine.SizesFragment" />
+            type="com.ptithcm.admin.view.refine.SizesFragment" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

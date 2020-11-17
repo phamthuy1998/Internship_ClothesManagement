@@ -8,7 +8,7 @@
 
         <variable
             name="data"
-            type="com.ptithcm.ptshop.view.refine.GenderFragment" />
+            type="com.ptithcm.admin.view.refine.GenderFragment" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

@@ -6,7 +6,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <com.ptithcm.ptshop.widget.fastscroll.FastScrollRecyclerView
+        <com.ptithcm.admin.widget.fastscroll.FastScrollRecyclerView
             android:id="@+id/rvDesigners"
             android:layout_width="match_parent"
             android:layout_height="match_parent"

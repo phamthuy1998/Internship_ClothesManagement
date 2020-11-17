@@ -14,7 +14,7 @@
 
         <variable
             name="fragment"
-            type="com.ptithcm.ptshop.view.wishlist.WishListFragment" />
+            type="com.ptithcm.admin.view.wishlist.WishListFragment" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

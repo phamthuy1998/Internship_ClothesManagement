@@ -1,4 +1,5 @@
-package com.ptithcm.core.model
+ package com.ptithcm.core.model
+/*
 
 import com.sendbird.uikit.interfaces.UserInfo
 
@@ -15,4 +16,4 @@ internal class UserSendBird : UserInfo {
     override fun getProfileUrl(): String {
         return profileUrl
     }
-}
+}*/

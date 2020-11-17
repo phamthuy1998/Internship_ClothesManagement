@@ -14,7 +14,7 @@
 
         <variable
             name="fragment"
-            type="com.ptithcm.ptshop.view.profile.ProfileFragment" />
+            type="com.ptithcm.admin.view.profile.ProfileFragment" />
 
     </data>
 

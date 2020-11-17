@@ -13,7 +13,7 @@
 
         <variable
             name="fragment"
-            type="com.ptithcm.ptshop.view.product.ProductDetailFragment" />
+            type="com.ptithcm.admin.view.product.ProductDetailFragment" />
 
         <variable
             name="hasQuantity"
@@ -293,7 +293,7 @@
             </androidx.constraintlayout.widget.ConstraintLayout>
         </androidx.core.widget.NestedScrollView>
 
-        <com.ptithcm.ptshop.widget.LoadingButton
+        <com.ptithcm.admin.widget.LoadingButton
             android:id="@+id/btnAddToCard"
             style="@style/black_btn"
             android:layout_width="match_parent"

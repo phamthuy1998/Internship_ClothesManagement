@@ -1,15 +1,14 @@
 package com.ptithcm.core
 
+//import com.sendbird.uikit.SendBirdUIKit
+//import com.sendbird.uikit.adapter.SendBirdUIKitAdapter
+//import com.sendbird.uikit.interfaces.UserInfo
 import android.app.Application
 import com.ptithcm.core.di.localModule
 import com.ptithcm.core.di.remoteModule
 import com.ptithcm.core.di.repositoryModule
 import com.ptithcm.core.model.*
 import com.ptithcm.core.util.PrefUtil
-import com.ptithcm.core.util.USER_ID
-import com.sendbird.uikit.SendBirdUIKit
-import com.sendbird.uikit.adapter.SendBirdUIKitAdapter
-import com.sendbird.uikit.interfaces.UserInfo
 import org.koin.android.ext.android.inject
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidLogger
@@ -48,34 +47,34 @@ open class CoreApplication : Application() {
 
     }
 
-    fun setupSendBird(){
-        SendBirdUIKit.init(object : SendBirdUIKitAdapter {
-            override fun getAppId(): String {
-                return "DD3C17AC-2220-4213-BD77-BE06CF592099" // The ID of the Sendbird application which UIKit sample app uses.
-            }
-
-            override fun getAccessToken(): String {
-                return ""
-            }
-
-            override fun getUserInfo(): UserInfo {
-                return object : UserInfo {
-
-                    override fun getUserId(): String {
-                        return USER_ID
-                    }
-
-                    override fun getNickname(): String {
-                        return USER_ID
-                    }
-
-                    override fun getProfileUrl(): String {
-                        return ""
-                    }
-                }
-            }
-        }, this)
-    }
+//    fun setupSendBird(){
+//        SendBirdUIKit.init(object : SendBirdUIKitAdapter {
+//            override fun getAppId(): String {
+//                return "DD3C17AC-2220-4213-BD77-BE06CF592099" // The ID of the Sendbird application which UIKit sample app uses.
+//            }
+//
+//            override fun getAccessToken(): String {
+//                return ""
+//            }
+//
+//            override fun getUserInfo(): UserInfo {
+//                return object : UserInfo {
+//
+//                    override fun getUserId(): String {
+//                        return USER_ID
+//                    }
+//
+//                    override fun getNickname(): String {
+//                        return USER_ID
+//                    }
+//
+//                    override fun getProfileUrl(): String {
+//                        return ""
+//                    }
+//                }
+//            }
+//        }, this)
+//    }
 
     fun isNetworkConnected(): Boolean {
         return prefsUtil.isNetworkConnected()

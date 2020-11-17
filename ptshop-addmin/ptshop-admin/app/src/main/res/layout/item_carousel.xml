@@ -11,13 +11,13 @@
             type="com.ptithcm.core.model.Carousel" />
     </data>
 
-    <com.ptithcm.ptshop.widget.SquareConstrainLayout
+    <com.ptithcm.admin.widget.SquareConstrainLayout
         android:layout_width="@dimen/image_270dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/layout_margin_8dp"
         android:layout_marginEnd="@dimen/layout_margin_8dp">
 
-        <com.ptithcm.ptshop.widget.RoundImageView
+        <com.ptithcm.admin.widget.RoundImageView
             android:id="@+id/imgPost"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -68,6 +68,6 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"/>
 
-    </com.ptithcm.ptshop.widget.SquareConstrainLayout>
+    </com.ptithcm.admin.widget.SquareConstrainLayout>
 
 </layout>

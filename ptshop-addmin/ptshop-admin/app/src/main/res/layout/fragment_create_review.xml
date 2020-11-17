@@ -6,7 +6,7 @@
 
         <variable
             name="fragment"
-            type="com.ptithcm.ptshop.view.rating.CreateReviewFragment" />
+            type="com.ptithcm.admin.view.rating.CreateReviewFragment" />
 
         <variable
             name="item"
@@ -260,7 +260,7 @@
             app:layout_constraintStart_toStartOf="@id/ivImageVideo"
             app:layout_constraintTop_toTopOf="@id/ivImageVideo" />
 
-        <com.ptithcm.ptshop.widget.LoadingButton
+        <com.ptithcm.admin.widget.LoadingButton
             android:id="@+id/btnAddReview"
             style="@style/black_btn"
             android:layout_width="match_parent"

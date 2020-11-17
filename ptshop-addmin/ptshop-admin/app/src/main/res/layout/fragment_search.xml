@@ -4,7 +4,7 @@
     <data>
         <variable
             name="fragment"
-            type="com.ptithcm.ptshop.view.search.SearchFragment" />
+            type="com.ptithcm.admin.view.search.SearchFragment" />
     </data>
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"

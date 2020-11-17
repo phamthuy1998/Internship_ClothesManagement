@@ -7,7 +7,7 @@
     <fragment
         android:id="@+id/register"
         tools:layout="@layout/fragment_register"
-        android:name="com.ptithcm.ptshop.view.register.RegisterFragment"
+        android:name="com.ptithcm.admin.view.register.RegisterFragment"
         android:label="@string/join_snapshop" >
         <action
             android:id="@+id/action_register_to_loginFragment"
@@ -17,7 +17,7 @@
     </fragment>
     <fragment
         android:id="@+id/loginFragment"
-        android:name="com.ptithcm.ptshop.view.login.LoginFragment"
+        android:name="com.ptithcm.admin.view.login.LoginFragment"
         tools:layout="@layout/fragment_login"
         android:label="LoginFragment" >
         <argument
@@ -28,6 +28,6 @@
     <fragment
         android:id="@+id/fragmentForgotPassword"
         tools:layout="@layout/fragment_forgot_password"
-        android:name="com.ptithcm.ptshop.view.forgotpassword.FragmentForgotPassword"
+        android:name="com.ptithcm.admin.view.forgotpassword.FragmentForgotPassword"
         android:label="FragmentForgotPassword" />
 </navigation>

@@ -8,7 +8,7 @@
     <include app:graph="@navigation/nav_categories_detail" />
     <fragment android:id="@+id/fragment_designer"
         tools:layout="@layout/fragment_designer"
-        android:name="com.ptithcm.ptshop.view.designer.DesignerFragment">
+        android:name="com.ptithcm.admin.view.designer.DesignerFragment">
 
         <action android:id="@+id/action_all_designers"
             app:destination="@id/fragment_all_designer"
@@ -28,7 +28,7 @@
 
     <fragment android:id="@+id/fragment_all_designer"
         tools:layout="@layout/fragment_all_designers"
-        android:name="com.ptithcm.ptshop.view.designer.AllStoresFragment">
+        android:name="com.ptithcm.admin.view.designer.AllStoresFragment">
 
         <action android:id="@+id/action_carousel_detail"
             app:destination="@id/nav_carousel_detail"
