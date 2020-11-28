@@ -464,7 +464,7 @@
             this.colname.OptionsColumn.AllowEdit = false;
             this.colname.Visible = true;
             this.colname.VisibleIndex = 1;
-            this.colname.Width = 242;
+            this.colname.Width = 241;
             // 
             // coldetail
             // 
@@ -474,7 +474,7 @@
             this.coldetail.OptionsColumn.AllowEdit = false;
             this.coldetail.Visible = true;
             this.coldetail.VisibleIndex = 2;
-            this.coldetail.Width = 198;
+            this.coldetail.Width = 197;
             // 
             // colimageUrl
             // 
@@ -484,7 +484,7 @@
             this.colimageUrl.OptionsColumn.AllowEdit = false;
             this.colimageUrl.Visible = true;
             this.colimageUrl.VisibleIndex = 3;
-            this.colimageUrl.Width = 70;
+            this.colimageUrl.Width = 69;
             // 
             // colthumnail
             // 
@@ -494,7 +494,7 @@
             this.colthumnail.OptionsColumn.AllowEdit = false;
             this.colthumnail.Visible = true;
             this.colthumnail.VisibleIndex = 4;
-            this.colthumnail.Width = 60;
+            this.colthumnail.Width = 59;
             // 
             // colsex
             // 
@@ -504,7 +504,7 @@
             this.colsex.OptionsColumn.AllowEdit = false;
             this.colsex.Visible = true;
             this.colsex.VisibleIndex = 5;
-            this.colsex.Width = 44;
+            this.colsex.Width = 43;
             // 
             // colactive
             // 
@@ -514,7 +514,7 @@
             this.colactive.OptionsColumn.AllowEdit = false;
             this.colactive.Visible = true;
             this.colactive.VisibleIndex = 6;
-            this.colactive.Width = 54;
+            this.colactive.Width = 59;
             // 
             // picImageIcon
             // 
@@ -697,7 +697,7 @@
             this.Controls.Add(this.barDockControl2);
             this.Controls.Add(this.barDockControl1);
             this.Name = "CategoryForm";
-            this.Text = "CategoryForm1";
+            this.Text = "Category ";
             this.Load += new System.EventHandler(this.CategoryForm1_Load);
             ((System.ComponentModel.ISupportInitialize)(this.clothesDataSet)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.categoryBindingSource)).EndInit();

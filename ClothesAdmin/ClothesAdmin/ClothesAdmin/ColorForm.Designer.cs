@@ -67,6 +67,7 @@
             this.lbChooseColor = new System.Windows.Forms.LinkLabel();
             this.productSizeColorBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.productSizeColorTableAdapter = new ClothesAdmin.ClothesDataSetTableAdapters.ProductSizeColorTableAdapter();
+            this.cbbActive = new System.Windows.Forms.ComboBox();
             idLabel = new System.Windows.Forms.Label();
             colorNameLabel = new System.Windows.Forms.Label();
             colorHexLabel = new System.Windows.Forms.Label();
@@ -206,7 +207,7 @@
             this.barDockControl1.Location = new System.Drawing.Point(0, 0);
             this.barDockControl1.Manager = this.barManager;
             this.barDockControl1.Margin = new System.Windows.Forms.Padding(2);
-            this.barDockControl1.Size = new System.Drawing.Size(1649, 33);
+            this.barDockControl1.Size = new System.Drawing.Size(1649, 30);
             // 
             // barDockControl2
             // 
@@ -221,19 +222,19 @@
             // 
             this.barDockControl3.CausesValidation = false;
             this.barDockControl3.Dock = System.Windows.Forms.DockStyle.Left;
-            this.barDockControl3.Location = new System.Drawing.Point(0, 33);
+            this.barDockControl3.Location = new System.Drawing.Point(0, 30);
             this.barDockControl3.Manager = this.barManager;
             this.barDockControl3.Margin = new System.Windows.Forms.Padding(2);
-            this.barDockControl3.Size = new System.Drawing.Size(0, 663);
+            this.barDockControl3.Size = new System.Drawing.Size(0, 666);
             // 
             // barDockControl5
             // 
             this.barDockControl5.CausesValidation = false;
             this.barDockControl5.Dock = System.Windows.Forms.DockStyle.Right;
-            this.barDockControl5.Location = new System.Drawing.Point(1649, 33);
+            this.barDockControl5.Location = new System.Drawing.Point(1649, 30);
             this.barDockControl5.Manager = this.barManager;
             this.barDockControl5.Margin = new System.Windows.Forms.Padding(2);
-            this.barDockControl5.Size = new System.Drawing.Size(0, 663);
+            this.barDockControl5.Size = new System.Drawing.Size(0, 666);
             // 
             // btnSua
             // 
@@ -278,6 +279,7 @@
             this.tableAdapterManager.ImportCouponDetailTableAdapter = null;
             this.tableAdapterManager.ImportCouponTableAdapter = null;
             this.tableAdapterManager.InvoiceItemTableAdapter = null;
+            this.tableAdapterManager.InvoiceStatusTableAdapter = null;
             this.tableAdapterManager.InvoiceTableAdapter = null;
             this.tableAdapterManager.ProductSizeColorTableAdapter = null;
             this.tableAdapterManager.ProductTableAdapter = null;
@@ -292,11 +294,11 @@
             // 
             this.colorGridControl.DataSource = this.colorBindingSource;
             this.colorGridControl.Dock = System.Windows.Forms.DockStyle.Left;
-            this.colorGridControl.Location = new System.Drawing.Point(0, 33);
+            this.colorGridControl.Location = new System.Drawing.Point(0, 30);
             this.colorGridControl.MainView = this.gridView1;
             this.colorGridControl.MenuManager = this.barManager;
             this.colorGridControl.Name = "colorGridControl";
-            this.colorGridControl.Size = new System.Drawing.Size(776, 663);
+            this.colorGridControl.Size = new System.Drawing.Size(776, 666);
             this.colorGridControl.TabIndex = 5;
             this.colorGridControl.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridView1});
@@ -319,7 +321,7 @@
             this.colid.OptionsColumn.AllowEdit = false;
             this.colid.Visible = true;
             this.colid.VisibleIndex = 0;
-            this.colid.Width = 94;
+            this.colid.Width = 87;
             // 
             // colcolorName
             // 
@@ -329,7 +331,7 @@
             this.colcolorName.OptionsColumn.AllowEdit = false;
             this.colcolorName.Visible = true;
             this.colcolorName.VisibleIndex = 1;
-            this.colcolorName.Width = 94;
+            this.colcolorName.Width = 402;
             // 
             // colcolorHex
             // 
@@ -339,7 +341,7 @@
             this.colcolorHex.OptionsColumn.AllowEdit = false;
             this.colcolorHex.Visible = true;
             this.colcolorHex.VisibleIndex = 2;
-            this.colcolorHex.Width = 94;
+            this.colcolorHex.Width = 132;
             // 
             // colactive
             // 
@@ -349,7 +351,7 @@
             this.colactive.OptionsColumn.AllowEdit = false;
             this.colactive.Visible = true;
             this.colactive.VisibleIndex = 3;
-            this.colactive.Width = 94;
+            this.colactive.Width = 125;
             // 
             // idSpinEdit
             // 
@@ -385,7 +387,8 @@
             0,
             0,
             0});
-            this.activeSpinEdit.Location = new System.Drawing.Point(1009, 386);
+            this.activeSpinEdit.Enabled = false;
+            this.activeSpinEdit.Location = new System.Drawing.Point(1181, 385);
             this.activeSpinEdit.MenuManager = this.barManager;
             this.activeSpinEdit.Name = "activeSpinEdit";
             this.activeSpinEdit.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
@@ -428,7 +431,7 @@
             this.colorHexTextEdit.Name = "colorHexTextEdit";
             this.colorHexTextEdit.Size = new System.Drawing.Size(125, 22);
             this.colorHexTextEdit.TabIndex = 49;
-            this.colorHexTextEdit.EditValueChanged += new System.EventHandler(this.colorHexTextEdit_EditValueChanged);
+            this.colorHexTextEdit.DoubleClick += new System.EventHandler(this.colorHexTextEdit_EditValueChanged);
             // 
             // btnChooseColor
             // 
@@ -460,11 +463,23 @@
             // 
             this.productSizeColorTableAdapter.ClearBeforeFill = true;
             // 
+            // cbbActive
+            // 
+            this.cbbActive.DataBindings.Add(new System.Windows.Forms.Binding("SelectedValue", this.colorBindingSource, "active", true));
+            this.cbbActive.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbbActive.FormattingEnabled = true;
+            this.cbbActive.Location = new System.Drawing.Point(1009, 386);
+            this.cbbActive.Name = "cbbActive";
+            this.cbbActive.Size = new System.Drawing.Size(136, 24);
+            this.cbbActive.TabIndex = 73;
+            this.cbbActive.SelectedIndexChanged += new System.EventHandler(this.cbbActive_SelectedIndexChanged);
+            // 
             // ColorForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1649, 696);
+            this.Controls.Add(this.cbbActive);
             this.Controls.Add(this.lbChooseColor);
             this.Controls.Add(this.btnChooseColor);
             this.Controls.Add(this.colorHexTextEdit);
@@ -535,5 +550,6 @@
         private DevExpress.XtraGrid.Columns.GridColumn colactive;
         private System.Windows.Forms.BindingSource productSizeColorBindingSource;
         private ClothesDataSetTableAdapters.ProductSizeColorTableAdapter productSizeColorTableAdapter;
+        private System.Windows.Forms.ComboBox cbbActive;
     }
 }

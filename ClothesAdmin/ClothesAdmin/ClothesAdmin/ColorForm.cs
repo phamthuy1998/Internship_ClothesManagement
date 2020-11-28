@@ -33,10 +33,29 @@ namespace ClothesAdmin
             // TODO: This line of code loads data into the 'clothesDataSet.Color' table. You can move, or remove it, as needed.
             this.colorTableAdapter.Fill(this.clothesDataSet.Color);
 
+            // set value for active combobox
+            List<StatusOrder> activesStatus = new List<StatusOrder>();
+            activesStatus.Add(new StatusOrder(1, "Active"));
+            activesStatus.Add(new StatusOrder(0, "Deactive"));
+            cbbActive.DataSource = activesStatus;
+            cbbActive.ValueMember = "id";
+            cbbActive.DisplayMember = "Text";
+
         }
 
         private void btnSaveAddProvider_Click(object sender, EventArgs e)
         {
+            //sexSpinEdit.Value = Convert.ToInt32(cbbGender.SelectedValue);
+            if (colorNameTextEdit.Text.ToString() == "")
+            {
+                MessageBox.Show("Please input name of color", "Error", MessageBoxButtons.OK);
+                return;
+            }
+            else if (colorHexTextEdit.Text.ToString() == "")
+            {
+                MessageBox.Show("Please input color hexa!", "Error", MessageBoxButtons.OK);
+                return;
+            }
             this.Validate();
             this.colorBindingSource.EndEdit();
             this.tableAdapterManager.UpdateAll(this.clothesDataSet);
@@ -131,6 +150,15 @@ namespace ClothesAdmin
         private void btnCancelAddProvider_Click(object sender, EventArgs e)
         {
             colorBindingSource.CancelEdit();
+        }
+
+        private void cbbActive_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                activeSpinEdit.Value = Convert.ToInt32(cbbActive.SelectedValue);
+            }
+            catch (Exception ex) { }
         }
     }
 }

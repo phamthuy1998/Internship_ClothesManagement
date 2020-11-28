@@ -16,6 +16,16 @@ namespace ClothesAdmin
         public ImportCuponForm()
         {
             InitializeComponent();
+            if (Program.accountLogin.roleId == 1)
+            {
+                lbEmployee.Visible = true;
+                cbbEmployee.Visible = true;
+            }
+            else if (Program.accountLogin.roleId == 1)
+            {
+                lbEmployee.Visible = false;
+                cbbEmployee.Visible = false;
+            }
         }
 
         //private void importCouponBindingNavigatorSaveItem_Click(object sender, EventArgs e)
@@ -30,14 +40,13 @@ namespace ClothesAdmin
         {
             // TODO: This line of code loads data into the 'clothesDataSet.Provider' table. You can move, or remove it, as needed.
             this.providerTableAdapter.Fill(this.clothesDataSet.Provider);
-            employeeComboBox1.SelectedIndex = -1;
+            cbbEmployee.SelectedValue = Program.accountLogin.idEmployee;
             loadData();
         }
 
         private void loadData()
         {
             // TODO: This line of code loads data into the 'clothesDataSet.Employee' table. You can move, or remove it, as needed.
-
             try
             {
                 this.employeeTableAdapter.Fill(this.clothesDataSet.Employee);
@@ -59,7 +68,7 @@ namespace ClothesAdmin
             // TODO: This line of code loads data into the 'clothesDataSet.Color' table. You can move, or remove it, as needed.
             this.colorTableAdapter.Fill(this.clothesDataSet.Color);// , Convert.ToInt16(productComboBox.SelectedValue), Convert.ToInt16(sizeComboBox.SelectedValue)
 
-            if (employeeComboBox1.SelectedIndex > 0)
+            if (cbbEmployee.SelectedIndex > 0)
             {
                 this.importCouponTableAdapter.Fill(this.clothesDataSet.ImportCoupon);
             }
@@ -67,7 +76,7 @@ namespace ClothesAdmin
             {
                 try
                 {
-                    this.importCouponTableAdapter.FillBy(this.clothesDataSet.ImportCoupon, Convert.ToInt32(employeeComboBox1.SelectedValue));
+                    this.importCouponTableAdapter.FillBy(this.clothesDataSet.ImportCoupon, Convert.ToInt32(cbbEmployee .SelectedValue));
 
                 }
                 catch (Exception ex) { }
@@ -307,7 +316,7 @@ namespace ClothesAdmin
         {
             try
             {
-                this.importCouponTableAdapter.FillBy(this.clothesDataSet.ImportCoupon, Convert.ToInt32(employeeComboBox1.SelectedValue));
+                this.importCouponTableAdapter.FillBy(this.clothesDataSet.ImportCoupon, Convert.ToInt32(cbbEmployee.SelectedValue));
 
             }
             catch (Exception ex) { }
