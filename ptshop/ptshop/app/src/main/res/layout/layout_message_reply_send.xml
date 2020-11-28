@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/ctlContainerReply"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#DFBBA6"
+        android:padding="8dp"
+        android:visibility="gone"
+        tools:visibility="visible">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvNameTime"
+            style="@style/AppTheme.TextAppearance.SansBook"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#99000000"
+            android:textSize="14sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="william_vu, Today 8:56pm" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/ivMessageReply"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:adjustViewBounds="true"
+            android:maxHeight="200dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvNameTime"
+            tools:src="@drawable/sample_home_banner" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvMessageReply"
+            style="@style/AppTheme.TextAppearance.SansBook"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="1dp"
+            android:ellipsize="end"
+            android:maxLines="3"
+            android:textColor="#CC000000"
+            android:textSize="14sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvNameTime"
+            tools:text="It's all my fault, cause i said i needed space" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvMessageReplyDeleted"
+            style="@style/AppTheme.TextAppearance.SansBook"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/this_message_has_been_deleted"
+            android:textColor="#80000000"
+            android:textSize="14sp"
+            android:textStyle="italic"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
