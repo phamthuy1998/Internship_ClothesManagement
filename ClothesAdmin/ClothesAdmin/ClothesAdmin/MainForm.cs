@@ -417,5 +417,18 @@ namespace ClothesAdmin
             }
             else form.Activate();
         }
+
+        private void btnEmployee_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            form = this.CheckExists(typeof(EmployeeForm));
+            if (form == null)
+            {
+                IsMdiContainer = true;
+                employeeForm = new EmployeeForm();
+                employeeForm.MdiParent = this;
+                employeeForm.Show();
+            }
+            else form.Activate();
+        }
     }
 }

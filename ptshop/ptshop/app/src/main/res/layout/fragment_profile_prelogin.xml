@@ -81,24 +81,45 @@
             app:layout_constraintTop_toBottomOf="@id/about_us_btn" />
 
         <TextView
-            android:id="@+id/terms_btn"
+            android:id="@+id/btnContact"
             style="@style/textProfile"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:drawableStart="@drawable/ic_terms_conditions"
-            android:drawableEnd="@drawable/ic_right_arrow"
             android:gravity="center_vertical"
-            android:text="@string/terms_and_conditions"
+            android:text="@string/contact_us"
             android:onClick="@{(v) -> parentFragment.onClick(v)}"
             app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/about_us_btn" />
+            app:layout_constraintTop_toBottomOf="@id/about_us_btn"
+            app:drawableStartCompat="@drawable/ic_about_us"
+            app:drawableEndCompat="@drawable/ic_right_arrow" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:layout_marginStart="16dp"
+            android:background="@color/gray_stroke"
+            app:layout_constraintTop_toBottomOf="@id/btnContact" />
+
+        <TextView
+            android:id="@+id/btnSeeMap"
+            style="@style/textProfile"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:text="@string/the_way_to_go_to_shop"
+            android:onClick="@{(v) -> parentFragment.onClick(v)}"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/btnContact"
+            app:drawableStartCompat="@drawable/ic_about_us"
+            app:drawableEndCompat="@drawable/ic_right_arrow" />
 
         <View
             android:layout_width="match_parent"
             android:layout_height="0.5dp"
             android:layout_marginLeft="16dp"
             android:background="@color/gray_stroke"
-            app:layout_constraintTop_toBottomOf="@id/terms_btn" />
+            app:layout_constraintTop_toBottomOf="@id/btnSeeMap" />
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

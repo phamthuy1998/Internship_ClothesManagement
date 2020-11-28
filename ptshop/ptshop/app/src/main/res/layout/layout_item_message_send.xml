@@ -14,7 +14,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <include
+       <!-- <include
             android:id="@+id/layout_item_message_time"
             layout="@layout/layout_item_message_time"
             android:layout_width="match_parent"
@@ -68,16 +68,16 @@
                             app:layout_constraintTop_toTopOf="parent"
                             tools:text="9:06pm" />
 
-                        <com.soundfyr.components.MessageLinkifyTextView
-                            android:id="@+id/tvMessageSend"
-                            style="@style/AppTheme.TextAppearance.SansBook"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="end"
-                            android:layout_marginTop="4dp"
-                            android:textColor="@color/black"
-                            android:textSize="16sp"
-                            tools:text="There's a girl, but i let" />
+&lt;!&ndash;                        <com.soundfyr.components.MessageLinkifyTextView&ndash;&gt;
+&lt;!&ndash;                            android:id="@+id/tvMessageSend"&ndash;&gt;
+&lt;!&ndash;                            style="@style/AppTheme.TextAppearance.SansBook"&ndash;&gt;
+&lt;!&ndash;                            android:layout_width="wrap_content"&ndash;&gt;
+&lt;!&ndash;                            android:layout_height="wrap_content"&ndash;&gt;
+&lt;!&ndash;                            android:layout_gravity="end"&ndash;&gt;
+&lt;!&ndash;                            android:layout_marginTop="4dp"&ndash;&gt;
+&lt;!&ndash;                            android:textColor="@color/black"&ndash;&gt;
+&lt;!&ndash;                            android:textSize="16sp"&ndash;&gt;
+&lt;!&ndash;                            tools:text="There's a girl, but i let" />&ndash;&gt;
 
                     </LinearLayout>
 
@@ -86,7 +86,7 @@
 
             </androidx.cardview.widget.CardView>
         </FrameLayout>
-
+-->
 
     </RelativeLayout>
 

@@ -1,23 +1,19 @@
 package com.ptithcm.ptshop.view.message
 
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.ptithcm.ptshop.R
 import com.ptithcm.ptshop.base.BaseFragment
 import com.ptithcm.ptshop.databinding.FragmentMessageBinding
-import com.ptithcm.ptshop.view.message.adapter.MessageAdapter
-import com.sendbird.syncmanager.MessageCollection
 
 class MessageFragment : BaseFragment<FragmentMessageBinding>() {
     override val layoutId: Int
         get() = R.layout.fragment_message
 
-
+/*
     private lateinit var layoutManager: LinearLayoutManager
     private var messageCollection: MessageCollection? = null
-    private  val adapter: MessageAdapter by lazy {
-        MessageAdapter()
-    }
+//    private  val adapter: MessageAdapter by lazy {
+//        MessageAdapter()
+//    }
 
     override fun bindEvent() {
         super.bindEvent()
@@ -31,7 +27,7 @@ class MessageFragment : BaseFragment<FragmentMessageBinding>() {
         viewBinding.rvMessages.layoutManager = layoutManager
         viewBinding.rvMessages.setHasFixedSize(true)
         viewBinding.rvMessages.setItemViewCacheSize(20)
-        viewBinding.rvMessages.adapter = adapter
+//        viewBinding.rvMessages.adapter = adapter
         viewBinding.rvMessages.addOnScrollListener(object :
             RecyclerView.OnScrollListener() {
             override fun onScrollStateChanged(
@@ -45,12 +41,12 @@ class MessageFragment : BaseFragment<FragmentMessageBinding>() {
                             null
                         )
                     }
-                    if (layoutManager.findLastVisibleItemPosition() == adapter.itemCount - 1) {
-                        messageCollection?.fetchSucceededMessages(
-                            MessageCollection.Direction.PREVIOUS,
-                            null
-                        )
-                    }
+//                    if (layoutManager.findLastVisibleItemPosition() == adapter.itemCount - 1) {
+//                        messageCollection?.fetchSucceededMessages(
+//                            MessageCollection.Direction.PREVIOUS,
+//                            null
+//                        )
+//                    }
                 }
             }
         })
@@ -65,12 +61,12 @@ class MessageFragment : BaseFragment<FragmentMessageBinding>() {
                     null
                 )
             }
-            if (layoutManager.findLastVisibleItemPosition() == adapter.itemCount - 1) {
-                messageCollection?.fetchSucceededMessages(
-                    MessageCollection.Direction.PREVIOUS,
-                    null
-                )
-            }
+//            if (layoutManager.findLastVisibleItemPosition() == adapter.itemCount - 1) {
+//                messageCollection?.fetchSucceededMessages(
+//                    MessageCollection.Direction.PREVIOUS,
+//                    null
+//                )
+//            }
         }
-    }
+    }*/
 }

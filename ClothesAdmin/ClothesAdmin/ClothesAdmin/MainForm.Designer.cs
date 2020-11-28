@@ -87,7 +87,6 @@
             this.barButtonItem8 = new DevExpress.XtraBars.BarButtonItem();
             this.btnProductSizeColor = new DevExpress.XtraBars.BarButtonItem();
             this.barButtonItem7 = new DevExpress.XtraBars.BarButtonItem();
-            this.btnSignout = new DevExpress.XtraBars.BarButtonItem();
             this.btnEmloyee = new DevExpress.XtraBars.BarButtonItem();
             this.btnImportCupon = new DevExpress.XtraBars.BarButtonItem();
             this.btnProductPromotion = new DevExpress.XtraBars.BarButtonItem();
@@ -100,6 +99,8 @@
             this.btnImportCouponStattistic = new DevExpress.XtraBars.BarButtonItem();
             this.btnInvoiceStatis = new DevExpress.XtraBars.BarButtonItem();
             this.btnStatistic1 = new DevExpress.XtraBars.BarButtonItem();
+            this.btnWarehouse = new DevExpress.XtraBars.BarButtonItem();
+            this.btnEmployee = new DevExpress.XtraBars.BarButtonItem();
             this.rbHome = new DevExpress.XtraBars.Ribbon.RibbonPage();
             this.ribbonPageGroup1 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.ribbonPageGroup4 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
@@ -107,11 +108,8 @@
             this.ribbonPageGroup6 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.ribbonPageGroup7 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.ribbonPageGroup3 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
-            this.rbView = new DevExpress.XtraBars.Ribbon.RibbonPage();
-            this.ribbonPageGroup9 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
-            this.rbHRM = new DevExpress.XtraBars.Ribbon.RibbonPage();
             this.ribbonPageGroup2 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
-            this.ribbonPage1 = new DevExpress.XtraBars.Ribbon.RibbonPage();
+            this.rbSttatistic = new DevExpress.XtraBars.Ribbon.RibbonPage();
             this.ribbonPageGroup12 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.ribbonPageGroup10 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.ribbonPage3 = new DevExpress.XtraBars.Ribbon.RibbonPage();
@@ -141,7 +139,7 @@
             this.ribbonPage4 = new DevExpress.XtraBars.Ribbon.RibbonPage();
             this.ribbonPage6 = new DevExpress.XtraBars.Ribbon.RibbonPage();
             this.ribbonPageGroup8 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
-            this.btnWarehouse = new DevExpress.XtraBars.BarButtonItem();
+            this.barButtonItem13 = new DevExpress.XtraBars.BarButtonItem();
             firstNameLabel = new System.Windows.Forms.Label();
             lastNameLabel = new System.Windows.Forms.Label();
             phoneLabel = new System.Windows.Forms.Label();
@@ -308,7 +306,6 @@
             this.barButtonItem8,
             this.btnProductSizeColor,
             this.barButtonItem7,
-            this.btnSignout,
             this.btnEmloyee,
             this.btnImportCupon,
             this.btnProductPromotion,
@@ -321,16 +318,15 @@
             this.btnImportCouponStattistic,
             this.btnInvoiceStatis,
             this.btnStatistic1,
-            this.btnWarehouse});
+            this.btnWarehouse,
+            this.btnEmployee});
             this.ribbon.Location = new System.Drawing.Point(0, 0);
             this.ribbon.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.ribbon.MaxItemId = 296;
+            this.ribbon.MaxItemId = 297;
             this.ribbon.Name = "ribbon";
             this.ribbon.Pages.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPage[] {
             this.rbHome,
-            this.rbView,
-            this.rbHRM,
-            this.ribbonPage1});
+            this.rbSttatistic});
             this.ribbon.ShowItemCaptionsInPageHeader = true;
             this.ribbon.Size = new System.Drawing.Size(1217, 194);
             this.ribbon.TransparentEditorsMode = DevExpress.Utils.DefaultBoolean.True;
@@ -731,14 +727,6 @@
             this.barButtonItem7.Id = 269;
             this.barButtonItem7.Name = "barButtonItem7";
             // 
-            // btnSignout
-            // 
-            this.btnSignout.Caption = "Log out";
-            this.btnSignout.Id = 270;
-            this.btnSignout.ImageOptions.Image = global::ClothesAdmin.Properties.Resources.logout;
-            this.btnSignout.Name = "btnSignout";
-            this.btnSignout.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnSignout_ItemClick);
-            // 
             // btnEmloyee
             // 
             this.btnEmloyee.Caption = "Employee";
@@ -820,6 +808,21 @@
             this.btnStatistic1.Name = "btnStatistic1";
             this.btnStatistic1.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnStatistic1_ItemClick);
             // 
+            // btnWarehouse
+            // 
+            this.btnWarehouse.Caption = "Warehouse";
+            this.btnWarehouse.Id = 295;
+            this.btnWarehouse.Name = "btnWarehouse";
+            this.btnWarehouse.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnWarehouse_ItemClick);
+            // 
+            // btnEmployee
+            // 
+            this.btnEmployee.Caption = "Employee";
+            this.btnEmployee.Hint = "Employee";
+            this.btnEmployee.Id = 296;
+            this.btnEmployee.Name = "btnEmployee";
+            this.btnEmployee.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnEmployee_ItemClick);
+            // 
             // rbHome
             // 
             this.rbHome.Groups.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPageGroup[] {
@@ -828,7 +831,8 @@
             this.ribbonPageGroup5,
             this.ribbonPageGroup6,
             this.ribbonPageGroup7,
-            this.ribbonPageGroup3});
+            this.ribbonPageGroup3,
+            this.ribbonPageGroup2});
             this.rbHome.Name = "rbHome";
             this.rbHome.Text = "Home";
             // 
@@ -865,38 +869,19 @@
             this.ribbonPageGroup3.ItemLinks.Add(this.btnImportCupon);
             this.ribbonPageGroup3.Name = "ribbonPageGroup3";
             // 
-            // rbView
-            // 
-            this.rbView.Groups.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPageGroup[] {
-            this.ribbonPageGroup9});
-            this.rbView.Name = "rbView";
-            this.rbView.Text = "Profile";
-            // 
-            // ribbonPageGroup9
-            // 
-            this.ribbonPageGroup9.ItemLinks.Add(this.btnSignout);
-            this.ribbonPageGroup9.Name = "ribbonPageGroup9";
-            this.ribbonPageGroup9.Text = "ribbonPageGroup9";
-            // 
-            // rbHRM
-            // 
-            this.rbHRM.Groups.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPageGroup[] {
-            this.ribbonPageGroup2});
-            this.rbHRM.Name = "rbHRM";
-            this.rbHRM.Text = "HRM";
-            // 
             // ribbonPageGroup2
             // 
-            this.ribbonPageGroup2.ItemLinks.Add(this.btnEmloyee);
+            this.ribbonPageGroup2.ItemLinks.Add(this.btnEmployee);
             this.ribbonPageGroup2.Name = "ribbonPageGroup2";
+            this.ribbonPageGroup2.Text = "ribbonPageGroup2";
             // 
-            // ribbonPage1
+            // rbSttatistic
             // 
-            this.ribbonPage1.Groups.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPageGroup[] {
+            this.rbSttatistic.Groups.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPageGroup[] {
             this.ribbonPageGroup12,
             this.ribbonPageGroup10});
-            this.ribbonPage1.Name = "ribbonPage1";
-            this.ribbonPage1.Text = "Statistics";
+            this.rbSttatistic.Name = "rbSttatistic";
+            this.rbSttatistic.Text = "Statistics";
             // 
             // ribbonPageGroup12
             // 
@@ -1073,12 +1058,11 @@
             this.ribbonPageGroup8.Name = "ribbonPageGroup8";
             this.ribbonPageGroup8.Text = "      Invoice      ";
             // 
-            // btnWarehouse
+            // barButtonItem13
             // 
-            this.btnWarehouse.Caption = "Warehouse";
-            this.btnWarehouse.Id = 295;
-            this.btnWarehouse.Name = "btnWarehouse";
-            this.btnWarehouse.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnWarehouse_ItemClick);
+            this.barButtonItem13.Caption = "Employee";
+            this.barButtonItem13.Id = 296;
+            this.barButtonItem13.Name = "barButtonItem13";
             // 
             // MainForm
             // 
@@ -1140,7 +1124,6 @@
         private DevExpress.XtraBars.Ribbon.RibbonControl ribbon;
         private DevExpress.XtraBars.Ribbon.RibbonPage rbHome;
         private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroup1;
-        private DevExpress.XtraBars.Ribbon.RibbonPage rbView;
         private DevExpress.XtraBars.Ribbon.RibbonPage ribbonPage3;
         private DevExpress.XtraBars.Ribbon.RibbonPage ribbonPage5;
         private DevExpress.XtraBars.Ribbon.RibbonPage ribbonPage7;
@@ -1210,17 +1193,13 @@
         private DevExpress.XtraBars.BarButtonItem barButtonItem8;
         private DevExpress.XtraBars.BarButtonItem btnProductSizeColor;
         private DevExpress.XtraBars.BarButtonItem barButtonItem7;
-        private DevExpress.XtraBars.BarButtonItem btnSignout;
-        private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroup9;
         private DevExpress.XtraBars.Ribbon.RibbonPage ribbonPage2;
         private DevExpress.XtraBars.BarButtonItem btnEmloyee;
-        private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroup2;
         private DevExpress.XtraBars.Ribbon.RibbonPage ribbonPage4;
         private DevExpress.XtraBars.BarButtonItem btnImportCupon;
         private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroup3;
         private DevExpress.XtraBars.BarButtonItem btnProductPromotion;
         public System.Windows.Forms.ToolStripStatusLabel tvIdEmployee;
-        public DevExpress.XtraBars.Ribbon.RibbonPage rbHRM;
         private DevExpress.XtraBars.BarButtonItem barButtonItem4;
         private DevExpress.XtraBars.BarButtonItem barButtonItem9;
         private DevExpress.XtraBars.BarButtonItem barButtonItem10;
@@ -1228,7 +1207,6 @@
         private DevExpress.XtraBars.BarButtonItem btnInvoiceStatistic;
         private DevExpress.XtraBars.BarButtonItem btnProductStatistic;
         private DevExpress.XtraBars.BarButtonItem btnImportCouponStattistic;
-        private DevExpress.XtraBars.Ribbon.RibbonPage ribbonPage1;
         private DevExpress.XtraBars.Ribbon.RibbonPage ribbonPage6;
         private DevExpress.XtraBars.BarButtonItem btnInvoiceStatis;
         private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroup12;
@@ -1237,5 +1215,9 @@
         private DevExpress.XtraBars.BarButtonItem btnStatistic1;
         private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroup10;
         private DevExpress.XtraBars.BarButtonItem btnWarehouse;
+        private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroup2;
+        private DevExpress.XtraBars.BarButtonItem barButtonItem13;
+        public DevExpress.XtraBars.BarButtonItem btnEmployee;
+        public DevExpress.XtraBars.Ribbon.RibbonPage rbSttatistic;
     }
 }

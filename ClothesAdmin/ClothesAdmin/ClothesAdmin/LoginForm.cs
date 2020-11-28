@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DevExpress.XtraBars;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -89,11 +90,13 @@ namespace ClothesAdmin
                 Program.mainForm.tvIdEmployee.Text = "Employee Id: " + Program.accountLogin.idEmployee + " ";
                 if (Program.accountLogin.roleId ==1)
                 {
-                    Program.mainForm.rbHRM.Visible = true;
+                    Program.mainForm.btnEmployee.Visibility = BarItemVisibility.Always;
+                    Program.mainForm.rbSttatistic.Visible = true;
                 }
                 else if (Program.accountLogin.roleId == 2)
                 {
-                    Program.mainForm.rbHRM.Visible = false;
+                    Program.mainForm.btnEmployee.Visibility = BarItemVisibility.Never;
+                    Program.mainForm.rbSttatistic.Visible = false;
                 }
                 else{
                     MessageBox.Show("Sai thông tin đăng nhập, vui lòng kiểm tra lại", "", MessageBoxButtons.OK);

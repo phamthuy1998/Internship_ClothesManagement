@@ -89,10 +89,36 @@ namespace ClothesAdmin
 
         private void btnSaveIport_Click(object sender, EventArgs e)
         {
-            this.Validate();
-            this.importCouponBindingSource.EndEdit();
-            this.tableAdapterManager.UpdateAll(this.clothesDataSet);
-            Program.showToastSave();
+            if (dateDateEdit.Text.ToString() == "")
+            {
+                MessageBox.Show("Please select an import date", "Error", MessageBoxButtons.OK);
+                return;
+            }
+            else if (employeeComboBox.SelectedIndex <= 0)
+            {
+                MessageBox.Show("Can't load employee id, please choose an employeee!", "Error", MessageBoxButtons.OK);
+                return;
+            }
+            else if (providerComboBox.SelectedIndex <= 0)
+            {
+                MessageBox.Show("Please select a provider", "Error", MessageBoxButtons.OK);
+                return;
+            }
+            else
+            {
+                try
+                {
+                    this.Validate();
+                    this.importCouponBindingSource.EndEdit();
+                    this.tableAdapterManager.UpdateAll(this.clothesDataSet);
+                    Program.showToastSave();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Error import cupon " + ex.Message, "", MessageBoxButtons.OK);
+
+                }
+            }
         }
 
         private void btnDelProvider_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
@@ -172,14 +198,53 @@ namespace ClothesAdmin
 
         private void btnSaveAddItem_Click(object sender, EventArgs e)
         {
-            try
+            if (productComboBox.SelectedIndex <= 0)
             {
-                this.Validate();
-                this.importCouponDetailBindingSource.EndEdit();
-                this.tableAdapterManager.UpdateAll(this.clothesDataSet);
-                Program.showToastSave();
+                MessageBox.Show("Please select a product!", "Error", MessageBoxButtons.OK);
+                return;
             }
-            catch (Exception ex) { MessageBox.Show(ex.Message, "THÔNG BÁO", MessageBoxButtons.OK); }
+            else if (sizeComboBox.SelectedIndex <= 0)
+            {
+                MessageBox.Show("Please select a size for product", "Error", MessageBoxButtons.OK);
+                return;
+            }
+            else if (colorComboBox.SelectedIndex <= 0)
+            {
+                MessageBox.Show("Please select a color for product", "Error", MessageBoxButtons.OK);
+                return;
+            }
+            else if (quantitySpinEdit.Text.Trim() == "")
+            {
+                MessageBox.Show("Please input quantity ", "Error", MessageBoxButtons.OK);
+                return;
+            }
+            else if (quantitySpinEdit.Text.Trim() == "")
+            {
+                MessageBox.Show("Please input quantity ", "Error", MessageBoxButtons.OK);
+                return;
+            }
+            else if (priceSpinEdit.Value <= 0)
+            {
+                MessageBox.Show("Please enter quantity greater than 0", "Error", MessageBoxButtons.OK);
+                return;
+            }
+            else if (priceSpinEdit.Value <= 0)
+            {
+                MessageBox.Show("Please enter price greater than 0", "Error", MessageBoxButtons.OK);
+                return;
+            }
+            else
+            {
+                try
+                {
+                    this.Validate();
+                    this.importCouponDetailBindingSource.EndEdit();
+                    this.tableAdapterManager.UpdateAll(this.clothesDataSet);
+                    Program.showToastSave();
+                }
+                catch (Exception ex) { MessageBox.Show(ex.Message, "THÔNG BÁO", MessageBoxButtons.OK); }
+
+            }
         }
 
         private void addProductPromoToolStripMenuItem_Click(object sender, EventArgs e)
@@ -187,9 +252,9 @@ namespace ClothesAdmin
             importCouponDetailBindingSource.AddNew();
             if (productComboBox.SelectedValue != null)
                 idProductSpinEdit.Value = Convert.ToInt32(productComboBox.SelectedValue);
-            if (sizeComboBox.SelectedValue!= null)
+            if (sizeComboBox.SelectedValue != null)
                 sizeIDTextBox.Text = sizeComboBox.SelectedValue.ToString();
-            if (colorComboBox.SelectedValue!=null)
+            if (colorComboBox.SelectedValue != null)
                 colorIdTextBox.Text = colorComboBox.SelectedValue.ToString();
 
         }
@@ -268,14 +333,14 @@ namespace ClothesAdmin
 
         private void colorComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (colorComboBox.SelectedValue!=null)
+            if (colorComboBox.SelectedValue != null)
                 colorIdTextBox.Text = colorComboBox.SelectedValue.ToString();
         }
 
         private void providerComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if(providerComboBox.SelectedValue!=null)
-            providerIdTextBox.Text = providerComboBox.SelectedValue.ToString();
+            if (providerComboBox.SelectedValue != null)
+                providerIdTextBox.Text = providerComboBox.SelectedValue.ToString();
         }
 
         private void providerIdTextBox_TextChanged(object sender, EventArgs e)

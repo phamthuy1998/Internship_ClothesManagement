@@ -1,23 +1,9 @@
 package com.ptithcm.ptshop.widget
-import android.content.Context
-import android.text.*
-import android.text.style.ClickableSpan
-import android.util.AttributeSet
-import android.view.View
-import androidx.appcompat.widget.AppCompatTextView
-import androidx.core.content.ContextCompat
-import androidx.core.widget.addTextChangedListener
-import com.ptithcm.ptshop.R
-import com.ptithcm.ptshop.util.CustomLinkify
-import com.ptithcm.ptshop.util.openWebView
-import java.util.regex.Pattern
-import kotlin.math.ceil
-import kotlin.math.max
 
 
-open class LinkifyTextView : AppCompatTextView {
+//open class LinkifyTextView : AppCompatTextView {
 
-    private var onClickLinkify: (String, Int) -> Unit = { _, _ -> }
+   /* private var onClickLinkify: (String, Int) -> Unit = { _, _ -> }
 
     constructor(context: Context?) : super(context) {
         init(context)
@@ -148,5 +134,5 @@ open class LinkifyTextView : AppCompatTextView {
             maximumWidth = max(layout.getLineWidth(i), maximumWidth)
         }
         return maximumWidth
-    }
-}
+    }*/
+//}

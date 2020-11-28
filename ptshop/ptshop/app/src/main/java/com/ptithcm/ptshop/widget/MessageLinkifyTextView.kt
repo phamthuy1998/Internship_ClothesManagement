@@ -1,9 +1,6 @@
 package com.ptithcm.ptshop.widget
 
-import android.content.Context
-import android.text.Layout
-import android.util.AttributeSet
-import kotlin.math.ceil
+/*
 
 class MessageLinkifyTextView : LinkifyTextView {
 
@@ -32,4 +29,4 @@ class MessageLinkifyTextView : LinkifyTextView {
         }
         return maximumWidth
     }
-}
+}*/
