@@ -17,6 +17,7 @@ namespace ClothesAdmin
 {
     public partial class CategoryForm : DevExpress.XtraEditors.XtraForm
     {
+        private Boolean checkFirstTime = true;
         public CategoryForm()
         {
             InitializeComponent();
@@ -29,7 +30,6 @@ namespace ClothesAdmin
             this.tableAdapterManager.UpdateAll(this.clothesDataSet);
 
         }
-
         private void CategoryForm1_Load(object sender, EventArgs e)
         {
             // TODO: This line of code loads data into the 'clothesDataSet.Product' table. You can move, or remove it, as needed.
@@ -37,14 +37,76 @@ namespace ClothesAdmin
             // TODO: This line of code loads data into the 'clothesDataSet.Category' table. You can move, or remove it, as needed.
             this.categoryTableAdapter.Fill(this.clothesDataSet.Category);
 
+            // set value for active combobox
+            List<StatusOrder> activesStatus = new List<StatusOrder>();
+            activesStatus.Add(new StatusOrder(1, "Active"));
+            activesStatus.Add(new StatusOrder(0, "Deactive"));
+            cbbActive.DataSource = activesStatus;
+            cbbActive.ValueMember = "id";
+            cbbActive.DisplayMember = "Text";
+            //cbbActive.SelectedIndex = 0;
+            //try
+            //{
+            //    cbbActive.SelectedValue = ((DataRowView)this.categoryBindingSource.Current).Row["active"].ToString();
+            //}
+            //catch (Exception ex) { }
+
+            // set value for gender combobox
+            List<StatusOrder> genders = new List<StatusOrder>();
+            genders.Add(new StatusOrder(0, "Women"));
+            genders.Add(new StatusOrder(1, "Men"));
+            genders.Add(new StatusOrder(2, "Unisex"));
+            cbbGender.DataSource = genders;
+            cbbGender.ValueMember = "id";
+            cbbGender.DisplayMember = "Text";
+            checkFirstTime = true;
+            {
+                cbbGender.SelectedIndex = Int32.Parse( ((DataRowView)categoryBindingSource.Current).Row["sex"].ToString());
+                checkFirstTime = false;
+            }
+            //try
+            //{
+            //    cbbGender.SelectedValue = sexSpinEdit.Value;
+            //}
+            //catch (Exception ex) { }
+
         }
 
         private void btnSaveAddProvider_Click(object sender, EventArgs e)
         {
-            this.Validate();
-            this.categoryBindingSource.EndEdit();
-            this.tableAdapterManager.UpdateAll(this.clothesDataSet);
-            Program.showToastSave();
+            //sexSpinEdit.Value = Convert.ToInt32(cbbGender.SelectedValue);
+            if (nameTextEdit.Text.ToString() == "")
+            {
+                MessageBox.Show("Please input name of category", "Error", MessageBoxButtons.OK);
+                return;
+            }
+            else if (imageUrlTextEdit.Text.ToString() == "")
+            {
+                MessageBox.Show("Please input icon url for this category!", "Error", MessageBoxButtons.OK);
+                return;
+            }
+            else if (thumnailTextEdit.Text.ToString() == "")
+            {
+                MessageBox.Show("Please input thumbnail url for this category!", "Error", MessageBoxButtons.OK);
+                return;
+            }
+            else if (sexSpinEdit.Text.ToString()=="")
+            {
+                MessageBox.Show("Please select gender!", "Error", MessageBoxButtons.OK);
+                return;
+            }
+            else if (activeSpinEdit.Text.ToString() == "")
+            {
+                MessageBox.Show("Please select active!", "Error", MessageBoxButtons.OK);
+                return;
+            }
+            else
+            {
+                this.Validate();
+                this.categoryBindingSource.EndEdit();
+                this.tableAdapterManager.UpdateAll(this.clothesDataSet);
+                Program.showToastSave();
+            }
         }
 
         private void btnCancelAddProvider_Click(object sender, EventArgs e)
@@ -60,7 +122,7 @@ namespace ClothesAdmin
             }
             else
             {
-                picImageIcon.ImageLocation=(imageUrlTextEdit.Text);
+                picImageIcon.ImageLocation = (imageUrlTextEdit.Text);
             }
         }
 
@@ -103,7 +165,7 @@ namespace ClothesAdmin
                 if (productBindingSource.Count > 0)
                 {
                     MessageBox.Show("Category đã có sản phẩm, không thể xóa, category sẽ được chuyển qua trạng thái đã xóa", "", MessageBoxButtons.OK);
-                    activeSpinEdit.EditValue = 1;
+                    activeSpinEdit.EditValue = 0;
                     this.Validate();
                     this.categoryBindingSource.EndEdit();
                     this.tableAdapterManager.UpdateAll(this.clothesDataSet);
@@ -231,6 +293,33 @@ namespace ClothesAdmin
             {
                 MessageBox.Show("Err: " + ex.Message, "THÔNG BÁO", MessageBoxButtons.OK);
 
+            }
+        }
+
+        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                activeSpinEdit.Value = Convert.ToInt32(cbbActive.SelectedValue);
+            }
+            catch (Exception ex) { }
+        }
+
+        private void cbbGender_SelectedIndexChanged_1(object sender, EventArgs e)
+        {
+            try
+            {
+                if (!checkFirstTime)
+                    sexSpinEdit.Value = Convert.ToInt32(cbbGender.SelectedIndex);
+            }
+            catch (Exception ex) { }
+        }
+
+        private void categoryGridControl_Click(object sender, EventArgs e)
+        {
+            if (categoryBindingSource.Count > 0)
+            {
+                cbbGender.SelectedIndex = Convert.ToInt32(sexSpinEdit.Value);
             }
         }
     }

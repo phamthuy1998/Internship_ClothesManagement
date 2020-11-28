@@ -26,7 +26,6 @@ namespace ClothesAdmin
         private InvoiceStatisticFrom  invoiceStatisticFrom = null;
         private SizeColorForm sizeColorForm = null;
         private PromotionForm promotionForm = null;
-        private AccountsForm accountsForm = null;
         private ProviderForm providerForm = null;
         private ProductStatisticForm productStatisticForm = null;
          private WarehouseFormcs warehouseFormcs = null;

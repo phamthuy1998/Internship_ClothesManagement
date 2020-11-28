@@ -5,9 +5,9 @@ import kotlinx.android.parcel.Parcelize
 
 @Parcelize
 enum class Gender(val value : Int) : Parcelable {
-    WOMEN(2),
+    WOMEN(0),
     MEN(1),
-    KIDS(3),
-    UNISEX(0),
+    KIDS(2),
+    UNISEX(2),
     NONE(-1)
 }

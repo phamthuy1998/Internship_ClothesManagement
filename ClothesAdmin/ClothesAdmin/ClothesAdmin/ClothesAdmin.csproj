@@ -187,12 +187,6 @@
       <DependentUpon>ClothesModel.tt</DependentUpon>
     </Compile>
     <Compile Include="AccountLogin.cs" />
-    <Compile Include="AccountsForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="AccountsForm.Designer.cs">
-      <DependentUpon>AccountsForm.cs</DependentUpon>
-    </Compile>
     <Compile Include="Address.cs">
       <DependentUpon>ClothesModel.tt</DependentUpon>
     </Compile>
@@ -457,9 +451,6 @@
     <Compile Include="WarehouseReport.Designer.cs">
       <DependentUpon>WarehouseReport.cs</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="AccountsForm.resx">
-      <DependentUpon>AccountsForm.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="CategoryForm.resx">
       <DependentUpon>CategoryForm.cs</DependentUpon>
     </EmbeddedResource>

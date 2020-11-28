@@ -35,10 +35,9 @@
             System.Windows.Forms.Label imageUrlLabel;
             System.Windows.Forms.Label thumnailLabel;
             System.Windows.Forms.Label sexLabel;
-            System.Windows.Forms.Label activeLabel;
             System.Windows.Forms.Label c;
             System.Windows.Forms.Label label2;
-            System.Windows.Forms.Label label3;
+            System.Windows.Forms.Label activeLabel;
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CategoryForm));
             this.clothesDataSet = new ClothesAdmin.ClothesDataSet();
             this.categoryBindingSource = new System.Windows.Forms.BindingSource(this.components);
@@ -51,7 +50,6 @@
             this.imageUrlTextEdit = new DevExpress.XtraEditors.TextEdit();
             this.thumnailTextEdit = new DevExpress.XtraEditors.TextEdit();
             this.sexSpinEdit = new DevExpress.XtraEditors.SpinEdit();
-            this.activeSpinEdit = new DevExpress.XtraEditors.SpinEdit();
             this.barManager = new DevExpress.XtraBars.BarManager(this.components);
             this.bar2 = new DevExpress.XtraBars.Bar();
             this.btnAddProvider = new DevExpress.XtraBars.BarButtonItem();
@@ -82,16 +80,18 @@
             this.btnChangeImg = new System.Windows.Forms.LinkLabel();
             this.button1 = new System.Windows.Forms.Button();
             this.linkLabel1 = new System.Windows.Forms.LinkLabel();
+            this.activeSpinEdit = new DevExpress.XtraEditors.SpinEdit();
+            this.cbbActive = new System.Windows.Forms.ComboBox();
+            this.cbbGender = new System.Windows.Forms.ComboBox();
             idLabel = new System.Windows.Forms.Label();
             nameLabel = new System.Windows.Forms.Label();
             detailLabel = new System.Windows.Forms.Label();
             imageUrlLabel = new System.Windows.Forms.Label();
             thumnailLabel = new System.Windows.Forms.Label();
             sexLabel = new System.Windows.Forms.Label();
-            activeLabel = new System.Windows.Forms.Label();
             c = new System.Windows.Forms.Label();
             label2 = new System.Windows.Forms.Label();
-            label3 = new System.Windows.Forms.Label();
+            activeLabel = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.clothesDataSet)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.categoryBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.idSpinEdit.Properties)).BeginInit();
@@ -99,13 +99,13 @@
             ((System.ComponentModel.ISupportInitialize)(this.imageUrlTextEdit.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.thumnailTextEdit.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.sexSpinEdit.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.activeSpinEdit.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.barManager)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.categoryGridControl)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picImageIcon)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picThumbnail)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.productBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.activeSpinEdit.Properties)).BeginInit();
             this.SuspendLayout();
             // 
             // idLabel
@@ -158,18 +158,9 @@
             sexLabel.AutoSize = true;
             sexLabel.Location = new System.Drawing.Point(840, 312);
             sexLabel.Name = "sexLabel";
-            sexLabel.Size = new System.Drawing.Size(31, 17);
+            sexLabel.Size = new System.Drawing.Size(56, 17);
             sexLabel.TabIndex = 11;
-            sexLabel.Text = "Sex";
-            // 
-            // activeLabel
-            // 
-            activeLabel.AutoSize = true;
-            activeLabel.Location = new System.Drawing.Point(840, 364);
-            activeLabel.Name = "activeLabel";
-            activeLabel.Size = new System.Drawing.Size(46, 17);
-            activeLabel.TabIndex = 13;
-            activeLabel.Text = "Active";
+            sexLabel.Text = "Gender";
             // 
             // c
             // 
@@ -190,14 +181,14 @@
             label2.TabIndex = 51;
             label2.Text = "Icon";
             // 
-            // label3
+            // activeLabel
             // 
-            label3.AutoSize = true;
-            label3.Location = new System.Drawing.Point(1415, 364);
-            label3.Name = "label3";
-            label3.Size = new System.Drawing.Size(74, 17);
-            label3.TabIndex = 52;
-            label3.Text = "Thumbnail";
+            activeLabel.AutoSize = true;
+            activeLabel.Location = new System.Drawing.Point(840, 364);
+            activeLabel.Name = "activeLabel";
+            activeLabel.Size = new System.Drawing.Size(46, 17);
+            activeLabel.TabIndex = 13;
+            activeLabel.Text = "Active";
             // 
             // clothesDataSet
             // 
@@ -227,6 +218,7 @@
             this.tableAdapterManager.ImportCouponDetailTableAdapter = null;
             this.tableAdapterManager.ImportCouponTableAdapter = null;
             this.tableAdapterManager.InvoiceItemTableAdapter = null;
+            this.tableAdapterManager.InvoiceStatusTableAdapter = null;
             this.tableAdapterManager.InvoiceTableAdapter = null;
             this.tableAdapterManager.ProductSizeColorTableAdapter = null;
             this.tableAdapterManager.ProductTableAdapter = this.productTableAdapter;
@@ -300,27 +292,13 @@
             0,
             0,
             0});
-            this.sexSpinEdit.Location = new System.Drawing.Point(948, 309);
+            this.sexSpinEdit.Enabled = false;
+            this.sexSpinEdit.Location = new System.Drawing.Point(1253, 308);
             this.sexSpinEdit.Name = "sexSpinEdit";
             this.sexSpinEdit.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.sexSpinEdit.Size = new System.Drawing.Size(125, 24);
             this.sexSpinEdit.TabIndex = 12;
-            // 
-            // activeSpinEdit
-            // 
-            this.activeSpinEdit.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.categoryBindingSource, "active", true));
-            this.activeSpinEdit.EditValue = new decimal(new int[] {
-            0,
-            0,
-            0,
-            0});
-            this.activeSpinEdit.Location = new System.Drawing.Point(948, 361);
-            this.activeSpinEdit.Name = "activeSpinEdit";
-            this.activeSpinEdit.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.activeSpinEdit.Size = new System.Drawing.Size(125, 24);
-            this.activeSpinEdit.TabIndex = 14;
             // 
             // barManager
             // 
@@ -398,7 +376,7 @@
             this.barDockControl1.Location = new System.Drawing.Point(0, 0);
             this.barDockControl1.Manager = this.barManager;
             this.barDockControl1.Margin = new System.Windows.Forms.Padding(2);
-            this.barDockControl1.Size = new System.Drawing.Size(1940, 33);
+            this.barDockControl1.Size = new System.Drawing.Size(1940, 30);
             // 
             // barDockControl2
             // 
@@ -413,19 +391,19 @@
             // 
             this.barDockControl3.CausesValidation = false;
             this.barDockControl3.Dock = System.Windows.Forms.DockStyle.Left;
-            this.barDockControl3.Location = new System.Drawing.Point(0, 33);
+            this.barDockControl3.Location = new System.Drawing.Point(0, 30);
             this.barDockControl3.Manager = this.barManager;
             this.barDockControl3.Margin = new System.Windows.Forms.Padding(2);
-            this.barDockControl3.Size = new System.Drawing.Size(0, 804);
+            this.barDockControl3.Size = new System.Drawing.Size(0, 807);
             // 
             // barDockControl5
             // 
             this.barDockControl5.CausesValidation = false;
             this.barDockControl5.Dock = System.Windows.Forms.DockStyle.Right;
-            this.barDockControl5.Location = new System.Drawing.Point(1940, 33);
+            this.barDockControl5.Location = new System.Drawing.Point(1940, 30);
             this.barDockControl5.Manager = this.barManager;
             this.barDockControl5.Margin = new System.Windows.Forms.Padding(2);
-            this.barDockControl5.Size = new System.Drawing.Size(0, 804);
+            this.barDockControl5.Size = new System.Drawing.Size(0, 807);
             // 
             // btnSua
             // 
@@ -446,13 +424,14 @@
             // 
             this.categoryGridControl.DataSource = this.categoryBindingSource;
             this.categoryGridControl.Dock = System.Windows.Forms.DockStyle.Left;
-            this.categoryGridControl.Location = new System.Drawing.Point(0, 33);
+            this.categoryGridControl.Location = new System.Drawing.Point(0, 30);
             this.categoryGridControl.MainView = this.gridView1;
             this.categoryGridControl.Name = "categoryGridControl";
-            this.categoryGridControl.Size = new System.Drawing.Size(785, 804);
+            this.categoryGridControl.Size = new System.Drawing.Size(785, 807);
             this.categoryGridControl.TabIndex = 20;
             this.categoryGridControl.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridView1});
+            this.categoryGridControl.Click += new System.EventHandler(this.categoryGridControl_Click);
             // 
             // gridView1
             // 
@@ -475,7 +454,7 @@
             this.colid.OptionsColumn.AllowEdit = false;
             this.colid.Visible = true;
             this.colid.VisibleIndex = 0;
-            this.colid.Width = 94;
+            this.colid.Width = 87;
             // 
             // colname
             // 
@@ -485,7 +464,7 @@
             this.colname.OptionsColumn.AllowEdit = false;
             this.colname.Visible = true;
             this.colname.VisibleIndex = 1;
-            this.colname.Width = 94;
+            this.colname.Width = 242;
             // 
             // coldetail
             // 
@@ -495,7 +474,7 @@
             this.coldetail.OptionsColumn.AllowEdit = false;
             this.coldetail.Visible = true;
             this.coldetail.VisibleIndex = 2;
-            this.coldetail.Width = 94;
+            this.coldetail.Width = 198;
             // 
             // colimageUrl
             // 
@@ -505,7 +484,7 @@
             this.colimageUrl.OptionsColumn.AllowEdit = false;
             this.colimageUrl.Visible = true;
             this.colimageUrl.VisibleIndex = 3;
-            this.colimageUrl.Width = 94;
+            this.colimageUrl.Width = 70;
             // 
             // colthumnail
             // 
@@ -515,7 +494,7 @@
             this.colthumnail.OptionsColumn.AllowEdit = false;
             this.colthumnail.Visible = true;
             this.colthumnail.VisibleIndex = 4;
-            this.colthumnail.Width = 94;
+            this.colthumnail.Width = 60;
             // 
             // colsex
             // 
@@ -525,7 +504,7 @@
             this.colsex.OptionsColumn.AllowEdit = false;
             this.colsex.Visible = true;
             this.colsex.VisibleIndex = 5;
-            this.colsex.Width = 94;
+            this.colsex.Width = 44;
             // 
             // colactive
             // 
@@ -535,7 +514,7 @@
             this.colactive.OptionsColumn.AllowEdit = false;
             this.colactive.Visible = true;
             this.colactive.VisibleIndex = 6;
-            this.colactive.Width = 94;
+            this.colactive.Width = 54;
             // 
             // picImageIcon
             // 
@@ -644,11 +623,50 @@
             this.linkLabel1.Text = "Choose image";
             this.linkLabel1.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel1_LinkClicked);
             // 
+            // activeSpinEdit
+            // 
+            this.activeSpinEdit.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.categoryBindingSource, "active", true));
+            this.activeSpinEdit.EditValue = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+            this.activeSpinEdit.Enabled = false;
+            this.activeSpinEdit.Location = new System.Drawing.Point(1253, 360);
+            this.activeSpinEdit.Name = "activeSpinEdit";
+            this.activeSpinEdit.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.activeSpinEdit.Size = new System.Drawing.Size(125, 24);
+            this.activeSpinEdit.TabIndex = 14;
+            // 
+            // cbbActive
+            // 
+            this.cbbActive.DataBindings.Add(new System.Windows.Forms.Binding("SelectedValue", this.categoryBindingSource, "active", true));
+            this.cbbActive.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbbActive.FormattingEnabled = true;
+            this.cbbActive.Location = new System.Drawing.Point(948, 361);
+            this.cbbActive.Name = "cbbActive";
+            this.cbbActive.Size = new System.Drawing.Size(252, 24);
+            this.cbbActive.TabIndex = 72;
+            this.cbbActive.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
+            // 
+            // cbbGender
+            // 
+            this.cbbGender.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbbGender.FormattingEnabled = true;
+            this.cbbGender.Location = new System.Drawing.Point(948, 307);
+            this.cbbGender.Name = "cbbGender";
+            this.cbbGender.Size = new System.Drawing.Size(252, 24);
+            this.cbbGender.TabIndex = 77;
+            this.cbbGender.SelectedIndexChanged += new System.EventHandler(this.cbbGender_SelectedIndexChanged_1);
+            // 
             // CategoryForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1940, 837);
+            this.Controls.Add(this.cbbGender);
+            this.Controls.Add(this.cbbActive);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.linkLabel1);
             this.Controls.Add(this.btnSaveImg);
@@ -658,7 +676,6 @@
             this.Controls.Add(this.picImageIcon);
             this.Controls.Add(this.picThumbnail);
             this.Controls.Add(label2);
-            this.Controls.Add(label3);
             this.Controls.Add(c);
             this.Controls.Add(this.categoryGridControl);
             this.Controls.Add(idLabel);
@@ -689,13 +706,13 @@
             ((System.ComponentModel.ISupportInitialize)(this.imageUrlTextEdit.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.thumnailTextEdit.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.sexSpinEdit.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.activeSpinEdit.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.barManager)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.categoryGridControl)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.picImageIcon)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.picThumbnail)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.productBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.activeSpinEdit.Properties)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -713,7 +730,6 @@
         private DevExpress.XtraEditors.TextEdit imageUrlTextEdit;
         private DevExpress.XtraEditors.TextEdit thumnailTextEdit;
         private DevExpress.XtraEditors.SpinEdit sexSpinEdit;
-        private DevExpress.XtraEditors.SpinEdit activeSpinEdit;
         private DevExpress.XtraBars.BarManager barManager;
         private DevExpress.XtraBars.Bar bar2;
         private DevExpress.XtraBars.BarButtonItem btnAddProvider;
@@ -745,5 +761,8 @@
         private System.Windows.Forms.LinkLabel linkLabel1;
         private System.Windows.Forms.Button btnSaveImg;
         private System.Windows.Forms.LinkLabel btnChangeImg;
+        private System.Windows.Forms.ComboBox cbbActive;
+        private DevExpress.XtraEditors.SpinEdit activeSpinEdit;
+        private System.Windows.Forms.ComboBox cbbGender;
     }
 }
