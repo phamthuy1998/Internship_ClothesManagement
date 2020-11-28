@@ -27,4 +27,18 @@
     <color name="greenDark1">#0A390C</color>
     <color name="yellow">#E8B724</color>
     <color name="gray2">#DDDDDD</color>
+
+    <color name="highlight">#F78900</color>
+    <color name="bg_color">#f9f9f9</color>
+    <color name="bg_color_in_white">#f3f3f3</color>
+    <color name="text_color">#333333</color>
+    <color name="text_color_overlay">#90333333</color>
+    <color name="sub_text_color">#666666</color>
+    <color name="brown_grey_two">#979797</color>
+
+
+    <color name="fb_color">#3c5a99</color>
+    <color name="blue_cyan">#00BCD4</color>
+    <color name="placeholder">#f9f9f9</color>
+    <color name="high_light_text">#1AE1363C</color>
 </resources>

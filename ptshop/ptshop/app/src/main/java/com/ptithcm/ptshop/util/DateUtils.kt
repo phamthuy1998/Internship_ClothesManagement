@@ -1,5 +1,10 @@
 package com.ptithcm.ptshop.util
 
+import android.content.Context
+import android.util.Log
+import com.ptithcm.ptshop.R
+import org.joda.time.DateTime
+import org.joda.time.Days
 import java.text.ParseException
 import java.text.SimpleDateFormat
 import java.util.*
@@ -66,6 +71,108 @@ object DateUtils {
         val cal = Calendar.getInstance()
         cal.timeInMillis = date
         return formatter.format(cal.time)
+    }
+
+
+    private const val PATTERN_DATE = "E MMM dd"
+    private const val PATTERN_MESSAGE_DATE = "dd/MM/yyyy"
+
+
+    /**
+     * Gets timestamp in millis and converts it to HH:mm (e.g. 16:44).
+     */
+    fun formatTime(timeInMillis: Long): String {
+        val dateFormat = SimpleDateFormat("hh:mma", Locale.getDefault())
+        return dateFormat.format(timeInMillis)
+    }
+
+    fun formatTimeWithMarker(timeInMillis: Long): String {
+        val dateFormat = SimpleDateFormat("h:mm a", Locale.getDefault())
+        return dateFormat.format(timeInMillis)
+    }
+
+    fun getHourOfDay(timeInMillis: Long): Int {
+        val dateFormat = SimpleDateFormat("H", Locale.getDefault())
+        return Integer.valueOf(dateFormat.format(timeInMillis))
+    }
+
+    fun getMinute(timeInMillis: Long): Int {
+        val dateFormat = SimpleDateFormat("m", Locale.getDefault())
+        return Integer.valueOf(dateFormat.format(timeInMillis))
+    }
+
+    /**
+     * If the given time is of a different date, display the date.
+     * If it is of the same date, display the time.
+     * @param timeInMillis  The time to convert, in milliseconds.
+     * @return  The time or date.
+     */
+    fun formatDateTime(context: Context, timeInMillis: Long): String {
+        Log.d("TIME_MESSAGE", (System.currentTimeMillis() - timeInMillis).toString())
+        val timeMinutesAgo = (System.currentTimeMillis() - timeInMillis) / 1000 / 60
+        val timeHoursAgo = timeMinutesAgo / 60
+        val daysAgo = timeHoursAgo / 24
+        return when {
+            timeMinutesAgo < 1 -> context.getString(R.string.small_min)
+            timeMinutesAgo in 2..59 -> context.getString(R.string.minutes_ago, timeMinutesAgo)
+            timeMinutesAgo >= 60 && daysAgo < 1 -> {
+                if (timeHoursAgo < 2) {
+                    context.getString(R.string.one_hour_ago)
+                } else {
+                    context.getString(R.string.hours_ago, timeHoursAgo)
+                }
+            }
+            timeHoursAgo > 24 -> {
+                if (daysAgo == 1L && (timeHoursAgo % 24 == 0L)) {
+                    context.getString(R.string.yesterday)
+                } else {
+                    formatDate(timeInMillis, PATTERN_MESSAGE_DATE)
+                }
+            }
+            else -> ""
+        }
+    }
+
+    /**
+     * Formats timestamp to 'date month' format (e.g. 'February 3').
+     */
+    fun formatDate(timeInMillis: Long, outPattern: String = PATTERN_DATE): String {
+        val dateFormat = SimpleDateFormat(outPattern, Locale.getDefault())
+        return dateFormat.format(timeInMillis)
+    }
+
+    /**
+     * Returns whether the given date is today, based on the user's current locale.
+     */
+    fun isToday(timeInMillis: Long): Boolean {
+        val dateFormat = SimpleDateFormat("yyyyMMdd", Locale.getDefault())
+        val date = dateFormat.format(timeInMillis)
+        return date == dateFormat.format(System.currentTimeMillis())
+    }
+
+    /**
+     * Checks if two dates are of the same day.
+     * @param millisFirst   The time in milliseconds of the first date.
+     * @param millisSecond  The time in milliseconds of the second date.
+     * @return  Whether {@param millisFirst} and {@param millisSecond} are off the same day.
+     */
+    fun hasSameDate(millisFirst: Long, millisSecond: Long): Boolean {
+        val dateFormat = SimpleDateFormat("yyyyMMdd", Locale.getDefault())
+        return dateFormat.format(millisFirst) == dateFormat.format(millisSecond)
+    }
+
+    fun formatLastSeenDate(timeInMillis: Long): String {
+        val dateFormat = SimpleDateFormat("dd MMM HH:mm", Locale.getDefault())
+        return dateFormat.format(timeInMillis)
+    }
+
+    fun compareDayBetweenTimeStamp(
+        futureMillis: Long,
+        currentMillis: Long = System.currentTimeMillis()
+    ): Long {
+        val futureDay = DateTime(futureMillis)
+        val currentDay = DateTime(currentMillis)
+        return Days.daysBetween(currentDay.toLocalDate(), futureDay.toLocalDate()).days.toLong()
     }
 
 }

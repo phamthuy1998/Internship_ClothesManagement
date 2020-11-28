@@ -156,6 +156,28 @@
     <string name="terms_and_conditions_">Terms and Conditions</string>
     <string name="save_and_continue">SAVE AND CONTINUE</string>
     <string name="add_address">ADD ADDRESS</string>
+    <string name="this_message_has_been_deleted"><i>This message has been deleted. </i></string>
+
+    <string name="just_now">Just now</string>
+    <string name="one_minute_ago">1 min ago</string>
+    <string name="one_hour_ago">1 hour ago</string>
+    <string name="one_day_ago">1 day ago</string>
+    <string name="yesterday">yesterday</string>
+    <string name="today">Today</string>
+    <string name="view_profile">View Profile</string>
+    <string name="friends">Friends</string>
+    <string name="new_message">New Message</string>
+    <string name="copy">Copy</string>
+    <string name="yesterday_cap">Yesterday</string>
+    <string name="small_min">&lt; 1 min</string>
+    <string name="one_year_ago">1 year ago</string>
+    <string name="minutes_ago">%1$d mins ago</string>
+    <string name="hours_ago">%1$d hours ago</string>
+    <string name="days_ago">%1$d days ago</string>
+    <string name="weeks_ago">%1$d weeks ago</string>
+    <string name="months_ago">%1$d months ago</string>
+    <string name="years_ago">%1$d years ago</string>
+    <string name="in_the_future">In the future</string>
 
     <string name="bags">Bags</string>
     <string name="t_shirts">T-Shirts</string>

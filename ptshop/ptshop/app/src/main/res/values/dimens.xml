@@ -80,6 +80,19 @@
     <dimen name="image_330dp">330dp</dimen>
     <dimen name="image_400dp">400dp</dimen>
 
+
+    <dimen name="text_size_xxsmall">11sp</dimen>
+    <dimen name="text_size_xsmall">13sp</dimen>
+    <dimen name="text_size_xsmall_12">12sp</dimen>
+    <dimen name="text_size_xsmall_14">14sp</dimen>
+    <dimen name="text_size_small">15sp</dimen>
+    <dimen name="text_size_small_cmt">13sp</dimen>
+    <dimen name="text_size_normal">17sp</dimen>
+    <dimen name="text_size_large">19sp</dimen>
+    <dimen name="text_size_xlarge">21sp</dimen>
+    <dimen name="text_size_xxlarge">23sp</dimen>
+
+
     <dimen name="design_bottom_navigation_icon_size" tools:override="true">19dp</dimen>
 
     <dimen name="fast_scroll_overlay_text_size">100dp</dimen>
