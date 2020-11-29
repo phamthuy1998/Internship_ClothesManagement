@@ -602,6 +602,7 @@
     <None Include="Resources\clothes %281%29.png" />
     <None Include="Resources\dress.png" />
     <None Include="Resources\woman.png" />
+    <None Include="Resources\printer.png" />
     <Content Include="SqlServerTypes\readme.htm" />
     <Content Include="SqlServerTypes\x64\msvcr120.dll">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>

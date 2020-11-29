@@ -58,6 +58,7 @@
             this.btnSua = new DevExpress.XtraBars.BarButtonItem();
             this.btnTimKiem = new DevExpress.XtraBars.BarButtonItem();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.btnExport = new System.Windows.Forms.Button();
             this.cbbEmployee = new System.Windows.Forms.ComboBox();
             this.employeeBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             this.clothesDataSet = new ClothesAdmin.ClothesDataSet();
@@ -76,7 +77,6 @@
             this.reloadToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.importCouponDetailBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.gridView2 = new DevExpress.XtraGrid.Views.Grid.GridView();
-            this.colidCoupon = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colidProduct = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colcolorId = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colsizeID = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -420,6 +420,7 @@
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.btnExport);
             this.panel1.Controls.Add(this.cbbEmployee);
             this.panel1.Controls.Add(this.lbEmployee);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
@@ -427,6 +428,22 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(1940, 68);
             this.panel1.TabIndex = 4;
+            // 
+            // btnExport
+            // 
+            this.btnExport.BackColor = System.Drawing.Color.White;
+            this.btnExport.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnExport.ForeColor = System.Drawing.Color.ForestGreen;
+            this.btnExport.Image = global::ClothesAdmin.Properties.Resources.printer;
+            this.btnExport.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnExport.Location = new System.Drawing.Point(1631, 9);
+            this.btnExport.Margin = new System.Windows.Forms.Padding(10);
+            this.btnExport.Name = "btnExport";
+            this.btnExport.Size = new System.Drawing.Size(279, 52);
+            this.btnExport.TabIndex = 58;
+            this.btnExport.Text = "Print import cupon detail";
+            this.btnExport.UseVisualStyleBackColor = false;
+            this.btnExport.Click += new System.EventHandler(this.btnExport_Click);
             // 
             // cbbEmployee
             // 
@@ -490,12 +507,17 @@
             // 
             // gridView1
             // 
+            this.gridView1.Appearance.GroupPanel.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.gridView1.Appearance.GroupPanel.ForeColor = System.Drawing.Color.Black;
+            this.gridView1.Appearance.GroupPanel.Options.UseFont = true;
+            this.gridView1.Appearance.GroupPanel.Options.UseForeColor = true;
             this.gridView1.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
             this.colid,
             this.coldate,
             this.colemployeeId,
             this.colproviderId});
             this.gridView1.GridControl = this.importCouponGridControl;
+            this.gridView1.GroupPanelText = "Import cupon";
             this.gridView1.Name = "gridView1";
             // 
             // colid
@@ -593,25 +615,19 @@
             // 
             // gridView2
             // 
+            this.gridView2.Appearance.GroupPanel.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.gridView2.Appearance.GroupPanel.ForeColor = System.Drawing.Color.Black;
+            this.gridView2.Appearance.GroupPanel.Options.UseFont = true;
+            this.gridView2.Appearance.GroupPanel.Options.UseForeColor = true;
             this.gridView2.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
-            this.colidCoupon,
             this.colidProduct,
             this.colcolorId,
             this.colsizeID,
             this.colquantity,
             this.colprice});
             this.gridView2.GridControl = this.importCouponDetailGridControl;
+            this.gridView2.GroupPanelText = "Import cupon detail";
             this.gridView2.Name = "gridView2";
-            // 
-            // colidCoupon
-            // 
-            this.colidCoupon.FieldName = "idCoupon";
-            this.colidCoupon.MinWidth = 25;
-            this.colidCoupon.Name = "colidCoupon";
-            this.colidCoupon.OptionsColumn.AllowEdit = false;
-            this.colidCoupon.Visible = true;
-            this.colidCoupon.VisibleIndex = 0;
-            this.colidCoupon.Width = 94;
             // 
             // colidProduct
             // 
@@ -620,7 +636,7 @@
             this.colidProduct.Name = "colidProduct";
             this.colidProduct.OptionsColumn.AllowEdit = false;
             this.colidProduct.Visible = true;
-            this.colidProduct.VisibleIndex = 1;
+            this.colidProduct.VisibleIndex = 0;
             this.colidProduct.Width = 94;
             // 
             // colcolorId
@@ -630,7 +646,7 @@
             this.colcolorId.Name = "colcolorId";
             this.colcolorId.OptionsColumn.AllowEdit = false;
             this.colcolorId.Visible = true;
-            this.colcolorId.VisibleIndex = 4;
+            this.colcolorId.VisibleIndex = 3;
             this.colcolorId.Width = 94;
             // 
             // colsizeID
@@ -640,7 +656,7 @@
             this.colsizeID.Name = "colsizeID";
             this.colsizeID.OptionsColumn.AllowEdit = false;
             this.colsizeID.Visible = true;
-            this.colsizeID.VisibleIndex = 5;
+            this.colsizeID.VisibleIndex = 4;
             this.colsizeID.Width = 94;
             // 
             // colquantity
@@ -650,7 +666,7 @@
             this.colquantity.Name = "colquantity";
             this.colquantity.OptionsColumn.AllowEdit = false;
             this.colquantity.Visible = true;
-            this.colquantity.VisibleIndex = 2;
+            this.colquantity.VisibleIndex = 1;
             this.colquantity.Width = 94;
             // 
             // colprice
@@ -660,7 +676,7 @@
             this.colprice.Name = "colprice";
             this.colprice.OptionsColumn.AllowEdit = false;
             this.colprice.Visible = true;
-            this.colprice.VisibleIndex = 3;
+            this.colprice.VisibleIndex = 2;
             this.colprice.Width = 94;
             // 
             // panel4
@@ -1170,7 +1186,6 @@
         private System.Windows.Forms.ToolStripMenuItem reloadToolStripMenuItem;
         private DevExpress.XtraEditors.DateEdit dateDateEdit;
         private System.Windows.Forms.BindingSource employeeBindingSource1;
-        private DevExpress.XtraGrid.Columns.GridColumn colidCoupon;
         private DevExpress.XtraGrid.Columns.GridColumn colidProduct;
         private DevExpress.XtraGrid.Columns.GridColumn colcolorId;
         private DevExpress.XtraGrid.Columns.GridColumn colsizeID;
@@ -1198,5 +1213,6 @@
         private System.Windows.Forms.ComboBox providerComboBox;
         public System.Windows.Forms.ComboBox cbbEmployee;
         public System.Windows.Forms.Label lbEmployee;
+        private System.Windows.Forms.Button btnExport;
     }
 }

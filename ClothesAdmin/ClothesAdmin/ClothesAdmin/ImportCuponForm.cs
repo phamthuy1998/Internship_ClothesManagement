@@ -16,16 +16,7 @@ namespace ClothesAdmin
         public ImportCuponForm()
         {
             InitializeComponent();
-            if (Program.accountLogin.roleId == 1)
-            {
-                lbEmployee.Visible = true;
-                cbbEmployee.Visible = true;
-            }
-            else if (Program.accountLogin.roleId == 1)
-            {
-                lbEmployee.Visible = false;
-                cbbEmployee.Visible = false;
-            }
+           
         }
 
         //private void importCouponBindingNavigatorSaveItem_Click(object sender, EventArgs e)
@@ -38,9 +29,19 @@ namespace ClothesAdmin
 
         private void ImportCuponForm_Load(object sender, EventArgs e)
         {
+            if (Program.accountLogin.roleId == 1)
+            {
+                lbEmployee.Visible = true;
+                cbbEmployee.Visible = true;
+            }
+            else if (Program.accountLogin.roleId == 2)
+            {
+                lbEmployee.Visible = false;
+                cbbEmployee.Visible = false;
+            }
             // TODO: This line of code loads data into the 'clothesDataSet.Provider' table. You can move, or remove it, as needed.
             this.providerTableAdapter.Fill(this.clothesDataSet.Provider);
-            cbbEmployee.SelectedValue = Program.accountLogin.idEmployee;
+          
             loadData();
         }
 
@@ -67,7 +68,7 @@ namespace ClothesAdmin
             this.sizeTableAdapter.Fill(this.clothesDataSet.Size);
             // TODO: This line of code loads data into the 'clothesDataSet.Color' table. You can move, or remove it, as needed.
             this.colorTableAdapter.Fill(this.clothesDataSet.Color);// , Convert.ToInt16(productComboBox.SelectedValue), Convert.ToInt16(sizeComboBox.SelectedValue)
-
+            cbbEmployee.SelectedValue = Program.accountLogin.idEmployee;
             if (cbbEmployee.SelectedIndex > 0)
             {
                 this.importCouponTableAdapter.Fill(this.clothesDataSet.ImportCoupon);
@@ -103,15 +104,18 @@ namespace ClothesAdmin
                 MessageBox.Show("Please select an import date", "Error", MessageBoxButtons.OK);
                 return;
             }
-            else if (employeeComboBox.SelectedIndex <= 0)
+            else if (employeeIdSpinEdit.Text.ToString() == "")
             {
                 MessageBox.Show("Can't load employee id, please choose an employeee!", "Error", MessageBoxButtons.OK);
                 return;
             }
-            else if (providerComboBox.SelectedIndex <= 0)
+            else if (providerIdTextBox.Text.ToString() == "")
             {
                 MessageBox.Show("Please select a provider", "Error", MessageBoxButtons.OK);
                 return;
+            }else if (productBindingSource.Count <= 0)
+            {
+                MessageBox.Show("This supplier does not have any products yet, please enter the supplier's product first", "Error", MessageBoxButtons.OK);
             }
             else
             {
@@ -314,10 +318,38 @@ namespace ClothesAdmin
 
         private void employeeComboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
+            if (Program.accountLogin.idEmployee == Convert.ToInt32(cbbEmployee.SelectedValue))
+            {
+                btnSaveIport.Visible = true;
+                btnCancelImport.Visible = true;
+                providerComboBox.Enabled = true;
+                dateDateEdit.Enabled = true;
+                btnSaveAddItem.Visible = true;
+                btnCancelAddItem.Visible = true;
+
+                productComboBox.Enabled = true;
+                sizeComboBox.Enabled = true;
+                colorComboBox.Enabled = true;
+                quantitySpinEdit.Enabled = true;
+                priceSpinEdit.Enabled = true;
+            }
+            else 
+            {
+                btnSaveIport.Visible = false;
+                btnCancelImport.Visible = false;
+                providerComboBox.Enabled = false;
+                dateDateEdit.Enabled = false;
+                btnSaveAddItem.Visible = false;
+                btnCancelAddItem.Visible = false;
+                productComboBox.Enabled = false;
+                sizeComboBox.Enabled = false;
+                colorComboBox.Enabled = false;
+                quantitySpinEdit.Enabled = false;
+                priceSpinEdit.Enabled = false;
+            }
             try
             {
                 this.importCouponTableAdapter.FillBy(this.clothesDataSet.ImportCoupon, Convert.ToInt32(cbbEmployee.SelectedValue));
-
             }
             catch (Exception ex) { }
         }
@@ -356,6 +388,11 @@ namespace ClothesAdmin
         {
             if (providerIdTextBox.Text != "")
                 this.productTableAdapter.FillBy1(this.clothesDataSet.Product, Convert.ToInt16(providerIdTextBox.Text));
+
+        }
+
+        private void btnExport_Click(object sender, EventArgs e)
+        {
 
         }
     }
