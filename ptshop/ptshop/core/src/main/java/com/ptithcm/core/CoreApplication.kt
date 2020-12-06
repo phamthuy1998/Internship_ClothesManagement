@@ -25,6 +25,7 @@ open class CoreApplication : Application() {
 
     var profile: Profile? = null
     var account: Account? = null
+    var shopInfo: ShopInfo? = null
     var basket: Basket? = null
     var cart: Cart? = null
     var defaultAddress: ShoppingAddress? = null

@@ -358,6 +358,9 @@
     <Compile Include="SP_GetRatings_Result6.cs">
       <DependentUpon>ClothesEntity.tt</DependentUpon>
     </Compile>
+    <Compile Include="SP_GetShopInfo_Result.cs">
+      <DependentUpon>ClothesEntity.tt</DependentUpon>
+    </Compile>
     <Compile Include="SP_GetSizesColorsOfProduct_Result.cs">
       <DependentUpon>ClothesEntity.tt</DependentUpon>
     </Compile>

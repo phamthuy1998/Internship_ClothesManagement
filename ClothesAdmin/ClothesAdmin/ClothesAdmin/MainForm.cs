@@ -26,7 +26,9 @@ namespace ClothesAdmin
         private InvoiceStatisticFrom  invoiceStatisticFrom = null;
         private SizeColorForm sizeColorForm = null;
         private PromotionForm promotionForm = null;
+        private ShopInfoForm shopInfoForm = null;
         private ProviderForm providerForm = null;
+        private BackupRestoreForm backupRestoreForm = null;
         private ProductStatisticForm productStatisticForm = null;
          private WarehouseFormcs warehouseFormcs = null;
         public MainForm()
@@ -426,6 +428,33 @@ namespace ClothesAdmin
                 employeeForm = new EmployeeForm();
                 employeeForm.MdiParent = this;
                 employeeForm.Show();
+            }
+            else form.Activate();
+        }
+
+        private void btnShopInfo_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            form = this.CheckExists(typeof(ShopInfoForm));
+            if (form == null)
+            {
+                IsMdiContainer = true;
+                shopInfoForm = new ShopInfoForm();
+                shopInfoForm.MdiParent = this;
+                shopInfoForm.Show();
+            }
+            else form.Activate();
+        }
+
+        private void btnBackupRestore_ItemClick(object sender, ItemClickEventArgs e)
+        {
+
+            form = this.CheckExists(typeof(BackupRestoreForm));
+            if (form == null)
+            {
+                IsMdiContainer = true;
+                backupRestoreForm = new BackupRestoreForm();
+                backupRestoreForm.MdiParent = this;
+                backupRestoreForm.Show();
             }
             else form.Activate();
         }

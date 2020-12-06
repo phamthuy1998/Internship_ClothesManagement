@@ -1,12 +1,16 @@
 package com.ptithcm.ptshop.view.profile
 
+import android.Manifest
 import android.app.Activity
 import android.content.Intent
+import android.content.pm.PackageManager
 import android.net.Uri
 import android.os.Bundle
 import android.provider.MediaStore
 import android.view.View
 import android.widget.Toast
+import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat
 import androidx.core.content.FileProvider
 import androidx.core.os.bundleOf
 import androidx.databinding.ViewDataBinding
@@ -21,6 +25,7 @@ import com.ptithcm.core.BuildConfig
 import com.ptithcm.core.CoreApplication
 import com.ptithcm.core.model.Account
 import com.ptithcm.core.model.Profile
+import com.ptithcm.core.model.ShopInfo
 import com.ptithcm.core.param.UpdateDetailParam
 import com.ptithcm.ptshop.R
 import com.ptithcm.ptshop.base.BaseActivity
@@ -54,14 +59,7 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>(), View.OnClickList
     private var currentProfile: Profile? = null
     private var currentAccount: Account? = null
     private var showInvoice = false
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        if (CoreApplication.instance.profile != null) {
-            userViewModel.getProfile()
-        }
-        observeViewModel()
-    }
+    private var shopInfo: ShopInfo? = null
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -83,6 +81,22 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>(), View.OnClickList
             .into(viewBinding.profileCustomer.avatar)
 
         setupToolbar()
+        setShopInfo()
+
+    }
+
+    private fun setShopInfo() {
+        shopInfo = CoreApplication.instance.shopInfo
+        viewBinding.profileCustomer.tvAppVer.text = getString(R.string.appVer, shopInfo?.versionApp)
+        viewBinding.profileCustomer.btnPhoneNumber.text = getString(R.string.phoneShop, shopInfo?.phoneNumber)
+    }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        if (CoreApplication.instance.profile != null) {
+            userViewModel.getProfile()
+        }
+        observeViewModel()
     }
 
     override fun bindEvent() {
@@ -155,12 +169,6 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>(), View.OnClickList
                     bundleOf(KEY_ARGUMENT to resources.getString(R.string.customer_service))
                 )
             }
-            R.id.delivery_return_btn -> {
-                navController.navigate(
-                    R.id.documentFragment,
-                    bundleOf(KEY_ARGUMENT to resources.getString(R.string.delivery_and_returns))
-                )
-            }
             R.id.about_us_btn -> {
                 navController.navigate(
                     R.id.documentFragment,
@@ -225,7 +233,42 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>(), View.OnClickList
             R.id.tvOption2 -> {
                 (requireActivity() as? BaseActivity<*>)?.closePopup()
                 openGallery()
+            }  R.id.btnPhoneNumber -> {
+                callShop()
             }
+        }
+    }
+
+    private fun callShop() {
+        if (ContextCompat.checkSelfPermission(
+                requireContext(),
+                Manifest.permission.CALL_PHONE
+            )
+            != PackageManager.PERMISSION_GRANTED
+        ) {
+
+            // Permission is not granted
+            // Should we show an explanation?
+            if (ActivityCompat.shouldShowRequestPermissionRationale(requireActivity(), Manifest.permission.CALL_PHONE)
+            ) {
+                // Show an explanation to the user *asynchronously* -- don't block
+                // this thread waiting for the user's response! After the user
+                // sees the explanation, try again to request the permission.
+            } else {
+                // No explanation needed, we can request the permission.
+                ActivityCompat.requestPermissions(
+                    requireActivity(),
+                    arrayOf(Manifest.permission.CALL_PHONE), targetRequestCode
+                )
+
+                // MY_PERMISSIONS_REQUEST_READ_CONTACTS is an
+                // app-defined int constant. The callback method gets the
+                // result of the request.
+            }
+        } else {
+            // Permission has already been granted
+            val intent = Intent(Intent.ACTION_CALL, Uri.parse("tel:" + shopInfo?.phoneNumber))
+            startActivity(intent)
         }
     }
 

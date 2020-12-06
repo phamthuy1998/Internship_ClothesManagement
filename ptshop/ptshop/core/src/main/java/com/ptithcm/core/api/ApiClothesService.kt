@@ -180,5 +180,8 @@ interface ApiClothesService {
         @Query("orderId") orderId: Int?
     ): Response<ObjectResponse<Int>>
 
+    @GET("/api/getShopInfo")
+    suspend fun getShopInfo(): Response<ObjectResponse<ShopInfo>>
+
 }
 

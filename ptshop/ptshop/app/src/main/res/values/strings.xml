@@ -65,6 +65,7 @@
     <string name="log_out">Log Out</string>
     <string name="forgot_password_capital">FORGOT PASSWORD</string>
     <string name="save_changes">SAVE CHANGES</string>
+    <string name="appVer">Version %s</string>
     <string name="old_password">Old Password*</string>
     <string name="new_password">New Password*</string>
     <string name="new_password_confirm">Confirm New Password*</string>
@@ -378,4 +379,6 @@
     <string name="post">Post</string>
     <string name="contact_us">Contact us</string>
     <string name="the_way_to_go_to_shop">The way to go to shop</string>
+    <string name="address_of_shop">Address of shop</string>
+    <string name="phoneShop">Phone: %s</string>
 </resources>

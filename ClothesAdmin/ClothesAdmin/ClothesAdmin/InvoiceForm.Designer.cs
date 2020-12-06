@@ -84,7 +84,6 @@
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.invoiceItemGridControl = new DevExpress.XtraGrid.GridControl();
             this.gridView2 = new DevExpress.XtraGrid.Views.Grid.GridView();
-            this.colorderId = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colproductId = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colcolorId = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colsizeId = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -596,7 +595,10 @@
             this.tableAdapterManager.PromotionItemTableAdapter = null;
             this.tableAdapterManager.PromotionTableAdapter = null;
             this.tableAdapterManager.ProviderTableAdapter = null;
+            this.tableAdapterManager.QuestionTableAdapter = null;
+            this.tableAdapterManager.RatingTableAdapter = null;
             this.tableAdapterManager.RoleTableAdapter = null;
+            this.tableAdapterManager.ShopInfoTableAdapter = null;
             this.tableAdapterManager.SizeTableAdapter = null;
             this.tableAdapterManager.UpdateOrder = ClothesAdmin.ClothesDataSetTableAdapters.TableAdapterManager.UpdateOrderOption.InsertUpdateDelete;
             // 
@@ -649,8 +651,8 @@
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 87);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 2;
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 37.0844F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 62.9156F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 40.50956F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 59.49044F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tableLayoutPanel1.Size = new System.Drawing.Size(1940, 785);
             this.tableLayoutPanel1.TabIndex = 10;
@@ -664,32 +666,24 @@
             this.invoiceItemGridControl.MainView = this.gridView2;
             this.invoiceItemGridControl.MenuManager = this.barManager;
             this.invoiceItemGridControl.Name = "invoiceItemGridControl";
-            this.invoiceItemGridControl.Size = new System.Drawing.Size(686, 285);
+            this.invoiceItemGridControl.Size = new System.Drawing.Size(686, 312);
             this.invoiceItemGridControl.TabIndex = 3;
             this.invoiceItemGridControl.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridView2});
             // 
             // gridView2
             // 
+            this.gridView2.Appearance.GroupPanel.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.gridView2.Appearance.GroupPanel.Options.UseFont = true;
             this.gridView2.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
-            this.colorderId,
             this.colproductId,
             this.colcolorId,
             this.colsizeId,
             this.colunitPrice,
             this.colquantity});
             this.gridView2.GridControl = this.invoiceItemGridControl;
+            this.gridView2.GroupPanelText = "Invoice detail";
             this.gridView2.Name = "gridView2";
-            // 
-            // colorderId
-            // 
-            this.colorderId.FieldName = "orderId";
-            this.colorderId.MinWidth = 25;
-            this.colorderId.Name = "colorderId";
-            this.colorderId.OptionsColumn.AllowEdit = false;
-            this.colorderId.Visible = true;
-            this.colorderId.VisibleIndex = 0;
-            this.colorderId.Width = 94;
             // 
             // colproductId
             // 
@@ -698,8 +692,8 @@
             this.colproductId.Name = "colproductId";
             this.colproductId.OptionsColumn.AllowEdit = false;
             this.colproductId.Visible = true;
-            this.colproductId.VisibleIndex = 1;
-            this.colproductId.Width = 94;
+            this.colproductId.VisibleIndex = 0;
+            this.colproductId.Width = 87;
             // 
             // colcolorId
             // 
@@ -708,8 +702,8 @@
             this.colcolorId.Name = "colcolorId";
             this.colcolorId.OptionsColumn.AllowEdit = false;
             this.colcolorId.Visible = true;
-            this.colcolorId.VisibleIndex = 2;
-            this.colcolorId.Width = 94;
+            this.colcolorId.VisibleIndex = 1;
+            this.colcolorId.Width = 74;
             // 
             // colsizeId
             // 
@@ -718,8 +712,8 @@
             this.colsizeId.Name = "colsizeId";
             this.colsizeId.OptionsColumn.AllowEdit = false;
             this.colsizeId.Visible = true;
-            this.colsizeId.VisibleIndex = 3;
-            this.colsizeId.Width = 94;
+            this.colsizeId.VisibleIndex = 2;
+            this.colsizeId.Width = 86;
             // 
             // colunitPrice
             // 
@@ -728,8 +722,8 @@
             this.colunitPrice.Name = "colunitPrice";
             this.colunitPrice.OptionsColumn.AllowEdit = false;
             this.colunitPrice.Visible = true;
-            this.colunitPrice.VisibleIndex = 4;
-            this.colunitPrice.Width = 94;
+            this.colunitPrice.VisibleIndex = 3;
+            this.colunitPrice.Width = 234;
             // 
             // colquantity
             // 
@@ -738,8 +732,8 @@
             this.colquantity.Name = "colquantity";
             this.colquantity.OptionsColumn.AllowEdit = false;
             this.colquantity.Visible = true;
-            this.colquantity.VisibleIndex = 5;
-            this.colquantity.Width = 94;
+            this.colquantity.VisibleIndex = 4;
+            this.colquantity.Width = 186;
             // 
             // invoiceGridControl
             // 
@@ -749,13 +743,15 @@
             this.invoiceGridControl.MainView = this.gridView1;
             this.invoiceGridControl.MenuManager = this.barManager;
             this.invoiceGridControl.Name = "invoiceGridControl";
-            this.invoiceGridControl.Size = new System.Drawing.Size(1242, 285);
+            this.invoiceGridControl.Size = new System.Drawing.Size(1242, 312);
             this.invoiceGridControl.TabIndex = 3;
             this.invoiceGridControl.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridView1});
             // 
             // gridView1
             // 
+            this.gridView1.Appearance.GroupPanel.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.gridView1.Appearance.GroupPanel.Options.UseFont = true;
             this.gridView1.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
             this.colid,
             this.colupdateDate,
@@ -772,6 +768,7 @@
             this.colpayment,
             this.colisPaid});
             this.gridView1.GridControl = this.invoiceGridControl;
+            this.gridView1.GroupPanelText = "Invoice";
             this.gridView1.Name = "gridView1";
             // 
             // colid
@@ -953,9 +950,9 @@
             this.panel3.Controls.Add(activeLabel);
             this.panel3.Controls.Add(this.activeSpinEdit);
             this.panel3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel3.Location = new System.Drawing.Point(3, 294);
+            this.panel3.Location = new System.Drawing.Point(3, 321);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(1242, 488);
+            this.panel3.Size = new System.Drawing.Size(1242, 461);
             this.panel3.TabIndex = 2;
             // 
             // btnChangeStatus
@@ -1229,9 +1226,9 @@
             this.panel2.Controls.Add(quantityLabel);
             this.panel2.Controls.Add(this.quantitySpinEdit);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel2.Location = new System.Drawing.Point(1251, 294);
+            this.panel2.Location = new System.Drawing.Point(1251, 321);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(686, 488);
+            this.panel2.Size = new System.Drawing.Size(686, 461);
             this.panel2.TabIndex = 3;
             // 
             // btnExport
@@ -1406,7 +1403,7 @@
             this.Controls.Add(this.barDockControl2);
             this.Controls.Add(this.barDockControl1);
             this.Name = "InvoiceForm";
-            this.Text = "InvoiceForm";
+            this.Text = "Invoice";
             this.Load += new System.EventHandler(this.InvoiceForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.barManager)).EndInit();
             this.contextMenuStrip1.ResumeLayout(false);
@@ -1482,7 +1479,6 @@
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         private DevExpress.XtraGrid.GridControl invoiceItemGridControl;
         private DevExpress.XtraGrid.Views.Grid.GridView gridView2;
-        private DevExpress.XtraGrid.Columns.GridColumn colorderId;
         private DevExpress.XtraGrid.Columns.GridColumn colproductId;
         private DevExpress.XtraGrid.Columns.GridColumn colcolorId;
         private DevExpress.XtraGrid.Columns.GridColumn colsizeId;

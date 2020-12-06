@@ -5,6 +5,7 @@ import android.os.Handler
 import androidx.core.os.bundleOf
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.GridLayoutManager
+import com.ptithcm.core.CoreApplication
 import com.ptithcm.core.model.Category
 import com.ptithcm.core.model.Gender
 import com.ptithcm.ptshop.R
@@ -31,6 +32,7 @@ abstract class BaseShopGenderFragment : BaseFragment<FragmentBaseShopGenderBindi
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         viewModel.getMainCategories(getShopType().value)
+        viewModel.getShopInfo()
     }
 
     override fun bindEvent() {
@@ -41,6 +43,10 @@ abstract class BaseShopGenderFragment : BaseFragment<FragmentBaseShopGenderBindi
 
     override fun bindViewModel() {
         super.bindViewModel()
+        viewModel.shopInfo.observe(this, Observer {
+            if (it != null) CoreApplication.instance.shopInfo = it
+        })
+
         viewModel.networkState.observe(this, Observer {
             when (it) {
                 true -> (requireActivity() as? MainActivity)?.isShowLoading(it)

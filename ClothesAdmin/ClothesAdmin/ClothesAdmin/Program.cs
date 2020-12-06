@@ -20,7 +20,7 @@ namespace ClothesAdmin
         public static SqlDataReader myReader;
 
         public static MainForm mainForm;
-
+        public static String defaultPath = "D:\\Backup_Restore_DB\\";
 
         public static AccountLogin accountLogin;
 
@@ -37,6 +37,27 @@ namespace ClothesAdmin
 
             BonusSkins.Register();
             Application.Run(new LoginForm());
+        }
+
+        public static int ExecSqlNonQuery(String strlenh, String connectionString, String errStr)
+        {
+            conn = new SqlConnection(connectionString);
+            if (conn.State == ConnectionState.Closed) conn.Open();
+            SqlCommand Sqlcmd = new SqlCommand(strlenh, conn);
+            Sqlcmd.CommandType = CommandType.Text;
+            Sqlcmd.CommandTimeout = 600;// 10 phut 
+            try
+            {
+                Sqlcmd.ExecuteNonQuery();
+                conn.Close();
+                return 0;
+            }
+            catch (SqlException ex)
+            {
+                MessageBox.Show(errStr + "\n" + ex.Message);
+                conn.Close();
+                return ex.State; // trang thai lỗi gởi từ RAISERROR trong SQL Server qua
+            }
         }
 
         public static void showToastSave()

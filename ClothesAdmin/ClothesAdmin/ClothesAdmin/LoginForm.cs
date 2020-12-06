@@ -90,11 +90,13 @@ namespace ClothesAdmin
                 Program.mainForm.tvIdEmployee.Text = "Employee Id: " + Program.accountLogin.idEmployee + " ";
                 if (Program.accountLogin.roleId ==1)
                 {
+                    Program.mainForm.btnShopInfo.Visibility = BarItemVisibility.Always;
                     Program.mainForm.btnEmployee.Visibility = BarItemVisibility.Always;
                     Program.mainForm.rbSttatistic.Visible = true;
                 }
                 else if (Program.accountLogin.roleId == 2)
                 {
+                    Program.mainForm.btnShopInfo.Visibility = BarItemVisibility.Never;
                     Program.mainForm.btnEmployee.Visibility = BarItemVisibility.Never;
                     Program.mainForm.rbSttatistic.Visible = false;
                 }

@@ -104,9 +104,8 @@
           <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="date" Type="date" />
           <Property Name="employeeId" Type="int" />
+          <Property Name="providerId" Type="int" />
         </EntityType>
-        <!--Errors Found During Generation:
-warning 6002: The table/view 'ClothesManament.dbo.ImportCouponDetail' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="ImportCouponDetail">
           <Key>
             <PropertyRef Name="idCoupon" />
@@ -171,12 +170,12 @@ warning 6002: The table/view 'ClothesManament.dbo.ImportCouponDetail' does not h
           <Property Name="price" Type="float" />
           <Property Name="categoryID" Type="int" />
           <Property Name="rating" Type="int" />
-          <Property Name="active" Type="int" />
           <Property Name="providerId" Type="int" />
           <Property Name="thumnail" Type="nvarchar" MaxLength="200" />
           <Property Name="isNew" Type="int" />
           <Property Name="addDate" Type="date" Nullable="false" />
           <Property Name="sold" Type="int" />
+          <Property Name="active" Type="int" />
         </EntityType>
         <EntityType Name="ProductSizeColor">
           <Key>
@@ -202,8 +201,8 @@ warning 6002: The table/view 'ClothesManament.dbo.ImportCouponDetail' does not h
           <Property Name="endDate" Type="datetime" />
           <Property Name="value" Type="float" />
           <Property Name="imageUrl" Type="nvarchar" MaxLength="200" />
-          <Property Name="active" Type="int" />
           <Property Name="type" Type="nvarchar" MaxLength="50" />
+          <Property Name="active" Type="int" />
         </EntityType>
         <EntityType Name="PromotionItem">
           <Key>
@@ -835,6 +834,7 @@ warning 6002: The table/view 'ClothesManament.dbo.ImportCouponDetail' does not h
         <Function Name="SP_GetRatingsCount" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="productId" Type="int" Mode="In" />
         </Function>
+        <Function Name="SP_GetShopInfo" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="SP_GetSizesColorsOfProduct" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="productId" Type="int" Mode="In" />
         </Function>
@@ -930,6 +930,7 @@ warning 6002: The table/view 'ClothesManament.dbo.ImportCouponDetail' does not h
           <EntitySet Name="FavoriteProduct" EntityType="Self.FavoriteProduct" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Image" EntityType="Self.Image" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ImportCoupon" EntityType="Self.ImportCoupon" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ImportCouponDetail" EntityType="Self.ImportCouponDetail" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Invoice" EntityType="Self.Invoice" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="InvoiceItem" EntityType="Self.InvoiceItem" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="InvoiceStatus" EntityType="Self.InvoiceStatus" Schema="dbo" store:Type="Tables" />
@@ -943,16 +944,6 @@ warning 6002: The table/view 'ClothesManament.dbo.ImportCouponDetail' does not h
           <EntitySet Name="Role" EntityType="Self.Role" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Size" EntityType="Self.Size" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="ImportCouponDetail" EntityType="Self.ImportCouponDetail" store:Type="Tables" store:Schema="dbo">
-            <DefiningQuery>SELECT 
-    [ImportCouponDetail].[idCoupon] AS [idCoupon], 
-    [ImportCouponDetail].[idProduct] AS [idProduct], 
-    [ImportCouponDetail].[colorId] AS [colorId], 
-    [ImportCouponDetail].[sizeID] AS [sizeID], 
-    [ImportCouponDetail].[quantity] AS [quantity], 
-    [ImportCouponDetail].[price] AS [price]
-    FROM [dbo].[ImportCouponDetail] AS [ImportCouponDetail]</DefiningQuery>
-          </EntitySet>
           <AssociationSet Name="FK_Account_Role" Association="Self.FK_Account_Role">
             <End Role="Role" EntitySet="Role" />
             <End Role="Account" EntitySet="Account" />
@@ -1520,6 +1511,7 @@ warning 6002: The table/view 'ClothesManament.dbo.ImportCouponDetail' does not h
           <FunctionImport Name="SP_GetRatingDetail" ReturnType="Collection(ClothesManamentModel1.SP_GetRatingDetail_Result)">
           <Parameter Name="ratingId" Mode="In" Type="Int32" />
           </FunctionImport>
+          <FunctionImport Name="SP_GetShopInfo" ReturnType="Collection(ClothesManamentModel1.SP_GetShopInfo_Result)" />
           </EntityContainer>
         <ComplexType Name="getCategoryByGender_Result">
           <Property Type="Int32" Name="id" Nullable="false" />
@@ -2164,6 +2156,7 @@ warning 6002: The table/view 'ClothesManament.dbo.ImportCouponDetail' does not h
           <Property Name="employeeId" Type="Int32" />
           <NavigationProperty Name="Employee" Relationship="ClothesManamentModel1.FK_ImportCoupon_Employee" FromRole="ImportCoupon" ToRole="Employee" />
           <NavigationProperty Name="ImportCouponDetails" Relationship="ClothesManamentModel1.FK_ImportCouponDetail_ImportCoupon" FromRole="ImportCoupon" ToRole="ImportCouponDetail" />
+          <Property Name="providerId" Type="Int32" />
         </EntityType>
         <EntityType Name="Invoice">
           <Key>
@@ -2665,6 +2658,15 @@ warning 6002: The table/view 'ClothesManament.dbo.ImportCouponDetail' does not h
           <Property Type="String" Name="imageUrl3" Nullable="true" MaxLength="200" />
           <Property Type="String" Name="videoUrl" Nullable="true" MaxLength="200" />
           <Property Type="Int32" Name="parentId" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="SP_GetShopInfo_Result">
+          <Property Type="Int32" Name="id" Nullable="false" />
+          <Property Type="String" Name="shopName" Nullable="false" MaxLength="100" />
+          <Property Type="String" Name="address" Nullable="true" MaxLength="200" />
+          <Property Type="String" Name="addressDetail" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="phoneNumber" Nullable="true" MaxLength="30" />
+          <Property Type="String" Name="description" Nullable="true" MaxLength="2000" />
+          <Property Type="String" Name="versionApp" Nullable="true" MaxLength="10" />
         </ComplexType>
         </Schema>
     </edmx:ConceptualModels>
@@ -3234,6 +3236,7 @@ warning 6002: The table/view 'ClothesManament.dbo.ImportCouponDetail' does not h
           <EntitySetMapping Name="ImportCoupons">
             <EntityTypeMapping TypeName="ClothesManamentModel1.ImportCoupon">
               <MappingFragment StoreEntitySet="ImportCoupon">
+                <ScalarProperty Name="providerId" ColumnName="providerId" />
                 <ScalarProperty Name="employeeId" ColumnName="employeeId" />
                 <ScalarProperty Name="date" ColumnName="date" />
                 <ScalarProperty Name="id" ColumnName="id" />
@@ -3448,6 +3451,19 @@ warning 6002: The table/view 'ClothesManament.dbo.ImportCouponDetail' does not h
                 <ScalarProperty Name="imageUrl3" ColumnName="imageUrl3" />
                 <ScalarProperty Name="videoUrl" ColumnName="videoUrl" />
                 <ScalarProperty Name="parentId" ColumnName="parentId" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SP_GetShopInfo" FunctionName="ClothesManamentModel1.Store.SP_GetShopInfo">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ClothesManamentModel1.SP_GetShopInfo_Result">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="shopName" ColumnName="shopName" />
+                <ScalarProperty Name="address" ColumnName="address" />
+                <ScalarProperty Name="addressDetail" ColumnName="addressDetail" />
+                <ScalarProperty Name="phoneNumber" ColumnName="phoneNumber" />
+                <ScalarProperty Name="description" ColumnName="description" />
+                <ScalarProperty Name="versionApp" ColumnName="versionApp" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>

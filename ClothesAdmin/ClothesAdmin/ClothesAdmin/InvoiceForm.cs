@@ -258,6 +258,7 @@ namespace ClothesAdmin
         private void btnChangeStatus_Click(object sender, EventArgs e)
         {
             statusOrderIdSpinEdit.Value = 2;
+            employeeIdSpinEdit.Value =Int32.Parse( Program.accountLogin.idEmployee.ToString());
         }
 
         private void colorComboBox_SelectedIndexChanged(object sender, EventArgs e)

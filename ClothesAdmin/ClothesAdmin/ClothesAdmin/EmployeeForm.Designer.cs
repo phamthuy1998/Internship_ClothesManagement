@@ -396,7 +396,7 @@
             this.barDockControl1.Location = new System.Drawing.Point(0, 0);
             this.barDockControl1.Manager = this.barManager;
             this.barDockControl1.Margin = new System.Windows.Forms.Padding(2);
-            this.barDockControl1.Size = new System.Drawing.Size(1932, 33);
+            this.barDockControl1.Size = new System.Drawing.Size(1932, 30);
             // 
             // barDockControl2
             // 
@@ -411,19 +411,19 @@
             // 
             this.barDockControl3.CausesValidation = false;
             this.barDockControl3.Dock = System.Windows.Forms.DockStyle.Left;
-            this.barDockControl3.Location = new System.Drawing.Point(0, 33);
+            this.barDockControl3.Location = new System.Drawing.Point(0, 30);
             this.barDockControl3.Manager = this.barManager;
             this.barDockControl3.Margin = new System.Windows.Forms.Padding(2);
-            this.barDockControl3.Size = new System.Drawing.Size(0, 1029);
+            this.barDockControl3.Size = new System.Drawing.Size(0, 1032);
             // 
             // barDockControl5
             // 
             this.barDockControl5.CausesValidation = false;
             this.barDockControl5.Dock = System.Windows.Forms.DockStyle.Right;
-            this.barDockControl5.Location = new System.Drawing.Point(1932, 33);
+            this.barDockControl5.Location = new System.Drawing.Point(1932, 30);
             this.barDockControl5.Manager = this.barManager;
             this.barDockControl5.Margin = new System.Windows.Forms.Padding(2);
-            this.barDockControl5.Size = new System.Drawing.Size(0, 1029);
+            this.barDockControl5.Size = new System.Drawing.Size(0, 1032);
             // 
             // btnSua
             // 
@@ -476,7 +476,10 @@
             this.tableAdapterManager.PromotionItemTableAdapter = null;
             this.tableAdapterManager.PromotionTableAdapter = null;
             this.tableAdapterManager.ProviderTableAdapter = null;
+            this.tableAdapterManager.QuestionTableAdapter = null;
+            this.tableAdapterManager.RatingTableAdapter = null;
             this.tableAdapterManager.RoleTableAdapter = null;
+            this.tableAdapterManager.ShopInfoTableAdapter = null;
             this.tableAdapterManager.SizeTableAdapter = null;
             this.tableAdapterManager.UpdateOrder = ClothesAdmin.ClothesDataSetTableAdapters.TableAdapterManager.UpdateOrderOption.InsertUpdateDelete;
             // 
@@ -490,12 +493,12 @@
             this.tableLayoutPanel1.Controls.Add(this.panel1, 0, 0);
             this.tableLayoutPanel1.Controls.Add(this.panel2, 1, 1);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 33);
+            this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 30);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 2;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 7.714561F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 92.28544F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(1932, 1029);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(1932, 1032);
             this.tableLayoutPanel1.TabIndex = 7;
             // 
             // panel3
@@ -515,7 +518,7 @@
             this.sP_GetAllEmployeeGridControl.MainView = this.gridView1;
             this.sP_GetAllEmployeeGridControl.MenuManager = this.barManager;
             this.sP_GetAllEmployeeGridControl.Name = "sP_GetAllEmployeeGridControl";
-            this.sP_GetAllEmployeeGridControl.Size = new System.Drawing.Size(960, 944);
+            this.sP_GetAllEmployeeGridControl.Size = new System.Drawing.Size(960, 947);
             this.sP_GetAllEmployeeGridControl.TabIndex = 0;
             this.sP_GetAllEmployeeGridControl.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridView1});
@@ -717,7 +720,7 @@
             this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel2.Location = new System.Drawing.Point(969, 82);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(960, 944);
+            this.panel2.Size = new System.Drawing.Size(960, 947);
             this.panel2.TabIndex = 2;
             // 
             // idSpinEdit1
@@ -991,7 +994,7 @@
             this.Controls.Add(this.barDockControl2);
             this.Controls.Add(this.barDockControl1);
             this.Name = "EmployeeForm";
-            this.Text = "EmployeeForm";
+            this.Text = "Employee";
             this.Load += new System.EventHandler(this.EmployeeForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.barManager)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.clothesDataSet)).EndInit();

@@ -1255,5 +1255,10 @@ namespace ClothesManamentDataAccess
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_GetRatingDetail_Result>("SP_GetRatingDetail", ratingIdParameter);
         }
+    
+        public virtual ObjectResult<SP_GetShopInfo_Result> SP_GetShopInfo()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_GetShopInfo_Result>("SP_GetShopInfo");
+        }
     }
 }

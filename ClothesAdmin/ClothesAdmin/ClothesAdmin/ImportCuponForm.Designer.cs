@@ -1058,7 +1058,10 @@
             this.tableAdapterManager.PromotionItemTableAdapter = null;
             this.tableAdapterManager.PromotionTableAdapter = null;
             this.tableAdapterManager.ProviderTableAdapter = null;
+            this.tableAdapterManager.QuestionTableAdapter = null;
+            this.tableAdapterManager.RatingTableAdapter = null;
             this.tableAdapterManager.RoleTableAdapter = null;
+            this.tableAdapterManager.ShopInfoTableAdapter = null;
             this.tableAdapterManager.SizeTableAdapter = null;
             this.tableAdapterManager.UpdateOrder = ClothesAdmin.ClothesDataSetTableAdapters.TableAdapterManager.UpdateOrderOption.InsertUpdateDelete;
             // 
@@ -1099,7 +1102,7 @@
             this.Controls.Add(this.barDockControl1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Name = "ImportCuponForm";
-            this.Text = "ImportCuponForm";
+            this.Text = "Import Cupon";
             this.Load += new System.EventHandler(this.ImportCuponForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.barManager)).EndInit();
             this.panel1.ResumeLayout(false);

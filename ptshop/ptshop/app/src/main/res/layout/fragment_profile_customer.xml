@@ -260,40 +260,28 @@
                 android:layout_height="0.5dp"
                 android:layout_marginStart="16dp"
                 android:background="@color/gray_stroke"
-                app:layout_constraintTop_toBottomOf="@id/invoice" />
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="0.5dp"
-                android:layout_marginStart="16dp"
-                android:background="@color/gray_stroke"
                 app:layout_constraintTop_toBottomOf="@id/customer_service_btn" />
 
             <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/delivery_return_btn"
+                android:id="@+id/btnPhoneNumber"
                 style="@style/textProfile"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:drawableStart="@drawable/ic_delivery_return_policy"
+                android:layout_marginTop="@dimen/layout_margin_16dp"
+                android:drawableStart="@drawable/ic_phone"
                 android:drawableEnd="@drawable/ic_right_arrow"
+                android:drawablePadding="19dp"
                 android:gravity="center_vertical"
                 android:onClick="@{(v) -> parentFragment.onClick(v)}"
-                android:text="@string/delivery_and_returns"
                 app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/customer_service_btn" />
+                app:layout_constraintTop_toBottomOf="@id/customer_service_btn"
+                tools:text="Phone number: 0123456789" />
 
             <View
                 android:layout_width="match_parent"
-                android:layout_height="0.5dp"
-                android:layout_marginStart="16dp"
-                android:background="@color/gray_stroke"
-                app:layout_constraintTop_toBottomOf="@id/delivery_return_btn" />
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/layout_margin_16dp"
+                android:layout_height="@dimen/sb_size_2"
                 android:background="@color/background"
-                app:layout_constraintTop_toBottomOf="@id/delivery_return_btn" />
+                app:layout_constraintTop_toBottomOf="@id/btnPhoneNumber" />
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/about_us_btn"
@@ -308,7 +296,28 @@
                 android:onClick="@{(v) -> parentFragment.onClick(v)}"
                 android:text="@string/about_us"
                 app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/delivery_return_btn" />
+                app:layout_constraintTop_toBottomOf="@id/btnPhoneNumber" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/sb_size_2"
+                android:background="@color/background"
+                app:layout_constraintTop_toBottomOf="@id/about_us_btn" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/btnAddress"
+                style="@style/textProfile"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/layout_margin_16dp"
+                android:drawableStart="@drawable/ic_address"
+                android:drawableEnd="@drawable/ic_right_arrow"
+                android:drawablePadding="19dp"
+                android:gravity="center_vertical"
+                android:onClick="@{(v) -> parentFragment.onClick(v)}"
+                android:text="@string/address_of_shop"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/about_us_btn" />
 
             <View
                 android:layout_width="match_parent"
@@ -328,13 +337,13 @@
                 android:onClick="@{(v) -> parentFragment.onClick(v)}"
                 android:text="@string/terms_and_conditions_"
                 app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/about_us_btn" />
+                app:layout_constraintTop_toBottomOf="@id/btnAddress" />
 
             <View
+                android:id="@+id/viewLine"
                 android:layout_width="match_parent"
-                android:layout_height="0.5dp"
-                android:layout_marginStart="16dp"
-                android:background="@color/gray_stroke"
+                android:layout_height="@dimen/sb_size_16"
+                android:background="@color/background"
                 app:layout_constraintTop_toBottomOf="@id/terms_btn" />
 
 
@@ -349,7 +358,27 @@
                 android:onClick="@{(v) -> parentFragment.onClick(v)}"
                 android:text="@string/log_out"
                 app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/terms_btn" />
+                app:layout_constraintTop_toBottomOf="@id/viewLine" />
+
+            <View
+                android:id="@+id/viewLogout"
+                android:layout_width="match_parent"
+                android:layout_height="0.5dp"
+                android:layout_marginStart="16dp"
+                android:background="@color/gray_stroke"
+                app:layout_constraintTop_toBottomOf="@id/log_out_btn" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvAppVer"
+                style="@style/textProfile"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:onClick="@{(v) -> parentFragment.onClick(v)}"
+                android:textAlignment="center"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/viewLogout"
+                tools:text="App version: 1.0" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.core.widget.NestedScrollView>

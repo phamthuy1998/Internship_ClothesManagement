@@ -23,6 +23,7 @@ namespace ClothesManamentDataAccess
         public int id { get; set; }
         public Nullable<System.DateTime> date { get; set; }
         public Nullable<int> employeeId { get; set; }
+        public Nullable<int> providerId { get; set; }
     
         public virtual Employee Employee { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

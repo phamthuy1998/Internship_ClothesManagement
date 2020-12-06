@@ -6,6 +6,7 @@ import androidx.core.os.bundleOf
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.ptithcm.core.CoreApplication
 import com.ptithcm.core.model.Categories
 import com.ptithcm.core.model.Gender
 import com.ptithcm.core.model.MainCategories
@@ -45,6 +46,7 @@ abstract class BaseAllCategoriesFragment : BaseFragment<FragmentBaseAllCategorie
         super.onCreate(savedInstanceState)
         viewModel.requestAllCategories(getTypeGender())
         viewModelCategories.getMainCategories(getTypeGender().value)
+        viewModelCategories.getShopInfo()
     }
 
     override fun bindEvent() {
@@ -61,7 +63,9 @@ abstract class BaseAllCategoriesFragment : BaseFragment<FragmentBaseAllCategorie
 
         viewModelCategories.categoriesLiveData.observe(this, Observer {
             categories = arrayListOf()
-//            categories?.addAll(it)
+        })
+        viewModelCategories.shopInfo.observe(this, Observer {
+            if (it != null) CoreApplication.instance.shopInfo = it
         })
 
         viewModel.error.observe(this, Observer {
@@ -70,7 +74,8 @@ abstract class BaseAllCategoriesFragment : BaseFragment<FragmentBaseAllCategorie
     }
 
     private fun initAdapter() {
-        adapter = AllCategoriesRecyclerViewAdapter(arrayListOf(), false,
+        adapter = AllCategoriesRecyclerViewAdapter(
+            arrayListOf(), false,
             this::isExpandListener,
             this::eventListener
         )

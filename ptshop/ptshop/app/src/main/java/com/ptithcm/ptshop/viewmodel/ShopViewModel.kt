@@ -5,6 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.ptithcm.core.model.Category
+import com.ptithcm.core.model.ShopInfo
 import com.ptithcm.core.repository.ShopRepository
 import com.ptithcm.core.vo.Result
 import kotlinx.coroutines.launch
@@ -12,6 +13,7 @@ import kotlinx.coroutines.launch
 class ShopViewModel(private val repository : ShopRepository)  : ViewModel() {
 
     val categoriesLiveData = MediatorLiveData<ArrayList<Category>>()
+    val shopInfo = MediatorLiveData<ShopInfo>()
     val networkState = MutableLiveData<Boolean>()
     val error = MutableLiveData<Pair<String, Int?>>()
 
@@ -29,6 +31,26 @@ class ShopViewModel(private val repository : ShopRepository)  : ViewModel() {
                     is Result.Success -> {
                         networkState.value = false
                         categoriesLiveData.value = addSection(it.data ?: arrayListOf())
+                    }
+                }
+            }
+        }
+    }
+
+    fun getShopInfo() {
+        viewModelScope.launch {
+            shopInfo.addSource(repository.getShopInfo()) {
+                when (it) {
+                    is Result.Loading -> {
+                        networkState.value = true
+                    }
+                    is Result.Error -> {
+                        networkState.value = false
+                        error.value = Pair(it.message, it.code)
+                    }
+                    is Result.Success -> {
+                        networkState.value = false
+                        shopInfo.value = it.data?.data
                     }
                 }
             }
