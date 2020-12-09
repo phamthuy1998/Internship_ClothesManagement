@@ -68389,12 +68389,12 @@ SELECT shopName, address, addressDetail, phoneNumber, description, versionApp, i
 SELECT  position, name, backup_start_date , user_name FROM  msdb.dbo.backupset 
    WHERE     database_name = 'ClothesManament'  AND type='D' AND 
      backup_set_id >= 
-     		( SELECT backup_set_id FROM msdb.dbo.backupset
-          		WHERE media_set_id = 
-				( SELECT  MAX(media_set_id) 
-				     FROM msdb.dbo.backupset  
-                           WHERE database_name = 'ClothesManament'  AND type='D') 
-                  AND position=1  
+     		( SELECT top 1 backup_set_id FROM msdb.dbo.backupset
+          		WHERE media_set_id = ( SELECT  MAX(media_set_id) 
+		                                         FROM msdb.dbo.backupset  
+                                                                         WHERE database_name = 'ClothesManament'  AND type='D') 
+                                 AND position=1  
+								 ORDER by backup_set_id DESC
            ) 
     ORDER BY position DESC
 ";

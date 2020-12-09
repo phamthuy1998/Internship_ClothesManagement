@@ -31,25 +31,23 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(BackupRestoreForm));
             this.barManager1 = new DevExpress.XtraBars.BarManager(this.components);
-            this.bar3 = new DevExpress.XtraBars.Bar();
+            this.barDockControlTop = new DevExpress.XtraBars.BarDockControl();
+            this.barDockControlBottom = new DevExpress.XtraBars.BarDockControl();
+            this.barDockControlLeft = new DevExpress.XtraBars.BarDockControl();
+            this.barDockControl1 = new DevExpress.XtraBars.BarDockControl();
             this.btnSaoLuu = new DevExpress.XtraBars.BarButtonItem();
             this.btnPhucHoi = new DevExpress.XtraBars.BarButtonItem();
             this.cbThamSoTheoTg = new DevExpress.XtraBars.BarCheckItem();
             this.btnTaoDeviceSaoLuu = new DevExpress.XtraBars.BarButtonItem();
-            this.barDockControlTop = new DevExpress.XtraBars.BarDockControl();
-            this.barDockControlBottom = new DevExpress.XtraBars.BarDockControl();
-            this.barDockControlLeft = new DevExpress.XtraBars.BarDockControl();
             this.barDockControlRight = new DevExpress.XtraBars.BarDockControl();
             this.btnThoat = new DevExpress.XtraBars.BarButtonItem();
             this.btnDangXuat = new DevExpress.XtraBars.BarButtonItem();
-            this.barDockControl1 = new DevExpress.XtraBars.BarDockControl();
             this.barManager2 = new DevExpress.XtraBars.BarManager(this.components);
             this.bar1 = new DevExpress.XtraBars.Bar();
             this.btnBackup = new DevExpress.XtraBars.BarButtonItem();
             this.btnRestore = new DevExpress.XtraBars.BarButtonItem();
             this.btnTime = new DevExpress.XtraBars.BarCheckItem();
             this.btnCreateDevice = new DevExpress.XtraBars.BarButtonItem();
-            this.btnExit = new DevExpress.XtraBars.BarButtonItem();
             this.barDockControl2 = new DevExpress.XtraBars.BarDockControl();
             this.barDockControl3 = new DevExpress.XtraBars.BarDockControl();
             this.barDockControl4 = new DevExpress.XtraBars.BarDockControl();
@@ -67,56 +65,82 @@
             this.getBackupBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.getBackupTableAdapter = new ClothesAdmin.ClothesDataSetTableAdapters.GetBackupTableAdapter();
             this.tableAdapterManager = new ClothesAdmin.ClothesDataSetTableAdapters.TableAdapterManager();
+            this.ctxMenuBackup = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.btnXoaBackup = new System.Windows.Forms.ToolStripMenuItem();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.cbDelAll = new System.Windows.Forms.CheckBox();
+            this.panelDatetime = new System.Windows.Forms.Panel();
+            this.timeStop = new DevExpress.XtraEditors.TimeEdit();
+            this.richTextBox1 = new System.Windows.Forms.RichTextBox();
+            this.dateStop = new DevExpress.XtraEditors.DateEdit();
+            this.label2 = new System.Windows.Forms.Label();
             this.getBackupGridControl = new DevExpress.XtraGrid.GridControl();
             this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.colposition = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colname = new DevExpress.XtraGrid.Columns.GridColumn();
             this.Date = new DevExpress.XtraGrid.Columns.GridColumn();
             this.coluser_name = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.gcDatetime = new DevExpress.XtraEditors.GroupControl();
-            this.timeStop = new DevExpress.XtraEditors.TimeEdit();
-            this.dateStop = new DevExpress.XtraEditors.DateEdit();
-            this.richTextBox1 = new System.Windows.Forms.RichTextBox();
-            this.label2 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.barManager1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.barManager2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.clothesDataSet)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.getBackupBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.getBackupGridControl)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
+            this.ctxMenuBackup.SuspendLayout();
             this.panel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.gcDatetime)).BeginInit();
-            this.gcDatetime.SuspendLayout();
+            this.panelDatetime.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.timeStop.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dateStop.Properties.CalendarTimeProperties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dateStop.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.getBackupGridControl)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
             this.SuspendLayout();
             // 
             // barManager1
             // 
-            this.barManager1.Bars.AddRange(new DevExpress.XtraBars.Bar[] {
-            this.bar3});
             this.barManager1.DockControls.Add(this.barDockControlTop);
             this.barManager1.DockControls.Add(this.barDockControlBottom);
             this.barManager1.DockControls.Add(this.barDockControlLeft);
             this.barManager1.DockControls.Add(this.barDockControl1);
             this.barManager1.Form = this;
+            this.barManager1.Items.AddRange(new DevExpress.XtraBars.BarItem[] {
+            this.btnSaoLuu,
+            this.btnPhucHoi,
+            this.cbThamSoTheoTg,
+            this.btnTaoDeviceSaoLuu});
             // 
-            // bar3
+            // barDockControlTop
             // 
-            this.bar3.BarName = "Main menu";
-            this.bar3.DockCol = 0;
-            this.bar3.DockRow = 0;
-            this.bar3.DockStyle = DevExpress.XtraBars.BarDockStyle.Top;
-            this.bar3.LinksPersistInfo.AddRange(new DevExpress.XtraBars.LinkPersistInfo[] {
-            new DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.PaintStyle, this.btnSaoLuu, DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph),
-            new DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.PaintStyle, this.btnPhucHoi, DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph),
-            new DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.PaintStyle, this.cbThamSoTheoTg, DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph),
-            new DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.PaintStyle, this.btnTaoDeviceSaoLuu, DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph)});
-            this.bar3.OptionsBar.MultiLine = true;
-            this.bar3.OptionsBar.UseWholeRow = true;
-            this.bar3.Text = "Main menu";
+            this.barDockControlTop.CausesValidation = false;
+            this.barDockControlTop.Dock = System.Windows.Forms.DockStyle.Top;
+            this.barDockControlTop.Location = new System.Drawing.Point(0, 50);
+            this.barDockControlTop.Manager = this.barManager1;
+            this.barDockControlTop.Margin = new System.Windows.Forms.Padding(1);
+            this.barDockControlTop.Size = new System.Drawing.Size(1188, 0);
+            // 
+            // barDockControlBottom
+            // 
+            this.barDockControlBottom.CausesValidation = false;
+            this.barDockControlBottom.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.barDockControlBottom.Location = new System.Drawing.Point(0, 644);
+            this.barDockControlBottom.Manager = this.barManager1;
+            this.barDockControlBottom.Margin = new System.Windows.Forms.Padding(1);
+            this.barDockControlBottom.Size = new System.Drawing.Size(1188, 0);
+            // 
+            // barDockControlLeft
+            // 
+            this.barDockControlLeft.CausesValidation = false;
+            this.barDockControlLeft.Dock = System.Windows.Forms.DockStyle.Left;
+            this.barDockControlLeft.Location = new System.Drawing.Point(0, 50);
+            this.barDockControlLeft.Manager = this.barManager1;
+            this.barDockControlLeft.Margin = new System.Windows.Forms.Padding(1);
+            this.barDockControlLeft.Size = new System.Drawing.Size(0, 594);
+            // 
+            // barDockControl1
+            // 
+            this.barDockControl1.CausesValidation = false;
+            this.barDockControl1.Dock = System.Windows.Forms.DockStyle.Right;
+            this.barDockControl1.Location = new System.Drawing.Point(1188, 50);
+            this.barDockControl1.Manager = this.barManager1;
+            this.barDockControl1.Size = new System.Drawing.Size(0, 594);
             // 
             // btnSaoLuu
             // 
@@ -151,41 +175,14 @@
             this.btnTaoDeviceSaoLuu.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("btnTaoDeviceSaoLuu.ImageOptions.LargeImage")));
             this.btnTaoDeviceSaoLuu.Name = "btnTaoDeviceSaoLuu";
             // 
-            // barDockControlTop
-            // 
-            this.barDockControlTop.CausesValidation = false;
-            this.barDockControlTop.Dock = System.Windows.Forms.DockStyle.Top;
-            this.barDockControlTop.Location = new System.Drawing.Point(0, 53);
-            this.barDockControlTop.Manager = this.barManager1;
-            this.barDockControlTop.Margin = new System.Windows.Forms.Padding(1);
-            this.barDockControlTop.Size = new System.Drawing.Size(1188, 0);
-            // 
-            // barDockControlBottom
-            // 
-            this.barDockControlBottom.CausesValidation = false;
-            this.barDockControlBottom.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.barDockControlBottom.Location = new System.Drawing.Point(0, 644);
-            this.barDockControlBottom.Manager = this.barManager1;
-            this.barDockControlBottom.Margin = new System.Windows.Forms.Padding(1);
-            this.barDockControlBottom.Size = new System.Drawing.Size(1188, 0);
-            // 
-            // barDockControlLeft
-            // 
-            this.barDockControlLeft.CausesValidation = false;
-            this.barDockControlLeft.Dock = System.Windows.Forms.DockStyle.Left;
-            this.barDockControlLeft.Location = new System.Drawing.Point(0, 53);
-            this.barDockControlLeft.Manager = this.barManager1;
-            this.barDockControlLeft.Margin = new System.Windows.Forms.Padding(1);
-            this.barDockControlLeft.Size = new System.Drawing.Size(0, 591);
-            // 
             // barDockControlRight
             // 
             this.barDockControlRight.CausesValidation = false;
             this.barDockControlRight.Dock = System.Windows.Forms.DockStyle.Right;
-            this.barDockControlRight.Location = new System.Drawing.Point(1188, 53);
+            this.barDockControlRight.Location = new System.Drawing.Point(1188, 50);
             this.barDockControlRight.Manager = this.barManager1;
             this.barDockControlRight.Margin = new System.Windows.Forms.Padding(1);
-            this.barDockControlRight.Size = new System.Drawing.Size(0, 591);
+            this.barDockControlRight.Size = new System.Drawing.Size(0, 594);
             // 
             // btnThoat
             // 
@@ -201,14 +198,6 @@
             this.btnDangXuat.Id = 17;
             this.btnDangXuat.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnDangXuat.ImageOptions.Image")));
             this.btnDangXuat.Name = "btnDangXuat";
-            // 
-            // barDockControl1
-            // 
-            this.barDockControl1.CausesValidation = false;
-            this.barDockControl1.Dock = System.Windows.Forms.DockStyle.Right;
-            this.barDockControl1.Location = new System.Drawing.Point(0, 0);
-            this.barDockControl1.Manager = this.barManager1;
-            this.barDockControl1.Size = new System.Drawing.Size(0, 0);
             // 
             // barManager2
             // 
@@ -227,7 +216,6 @@
             this.btnRestore,
             this.btnThamSoThoiGian,
             this.btnInDSBD,
-            this.btnExit,
             this.btnCreateDevice,
             this.barToggleSwitchItem1,
             this.barCheckItem2,
@@ -247,8 +235,7 @@
             new DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.PaintStyle, this.btnBackup, DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph),
             new DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.PaintStyle, this.btnRestore, DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph),
             new DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.PaintStyle, this.btnTime, DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph),
-            new DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.PaintStyle, this.btnCreateDevice, DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph),
-            new DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.PaintStyle, this.btnExit, DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph)});
+            new DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.PaintStyle, this.btnCreateDevice, DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph)});
             this.bar1.OptionsBar.MultiLine = true;
             this.bar1.OptionsBar.UseWholeRow = true;
             this.bar1.Text = "Main menu";
@@ -257,8 +244,8 @@
             // 
             this.btnBackup.Caption = "Backup";
             this.btnBackup.Id = 0;
-            this.btnBackup.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("barButtonItem1.ImageOptions.Image")));
-            this.btnBackup.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("barButtonItem1.ImageOptions.LargeImage")));
+            this.btnBackup.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnBackup.ImageOptions.Image")));
+            this.btnBackup.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("btnBackup.ImageOptions.LargeImage")));
             this.btnBackup.Name = "btnBackup";
             this.btnBackup.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnBackup_ItemClick);
             // 
@@ -266,8 +253,8 @@
             // 
             this.btnRestore.Caption = "Restore";
             this.btnRestore.Id = 4;
-            this.btnRestore.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("barButtonItem2.ImageOptions.Image")));
-            this.btnRestore.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("barButtonItem2.ImageOptions.LargeImage")));
+            this.btnRestore.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnRestore.ImageOptions.Image")));
+            this.btnRestore.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("btnRestore.ImageOptions.LargeImage")));
             this.btnRestore.Name = "btnRestore";
             this.btnRestore.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnRestore_ItemClick);
             // 
@@ -276,8 +263,8 @@
             this.btnTime.Caption = "Timestamp";
             this.btnTime.CheckBoxVisibility = DevExpress.XtraBars.CheckBoxVisibility.BeforeText;
             this.btnTime.Id = 16;
-            this.btnTime.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("barCheckItem1.ImageOptions.Image")));
-            this.btnTime.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("barCheckItem1.ImageOptions.LargeImage")));
+            this.btnTime.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnTime.ImageOptions.Image")));
+            this.btnTime.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("btnTime.ImageOptions.LargeImage")));
             this.btnTime.Name = "btnTime";
             this.btnTime.CheckedChanged += new DevExpress.XtraBars.ItemClickEventHandler(this.btnTime_CheckedChanged);
             // 
@@ -285,19 +272,10 @@
             // 
             this.btnCreateDevice.Caption = "Create device";
             this.btnCreateDevice.Id = 8;
-            this.btnCreateDevice.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("barButtonItem3.ImageOptions.Image")));
-            this.btnCreateDevice.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("barButtonItem3.ImageOptions.LargeImage")));
+            this.btnCreateDevice.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnCreateDevice.ImageOptions.Image")));
+            this.btnCreateDevice.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("btnCreateDevice.ImageOptions.LargeImage")));
             this.btnCreateDevice.Name = "btnCreateDevice";
             this.btnCreateDevice.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnCreateDevice_ItemClick);
-            // 
-            // btnExit
-            // 
-            this.btnExit.Caption = "Exit";
-            this.btnExit.Id = 7;
-            this.btnExit.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("barButtonItem5.ImageOptions.Image")));
-            this.btnExit.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("barButtonItem5.ImageOptions.LargeImage")));
-            this.btnExit.Name = "btnExit";
-            this.btnExit.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnExit_ItemClick);
             // 
             // barDockControl2
             // 
@@ -306,7 +284,7 @@
             this.barDockControl2.Location = new System.Drawing.Point(0, 0);
             this.barDockControl2.Manager = this.barManager2;
             this.barDockControl2.Margin = new System.Windows.Forms.Padding(1);
-            this.barDockControl2.Size = new System.Drawing.Size(1188, 53);
+            this.barDockControl2.Size = new System.Drawing.Size(1188, 50);
             // 
             // barDockControl3
             // 
@@ -321,19 +299,19 @@
             // 
             this.barDockControl4.CausesValidation = false;
             this.barDockControl4.Dock = System.Windows.Forms.DockStyle.Left;
-            this.barDockControl4.Location = new System.Drawing.Point(0, 53);
+            this.barDockControl4.Location = new System.Drawing.Point(0, 50);
             this.barDockControl4.Manager = this.barManager2;
             this.barDockControl4.Margin = new System.Windows.Forms.Padding(1);
-            this.barDockControl4.Size = new System.Drawing.Size(0, 591);
+            this.barDockControl4.Size = new System.Drawing.Size(0, 594);
             // 
             // barDockControl5
             // 
             this.barDockControl5.CausesValidation = false;
             this.barDockControl5.Dock = System.Windows.Forms.DockStyle.Right;
-            this.barDockControl5.Location = new System.Drawing.Point(1188, 53);
+            this.barDockControl5.Location = new System.Drawing.Point(1188, 50);
             this.barDockControl5.Manager = this.barManager2;
             this.barDockControl5.Margin = new System.Windows.Forms.Padding(1);
-            this.barDockControl5.Size = new System.Drawing.Size(0, 591);
+            this.barDockControl5.Size = new System.Drawing.Size(0, 594);
             // 
             // btnGhiBD
             // 
@@ -442,16 +420,105 @@
             this.tableAdapterManager.SizeTableAdapter = null;
             this.tableAdapterManager.UpdateOrder = ClothesAdmin.ClothesDataSetTableAdapters.TableAdapterManager.UpdateOrderOption.InsertUpdateDelete;
             // 
+            // ctxMenuBackup
+            // 
+            this.ctxMenuBackup.ImageScalingSize = new System.Drawing.Size(40, 40);
+            this.ctxMenuBackup.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.btnXoaBackup});
+            this.ctxMenuBackup.Name = "ctxMenuBackup";
+            this.ctxMenuBackup.Size = new System.Drawing.Size(102, 28);
+            // 
+            // btnXoaBackup
+            // 
+            this.btnXoaBackup.Name = "btnXoaBackup";
+            this.btnXoaBackup.Size = new System.Drawing.Size(101, 24);
+            this.btnXoaBackup.Text = "Del";
+            this.btnXoaBackup.Click += new System.EventHandler(this.btnXoaBackup_Click_1);
+            // 
+            // panel1
+            // 
+            this.panel1.Controls.Add(this.cbDelAll);
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel1.Location = new System.Drawing.Point(0, 50);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(1188, 69);
+            this.panel1.TabIndex = 42;
+            // 
+            // cbDelAll
+            // 
+            this.cbDelAll.AutoSize = true;
+            this.cbDelAll.Location = new System.Drawing.Point(53, 24);
+            this.cbDelAll.Margin = new System.Windows.Forms.Padding(1);
+            this.cbDelAll.Name = "cbDelAll";
+            this.cbDelAll.Size = new System.Drawing.Size(406, 21);
+            this.cbDelAll.TabIndex = 28;
+            this.cbDelAll.Text = "Delete all backups in the file before backing up the new one";
+            this.cbDelAll.UseVisualStyleBackColor = true;
+            // 
+            // panelDatetime
+            // 
+            this.panelDatetime.Controls.Add(this.timeStop);
+            this.panelDatetime.Controls.Add(this.richTextBox1);
+            this.panelDatetime.Controls.Add(this.dateStop);
+            this.panelDatetime.Controls.Add(this.label2);
+            this.panelDatetime.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panelDatetime.Location = new System.Drawing.Point(0, 119);
+            this.panelDatetime.Name = "panelDatetime";
+            this.panelDatetime.Size = new System.Drawing.Size(1188, 137);
+            this.panelDatetime.TabIndex = 43;
+            // 
+            // timeStop
+            // 
+            this.timeStop.EditValue = new System.DateTime(2020, 4, 23, 0, 0, 0, 0);
+            this.timeStop.Location = new System.Drawing.Point(600, 11);
+            this.timeStop.Margin = new System.Windows.Forms.Padding(1);
+            this.timeStop.Name = "timeStop";
+            this.timeStop.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.timeStop.Size = new System.Drawing.Size(117, 24);
+            this.timeStop.TabIndex = 11;
+            // 
+            // richTextBox1
+            // 
+            this.richTextBox1.Location = new System.Drawing.Point(163, 53);
+            this.richTextBox1.Margin = new System.Windows.Forms.Padding(1);
+            this.richTextBox1.Name = "richTextBox1";
+            this.richTextBox1.Size = new System.Drawing.Size(555, 61);
+            this.richTextBox1.TabIndex = 2;
+            this.richTextBox1.Text = resources.GetString("richTextBox1.Text");
+            // 
+            // dateStop
+            // 
+            this.dateStop.EditValue = null;
+            this.dateStop.Location = new System.Drawing.Point(405, 13);
+            this.dateStop.Margin = new System.Windows.Forms.Padding(1);
+            this.dateStop.Name = "dateStop";
+            this.dateStop.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.dateStop.Properties.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.dateStop.Size = new System.Drawing.Size(163, 22);
+            this.dateStop.TabIndex = 10;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(161, 15);
+            this.label2.Margin = new System.Windows.Forms.Padding(1, 0, 1, 0);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(176, 17);
+            this.label2.TabIndex = 0;
+            this.label2.Text = "Date and time for recovery";
+            // 
             // getBackupGridControl
             // 
             this.getBackupGridControl.DataSource = this.getBackupBindingSource;
-            this.getBackupGridControl.Dock = System.Windows.Forms.DockStyle.Top;
-            this.getBackupGridControl.Location = new System.Drawing.Point(0, 53);
+            this.getBackupGridControl.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.getBackupGridControl.Location = new System.Drawing.Point(0, 256);
             this.getBackupGridControl.MainView = this.gridView1;
-            this.getBackupGridControl.MenuManager = this.barManager1;
             this.getBackupGridControl.Name = "getBackupGridControl";
-            this.getBackupGridControl.Size = new System.Drawing.Size(1188, 319);
-            this.getBackupGridControl.TabIndex = 9;
+            this.getBackupGridControl.Size = new System.Drawing.Size(1188, 388);
+            this.getBackupGridControl.TabIndex = 44;
             this.getBackupGridControl.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridView1});
             // 
@@ -505,82 +572,17 @@
             this.coluser_name.VisibleIndex = 3;
             this.coluser_name.Width = 339;
             // 
-            // panel1
-            // 
-            this.panel1.Controls.Add(this.gcDatetime);
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel1.Location = new System.Drawing.Point(0, 372);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1188, 272);
-            this.panel1.TabIndex = 10;
-            // 
-            // gcDatetime
-            // 
-            this.gcDatetime.Controls.Add(this.timeStop);
-            this.gcDatetime.Controls.Add(this.dateStop);
-            this.gcDatetime.Controls.Add(this.richTextBox1);
-            this.gcDatetime.Controls.Add(this.label2);
-            this.gcDatetime.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.gcDatetime.Location = new System.Drawing.Point(0, 0);
-            this.gcDatetime.Margin = new System.Windows.Forms.Padding(1);
-            this.gcDatetime.Name = "gcDatetime";
-            this.gcDatetime.Size = new System.Drawing.Size(1188, 272);
-            this.gcDatetime.TabIndex = 25;
-            // 
-            // timeStop
-            // 
-            this.timeStop.EditValue = new System.DateTime(2020, 4, 23, 0, 0, 0, 0);
-            this.timeStop.Location = new System.Drawing.Point(521, 37);
-            this.timeStop.Margin = new System.Windows.Forms.Padding(1);
-            this.timeStop.MenuManager = this.barManager1;
-            this.timeStop.Name = "timeStop";
-            this.timeStop.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.timeStop.Size = new System.Drawing.Size(117, 24);
-            this.timeStop.TabIndex = 11;
-            // 
-            // dateStop
-            // 
-            this.dateStop.EditValue = null;
-            this.dateStop.Location = new System.Drawing.Point(322, 37);
-            this.dateStop.Margin = new System.Windows.Forms.Padding(1);
-            this.dateStop.MenuManager = this.barManager1;
-            this.dateStop.Name = "dateStop";
-            this.dateStop.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.dateStop.Properties.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.dateStop.Size = new System.Drawing.Size(163, 22);
-            this.dateStop.TabIndex = 10;
-            // 
-            // richTextBox1
-            // 
-            this.richTextBox1.Location = new System.Drawing.Point(84, 79);
-            this.richTextBox1.Margin = new System.Windows.Forms.Padding(1);
-            this.richTextBox1.Name = "richTextBox1";
-            this.richTextBox1.Size = new System.Drawing.Size(555, 61);
-            this.richTextBox1.TabIndex = 2;
-            this.richTextBox1.Text = resources.GetString("richTextBox1.Text");
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(82, 41);
-            this.label2.Margin = new System.Windows.Forms.Padding(1, 0, 1, 0);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(242, 17);
-            this.label2.TabIndex = 0;
-            this.label2.Text = "Ngày giờ để phục hồi tới thời điểm đó";
-            // 
             // BackupRestoreForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1188, 644);
-            this.Controls.Add(this.panel1);
             this.Controls.Add(this.getBackupGridControl);
+            this.Controls.Add(this.panelDatetime);
+            this.Controls.Add(this.panel1);
             this.Controls.Add(this.barDockControlRight);
             this.Controls.Add(this.barDockControlLeft);
+            this.Controls.Add(this.barDockControl1);
             this.Controls.Add(this.barDockControlBottom);
             this.Controls.Add(this.barDockControlTop);
             this.Controls.Add(this.barDockControl4);
@@ -594,15 +596,16 @@
             ((System.ComponentModel.ISupportInitialize)(this.barManager2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.clothesDataSet)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.getBackupBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.getBackupGridControl)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gridView1)).EndInit();
+            this.ctxMenuBackup.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.gcDatetime)).EndInit();
-            this.gcDatetime.ResumeLayout(false);
-            this.gcDatetime.PerformLayout();
+            this.panel1.PerformLayout();
+            this.panelDatetime.ResumeLayout(false);
+            this.panelDatetime.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.timeStop.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dateStop.Properties.CalendarTimeProperties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dateStop.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.getBackupGridControl)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridView1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -611,7 +614,6 @@
         #endregion
 
         private DevExpress.XtraBars.BarManager barManager1;
-        private DevExpress.XtraBars.Bar bar3;
         private DevExpress.XtraBars.BarButtonItem btnSaoLuu;
         private DevExpress.XtraBars.BarButtonItem btnPhucHoi;
         private DevExpress.XtraBars.BarCheckItem cbThamSoTheoTg;
@@ -628,7 +630,6 @@
         private DevExpress.XtraBars.BarButtonItem btnRestore;
         private DevExpress.XtraBars.BarCheckItem btnTime;
         private DevExpress.XtraBars.BarButtonItem btnCreateDevice;
-        private DevExpress.XtraBars.BarButtonItem btnExit;
         private DevExpress.XtraBars.BarDockControl barDockControl2;
         private DevExpress.XtraBars.BarDockControl barDockControl3;
         private DevExpress.XtraBars.BarDockControl barDockControl5;
@@ -647,17 +648,20 @@
         private ClothesDataSet clothesDataSet;
         private ClothesDataSetTableAdapters.GetBackupTableAdapter getBackupTableAdapter;
         private ClothesDataSetTableAdapters.TableAdapterManager tableAdapterManager;
+        private System.Windows.Forms.ContextMenuStrip ctxMenuBackup;
+        private System.Windows.Forms.ToolStripMenuItem btnXoaBackup;
         private DevExpress.XtraGrid.GridControl getBackupGridControl;
         private DevExpress.XtraGrid.Views.Grid.GridView gridView1;
         private DevExpress.XtraGrid.Columns.GridColumn colposition;
         private DevExpress.XtraGrid.Columns.GridColumn colname;
         private DevExpress.XtraGrid.Columns.GridColumn Date;
         private DevExpress.XtraGrid.Columns.GridColumn coluser_name;
-        private System.Windows.Forms.Panel panel1;
-        private DevExpress.XtraEditors.GroupControl gcDatetime;
+        private System.Windows.Forms.Panel panelDatetime;
         private DevExpress.XtraEditors.TimeEdit timeStop;
-        private DevExpress.XtraEditors.DateEdit dateStop;
         private System.Windows.Forms.RichTextBox richTextBox1;
+        private DevExpress.XtraEditors.DateEdit dateStop;
         private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.CheckBox cbDelAll;
     }
 }
