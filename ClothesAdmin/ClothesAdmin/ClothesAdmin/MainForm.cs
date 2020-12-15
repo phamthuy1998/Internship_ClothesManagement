@@ -221,7 +221,7 @@ namespace ClothesAdmin
 
         private void btnLogOut_ItemClick(object sender, DevExpress.XtraBars.Ribbon.BackstageViewItemEventArgs e)
         {
-            DialogResult dr = MessageBox.Show("Bạn có chắc muốn đăng xuất?", "", MessageBoxButtons.OKCancel);
+            DialogResult dr = MessageBox.Show("Are you sure you want to sign out?", "Warning", MessageBoxButtons.OKCancel);
             if (dr == DialogResult.OK)
             {
                 backstageViewControl1.Hide();
@@ -457,6 +457,19 @@ namespace ClothesAdmin
                 backupRestoreForm.Show();
             }
             else form.Activate();
+        }
+
+        private void barButtonItem15_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            DialogResult dr = MessageBox.Show("Are you sure you want to sign out?", "Warning", MessageBoxButtons.OKCancel);
+            if (dr == DialogResult.OK)
+            {
+                backstageViewControl1.Hide();
+                Program.mainForm.Hide();
+                Program.frmLogin = new LoginForm();
+                Invoke((Action)(() => { Program.frmLogin.ShowDialog(); }));
+                this.Close();
+            }
         }
     }
 }

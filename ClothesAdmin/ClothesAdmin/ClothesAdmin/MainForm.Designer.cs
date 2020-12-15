@@ -42,6 +42,7 @@
             System.Windows.Forms.Label label3;
             System.Windows.Forms.Label passwordLabel;
             DevExpress.Utils.Animation.PushTransition pushTransition1 = new DevExpress.Utils.Animation.PushTransition();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.ribbon = new DevExpress.XtraBars.Ribbon.RibbonControl();
             this.backstageViewControl1 = new DevExpress.XtraBars.Ribbon.BackstageViewControl();
             this.backstageViewClientControl1 = new DevExpress.XtraBars.Ribbon.BackstageViewClientControl();
@@ -103,6 +104,7 @@
             this.btnEmployee = new DevExpress.XtraBars.BarButtonItem();
             this.barButtonItem12 = new DevExpress.XtraBars.BarButtonItem();
             this.btnShopInfo = new DevExpress.XtraBars.BarButtonItem();
+            this.btnBackupRestore = new DevExpress.XtraBars.BarButtonItem();
             this.rbHome = new DevExpress.XtraBars.Ribbon.RibbonPage();
             this.ribbonPageGroup1 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.ribbonPageGroup4 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
@@ -115,6 +117,9 @@
             this.rbSttatistic = new DevExpress.XtraBars.Ribbon.RibbonPage();
             this.ribbonPageGroup12 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.ribbonPageGroup10 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
+            this.ribbonPageGroup13 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
+            this.ribbonPage1 = new DevExpress.XtraBars.Ribbon.RibbonPage();
+            this.ribbonPageGroup11 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.ribbonPage3 = new DevExpress.XtraBars.Ribbon.RibbonPage();
             this.ribbonPage5 = new DevExpress.XtraBars.Ribbon.RibbonPage();
             this.ribbonPage7 = new DevExpress.XtraBars.Ribbon.RibbonPage();
@@ -143,9 +148,9 @@
             this.ribbonPage6 = new DevExpress.XtraBars.Ribbon.RibbonPage();
             this.ribbonPageGroup8 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.barButtonItem13 = new DevExpress.XtraBars.BarButtonItem();
-            this.ribbonPage1 = new DevExpress.XtraBars.Ribbon.RibbonPage();
-            this.ribbonPageGroup11 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
-            this.btnBackupRestore = new DevExpress.XtraBars.BarButtonItem();
+            this.ribbonPageGroup14 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
+            this.barButtonItem14 = new DevExpress.XtraBars.BarButtonItem();
+            this.barButtonItem15 = new DevExpress.XtraBars.BarButtonItem();
             firstNameLabel = new System.Windows.Forms.Label();
             lastNameLabel = new System.Windows.Forms.Label();
             phoneLabel = new System.Windows.Forms.Label();
@@ -295,6 +300,7 @@
             this.ribbon.ApplicationButtonDropDownControl = this.backstageViewControl1;
             this.ribbon.AutoHideEmptyItems = true;
             this.ribbon.AutoSizeItems = true;
+            this.ribbon.CaptionBarItemLinks.Add(this.barButtonItem15);
             this.ribbon.ExpandCollapseItem.Id = 0;
             this.ribbon.Items.AddRange(new DevExpress.XtraBars.BarItem[] {
             this.ribbon.ExpandCollapseItem,
@@ -328,10 +334,12 @@
             this.btnEmployee,
             this.barButtonItem12,
             this.btnShopInfo,
-            this.btnBackupRestore});
+            this.btnBackupRestore,
+            this.barButtonItem14,
+            this.barButtonItem15});
             this.ribbon.Location = new System.Drawing.Point(0, 0);
             this.ribbon.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.ribbon.MaxItemId = 301;
+            this.ribbon.MaxItemId = 303;
             this.ribbon.Name = "ribbon";
             this.ribbon.Pages.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPage[] {
             this.rbHome,
@@ -822,6 +830,8 @@
             // 
             this.btnWarehouse.Caption = "Warehouse";
             this.btnWarehouse.Id = 295;
+            this.btnWarehouse.ImageOptions.Image = global::ClothesAdmin.Properties.Resources.warehouse;
+            this.btnWarehouse.ImageOptions.LargeImage = global::ClothesAdmin.Properties.Resources.warehouse;
             this.btnWarehouse.Name = "btnWarehouse";
             this.btnWarehouse.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnWarehouse_ItemClick);
             // 
@@ -845,6 +855,13 @@
             this.btnShopInfo.Id = 298;
             this.btnShopInfo.Name = "btnShopInfo";
             this.btnShopInfo.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnShopInfo_ItemClick);
+            // 
+            // btnBackupRestore
+            // 
+            this.btnBackupRestore.Caption = "Backup & Restore ";
+            this.btnBackupRestore.Id = 299;
+            this.btnBackupRestore.Name = "btnBackupRestore";
+            this.btnBackupRestore.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnBackupRestore_ItemClick);
             // 
             // rbHome
             // 
@@ -907,22 +924,41 @@
             // 
             this.rbSttatistic.Groups.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPageGroup[] {
             this.ribbonPageGroup12,
-            this.ribbonPageGroup10});
+            this.ribbonPageGroup10,
+            this.ribbonPageGroup13,
+            this.ribbonPageGroup14});
             this.rbSttatistic.Name = "rbSttatistic";
-            this.rbSttatistic.Text = "Statistics";
+            this.rbSttatistic.Text = "Statistic";
             // 
             // ribbonPageGroup12
             // 
             this.ribbonPageGroup12.ItemLinks.Add(this.btnInvoiceStatis);
             this.ribbonPageGroup12.Name = "ribbonPageGroup12";
-            this.ribbonPageGroup12.Text = "ribbonPageGroup12";
+            this.ribbonPageGroup12.Text = "                                                                ";
             // 
             // ribbonPageGroup10
             // 
             this.ribbonPageGroup10.ItemLinks.Add(this.btnStatistic1);
-            this.ribbonPageGroup10.ItemLinks.Add(this.btnWarehouse);
             this.ribbonPageGroup10.Name = "ribbonPageGroup10";
-            this.ribbonPageGroup10.Text = "ribbonPageGroup10";
+            this.ribbonPageGroup10.Text = "                                                                ";
+            // 
+            // ribbonPageGroup13
+            // 
+            this.ribbonPageGroup13.ItemLinks.Add(this.btnWarehouse);
+            this.ribbonPageGroup13.Name = "ribbonPageGroup13";
+            this.ribbonPageGroup13.Text = "                                                                ";
+            // 
+            // ribbonPage1
+            // 
+            this.ribbonPage1.Groups.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPageGroup[] {
+            this.ribbonPageGroup11});
+            this.ribbonPage1.Name = "ribbonPage1";
+            this.ribbonPage1.Text = "Backup & Restore";
+            // 
+            // ribbonPageGroup11
+            // 
+            this.ribbonPageGroup11.ItemLinks.Add(this.btnBackupRestore);
+            this.ribbonPageGroup11.Name = "ribbonPageGroup11";
             // 
             // ribbonPage3
             // 
@@ -1095,24 +1131,27 @@
             this.barButtonItem13.Id = 296;
             this.barButtonItem13.Name = "barButtonItem13";
             // 
-            // ribbonPage1
+            // ribbonPageGroup14
             // 
-            this.ribbonPage1.Groups.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPageGroup[] {
-            this.ribbonPageGroup11});
-            this.ribbonPage1.Name = "ribbonPage1";
-            this.ribbonPage1.Text = "Backup & Restore";
+            this.ribbonPageGroup14.ItemLinks.Add(this.barButtonItem14);
+            this.ribbonPageGroup14.Name = "ribbonPageGroup14";
+            this.ribbonPageGroup14.Text = "                                                                ";
             // 
-            // ribbonPageGroup11
+            // barButtonItem14
             // 
-            this.ribbonPageGroup11.ItemLinks.Add(this.btnBackupRestore);
-            this.ribbonPageGroup11.Name = "ribbonPageGroup11";
+            this.barButtonItem14.Caption = "Revenue";
+            this.barButtonItem14.Id = 301;
+            this.barButtonItem14.Name = "barButtonItem14";
             // 
-            // btnBackupRestore
+            // barButtonItem15
             // 
-            this.btnBackupRestore.Caption = "Backup & Restore ";
-            this.btnBackupRestore.Id = 299;
-            this.btnBackupRestore.Name = "btnBackupRestore";
-            this.btnBackupRestore.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnBackupRestore_ItemClick);
+            this.barButtonItem15.Caption = "btnLogout";
+            this.barButtonItem15.Hint = "Sign out";
+            this.barButtonItem15.Id = 302;
+            this.barButtonItem15.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("barButtonItem15.ImageOptions.Image")));
+            this.barButtonItem15.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("barButtonItem15.ImageOptions.LargeImage")));
+            this.barButtonItem15.Name = "barButtonItem15";
+            this.barButtonItem15.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barButtonItem15_ItemClick);
             // 
             // MainForm
             // 
@@ -1275,5 +1314,9 @@
         private DevExpress.XtraBars.BarButtonItem btnBackupRestore;
         private DevExpress.XtraBars.Ribbon.RibbonPage ribbonPage1;
         private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroup11;
+        private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroup13;
+        private DevExpress.XtraBars.BarButtonItem barButtonItem15;
+        private DevExpress.XtraBars.BarButtonItem barButtonItem14;
+        private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroup14;
     }
 }

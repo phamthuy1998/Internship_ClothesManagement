@@ -30,10 +30,6 @@ val remoteModule = module {
     }
 
     single {
-        createService<ApiService>(get(),BuildConfig.SERVER_URL)
-    }
-
-    single {
         retrofit()
     }
 

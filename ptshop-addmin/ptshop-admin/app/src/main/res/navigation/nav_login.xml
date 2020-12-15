@@ -2,13 +2,14 @@
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/nav_login" app:startDestination="@id/login">
+    android:id="@+id/nav_login"
+    app:startDestination="@id/login">
 
     <fragment
         android:id="@+id/login"
-        tools:layout="@layout/fragment_login"
         android:name="com.ptithcm.admin.view.login.LoginFragment"
-        android:label="Login" >
+        android:label="Login"
+        tools:layout="@layout/fragment_login">
         <action
             android:id="@+id/action_login_to_registerFragment"
             app:destination="@id/registerFragment"
@@ -17,17 +18,17 @@
     </fragment>
     <fragment
         android:id="@+id/registerFragment"
-        tools:layout="@layout/fragment_register"
         android:name="com.ptithcm.admin.view.register.RegisterFragment"
-        android:label="RegisterFragment">
+        android:label="RegisterFragment"
+        tools:layout="@layout/fragment_register">
         <argument
             android:name="fromLogin"
-            app:argType="boolean"
-            android:defaultValue="true" />
+            android:defaultValue="true"
+            app:argType="boolean" />
     </fragment>
     <fragment
         android:id="@+id/fragmentForgotPassword"
-        tools:layout="@layout/fragment_forgot_password"
         android:name="com.ptithcm.admin.view.forgotpassword.FragmentForgotPassword"
-        android:label="FragmentForgotPassword" />
+        android:label="FragmentForgotPassword"
+        tools:layout="@layout/fragment_forgot_password" />
 </navigation>

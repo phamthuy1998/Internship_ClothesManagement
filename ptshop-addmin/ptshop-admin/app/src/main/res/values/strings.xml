@@ -356,4 +356,5 @@
     <string name="post">Post</string>
     <string name="productTitle">PRODUCT</string>
     <string name="invoiceTitle">INVOICE</string>
+    <string name="appName">Shop Admin</string>
 </resources>

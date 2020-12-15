@@ -112,7 +112,7 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
         }
     }
 
-    private fun checkPermission(){
+    private fun checkPermission() {
         when {
             !hasCameraPermission() -> {
                 requestCameraPermission(PERMISSION_CAMERA)

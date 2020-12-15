@@ -28,6 +28,7 @@
     <!--        android:networkSecurityConfig="@xml/network_security_config" special links
 -->
     <application
+        android:label="@string/appName"
         android:name="com.ptithcm.ptshop.MainApplication"
         android:allowBackup="false"
         android:fullBackupContent="false"

@@ -75,7 +75,7 @@
                     android:layout_height="@dimen/layout_margin_40dp"
                     android:layout_marginEnd="@dimen/layout_margin_8dp"
                     android:background="@drawable/bg_btn_circle_active"
-                    android:src="@drawable/ic_shopping_bag"
+                    android:src="@drawable/ic_bell"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
@@ -94,17 +94,6 @@
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
-
-                <androidx.appcompat.widget.AppCompatTextView
-                    android:id="@+id/tvCount"
-                    style="@style/normal_text"
-                    android:layout_marginTop="@dimen/layout_margin_4dp"
-                    android:layout_marginEnd="@dimen/layout_margin_4dp"
-                    android:background="@drawable/ic_num_item_in_bag"
-                    android:textColor="@color/white"
-                    android:textSize="@dimen/text_size_10sp"
-                    app:layout_constraintEnd_toEndOf="@id/ivRight"
-                    app:layout_constraintTop_toTopOf="@id/ivRight" />
 
                 <View
                     android:id="@+id/vLine"

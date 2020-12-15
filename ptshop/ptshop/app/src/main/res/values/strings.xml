@@ -381,4 +381,5 @@
     <string name="the_way_to_go_to_shop">The way to go to shop</string>
     <string name="address_of_shop">Address of shop</string>
     <string name="phoneShop">Phone: %s</string>
+    <string name="appName">Clothes shop</string>
 </resources>
