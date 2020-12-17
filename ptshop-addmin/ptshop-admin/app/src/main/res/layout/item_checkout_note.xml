@@ -6,7 +6,7 @@
 
         <variable
             name="discount"
-            type="com.ptithcm.core.model.Discount" />
+            type="com.n16dccn159.core.model.Discount" />
 
     </data>
 

@@ -7,7 +7,7 @@
 
         <variable
             name="size"
-            type="com.ptithcm.core.model.Size" />
+            type="com.n16dccn159.core.model.Size" />
 
     </data>
 

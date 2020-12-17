@@ -9,11 +9,11 @@
 
         <variable
             name="activity"
-            type="com.ptithcm.admin.view.home.storydetail.StoryDetailFragment" />
+            type="com.n16dccn159.admin.view.home.storydetail.StoryDetailFragment" />
 
         <variable
             name="story"
-            type="com.ptithcm.core.model.Stories" />
+            type="com.n16dccn159.core.model.Stories" />
 
         <variable
             name="uploadSize"

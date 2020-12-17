@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.ptithcm.admin.widget.RoundImageView xmlns:android="http://schemas.android.com/apk/res/android"
+<com.n16dccn159.admin.widget.RoundImageView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/ivProductionOverView"

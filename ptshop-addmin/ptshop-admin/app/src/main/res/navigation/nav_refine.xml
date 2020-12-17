@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/fragment_refine"
-        android:name="com.ptithcm.admin.view.refine.RefineFragment"
+        android:name="com.n16dccn159.admin.view.refine.RefineFragment"
         tools:layout="@layout/fragment_refine">
 
         <action
@@ -62,42 +62,42 @@
 
     <fragment
         android:id="@+id/fragment_colours"
-        android:name="com.ptithcm.admin.view.refine.ColoursFragment"
+        android:name="com.n16dccn159.admin.view.refine.ColoursFragment"
         tools:layout="@layout/fragment_colours" />
 
     <fragment
         android:id="@+id/fragment_sizes"
-        android:name="com.ptithcm.admin.view.refine.SizesFragment"
+        android:name="com.n16dccn159.admin.view.refine.SizesFragment"
         tools:layout="@layout/fragment_sizes" />
 
     <fragment
         android:id="@+id/fragment_genders"
-        android:name="com.ptithcm.admin.view.refine.GenderFragment"
+        android:name="com.n16dccn159.admin.view.refine.GenderFragment"
         tools:layout="@layout/fragment_gender"/>
 
     <fragment
         android:id="@+id/fragment_all_categories_refine"
-        android:name="com.ptithcm.admin.view.allcategories.AllCategoriesRefineFragment"
+        android:name="com.n16dccn159.admin.view.allcategories.AllCategoriesRefineFragment"
         tools:layout="@layout/fragment_all_categories_refine"/>
 
     <fragment
         android:id="@+id/fragment_main_categories_refine"
-        android:name="com.ptithcm.admin.view.allcategories.MainCategoriesRefineFragment"
+        android:name="com.n16dccn159.admin.view.allcategories.MainCategoriesRefineFragment"
         tools:layout="@layout/fragment_main_categories_refine"/>
 
     <fragment
         android:id="@+id/fragment_categories_refine"
-        android:name="com.ptithcm.admin.view.allcategories.CategoriesRefineFragment"
+        android:name="com.n16dccn159.admin.view.allcategories.CategoriesRefineFragment"
         tools:layout="@layout/fragment_categories_refine"/>
 
     <fragment
         android:id="@+id/fragment_brand_refine"
-        android:name="com.ptithcm.admin.view.refine.RefineBrandsFragment"
+        android:name="com.n16dccn159.admin.view.refine.RefineBrandsFragment"
         tools:layout="@layout/fragment_refine_brands"/>
 
     <fragment
         android:id="@+id/fragment_brand_refine_stories"
-        android:name="com.ptithcm.admin.view.refine.RefineBrandStoreFragment"
+        android:name="com.n16dccn159.admin.view.refine.RefineBrandStoreFragment"
         tools:layout="@layout/fragment_refine_brands_stories"/>
 
 </navigation>

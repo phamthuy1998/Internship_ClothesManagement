@@ -10,7 +10,7 @@
 
         <variable
             name="data"
-            type="com.ptithcm.core.model.CreditCard" />
+            type="com.n16dccn159.core.model.CreditCard" />
 
     </data>
 

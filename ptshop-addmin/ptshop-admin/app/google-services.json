@@ -10,7 +10,7 @@
       "client_info": {
         "mobilesdk_app_id": "1:750568243524:android:e647088ee7c06419f25711",
         "android_client_info": {
-          "package_name": "com.ptithcm.admin"
+          "package_name": "com.n16dccn159.admin"
         }
       },
       "oauth_client": [
@@ -39,7 +39,7 @@
       "client_info": {
         "mobilesdk_app_id": "1:750568243524:android:5acaa4a82a4fad6ff25711",
         "android_client_info": {
-          "package_name": "com.ptithcm.ptshop"
+          "package_name": "com.n16dccn159.ptshop"
         }
       },
       "oauth_client": [

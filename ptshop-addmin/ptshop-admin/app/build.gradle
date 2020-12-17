@@ -24,7 +24,7 @@ repositories {
 ext {
     vStg = "1.0.34"
     vProd = "1.0.34"
-    packageName = 'com.ptithcm.ptshop'
+    packageName = 'com.n16dccn159.ptshop'
     appicationName = 'PTShop'
 }
 

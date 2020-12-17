@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/fragmentUploadProduct"
-        android:name="com.ptithcm.admin.view.uploadproduct.UploadProductFragment"
+        android:name="com.n16dccn159.admin.view.uploadproduct.UploadProductFragment"
         tools:layout="@layout/fragment_upload_product">
 
         <action android:id="@+id/action_upload_preview"
@@ -29,7 +29,7 @@
 
     <fragment
         android:id="@+id/fragmentUploadPreview"
-        android:name="com.ptithcm.admin.view.uploadproduct.UploadPreviewFragment"
+        android:name="com.n16dccn159.admin.view.uploadproduct.UploadPreviewFragment"
         tools:layout="@layout/fragment_upload_product_preview">
 
         <action android:id="@+id/action_add_product"
@@ -50,19 +50,19 @@
 
     <fragment
         android:id="@+id/fragmentAddProduct"
-        android:name="com.ptithcm.admin.view.uploadproduct.AddProductFragment"
+        android:name="com.n16dccn159.admin.view.uploadproduct.AddProductFragment"
         tools:layout="@layout/fragment_add_product">
     </fragment>
 
     <fragment
         android:id="@+id/fragmentAddTag"
-        android:name="com.ptithcm.admin.view.uploadproduct.AddTagFragment"
+        android:name="com.n16dccn159.admin.view.uploadproduct.AddTagFragment"
         tools:layout="@layout/fragment_add_tag">
     </fragment>
 
     <fragment
         android:id="@+id/fragmentTrimVideo"
-        android:name="com.ptithcm.admin.view.uploadproduct.TrimVideoFragment"
+        android:name="com.n16dccn159.admin.view.uploadproduct.TrimVideoFragment"
         tools:layout="@layout/fragment_trim_video">
 
         <action android:id="@+id/action_upload_preview"

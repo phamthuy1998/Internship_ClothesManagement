@@ -7,14 +7,14 @@
 
         <variable
             name="data"
-            type="com.ptithcm.admin.view.refine.RefineBrandStoreFragment" />
+            type="com.n16dccn159.admin.view.refine.RefineBrandStoreFragment" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <com.ptithcm.admin.widget.fastscroll.FastScrollRecyclerView
+        <com.n16dccn159.admin.widget.fastscroll.FastScrollRecyclerView
             android:id="@+id/rvBrands"
             android:layout_width="match_parent"
             android:layout_height="match_parent"

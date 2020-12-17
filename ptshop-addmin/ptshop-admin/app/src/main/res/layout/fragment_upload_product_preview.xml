@@ -10,7 +10,7 @@
 
         <variable
             name="fragment"
-            type="com.ptithcm.admin.view.uploadproduct.UploadPreviewFragment" />
+            type="com.n16dccn159.admin.view.uploadproduct.UploadPreviewFragment" />
 
         <variable
             name="isVideo"

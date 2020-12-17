@@ -5,10 +5,10 @@
 
     <fragment
         android:id="@+id/addressBookFragment"
-        android:name="com.ptithcm.admin.view.addressbook.AddressBookFragment"
+        android:name="com.n16dccn159.admin.view.addressbook.AddressBookFragment"
         android:label="AddressBookFragment" />
     <fragment
         android:id="@+id/shippingAddressDetailFragment"
-        android:name="com.ptithcm.admin.view.addressbook.ShippingAddressDetailFragment"
+        android:name="com.n16dccn159.admin.view.addressbook.ShippingAddressDetailFragment"
         android:label="ShippingAddressDetailFragment" />
 </navigation>

@@ -7,7 +7,7 @@
 
         <variable
             name="data"
-            type="com.ptithcm.admin.view.allcategories.MainCategoriesRefineFragment" />
+            type="com.n16dccn159.admin.view.allcategories.MainCategoriesRefineFragment" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

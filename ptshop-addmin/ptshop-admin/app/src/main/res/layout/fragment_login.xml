@@ -17,7 +17,7 @@
 
         <variable
             name="fragment"
-            type="com.ptithcm.admin.view.login.LoginFragment" />
+            type="com.n16dccn159.admin.view.login.LoginFragment" />
     </data>
 
 
@@ -41,7 +41,6 @@
             android:inputType="textEmailAddress"
             android:paddingStart="@dimen/layout_margin_16dp"
             android:paddingEnd="@dimen/layout_margin_64dp"
-            android:text="phamthithuy4444@gmail.com"
             android:textCursorDrawable="@drawable/gray_cursor"
             app:layout_constraintBottom_toTopOf="@id/edt_password"
             app:layout_constraintEnd_toEndOf="parent"
@@ -70,7 +69,6 @@
             android:inputType="textPassword"
             android:paddingStart="@dimen/layout_margin_16dp"
             android:paddingEnd="@dimen/layout_margin_64dp"
-            android:text="thuythuy"
             android:textCursorDrawable="@drawable/gray_cursor"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -106,7 +104,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/edt_password" />
 
-        <com.ptithcm.admin.widget.LoadingButton
+        <com.n16dccn159.admin.widget.LoadingButton
             android:id="@+id/btn_sign_in"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

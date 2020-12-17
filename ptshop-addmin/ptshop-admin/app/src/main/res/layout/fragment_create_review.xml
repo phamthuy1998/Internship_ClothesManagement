@@ -6,11 +6,11 @@
 
         <variable
             name="fragment"
-            type="com.ptithcm.admin.view.rating.CreateReviewFragment" />
+            type="com.n16dccn159.admin.view.rating.CreateReviewFragment" />
 
         <variable
             name="item"
-            type="com.ptithcm.core.model.InvoiceProductDetail" />
+            type="com.n16dccn159.core.model.InvoiceProductDetail" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -260,7 +260,7 @@
             app:layout_constraintStart_toStartOf="@id/ivImageVideo"
             app:layout_constraintTop_toTopOf="@id/ivImageVideo" />
 
-        <com.ptithcm.admin.widget.LoadingButton
+        <com.n16dccn159.admin.widget.LoadingButton
             android:id="@+id/btnAddReview"
             style="@style/black_btn"
             android:layout_width="match_parent"

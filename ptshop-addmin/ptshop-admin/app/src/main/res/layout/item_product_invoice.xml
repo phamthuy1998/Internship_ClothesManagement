@@ -9,7 +9,7 @@
 
         <variable
             name="item"
-            type="com.ptithcm.core.model.InvoiceProductDetail" />
+            type="com.n16dccn159.core.model.InvoiceProductDetail" />
 
     </data>
 

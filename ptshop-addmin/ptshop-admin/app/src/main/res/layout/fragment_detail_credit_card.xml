@@ -9,7 +9,7 @@
 
         <variable
             name="fragment"
-            type="com.ptithcm.admin.view.payment.CreditCardDetailFragment" />
+            type="com.n16dccn159.admin.view.payment.CreditCardDetailFragment" />
 
         <import type="android.text.TextUtils" />
 
@@ -187,7 +187,7 @@
             </androidx.constraintlayout.widget.ConstraintLayout>
         </ScrollView>
 
-        <com.ptithcm.admin.widget.LoadingButton
+        <com.n16dccn159.admin.widget.LoadingButton
             android:id="@+id/btnAddPayment"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

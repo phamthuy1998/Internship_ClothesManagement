@@ -8,15 +8,15 @@
     <fragment
         android:id="@+id/paymentMethodsFragment"
         tools:layout="@layout/fragment_payment_method"
-        android:name="com.ptithcm.admin.view.payment.PaymentMethodsFragment"
+        android:name="com.n16dccn159.admin.view.payment.PaymentMethodsFragment"
         android:label="PaymentMethodsFragment" />
     <fragment
         android:id="@+id/creditCardDetailFragment"
         tools:layout="@layout/fragment_detail_credit_card"
-        android:name="com.ptithcm.admin.view.payment.CreditCardDetailFragment"
+        android:name="com.n16dccn159.admin.view.payment.CreditCardDetailFragment"
         android:label="CreditCardDetailFragment" >
         <argument
             android:name="creditCard"
-            app:argType="com.ptithcm.core.model.CreditCard" />
+            app:argType="com.n16dccn159.core.model.CreditCard" />
     </fragment>
 </navigation>

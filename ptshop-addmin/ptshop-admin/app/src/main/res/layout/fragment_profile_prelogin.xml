@@ -8,7 +8,7 @@
 
         <variable
             name="parentFragment"
-            type="com.ptithcm.admin.view.profile.ProfileFragment" />
+            type="com.n16dccn159.admin.view.profile.ProfileFragment" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

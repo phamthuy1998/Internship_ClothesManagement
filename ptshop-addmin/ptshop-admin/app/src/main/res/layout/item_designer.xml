@@ -8,7 +8,7 @@
 
         <variable
             name="brand"
-            type="com.ptithcm.core.model.Brand" />
+            type="com.n16dccn159.core.model.Brand" />
 
     </data>
 

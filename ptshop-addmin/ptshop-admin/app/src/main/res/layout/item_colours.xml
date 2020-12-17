@@ -8,7 +8,7 @@
 
         <variable
             name="colour"
-            type="com.ptithcm.core.model.Colour" />
+            type="com.n16dccn159.core.model.Colour" />
 
     </data>
 

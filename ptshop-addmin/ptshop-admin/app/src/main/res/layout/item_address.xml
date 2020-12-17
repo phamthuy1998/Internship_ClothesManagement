@@ -7,7 +7,7 @@
 
         <variable
             name="item"
-            type="com.ptithcm.core.model.ShoppingAddress" />
+            type="com.n16dccn159.core.model.ShoppingAddress" />
     </data>
 
     <androidx.cardview.widget.CardView

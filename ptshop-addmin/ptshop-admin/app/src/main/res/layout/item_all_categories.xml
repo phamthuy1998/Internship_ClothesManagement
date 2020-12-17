@@ -8,7 +8,7 @@
 
         <variable
             name="mainCategories"
-            type="com.ptithcm.core.model.MainCategories" />
+            type="com.n16dccn159.core.model.MainCategories" />
 
         <variable
             name="isChoose"

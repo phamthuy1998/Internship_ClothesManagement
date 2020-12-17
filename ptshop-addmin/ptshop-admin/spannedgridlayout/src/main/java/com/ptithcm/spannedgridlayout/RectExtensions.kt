@@ -1,4 +1,4 @@
-package com.ptithcm.spannedgridlayout
+package com.n16dccn159.spannedgridlayout
 
 import android.graphics.Rect
 

@@ -6,45 +6,45 @@
 
     <fragment
         android:id="@+id/invoicePagerFragment"
-        android:name="com.ptithcm.admin.view.invoices.InvoicePagerFragment"
+        android:name="com.n16dccn159.admin.view.invoices.InvoicePagerFragment"
         android:label="InvoiceBookFragment" />
 
     <fragment
         android:id="@+id/invoiceBookFragment"
-        android:name="com.ptithcm.admin.view.invoices.InvoicesBookFragment"
+        android:name="com.n16dccn159.admin.view.invoices.InvoicesBookFragment"
         android:label="InvoiceBookFragment" />
 
     <fragment
         android:id="@+id/invoiceDetailFragment"
-        android:name="com.ptithcm.admin.view.invoices.InvoiceDetailFragment"
+        android:name="com.n16dccn159.admin.view.invoices.InvoiceDetailFragment"
         android:label="InvoiceDetailFragment" />
     <fragment
         android:id="@+id/createReviewFragment"
-        android:name="com.ptithcm.admin.view.rating.CreateReviewFragment"
+        android:name="com.n16dccn159.admin.view.rating.CreateReviewFragment"
         android:label="InvoiceDetailFragment" />
 
     <fragment
         android:id="@+id/uploadPhotoFragment"
-        android:name="com.ptithcm.admin.view.uploadproduct.UploadPhotoFragment"
+        android:name="com.n16dccn159.admin.view.uploadproduct.UploadPhotoFragment"
         android:label="InvoiceDetailFragment" />
 
     <fragment
         android:id="@+id/uploadLibraryFragment"
-        android:name="com.ptithcm.admin.view.uploadproduct.UploadLibraryFragment"
+        android:name="com.n16dccn159.admin.view.uploadproduct.UploadLibraryFragment"
         android:label="InvoiceDetailFragment" />
 
     <fragment
         android:id="@+id/uploadVideoFragment"
-        android:name="com.ptithcm.admin.view.uploadproduct.UploadVideoFragment"
+        android:name="com.n16dccn159.admin.view.uploadproduct.UploadVideoFragment"
         android:label="InvoiceDetailFragment" />
     <fragment
         android:id="@+id/imageZoomFragment"
-        android:name="com.ptithcm.admin.view.wishlist.overview.ImageZoomFragment"
+        android:name="com.n16dccn159.admin.view.wishlist.overview.ImageZoomFragment"
         android:label="ImageZoomFragment" />
 
     <fragment
         android:id="@+id/videoFragment"
-        android:name="com.ptithcm.admin.view.wishlist.overview.VideoFragment"
+        android:name="com.n16dccn159.admin.view.wishlist.overview.VideoFragment"
         android:label="videoFragment" />
 
     <include app:graph="@navigation/nav_product" />

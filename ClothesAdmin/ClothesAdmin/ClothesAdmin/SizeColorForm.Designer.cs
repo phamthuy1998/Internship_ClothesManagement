@@ -65,7 +65,6 @@
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.productSizeColorGridControl = new DevExpress.XtraGrid.GridControl();
             this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
-            this.productName = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colproductID = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colsizeId = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colcolorID = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -301,13 +300,17 @@
             this.tableAdapterManager.ImportCouponDetailTableAdapter = null;
             this.tableAdapterManager.ImportCouponTableAdapter = null;
             this.tableAdapterManager.InvoiceItemTableAdapter = null;
+            this.tableAdapterManager.InvoiceStatusTableAdapter = null;
             this.tableAdapterManager.InvoiceTableAdapter = null;
             this.tableAdapterManager.ProductSizeColorTableAdapter = this.productSizeColorTableAdapter;
             this.tableAdapterManager.ProductTableAdapter = null;
             this.tableAdapterManager.PromotionItemTableAdapter = null;
             this.tableAdapterManager.PromotionTableAdapter = null;
             this.tableAdapterManager.ProviderTableAdapter = null;
+            this.tableAdapterManager.QuestionTableAdapter = null;
+            this.tableAdapterManager.RatingTableAdapter = null;
             this.tableAdapterManager.RoleTableAdapter = null;
+            this.tableAdapterManager.ShopInfoTableAdapter = null;
             this.tableAdapterManager.SizeTableAdapter = null;
             this.tableAdapterManager.UpdateOrder = ClothesAdmin.ClothesDataSetTableAdapters.TableAdapterManager.UpdateOrderOption.InsertUpdateDelete;
             // 
@@ -363,7 +366,6 @@
             // gridView1
             // 
             this.gridView1.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
-            this.productName,
             this.colproductID,
             this.colsizeId,
             this.colcolorID,
@@ -372,12 +374,6 @@
             this.colactive});
             this.gridView1.GridControl = this.productSizeColorGridControl;
             this.gridView1.Name = "gridView1";
-            // 
-            // productName
-            // 
-            resources.ApplyResources(this.productName, "productName");
-            this.productName.MinWidth = 25;
-            this.productName.Name = "productName";
             // 
             // colproductID
             // 
@@ -665,7 +661,6 @@
         private System.Windows.Forms.ComboBox sizeComboBox;
         private System.Windows.Forms.BindingSource colorBindingSource;
         private ClothesDataSetTableAdapters.ColorTableAdapter colorTableAdapter;
-        private DevExpress.XtraGrid.Columns.GridColumn productName;
         private System.Windows.Forms.ComboBox colorComboBox;
         private System.Windows.Forms.BindingSource invoiceItemBindingSource;
         private ClothesDataSetTableAdapters.InvoiceItemTableAdapter invoiceItemTableAdapter;

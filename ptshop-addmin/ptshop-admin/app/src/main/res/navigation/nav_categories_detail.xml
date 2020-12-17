@@ -7,29 +7,29 @@
 
     <fragment
         android:id="@+id/fragment_categories_detail"
-        android:name="com.ptithcm.admin.view.categories.CategoriesDetailFragment"
+        android:name="com.n16dccn159.admin.view.categories.CategoriesDetailFragment"
         tools:layout="@layout/fragment_categories_detail" />
 
     <fragment
         android:id="@+id/fragment_product_detail"
-        android:name="com.ptithcm.admin.view.product.ProductDetailFragment"
+        android:name="com.n16dccn159.admin.view.product.ProductDetailFragment"
         tools:layout="@layout/fragment_product_detail" />
 
     <include app:graph="@navigation/nav_refine" />
     <include app:graph="@navigation/nav_product" />
     <fragment
         android:id="@+id/fragment_over_view"
-        android:name="com.ptithcm.admin.view.wishlist.OverViewFragment"
+        android:name="com.n16dccn159.admin.view.wishlist.OverViewFragment"
         tools:layout="@layout/fragment_over_view" />
 
     <fragment
         android:id="@+id/sizeGuideFragment"
-        android:name="com.ptithcm.admin.view.sizeguide.SizeGuideFragment"
+        android:name="com.n16dccn159.admin.view.sizeguide.SizeGuideFragment"
         android:label="SizeGuideFragment"
         tools:layout="@layout/fragment_size_guide" />
     <fragment
         android:id="@+id/imageVideoFragment"
-        android:name="com.ptithcm.admin.view.rating.ImageVideoFragment"
+        android:name="com.n16dccn159.admin.view.rating.ImageVideoFragment"
         tools:layout="@layout/fragment_image_video"/>
 
 
@@ -37,21 +37,21 @@
     <include app:graph="@navigation/nav_shopping_card" />
     <fragment
         android:id="@+id/questionFragment"
-        android:name="com.ptithcm.admin.view.question.QuestionFragment"
+        android:name="com.n16dccn159.admin.view.question.QuestionFragment"
         android:label="QuestionFragment" />
     <fragment
         android:id="@+id/ratingFragment"
-        android:name="com.ptithcm.admin.view.rating.RatingFragment"
+        android:name="com.n16dccn159.admin.view.rating.RatingFragment"
         android:label="RatingFragment" />
     <fragment
         android:id="@+id/createReviewFragment"
-        android:name="com.ptithcm.admin.view.rating.CreateReviewFragment"
+        android:name="com.n16dccn159.admin.view.rating.CreateReviewFragment"
         tools:layout="@layout/fragment_create_review"
         android:label="CreateReviewFragment" />
 
     <fragment
         android:id="@+id/loginFragment"
-        android:name="com.ptithcm.admin.view.login.LoginFragment"
+        android:name="com.n16dccn159.admin.view.login.LoginFragment"
         android:label="LoginFragment" />
     <include app:graph="@navigation/nav_login" />
 

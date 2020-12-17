@@ -12,7 +12,7 @@
 
         <variable
             name="appliedDiscount"
-            type="com.ptithcm.core.model.AppliedDiscount" />
+            type="com.n16dccn159.core.model.AppliedDiscount" />
 
     </data>
 

@@ -7,7 +7,7 @@
 
         <variable
             name="gender"
-            type="com.ptithcm.core.model.GenderFilter" />
+            type="com.n16dccn159.core.model.GenderFilter" />
 
     </data>
 

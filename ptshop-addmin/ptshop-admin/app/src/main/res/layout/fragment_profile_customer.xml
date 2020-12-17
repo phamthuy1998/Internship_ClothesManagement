@@ -9,7 +9,7 @@
 
         <variable
             name="parentFragment"
-            type="com.ptithcm.admin.view.profile.ProfileFragment" />
+            type="com.n16dccn159.admin.view.profile.ProfileFragment" />
 
         <variable
             name="showInvoice"
@@ -17,11 +17,11 @@
 
         <variable
             name="profile"
-            type="com.ptithcm.core.model.Profile" />
+            type="com.n16dccn159.core.model.Profile" />
 
         <variable
             name="account"
-            type="com.ptithcm.core.model.Account" />
+            type="com.n16dccn159.core.model.Account" />
     </data>
 
     <androidx.core.widget.NestedScrollView

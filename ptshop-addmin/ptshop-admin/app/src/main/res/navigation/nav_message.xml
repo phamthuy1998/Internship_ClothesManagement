@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/messageFragment"
-        android:name="com.ptithcm.admin.view.message.MessageFragment"
+        android:name="com.n16dccn159.admin.view.message.MessageFragment"
         android:label="fragment_message"
         tools:layout="@layout/fragment_message" />
 </navigation>

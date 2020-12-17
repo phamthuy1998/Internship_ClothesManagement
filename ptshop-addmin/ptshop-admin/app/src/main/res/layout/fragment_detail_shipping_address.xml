@@ -10,11 +10,11 @@
 
         <variable
             name="address"
-            type="com.ptithcm.core.model.ShoppingAddress" />
+            type="com.n16dccn159.core.model.ShoppingAddress" />
 
         <variable
             name="fragment"
-            type="com.ptithcm.admin.view.addressbook.ShippingAddressDetailFragment" />
+            type="com.n16dccn159.admin.view.addressbook.ShippingAddressDetailFragment" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -152,7 +152,7 @@
             </androidx.constraintlayout.widget.ConstraintLayout>
         </ScrollView>
 
-        <com.ptithcm.admin.widget.LoadingButton
+        <com.n16dccn159.admin.widget.LoadingButton
             android:id="@+id/btn_update_address"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

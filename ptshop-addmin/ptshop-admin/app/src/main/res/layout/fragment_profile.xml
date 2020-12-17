@@ -10,11 +10,11 @@
 
         <variable
             name="account"
-            type="com.ptithcm.core.model.Account" />
+            type="com.n16dccn159.core.model.Account" />
 
         <variable
             name="fragment"
-            type="com.ptithcm.admin.view.profile.ProfileFragment" />
+            type="com.n16dccn159.admin.view.profile.ProfileFragment" />
 
     </data>
 

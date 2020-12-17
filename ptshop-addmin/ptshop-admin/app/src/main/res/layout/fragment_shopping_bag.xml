@@ -9,7 +9,7 @@
 
         <variable
             name="fragment"
-            type="com.ptithcm.admin.view.card.ShoppingBagFragment" />
+            type="com.n16dccn159.admin.view.card.ShoppingBagFragment" />
 
         <variable
             name="size"
@@ -74,7 +74,7 @@
             app:layout_constraintTop_toBottomOf="@id/appBarLayout"
             tools:visibility="gone" />
 
-        <com.ptithcm.admin.widget.LoadingButton
+        <com.n16dccn159.admin.widget.LoadingButton
             android:id="@+id/btnCheckOut"
             setVisible="@{size > 0}"
             android:layout_width="@dimen/no_padding"

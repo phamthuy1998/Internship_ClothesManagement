@@ -8,7 +8,7 @@
 
         <variable
             name="provider"
-            type="com.ptithcm.core.model.Provider" />
+            type="com.n16dccn159.core.model.Provider" />
     </data>
 
     <androidx.coordinatorlayout.widget.CoordinatorLayout

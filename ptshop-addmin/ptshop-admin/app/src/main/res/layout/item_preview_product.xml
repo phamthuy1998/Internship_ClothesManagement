@@ -8,7 +8,7 @@
 
         <variable
             name="item"
-            type="com.ptithcm.core.model.Product" />
+            type="com.n16dccn159.core.model.Product" />
 
         <variable
             name="locale"

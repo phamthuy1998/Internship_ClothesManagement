@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout>
     <data>
-        <import type="com.ptithcm.core.util.StringUtilKt"/>
+        <import type="com.n16dccn159.core.util.StringUtilKt"/>
         <variable
             name="item"
-            type="com.ptithcm.core.model.Tag" />
+            type="com.n16dccn159.core.model.Tag" />
     </data>
     <TextView xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"

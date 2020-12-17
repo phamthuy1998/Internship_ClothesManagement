@@ -9,7 +9,7 @@
 
     <fragment
         android:id="@+id/fragment_shopping_bag"
-        android:name="com.ptithcm.admin.view.card.ShoppingBagFragment"
+        android:name="com.n16dccn159.admin.view.card.ShoppingBagFragment"
         tools:layout="@layout/fragment_shopping_bag">
 
         <action
@@ -31,75 +31,75 @@
 
     <fragment
         android:id="@+id/fragment_checkout"
-        android:name="com.ptithcm.admin.view.card.CheckoutFragment"
+        android:name="com.n16dccn159.admin.view.card.CheckoutFragment"
         tools:layout="@layout/fragment_checkout" />
 
     <fragment
         android:id="@+id/fragment_brand_term_condition"
-        android:name="com.ptithcm.admin.view.card.BrandTermConditionFragment"
+        android:name="com.n16dccn159.admin.view.card.BrandTermConditionFragment"
         tools:layout="@layout/fragment_brand_term_condition" />
 
     <fragment
         android:id="@+id/fragment_payment"
-        android:name="com.ptithcm.admin.view.payment.PaymentMethodsFragment"
+        android:name="com.n16dccn159.admin.view.payment.PaymentMethodsFragment"
         tools:layout="@layout/fragment_payment_method"/>
 
     <fragment
         android:id="@+id/creditCardDetailFragment"
         tools:layout="@layout/fragment_detail_credit_card"
-        android:name="com.ptithcm.admin.view.payment.CreditCardDetailFragment"
+        android:name="com.n16dccn159.admin.view.payment.CreditCardDetailFragment"
         android:label="CreditCardDetailFragment" >
         <argument
             android:name="creditCard"
-            app:argType="com.ptithcm.core.model.CreditCard" />
+            app:argType="com.n16dccn159.core.model.CreditCard" />
     </fragment>
 
     <fragment
         android:id="@+id/fragment_product_detail"
-        android:name="com.ptithcm.admin.view.product.ProductDetailFragment"
+        android:name="com.n16dccn159.admin.view.product.ProductDetailFragment"
         tools:layout="@layout/fragment_product_detail"/>
 
     <fragment
         android:id="@+id/fragment_over_view"
-        android:name="com.ptithcm.admin.view.wishlist.OverViewFragment"
+        android:name="com.n16dccn159.admin.view.wishlist.OverViewFragment"
         tools:layout="@layout/fragment_over_view"/>
 
     <fragment
         android:id="@+id/sizeGuideFragment"
         tools:layout="@layout/fragment_size_guide"
-        android:name="com.ptithcm.admin.view.sizeguide.SizeGuideFragment"
+        android:name="com.n16dccn159.admin.view.sizeguide.SizeGuideFragment"
         android:label="SizeGuideFragment" />
 
     <fragment
         android:id="@+id/fragment_confirm_checkout"
-        android:name="com.ptithcm.admin.view.card.ConfirmCheckoutFragment"
+        android:name="com.n16dccn159.admin.view.card.ConfirmCheckoutFragment"
         tools:layout="@layout/fragment_confirm_checkout" />
     <fragment
         android:id="@+id/imageVideoFragment"
-        android:name="com.ptithcm.admin.view.rating.ImageVideoFragment"
+        android:name="com.n16dccn159.admin.view.rating.ImageVideoFragment"
         tools:layout="@layout/fragment_image_video"/>
 
     <include
         app:graph="@navigation/nav_login"/>
     <fragment
         android:id="@+id/ratingFragment"
-        android:name="com.ptithcm.admin.view.rating.RatingFragment"
+        android:name="com.n16dccn159.admin.view.rating.RatingFragment"
         android:label="RatingFragment" />
 
     <fragment
         android:id="@+id/createReviewFragment"
-        android:name="com.ptithcm.admin.view.rating.CreateReviewFragment"
+        android:name="com.n16dccn159.admin.view.rating.CreateReviewFragment"
         tools:layout="@layout/fragment_create_review"
         android:label="CreateReviewFragment" />
 
 
     <fragment
         android:id="@+id/questionFragment"
-        android:name="com.ptithcm.admin.view.question.QuestionFragment"
+        android:name="com.n16dccn159.admin.view.question.QuestionFragment"
         android:label="QuestionFragment" />
     <fragment
         android:id="@+id/loginFragment"
-        android:name="com.ptithcm.admin.view.login.LoginFragment"
+        android:name="com.n16dccn159.admin.view.login.LoginFragment"
         android:label="LoginFragment" />
 
 </navigation>

@@ -5,11 +5,11 @@
 
     <data>
 
-        <import type="com.ptithcm.admin.util.DateUtils"/>
+        <import type="com.n16dccn159.admin.util.DateUtils"/>
 
         <variable
             name="item"
-            type="com.ptithcm.core.model.Invoice" />
+            type="com.n16dccn159.core.model.Invoice" />
     </data>
 
     <androidx.cardview.widget.CardView

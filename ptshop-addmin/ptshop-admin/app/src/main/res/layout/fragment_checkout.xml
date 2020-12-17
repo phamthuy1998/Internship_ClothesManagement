@@ -9,11 +9,11 @@
 
         <variable
             name="fragment"
-            type="com.ptithcm.admin.view.card.CheckoutFragment" />
+            type="com.n16dccn159.admin.view.card.CheckoutFragment" />
 
         <variable
             name="discount"
-            type="com.ptithcm.core.model.Discount" />
+            type="com.n16dccn159.core.model.Discount" />
 
     </data>
 
@@ -110,7 +110,7 @@
 
         </com.dinuscxj.refresh.RecyclerRefreshLayout>
 
-        <com.ptithcm.admin.widget.LoadingButton
+        <com.n16dccn159.admin.widget.LoadingButton
             android:id="@+id/btnCheckOut"
             style="@style/black_btn"
             android:visibility="gone"

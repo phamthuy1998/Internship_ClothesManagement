@@ -36,7 +36,7 @@
 
         <variable
             name="fragment"
-            type="com.ptithcm.admin.view.register.RegisterFragment" />
+            type="com.n16dccn159.admin.view.register.RegisterFragment" />
     </data>
 
     <ScrollView
@@ -195,7 +195,7 @@
                 app:layout_constraintEnd_toEndOf="@id/edt_password"
                 app:layout_constraintTop_toTopOf="@id/edt_password" />
 
-            <com.ptithcm.admin.widget.LoadingButton
+            <com.n16dccn159.admin.widget.LoadingButton
                 android:id="@+id/btn_register"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"

@@ -348,6 +348,12 @@
     <Compile Include="ProductStatisticForm.Designer.cs">
       <DependentUpon>ProductStatisticForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="ProfitForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ProfitForm.Designer.cs">
+      <DependentUpon>ProfitForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Promotion.cs">
       <DependentUpon>ClothesModel.tt</DependentUpon>
@@ -367,6 +373,12 @@
     </Compile>
     <Compile Include="ProviderForm.Designer.cs">
       <DependentUpon>ProviderForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="RevenueForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="RevenueForm.Designer.cs">
+      <DependentUpon>RevenueForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Role.cs">
       <DependentUpon>ClothesModel.tt</DependentUpon>
@@ -511,6 +523,9 @@
     <EmbeddedResource Include="ProductStatisticForm.resx">
       <DependentUpon>ProductStatisticForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="ProfitForm.resx">
+      <DependentUpon>ProfitForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="PromotionForm.resx">
       <DependentUpon>PromotionForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -527,6 +542,9 @@
     </Compile>
     <EmbeddedResource Include="ProviderForm.resx">
       <DependentUpon>ProviderForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="RevenueForm.resx">
+      <DependentUpon>RevenueForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ShopInfoForm.resx">
       <DependentUpon>ShopInfoForm.cs</DependentUpon>
@@ -621,6 +639,9 @@
     <None Include="Resources\dress.png" />
     <None Include="Resources\woman.png" />
     <None Include="Resources\printer.png" />
+    <None Include="Resources\revenue.png" />
+    <None Include="Resources\profit.png" />
+    <None Include="Resources\backup.png" />
     <Content Include="Resources\warehouse.png" />
     <None Include="Resources\warehouse1.png" />
     <Content Include="SqlServerTypes\readme.htm" />

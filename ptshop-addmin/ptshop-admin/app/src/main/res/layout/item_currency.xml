@@ -8,7 +8,7 @@
 
         <variable
             name="currency"
-            type="com.ptithcm.core.model.SupportedCurrency" />
+            type="com.n16dccn159.core.model.SupportedCurrency" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

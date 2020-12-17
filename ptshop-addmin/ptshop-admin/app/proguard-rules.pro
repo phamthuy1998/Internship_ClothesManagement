@@ -52,11 +52,11 @@
 }
 
 # Model
--keep class com.ptithcm.core.model.** { *; }
--keep class com.ptithcm.core.param.** { *; }
--keep class com.ptithcm.core.vo.** { *; }
--keep class com.ptithcm.admin.constant.** { *; }
--keep class com.ptithcm.core.util.** { *; }
+-keep class com.n16dccn159.core.model.** { *; }
+-keep class com.n16dccn159.core.param.** { *; }
+-keep class com.n16dccn159.core.vo.** { *; }
+-keep class com.n16dccn159.admin.constant.** { *; }
+-keep class com.n16dccn159.core.util.** { *; }
 
 # Koin
 -keepclassmembers class androidx.lifecycle.** { *; }

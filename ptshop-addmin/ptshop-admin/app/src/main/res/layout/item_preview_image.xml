@@ -8,7 +8,7 @@
 
         <variable
             name="item"
-            type="com.ptithcm.core.model.UploadFile" />
+            type="com.n16dccn159.core.model.UploadFile" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"

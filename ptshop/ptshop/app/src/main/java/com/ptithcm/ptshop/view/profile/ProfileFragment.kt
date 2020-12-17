@@ -175,12 +175,6 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>(), View.OnClickList
                     bundleOf(KEY_ARGUMENT to resources.getString(R.string.about_us))
                 )
             }
-            R.id.terms_btn -> {
-                navController.navigate(
-                    R.id.documentFragment,
-                    bundleOf(KEY_ARGUMENT to resources.getString(R.string.terms_and_conditions))
-                )
-            }
             R.id.address_book_btn -> {
                 navController.navigate(R.id.nav_book_address)
             }

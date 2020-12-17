@@ -6,7 +6,7 @@
     <data>
         <variable
             name="tag"
-            type="com.ptithcm.core.model.Tag" />
+            type="com.n16dccn159.core.model.Tag" />
     </data>
 
     <RelativeLayout

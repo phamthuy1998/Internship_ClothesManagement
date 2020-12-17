@@ -4,10 +4,10 @@
 
     <data>
         <import type="android.view.View"/>
-        <import type="com.ptithcm.core.util.StringUtilKt"/>
+        <import type="com.n16dccn159.core.util.StringUtilKt"/>
         <variable
             name="item"
-            type="com.ptithcm.core.model.Tag" />
+            type="com.n16dccn159.core.model.Tag" />
     </data>
 
     <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"

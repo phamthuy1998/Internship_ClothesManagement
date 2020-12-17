@@ -8,11 +8,11 @@
 
         <variable
             name="account"
-            type="com.ptithcm.core.model.Account" />
+            type="com.n16dccn159.core.model.Account" />
 
         <variable
             name="fragment"
-            type="com.ptithcm.admin.view.mydetail.MyDetailFragment" />
+            type="com.n16dccn159.admin.view.mydetail.MyDetailFragment" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -61,7 +61,7 @@
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintTop_toBottomOf="@id/edtPhone" />
 
-        <com.ptithcm.admin.widget.LoadingButton
+        <com.n16dccn159.admin.widget.LoadingButton
             android:id="@+id/btn_update"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

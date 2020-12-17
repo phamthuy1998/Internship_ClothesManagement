@@ -7,7 +7,7 @@
 
         <variable
             name="question"
-            type="com.ptithcm.core.model.Question" />
+            type="com.n16dccn159.core.model.Question" />
         <variable
             name="accountID"
             type="Integer" />
