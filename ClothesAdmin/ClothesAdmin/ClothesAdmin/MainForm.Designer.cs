@@ -153,6 +153,10 @@
             this.ribbonPage6 = new DevExpress.XtraBars.Ribbon.RibbonPage();
             this.ribbonPageGroup8 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.barButtonItem13 = new DevExpress.XtraBars.BarButtonItem();
+            this.barButtonItem14 = new DevExpress.XtraBars.BarButtonItem();
+            this.barButtonItem16 = new DevExpress.XtraBars.BarButtonItem();
+            this.barButtonItem17 = new DevExpress.XtraBars.BarButtonItem();
+            this.btnWareHouse1 = new DevExpress.XtraBars.BarButtonItem();
             firstNameLabel = new System.Windows.Forms.Label();
             lastNameLabel = new System.Windows.Forms.Label();
             phoneLabel = new System.Windows.Forms.Label();
@@ -339,10 +343,11 @@
             this.btnShopInfo,
             this.btnBackupRestore,
             this.btnRevenue,
-            this.btnProfit});
+            this.btnProfit,
+            this.btnWareHouse1});
             this.ribbon.Location = new System.Drawing.Point(0, 0);
             this.ribbon.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.ribbon.MaxItemId = 304;
+            this.ribbon.MaxItemId = 305;
             this.ribbon.Name = "ribbon";
             this.ribbon.OptionsCustomizationForm.FormIcon = ((System.Drawing.Icon)(resources.GetObject("resource.FormIcon")));
             this.ribbon.Pages.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPage[] {
@@ -993,6 +998,7 @@
             // ribbonPageGroup13
             // 
             this.ribbonPageGroup13.ItemLinks.Add(this.btnWarehouse);
+            this.ribbonPageGroup13.ItemLinks.Add(this.btnWareHouse1);
             this.ribbonPageGroup13.Name = "ribbonPageGroup13";
             this.ribbonPageGroup13.Text = "                                                                ";
             // 
@@ -1193,6 +1199,37 @@
             this.barButtonItem13.Id = 296;
             this.barButtonItem13.Name = "barButtonItem13";
             // 
+            // barButtonItem14
+            // 
+            this.barButtonItem14.Caption = "Warehouse";
+            this.barButtonItem14.Id = 295;
+            this.barButtonItem14.ImageOptions.Image = global::ClothesAdmin.Properties.Resources.warehouse;
+            this.barButtonItem14.ImageOptions.LargeImage = global::ClothesAdmin.Properties.Resources.inventory;
+            this.barButtonItem14.Name = "barButtonItem14";
+            // 
+            // barButtonItem16
+            // 
+            this.barButtonItem16.Caption = "Warehouse";
+            this.barButtonItem16.Id = 295;
+            this.barButtonItem16.ImageOptions.Image = global::ClothesAdmin.Properties.Resources.warehouse;
+            this.barButtonItem16.ImageOptions.LargeImage = global::ClothesAdmin.Properties.Resources.inventory;
+            this.barButtonItem16.Name = "barButtonItem16";
+            // 
+            // barButtonItem17
+            // 
+            this.barButtonItem17.Caption = "Warehouse";
+            this.barButtonItem17.Id = 295;
+            this.barButtonItem17.ImageOptions.Image = global::ClothesAdmin.Properties.Resources.warehouse;
+            this.barButtonItem17.ImageOptions.LargeImage = global::ClothesAdmin.Properties.Resources.inventory;
+            this.barButtonItem17.Name = "barButtonItem17";
+            // 
+            // btnWareHouse1
+            // 
+            this.btnWareHouse1.Caption = "Inventory";
+            this.btnWareHouse1.Id = 304;
+            this.btnWareHouse1.Name = "btnWareHouse1";
+            this.btnWareHouse1.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnWareHouse1_ItemClick);
+            // 
             // MainForm
             // 
             this.ActiveGlowColor = System.Drawing.Color.White;
@@ -1360,5 +1397,9 @@
         private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroup14;
         private DevExpress.XtraBars.BarButtonItem btnProfit;
         private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroup15;
+        private DevExpress.XtraBars.BarButtonItem btnWareHouse1;
+        private DevExpress.XtraBars.BarButtonItem barButtonItem14;
+        private DevExpress.XtraBars.BarButtonItem barButtonItem16;
+        private DevExpress.XtraBars.BarButtonItem barButtonItem17;
     }
 }

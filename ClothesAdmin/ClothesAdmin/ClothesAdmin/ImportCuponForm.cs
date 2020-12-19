@@ -412,15 +412,36 @@ namespace ClothesAdmin
                 this.productTableAdapter.FillBy1(this.clothesDataSet.Product, Convert.ToInt16(providerIdTextBox.Text));
 
         }
-
-        private void btnExport_Click(object sender, EventArgs e)
+        
+        private void sizeIDSpinEdit_EditValueChanged(object sender, EventArgs e)
         {
 
         }
 
-        private void sizeIDSpinEdit_EditValueChanged(object sender, EventArgs e)
+        private void btnExport_Click_1(object sender, EventArgs e)
         {
+            if (importCouponDetailBindingSource.Count <= 0)
+            {
+                MessageBox.Show("Không có dữ liệu để xuất file", "Lỗi", MessageBoxButtons.OK);
 
+            }
+            else
+            {
+                WarehouseReport warehouseReport = new WarehouseReport(categoryId, providerID);
+                warehouseReport.lbNhanVien.Text = Program.accountLogin.name;
+                string title = "";
+                if (providerID == null && categoryId == null)
+                    title = "Danh sách tất cả sản phẩm trong kho";
+                else if (providerID != null && categoryId == null)
+                    title = "Danh sách tất cả sản phẩm trong kho của nhà cung cấp " + providerComboBox.Text;
+                else if (providerID == null && categoryId != null)
+                    title = "Danh sách tất cả " + categoryComboBox.Text + " trong kho ";
+                else if (providerID != null && categoryId != null)
+                    title = "Danh sách tất cả " + categoryComboBox.Text + " trong kho của nhà cung cấp " + providerComboBox.Text;
+                warehouseReport.lbTitle.Text = title;
+                ReportPrintTool report = new ReportPrintTool(warehouseReport);
+                report.ShowPreviewDialog();
+            }
         }
     }
 }

@@ -58,7 +58,6 @@
             this.btnSua = new DevExpress.XtraBars.BarButtonItem();
             this.btnTimKiem = new DevExpress.XtraBars.BarButtonItem();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.btnExport = new System.Windows.Forms.Button();
             this.cbbEmployee = new System.Windows.Forms.ComboBox();
             this.employeeBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             this.clothesDataSet = new ClothesAdmin.ClothesDataSet();
@@ -119,6 +118,7 @@
             this.sizeTableAdapter = new ClothesAdmin.ClothesDataSetTableAdapters.SizeTableAdapter();
             this.colorTableAdapter = new ClothesAdmin.ClothesDataSetTableAdapters.ColorTableAdapter();
             this.providerTableAdapter = new ClothesAdmin.ClothesDataSetTableAdapters.ProviderTableAdapter();
+            this.btnExport = new System.Windows.Forms.Button();
             idLabel = new System.Windows.Forms.Label();
             employeeIdLabel = new System.Windows.Forms.Label();
             idCouponLabel = new System.Windows.Forms.Label();
@@ -295,7 +295,7 @@
             // lbEmployee
             // 
             this.lbEmployee.AutoSize = true;
-            this.lbEmployee.Location = new System.Drawing.Point(20, 23);
+            this.lbEmployee.Location = new System.Drawing.Point(35, 8);
             this.lbEmployee.Name = "lbEmployee";
             this.lbEmployee.Size = new System.Drawing.Size(116, 17);
             this.lbEmployee.TabIndex = 2;
@@ -423,30 +423,13 @@
             // 
             // panel1
             // 
-            this.panel1.Controls.Add(this.btnExport);
             this.panel1.Controls.Add(this.cbbEmployee);
             this.panel1.Controls.Add(this.lbEmployee);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 33);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1940, 68);
+            this.panel1.Size = new System.Drawing.Size(1940, 42);
             this.panel1.TabIndex = 4;
-            // 
-            // btnExport
-            // 
-            this.btnExport.BackColor = System.Drawing.Color.White;
-            this.btnExport.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnExport.ForeColor = System.Drawing.Color.ForestGreen;
-            this.btnExport.Image = global::ClothesAdmin.Properties.Resources.printer;
-            this.btnExport.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnExport.Location = new System.Drawing.Point(1631, 9);
-            this.btnExport.Margin = new System.Windows.Forms.Padding(10);
-            this.btnExport.Name = "btnExport";
-            this.btnExport.Size = new System.Drawing.Size(279, 52);
-            this.btnExport.TabIndex = 58;
-            this.btnExport.Text = "Print import cupon detail";
-            this.btnExport.UseVisualStyleBackColor = false;
-            this.btnExport.Click += new System.EventHandler(this.btnExport_Click);
             // 
             // cbbEmployee
             // 
@@ -454,7 +437,7 @@
             this.cbbEmployee.DisplayMember = "firstName";
             this.cbbEmployee.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbbEmployee.FormattingEnabled = true;
-            this.cbbEmployee.Location = new System.Drawing.Point(162, 24);
+            this.cbbEmployee.Location = new System.Drawing.Point(177, 9);
             this.cbbEmployee.Name = "cbbEmployee";
             this.cbbEmployee.Size = new System.Drawing.Size(300, 24);
             this.cbbEmployee.TabIndex = 2;
@@ -482,12 +465,12 @@
             this.tableLayoutPanel1.Controls.Add(this.panel4, 0, 1);
             this.tableLayoutPanel1.Controls.Add(this.panel5, 1, 1);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 101);
+            this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 75);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 2;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(1940, 801);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(1940, 827);
             this.tableLayoutPanel1.TabIndex = 5;
             // 
             // importCouponGridControl
@@ -498,7 +481,7 @@
             this.importCouponGridControl.MainView = this.gridView1;
             this.importCouponGridControl.MenuManager = this.barManager;
             this.importCouponGridControl.Name = "importCouponGridControl";
-            this.importCouponGridControl.Size = new System.Drawing.Size(962, 393);
+            this.importCouponGridControl.Size = new System.Drawing.Size(962, 406);
             this.importCouponGridControl.TabIndex = 3;
             this.importCouponGridControl.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridView1});
@@ -572,7 +555,7 @@
             this.importCouponDetailGridControl.MainView = this.gridView2;
             this.importCouponDetailGridControl.MenuManager = this.barManager;
             this.importCouponDetailGridControl.Name = "importCouponDetailGridControl";
-            this.importCouponDetailGridControl.Size = new System.Drawing.Size(963, 393);
+            this.importCouponDetailGridControl.Size = new System.Drawing.Size(963, 406);
             this.importCouponDetailGridControl.TabIndex = 3;
             this.importCouponDetailGridControl.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridView2});
@@ -709,9 +692,9 @@
             this.panel4.Controls.Add(employeeIdLabel);
             this.panel4.Controls.Add(this.employeeIdSpinEdit);
             this.panel4.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel4.Location = new System.Drawing.Point(4, 404);
+            this.panel4.Location = new System.Drawing.Point(4, 417);
             this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(962, 393);
+            this.panel4.Size = new System.Drawing.Size(962, 406);
             this.panel4.TabIndex = 2;
             // 
             // providerComboBox
@@ -841,6 +824,7 @@
             // 
             this.panel5.AutoScroll = true;
             this.panel5.ContextMenuStrip = this.contextMenuStrip1;
+            this.panel5.Controls.Add(this.btnExport);
             this.panel5.Controls.Add(this.idCouponSpinEdit1);
             this.panel5.Controls.Add(this.colorIdSpinEdit);
             this.panel5.Controls.Add(this.sizeIDSpinEdit);
@@ -862,9 +846,9 @@
             this.panel5.Controls.Add(priceLabel);
             this.panel5.Controls.Add(this.priceSpinEdit);
             this.panel5.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel5.Location = new System.Drawing.Point(973, 404);
+            this.panel5.Location = new System.Drawing.Point(973, 417);
             this.panel5.Name = "panel5";
-            this.panel5.Size = new System.Drawing.Size(963, 393);
+            this.panel5.Size = new System.Drawing.Size(963, 406);
             this.panel5.TabIndex = 3;
             // 
             // idCouponSpinEdit1
@@ -1118,6 +1102,22 @@
             // 
             this.providerTableAdapter.ClearBeforeFill = true;
             // 
+            // btnExport
+            // 
+            this.btnExport.BackColor = System.Drawing.Color.White;
+            this.btnExport.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnExport.ForeColor = System.Drawing.Color.ForestGreen;
+            this.btnExport.Image = global::ClothesAdmin.Properties.Resources.printer;
+            this.btnExport.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnExport.Location = new System.Drawing.Point(658, 274);
+            this.btnExport.Margin = new System.Windows.Forms.Padding(10);
+            this.btnExport.Name = "btnExport";
+            this.btnExport.Size = new System.Drawing.Size(279, 52);
+            this.btnExport.TabIndex = 64;
+            this.btnExport.Text = "Print import cupon detail";
+            this.btnExport.UseVisualStyleBackColor = false;
+            this.btnExport.Click += new System.EventHandler(this.btnExport_Click_1);
+            // 
             // ImportCuponForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -1239,7 +1239,6 @@
         private System.Windows.Forms.ComboBox providerComboBox;
         public System.Windows.Forms.ComboBox cbbEmployee;
         public System.Windows.Forms.Label lbEmployee;
-        private System.Windows.Forms.Button btnExport;
         private DevExpress.XtraEditors.SpinEdit colorIdSpinEdit;
         private DevExpress.XtraEditors.SpinEdit sizeIDSpinEdit;
         private DevExpress.XtraEditors.SpinEdit idCouponSpinEdit1;
@@ -1249,5 +1248,6 @@
         private DevExpress.XtraGrid.Columns.GridColumn colsizeID;
         private DevExpress.XtraGrid.Columns.GridColumn colquantity;
         private DevExpress.XtraGrid.Columns.GridColumn colprice;
+        private System.Windows.Forms.Button btnExport;
     }
 }
