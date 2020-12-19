@@ -344,6 +344,7 @@
             this.ribbon.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.ribbon.MaxItemId = 304;
             this.ribbon.Name = "ribbon";
+            this.ribbon.OptionsCustomizationForm.FormIcon = ((System.Drawing.Icon)(resources.GetObject("resource.FormIcon")));
             this.ribbon.Pages.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPage[] {
             this.rbHome,
             this.rbSttatistic,
@@ -686,8 +687,8 @@
             // 
             this.btnProduct.Caption = "Product";
             this.btnProduct.Id = 13;
-            this.btnProduct.ImageOptions.Image = global::ClothesAdmin.Properties.Resources.dress;
-            this.btnProduct.ImageOptions.LargeImage = global::ClothesAdmin.Properties.Resources.dress;
+            this.btnProduct.ImageOptions.Image = global::ClothesAdmin.Properties.Resources.category2;
+            this.btnProduct.ImageOptions.LargeImage = global::ClothesAdmin.Properties.Resources.category2;
             this.btnProduct.Name = "btnProduct";
             this.btnProduct.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnProduct_ItemClick);
             // 
@@ -696,6 +697,7 @@
             this.btnPromo.Caption = "Promotion";
             this.btnPromo.Id = 16;
             this.btnPromo.ImageOptions.Image = global::ClothesAdmin.Properties.Resources.promo;
+            this.btnPromo.ImageOptions.LargeImage = global::ClothesAdmin.Properties.Resources.sale;
             this.btnPromo.Name = "btnPromo";
             this.btnPromo.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnPromo_ItemClick);
             // 
@@ -704,6 +706,7 @@
             this.btnProvider.Caption = "Provider";
             this.btnProvider.Id = 17;
             this.btnProvider.ImageOptions.Image = global::ClothesAdmin.Properties.Resources.hand;
+            this.btnProvider.ImageOptions.LargeImage = global::ClothesAdmin.Properties.Resources.provider;
             this.btnProvider.Name = "btnProvider";
             this.btnProvider.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnProvider_ItemClick);
             // 
@@ -712,6 +715,7 @@
             this.btnCategory.Caption = "Category";
             this.btnCategory.Id = 18;
             this.btnCategory.ImageOptions.Image = global::ClothesAdmin.Properties.Resources.category;
+            this.btnCategory.ImageOptions.LargeImage = global::ClothesAdmin.Properties.Resources.categories;
             this.btnCategory.Name = "btnCategory";
             this.btnCategory.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnCategory_ItemClick);
             // 
@@ -720,6 +724,7 @@
             this.btnInvoice.Caption = "Invoice";
             this.btnInvoice.Id = 19;
             this.btnInvoice.ImageOptions.Image = global::ClothesAdmin.Properties.Resources.invoice;
+            this.btnInvoice.ImageOptions.LargeImage = global::ClothesAdmin.Properties.Resources.invoices;
             this.btnInvoice.Name = "btnInvoice";
             this.btnInvoice.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnInvoice_ItemClick);
             // 
@@ -770,6 +775,7 @@
             // 
             this.btnImportCupon.Caption = "Import cupon";
             this.btnImportCupon.Id = 272;
+            this.btnImportCupon.ImageOptions.LargeImage = global::ClothesAdmin.Properties.Resources.import;
             this.btnImportCupon.Name = "btnImportCupon";
             this.btnImportCupon.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barButtonItem4_ItemClick);
             // 
@@ -826,7 +832,7 @@
             this.btnInvoiceStatis.Caption = "Invoice";
             this.btnInvoiceStatis.Id = 293;
             this.btnInvoiceStatis.ImageOptions.Image = global::ClothesAdmin.Properties.Resources.invoice;
-            this.btnInvoiceStatis.ImageOptions.LargeImage = global::ClothesAdmin.Properties.Resources.invoice;
+            this.btnInvoiceStatis.ImageOptions.LargeImage = global::ClothesAdmin.Properties.Resources.invoices;
             this.btnInvoiceStatis.Name = "btnInvoiceStatis";
             this.btnInvoiceStatis.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnInvoiceStatis_ItemClick);
             // 
@@ -835,7 +841,7 @@
             this.btnStatistic1.Caption = "Product";
             this.btnStatistic1.Id = 294;
             this.btnStatistic1.ImageOptions.Image = global::ClothesAdmin.Properties.Resources.dress;
-            this.btnStatistic1.ImageOptions.LargeImage = global::ClothesAdmin.Properties.Resources.dress;
+            this.btnStatistic1.ImageOptions.LargeImage = global::ClothesAdmin.Properties.Resources.category1;
             this.btnStatistic1.Name = "btnStatistic1";
             this.btnStatistic1.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnStatistic1_ItemClick);
             // 
@@ -844,7 +850,7 @@
             this.btnWarehouse.Caption = "Warehouse";
             this.btnWarehouse.Id = 295;
             this.btnWarehouse.ImageOptions.Image = global::ClothesAdmin.Properties.Resources.warehouse;
-            this.btnWarehouse.ImageOptions.LargeImage = global::ClothesAdmin.Properties.Resources.warehouse;
+            this.btnWarehouse.ImageOptions.LargeImage = global::ClothesAdmin.Properties.Resources.inventory;
             this.btnWarehouse.Name = "btnWarehouse";
             this.btnWarehouse.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnWarehouse_ItemClick);
             // 
@@ -853,6 +859,7 @@
             this.btnEmployee.Caption = "Employee";
             this.btnEmployee.Hint = "Employee";
             this.btnEmployee.Id = 296;
+            this.btnEmployee.ImageOptions.LargeImage = global::ClothesAdmin.Properties.Resources.employee;
             this.btnEmployee.Name = "btnEmployee";
             this.btnEmployee.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnEmployee_ItemClick);
             // 
@@ -866,6 +873,7 @@
             // 
             this.btnShopInfo.Caption = "Shop Info";
             this.btnShopInfo.Id = 298;
+            this.btnShopInfo.ImageOptions.LargeImage = global::ClothesAdmin.Properties.Resources.shop;
             this.btnShopInfo.Name = "btnShopInfo";
             this.btnShopInfo.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnShopInfo_ItemClick);
             // 
@@ -920,37 +928,44 @@
             // 
             this.ribbonPageGroup4.ItemLinks.Add(this.btnPromo);
             this.ribbonPageGroup4.Name = "ribbonPageGroup4";
+            this.ribbonPageGroup4.Text = "                                                                ";
             // 
             // ribbonPageGroup5
             // 
             this.ribbonPageGroup5.ItemLinks.Add(this.btnProvider);
             this.ribbonPageGroup5.Name = "ribbonPageGroup5";
+            this.ribbonPageGroup5.Text = "                                                                ";
             // 
             // ribbonPageGroup6
             // 
             this.ribbonPageGroup6.ImageOptions.Image = global::ClothesAdmin.Properties.Resources.category;
             this.ribbonPageGroup6.ItemLinks.Add(this.btnCategory);
             this.ribbonPageGroup6.Name = "ribbonPageGroup6";
+            this.ribbonPageGroup6.Text = "                                                                ";
             // 
             // ribbonPageGroup7
             // 
             this.ribbonPageGroup7.ItemLinks.Add(this.btnInvoice);
             this.ribbonPageGroup7.Name = "ribbonPageGroup7";
+            this.ribbonPageGroup7.Text = "                                                                ";
             // 
             // ribbonPageGroup3
             // 
             this.ribbonPageGroup3.ItemLinks.Add(this.btnImportCupon);
             this.ribbonPageGroup3.Name = "ribbonPageGroup3";
+            this.ribbonPageGroup3.Text = "                                                                ";
             // 
             // ribbonPageGroup2
             // 
             this.ribbonPageGroup2.ItemLinks.Add(this.btnEmployee);
             this.ribbonPageGroup2.Name = "ribbonPageGroup2";
+            this.ribbonPageGroup2.Text = "                                                                ";
             // 
             // ribbonPageGroup9
             // 
             this.ribbonPageGroup9.ItemLinks.Add(this.btnShopInfo);
             this.ribbonPageGroup9.Name = "ribbonPageGroup9";
+            this.ribbonPageGroup9.Text = "                                                                ";
             // 
             // rbSttatistic
             // 
@@ -1197,12 +1212,12 @@
             this.Controls.Add(this.ribbon);
             this.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.IconOptions.Image = global::ClothesAdmin.Properties.Resources.shop;
             this.InactiveGlowColor = System.Drawing.Color.White;
             this.IsMdiContainer = true;
             this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "MainForm";
             this.Ribbon = this.ribbon;
-            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.MainForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.ribbon)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.backstageViewControl1)).EndInit();

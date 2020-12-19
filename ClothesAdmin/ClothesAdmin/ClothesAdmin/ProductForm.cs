@@ -53,21 +53,16 @@ namespace ClothesAdmin
             this.imageTableAdapter.Fill(this.clothesDataSet.Image);
             // TODO: This line of code loads data into the 'clothesDataSet.FavoriteProduct' table. You can move, or remove it, as needed.
             this.favoriteProductTableAdapter.Fill(this.clothesDataSet.FavoriteProduct);
-            loadData();
+            loadData(0, 0);
 
         }
 
-        private void loadData()
+        private void loadData(int categoryId, int providerID)
         {
             // TODO: This line of code loads data into the 'clothesDataSet.Product' table. You can move, or remove it, as needed.
-            this.productTableAdapter.Fill(this.clothesDataSet.Product);
+            this.productTableAdapter.FillByCategoryProvider(this.clothesDataSet.Product, categoryId, providerID);
         }
-
-        private void btnCancelAddProvider_Click(object sender, EventArgs e)
-        {
-            productBindingSource.CancelEdit();
-        }
-
+        
         private void btnCloseForm_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
             this.Close();
@@ -75,13 +70,15 @@ namespace ClothesAdmin
 
         private void btnReloadProvider_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            loadData();
+            loadDataProduct();
             Program.showToastReload();
         }
 
         private void btnAddProvider_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
             productBindingSource.AddNew();
+            DateTime dateTime = DateTime.UtcNow.Date;
+            addDateDateEdit.Text = dateTime.ToString("yyyy-MM-dd");
         }
 
         private void btnDelProvider_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
@@ -125,23 +122,6 @@ namespace ClothesAdmin
             }
         }
 
-        private void btnSaveAddProvider_Click(object sender, EventArgs e)
-        {
-            this.Validate();
-            this.productBindingSource.EndEdit();
-            this.tableAdapterManager.UpdateAll(this.clothesDataSet);
-            Program.showToastSave();
-        }
-
-        private void categoryComboBox_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            try
-            {
-                categoryIDTextBox.Text = categoryComboBox.SelectedValue.ToString();
-            }
-            catch (Exception ex) { }
-        }
-
         private void providerIdTextBox_TextChanged(object sender, EventArgs e)
         {
             try
@@ -160,20 +140,6 @@ namespace ClothesAdmin
             catch (Exception ex) { }
         }
 
-        private void providerComboBox_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            try
-            {
-                providerIdTextBox.Text = providerComboBox.SelectedValue.ToString();
-            }
-            catch (Exception ex) { }
-        }
-
-        private void thumnailTextBox_TextChanged(object sender, EventArgs e)
-        {
-            setImageThumbnail();
-        }
-
         private void setImageThumbnail()
         {
             if (String.IsNullOrEmpty(thumnailTextBox.Text))
@@ -182,41 +148,19 @@ namespace ClothesAdmin
             }
             else
             {
-                var request = WebRequest.Create(thumnailTextBox.Text);
-                using (var response = request.GetResponse())
-                using (var stream = response.GetResponseStream())
+                try
                 {
-                    try
-                    {
+                    var request = WebRequest.Create(thumnailTextBox.Text);
+                    using (var response = request.GetResponse())
+                    using (var stream = response.GetResponseStream())
                         thumbnailProduct.Image = Bitmap.FromStream(stream);
-                    }
-                    catch (Exception ex)
-                    {
-                        MessageBox.Show("Lỗi load hình: " + ex.Message, "Thông báo", MessageBoxButtons.OK);
-                    }
+                    thumbnailProduct.ImageLocation = (thumnailTextBox.Text);
                 }
-                thumbnailProduct.ImageLocation = (thumnailTextBox.Text);
-            }
-        }
-
-        private void btnSizeColor_Click(object sender, EventArgs e)
-        {
-            if (String.IsNullOrEmpty(idTextBox.Text))
-            {
-                MessageBox.Show("Không có sản phẩm, không thể xem danh sách size color", "Thông báo", MessageBoxButtons.OK);
-                return;
-            }
-            using (SizeColorForm sizeColorForm = new SizeColorForm(Convert.ToInt16(idTextBox.Text)))
-            {
-                var dlgResult = sizeColorForm.ShowDialog(); // show form 3 as a modal dialog box
-                                                            // halt this procedure until form3 is closed
-                                                            // handle the result of form3:
-                if (dlgResult == DialogResult.OK)
+                catch (Exception ex)
                 {
-                    // TODO: This line of code loads data into the 'clothesDataSet.Product' table. You can move, or remove it, as needed.
-                    this.productTableAdapter.Fill(this.clothesDataSet.Product);
-                    // TODO: This line of code loads data into the 'clothesDataSet.Provider' table. You can move, or remove it, as needed.
+                    MessageBox.Show("Lỗi load hình: " + ex.Message, "Thông báo", MessageBoxButtons.OK);
                 }
+
             }
         }
 
@@ -224,8 +168,58 @@ namespace ClothesAdmin
         {
 
         }
+        
+        private void loadDataProduct()
+        {
+            if (cbCategory.Checked && cbProvider.Checked && cbbCategory.SelectedValue != null && cbbProvider.SelectedValue != null)
+                loadData(int.Parse(cbbProvider.SelectedValue.ToString()), int.Parse(cbbCategory.SelectedValue.ToString()));
+            else if (cbCategory.Checked && !cbProvider.Checked && cbbCategory.SelectedValue != null)
+                loadData(0, int.Parse(cbbCategory.SelectedValue.ToString()));
+            else loadData(0, 0);
+            
+        }
 
-        private void btnImageList_Click(object sender, EventArgs e)
+        private void cbCategory_CheckedChanged(object sender, EventArgs e)
+        {
+            loadDataProduct();
+        }
+
+        private void cbProvider_CheckedChanged(object sender, EventArgs e)
+        {
+            loadDataProduct();
+        }
+
+        private void btnSaveAddProvider_Click_1(object sender, EventArgs e)
+        {
+            try
+            {
+                this.Validate();
+                this.productBindingSource.EndEdit();
+                this.tableAdapterManager.UpdateAll(this.clothesDataSet);
+                Program.showToastSave();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error add product: " + ex.Message, "Error", MessageBoxButtons.OK);
+            }
+        }
+
+        private void cbbCategory_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (cbCategory.Checked) loadDataProduct();
+        }
+
+        private void cbbProvider_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (cbProvider.Checked) loadDataProduct();
+        }
+
+        private void btnCancelAddProvider_Click_1(object sender, EventArgs e)
+        {
+            productBindingSource.CancelEdit();
+        }
+
+        private void btnImageList_Click_1(object sender, EventArgs e)
         {
             if (String.IsNullOrEmpty(idTextBox.Text))
             {
@@ -246,7 +240,63 @@ namespace ClothesAdmin
             }
         }
 
-        private void btnChangeImg_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        private void btnSizeColor_Click_1(object sender, EventArgs e)
+        {
+            if (String.IsNullOrEmpty(idTextBox.Text))
+            {
+                MessageBox.Show("Không có sản phẩm, không thể xem danh sách size color", "Thông báo", MessageBoxButtons.OK);
+                return;
+            }
+            using (SizeColorForm sizeColorForm = new SizeColorForm(Convert.ToInt16(idTextBox.Text)))
+            {
+                var dlgResult = sizeColorForm.ShowDialog(); // show form 3 as a modal dialog box
+                                                            // halt this procedure until form3 is closed
+                                                            // handle the result of form3:
+                if (dlgResult == DialogResult.OK)
+                {
+                    // TODO: This line of code loads data into the 'clothesDataSet.Product' table. You can move, or remove it, as needed.
+                    this.productTableAdapter.Fill(this.clothesDataSet.Product);
+                    // TODO: This line of code loads data into the 'clothesDataSet.Provider' table. You can move, or remove it, as needed.
+                }
+            }
+        }
+
+        private async void btnSaveImg_Click_1(object sender, EventArgs e)
+        {
+            if (thumnailTextBox.Text == null || thumbnailProduct.Image == null || thumbnailProduct.Image == Properties.Resources.no_image)
+            {
+                MessageBox.Show("Chưa có hình ảnh, không thể upload", "THÔNG BÁO", MessageBoxButtons.OK);
+                return;
+            }
+           
+            // await the task to wait until upload completes and get the download url
+            try
+            {
+                var stream = new System.IO.MemoryStream();
+                thumbnailProduct.Image.Save(stream, ImageFormat.Jpeg);
+                stream.Position = 0;
+                var task = new FirebaseStorage("ptshop-8b8b3.appspot.com")
+                                .Child("product")
+                                .Child("thumbnail_" + idTextBox.Text + ".jpg")
+                                .PutAsync(stream);
+                // Track progress of the upload
+                task.Progress.ProgressChanged += (s, ex) =>
+                {
+                    Console.WriteLine($"Progress: {ex.Percentage} %");
+                };
+
+                var downloadUrl = await task;
+                thumnailTextBox.Text = downloadUrl;
+                MessageBox.Show("Upload thành công!\n Link: " + downloadUrl, "THÔNG BÁO", MessageBoxButtons.OK);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Err: " + ex.Message, "THÔNG BÁO", MessageBoxButtons.OK);
+
+            }
+        }
+
+        private void btnChangeImg_LinkClicked_1(object sender, LinkLabelLinkClickedEventArgs e)
         {
             OpenFileDialog ofd = new OpenFileDialog();
             ofd.Title = "Select image";
@@ -258,38 +308,27 @@ namespace ClothesAdmin
             }
         }
 
-        private async void btnSaveImg_Click(object sender, EventArgs e)
+        private void thumnailTextBox_TextChanged_1(object sender, EventArgs e)
         {
-            if (thumnailTextBox.Text==null||thumbnailProduct.Image == null || thumbnailProduct.Image == Properties.Resources.no_image)
-            {
-                MessageBox.Show("Chưa có hình ảnh, không thể upload", "THÔNG BÁO", MessageBoxButtons.OK);
-                return;
-            }
-            var stream = new System.IO.MemoryStream();
-            thumbnailProduct.Image.Save(stream, ImageFormat.Jpeg);
-            stream.Position = 0;
-            var task = new FirebaseStorage("ptshop-8b8b3.appspot.com")
-                            .Child("product")
-                            .Child("thumbnail_" + idTextBox.Text + ".jpg")
-                            .PutAsync(stream);
-            // Track progress of the upload
-            task.Progress.ProgressChanged += (s, ex) =>
-            {
-                Console.WriteLine($"Progress: {ex.Percentage} %");
-            };
+            setImageThumbnail();
+        }
 
-            // await the task to wait until upload completes and get the download url
+        private void categoryComboBox_SelectedIndexChanged_1(object sender, EventArgs e)
+        {
             try
             {
-                var downloadUrl = await task;
-                thumnailTextBox.Text = downloadUrl;
-                MessageBox.Show("Upload thành công!\n Link: " + downloadUrl, "THÔNG BÁO", MessageBoxButtons.OK);
+                categoryIDTextBox.Text = categoryComboBox.SelectedValue.ToString();
             }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Err: " + ex.Message, "THÔNG BÁO", MessageBoxButtons.OK);
+            catch (Exception ex) { }
+        }
 
+        private void providerComboBox_SelectedIndexChanged_1(object sender, EventArgs e)
+        {
+            try
+            {
+                providerIdTextBox.Text = providerComboBox.SelectedValue.ToString();
             }
+            catch (Exception ex) { }
         }
     }
 }

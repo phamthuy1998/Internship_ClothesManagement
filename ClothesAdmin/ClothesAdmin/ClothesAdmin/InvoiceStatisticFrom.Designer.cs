@@ -32,10 +32,9 @@
             System.Windows.Forms.Label label5;
             System.Windows.Forms.Label label1;
             System.Windows.Forms.Label label2;
-            System.Windows.Forms.Label totalInvoiceLabel;
-            System.Windows.Forms.Label totalPriceLabel;
             System.Windows.Forms.Label totalProductLabel;
             System.Windows.Forms.Label label3;
+            this.totalPriceLabel = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
             this.cbbStatusOrder = new System.Windows.Forms.ComboBox();
             this.dateEnd = new DevExpress.XtraEditors.DateEdit();
@@ -75,11 +74,10 @@
             this.coldeliveryDate = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colactive = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colemployeeId = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.label4 = new System.Windows.Forms.Label();
             label5 = new System.Windows.Forms.Label();
             label1 = new System.Windows.Forms.Label();
             label2 = new System.Windows.Forms.Label();
-            totalInvoiceLabel = new System.Windows.Forms.Label();
-            totalPriceLabel = new System.Windows.Forms.Label();
             totalProductLabel = new System.Windows.Forms.Label();
             label3 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
@@ -126,23 +124,14 @@
             label2.TabIndex = 63;
             label2.Text = "Date end";
             // 
-            // totalInvoiceLabel
-            // 
-            totalInvoiceLabel.AutoSize = true;
-            totalInvoiceLabel.Location = new System.Drawing.Point(91, 17);
-            totalInvoiceLabel.Name = "totalInvoiceLabel";
-            totalInvoiceLabel.Size = new System.Drawing.Size(87, 17);
-            totalInvoiceLabel.TabIndex = 0;
-            totalInvoiceLabel.Text = "total Invoice:";
-            // 
             // totalPriceLabel
             // 
-            totalPriceLabel.AutoSize = true;
-            totalPriceLabel.Location = new System.Drawing.Point(491, 23);
-            totalPriceLabel.Name = "totalPriceLabel";
-            totalPriceLabel.Size = new System.Drawing.Size(75, 17);
-            totalPriceLabel.TabIndex = 2;
-            totalPriceLabel.Text = "total Price:";
+            this.totalPriceLabel.AutoSize = true;
+            this.totalPriceLabel.Location = new System.Drawing.Point(491, 23);
+            this.totalPriceLabel.Name = "totalPriceLabel";
+            this.totalPriceLabel.Size = new System.Drawing.Size(75, 17);
+            this.totalPriceLabel.TabIndex = 2;
+            this.totalPriceLabel.Text = "total Price:";
             // 
             // totalProductLabel
             // 
@@ -231,10 +220,10 @@
             // panel2
             // 
             this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel2.Controls.Add(totalInvoiceLabel);
+            this.panel2.Controls.Add(this.label4);
             this.panel2.Controls.Add(this.totalInvoiceTextBox);
             this.panel2.Controls.Add(label3);
-            this.panel2.Controls.Add(totalPriceLabel);
+            this.panel2.Controls.Add(this.totalPriceLabel);
             this.panel2.Controls.Add(this.totalPriceTextBox);
             this.panel2.Controls.Add(totalProductLabel);
             this.panel2.Controls.Add(this.totalProductTextBox);
@@ -294,13 +283,17 @@
             this.tableAdapterManager.ImportCouponDetailTableAdapter = null;
             this.tableAdapterManager.ImportCouponTableAdapter = null;
             this.tableAdapterManager.InvoiceItemTableAdapter = null;
+            this.tableAdapterManager.InvoiceStatusTableAdapter = null;
             this.tableAdapterManager.InvoiceTableAdapter = this.invoiceTableAdapter;
             this.tableAdapterManager.ProductSizeColorTableAdapter = null;
             this.tableAdapterManager.ProductTableAdapter = null;
             this.tableAdapterManager.PromotionItemTableAdapter = null;
             this.tableAdapterManager.PromotionTableAdapter = null;
             this.tableAdapterManager.ProviderTableAdapter = null;
+            this.tableAdapterManager.QuestionTableAdapter = null;
+            this.tableAdapterManager.RatingTableAdapter = null;
             this.tableAdapterManager.RoleTableAdapter = null;
+            this.tableAdapterManager.ShopInfoTableAdapter = null;
             this.tableAdapterManager.SizeTableAdapter = null;
             this.tableAdapterManager.UpdateOrder = ClothesAdmin.ClothesDataSetTableAdapters.TableAdapterManager.UpdateOrderOption.InsertUpdateDelete;
             // 
@@ -561,6 +554,17 @@
             this.colemployeeId.VisibleIndex = 11;
             this.colemployeeId.Width = 94;
             // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.ForeColor = System.Drawing.Color.Navy;
+            this.label4.Location = new System.Drawing.Point(70, 14);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(94, 25);
+            this.label4.TabIndex = 6;
+            this.label4.Text = "Total bill";
+            // 
             // InvoiceStatisticFrom
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -635,5 +639,7 @@
         private DevExpress.XtraGrid.Columns.GridColumn coldeliveryDate;
         private DevExpress.XtraGrid.Columns.GridColumn colactive;
         private DevExpress.XtraGrid.Columns.GridColumn colemployeeId;
+        private System.Windows.Forms.Label totalPriceLabel;
+        private System.Windows.Forms.Label label4;
     }
 }

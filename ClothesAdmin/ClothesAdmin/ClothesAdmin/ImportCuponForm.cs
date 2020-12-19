@@ -16,7 +16,7 @@ namespace ClothesAdmin
         public ImportCuponForm()
         {
             InitializeComponent();
-           
+
         }
 
         //private void importCouponBindingNavigatorSaveItem_Click(object sender, EventArgs e)
@@ -41,7 +41,7 @@ namespace ClothesAdmin
             }
             // TODO: This line of code loads data into the 'clothesDataSet.Provider' table. You can move, or remove it, as needed.
             this.providerTableAdapter.Fill(this.clothesDataSet.Provider);
-          
+
             loadData();
         }
 
@@ -55,19 +55,9 @@ namespace ClothesAdmin
             catch (Exception ex) { }
 
 
-            // TODO: This line of code loads data into the 'clothesDataSet.Product' table. You can move, or remove it, as needed.
             if (providerIdTextBox.Text != "")
                 this.productTableAdapter.FillBy1(this.clothesDataSet.Product, Convert.ToInt16(providerIdTextBox.Text));
-            // TODO: This line of code loads data into the 'clothesDataSet.ImportCouponDetail' table. You can move, or remove it, as needed.
-            this.importCouponDetailTableAdapter.Fill(this.clothesDataSet.ImportCouponDetail);
-            // TODO: This line of code loads data into the 'clothesDataSet.ImportCouponDetail' table. You can move, or remove it, as needed.
-            this.importCouponDetailTableAdapter.Fill(this.clothesDataSet.ImportCouponDetail);
-            // TODO: This line of code loads data into the 'clothesDataSet.ImportCoupon' table. You can move, or remove it, as needed.
-            // TODO: This line of code loads data into the 'clothesDataSet.Size' table. You can move, or remove it, as needed.
 
-            this.sizeTableAdapter.Fill(this.clothesDataSet.Size);
-            // TODO: This line of code loads data into the 'clothesDataSet.Color' table. You can move, or remove it, as needed.
-            this.colorTableAdapter.Fill(this.clothesDataSet.Color);// , Convert.ToInt16(productComboBox.SelectedValue), Convert.ToInt16(sizeComboBox.SelectedValue)
             cbbEmployee.SelectedValue = Program.accountLogin.idEmployee;
             if (cbbEmployee.SelectedIndex > 0)
             {
@@ -77,24 +67,22 @@ namespace ClothesAdmin
             {
                 try
                 {
-                    this.importCouponTableAdapter.FillBy(this.clothesDataSet.ImportCoupon, Convert.ToInt32(cbbEmployee .SelectedValue));
+                    this.importCouponTableAdapter.FillBy(this.clothesDataSet.ImportCoupon, Convert.ToInt32(cbbEmployee.SelectedValue));
 
                 }
                 catch (Exception ex) { }
             }
-
+            loadDataItem();
         }
 
         private void loadDataItem()
         {
-            // TODO: This line of code loads data into the 'clothesDataSet.ImportCouponDetail' table. You can move, or remove it, as needed.
             this.importCouponDetailTableAdapter.Fill(this.clothesDataSet.ImportCouponDetail);
-            // TODO: This line of code loads data into the 'clothesDataSet.ImportCouponDetail' table. You can move, or remove it, as needed.
-            this.importCouponDetailTableAdapter.Fill(this.clothesDataSet.ImportCouponDetail);
-            // TODO: This line of code loads data into the 'clothesDataSet.ImportCoupon' table. You can move, or remove it, as needed.
-            this.sizeTableAdapter.FillBy(this.clothesDataSet.Size, Convert.ToInt16(productComboBox.SelectedValue));
-            // TODO: This line of code loads data into the 'clothesDataSet.Color' table. You can move, or remove it, as needed.
-            this.colorTableAdapter.FillBy(this.clothesDataSet.Color, Convert.ToInt16(productComboBox.SelectedValue), Convert.ToInt16(sizeComboBox.SelectedValue));
+            this.sizeTableAdapter.FillBy(this.clothesDataSet.Size, 
+                Convert.ToInt16(productComboBox.SelectedValue));
+            this.colorTableAdapter.FillBy(this.clothesDataSet.Color, 
+                Convert.ToInt16(productComboBox.SelectedValue)
+                , Convert.ToInt16(sizeComboBox.SelectedValue));
         }
 
         private void btnSaveIport_Click(object sender, EventArgs e)
@@ -113,7 +101,8 @@ namespace ClothesAdmin
             {
                 MessageBox.Show("Please select a provider", "Error", MessageBoxButtons.OK);
                 return;
-            }else if (productBindingSource.Count <= 0)
+            }
+            else if (productBindingSource.Count <= 0)
             {
                 MessageBox.Show("This supplier does not have any products yet, please enter the supplier's product first", "Error", MessageBoxButtons.OK);
             }
@@ -206,22 +195,23 @@ namespace ClothesAdmin
 
         private void btnCancelAddItem_Click(object sender, EventArgs e)
         {
+            addItem = false;
             importCouponDetailBindingSource.CancelEdit();
         }
 
         private void btnSaveAddItem_Click(object sender, EventArgs e)
         {
-            if (productComboBox.SelectedIndex <= 0)
+            if (idProductSpinEdit.Value <= 0)
             {
                 MessageBox.Show("Please select a product!", "Error", MessageBoxButtons.OK);
                 return;
             }
-            else if (sizeComboBox.SelectedIndex <= 0)
+            else if (sizeIDSpinEdit.Value <= 0)
             {
                 MessageBox.Show("Please select a size for product", "Error", MessageBoxButtons.OK);
                 return;
             }
-            else if (colorComboBox.SelectedIndex <= 0)
+            else if (colorIdSpinEdit.Value <= 0)
             {
                 MessageBox.Show("Please select a color for product", "Error", MessageBoxButtons.OK);
                 return;
@@ -236,7 +226,7 @@ namespace ClothesAdmin
                 MessageBox.Show("Please input quantity ", "Error", MessageBoxButtons.OK);
                 return;
             }
-            else if (priceSpinEdit.Value <= 0)
+            else if (quantitySpinEdit.Value <= 0)
             {
                 MessageBox.Show("Please enter quantity greater than 0", "Error", MessageBoxButtons.OK);
                 return;
@@ -260,16 +250,18 @@ namespace ClothesAdmin
             }
         }
 
+        private Boolean addItem = false;
+
         private void addProductPromoToolStripMenuItem_Click(object sender, EventArgs e)
         {
             importCouponDetailBindingSource.AddNew();
-            if (productComboBox.SelectedValue != null)
+            if (productComboBox.SelectedValue != null && int.Parse(productComboBox.SelectedValue.ToString()) > 0)
                 idProductSpinEdit.Value = Convert.ToInt32(productComboBox.SelectedValue);
-            if (sizeComboBox.SelectedValue != null)
-                sizeIDTextBox.Text = sizeComboBox.SelectedValue.ToString();
-            if (colorComboBox.SelectedValue != null)
-                colorIdTextBox.Text = colorComboBox.SelectedValue.ToString();
-
+            if (sizeComboBox.SelectedValue != null && int.Parse(sizeComboBox.SelectedValue.ToString()) > 0)
+                sizeIDSpinEdit.Text = sizeComboBox.SelectedValue.ToString();
+            if (colorComboBox.SelectedValue != null && int.Parse(colorComboBox.SelectedValue.ToString()) > 0)
+                colorIdSpinEdit.Text = colorComboBox.SelectedValue.ToString();
+            addItem = true;
         }
 
         private void deleteProductPromoToolStripMenuItem_Click(object sender, EventArgs e)
@@ -281,18 +273,18 @@ namespace ClothesAdmin
             }
             else
             {
-                if (MessageBox.Show("Bạn có chắc chắn muốn xóa phiếu nhập này?", "", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                if (MessageBox.Show("Bạn có chắc chắn muốn xóa chi tiết phiếu nhập này?", "", MessageBoxButtons.YesNo) == DialogResult.Yes)
                 {
                     try
                     {
                         //phải chạy lệnh del from where mới chính xác
-                        importCouponBindingSource.RemoveCurrent();
+                        importCouponDetailBindingSource.RemoveCurrent();
                         //đẩy dữ liệu về adapter
-                        this.importCouponTableAdapter.Update(this.clothesDataSet.ImportCoupon);
+                        this.importCouponDetailTableAdapter.Update(this.clothesDataSet.ImportCouponDetail);
                     }
                     catch (Exception ex)
                     {
-                        MessageBox.Show("Lỗi xóa chi phiếu nhập" + ex.Message, "", MessageBoxButtons.OK);
+                        MessageBox.Show("Lỗi xóa chi tiết phiếu nhập" + ex.Message, "", MessageBoxButtons.OK);
                     }
                 }
             }
@@ -311,9 +303,13 @@ namespace ClothesAdmin
 
         private void productComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (productComboBox.SelectedValue != null)
+            if (productComboBox.SelectedValue != null && int.Parse(productComboBox.SelectedValue.ToString()) > 0)
+            {
                 idProductSpinEdit.Value = Convert.ToInt32(productComboBox.SelectedValue);
-
+                this.sizeTableAdapter.FillBy(this.clothesDataSet.Size,
+                    Convert.ToInt16(productComboBox.SelectedValue));
+               
+            }
         }
 
         private void employeeComboBox1_SelectedIndexChanged(object sender, EventArgs e)
@@ -333,7 +329,7 @@ namespace ClothesAdmin
                 quantitySpinEdit.Enabled = true;
                 priceSpinEdit.Enabled = true;
             }
-            else 
+            else
             {
                 btnSaveIport.Visible = false;
                 btnCancelImport.Visible = false;
@@ -366,16 +362,42 @@ namespace ClothesAdmin
             //    colorComboBox.SelectedValue = Convert.ToInt32(colorIdTextBox.Text);
         }
 
+
+        private void cbbSize_MouseClick(object sender, MouseEventArgs e)
+        {
+            if (addItem == true && (productComboBox.SelectedValue == null || int.Parse(productComboBox.SelectedValue.ToString()) <= 0))
+            {
+                MessageBox.Show("You must select product before select size", "Error", MessageBoxButtons.OK);
+                sizeComboBox.SelectedValue = -1;
+            }
+        }
+
         private void sizeComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (sizeComboBox.SelectedValue != null)
-                sizeIDTextBox.Text = sizeComboBox.SelectedValue.ToString();
+           if (sizeComboBox.SelectedValue != null)
+            {
+                sizeIDSpinEdit.Text = sizeComboBox.SelectedValue.ToString();
+                this.colorTableAdapter.FillBy(this.clothesDataSet.Color,
+                   Convert.ToInt16(productComboBox.SelectedValue)
+                   , Convert.ToInt16(sizeComboBox.SelectedValue));
+            }
+        }
+
+        private void cbbColor_MouseClick(object sender, MouseEventArgs e)
+        {
+            if (addItem == true && (productComboBox.SelectedValue == null || int.Parse(productComboBox.SelectedValue.ToString()) <= 0 ||
+                (colorComboBox.SelectedValue == null || int.Parse(colorComboBox.SelectedValue.ToString()) <= 0)))
+            {
+                MessageBox.Show("You must select product and size before select color", "Error", MessageBoxButtons.OK);
+                colorComboBox.SelectedValue = -1;
+            }
         }
 
         private void colorComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
+            
             if (colorComboBox.SelectedValue != null)
-                colorIdTextBox.Text = colorComboBox.SelectedValue.ToString();
+                colorIdSpinEdit.Text = colorComboBox.SelectedValue.ToString();
         }
 
         private void providerComboBox_SelectedIndexChanged(object sender, EventArgs e)
@@ -392,6 +414,11 @@ namespace ClothesAdmin
         }
 
         private void btnExport_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void sizeIDSpinEdit_EditValueChanged(object sender, EventArgs e)
         {
 
         }

@@ -32,6 +32,7 @@ namespace ClothesAdmin
         {
             loadData();
             productIDTextBox.Text = productID.ToString();
+            productComboBox.SelectedValue = productID;
         }
 
         private void loadData()
@@ -61,6 +62,8 @@ namespace ClothesAdmin
             try
             {
                 productSizeColorBindingSource.AddNew();
+                sizeComboBox.SelectedIndex = -1;
+                colorComboBox.SelectedIndex = -1;
                 productIDTextBox.Text = productID.ToString();
             }
             catch (Exception ex) { }
@@ -139,7 +142,14 @@ namespace ClothesAdmin
 
         private void btnCancelAddProvider_Click(object sender, EventArgs e)
         {
-            productSizeColorBindingSource.EndEdit();
+            try
+            {
+                productSizeColorBindingSource.EndEdit();
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show("Error " + ex.Message, "Error", MessageBoxButtons.OK);
+            }
         }
 
         private void colorComboBox_SelectedIndexChanged(object sender, EventArgs e)

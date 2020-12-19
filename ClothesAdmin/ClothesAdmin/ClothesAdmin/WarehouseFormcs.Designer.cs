@@ -321,7 +321,10 @@
             this.tableAdapterManager.PromotionItemTableAdapter = null;
             this.tableAdapterManager.PromotionTableAdapter = null;
             this.tableAdapterManager.ProviderTableAdapter = null;
+            this.tableAdapterManager.QuestionTableAdapter = null;
+            this.tableAdapterManager.RatingTableAdapter = null;
             this.tableAdapterManager.RoleTableAdapter = null;
+            this.tableAdapterManager.ShopInfoTableAdapter = null;
             this.tableAdapterManager.SizeTableAdapter = null;
             this.tableAdapterManager.UpdateOrder = ClothesAdmin.ClothesDataSetTableAdapters.TableAdapterManager.UpdateOrderOption.InsertUpdateDelete;
             // 
@@ -357,7 +360,7 @@
             this.colproductID.OptionsColumn.AllowEdit = false;
             this.colproductID.Visible = true;
             this.colproductID.VisibleIndex = 0;
-            this.colproductID.Width = 94;
+            this.colproductID.Width = 90;
             // 
             // coltitle
             // 
@@ -367,7 +370,7 @@
             this.coltitle.OptionsColumn.AllowEdit = false;
             this.coltitle.Visible = true;
             this.coltitle.VisibleIndex = 1;
-            this.coltitle.Width = 94;
+            this.coltitle.Width = 813;
             // 
             // colcolorName
             // 
@@ -377,7 +380,7 @@
             this.colcolorName.OptionsColumn.AllowEdit = false;
             this.colcolorName.Visible = true;
             this.colcolorName.VisibleIndex = 2;
-            this.colcolorName.Width = 94;
+            this.colcolorName.Width = 305;
             // 
             // colsizeName
             // 
@@ -387,7 +390,7 @@
             this.colsizeName.OptionsColumn.AllowEdit = false;
             this.colsizeName.Visible = true;
             this.colsizeName.VisibleIndex = 3;
-            this.colsizeName.Width = 94;
+            this.colsizeName.Width = 279;
             // 
             // colquantity
             // 
@@ -397,7 +400,7 @@
             this.colquantity.OptionsColumn.AllowEdit = false;
             this.colquantity.Visible = true;
             this.colquantity.VisibleIndex = 4;
-            this.colquantity.Width = 94;
+            this.colquantity.Width = 172;
             // 
             // categoryTableAdapter
             // 

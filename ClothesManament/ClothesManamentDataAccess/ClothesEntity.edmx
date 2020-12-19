@@ -160,12 +160,27 @@
           <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="statusName" Type="nvarchar" MaxLength="50" />
         </EntityType>
+        <EntityType Name="Notification">
+          <Key>
+            <PropertyRef Name="idNoti" />
+          </Key>
+          <Property Name="idNoti" Type="int" Nullable="false" />
+          <Property Name="contentNoti" Type="nvarchar" MaxLength="1000" />
+          <Property Name="dateNoti" Type="datetime" />
+          <Property Name="isAdmin" Type="int" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6013: The table/view 'ClothesManament.dbo.NotificationDetail' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
+        <EntityType Name="NotificationDetail">
+          <Property Name="idNoti" Type="int" />
+          <Property Name="IdAccount" Type="int" />
+        </EntityType>-->
         <EntityType Name="Product">
           <Key>
             <PropertyRef Name="id" />
           </Key>
           <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="title" Type="nvarchar" MaxLength="200" />
+          <Property Name="title" Type="nvarchar" MaxLength="200" Nullable="false" />
           <Property Name="detail" Type="nvarchar" MaxLength="500" />
           <Property Name="price" Type="float" />
           <Property Name="categoryID" Type="int" />
@@ -196,13 +211,13 @@
           </Key>
           <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="description" Type="nvarchar" MaxLength="200" />
-          <Property Name="name" Type="nvarchar" MaxLength="200" />
+          <Property Name="name" Type="nvarchar" MaxLength="200" Nullable="false" />
           <Property Name="beginDate" Type="datetime" />
           <Property Name="endDate" Type="datetime" />
-          <Property Name="value" Type="float" />
+          <Property Name="value" Type="float" Nullable="false" />
           <Property Name="imageUrl" Type="nvarchar" MaxLength="200" />
           <Property Name="type" Type="nvarchar" MaxLength="50" />
-          <Property Name="active" Type="int" />
+          <Property Name="active" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="PromotionItem">
           <Key>
@@ -264,6 +279,18 @@
           <Property Name="roleName" Type="nvarchar" MaxLength="50" />
           <Property Name="description" Type="nvarchar" MaxLength="50" />
         </EntityType>
+        <EntityType Name="ShopInfo">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="shopName" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="address" Type="nvarchar" MaxLength="200" />
+          <Property Name="addressDetail" Type="nvarchar" MaxLength="100" />
+          <Property Name="phoneNumber" Type="nvarchar" MaxLength="30" />
+          <Property Name="description" Type="nvarchar" MaxLength="2000" />
+          <Property Name="versionApp" Type="nvarchar" MaxLength="10" />
+        </EntityType>
         <EntityType Name="Size">
           <Key>
             <PropertyRef Name="id" />
@@ -282,6 +309,13 @@
           <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="version" Type="int" />
           <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="TypeNoti">
+          <Key>
+            <PropertyRef Name="idTypeNoti" />
+          </Key>
+          <Property Name="idTypeNoti" Type="int" Nullable="false" />
+          <Property Name="nameTypeNoti" Type="nvarchar" MaxLength="200" />
         </EntityType>
         <Association Name="FK_Account_Role">
           <End Role="Role" Type="Self.Role" Multiplicity="0..1" />
@@ -623,6 +657,21 @@
           <Parameter Name="phone" Type="nvarchar" Mode="In" />
           <Parameter Name="isDefault" Type="int" Mode="In" />
         </Function>
+        <Function Name="SP_AddEmployee" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="firstname" Type="nvarchar" Mode="In" />
+          <Parameter Name="lastname" Type="nvarchar" Mode="In" />
+          <Parameter Name="phone" Type="nvarchar" Mode="In" />
+          <Parameter Name="address" Type="nvarchar" Mode="In" />
+          <Parameter Name="avatar" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="birthday" Type="nvarchar" Mode="In" />
+          <Parameter Name="beginDate" Type="nvarchar" Mode="In" />
+          <Parameter Name="endDate" Type="nvarchar" Mode="In" />
+          <Parameter Name="isWorking" Type="int" Mode="In" />
+          <Parameter Name="email" Type="nvarchar" Mode="In" />
+          <Parameter Name="roleId" Type="int" Mode="In" />
+          <Parameter Name="password" Type="nvarchar" Mode="In" />
+          <Parameter Name="username" Type="nvarchar" Mode="In" />
+        </Function>
         <Function Name="SP_AddOrder" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="userId" Type="int" Mode="In" />
           <Parameter Name="address" Type="nvarchar" Mode="In" />
@@ -638,6 +687,7 @@
           <Parameter Name="colorId" Type="int" Mode="In" />
           <Parameter Name="sizeId" Type="int" Mode="In" />
           <Parameter Name="quantity" Type="int" Mode="In" />
+          <Parameter Name="price" Type="float" Mode="In" />
         </Function>
         <Function Name="SP_AddQuestion" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="accountID" Type="int" Mode="In" />
@@ -658,6 +708,10 @@
           <Parameter Name="imageUrl3" Type="nvarchar" Mode="In" />
           <Parameter Name="videoUrl" Type="nvarchar" Mode="In" />
           <Parameter Name="parentId" Type="int" Mode="In" />
+        </Function>
+        <Function Name="SP_AdminLogin" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="userName" Type="nvarchar" Mode="In" />
+          <Parameter Name="password" Type="nvarchar" Mode="In" />
         </Function>
         <Function Name="sp_alterdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
@@ -694,6 +748,9 @@
         <Function Name="SP_DelAddress" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="addressId" Type="int" Mode="In" />
         </Function>
+        <Function Name="SP_DelEmployee" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="employeeId" Type="int" Mode="In" />
+        </Function>
         <Function Name="SP_DelQuestion" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="questionId" Type="int" Mode="In" />
           <Parameter Name="isSubQuestion" Type="int" Mode="In" />
@@ -716,8 +773,18 @@
           <Parameter Name="isDefault" Type="int" Mode="In" />
           <Parameter Name="accountId" Type="int" Mode="In" />
         </Function>
+        <Function Name="SP_GetAccEmployeeInfo" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="accId" Type="int" Mode="In" />
+        </Function>
+        <Function Name="SP_GetAllAcc" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="accId" Type="int" Mode="In" />
+        </Function>
         <Function Name="SP_GetAllAddress" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="userId" Type="int" Mode="In" />
+        </Function>
+        <Function Name="SP_GetAllEmployee" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="accId" Type="int" Mode="In" />
+          <Parameter Name="strSearch" Type="nvarchar" Mode="In" />
         </Function>
         <Function Name="SP_GetAllInvoice" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="statusId" Type="int" Mode="In" />
@@ -742,6 +809,11 @@
         </Function>
         <Function Name="SP_GetFavoriteProductsCount" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="accountId" Type="int" Mode="In" />
+        </Function>
+        <Function Name="SP_GetInvoice" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="statusOrderId" Type="int" Mode="In" />
+          <Parameter Name="beginDate" Type="nvarchar" Mode="In" />
+          <Parameter Name="endDate" Type="nvarchar" Mode="In" />
         </Function>
         <Function Name="SP_GetInvoiceDetail" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="inovoiceId" Type="int" Mode="In" />
@@ -808,6 +880,10 @@
           <Parameter Name="AccountID" Type="int" Mode="In" />
           <Parameter Name="sortBy" Type="int" Mode="In" />
         </Function>
+        <Function Name="SP_GetProfit" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="year" Type="int" Mode="In" />
+          <Parameter Name="month" Type="int" Mode="In" />
+        </Function>
         <Function Name="SP_GetProviderDetail" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="providerId" Type="int" Mode="In" />
         </Function>
@@ -834,6 +910,10 @@
         <Function Name="SP_GetRatingsCount" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="productId" Type="int" Mode="In" />
         </Function>
+        <Function Name="SP_GetRevenueMonth" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="year" Type="int" Mode="In" />
+          <Parameter Name="month" Type="int" Mode="In" />
+        </Function>
         <Function Name="SP_GetShopInfo" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="SP_GetSizesColorsOfProduct" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="productId" Type="int" Mode="In" />
@@ -858,6 +938,10 @@
         <Function Name="SP_ImagesOfProduct" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="productID" Type="int" Mode="In" />
         </Function>
+        <Function Name="SP_InventoryProduct" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="categoryId" Type="int" Mode="In" />
+          <Parameter Name="providerID" Type="int" Mode="In" />
+        </Function>
         <Function Name="SP_Login" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="userName" Type="nvarchar" Mode="In" />
           <Parameter Name="password" Type="nvarchar" Mode="In" />
@@ -881,6 +965,9 @@
           <Parameter Name="owner_id" Type="int" Mode="In" />
           <Parameter Name="new_diagramname" Type="nvarchar" Mode="In" />
         </Function>
+        <Function Name="SP_ReportGetInvoiceDetail" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="invoiceId" Type="int" Mode="In" />
+        </Function>
         <Function Name="SP_SearchFilter" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="keySearch" Type="nvarchar" Mode="In" />
           <Parameter Name="currentPage" Type="int" Mode="In" />
@@ -894,11 +981,36 @@
         <Function Name="SP_SearchFilterCounter" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="keySearch" Type="nvarchar" Mode="In" />
         </Function>
+        <Function Name="SP_StatisticProduct" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="type" Type="int" Mode="In" />
+          <Parameter Name="top" Type="int" Mode="In" />
+          <Parameter Name="categoryId" Type="int" Mode="In" />
+          <Parameter Name="providerId" Type="int" Mode="In" />
+          <Parameter Name="dateBegin" Type="date" Mode="In" />
+          <Parameter Name="dateEnd" Type="date" Mode="In" />
+        </Function>
         <Function Name="SP_UpdateAccInfo" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="userId" Type="int" Mode="In" />
           <Parameter Name="name" Type="nvarchar" Mode="In" />
           <Parameter Name="phone" Type="nvarchar" Mode="In" />
           <Parameter Name="email" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="SP_UpdateEmployee" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="employeeId" Type="int" Mode="In" />
+          <Parameter Name="firstname" Type="nvarchar" Mode="In" />
+          <Parameter Name="lastname" Type="nvarchar" Mode="In" />
+          <Parameter Name="phone" Type="nvarchar" Mode="In" />
+          <Parameter Name="address" Type="nvarchar" Mode="In" />
+          <Parameter Name="avatar" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="birthday" Type="nvarchar" Mode="In" />
+          <Parameter Name="beginDate" Type="nvarchar" Mode="In" />
+          <Parameter Name="endDate" Type="nvarchar" Mode="In" />
+          <Parameter Name="isWorking" Type="int" Mode="In" />
+          <Parameter Name="email" Type="nvarchar" Mode="In" />
+          <Parameter Name="roleId" Type="int" Mode="In" />
+          <Parameter Name="password" Type="nvarchar" Mode="In" />
+          <Parameter Name="username" Type="nvarchar" Mode="In" />
+          <Parameter Name="accountId" Type="int" Mode="In" />
         </Function>
         <Function Name="SP_UpdateQuestion" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="questionID" Type="int" Mode="In" />
@@ -927,6 +1039,11 @@
         <Function Name="SPGetAccountInfoUserIDEmployee" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="userId" Type="int" Mode="In" />
         </Function>
+        <Function Name="ValidatePromotionCampaignDates" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="bit">
+          <Parameter Name="promotionId" Type="int" Mode="In" />
+          <Parameter Name="promotionStart" Type="datetime" Mode="In" />
+          <Parameter Name="promotionEnd" Type="datetime" Mode="In" />
+        </Function>
         <EntityContainer Name="ClothesManamentModel1StoreContainer">
           <EntitySet Name="Account" EntityType="Self.Account" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Address" EntityType="Self.Address" Schema="dbo" store:Type="Tables" />
@@ -941,6 +1058,7 @@
           <EntitySet Name="Invoice" EntityType="Self.Invoice" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="InvoiceItem" EntityType="Self.InvoiceItem" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="InvoiceStatus" EntityType="Self.InvoiceStatus" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Notification" EntityType="Self.Notification" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Product" EntityType="Self.Product" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ProductSizeColor" EntityType="Self.ProductSizeColor" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Promotion" EntityType="Self.Promotion" Schema="dbo" store:Type="Tables" />
@@ -949,8 +1067,10 @@
           <EntitySet Name="Question" EntityType="Self.Question" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Rating" EntityType="Self.Rating" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Role" EntityType="Self.Role" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ShopInfo" EntityType="Self.ShopInfo" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Size" EntityType="Self.Size" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TypeNoti" EntityType="Self.TypeNoti" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK_Account_Role" Association="Self.FK_Account_Role">
             <End Role="Role" EntitySet="Role" />
             <End Role="Account" EntitySet="Account" />
@@ -1082,6 +1202,7 @@
             <Parameter Name="colorId" Mode="In" Type="Int32" />
             <Parameter Name="sizeId" Mode="In" Type="Int32" />
             <Parameter Name="quantity" Mode="In" Type="Int32" />
+            <Parameter Name="price" Mode="In" Type="Double" />
           </FunctionImport>
           <FunctionImport Name="sp_alterdiagram">
             <Parameter Name="diagramname" Mode="In" Type="String" />
@@ -1124,7 +1245,7 @@
             <Parameter Name="productID" Mode="In" Type="Int32" />
             <Parameter Name="AccountID" Mode="In" Type="Int32" />
           </FunctionImport>
-          <FunctionImport Name="SP_GetProductInfoDetail" ReturnType="Collection(ClothesManamentModel1.SP_GetProductInfoDetail_Result1)">
+          <FunctionImport Name="SP_GetProductInfoDetail" ReturnType="Collection(ClothesManamentModel1.SP_GetProductInfoDetail_Result2)">
             <Parameter Name="productID" Mode="In" Type="Int32" />
             <Parameter Name="AccountID" Mode="In" Type="Int32" />
           </FunctionImport>
@@ -1524,7 +1645,87 @@
             <Parameter Name="password" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="SPGetAccountInfoUserIDEmployee" ReturnType="Collection(ClothesManamentModel1.SPGetAccountInfoUserIDEmployee_Result)">
-            <Parameter Name="userId" Mode="In" Type="Int32" />
+          <Parameter Name="userId" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <EntitySet Name="Notifications" EntityType="ClothesManamentModel1.Notification" />
+          <EntitySet Name="ShopInfoes" EntityType="ClothesManamentModel1.ShopInfo" />
+          <EntitySet Name="TypeNotis" EntityType="ClothesManamentModel1.TypeNoti" />
+          <FunctionImport Name="SP_AddEmployee" ReturnType="Collection(ClothesManamentModel1.SP_AddEmployee_Result)">
+            <Parameter Name="firstname" Mode="In" Type="String" />
+            <Parameter Name="lastname" Mode="In" Type="String" />
+            <Parameter Name="phone" Mode="In" Type="String" />
+            <Parameter Name="address" Mode="In" Type="String" />
+            <Parameter Name="avatar" Mode="In" Type="String" />
+            <Parameter Name="birthday" Mode="In" Type="String" />
+            <Parameter Name="beginDate" Mode="In" Type="String" />
+            <Parameter Name="endDate" Mode="In" Type="String" />
+            <Parameter Name="isWorking" Mode="In" Type="Int32" />
+            <Parameter Name="email" Mode="In" Type="String" />
+            <Parameter Name="roleId" Mode="In" Type="Int32" />
+            <Parameter Name="password" Mode="In" Type="String" />
+            <Parameter Name="username" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="SP_AdminLogin" ReturnType="Collection(Int32)">
+            <Parameter Name="userName" Mode="In" Type="String" />
+            <Parameter Name="password" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="SP_DelEmployee">
+            <Parameter Name="employeeId" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="SP_GetAccEmployeeInfo" ReturnType="Collection(ClothesManamentModel1.SP_GetAccEmployeeInfo_Result)">
+            <Parameter Name="accId" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="SP_GetAllAcc" ReturnType="Collection(ClothesManamentModel1.SP_GetAllAcc_Result)">
+            <Parameter Name="accId" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="SP_GetAllEmployee" ReturnType="Collection(ClothesManamentModel1.SP_GetAllEmployee_Result)">
+            <Parameter Name="accId" Mode="In" Type="Int32" />
+            <Parameter Name="strSearch" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="SP_GetInvoice" ReturnType="Collection(ClothesManamentModel1.SP_GetInvoice_Result)">
+            <Parameter Name="statusOrderId" Mode="In" Type="Int32" />
+            <Parameter Name="beginDate" Mode="In" Type="String" />
+            <Parameter Name="endDate" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="SP_GetProfit" ReturnType="Collection(Double)">
+            <Parameter Name="year" Mode="In" Type="Int32" />
+            <Parameter Name="month" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="SP_GetRevenueMonth" ReturnType="Collection(Double)">
+            <Parameter Name="year" Mode="In" Type="Int32" />
+            <Parameter Name="month" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="SP_InventoryProduct" ReturnType="Collection(ClothesManamentModel1.SP_InventoryProduct_Result)">
+            <Parameter Name="categoryId" Mode="In" Type="Int32" />
+            <Parameter Name="providerID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="SP_ReportGetInvoiceDetail" ReturnType="Collection(ClothesManamentModel1.SP_ReportGetInvoiceDetail_Result)">
+            <Parameter Name="invoiceId" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="SP_StatisticProduct" ReturnType="Collection(ClothesManamentModel1.SP_StatisticProduct_Result)">
+            <Parameter Name="type" Mode="In" Type="Int32" />
+            <Parameter Name="top" Mode="In" Type="Int32" />
+            <Parameter Name="categoryId" Mode="In" Type="Int32" />
+            <Parameter Name="providerId" Mode="In" Type="Int32" />
+            <Parameter Name="dateBegin" Mode="In" Type="DateTime" />
+            <Parameter Name="dateEnd" Mode="In" Type="DateTime" />
+          </FunctionImport>
+          <FunctionImport Name="SP_UpdateEmployee" ReturnType="Collection(ClothesManamentModel1.SP_UpdateEmployee_Result)">
+            <Parameter Name="employeeId" Mode="In" Type="Int32" />
+            <Parameter Name="firstname" Mode="In" Type="String" />
+            <Parameter Name="lastname" Mode="In" Type="String" />
+            <Parameter Name="phone" Mode="In" Type="String" />
+            <Parameter Name="address" Mode="In" Type="String" />
+            <Parameter Name="avatar" Mode="In" Type="String" />
+            <Parameter Name="birthday" Mode="In" Type="String" />
+            <Parameter Name="beginDate" Mode="In" Type="String" />
+            <Parameter Name="endDate" Mode="In" Type="String" />
+            <Parameter Name="isWorking" Mode="In" Type="Int32" />
+            <Parameter Name="email" Mode="In" Type="String" />
+            <Parameter Name="roleId" Mode="In" Type="Int32" />
+            <Parameter Name="password" Mode="In" Type="String" />
+            <Parameter Name="username" Mode="In" Type="String" />
+            <Parameter Name="accountId" Mode="In" Type="Int32" />
           </FunctionImport>
           </EntityContainer>
         <ComplexType Name="getCategoryByGender_Result">
@@ -2223,7 +2424,7 @@
             <PropertyRef Name="id" />
           </Key>
           <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="title" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="title" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="detail" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
           <Property Name="price" Type="Double" />
           <Property Name="categoryID" Type="Int32" />
@@ -2265,12 +2466,12 @@
           </Key>
           <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="description" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
-          <Property Name="name" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="name" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="beginDate" Type="DateTime" Precision="3" />
           <Property Name="endDate" Type="DateTime" Precision="3" />
-          <Property Name="value" Type="Double" />
+          <Property Name="value" Type="Double" Nullable="false" />
           <Property Name="imageUrl" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
-          <Property Name="active" Type="Int32" />
+          <Property Name="active" Type="Int32" Nullable="false" />
           <Property Name="type" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Products" Relationship="ClothesManamentModel1.PromotionItem" FromRole="Promotion" ToRole="Product" />
         </EntityType>
@@ -2693,6 +2894,120 @@
           <Property Type="String" Name="imageUrl" Nullable="true" MaxLength="500" />
           <Property Type="Int32" Name="active" Nullable="true" />
         </ComplexType>
+        <ComplexType Name="SP_GetProductInfoDetail_Result2">
+          <Property Type="Int32" Name="id" Nullable="false" />
+          <Property Type="String" Name="title" Nullable="false" MaxLength="200" />
+          <Property Type="String" Name="detail" Nullable="true" MaxLength="500" />
+          <Property Type="Double" Name="price" Nullable="true" />
+          <Property Type="Int32" Name="categoryID" Nullable="true" />
+          <Property Type="Int32" Name="sold" Nullable="true" />
+          <Property Type="Int32" Name="rating" Nullable="true" />
+          <Property Type="Int32" Name="active" Nullable="true" />
+          <Property Type="Int32" Name="providerId" Nullable="true" />
+          <Property Type="String" Name="thumnail" Nullable="true" MaxLength="200" />
+          <Property Type="Int32" Name="isNew" Nullable="true" />
+          <Property Type="DateTime" Name="addDate" Nullable="false" />
+          <Property Type="Int32" Name="isLike" Nullable="false" />
+          <Property Type="Double" Name="promotion" Nullable="true" />
+          <Property Type="String" Name="typePromotion" Nullable="true" MaxLength="50" />
+        </ComplexType>
+        <EntityType Name="Notification">
+          <Key>
+            <PropertyRef Name="idNoti" />
+          </Key>
+          <Property Name="idNoti" Type="Int32" Nullable="false" />
+          <Property Name="contentNoti" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+          <Property Name="dateNoti" Type="DateTime" Precision="3" />
+          <Property Name="isAdmin" Type="Int32" />
+        </EntityType>
+        <EntityType Name="ShopInfo">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="shopName" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="address" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="addressDetail" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="phoneNumber" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="description" Type="String" MaxLength="2000" FixedLength="false" Unicode="true" />
+          <Property Name="versionApp" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="TypeNoti">
+          <Key>
+            <PropertyRef Name="idTypeNoti" />
+          </Key>
+          <Property Name="idTypeNoti" Type="Int32" Nullable="false" />
+          <Property Name="nameTypeNoti" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <ComplexType Name="SP_AddEmployee_Result">
+          <Property Type="Int32" Name="Column1" Nullable="false" />
+          <Property Type="String" Name="message" Nullable="false" MaxLength="45" />
+        </ComplexType>
+        <ComplexType Name="SP_GetAccEmployeeInfo_Result">
+          <Property Type="Int32" Name="id" Nullable="false" />
+          <Property Type="String" Name="email" Nullable="true" MaxLength="200" />
+          <Property Type="Int32" Name="roleId" Nullable="true" />
+          <Property Type="String" Name="password" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="username" Nullable="true" MaxLength="50" />
+        </ComplexType>
+        <ComplexType Name="SP_GetAllAcc_Result">
+          <Property Type="Int32" Name="id" Nullable="false" />
+          <Property Type="String" Name="email" Nullable="true" MaxLength="200" />
+          <Property Type="Int32" Name="roleId" Nullable="true" />
+          <Property Type="String" Name="password" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="username" Nullable="true" MaxLength="50" />
+          <Property Type="Int32" Name="isAccuracy" Nullable="true" />
+          <Property Type="Int32" Name="active" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="SP_GetAllEmployee_Result">
+          <Property Type="Int32" Name="id" Nullable="false" />
+          <Property Type="String" Name="lastName" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="firstName" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="phone" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="address" Nullable="true" MaxLength="200" />
+          <Property Type="DateTime" Name="birthday" Nullable="true" />
+          <Property Type="String" Name="avatar" Nullable="true" MaxLength="500" />
+          <Property Type="DateTime" Name="dateBegin" Nullable="true" />
+          <Property Type="DateTime" Name="dateEnd" Nullable="true" />
+          <Property Type="Int32" Name="isWorking" Nullable="true" />
+          <Property Type="Int32" Name="idAccount" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="SP_GetInvoice_Result">
+          <Property Type="Int32" Name="totalInvoice" Nullable="true" />
+          <Property Type="Double" Name="totalPrice" Nullable="true" />
+          <Property Type="Int32" Name="totalProduct" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="SP_InventoryProduct_Result">
+          <Property Type="Int32" Name="productID" Nullable="false" />
+          <Property Type="String" Name="title" Nullable="false" MaxLength="200" />
+          <Property Type="String" Name="colorName" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="sizeName" Nullable="true" MaxLength="50" />
+          <Property Type="Int32" Name="quantity" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="SP_ReportGetInvoiceDetail_Result">
+          <Property Type="Int64" Name="STT" Nullable="true" />
+          <Property Type="Int32" Name="ProductId" Nullable="false" />
+          <Property Type="String" Name="ProductName" Nullable="false" MaxLength="200" />
+          <Property Type="String" Name="Color" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Size" Nullable="true" MaxLength="50" />
+          <Property Type="Int32" Name="Quantity" Nullable="true" />
+          <Property Type="String" Name="Price" Nullable="true" MaxLength="4000" />
+        </ComplexType>
+        <ComplexType Name="SP_StatisticProduct_Result">
+          <Property Type="Int32" Name="productId" Nullable="false" />
+          <Property Type="String" Name="Color" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Size" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="title" Nullable="false" MaxLength="200" />
+          <Property Type="Double" Name="price" Nullable="true" />
+          <Property Type="String" Name="Category" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Provider" Nullable="true" MaxLength="50" />
+          <Property Type="DateTime" Name="addDate" Nullable="false" />
+          <Property Type="Int32" Name="sold" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="SP_UpdateEmployee_Result">
+          <Property Type="Int32" Name="Column1" Nullable="false" />
+          <Property Type="String" Name="message" Nullable="false" MaxLength="45" />
+        </ComplexType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -2774,7 +3089,7 @@
           <FunctionImportMapping FunctionImportName="SP_GetFavoriteProductsCount" FunctionName="ClothesManamentModel1.Store.SP_GetFavoriteProductsCount" />
           <FunctionImportMapping FunctionImportName="SP_GetProductInfoDetail" FunctionName="ClothesManamentModel1.Store.SP_GetProductInfoDetail" >
           <ResultMapping>
-              <ComplexTypeMapping TypeName="ClothesManamentModel1.SP_GetProductInfoDetail_Result1">
+              <ComplexTypeMapping TypeName="ClothesManamentModel1.SP_GetProductInfoDetail_Result2">
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="title" ColumnName="title" />
                 <ScalarProperty Name="detail" ColumnName="detail" />
@@ -3505,6 +3820,146 @@
                 <ScalarProperty Name="username" ColumnName="username" />
                 <ScalarProperty Name="imageUrl" ColumnName="imageUrl" />
                 <ScalarProperty Name="active" ColumnName="active" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <EntitySetMapping Name="Notifications">
+            <EntityTypeMapping TypeName="ClothesManamentModel1.Notification">
+              <MappingFragment StoreEntitySet="Notification">
+                <ScalarProperty Name="isAdmin" ColumnName="isAdmin" />
+                <ScalarProperty Name="dateNoti" ColumnName="dateNoti" />
+                <ScalarProperty Name="contentNoti" ColumnName="contentNoti" />
+                <ScalarProperty Name="idNoti" ColumnName="idNoti" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ShopInfoes">
+            <EntityTypeMapping TypeName="ClothesManamentModel1.ShopInfo">
+              <MappingFragment StoreEntitySet="ShopInfo">
+                <ScalarProperty Name="versionApp" ColumnName="versionApp" />
+                <ScalarProperty Name="description" ColumnName="description" />
+                <ScalarProperty Name="phoneNumber" ColumnName="phoneNumber" />
+                <ScalarProperty Name="addressDetail" ColumnName="addressDetail" />
+                <ScalarProperty Name="address" ColumnName="address" />
+                <ScalarProperty Name="shopName" ColumnName="shopName" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TypeNotis">
+            <EntityTypeMapping TypeName="ClothesManamentModel1.TypeNoti">
+              <MappingFragment StoreEntitySet="TypeNoti">
+                <ScalarProperty Name="nameTypeNoti" ColumnName="nameTypeNoti" />
+                <ScalarProperty Name="idTypeNoti" ColumnName="idTypeNoti" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="SP_AddEmployee" FunctionName="ClothesManamentModel1.Store.SP_AddEmployee">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ClothesManamentModel1.SP_AddEmployee_Result">
+                <ScalarProperty Name="Column1" ColumnName="Column1" />
+                <ScalarProperty Name="message" ColumnName="message" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SP_AdminLogin" FunctionName="ClothesManamentModel1.Store.SP_AdminLogin" />
+          <FunctionImportMapping FunctionImportName="SP_DelEmployee" FunctionName="ClothesManamentModel1.Store.SP_DelEmployee" />
+          <FunctionImportMapping FunctionImportName="SP_GetAccEmployeeInfo" FunctionName="ClothesManamentModel1.Store.SP_GetAccEmployeeInfo">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ClothesManamentModel1.SP_GetAccEmployeeInfo_Result">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="roleId" ColumnName="roleId" />
+                <ScalarProperty Name="password" ColumnName="password" />
+                <ScalarProperty Name="username" ColumnName="username" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SP_GetAllAcc" FunctionName="ClothesManamentModel1.Store.SP_GetAllAcc">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ClothesManamentModel1.SP_GetAllAcc_Result">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="roleId" ColumnName="roleId" />
+                <ScalarProperty Name="password" ColumnName="password" />
+                <ScalarProperty Name="username" ColumnName="username" />
+                <ScalarProperty Name="isAccuracy" ColumnName="isAccuracy" />
+                <ScalarProperty Name="active" ColumnName="active" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SP_GetAllEmployee" FunctionName="ClothesManamentModel1.Store.SP_GetAllEmployee">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ClothesManamentModel1.SP_GetAllEmployee_Result">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="lastName" ColumnName="lastName" />
+                <ScalarProperty Name="firstName" ColumnName="firstName" />
+                <ScalarProperty Name="phone" ColumnName="phone" />
+                <ScalarProperty Name="address" ColumnName="address" />
+                <ScalarProperty Name="birthday" ColumnName="birthday" />
+                <ScalarProperty Name="avatar" ColumnName="avatar" />
+                <ScalarProperty Name="dateBegin" ColumnName="dateBegin" />
+                <ScalarProperty Name="dateEnd" ColumnName="dateEnd" />
+                <ScalarProperty Name="isWorking" ColumnName="isWorking" />
+                <ScalarProperty Name="idAccount" ColumnName="idAccount" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SP_GetInvoice" FunctionName="ClothesManamentModel1.Store.SP_GetInvoice">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ClothesManamentModel1.SP_GetInvoice_Result">
+                <ScalarProperty Name="totalInvoice" ColumnName="totalInvoice" />
+                <ScalarProperty Name="totalPrice" ColumnName="totalPrice" />
+                <ScalarProperty Name="totalProduct" ColumnName="totalProduct" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SP_GetProfit" FunctionName="ClothesManamentModel1.Store.SP_GetProfit" />
+          <FunctionImportMapping FunctionImportName="SP_GetRevenueMonth" FunctionName="ClothesManamentModel1.Store.SP_GetRevenueMonth" />
+          <FunctionImportMapping FunctionImportName="SP_InventoryProduct" FunctionName="ClothesManamentModel1.Store.SP_InventoryProduct">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ClothesManamentModel1.SP_InventoryProduct_Result">
+                <ScalarProperty Name="productID" ColumnName="productID" />
+                <ScalarProperty Name="title" ColumnName="title" />
+                <ScalarProperty Name="colorName" ColumnName="colorName" />
+                <ScalarProperty Name="sizeName" ColumnName="sizeName" />
+                <ScalarProperty Name="quantity" ColumnName="quantity" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SP_ReportGetInvoiceDetail" FunctionName="ClothesManamentModel1.Store.SP_ReportGetInvoiceDetail">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ClothesManamentModel1.SP_ReportGetInvoiceDetail_Result">
+                <ScalarProperty Name="STT" ColumnName="STT" />
+                <ScalarProperty Name="ProductId" ColumnName="ProductId" />
+                <ScalarProperty Name="ProductName" ColumnName="ProductName" />
+                <ScalarProperty Name="Color" ColumnName="Color" />
+                <ScalarProperty Name="Size" ColumnName="Size" />
+                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SP_StatisticProduct" FunctionName="ClothesManamentModel1.Store.SP_StatisticProduct">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ClothesManamentModel1.SP_StatisticProduct_Result">
+                <ScalarProperty Name="productId" ColumnName="productId" />
+                <ScalarProperty Name="Color" ColumnName="Color" />
+                <ScalarProperty Name="Size" ColumnName="Size" />
+                <ScalarProperty Name="title" ColumnName="title" />
+                <ScalarProperty Name="price" ColumnName="price" />
+                <ScalarProperty Name="Category" ColumnName="Category" />
+                <ScalarProperty Name="Provider" ColumnName="Provider" />
+                <ScalarProperty Name="addDate" ColumnName="addDate" />
+                <ScalarProperty Name="sold" ColumnName="sold" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SP_UpdateEmployee" FunctionName="ClothesManamentModel1.Store.SP_UpdateEmployee">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ClothesManamentModel1.SP_UpdateEmployee_Result">
+                <ScalarProperty Name="Column1" ColumnName="Column1" />
+                <ScalarProperty Name="message" ColumnName="message" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>

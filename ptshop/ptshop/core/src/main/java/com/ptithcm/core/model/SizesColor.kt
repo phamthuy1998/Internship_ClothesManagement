@@ -10,5 +10,7 @@ data class SizesColor(
     var productID: Int?,
     var quantity: Int?,
     var sizeId: Int?,
+    var price: Double?=0.0,
     var sizeName: String?
 ) : Parcelable
+

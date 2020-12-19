@@ -107,15 +107,22 @@ class CheckoutFragment : BaseFragment<FragmentCheckoutBinding>(), View.OnClickLi
     }
 
     override fun bindViewModelOnce() {
-        basketViewModel.cartResult.observe(this, Observer {
+        basketViewModel.cartResult.observe(this, Observer { productCart ->
             if (viewBinding.btnCheckOut.isLoading) {
                 val cart = CoreApplication.instance.cart ?: return@Observer
+
+                val products = cart.products.map { it.quantityInCart }
+                products.forEach { product ->
+                    product?.price = productCart.find { pr -> pr.id == product?.productID }
+                        ?.getProductDiscountPrice()
+                }
                 val checkoutParam = RequestCheckoutParam(
                     accountID = CoreApplication.instance.account?.id,
                     address = cart.shippingAddress?.getFullAddress(),
+                    price = total,
                     name = cart.shippingAddress?.name,
                     phone = cart.shippingAddress?.phone,
-                    products = cart.products.map { it.quantityInCart },
+                    products = products,
                     note = viewBinding.includeNote.edtNote.text?.toString(),
                     tokenCard = null
                 )
@@ -126,11 +133,11 @@ class CheckoutFragment : BaseFragment<FragmentCheckoutBinding>(), View.OnClickLi
                 return@Observer
             }
 
-            productCheckoutAdapter.addToList(it)
+            productCheckoutAdapter.addToList(productCart)
             viewBinding.swipeRfCheckout.setRefreshing(false)
             viewBinding.btnCheckOut.visible()
             setTaxCheckout()
-            val indexOfItemChanged = it.indexOfFirst { it.hasChanged }
+            val indexOfItemChanged = productCart.indexOfFirst { it.hasChanged }
             if (indexOfItemChanged != -1) {
                 (requireActivity() as? BaseActivity<*>)?.showPopup(
                     PopUp(
@@ -206,13 +213,14 @@ class CheckoutFragment : BaseFragment<FragmentCheckoutBinding>(), View.OnClickLi
             }
 
             R.id.includePayment -> {
-                navController.navigateAnimation(
-                    R.id.creditCardDetailFragment,
-                    bundle = bundleOf(
-                        KEY_ARGUMENT_BOOLEAN to true,
-                        "card" to ObjectHandler.cart?.creditCard
+                if (viewBinding.includePayment.spinnerDelivery.selectedItemPosition == 2)
+                    navController.navigateAnimation(
+                        R.id.creditCardDetailFragment,
+                        bundle = bundleOf(
+                            KEY_ARGUMENT_BOOLEAN to true,
+                            "card" to ObjectHandler.cart?.creditCard
+                        )
                     )
-                )
             }
 
             R.id.btnOk -> {
@@ -294,22 +302,23 @@ class CheckoutFragment : BaseFragment<FragmentCheckoutBinding>(), View.OnClickLi
         }
     }
 
+    var total = 0.0
     private fun setTaxCheckout() {
         isCallApi = false
         // reset total price
         var sum = 0.0
         var sumDiscount = 0.0
-        var total = 0.0
         CoreApplication.instance.cart?.products?.forEach {
             sum += (it.price ?: 0.0) * (it.quantityInCart?.quantity ?: 1)
 
             when (it.typePromotion) {
                 PromotionType.PERCENT -> {
-                    val discount = (it.price ?: 0.0) * (it.valuePromotion ?: 0.0)
+                    val discount = (it.price ?: 0.0) * (it.valuePromotion
+                        ?: 0.0) * (it.quantityInCart?.quantity ?: 0)
                     sumDiscount += discount
                 }
                 PromotionType.ABSOLUTE -> {
-                    sumDiscount += it.valuePromotion ?: 0.0
+                    sumDiscount += (it.valuePromotion ?: 0.0) * (it.quantityInCart?.quantity ?: 0)
                 }
             }
         }

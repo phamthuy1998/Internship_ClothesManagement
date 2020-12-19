@@ -11,6 +11,7 @@ namespace ClothesManament.Models
         public int colorId { set; get; }
         public int sizeId { set; get; }
         public int quantity { set; get; }
+        public Double price { set; get; }
 
 
     }

@@ -642,6 +642,16 @@
     <None Include="Resources\revenue.png" />
     <None Include="Resources\profit.png" />
     <None Include="Resources\backup.png" />
+    <None Include="Resources\sale.png" />
+    <None Include="Resources\provider.png" />
+    <None Include="Resources\category1.png" />
+    <None Include="Resources\invoices.png" />
+    <None Include="Resources\import.png" />
+    <None Include="Resources\employee.png" />
+    <None Include="Resources\shop.png" />
+    <None Include="Resources\category2.png" />
+    <None Include="Resources\categories.png" />
+    <None Include="Resources\inventory.png" />
     <Content Include="Resources\warehouse.png" />
     <None Include="Resources\warehouse1.png" />
     <Content Include="SqlServerTypes\readme.htm" />

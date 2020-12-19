@@ -60,6 +60,11 @@ class CategoriesDetailFragment : BaseFragment<FragmentCategoriesDetailBinding>()
         initScroll()
         intiAdapter()
         viewBinding.btnFab.setOnClickListener(this)
+        viewBinding.container.setOnRefreshListener {
+            filterParam = viewModelRefine.filterLiveData.value?.first
+            initRequest(filterParam?:Filter())
+            viewBinding.container.isRefreshing = false
+        }
     }
 
     override fun bindViewModel() {

@@ -2,6 +2,7 @@ package com.ptithcm.ptshop.base
 
 import android.app.Activity
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -12,6 +13,7 @@ import androidx.databinding.ViewDataBinding
 import androidx.fragment.app.Fragment
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
+import com.ptithcm.core.BuildConfig
 import com.ptithcm.core.CoreApplication
 import com.ptithcm.ptshop.ext.isShowErrorNetwork
 import com.ptithcm.ptshop.util.ShowMessageHandler
@@ -29,6 +31,9 @@ abstract class BaseFragment<ViewBinding: ViewDataBinding> : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         bindViewModelOnce()
+        if(BuildConfig.DEBUG){
+            Log.d("annna", this.javaClass.name)
+        }
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {

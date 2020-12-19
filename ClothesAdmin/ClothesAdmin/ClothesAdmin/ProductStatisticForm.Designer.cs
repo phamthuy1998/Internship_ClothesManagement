@@ -144,7 +144,7 @@
             // label6
             // 
             label6.AutoSize = true;
-            label6.Location = new System.Drawing.Point(74, 114);
+            label6.Location = new System.Drawing.Point(74, 101);
             label6.Name = "label6";
             label6.Size = new System.Drawing.Size(65, 17);
             label6.TabIndex = 67;
@@ -406,7 +406,7 @@
             // cbCategory
             // 
             this.cbCategory.AutoSize = true;
-            this.cbCategory.Location = new System.Drawing.Point(50, 115);
+            this.cbCategory.Location = new System.Drawing.Point(50, 102);
             this.cbCategory.Name = "cbCategory";
             this.cbCategory.Size = new System.Drawing.Size(18, 17);
             this.cbCategory.TabIndex = 73;
@@ -437,7 +437,7 @@
             this.categoryComboBox.DisplayMember = "name";
             this.categoryComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.categoryComboBox.FormattingEnabled = true;
-            this.categoryComboBox.Location = new System.Drawing.Point(161, 111);
+            this.categoryComboBox.Location = new System.Drawing.Point(161, 98);
             this.categoryComboBox.Name = "categoryComboBox";
             this.categoryComboBox.Size = new System.Drawing.Size(313, 24);
             this.categoryComboBox.TabIndex = 72;
@@ -533,7 +533,10 @@
             this.tableAdapterManager.PromotionItemTableAdapter = null;
             this.tableAdapterManager.PromotionTableAdapter = null;
             this.tableAdapterManager.ProviderTableAdapter = null;
+            this.tableAdapterManager.QuestionTableAdapter = null;
+            this.tableAdapterManager.RatingTableAdapter = null;
             this.tableAdapterManager.RoleTableAdapter = null;
+            this.tableAdapterManager.ShopInfoTableAdapter = null;
             this.tableAdapterManager.SizeTableAdapter = null;
             this.tableAdapterManager.UpdateOrder = ClothesAdmin.ClothesDataSetTableAdapters.TableAdapterManager.UpdateOrderOption.InsertUpdateDelete;
             // 

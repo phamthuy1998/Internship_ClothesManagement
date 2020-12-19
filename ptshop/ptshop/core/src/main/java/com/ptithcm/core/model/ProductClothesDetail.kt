@@ -36,6 +36,13 @@ data class ProductClothesDetail(
     var hasChangedQuantity: Boolean = false
 ) : ItemViewModel, Parcelable {
 
+    fun getProductDiscountPrice(): Double? =
+        if (typePromotion == PromotionType.ABSOLUTE) {
+            price?.minus(valuePromotion ?: 0.0)
+        } else {
+            price?.minus((valuePromotion ?: 0.0).times(price ?: 0.0))
+        }
+
     fun copyProd(newProd: ProductClothesDetail) {
         colors = newProd.colors
         images = newProd.images

@@ -40,6 +40,10 @@ namespace ClothesAdmin
 
         private void MainForm_Load(object sender, EventArgs e)
         {
+            FormBorderStyle = FormBorderStyle.None;
+            Left = Top = 0;
+            Width = Screen.PrimaryScreen.WorkingArea.Width;
+            Height = Screen.PrimaryScreen.WorkingArea.Height;
             // TODO: This line of code loads data into the 'clothesDataSet.Account' table. You can move, or remove it, as needed.
             this.accountTableAdapter.Fill(this.clothesDataSet.Account);
             // TODO: This line of code loads data into the 'clothesDataSet.Employee' table. You can move, or remove it, as needed.

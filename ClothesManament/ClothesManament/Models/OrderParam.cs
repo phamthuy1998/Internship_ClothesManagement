@@ -12,6 +12,7 @@ namespace ClothesManament.Models
         public string phone { set; get; }
         public string name { set; get; }
         public string note { set; get; }
+        public Double price { set; get; }
         public string tokenCard { set; get; }
         public List<ProductOrder> products { set; get; }
     }

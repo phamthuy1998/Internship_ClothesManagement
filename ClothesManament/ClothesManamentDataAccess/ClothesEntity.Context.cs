@@ -48,6 +48,9 @@ namespace ClothesManamentDataAccess
         public virtual DbSet<Size> Sizes { get; set; }
         public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
         public virtual DbSet<ImportCouponDetail> ImportCouponDetails { get; set; }
+        public virtual DbSet<Notification> Notifications { get; set; }
+        public virtual DbSet<ShopInfo> ShopInfoes { get; set; }
+        public virtual DbSet<TypeNoti> TypeNotis { get; set; }
     
         public virtual ObjectResult<Nullable<int>> ChangePassword(Nullable<int> userId, string oldPass, string newPass)
         {
@@ -126,7 +129,7 @@ namespace ClothesManamentDataAccess
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("SP_AddOrder", userIdParameter, addressParameter, phoneParameter, nameParameter, noteParameter, paymentParameter, isPaidParameter);
         }
     
-        public virtual int SP_AddOrderItem(Nullable<int> invoiceId, Nullable<int> productId, Nullable<int> colorId, Nullable<int> sizeId, Nullable<int> quantity)
+        public virtual int SP_AddOrderItem(Nullable<int> invoiceId, Nullable<int> productId, Nullable<int> colorId, Nullable<int> sizeId, Nullable<int> quantity, Nullable<double> price)
         {
             var invoiceIdParameter = invoiceId.HasValue ?
                 new ObjectParameter("invoiceId", invoiceId) :
@@ -148,7 +151,11 @@ namespace ClothesManamentDataAccess
                 new ObjectParameter("quantity", quantity) :
                 new ObjectParameter("quantity", typeof(int));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("SP_AddOrderItem", invoiceIdParameter, productIdParameter, colorIdParameter, sizeIdParameter, quantityParameter);
+            var priceParameter = price.HasValue ?
+                new ObjectParameter("price", price) :
+                new ObjectParameter("price", typeof(double));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("SP_AddOrderItem", invoiceIdParameter, productIdParameter, colorIdParameter, sizeIdParameter, quantityParameter, priceParameter);
         }
     
         public virtual int sp_alterdiagram(string diagramname, Nullable<int> owner_id, Nullable<int> version, byte[] definition)
@@ -285,7 +292,7 @@ namespace ClothesManamentDataAccess
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<ProductDetail>("SP_GetProductInfo", productIDParameter, accountIDParameter);
         }
     
-        public virtual ObjectResult<SP_GetProductInfoDetail_Result1> SP_GetProductInfoDetail(Nullable<int> productID, Nullable<int> accountID)
+        public virtual ObjectResult<SP_GetProductInfoDetail_Result2> SP_GetProductInfoDetail(Nullable<int> productID, Nullable<int> accountID)
         {
             var productIDParameter = productID.HasValue ?
                 new ObjectParameter("productID", productID) :
@@ -295,7 +302,7 @@ namespace ClothesManamentDataAccess
                 new ObjectParameter("AccountID", accountID) :
                 new ObjectParameter("AccountID", typeof(int));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_GetProductInfoDetail_Result1>("SP_GetProductInfoDetail", productIDParameter, accountIDParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_GetProductInfoDetail_Result2>("SP_GetProductInfoDetail", productIDParameter, accountIDParameter);
         }
     
         public virtual ObjectResult<SP_GetProductOfCategory_Result1> SP_GetProductOfCategory(Nullable<int> categoryId, Nullable<int> currentPage, Nullable<int> pageSize, Nullable<int> accountID, Nullable<int> sortBy)
@@ -1281,6 +1288,275 @@ namespace ClothesManamentDataAccess
                 new ObjectParameter("userId", typeof(int));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SPGetAccountInfoUserIDEmployee_Result>("SPGetAccountInfoUserIDEmployee", userIdParameter);
+        }
+    
+        public virtual ObjectResult<SP_AddEmployee_Result> SP_AddEmployee(string firstname, string lastname, string phone, string address, string avatar, string birthday, string beginDate, string endDate, Nullable<int> isWorking, string email, Nullable<int> roleId, string password, string username)
+        {
+            var firstnameParameter = firstname != null ?
+                new ObjectParameter("firstname", firstname) :
+                new ObjectParameter("firstname", typeof(string));
+    
+            var lastnameParameter = lastname != null ?
+                new ObjectParameter("lastname", lastname) :
+                new ObjectParameter("lastname", typeof(string));
+    
+            var phoneParameter = phone != null ?
+                new ObjectParameter("phone", phone) :
+                new ObjectParameter("phone", typeof(string));
+    
+            var addressParameter = address != null ?
+                new ObjectParameter("address", address) :
+                new ObjectParameter("address", typeof(string));
+    
+            var avatarParameter = avatar != null ?
+                new ObjectParameter("avatar", avatar) :
+                new ObjectParameter("avatar", typeof(string));
+    
+            var birthdayParameter = birthday != null ?
+                new ObjectParameter("birthday", birthday) :
+                new ObjectParameter("birthday", typeof(string));
+    
+            var beginDateParameter = beginDate != null ?
+                new ObjectParameter("beginDate", beginDate) :
+                new ObjectParameter("beginDate", typeof(string));
+    
+            var endDateParameter = endDate != null ?
+                new ObjectParameter("endDate", endDate) :
+                new ObjectParameter("endDate", typeof(string));
+    
+            var isWorkingParameter = isWorking.HasValue ?
+                new ObjectParameter("isWorking", isWorking) :
+                new ObjectParameter("isWorking", typeof(int));
+    
+            var emailParameter = email != null ?
+                new ObjectParameter("email", email) :
+                new ObjectParameter("email", typeof(string));
+    
+            var roleIdParameter = roleId.HasValue ?
+                new ObjectParameter("roleId", roleId) :
+                new ObjectParameter("roleId", typeof(int));
+    
+            var passwordParameter = password != null ?
+                new ObjectParameter("password", password) :
+                new ObjectParameter("password", typeof(string));
+    
+            var usernameParameter = username != null ?
+                new ObjectParameter("username", username) :
+                new ObjectParameter("username", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_AddEmployee_Result>("SP_AddEmployee", firstnameParameter, lastnameParameter, phoneParameter, addressParameter, avatarParameter, birthdayParameter, beginDateParameter, endDateParameter, isWorkingParameter, emailParameter, roleIdParameter, passwordParameter, usernameParameter);
+        }
+    
+        public virtual ObjectResult<Nullable<int>> SP_AdminLogin(string userName, string password)
+        {
+            var userNameParameter = userName != null ?
+                new ObjectParameter("userName", userName) :
+                new ObjectParameter("userName", typeof(string));
+    
+            var passwordParameter = password != null ?
+                new ObjectParameter("password", password) :
+                new ObjectParameter("password", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("SP_AdminLogin", userNameParameter, passwordParameter);
+        }
+    
+        public virtual int SP_DelEmployee(Nullable<int> employeeId)
+        {
+            var employeeIdParameter = employeeId.HasValue ?
+                new ObjectParameter("employeeId", employeeId) :
+                new ObjectParameter("employeeId", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("SP_DelEmployee", employeeIdParameter);
+        }
+    
+        public virtual ObjectResult<SP_GetAccEmployeeInfo_Result> SP_GetAccEmployeeInfo(Nullable<int> accId)
+        {
+            var accIdParameter = accId.HasValue ?
+                new ObjectParameter("accId", accId) :
+                new ObjectParameter("accId", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_GetAccEmployeeInfo_Result>("SP_GetAccEmployeeInfo", accIdParameter);
+        }
+    
+        public virtual ObjectResult<SP_GetAllAcc_Result> SP_GetAllAcc(Nullable<int> accId)
+        {
+            var accIdParameter = accId.HasValue ?
+                new ObjectParameter("accId", accId) :
+                new ObjectParameter("accId", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_GetAllAcc_Result>("SP_GetAllAcc", accIdParameter);
+        }
+    
+        public virtual ObjectResult<SP_GetAllEmployee_Result> SP_GetAllEmployee(Nullable<int> accId, string strSearch)
+        {
+            var accIdParameter = accId.HasValue ?
+                new ObjectParameter("accId", accId) :
+                new ObjectParameter("accId", typeof(int));
+    
+            var strSearchParameter = strSearch != null ?
+                new ObjectParameter("strSearch", strSearch) :
+                new ObjectParameter("strSearch", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_GetAllEmployee_Result>("SP_GetAllEmployee", accIdParameter, strSearchParameter);
+        }
+    
+        public virtual ObjectResult<SP_GetInvoice_Result> SP_GetInvoice(Nullable<int> statusOrderId, string beginDate, string endDate)
+        {
+            var statusOrderIdParameter = statusOrderId.HasValue ?
+                new ObjectParameter("statusOrderId", statusOrderId) :
+                new ObjectParameter("statusOrderId", typeof(int));
+    
+            var beginDateParameter = beginDate != null ?
+                new ObjectParameter("beginDate", beginDate) :
+                new ObjectParameter("beginDate", typeof(string));
+    
+            var endDateParameter = endDate != null ?
+                new ObjectParameter("endDate", endDate) :
+                new ObjectParameter("endDate", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_GetInvoice_Result>("SP_GetInvoice", statusOrderIdParameter, beginDateParameter, endDateParameter);
+        }
+    
+        public virtual ObjectResult<Nullable<double>> SP_GetProfit(Nullable<int> year, Nullable<int> month)
+        {
+            var yearParameter = year.HasValue ?
+                new ObjectParameter("year", year) :
+                new ObjectParameter("year", typeof(int));
+    
+            var monthParameter = month.HasValue ?
+                new ObjectParameter("month", month) :
+                new ObjectParameter("month", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<double>>("SP_GetProfit", yearParameter, monthParameter);
+        }
+    
+        public virtual ObjectResult<Nullable<double>> SP_GetRevenueMonth(Nullable<int> year, Nullable<int> month)
+        {
+            var yearParameter = year.HasValue ?
+                new ObjectParameter("year", year) :
+                new ObjectParameter("year", typeof(int));
+    
+            var monthParameter = month.HasValue ?
+                new ObjectParameter("month", month) :
+                new ObjectParameter("month", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<double>>("SP_GetRevenueMonth", yearParameter, monthParameter);
+        }
+    
+        public virtual ObjectResult<SP_InventoryProduct_Result> SP_InventoryProduct(Nullable<int> categoryId, Nullable<int> providerID)
+        {
+            var categoryIdParameter = categoryId.HasValue ?
+                new ObjectParameter("categoryId", categoryId) :
+                new ObjectParameter("categoryId", typeof(int));
+    
+            var providerIDParameter = providerID.HasValue ?
+                new ObjectParameter("providerID", providerID) :
+                new ObjectParameter("providerID", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_InventoryProduct_Result>("SP_InventoryProduct", categoryIdParameter, providerIDParameter);
+        }
+    
+        public virtual ObjectResult<SP_ReportGetInvoiceDetail_Result> SP_ReportGetInvoiceDetail(Nullable<int> invoiceId)
+        {
+            var invoiceIdParameter = invoiceId.HasValue ?
+                new ObjectParameter("invoiceId", invoiceId) :
+                new ObjectParameter("invoiceId", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_ReportGetInvoiceDetail_Result>("SP_ReportGetInvoiceDetail", invoiceIdParameter);
+        }
+    
+        public virtual ObjectResult<SP_StatisticProduct_Result> SP_StatisticProduct(Nullable<int> type, Nullable<int> top, Nullable<int> categoryId, Nullable<int> providerId, Nullable<System.DateTime> dateBegin, Nullable<System.DateTime> dateEnd)
+        {
+            var typeParameter = type.HasValue ?
+                new ObjectParameter("type", type) :
+                new ObjectParameter("type", typeof(int));
+    
+            var topParameter = top.HasValue ?
+                new ObjectParameter("top", top) :
+                new ObjectParameter("top", typeof(int));
+    
+            var categoryIdParameter = categoryId.HasValue ?
+                new ObjectParameter("categoryId", categoryId) :
+                new ObjectParameter("categoryId", typeof(int));
+    
+            var providerIdParameter = providerId.HasValue ?
+                new ObjectParameter("providerId", providerId) :
+                new ObjectParameter("providerId", typeof(int));
+    
+            var dateBeginParameter = dateBegin.HasValue ?
+                new ObjectParameter("dateBegin", dateBegin) :
+                new ObjectParameter("dateBegin", typeof(System.DateTime));
+    
+            var dateEndParameter = dateEnd.HasValue ?
+                new ObjectParameter("dateEnd", dateEnd) :
+                new ObjectParameter("dateEnd", typeof(System.DateTime));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_StatisticProduct_Result>("SP_StatisticProduct", typeParameter, topParameter, categoryIdParameter, providerIdParameter, dateBeginParameter, dateEndParameter);
+        }
+    
+        public virtual ObjectResult<SP_UpdateEmployee_Result> SP_UpdateEmployee(Nullable<int> employeeId, string firstname, string lastname, string phone, string address, string avatar, string birthday, string beginDate, string endDate, Nullable<int> isWorking, string email, Nullable<int> roleId, string password, string username, Nullable<int> accountId)
+        {
+            var employeeIdParameter = employeeId.HasValue ?
+                new ObjectParameter("employeeId", employeeId) :
+                new ObjectParameter("employeeId", typeof(int));
+    
+            var firstnameParameter = firstname != null ?
+                new ObjectParameter("firstname", firstname) :
+                new ObjectParameter("firstname", typeof(string));
+    
+            var lastnameParameter = lastname != null ?
+                new ObjectParameter("lastname", lastname) :
+                new ObjectParameter("lastname", typeof(string));
+    
+            var phoneParameter = phone != null ?
+                new ObjectParameter("phone", phone) :
+                new ObjectParameter("phone", typeof(string));
+    
+            var addressParameter = address != null ?
+                new ObjectParameter("address", address) :
+                new ObjectParameter("address", typeof(string));
+    
+            var avatarParameter = avatar != null ?
+                new ObjectParameter("avatar", avatar) :
+                new ObjectParameter("avatar", typeof(string));
+    
+            var birthdayParameter = birthday != null ?
+                new ObjectParameter("birthday", birthday) :
+                new ObjectParameter("birthday", typeof(string));
+    
+            var beginDateParameter = beginDate != null ?
+                new ObjectParameter("beginDate", beginDate) :
+                new ObjectParameter("beginDate", typeof(string));
+    
+            var endDateParameter = endDate != null ?
+                new ObjectParameter("endDate", endDate) :
+                new ObjectParameter("endDate", typeof(string));
+    
+            var isWorkingParameter = isWorking.HasValue ?
+                new ObjectParameter("isWorking", isWorking) :
+                new ObjectParameter("isWorking", typeof(int));
+    
+            var emailParameter = email != null ?
+                new ObjectParameter("email", email) :
+                new ObjectParameter("email", typeof(string));
+    
+            var roleIdParameter = roleId.HasValue ?
+                new ObjectParameter("roleId", roleId) :
+                new ObjectParameter("roleId", typeof(int));
+    
+            var passwordParameter = password != null ?
+                new ObjectParameter("password", password) :
+                new ObjectParameter("password", typeof(string));
+    
+            var usernameParameter = username != null ?
+                new ObjectParameter("username", username) :
+                new ObjectParameter("username", typeof(string));
+    
+            var accountIdParameter = accountId.HasValue ?
+                new ObjectParameter("accountId", accountId) :
+                new ObjectParameter("accountId", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_UpdateEmployee_Result>("SP_UpdateEmployee", employeeIdParameter, firstnameParameter, lastnameParameter, phoneParameter, addressParameter, avatarParameter, birthdayParameter, beginDateParameter, endDateParameter, isWorkingParameter, emailParameter, roleIdParameter, passwordParameter, usernameParameter, accountIdParameter);
         }
     }
 }

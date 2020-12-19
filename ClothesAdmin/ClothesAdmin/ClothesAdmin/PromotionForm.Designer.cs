@@ -79,6 +79,8 @@
             this.colactive = new DevExpress.XtraGrid.Columns.GridColumn();
             this.coltype = new DevExpress.XtraGrid.Columns.GridColumn();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.typeTextBox = new System.Windows.Forms.TextBox();
+            this.cbbType = new System.Windows.Forms.ComboBox();
             this.btnCancelAddProvider = new System.Windows.Forms.Button();
             this.btnSaveAddProvider = new System.Windows.Forms.Button();
             this.descriptionRichTextBox = new System.Windows.Forms.RichTextBox();
@@ -89,10 +91,8 @@
             this.valueSpinEdit = new DevExpress.XtraEditors.SpinEdit();
             this.imageUrlTextEdit = new DevExpress.XtraEditors.TextEdit();
             this.activeSpinEdit = new DevExpress.XtraEditors.SpinEdit();
-            this.typeTextEdit = new DevExpress.XtraEditors.TextEdit();
             this.panel2 = new System.Windows.Forms.Panel();
             this.promotionComboBox = new System.Windows.Forms.ComboBox();
-            this.promotionBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.productComboBox = new System.Windows.Forms.ComboBox();
@@ -136,9 +136,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.valueSpinEdit.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.imageUrlTextEdit.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.activeSpinEdit.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.typeTextEdit.Properties)).BeginInit();
             this.panel2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.promotionBindingSource1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.productBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.idProductSpinEdit.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.idPromoSpinEdit.Properties)).BeginInit();
@@ -174,7 +172,7 @@
             // beginDateLabel
             // 
             beginDateLabel.AutoSize = true;
-            beginDateLabel.Location = new System.Drawing.Point(83, 173);
+            beginDateLabel.Location = new System.Drawing.Point(404, 21);
             beginDateLabel.Name = "beginDateLabel";
             beginDateLabel.Size = new System.Drawing.Size(76, 17);
             beginDateLabel.TabIndex = 6;
@@ -183,7 +181,7 @@
             // endDateLabel
             // 
             endDateLabel.AutoSize = true;
-            endDateLabel.Location = new System.Drawing.Point(426, 173);
+            endDateLabel.Location = new System.Drawing.Point(747, 21);
             endDateLabel.Name = "endDateLabel";
             endDateLabel.Size = new System.Drawing.Size(65, 17);
             endDateLabel.TabIndex = 8;
@@ -192,7 +190,7 @@
             // valueLabel
             // 
             valueLabel.AutoSize = true;
-            valueLabel.Location = new System.Drawing.Point(83, 219);
+            valueLabel.Location = new System.Drawing.Point(85, 175);
             valueLabel.Name = "valueLabel";
             valueLabel.Size = new System.Drawing.Size(44, 17);
             valueLabel.TabIndex = 10;
@@ -201,7 +199,7 @@
             // imageUrlLabel
             // 
             imageUrlLabel.AutoSize = true;
-            imageUrlLabel.Location = new System.Drawing.Point(83, 264);
+            imageUrlLabel.Location = new System.Drawing.Point(85, 220);
             imageUrlLabel.Name = "imageUrlLabel";
             imageUrlLabel.Size = new System.Drawing.Size(78, 17);
             imageUrlLabel.TabIndex = 12;
@@ -210,7 +208,7 @@
             // activeLabel
             // 
             activeLabel.AutoSize = true;
-            activeLabel.Location = new System.Drawing.Point(83, 306);
+            activeLabel.Location = new System.Drawing.Point(747, 218);
             activeLabel.Name = "activeLabel";
             activeLabel.Size = new System.Drawing.Size(46, 17);
             activeLabel.TabIndex = 14;
@@ -219,7 +217,7 @@
             // typeLabel
             // 
             typeLabel.AutoSize = true;
-            typeLabel.Location = new System.Drawing.Point(426, 218);
+            typeLabel.Location = new System.Drawing.Point(428, 174);
             typeLabel.Name = "typeLabel";
             typeLabel.Size = new System.Drawing.Size(40, 17);
             typeLabel.TabIndex = 16;
@@ -619,6 +617,8 @@
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.typeTextBox);
+            this.panel1.Controls.Add(this.cbbType);
             this.panel1.Controls.Add(this.btnCancelAddProvider);
             this.panel1.Controls.Add(this.btnSaveAddProvider);
             this.panel1.Controls.Add(this.descriptionRichTextBox);
@@ -638,19 +638,38 @@
             this.panel1.Controls.Add(activeLabel);
             this.panel1.Controls.Add(this.activeSpinEdit);
             this.panel1.Controls.Add(typeLabel);
-            this.panel1.Controls.Add(this.typeTextEdit);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel1.Location = new System.Drawing.Point(6, 409);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(1076, 483);
             this.panel1.TabIndex = 2;
             // 
+            // typeTextBox
+            // 
+            this.typeTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.promotionBindingSource, "type", true));
+            this.typeTextBox.Enabled = false;
+            this.typeTextBox.Location = new System.Drawing.Point(673, 172);
+            this.typeTextBox.Name = "typeTextBox";
+            this.typeTextBox.Size = new System.Drawing.Size(100, 22);
+            this.typeTextBox.TabIndex = 62;
+            this.typeTextBox.TextChanged += new System.EventHandler(this.typeTextBox_TextChanged);
+            // 
+            // cbbType
+            // 
+            this.cbbType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbbType.FormattingEnabled = true;
+            this.cbbType.Location = new System.Drawing.Point(507, 172);
+            this.cbbType.Name = "cbbType";
+            this.cbbType.Size = new System.Drawing.Size(121, 24);
+            this.cbbType.TabIndex = 61;
+            this.cbbType.SelectedIndexChanged += new System.EventHandler(this.cbbType_SelectedIndexChanged);
+            // 
             // btnCancelAddProvider
             // 
             this.btnCancelAddProvider.BackColor = System.Drawing.Color.White;
             this.btnCancelAddProvider.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnCancelAddProvider.ForeColor = System.Drawing.Color.Crimson;
-            this.btnCancelAddProvider.Location = new System.Drawing.Point(501, 362);
+            this.btnCancelAddProvider.Location = new System.Drawing.Point(507, 293);
             this.btnCancelAddProvider.Name = "btnCancelAddProvider";
             this.btnCancelAddProvider.Size = new System.Drawing.Size(123, 52);
             this.btnCancelAddProvider.TabIndex = 58;
@@ -663,7 +682,7 @@
             this.btnSaveAddProvider.BackColor = System.Drawing.Color.White;
             this.btnSaveAddProvider.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSaveAddProvider.ForeColor = System.Drawing.Color.ForestGreen;
-            this.btnSaveAddProvider.Location = new System.Drawing.Point(283, 362);
+            this.btnSaveAddProvider.Location = new System.Drawing.Point(289, 293);
             this.btnSaveAddProvider.Name = "btnSaveAddProvider";
             this.btnSaveAddProvider.Size = new System.Drawing.Size(123, 52);
             this.btnSaveAddProvider.TabIndex = 57;
@@ -710,7 +729,7 @@
             // 
             this.beginDateDateEdit.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.promotionBindingSource, "beginDate", true));
             this.beginDateDateEdit.EditValue = null;
-            this.beginDateDateEdit.Location = new System.Drawing.Point(207, 166);
+            this.beginDateDateEdit.Location = new System.Drawing.Point(528, 14);
             this.beginDateDateEdit.MenuManager = this.barManager;
             this.beginDateDateEdit.Name = "beginDateDateEdit";
             this.beginDateDateEdit.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
@@ -724,7 +743,7 @@
             // 
             this.endDateDateEdit.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.promotionBindingSource, "endDate", true));
             this.endDateDateEdit.EditValue = null;
-            this.endDateDateEdit.Location = new System.Drawing.Point(550, 166);
+            this.endDateDateEdit.Location = new System.Drawing.Point(871, 14);
             this.endDateDateEdit.MenuManager = this.barManager;
             this.endDateDateEdit.Name = "endDateDateEdit";
             this.endDateDateEdit.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
@@ -742,7 +761,7 @@
             0,
             0,
             0});
-            this.valueSpinEdit.Location = new System.Drawing.Point(207, 212);
+            this.valueSpinEdit.Location = new System.Drawing.Point(209, 168);
             this.valueSpinEdit.MenuManager = this.barManager;
             this.valueSpinEdit.Name = "valueSpinEdit";
             this.valueSpinEdit.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
@@ -753,7 +772,7 @@
             // imageUrlTextEdit
             // 
             this.imageUrlTextEdit.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.promotionBindingSource, "imageUrl", true));
-            this.imageUrlTextEdit.Location = new System.Drawing.Point(207, 257);
+            this.imageUrlTextEdit.Location = new System.Drawing.Point(209, 213);
             this.imageUrlTextEdit.MenuManager = this.barManager;
             this.imageUrlTextEdit.Name = "imageUrlTextEdit";
             this.imageUrlTextEdit.Size = new System.Drawing.Size(491, 22);
@@ -767,22 +786,13 @@
             0,
             0,
             0});
-            this.activeSpinEdit.Location = new System.Drawing.Point(207, 299);
+            this.activeSpinEdit.Location = new System.Drawing.Point(871, 211);
             this.activeSpinEdit.MenuManager = this.barManager;
             this.activeSpinEdit.Name = "activeSpinEdit";
             this.activeSpinEdit.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.activeSpinEdit.Size = new System.Drawing.Size(125, 24);
             this.activeSpinEdit.TabIndex = 15;
-            // 
-            // typeTextEdit
-            // 
-            this.typeTextEdit.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.promotionBindingSource, "type", true));
-            this.typeTextEdit.Location = new System.Drawing.Point(550, 211);
-            this.typeTextEdit.MenuManager = this.barManager;
-            this.typeTextEdit.Name = "typeTextEdit";
-            this.typeTextEdit.Size = new System.Drawing.Size(228, 22);
-            this.typeTextEdit.TabIndex = 17;
             // 
             // panel2
             // 
@@ -805,8 +815,7 @@
             // 
             // promotionComboBox
             // 
-            this.promotionComboBox.DataSource = this.promotionBindingSource1;
-            this.promotionComboBox.DisplayMember = "name";
+            this.promotionComboBox.DisplayMember = "id";
             this.promotionComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.promotionComboBox.Enabled = false;
             this.promotionComboBox.FormattingEnabled = true;
@@ -816,11 +825,6 @@
             this.promotionComboBox.TabIndex = 60;
             this.promotionComboBox.ValueMember = "id";
             this.promotionComboBox.SelectedIndexChanged += new System.EventHandler(this.promotionComboBox_SelectedIndexChanged);
-            // 
-            // promotionBindingSource1
-            // 
-            this.promotionBindingSource1.DataMember = "Promotion";
-            this.promotionBindingSource1.DataSource = this.clothesDataSet;
             // 
             // button1
             // 
@@ -919,13 +923,17 @@
             this.tableAdapterManager.ImportCouponDetailTableAdapter = null;
             this.tableAdapterManager.ImportCouponTableAdapter = null;
             this.tableAdapterManager.InvoiceItemTableAdapter = null;
+            this.tableAdapterManager.InvoiceStatusTableAdapter = null;
             this.tableAdapterManager.InvoiceTableAdapter = null;
             this.tableAdapterManager.ProductSizeColorTableAdapter = null;
             this.tableAdapterManager.ProductTableAdapter = this.productTableAdapter;
             this.tableAdapterManager.PromotionItemTableAdapter = this.promotionItemTableAdapter;
             this.tableAdapterManager.PromotionTableAdapter = this.promotionTableAdapter;
             this.tableAdapterManager.ProviderTableAdapter = null;
+            this.tableAdapterManager.QuestionTableAdapter = null;
+            this.tableAdapterManager.RatingTableAdapter = null;
             this.tableAdapterManager.RoleTableAdapter = null;
+            this.tableAdapterManager.ShopInfoTableAdapter = null;
             this.tableAdapterManager.SizeTableAdapter = null;
             this.tableAdapterManager.UpdateOrder = ClothesAdmin.ClothesDataSetTableAdapters.TableAdapterManager.UpdateOrderOption.InsertUpdateDelete;
             // 
@@ -971,10 +979,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.valueSpinEdit.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.imageUrlTextEdit.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.activeSpinEdit.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.typeTextEdit.Properties)).EndInit();
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.promotionBindingSource1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.productBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.idProductSpinEdit.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.idPromoSpinEdit.Properties)).EndInit();
@@ -1027,7 +1033,6 @@
         private DevExpress.XtraEditors.SpinEdit valueSpinEdit;
         private DevExpress.XtraEditors.TextEdit imageUrlTextEdit;
         private DevExpress.XtraEditors.SpinEdit activeSpinEdit;
-        private DevExpress.XtraEditors.TextEdit typeTextEdit;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.RichTextBox descriptionRichTextBox;
         private System.Windows.Forms.Button btnCancelAddProvider;
@@ -1044,6 +1049,7 @@
         private System.Windows.Forms.ToolStripMenuItem deleteProductPromoToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem reloadToolStripMenuItem;
         private System.Windows.Forms.ComboBox promotionComboBox;
-        private System.Windows.Forms.BindingSource promotionBindingSource1;
+        private System.Windows.Forms.ComboBox cbbType;
+        private System.Windows.Forms.TextBox typeTextBox;
     }
 }

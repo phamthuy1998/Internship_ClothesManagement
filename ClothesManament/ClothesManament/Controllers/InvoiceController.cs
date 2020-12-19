@@ -185,27 +185,28 @@ namespace ClothesManagement.Controllers
             //    await Task.FromResult(0);
             //}
 
-            var messageStr = "";// "Đơn hàng đã được gứi tới " + email + ", vui lòng kiểm tra email để xác nhận đơn hàng!";
+            var messageStr = "abc";// "Đơn hàng đã được gứi tới " + email + ", vui lòng kiểm tra email để xác nhận đơn hàng!";
             
-            var statusStr = true;
+            var statusStr = false;
             if (orderParam.tokenCard != null && !orderParam.tokenCard.Trim().Equals(""))
             {
-                var orderId = entities.SP_AddOrder(orderParam.accountID, orderParam.address, orderParam.phone, orderParam.name, orderParam.note, "Thanh toán online", 1).FirstOrDefault();
 
-                ProductOrder product = new ProductOrder();
-                for (int i = 0; i < orderParam.products.Count; i++)
-                {
-                    try
-                    {
-                        product = orderParam.products[i];
-                        var result = entities.SP_AddOrderItem(orderId, product.productId, product.colorId, product.sizeId, product.quantity);
-                    }
-                    catch (Exception e)
-                    {
+                //ProductOrder product = new ProductOrder();
+                //for (int i = 0; i < orderParam.products.Count; i++)
+                //{
+                //    try
+                //    {
+                //        product = orderParam.products[i];
+                //        var result = entities.SP_AddOrderItem(product.productId, product.colorId, product.sizeId, product.quantity);
+                //        var products = await Task.Run(() => entities.SP_GetFavoriteProducts(pageNumber, pageSize, accountId).ToList());
 
-                    }
-                }
-                var totalPrice = entities.Sp_GetPriceInvoice(orderId).FirstOrDefault();
+                //    }
+                //    catch (Exception e)
+                //    {
+
+                //    }
+                //}
+                var totalPrice = orderParam.price;// entities.Sp_GetPriceInvoice(orderId).FirstOrDefault();
 
                 StripeConfiguration.ApiKey = "sk_test_51HEO9yAUHa3z0jaSDqZ2wNWozw2iEFIMgbPluEpQ6ipK9UplKlbg7laoC2RydTqAZWAw0ddfnAeBM0ATgpUKkztl00vrsHJVWN";
 
@@ -228,10 +229,34 @@ namespace ClothesManagement.Controllers
                     messageStr = "Thanh toán thành công.";
                     statusStr = true;
                 }
+                if (statusStr == true)
+                {
+                    var orderId = (await Task.Run(() => entities.SP_AddOrder(orderParam.accountID, orderParam.address, orderParam.phone, orderParam.name, orderParam.note, "Thanh toán online", 1).FirstOrDefault()));
+
+                    ProductOrder product = new ProductOrder();
+                    for (int i = 0; i < orderParam.products.Count; i++)
+                    {
+                        try
+                        {
+                            product = orderParam.products[i];
+                            var result = entities.SP_AddOrderItem(orderId, product.productId, product.colorId, product.sizeId, product.quantity, product.price);
+                        }
+                        catch (Exception e)
+                        {
+                            return new ResponseObjectModel<int>()
+                            {
+                                message = "Lỗi đặt hàng " + e.ToString(),
+                                status = false,
+                                code = 200,
+                                data = 1
+                            };
+                        }
+                    }
+                }
             }
             else
             {
-                var orderId = entities.SP_AddOrder(orderParam.accountID, orderParam.address, orderParam.phone, orderParam.name, orderParam.note, "Thanh toán khi nhận hàng", 0).FirstOrDefault();
+                var orderId = (await Task.Run(() => entities.SP_AddOrder(orderParam.accountID, orderParam.address, orderParam.phone, orderParam.name, orderParam.note, "Thanh toán khi nhận hàng", 0).FirstOrDefault()));
 
                 ProductOrder product = new ProductOrder();
                 for (int i = 0; i < orderParam.products.Count; i++)
@@ -239,14 +264,19 @@ namespace ClothesManagement.Controllers
                     try
                     {
                         product = orderParam.products[i];
-                        var result = entities.SP_AddOrderItem(orderId, product.productId, product.colorId, product.sizeId, product.quantity);
+                        var result = (await Task.Run(() => entities.SP_AddOrderItem(orderId, product.productId, product.colorId, product.sizeId, product.quantity, product.price)));
                     }
                     catch (Exception e)
                     {
-
+                        return new ResponseObjectModel<int>()
+                        {
+                            message = "Lỗi đặt hàng "+e.ToString(),
+                            status = false,
+                            code = 200,
+                            data = 1
+                        };
                     }
                 }
-                var totalPrice = entities.Sp_GetPriceInvoice(orderId).FirstOrDefault();
 
                 return new ResponseObjectModel<int>()
                 {
@@ -296,7 +326,7 @@ namespace ClothesManagement.Controllers
                 for (int i = 0; i < orderParam.products.Count; i++)
                 {
                     product = orderParam.products[i];
-                    entities.SP_AddOrderItem(orderId, product.productId, product.colorId, product.sizeId, product.quantity);
+                    entities.SP_AddOrderItem(orderId, product.productId, product.colorId, product.sizeId, product.quantity,product.price);
                 }
 
                 MemoryCacheHelper.Add("statusOrder", 1, DateTimeOffset.UtcNow.AddHours(1));

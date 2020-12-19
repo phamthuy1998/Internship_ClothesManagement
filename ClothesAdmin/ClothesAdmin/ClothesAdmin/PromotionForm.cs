@@ -14,6 +14,7 @@ namespace ClothesAdmin
     public partial class PromotionForm : DevExpress.XtraEditors.XtraForm
     {
         private int check = 0;
+        private Boolean checkFirstTime = true;
         public PromotionForm()
         {
             InitializeComponent();
@@ -49,6 +50,17 @@ namespace ClothesAdmin
         {
             check++;
             loadData();
+            cbbType.Items.Add(new { Text = "percent" });
+            cbbType.Items.Add(new { Text = "absolute" });
+
+            cbbType.ValueMember = "Text";
+            cbbType.DisplayMember = "Text";
+            if (checkFirstTime)
+            {
+                cbbType.Text = typeTextBox.Text;
+                checkFirstTime = false;
+            }
+
         }
 
         private void addProductPromoToolStripMenuItem_Click(object sender, EventArgs e)
@@ -139,10 +151,18 @@ namespace ClothesAdmin
 
         private void btnSaveAddProvider_Click(object sender, EventArgs e)
         {
-            this.Validate();
-            this.promotionBindingSource.EndEdit();
-            this.tableAdapterManager.UpdateAll(this.clothesDataSet);
-            Program.showToastSave();
+
+            try
+            {
+                this.Validate();
+                this.promotionBindingSource.EndEdit();
+                this.tableAdapterManager.UpdateAll(this.clothesDataSet);
+                Program.showToastSave();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error add database: " + ex.Message, "", MessageBoxButtons.OK);
+            }
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -179,6 +199,17 @@ namespace ClothesAdmin
                 promotionComboBox.SelectedValue = idPromoSpinEdit.Value;
             }
             catch (Exception ex) { }
+        }
+
+        private void cbbType_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (!checkFirstTime)
+                typeTextBox.Text = cbbType.Text.ToString();
+        }
+
+        private void typeTextBox_TextChanged(object sender, EventArgs e)
+        {
+            cbbType.Text = typeTextBox.Text;
         }
     }
 }

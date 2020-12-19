@@ -8,6 +8,7 @@ data class RequestCheckoutParam(
     var name: String?,
     var note: String?,
     var phone: String?,
+    var price: Double?,
     var products: List<SizesColor?>?,
     var tokenCard: String?
 )

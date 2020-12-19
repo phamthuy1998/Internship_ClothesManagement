@@ -21,6 +21,10 @@ class ShopFragment : BaseFragment<FragmentShopBinding>() {
         super.bindEvent()
         setupToolbar()
         initViewPager()
+        viewBinding.refreshCategory.setOnRefreshListener {
+            adapter.onRefresh(viewBinding.tabLayout.selectedTabPosition)
+            viewBinding.refreshCategory.isRefreshing = false
+        }
     }
 
     private fun initViewPager() {

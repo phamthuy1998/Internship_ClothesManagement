@@ -87,6 +87,8 @@ class ShoppingCardRepositoryImpl(val api: ApiService, val apiClothesService: Api
                         selectedSize = curProduct.selectedSize
                         quantityInCart = curProduct.quantityInCart
 
+                        sizesColors?.forEach {  it.price = price}
+
                         hasChangedPrice =
                             newProduct.price != curProduct.price || newProduct.typePromotion != curProduct.typePromotion || newProduct.valuePromotion != curProduct.valuePromotion
 

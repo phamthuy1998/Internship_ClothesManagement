@@ -107,7 +107,6 @@
                     price="@{item.price}"
                     promo="@{item.valuePromotion}"
                     promoType="@{item.typePromotion}"
-                    setVisible="@{item.valuePromotion != 0.0}"
                     android:textColor="@color/colorTextDiscount"
                     android:textSize="@dimen/text_size_16sp"
                     app:layout_constraintBaseline_toBaselineOf="@id/tvVendor"

@@ -25,16 +25,17 @@ class CategoriesPagedAdapter(
     companion object {
         val DIFF_UTIL = object : DiffUtil.ItemCallback<ItemViewModel>() {
             override fun areItemsTheSame(oldItem: ItemViewModel, newItem: ItemViewModel): Boolean =
-                oldItem.id == newItem.id
+               false
 
             override fun areContentsTheSame(
                 oldItem: ItemViewModel,
                 newItem: ItemViewModel
             ): Boolean {
-                return when (oldItem) {
+               return false
+               /* return when (oldItem) {
                     is CountViewModel -> oldItem.count == (newItem as? CountViewModel)?.count
                     else -> oldItem.id == newItem.id
-                }
+                }*/
             }
         }
     }

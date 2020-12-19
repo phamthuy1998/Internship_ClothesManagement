@@ -1,7 +1,6 @@
 package com.ptithcm.ptshop.view.shop
 
 import android.os.Bundle
-import android.os.Handler
 import androidx.core.os.bundleOf
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.GridLayoutManager
@@ -35,6 +34,11 @@ abstract class BaseShopGenderFragment : BaseFragment<FragmentBaseShopGenderBindi
         viewModel.getShopInfo()
     }
 
+
+    open fun onRefreshData() {
+        viewModel.getMainCategories(getShopType().value)
+    }
+
     override fun bindEvent() {
         super.bindEvent()
         viewBinding.fragment = this
@@ -51,9 +55,7 @@ abstract class BaseShopGenderFragment : BaseFragment<FragmentBaseShopGenderBindi
             when (it) {
                 true -> (requireActivity() as? MainActivity)?.isShowLoading(it)
                 false -> {
-                    Handler().postDelayed({
-                        (requireActivity() as? MainActivity)?.isShowLoading(it)
-                    }, 3000)
+                    (requireActivity() as? MainActivity)?.isShowLoading(it)
                 }
             }
         })
