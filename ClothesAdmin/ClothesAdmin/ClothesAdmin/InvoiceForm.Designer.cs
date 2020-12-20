@@ -39,7 +39,6 @@
             System.Windows.Forms.Label noteLabel;
             System.Windows.Forms.Label label4;
             System.Windows.Forms.Label userIDLabel;
-            System.Windows.Forms.Label statusOrderIdLabel;
             System.Windows.Forms.Label deliveryDateLabel;
             System.Windows.Forms.Label activeLabel;
             System.Windows.Forms.Label label3;
@@ -106,6 +105,7 @@
             this.colpayment = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colisPaid = new DevExpress.XtraGrid.Columns.GridColumn();
             this.panel3 = new System.Windows.Forms.Panel();
+            this.btnCancelOrder = new System.Windows.Forms.Button();
             this.btnChangeStatus = new System.Windows.Forms.Button();
             this.tvStatus = new System.Windows.Forms.TextBox();
             this.isPaidTextBox = new System.Windows.Forms.TextBox();
@@ -146,7 +146,6 @@
             noteLabel = new System.Windows.Forms.Label();
             label4 = new System.Windows.Forms.Label();
             userIDLabel = new System.Windows.Forms.Label();
-            statusOrderIdLabel = new System.Windows.Forms.Label();
             deliveryDateLabel = new System.Windows.Forms.Label();
             activeLabel = new System.Windows.Forms.Label();
             label3 = new System.Windows.Forms.Label();
@@ -289,15 +288,6 @@
             userIDLabel.Size = new System.Drawing.Size(57, 17);
             userIDLabel.TabIndex = 14;
             userIDLabel.Text = "user ID:";
-            // 
-            // statusOrderIdLabel
-            // 
-            statusOrderIdLabel.AutoSize = true;
-            statusOrderIdLabel.Location = new System.Drawing.Point(633, 269);
-            statusOrderIdLabel.Name = "statusOrderIdLabel";
-            statusOrderIdLabel.Size = new System.Drawing.Size(106, 17);
-            statusOrderIdLabel.TabIndex = 16;
-            statusOrderIdLabel.Text = "status Order Id:";
             // 
             // deliveryDateLabel
             // 
@@ -590,6 +580,8 @@
             this.tableAdapterManager.InvoiceItemTableAdapter = this.invoiceItemTableAdapter;
             this.tableAdapterManager.InvoiceStatusTableAdapter = null;
             this.tableAdapterManager.InvoiceTableAdapter = this.invoiceTableAdapter;
+            this.tableAdapterManager.NotificationDetailTableAdapter = null;
+            this.tableAdapterManager.NotificationTableAdapter = null;
             this.tableAdapterManager.ProductSizeColorTableAdapter = null;
             this.tableAdapterManager.ProductTableAdapter = null;
             this.tableAdapterManager.PromotionItemTableAdapter = null;
@@ -600,6 +592,7 @@
             this.tableAdapterManager.RoleTableAdapter = null;
             this.tableAdapterManager.ShopInfoTableAdapter = null;
             this.tableAdapterManager.SizeTableAdapter = null;
+            this.tableAdapterManager.TypeNotiTableAdapter = null;
             this.tableAdapterManager.UpdateOrder = ClothesAdmin.ClothesDataSetTableAdapters.TableAdapterManager.UpdateOrderOption.InsertUpdateDelete;
             // 
             // invoiceItemTableAdapter
@@ -915,6 +908,7 @@
             // 
             this.panel3.AutoScroll = true;
             this.panel3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel3.Controls.Add(this.btnCancelOrder);
             this.panel3.Controls.Add(this.btnChangeStatus);
             this.panel3.Controls.Add(this.tvStatus);
             this.panel3.Controls.Add(isPaidLabel);
@@ -943,7 +937,6 @@
             this.panel3.Controls.Add(label4);
             this.panel3.Controls.Add(userIDLabel);
             this.panel3.Controls.Add(this.userIDSpinEdit);
-            this.panel3.Controls.Add(statusOrderIdLabel);
             this.panel3.Controls.Add(this.statusOrderIdSpinEdit);
             this.panel3.Controls.Add(deliveryDateLabel);
             this.panel3.Controls.Add(this.deliveryDateDateEdit);
@@ -955,14 +948,27 @@
             this.panel3.Size = new System.Drawing.Size(1242, 461);
             this.panel3.TabIndex = 2;
             // 
+            // btnCancelOrder
+            // 
+            this.btnCancelOrder.BackColor = System.Drawing.Color.White;
+            this.btnCancelOrder.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCancelOrder.ForeColor = System.Drawing.Color.Red;
+            this.btnCancelOrder.Location = new System.Drawing.Point(995, 258);
+            this.btnCancelOrder.Name = "btnCancelOrder";
+            this.btnCancelOrder.Size = new System.Drawing.Size(129, 52);
+            this.btnCancelOrder.TabIndex = 65;
+            this.btnCancelOrder.Text = "Cancel order";
+            this.btnCancelOrder.UseVisualStyleBackColor = false;
+            this.btnCancelOrder.Click += new System.EventHandler(this.button1_Click);
+            // 
             // btnChangeStatus
             // 
             this.btnChangeStatus.BackColor = System.Drawing.Color.White;
             this.btnChangeStatus.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnChangeStatus.ForeColor = System.Drawing.Color.ForestGreen;
-            this.btnChangeStatus.Location = new System.Drawing.Point(948, 258);
+            this.btnChangeStatus.Location = new System.Drawing.Point(745, 255);
             this.btnChangeStatus.Name = "btnChangeStatus";
-            this.btnChangeStatus.Size = new System.Drawing.Size(200, 52);
+            this.btnChangeStatus.Size = new System.Drawing.Size(165, 52);
             this.btnChangeStatus.TabIndex = 64;
             this.btnChangeStatus.Text = "Change status";
             this.btnChangeStatus.UseVisualStyleBackColor = false;
@@ -1019,7 +1025,7 @@
             this.statusOrderCombobox.FormattingEnabled = true;
             this.statusOrderCombobox.Location = new System.Drawing.Point(158, 273);
             this.statusOrderCombobox.Name = "statusOrderCombobox";
-            this.statusOrderCombobox.Size = new System.Drawing.Size(426, 24);
+            this.statusOrderCombobox.Size = new System.Drawing.Size(279, 24);
             this.statusOrderCombobox.TabIndex = 59;
             this.statusOrderCombobox.SelectedIndexChanged += new System.EventHandler(this.statusOrderCombobox_SelectedIndexChanged);
             // 
@@ -1162,12 +1168,12 @@
             0,
             0});
             this.statusOrderIdSpinEdit.Enabled = false;
-            this.statusOrderIdSpinEdit.Location = new System.Drawing.Point(745, 266);
+            this.statusOrderIdSpinEdit.Location = new System.Drawing.Point(459, 270);
             this.statusOrderIdSpinEdit.MenuManager = this.barManager;
             this.statusOrderIdSpinEdit.Name = "statusOrderIdSpinEdit";
             this.statusOrderIdSpinEdit.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.statusOrderIdSpinEdit.Size = new System.Drawing.Size(125, 24);
+            this.statusOrderIdSpinEdit.Size = new System.Drawing.Size(78, 24);
             this.statusOrderIdSpinEdit.TabIndex = 17;
             this.statusOrderIdSpinEdit.EditValueChanged += new System.EventHandler(this.statusOrderIdSpinEdit_EditValueChanged);
             // 
@@ -1533,5 +1539,6 @@
         private DevExpress.XtraGrid.Columns.GridColumn colpayment;
         private DevExpress.XtraGrid.Columns.GridColumn colisPaid;
         private System.Windows.Forms.Button btnChangeStatus;
+        private System.Windows.Forms.Button btnCancelOrder;
     }
 }

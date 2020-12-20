@@ -40,7 +40,6 @@
             this.DetailData3_Odd = new DevExpress.XtraReports.UI.XRControlStyle();
             this.PageInfo = new DevExpress.XtraReports.UI.XRControlStyle();
             this.TopMargin = new DevExpress.XtraReports.UI.TopMarginBand();
-            this.xrLabel5 = new DevExpress.XtraReports.UI.XRLabel();
             this.xrLabel4 = new DevExpress.XtraReports.UI.XRLabel();
             this.xrLabel3 = new DevExpress.XtraReports.UI.XRLabel();
             this.xrLabel2 = new DevExpress.XtraReports.UI.XRLabel();
@@ -147,22 +146,12 @@
             // TopMargin
             // 
             this.TopMargin.Controls.AddRange(new DevExpress.XtraReports.UI.XRControl[] {
-            this.xrLabel5,
             this.xrLabel4,
             this.xrLabel3,
             this.xrLabel2,
             this.xrLabel1});
             this.TopMargin.HeightF = 144F;
             this.TopMargin.Name = "TopMargin";
-            // 
-            // xrLabel5
-            // 
-            this.xrLabel5.LocationFloat = new DevExpress.Utils.PointFloat(0F, 99.33339F);
-            this.xrLabel5.Multiline = true;
-            this.xrLabel5.Name = "xrLabel5";
-            this.xrLabel5.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
-            this.xrLabel5.SizeF = new System.Drawing.SizeF(603.3636F, 22.99999F);
-            this.xrLabel5.Text = "Facebook: Phạm Thủy (https://www.facebook.com/PhamThuy.ptithcm)";
             // 
             // xrLabel4
             // 
@@ -250,7 +239,9 @@
             this.lbTitle.Name = "lbTitle";
             this.lbTitle.SizeF = new System.Drawing.SizeF(640F, 24.19433F);
             this.lbTitle.StyleName = "Title";
+            this.lbTitle.StylePriority.UseTextAlignment = false;
             this.lbTitle.Text = "Danh sách sản phẩm tồn kho";
+            this.lbTitle.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
             // 
             // GroupHeader1
             // 
@@ -482,7 +473,6 @@
         private DevExpress.XtraReports.UI.XRTableCell tableCell8;
         private DevExpress.XtraReports.UI.XRTableCell tableCell9;
         private DevExpress.XtraReports.UI.XRTableCell tableCell10;
-        private DevExpress.XtraReports.UI.XRLabel xrLabel5;
         private DevExpress.XtraReports.UI.XRLabel xrLabel4;
         private DevExpress.XtraReports.UI.XRLabel xrLabel3;
         private DevExpress.XtraReports.UI.XRLabel xrLabel2;

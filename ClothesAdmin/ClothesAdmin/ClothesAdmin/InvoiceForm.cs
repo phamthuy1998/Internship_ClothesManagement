@@ -178,11 +178,15 @@ namespace ClothesAdmin
         private void statusOrderIdSpinEdit_EditValueChanged(object sender, EventArgs e)
         {
             statusOrderCombobox.SelectedIndex = Convert.ToInt32(statusOrderIdSpinEdit.Value - 1);
-            if (statusOrderIdSpinEdit.Value == 1)
+            if (statusOrderIdSpinEdit.Value == 1 || statusOrderIdSpinEdit.Value == 2)
             {
-                btnChangeStatus.Visible = true;
+                btnChangeStatus.Enabled = true;
             }
-            else btnChangeStatus.Visible = false;
+            else {
+                btnChangeStatus.Enabled = false;
+            }
+            if (statusOrderIdSpinEdit.Value == 1) btnCancelOrder.Enabled = true;
+            else btnCancelOrder.Enabled = false;
         }
 
         private void statusOrderCombobox_SelectedIndexChanged(object sender, EventArgs e)
@@ -192,10 +196,20 @@ namespace ClothesAdmin
 
         private void btnSaveAddProvider_Click_1(object sender, EventArgs e)
         {
-            this.Validate();
-            this.invoiceBindingSource.EndEdit();
-            this.tableAdapterManager.UpdateAll(this.clothesDataSet);
-            Program.showToastSave();
+            try
+            {
+                updateDateDateEdit.DateTime = DateTime.Now;
+                this.Validate();
+                this.invoiceBindingSource.EndEdit();
+                this.tableAdapterManager.UpdateAll(this.clothesDataSet);
+                Program.showToastSave();
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show("Error "+ex.Message, "Error", MessageBoxButtons.OK);
+
+            }
+
         }
 
         private void btnCancelAddProvider_Click_1(object sender, EventArgs e)
@@ -229,7 +243,7 @@ namespace ClothesAdmin
                     invoiceReport.lbName.Text = "Name: " + name;
                     invoiceReport.lbAddress.Text = "Address: " + address;
                     invoiceReport.lbPhone.Text = "Phone: " + phone;
-                    invoiceReport.lbPrice.Text = "Total price: "+ totalprice;
+                    invoiceReport.lbPrice.Text = "Total price: " + totalprice;
                     invoiceReport.lbPayment.Text = "Payment: " + paymentTextBox.Text;
                     invoiceReport.lbIsPaid.Text = "Status: " + tvStatus.Text;
 
@@ -257,8 +271,8 @@ namespace ClothesAdmin
 
         private void btnChangeStatus_Click(object sender, EventArgs e)
         {
-            statusOrderIdSpinEdit.Value = 2;
-            employeeIdSpinEdit.Value =Int32.Parse( Program.accountLogin.idEmployee.ToString());
+            statusOrderIdSpinEdit.Value = statusOrderIdSpinEdit.Value+1;
+            employeeIdSpinEdit.Value = Int32.Parse(Program.accountLogin.idEmployee.ToString());
         }
 
         private void colorComboBox_SelectedIndexChanged(object sender, EventArgs e)
@@ -269,6 +283,12 @@ namespace ClothesAdmin
         private void sizeComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            statusOrderIdSpinEdit.Value = 4;
+            employeeIdSpinEdit.Value = Int32.Parse(Program.accountLogin.idEmployee.ToString());
         }
     }
 }

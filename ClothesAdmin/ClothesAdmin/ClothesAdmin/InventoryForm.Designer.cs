@@ -29,9 +29,9 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(InventoryForm));
             System.Windows.Forms.Label label6;
             System.Windows.Forms.Label label5;
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(InventoryForm));
             this.bar2 = new DevExpress.XtraBars.Bar();
             this.barManager = new DevExpress.XtraBars.BarManager(this.components);
             this.bar1 = new DevExpress.XtraBars.Bar();
@@ -48,13 +48,52 @@
             this.cbProvider = new System.Windows.Forms.CheckBox();
             this.cbCategory = new System.Windows.Forms.CheckBox();
             this.providerComboBox = new System.Windows.Forms.ComboBox();
+            this.providerBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.clothesDataSet = new ClothesAdmin.ClothesDataSet();
             this.categoryComboBox = new System.Windows.Forms.ComboBox();
+            this.categoryBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.btnExport = new System.Windows.Forms.Button();
+            this.sP_InventoryProductNewBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.sP_InventoryProductNewTableAdapter = new ClothesAdmin.ClothesDataSetTableAdapters.SP_InventoryProductNewTableAdapter();
+            this.tableAdapterManager = new ClothesAdmin.ClothesDataSetTableAdapters.TableAdapterManager();
+            this.sP_InventoryProductNewGridControl = new DevExpress.XtraGrid.GridControl();
+            this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.colidProduct = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.coltitle = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colcolorName = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colsizeName = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colquantity = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.categoryTableAdapter = new ClothesAdmin.ClothesDataSetTableAdapters.CategoryTableAdapter();
+            this.providerTableAdapter = new ClothesAdmin.ClothesDataSetTableAdapters.ProviderTableAdapter();
             label6 = new System.Windows.Forms.Label();
             label5 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.barManager)).BeginInit();
             this.panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.providerBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.clothesDataSet)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.categoryBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.sP_InventoryProductNewBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.sP_InventoryProductNewGridControl)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
             this.SuspendLayout();
+            // 
+            // label6
+            // 
+            label6.AutoSize = true;
+            label6.Location = new System.Drawing.Point(75, 41);
+            label6.Name = "label6";
+            label6.Size = new System.Drawing.Size(65, 17);
+            label6.TabIndex = 75;
+            label6.Text = "Category";
+            // 
+            // label5
+            // 
+            label5.AutoSize = true;
+            label5.Location = new System.Drawing.Point(634, 41);
+            label5.Name = "label5";
+            label5.Size = new System.Drawing.Size(61, 17);
+            label5.TabIndex = 76;
+            label5.Text = "Provider";
             // 
             // bar2
             // 
@@ -104,6 +143,7 @@
             this.btnReloadProvider.ImageOptions.Image = global::ClothesAdmin.Properties.Resources.exchange;
             this.btnReloadProvider.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("btnReloadProvider.ImageOptions.LargeImage")));
             this.btnReloadProvider.Name = "btnReloadProvider";
+            this.btnReloadProvider.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnReloadProvider_ItemClick);
             // 
             // btnCloseForm
             // 
@@ -111,6 +151,7 @@
             this.btnCloseForm.Id = 10;
             this.btnCloseForm.ImageOptions.Image = global::ClothesAdmin.Properties.Resources.close;
             this.btnCloseForm.Name = "btnCloseForm";
+            this.btnCloseForm.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnCloseForm_ItemClick);
             // 
             // barDockControl1
             // 
@@ -183,7 +224,7 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 33);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1464, 100);
+            this.panel1.Size = new System.Drawing.Size(1464, 82);
             this.panel1.TabIndex = 5;
             // 
             // cbProvider
@@ -208,6 +249,7 @@
             // 
             // providerComboBox
             // 
+            this.providerComboBox.DataSource = this.providerBindingSource;
             this.providerComboBox.DisplayMember = "brandName";
             this.providerComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.providerComboBox.FormattingEnabled = true;
@@ -218,8 +260,19 @@
             this.providerComboBox.ValueMember = "id";
             this.providerComboBox.SelectedIndexChanged += new System.EventHandler(this.providerComboBox_SelectedIndexChanged);
             // 
+            // providerBindingSource
+            // 
+            this.providerBindingSource.DataMember = "Provider";
+            this.providerBindingSource.DataSource = this.clothesDataSet;
+            // 
+            // clothesDataSet
+            // 
+            this.clothesDataSet.DataSetName = "ClothesDataSet";
+            this.clothesDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
             // categoryComboBox
             // 
+            this.categoryComboBox.DataSource = this.categoryBindingSource;
             this.categoryComboBox.DisplayMember = "name";
             this.categoryComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.categoryComboBox.FormattingEnabled = true;
@@ -229,6 +282,11 @@
             this.categoryComboBox.TabIndex = 81;
             this.categoryComboBox.ValueMember = "id";
             this.categoryComboBox.SelectedIndexChanged += new System.EventHandler(this.categoryComboBox_SelectedIndexChanged);
+            // 
+            // categoryBindingSource
+            // 
+            this.categoryBindingSource.DataMember = "Category";
+            this.categoryBindingSource.DataSource = this.clothesDataSet;
             // 
             // btnExport
             // 
@@ -243,29 +301,135 @@
             this.btnExport.UseVisualStyleBackColor = false;
             this.btnExport.Click += new System.EventHandler(this.btnExport_Click);
             // 
-            // label6
+            // sP_InventoryProductNewBindingSource
             // 
-            label6.AutoSize = true;
-            label6.Location = new System.Drawing.Point(75, 41);
-            label6.Name = "label6";
-            label6.Size = new System.Drawing.Size(65, 17);
-            label6.TabIndex = 75;
-            label6.Text = "Category";
+            this.sP_InventoryProductNewBindingSource.DataMember = "SP_InventoryProductNew";
+            this.sP_InventoryProductNewBindingSource.DataSource = this.clothesDataSet;
             // 
-            // label5
+            // sP_InventoryProductNewTableAdapter
             // 
-            label5.AutoSize = true;
-            label5.Location = new System.Drawing.Point(634, 41);
-            label5.Name = "label5";
-            label5.Size = new System.Drawing.Size(61, 17);
-            label5.TabIndex = 76;
-            label5.Text = "Provider";
+            this.sP_InventoryProductNewTableAdapter.ClearBeforeFill = true;
+            // 
+            // tableAdapterManager
+            // 
+            this.tableAdapterManager.AccountTableAdapter = null;
+            this.tableAdapterManager.AddressTableAdapter = null;
+            this.tableAdapterManager.BackupDataSetBeforeUpdate = false;
+            this.tableAdapterManager.CategoryTableAdapter = null;
+            this.tableAdapterManager.ColorTableAdapter = null;
+            this.tableAdapterManager.Connection = null;
+            this.tableAdapterManager.CustomerTableAdapter = null;
+            this.tableAdapterManager.EmployeeTableAdapter = null;
+            this.tableAdapterManager.FavoriteProductTableAdapter = null;
+            this.tableAdapterManager.ImageTableAdapter = null;
+            this.tableAdapterManager.ImportCouponDetailTableAdapter = null;
+            this.tableAdapterManager.ImportCouponTableAdapter = null;
+            this.tableAdapterManager.InvoiceItemTableAdapter = null;
+            this.tableAdapterManager.InvoiceStatusTableAdapter = null;
+            this.tableAdapterManager.InvoiceTableAdapter = null;
+            this.tableAdapterManager.NotificationDetailTableAdapter = null;
+            this.tableAdapterManager.NotificationTableAdapter = null;
+            this.tableAdapterManager.ProductSizeColorTableAdapter = null;
+            this.tableAdapterManager.ProductTableAdapter = null;
+            this.tableAdapterManager.PromotionItemTableAdapter = null;
+            this.tableAdapterManager.PromotionTableAdapter = null;
+            this.tableAdapterManager.ProviderTableAdapter = null;
+            this.tableAdapterManager.QuestionTableAdapter = null;
+            this.tableAdapterManager.RatingTableAdapter = null;
+            this.tableAdapterManager.RoleTableAdapter = null;
+            this.tableAdapterManager.ShopInfoTableAdapter = null;
+            this.tableAdapterManager.SizeTableAdapter = null;
+            this.tableAdapterManager.TypeNotiTableAdapter = null;
+            this.tableAdapterManager.UpdateOrder = ClothesAdmin.ClothesDataSetTableAdapters.TableAdapterManager.UpdateOrderOption.InsertUpdateDelete;
+            // 
+            // sP_InventoryProductNewGridControl
+            // 
+            this.sP_InventoryProductNewGridControl.DataSource = this.sP_InventoryProductNewBindingSource;
+            this.sP_InventoryProductNewGridControl.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.sP_InventoryProductNewGridControl.Location = new System.Drawing.Point(0, 115);
+            this.sP_InventoryProductNewGridControl.MainView = this.gridView1;
+            this.sP_InventoryProductNewGridControl.MenuManager = this.barManager;
+            this.sP_InventoryProductNewGridControl.Name = "sP_InventoryProductNewGridControl";
+            this.sP_InventoryProductNewGridControl.Size = new System.Drawing.Size(1464, 530);
+            this.sP_InventoryProductNewGridControl.TabIndex = 11;
+            this.sP_InventoryProductNewGridControl.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
+            this.gridView1});
+            // 
+            // gridView1
+            // 
+            this.gridView1.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
+            this.colidProduct,
+            this.coltitle,
+            this.colcolorName,
+            this.colsizeName,
+            this.colquantity});
+            this.gridView1.GridControl = this.sP_InventoryProductNewGridControl;
+            this.gridView1.Name = "gridView1";
+            // 
+            // colidProduct
+            // 
+            this.colidProduct.FieldName = "idProduct";
+            this.colidProduct.MinWidth = 25;
+            this.colidProduct.Name = "colidProduct";
+            this.colidProduct.OptionsColumn.AllowEdit = false;
+            this.colidProduct.Visible = true;
+            this.colidProduct.VisibleIndex = 0;
+            this.colidProduct.Width = 62;
+            // 
+            // coltitle
+            // 
+            this.coltitle.FieldName = "title";
+            this.coltitle.MinWidth = 25;
+            this.coltitle.Name = "coltitle";
+            this.coltitle.OptionsColumn.AllowEdit = false;
+            this.coltitle.Visible = true;
+            this.coltitle.VisibleIndex = 1;
+            this.coltitle.Width = 903;
+            // 
+            // colcolorName
+            // 
+            this.colcolorName.FieldName = "colorName";
+            this.colcolorName.MinWidth = 25;
+            this.colcolorName.Name = "colcolorName";
+            this.colcolorName.OptionsColumn.AllowEdit = false;
+            this.colcolorName.Visible = true;
+            this.colcolorName.VisibleIndex = 2;
+            this.colcolorName.Width = 214;
+            // 
+            // colsizeName
+            // 
+            this.colsizeName.FieldName = "sizeName";
+            this.colsizeName.MinWidth = 25;
+            this.colsizeName.Name = "colsizeName";
+            this.colsizeName.OptionsColumn.AllowEdit = false;
+            this.colsizeName.Visible = true;
+            this.colsizeName.VisibleIndex = 3;
+            this.colsizeName.Width = 166;
+            // 
+            // colquantity
+            // 
+            this.colquantity.FieldName = "quantity";
+            this.colquantity.MinWidth = 25;
+            this.colquantity.Name = "colquantity";
+            this.colquantity.OptionsColumn.AllowEdit = false;
+            this.colquantity.Visible = true;
+            this.colquantity.VisibleIndex = 4;
+            this.colquantity.Width = 89;
+            // 
+            // categoryTableAdapter
+            // 
+            this.categoryTableAdapter.ClearBeforeFill = true;
+            // 
+            // providerTableAdapter
+            // 
+            this.providerTableAdapter.ClearBeforeFill = true;
             // 
             // InventoryForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1464, 645);
+            this.Controls.Add(this.sP_InventoryProductNewGridControl);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.barDockControl3);
             this.Controls.Add(this.barDockControl5);
@@ -273,9 +437,16 @@
             this.Controls.Add(this.barDockControl1);
             this.Name = "InventoryForm";
             this.Text = "Inventory";
+            this.Load += new System.EventHandler(this.InventoryForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.barManager)).EndInit();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.providerBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.clothesDataSet)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.categoryBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.sP_InventoryProductNewBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.sP_InventoryProductNewGridControl)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridView1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -301,5 +472,20 @@
         private System.Windows.Forms.ComboBox providerComboBox;
         private System.Windows.Forms.ComboBox categoryComboBox;
         private System.Windows.Forms.Button btnExport;
+        private System.Windows.Forms.BindingSource sP_InventoryProductNewBindingSource;
+        private ClothesDataSet clothesDataSet;
+        private ClothesDataSetTableAdapters.SP_InventoryProductNewTableAdapter sP_InventoryProductNewTableAdapter;
+        private ClothesDataSetTableAdapters.TableAdapterManager tableAdapterManager;
+        private DevExpress.XtraGrid.GridControl sP_InventoryProductNewGridControl;
+        private DevExpress.XtraGrid.Views.Grid.GridView gridView1;
+        private DevExpress.XtraGrid.Columns.GridColumn colidProduct;
+        private DevExpress.XtraGrid.Columns.GridColumn coltitle;
+        private DevExpress.XtraGrid.Columns.GridColumn colcolorName;
+        private DevExpress.XtraGrid.Columns.GridColumn colsizeName;
+        private DevExpress.XtraGrid.Columns.GridColumn colquantity;
+        private System.Windows.Forms.BindingSource categoryBindingSource;
+        private ClothesDataSetTableAdapters.CategoryTableAdapter categoryTableAdapter;
+        private System.Windows.Forms.BindingSource providerBindingSource;
+        private ClothesDataSetTableAdapters.ProviderTableAdapter providerTableAdapter;
     }
 }

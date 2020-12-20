@@ -108,6 +108,7 @@
             this.btnBackupRestore = new DevExpress.XtraBars.BarButtonItem();
             this.btnRevenue = new DevExpress.XtraBars.BarButtonItem();
             this.btnProfit = new DevExpress.XtraBars.BarButtonItem();
+            this.btnWareHouse1 = new DevExpress.XtraBars.BarButtonItem();
             this.rbHome = new DevExpress.XtraBars.Ribbon.RibbonPage();
             this.ribbonPageGroup1 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.ribbonPageGroup4 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
@@ -156,7 +157,6 @@
             this.barButtonItem14 = new DevExpress.XtraBars.BarButtonItem();
             this.barButtonItem16 = new DevExpress.XtraBars.BarButtonItem();
             this.barButtonItem17 = new DevExpress.XtraBars.BarButtonItem();
-            this.btnWareHouse1 = new DevExpress.XtraBars.BarButtonItem();
             firstNameLabel = new System.Windows.Forms.Label();
             lastNameLabel = new System.Windows.Forms.Label();
             phoneLabel = new System.Windows.Forms.Label();
@@ -908,6 +908,13 @@
             this.btnProfit.Name = "btnProfit";
             this.btnProfit.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnProfit_ItemClick);
             // 
+            // btnWareHouse1
+            // 
+            this.btnWareHouse1.Caption = "Inventory";
+            this.btnWareHouse1.Id = 304;
+            this.btnWareHouse1.Name = "btnWareHouse1";
+            this.btnWareHouse1.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnWareHouse1_ItemClick);
+            // 
             // rbHome
             // 
             this.rbHome.Groups.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPageGroup[] {
@@ -1008,6 +1015,7 @@
             this.ribbonPageGroup14.ItemLinks.Add(this.btnRevenue);
             this.ribbonPageGroup14.Name = "ribbonPageGroup14";
             this.ribbonPageGroup14.Text = "                                                                ";
+            this.ribbonPageGroup14.Visible = false;
             // 
             // ribbonPageGroup15
             // 
@@ -1137,6 +1145,8 @@
             this.tableAdapterManager.InvoiceItemTableAdapter = null;
             this.tableAdapterManager.InvoiceStatusTableAdapter = null;
             this.tableAdapterManager.InvoiceTableAdapter = null;
+            this.tableAdapterManager.NotificationDetailTableAdapter = null;
+            this.tableAdapterManager.NotificationTableAdapter = null;
             this.tableAdapterManager.ProductSizeColorTableAdapter = null;
             this.tableAdapterManager.ProductTableAdapter = null;
             this.tableAdapterManager.PromotionItemTableAdapter = null;
@@ -1147,6 +1157,7 @@
             this.tableAdapterManager.RoleTableAdapter = null;
             this.tableAdapterManager.ShopInfoTableAdapter = null;
             this.tableAdapterManager.SizeTableAdapter = null;
+            this.tableAdapterManager.TypeNotiTableAdapter = null;
             this.tableAdapterManager.UpdateOrder = ClothesAdmin.ClothesDataSetTableAdapters.TableAdapterManager.UpdateOrderOption.InsertUpdateDelete;
             // 
             // backstageViewTabItem3
@@ -1222,13 +1233,6 @@
             this.barButtonItem17.ImageOptions.Image = global::ClothesAdmin.Properties.Resources.warehouse;
             this.barButtonItem17.ImageOptions.LargeImage = global::ClothesAdmin.Properties.Resources.inventory;
             this.barButtonItem17.Name = "barButtonItem17";
-            // 
-            // btnWareHouse1
-            // 
-            this.btnWareHouse1.Caption = "Inventory";
-            this.btnWareHouse1.Id = 304;
-            this.btnWareHouse1.Name = "btnWareHouse1";
-            this.btnWareHouse1.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnWareHouse1_ItemClick);
             // 
             // MainForm
             // 

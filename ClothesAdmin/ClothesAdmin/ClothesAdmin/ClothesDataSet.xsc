@@ -102,5 +102,37 @@
         </ColumnUISetting>
       </ColumnUISettings>
     </TableUISetting>
+    <TableUISetting Name="SP_ProfitDataMonthYear">
+      <ColumnUISettings>
+        <ColumnUISetting Name="totalInvoice">
+          <ControlSettings>
+            <ControlSetting ArtifactName="Microsoft:System.Windows.Forms:Form">
+              <BindableControlInfo Name="SpinEdit" Type="DevExpress.XtraEditors.SpinEdit" AssemblyName="DevExpress.XtraEditors.v20.1" />
+            </ControlSetting>
+          </ControlSettings>
+        </ColumnUISetting>
+        <ColumnUISetting Name="totalProduct">
+          <ControlSettings>
+            <ControlSetting ArtifactName="Microsoft:System.Windows.Forms:Form">
+              <BindableControlInfo Name="SpinEdit" Type="DevExpress.XtraEditors.SpinEdit" AssemblyName="DevExpress.XtraEditors.v20.1" />
+            </ControlSetting>
+          </ControlSettings>
+        </ColumnUISetting>
+        <ColumnUISetting Name="totalPrice">
+          <ControlSettings>
+            <ControlSetting ArtifactName="Microsoft:System.Windows.Forms:Form">
+              <BindableControlInfo Name="SpinEdit" Type="DevExpress.XtraEditors.SpinEdit" AssemblyName="DevExpress.XtraEditors.v20.1" />
+            </ControlSetting>
+          </ControlSettings>
+        </ColumnUISetting>
+        <ColumnUISetting Name="profit">
+          <ControlSettings>
+            <ControlSetting ArtifactName="Microsoft:System.Windows.Forms:Form">
+              <BindableControlInfo Name="SpinEdit" Type="DevExpress.XtraEditors.SpinEdit" AssemblyName="DevExpress.XtraEditors.v20.1" />
+            </ControlSetting>
+          </ControlSettings>
+        </ColumnUISetting>
+      </ColumnUISettings>
+    </TableUISetting>
   </TableUISettings>
 </DataSetUISetting>

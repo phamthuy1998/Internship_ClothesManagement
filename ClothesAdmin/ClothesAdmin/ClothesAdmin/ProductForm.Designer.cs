@@ -499,6 +499,8 @@
             this.tableAdapterManager.InvoiceItemTableAdapter = null;
             this.tableAdapterManager.InvoiceStatusTableAdapter = null;
             this.tableAdapterManager.InvoiceTableAdapter = null;
+            this.tableAdapterManager.NotificationDetailTableAdapter = null;
+            this.tableAdapterManager.NotificationTableAdapter = null;
             this.tableAdapterManager.ProductSizeColorTableAdapter = null;
             this.tableAdapterManager.ProductTableAdapter = this.productTableAdapter;
             this.tableAdapterManager.PromotionItemTableAdapter = null;
@@ -509,6 +511,7 @@
             this.tableAdapterManager.RoleTableAdapter = null;
             this.tableAdapterManager.ShopInfoTableAdapter = null;
             this.tableAdapterManager.SizeTableAdapter = null;
+            this.tableAdapterManager.TypeNotiTableAdapter = null;
             this.tableAdapterManager.UpdateOrder = ClothesAdmin.ClothesDataSetTableAdapters.TableAdapterManager.UpdateOrderOption.InsertUpdateDelete;
             // 
             // barManager1

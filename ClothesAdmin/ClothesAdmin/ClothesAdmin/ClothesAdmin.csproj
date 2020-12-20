@@ -261,6 +261,18 @@
     <Compile Include="ImportCuponForm.Designer.cs">
       <DependentUpon>ImportCuponForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="ImportCuponReport.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ImportCuponReport.Designer.cs">
+      <DependentUpon>ImportCuponReport.cs</DependentUpon>
+    </Compile>
+    <Compile Include="InventoryReport.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="InventoryReport.Designer.cs">
+      <DependentUpon>InventoryReport.cs</DependentUpon>
+    </Compile>
     <Compile Include="InvoiceForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -354,6 +366,12 @@
     <Compile Include="ProfitForm.Designer.cs">
       <DependentUpon>ProfitForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="ProfitReport.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ProfitReport.Designer.cs">
+      <DependentUpon>ProfitReport.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Promotion.cs">
       <DependentUpon>ClothesModel.tt</DependentUpon>
@@ -373,12 +391,6 @@
     </Compile>
     <Compile Include="ProviderForm.Designer.cs">
       <DependentUpon>ProviderForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="ReportImportCupon.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="ReportImportCupon.Designer.cs">
-      <DependentUpon>ReportImportCupon.cs</DependentUpon>
     </Compile>
     <Compile Include="RevenueForm.cs">
       <SubType>Form</SubType>
@@ -505,6 +517,12 @@
     <EmbeddedResource Include="ImportCuponForm.resx">
       <DependentUpon>ImportCuponForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="ImportCuponReport.resx">
+      <DependentUpon>ImportCuponReport.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="InventoryReport.resx">
+      <DependentUpon>InventoryReport.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="InvoiceForm.resx">
       <DependentUpon>InvoiceForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -538,6 +556,9 @@
     <EmbeddedResource Include="ProfitForm.resx">
       <DependentUpon>ProfitForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="ProfitReport.resx">
+      <DependentUpon>ProfitReport.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="PromotionForm.resx">
       <DependentUpon>PromotionForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -554,9 +575,6 @@
     </Compile>
     <EmbeddedResource Include="ProviderForm.resx">
       <DependentUpon>ProviderForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="ReportImportCupon.resx">
-      <DependentUpon>ReportImportCupon.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="RevenueForm.resx">
       <DependentUpon>RevenueForm.cs</DependentUpon>

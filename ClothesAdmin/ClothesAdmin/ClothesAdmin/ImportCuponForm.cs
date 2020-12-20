@@ -8,6 +8,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using DevExpress.XtraEditors;
+using DevExpress.XtraReports.UI;
 
 namespace ClothesAdmin
 {
@@ -78,9 +79,9 @@ namespace ClothesAdmin
         private void loadDataItem()
         {
             this.importCouponDetailTableAdapter.Fill(this.clothesDataSet.ImportCouponDetail);
-            this.sizeTableAdapter.FillBy(this.clothesDataSet.Size, 
+            this.sizeTableAdapter.FillBy(this.clothesDataSet.Size,
                 Convert.ToInt16(productComboBox.SelectedValue));
-            this.colorTableAdapter.FillBy(this.clothesDataSet.Color, 
+            this.colorTableAdapter.FillBy(this.clothesDataSet.Color,
                 Convert.ToInt16(productComboBox.SelectedValue)
                 , Convert.ToInt16(sizeComboBox.SelectedValue));
         }
@@ -308,7 +309,7 @@ namespace ClothesAdmin
                 idProductSpinEdit.Value = Convert.ToInt32(productComboBox.SelectedValue);
                 this.sizeTableAdapter.FillBy(this.clothesDataSet.Size,
                     Convert.ToInt16(productComboBox.SelectedValue));
-               
+
             }
         }
 
@@ -374,7 +375,7 @@ namespace ClothesAdmin
 
         private void sizeComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-           if (sizeComboBox.SelectedValue != null)
+            if (sizeComboBox.SelectedValue != null)
             {
                 sizeIDSpinEdit.Text = sizeComboBox.SelectedValue.ToString();
                 this.colorTableAdapter.FillBy(this.clothesDataSet.Color,
@@ -395,7 +396,7 @@ namespace ClothesAdmin
 
         private void colorComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            
+
             if (colorComboBox.SelectedValue != null)
                 colorIdSpinEdit.Text = colorComboBox.SelectedValue.ToString();
         }
@@ -412,7 +413,7 @@ namespace ClothesAdmin
                 this.productTableAdapter.FillBy1(this.clothesDataSet.Product, Convert.ToInt16(providerIdTextBox.Text));
 
         }
-        
+
         private void sizeIDSpinEdit_EditValueChanged(object sender, EventArgs e)
         {
 
@@ -427,20 +428,13 @@ namespace ClothesAdmin
             }
             else
             {
-                WarehouseReport warehouseReport = new WarehouseReport(categoryId, providerID);
-                warehouseReport.lbNhanVien.Text = Program.accountLogin.name;
-                string title = "";
-                if (providerID == null && categoryId == null)
-                    title = "Danh sách tất cả sản phẩm trong kho";
-                else if (providerID != null && categoryId == null)
-                    title = "Danh sách tất cả sản phẩm trong kho của nhà cung cấp " + providerComboBox.Text;
-                else if (providerID == null && categoryId != null)
-                    title = "Danh sách tất cả " + categoryComboBox.Text + " trong kho ";
-                else if (providerID != null && categoryId != null)
-                    title = "Danh sách tất cả " + categoryComboBox.Text + " trong kho của nhà cung cấp " + providerComboBox.Text;
-                warehouseReport.lbTitle.Text = title;
-                ReportPrintTool report = new ReportPrintTool(warehouseReport);
-                report.ShowPreviewDialog();
+                int importId = int.Parse(((DataRowView)this.importCouponBindingSource.Current).Row["id"].ToString());
+                ImportCuponReport report = new ImportCuponReport(importId);
+                report.lbEmployeeName.Text = "Nhân viên tạo phiếu: " + Program.accountLogin.name;
+
+                report.lbTtileReport.Text = "Chi tiết phiếu nhập mã số " + importId + " ngày " + ((DataRowView)this.importCouponBindingSource.Current).Row["date"].ToString();
+                ReportPrintTool reportTool = new ReportPrintTool(report);
+                reportTool.ShowPreviewDialog();
             }
         }
     }

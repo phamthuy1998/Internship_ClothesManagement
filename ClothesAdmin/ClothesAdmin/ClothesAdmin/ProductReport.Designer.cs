@@ -48,7 +48,6 @@
             this.xrLabel2 = new DevExpress.XtraReports.UI.XRLabel();
             this.xrLabel3 = new DevExpress.XtraReports.UI.XRLabel();
             this.xrLabel4 = new DevExpress.XtraReports.UI.XRLabel();
-            this.xrLabel5 = new DevExpress.XtraReports.UI.XRLabel();
             this.BottomMargin = new DevExpress.XtraReports.UI.BottomMarginBand();
             this.lbNhanVien = new DevExpress.XtraReports.UI.XRLabel();
             this.pageInfo1 = new DevExpress.XtraReports.UI.XRPageInfo();
@@ -175,8 +174,7 @@
             this.xrLabel1,
             this.xrLabel2,
             this.xrLabel3,
-            this.xrLabel4,
-            this.xrLabel5});
+            this.xrLabel4});
             this.TopMargin.HeightF = 165.6667F;
             this.TopMargin.Name = "TopMargin";
             // 
@@ -219,15 +217,6 @@
             this.xrLabel4.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
             this.xrLabel4.SizeF = new System.Drawing.SizeF(603.3636F, 22.99999F);
             this.xrLabel4.Text = "Email: phamthithuyptithcm@gmail.com";
-            // 
-            // xrLabel5
-            // 
-            this.xrLabel5.LocationFloat = new DevExpress.Utils.PointFloat(0F, 99.33339F);
-            this.xrLabel5.Multiline = true;
-            this.xrLabel5.Name = "xrLabel5";
-            this.xrLabel5.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
-            this.xrLabel5.SizeF = new System.Drawing.SizeF(603.3636F, 22.99999F);
-            this.xrLabel5.Text = "Facebook: Phạm Thủy (https://www.facebook.com/PhamThuy.ptithcm)";
             // 
             // BottomMargin
             // 
@@ -539,7 +528,6 @@
         private DevExpress.XtraReports.UI.XRLabel xrLabel2;
         private DevExpress.XtraReports.UI.XRLabel xrLabel3;
         private DevExpress.XtraReports.UI.XRLabel xrLabel4;
-        private DevExpress.XtraReports.UI.XRLabel xrLabel5;
         public DevExpress.XtraReports.UI.XRLabel lbNhanVien;
         public DevExpress.XtraReports.UI.XRLabel lbTitle;
     }

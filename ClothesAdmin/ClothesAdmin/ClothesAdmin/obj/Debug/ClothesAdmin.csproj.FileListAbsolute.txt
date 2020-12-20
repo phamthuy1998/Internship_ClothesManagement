@@ -247,3 +247,6 @@ D:\internship\Internship_ClothesManagement\ClothesAdmin\ClothesAdmin\ClothesAdmi
 D:\internship\Internship_ClothesManagement\ClothesAdmin\ClothesAdmin\ClothesAdmin\obj\Debug\ClothesAdmin.RevenueForm.resources
 D:\internship\Internship_ClothesManagement\ClothesAdmin\ClothesAdmin\ClothesAdmin\obj\Debug\ClothesAdmin.csprojResolveAssemblyReference.cache
 D:\internship\Internship_ClothesManagement\ClothesAdmin\ClothesAdmin\ClothesAdmin\obj\Debug\ClothesAdmin.InventoryForm.resources
+D:\internship\Internship_ClothesManagement\ClothesAdmin\ClothesAdmin\ClothesAdmin\obj\Debug\ClothesAdmin.ImportCuponReport.resources
+D:\internship\Internship_ClothesManagement\ClothesAdmin\ClothesAdmin\ClothesAdmin\obj\Debug\ClothesAdmin.InventoryReport.resources
+D:\internship\Internship_ClothesManagement\ClothesAdmin\ClothesAdmin\ClothesAdmin\obj\Debug\ClothesAdmin.ProfitReport.resources
