@@ -150,6 +150,11 @@ interface ApiClothesService {
         @Query("productId") productId: Int
     ): Response<ListResponse<Rating>>
 
+    @GET("/api/getRatingById")
+    suspend fun getRating(
+        @Query("ratingID") ratingID: Int
+    ): Response<ObjectResponse<Rating>>
+
     @POST("/api/addRating")
     suspend fun addRating(@Body param: Rating): Response<ObjectResponse<Int>>
 

@@ -10,9 +10,8 @@
 namespace ClothesManamentDataAccess
 {
     using System;
-    using System.Collections.Generic;
     
-    public partial class Rating
+    public partial class SP_GetRatingById_Result
     {
         public int ratingID { get; set; }
         public int orderId { get; set; }
@@ -20,7 +19,7 @@ namespace ClothesManamentDataAccess
         public int sizeId { get; set; }
         public int productID { get; set; }
         public int accountID { get; set; }
-        public int rating1 { get; set; }
+        public int rating { get; set; }
         public string comment { get; set; }
         public System.DateTime dateRating { get; set; }
         public Nullable<System.DateTime> dateEdit { get; set; }
@@ -29,8 +28,5 @@ namespace ClothesManamentDataAccess
         public string imageUrl3 { get; set; }
         public string videoUrl { get; set; }
         public Nullable<int> parentId { get; set; }
-    
-        public virtual Account Account { get; set; }
-        public virtual InvoiceItem InvoiceItem { get; set; }
     }
 }

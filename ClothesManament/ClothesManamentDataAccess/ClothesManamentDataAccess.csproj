@@ -235,6 +235,9 @@
     <Compile Include="Role.cs">
       <DependentUpon>ClothesEntity.tt</DependentUpon>
     </Compile>
+    <Compile Include="ShopData.cs">
+      <DependentUpon>ClothesEntity.tt</DependentUpon>
+    </Compile>
     <Compile Include="ShopInfo.cs">
       <DependentUpon>ClothesEntity.tt</DependentUpon>
     </Compile>
@@ -334,6 +337,9 @@
     <Compile Include="SP_GetProductInvoice_Result2.cs">
       <DependentUpon>ClothesEntity.tt</DependentUpon>
     </Compile>
+    <Compile Include="SP_GetProductInvoice_Result3.cs">
+      <DependentUpon>ClothesEntity.tt</DependentUpon>
+    </Compile>
     <Compile Include="SP_GetProductOfCategory_Result.cs">
       <DependentUpon>ClothesEntity.tt</DependentUpon>
     </Compile>
@@ -344,6 +350,9 @@
       <DependentUpon>ClothesEntity.tt</DependentUpon>
     </Compile>
     <Compile Include="SP_GetProductsOfProvider_Result1.cs">
+      <DependentUpon>ClothesEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SP_GetProduct_Result.cs">
       <DependentUpon>ClothesEntity.tt</DependentUpon>
     </Compile>
     <Compile Include="SP_GetProviderDetail_Result.cs">
@@ -359,6 +368,9 @@
       <DependentUpon>ClothesEntity.tt</DependentUpon>
     </Compile>
     <Compile Include="SP_GetQuestion_Result1.cs">
+      <DependentUpon>ClothesEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SP_GetRatingById_Result.cs">
       <DependentUpon>ClothesEntity.tt</DependentUpon>
     </Compile>
     <Compile Include="SP_GetRatingDetail_Result.cs">
@@ -418,7 +430,13 @@
     <Compile Include="SP_InventoryProduct_Result.cs">
       <DependentUpon>ClothesEntity.tt</DependentUpon>
     </Compile>
+    <Compile Include="SP_Profit_Result.cs">
+      <DependentUpon>ClothesEntity.tt</DependentUpon>
+    </Compile>
     <Compile Include="SP_ReportGetInvoiceDetail_Result.cs">
+      <DependentUpon>ClothesEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SP_ReportImportCupon_Result.cs">
       <DependentUpon>ClothesEntity.tt</DependentUpon>
     </Compile>
     <Compile Include="SP_StatisticProduct_Result.cs">

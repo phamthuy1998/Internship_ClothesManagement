@@ -28,10 +28,10 @@ namespace ClothesManamentDataAccess
     
         public int id { get; set; }
         public string email { get; set; }
-        public Nullable<int> roleId { get; set; }
+        public int roleId { get; set; }
         public string password { get; set; }
         public string username { get; set; }
-        public Nullable<int> isAccuracy { get; set; }
+        public int isAccuracy { get; set; }
         public Nullable<int> active { get; set; }
     
         public virtual Role Role { get; set; }

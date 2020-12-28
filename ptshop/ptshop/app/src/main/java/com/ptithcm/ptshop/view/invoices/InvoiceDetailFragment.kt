@@ -34,18 +34,27 @@ class InvoiceDetailFragment : BaseFragment<FragmentInvoiceDetailBinding>() {
     private var invoiceDetail: InvoiceDetail? = null
 
     private fun itemClick(item: InvoiceProductDetail, type: Int) {
-        if(type ==ITEM_CLICK){
+        if (type == ITEM_CLICK) {
             navController.navigateAnimation(
                 R.id.fragment_product_detail,
                 bundle = bundleOf(
                     "productId" to item.id
                 )
             )
-        }else if(type==ITEM_WRITE_REVIEW) {
-            navController.navigateAnimation(
+        } else if (type == ITEM_WRITE_REVIEW) {
+            if (item.statusRating == 0)
+                navController.navigateAnimation(
+                    R.id.createReviewFragment,
+                    bundle = bundleOf(
+                        "product" to item,
+                        "isViewRating" to false
+                    )
+                )
+            else navController.navigateAnimation(
                 R.id.createReviewFragment,
                 bundle = bundleOf(
-                    "product" to item
+                    "product" to item,
+                    "isViewRating" to true
                 )
             )
         }
@@ -55,6 +64,11 @@ class InvoiceDetailFragment : BaseFragment<FragmentInvoiceDetailBinding>() {
         setUpRv()
         setUpToolbar()
         userViewModel.getInvoiceDetail(arguments?.getInt(KEY_ARGUMENT))
+
+        viewBinding.swRefreshInvoiceDetail.setOnRefreshListener {
+            userViewModel.getInvoiceDetail(arguments?.getInt(KEY_ARGUMENT))
+            viewBinding.swRefreshInvoiceDetail.isRefreshing = false
+        }
     }
 
     override fun bindViewModelOnce() {
@@ -79,6 +93,7 @@ class InvoiceDetailFragment : BaseFragment<FragmentInvoiceDetailBinding>() {
     }
 
     private fun updateUIProduct() {
+        productInvoiceAdapter.setCanRating(invoiceDetail?.statusOrderId == 3)
         productInvoiceAdapter.addToList(invoiceDetail?.products)
     }
 

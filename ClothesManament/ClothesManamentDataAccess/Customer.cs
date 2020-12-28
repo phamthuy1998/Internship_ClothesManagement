@@ -17,9 +17,9 @@ namespace ClothesManamentDataAccess
         public int id { get; set; }
         public string name { get; set; }
         public string phone { get; set; }
-        public Nullable<System.DateTime> dateCreate { get; set; }
+        public System.DateTime dateCreate { get; set; }
         public string imageUrl { get; set; }
-        public Nullable<int> idAccount { get; set; }
+        public int idAccount { get; set; }
     
         public virtual Account Account { get; set; }
     }

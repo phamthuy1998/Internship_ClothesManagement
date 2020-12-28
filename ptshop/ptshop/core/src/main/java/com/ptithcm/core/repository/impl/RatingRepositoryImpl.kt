@@ -12,6 +12,15 @@ import com.ptithcm.core.vo.Result
 import retrofit2.Response
 
 class RatingRepositoryImpl(val apiClothes: ApiClothesService) : RatingRepository {
+    override suspend fun getRating(ratingID: Int): LiveData<Result<ObjectResponse<Rating>>> {
+        return object :
+            NetworkBoundResource<ObjectResponse<Rating>, ObjectResponse<Rating>>() {
+            override fun processResponse(response: ObjectResponse<Rating>) = response
+            override suspend fun createCall(): Response<ObjectResponse<Rating>> =
+                apiClothes.getRating(ratingID)
+        }.build().asLiveData()
+    }
+
     override suspend fun getRatings(productID: Int): LiveData<Result<ListResponse<Rating>>> {
         return object :
             NetworkBoundResource<ListResponse<Rating>, ListResponse<Rating>>() {

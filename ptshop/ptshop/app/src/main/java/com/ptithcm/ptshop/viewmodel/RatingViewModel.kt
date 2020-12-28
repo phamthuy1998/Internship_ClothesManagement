@@ -32,11 +32,32 @@ class RatingViewModel(private val repository: RatingRepository) : ViewModel() {
     val delRatingResult = MediatorLiveData<ObjectResponse<Int>>()
     val ratingAverage = MediatorLiveData<ObjectResponse<RatingProduct>>()
     val ratingDetail = MediatorLiveData<ObjectResponse<Rating>>()
+    val ratingResponse= MediatorLiveData<Rating>()
 
     var urlImage1 = MutableLiveData<String>()
     var urlImage2 = MutableLiveData<String>()
     var urlVideo = MutableLiveData<String>()
 
+    fun getRating(ratingID: Int){
+        viewModelScope.launch {
+            ratingResponse.addSource(repository.getRating(ratingID)) {
+                when (it) {
+                    is Result.Loading -> {
+                        networkState.value = true
+                    }
+                    is Result.Error -> {
+                        networkState.value = false
+                        error.value = Pair(it.message, it.code)
+                    }
+                    is Result.Success -> {
+                        networkState.value = false
+                        ratingResponse.value = it.data?.data
+                    }
+                }
+            }
+        }
+
+    }
     fun getRatings(productID: Int) {
         viewModelScope.launch {
             ratingList.addSource(repository.getRatings(productID)) {

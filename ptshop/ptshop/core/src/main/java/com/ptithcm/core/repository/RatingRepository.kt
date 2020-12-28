@@ -8,6 +8,7 @@ import com.ptithcm.core.vo.ListResponse
 import com.ptithcm.core.vo.Result
 
 interface RatingRepository {
+    suspend fun getRating(ratingID: Int): LiveData<Result<ObjectResponse<Rating>>>
     suspend fun getRatings(productID: Int): LiveData<Result<ListResponse<Rating>>>
     suspend fun addRating(rating: Rating): LiveData<Result<ObjectResponse<Int>>>
     suspend fun updateRating(rating: Rating): LiveData<Result<ObjectResponse<Int>>>

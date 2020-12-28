@@ -367,6 +367,7 @@
     <string name="no_question">No question</string>
     <string name="edit">Edit</string>
     <string name="write_reviews">Write reviews</string>
+    <string name="view_rating">View rating</string>
     <string name="no_rating_yet">No rating yet</string>
     <string name="has_received">Has received</string>
     <string name="shipped">Shipped</string>
@@ -382,4 +383,5 @@
     <string name="address_of_shop">Address of shop</string>
     <string name="phoneShop">Phone: %s</string>
     <string name="appName">Clothes shop</string>
+    <string name="cmt">Comment</string>
 </resources>

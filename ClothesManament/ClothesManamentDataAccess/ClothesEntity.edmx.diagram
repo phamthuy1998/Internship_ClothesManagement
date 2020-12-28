@@ -4,28 +4,32 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="7465031262264eee92d4e6d51a70c7ac" Name="Diagram1" ZoomLevel="65">
-        <EntityTypeShape EntityType="ClothesManamentModel1.Account" Width="1.5" PointX="5.625" PointY="14.625" />
-        <EntityTypeShape EntityType="ClothesManamentModel1.Address" Width="1.5" PointX="7.875" PointY="25.5" />
-        <EntityTypeShape EntityType="ClothesManamentModel1.Category" Width="1.5" PointX="10.625" PointY="21" />
-        <EntityTypeShape EntityType="ClothesManamentModel1.Color" Width="1.5" PointX="15.875" PointY="3.75" />
-        <EntityTypeShape EntityType="ClothesManamentModel1.Customer" Width="1.5" PointX="7.875" PointY="29.5" />
-        <EntityTypeShape EntityType="ClothesManamentModel1.Employee" Width="1.5" PointX="7.875" PointY="11.125" />
-        <EntityTypeShape EntityType="ClothesManamentModel1.Image" Width="1.5" PointX="15.125" PointY="14.625" />
-        <EntityTypeShape EntityType="ClothesManamentModel1.ImportCoupon" Width="1.5" PointX="10.125" PointY="17.125" />
-        <EntityTypeShape EntityType="ClothesManamentModel1.Invoice" Width="1.5" PointX="10.125" PointY="11.75" />
-        <EntityTypeShape EntityType="ClothesManamentModel1.InvoiceItem" Width="1.5" PointX="15.375" PointY="10.5" />
-        <EntityTypeShape EntityType="ClothesManamentModel1.InvoiceStatu" Width="1.5" PointX="5.25" PointY="9.375" />
-        <EntityTypeShape EntityType="ClothesManamentModel1.Product" Width="1.5" PointX="12.875" PointY="11.25" />
-        <EntityTypeShape EntityType="ClothesManamentModel1.ProductSizeColor" Width="1.5" PointX="18.125" PointY="12.125" />
-        <EntityTypeShape EntityType="ClothesManamentModel1.Promotion" Width="1.5" PointX="15.125" PointY="17.125" />
-        <EntityTypeShape EntityType="ClothesManamentModel1.Provider" Width="1.5" PointX="10.625" PointY="7.75" />
-        <EntityTypeShape EntityType="ClothesManamentModel1.Question" Width="1.5" PointX="7.875" PointY="16.25" />
-        <EntityTypeShape EntityType="ClothesManamentModel1.Rating" Width="1.5" PointX="20.625" PointY="12.375" />
-        <EntityTypeShape EntityType="ClothesManamentModel1.Role" Width="1.5" PointX="3.375" PointY="15.75" />
-        <EntityTypeShape EntityType="ClothesManamentModel1.Size" Width="1.5" PointX="15.875" PointY="7" />
-        <EntityTypeShape EntityType="ClothesManamentModel1.sysdiagram" Width="1.5" PointX="8.25" PointY="8.25" />
-        <EntityTypeShape EntityType="ClothesManamentModel1.ImportCouponDetail" Width="1.5" PointX="12.375" PointY="17" />
+      <Diagram DiagramId="7465031262264eee92d4e6d51a70c7ac" Name="Diagram1" ZoomLevel="48">
+        <EntityTypeShape EntityType="ClothesManamentModel1.Account" Width="1.5" PointX="3" PointY="14.125" />
+        <EntityTypeShape EntityType="ClothesManamentModel1.Address" Width="1.5" PointX="5.25" PointY="18.875" />
+        <EntityTypeShape EntityType="ClothesManamentModel1.Category" Width="1.5" PointX="8" PointY="23.25" />
+        <EntityTypeShape EntityType="ClothesManamentModel1.Color" Width="1.5" PointX="13.25" PointY="21.75" />
+        <EntityTypeShape EntityType="ClothesManamentModel1.Customer" Width="1.5" PointX="5.25" PointY="29" />
+        <EntityTypeShape EntityType="ClothesManamentModel1.Employee" Width="1.5" PointX="5.25" PointY="14.125" />
+        <EntityTypeShape EntityType="ClothesManamentModel1.Image" Width="1.5" PointX="12.5" PointY="18.375" />
+        <EntityTypeShape EntityType="ClothesManamentModel1.ImportCoupon" Width="1.5" PointX="7.5" PointY="15" />
+        <EntityTypeShape EntityType="ClothesManamentModel1.ImportCouponDetail" Width="1.5" PointX="9.75" PointY="15" />
+        <EntityTypeShape EntityType="ClothesManamentModel1.Invoice" Width="1.5" PointX="7.5" PointY="18" />
+        <EntityTypeShape EntityType="ClothesManamentModel1.InvoiceItem" Width="1.5" PointX="12.75" PointY="14.75" />
+        <EntityTypeShape EntityType="ClothesManamentModel1.InvoiceStatu" Width="1.5" PointX="0.75" PointY="0.75" />
+        <EntityTypeShape EntityType="ClothesManamentModel1.Notification" Width="1.5" PointX="2.75" PointY="0.75" />
+        <EntityTypeShape EntityType="ClothesManamentModel1.Product" Width="1.5" PointX="10.25" PointY="18.75" />
+        <EntityTypeShape EntityType="ClothesManamentModel1.ProductSizeColor" Width="1.5" PointX="15.5" PointY="19.625" />
+        <EntityTypeShape EntityType="ClothesManamentModel1.Promotion" Width="1.5" PointX="12.5" PointY="24.625" />
+        <EntityTypeShape EntityType="ClothesManamentModel1.Provider" Width="1.5" PointX="8" PointY="26.5" />
+        <EntityTypeShape EntityType="ClothesManamentModel1.Question" Width="1.5" PointX="8.25" PointY="10.75" />
+        <EntityTypeShape EntityType="ClothesManamentModel1.Rating" Width="1.5" PointX="15" PointY="14" />
+        <EntityTypeShape EntityType="ClothesManamentModel1.Role" Width="1.5" PointX="0.75" PointY="15.25" />
+        <EntityTypeShape EntityType="ClothesManamentModel1.ShopData" Width="1.5" PointX="0.75" PointY="3.75" />
+        <EntityTypeShape EntityType="ClothesManamentModel1.ShopInfo" Width="1.5" PointX="2.75" PointY="3.75" />
+        <EntityTypeShape EntityType="ClothesManamentModel1.Size" Width="1.5" PointX="13.25" PointY="28.5" />
+        <EntityTypeShape EntityType="ClothesManamentModel1.sysdiagram" Width="1.5" PointX="4.75" PointY="0.75" />
+        <EntityTypeShape EntityType="ClothesManamentModel1.TypeNoti" Width="1.5" PointX="4.75" PointY="3.75" />
         <AssociationConnector Association="ClothesManamentModel1.FK_Account_Role" />
         <AssociationConnector Association="ClothesManamentModel1.FK_Address_Account1" />
         <AssociationConnector Association="ClothesManamentModel1.FK_Comment_Account" />
@@ -48,9 +52,6 @@
         <AssociationConnector Association="ClothesManamentModel1.FK_ProductSizeColor_Size1" />
         <AssociationConnector Association="ClothesManamentModel1.FavoriteProduct" />
         <AssociationConnector Association="ClothesManamentModel1.PromotionItem" />
-        <EntityTypeShape EntityType="ClothesManamentModel1.Notification" Width="1.5" PointX="1" PointY="0.75" />
-        <EntityTypeShape EntityType="ClothesManamentModel1.ShopInfo" Width="1.5" PointX="3" PointY="0.75" />
-        <EntityTypeShape EntityType="ClothesManamentModel1.TypeNoti" Width="1.5" PointX="5" PointY="0.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

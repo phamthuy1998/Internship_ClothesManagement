@@ -10,17 +10,14 @@
 namespace ClothesManamentDataAccess
 {
     using System;
-    using System.Collections.Generic;
     
-    public partial class ImportCouponDetail
+    public partial class SP_ReportImportCupon_Result
     {
-        public int idCoupon { get; set; }
         public int idProduct { get; set; }
-        public int colorId { get; set; }
-        public int sizeID { get; set; }
+        public string title { get; set; }
+        public string colorName { get; set; }
+        public string sizeName { get; set; }
         public int quantity { get; set; }
         public double price { get; set; }
-    
-        public virtual ImportCoupon ImportCoupon { get; set; }
     }
 }

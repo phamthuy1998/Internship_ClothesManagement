@@ -12,17 +12,9 @@ namespace ClothesManamentDataAccess
     using System;
     using System.Collections.Generic;
     
-    public partial class Question
+    public partial class ShopData
     {
-        public int questionID { get; set; }
-        public int accountID { get; set; }
-        public string question1 { get; set; }
-        public System.DateTime dateComment { get; set; }
-        public Nullable<System.DateTime> dateEdit { get; set; }
-        public Nullable<int> parentQuestionID { get; set; }
-        public int productID { get; set; }
-    
-        public virtual Account Account { get; set; }
-        public virtual Product Product { get; set; }
+        public int id { get; set; }
+        public double profit { get; set; }
     }
 }

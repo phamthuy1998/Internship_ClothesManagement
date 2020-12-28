@@ -11,6 +11,10 @@
             name="item"
             type="com.ptithcm.core.model.InvoiceProductDetail" />
 
+        <variable
+            name="canRating"
+            type="Boolean" />
+
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -157,6 +161,7 @@
 
         <TextView
             android:id="@+id/tvWriteReview"
+            setVisible="@{canRating}"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/layout_margin_10dp"
@@ -164,7 +169,7 @@
             android:drawablePadding="@dimen/layout_margin_10dp"
             android:gravity="center_vertical"
             android:padding="@dimen/layout_margin_10dp"
-            android:text="@string/write_reviews"
+            android:text="@{item.statusRating==0 ? @string/write_reviews : @string/view_rating }"
             android:textColor="@color/blue"
             app:drawableStartCompat="@drawable/ic_five_stars"
             app:layout_constraintBottom_toBottomOf="parent"

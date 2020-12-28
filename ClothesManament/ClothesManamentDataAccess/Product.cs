@@ -27,15 +27,15 @@ namespace ClothesManamentDataAccess
         public int id { get; set; }
         public string title { get; set; }
         public string detail { get; set; }
-        public Nullable<double> price { get; set; }
-        public Nullable<int> categoryID { get; set; }
+        public double price { get; set; }
+        public int categoryID { get; set; }
         public Nullable<int> rating { get; set; }
-        public Nullable<int> active { get; set; }
-        public Nullable<int> providerId { get; set; }
+        public int providerId { get; set; }
         public string thumnail { get; set; }
         public Nullable<int> isNew { get; set; }
-        public System.DateTime addDate { get; set; }
+        public Nullable<System.DateTime> addDate { get; set; }
         public Nullable<int> sold { get; set; }
+        public Nullable<int> active { get; set; }
     
         public virtual Category Category { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

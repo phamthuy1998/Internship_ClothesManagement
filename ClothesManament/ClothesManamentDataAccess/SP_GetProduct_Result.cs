@@ -10,21 +10,22 @@
 namespace ClothesManamentDataAccess
 {
     using System;
-    using System.Collections.Generic;
     
-    public partial class Address
+    public partial class SP_GetProduct_Result
     {
         public int id { get; set; }
-        public int accountId { get; set; }
-        public string province { get; set; }
-        public string district { get; set; }
-        public string wards { get; set; }
-        public string street { get; set; }
+        public string title { get; set; }
+        public string detail { get; set; }
+        public double price { get; set; }
+        public int categoryID { get; set; }
         public string name { get; set; }
-        public string phone { get; set; }
-        public int isDefault { get; set; }
+        public Nullable<int> rating { get; set; }
         public Nullable<int> active { get; set; }
-    
-        public virtual Account Account { get; set; }
+        public int providerId { get; set; }
+        public string brandName { get; set; }
+        public string thumnail { get; set; }
+        public Nullable<int> isNew { get; set; }
+        public Nullable<System.DateTime> addDate { get; set; }
+        public Nullable<int> sold { get; set; }
     }
 }

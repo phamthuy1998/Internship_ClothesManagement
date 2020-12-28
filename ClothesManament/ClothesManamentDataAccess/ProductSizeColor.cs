@@ -23,7 +23,7 @@ namespace ClothesManamentDataAccess
         public int productID { get; set; }
         public int sizeId { get; set; }
         public int colorID { get; set; }
-        public Nullable<int> quantity { get; set; }
+        public int quantity { get; set; }
         public string imageUrl { get; set; }
         public Nullable<int> active { get; set; }
     

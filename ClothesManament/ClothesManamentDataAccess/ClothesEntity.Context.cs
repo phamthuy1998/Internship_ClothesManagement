@@ -35,9 +35,11 @@ namespace ClothesManamentDataAccess
         public virtual DbSet<Employee> Employees { get; set; }
         public virtual DbSet<Image> Images { get; set; }
         public virtual DbSet<ImportCoupon> ImportCoupons { get; set; }
+        public virtual DbSet<ImportCouponDetail> ImportCouponDetails { get; set; }
         public virtual DbSet<Invoice> Invoices { get; set; }
         public virtual DbSet<InvoiceItem> InvoiceItems { get; set; }
         public virtual DbSet<InvoiceStatu> InvoiceStatus { get; set; }
+        public virtual DbSet<Notification> Notifications { get; set; }
         public virtual DbSet<Product> Products { get; set; }
         public virtual DbSet<ProductSizeColor> ProductSizeColors { get; set; }
         public virtual DbSet<Promotion> Promotions { get; set; }
@@ -45,11 +47,10 @@ namespace ClothesManamentDataAccess
         public virtual DbSet<Question> Questions { get; set; }
         public virtual DbSet<Rating> Ratings { get; set; }
         public virtual DbSet<Role> Roles { get; set; }
+        public virtual DbSet<ShopData> ShopDatas { get; set; }
+        public virtual DbSet<ShopInfo> ShopInfoes { get; set; }
         public virtual DbSet<Size> Sizes { get; set; }
         public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
-        public virtual DbSet<ImportCouponDetail> ImportCouponDetails { get; set; }
-        public virtual DbSet<Notification> Notifications { get; set; }
-        public virtual DbSet<ShopInfo> ShopInfoes { get; set; }
         public virtual DbSet<TypeNoti> TypeNotis { get; set; }
     
         public virtual ObjectResult<Nullable<int>> ChangePassword(Nullable<int> userId, string oldPass, string newPass)
@@ -663,13 +664,13 @@ namespace ClothesManamentDataAccess
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_GetInvoiceDetail_Result1>("SP_GetInvoiceDetail", inovoiceIdParameter);
         }
     
-        public virtual ObjectResult<SP_GetProductInvoice_Result2> SP_GetProductInvoice(Nullable<int> inovoiceId)
+        public virtual ObjectResult<SP_GetProductInvoice_Result3> SP_GetProductInvoice(Nullable<int> inovoiceId)
         {
             var inovoiceIdParameter = inovoiceId.HasValue ?
                 new ObjectParameter("inovoiceId", inovoiceId) :
                 new ObjectParameter("inovoiceId", typeof(int));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_GetProductInvoice_Result2>("SP_GetProductInvoice", inovoiceIdParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_GetProductInvoice_Result3>("SP_GetProductInvoice", inovoiceIdParameter);
         }
     
         public virtual ObjectResult<Nullable<int>> SP_CheckInvoiceExist(Nullable<int> inovoiceId)
@@ -1557,6 +1558,159 @@ namespace ClothesManamentDataAccess
                 new ObjectParameter("accountId", typeof(int));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_UpdateEmployee_Result>("SP_UpdateEmployee", employeeIdParameter, firstnameParameter, lastnameParameter, phoneParameter, addressParameter, avatarParameter, birthdayParameter, beginDateParameter, endDateParameter, isWorkingParameter, emailParameter, roleIdParameter, passwordParameter, usernameParameter, accountIdParameter);
+        }
+    
+        public virtual ObjectResult<SP_GetProduct_Result> SP_GetProduct(Nullable<int> providerId, Nullable<int> categoryID)
+        {
+            var providerIdParameter = providerId.HasValue ?
+                new ObjectParameter("providerId", providerId) :
+                new ObjectParameter("providerId", typeof(int));
+    
+            var categoryIDParameter = categoryID.HasValue ?
+                new ObjectParameter("categoryID", categoryID) :
+                new ObjectParameter("categoryID", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_GetProduct_Result>("SP_GetProduct", providerIdParameter, categoryIDParameter);
+        }
+    
+        public virtual ObjectResult<SP_GetRatingById_Result> SP_GetRatingById(Nullable<int> ratingID)
+        {
+            var ratingIDParameter = ratingID.HasValue ?
+                new ObjectParameter("ratingID", ratingID) :
+                new ObjectParameter("ratingID", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_GetRatingById_Result>("SP_GetRatingById", ratingIDParameter);
+        }
+    
+        public virtual int SP_InsertPromoCategory(Nullable<int> promoID, Nullable<int> categoryID)
+        {
+            var promoIDParameter = promoID.HasValue ?
+                new ObjectParameter("promoID", promoID) :
+                new ObjectParameter("promoID", typeof(int));
+    
+            var categoryIDParameter = categoryID.HasValue ?
+                new ObjectParameter("categoryID", categoryID) :
+                new ObjectParameter("categoryID", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("SP_InsertPromoCategory", promoIDParameter, categoryIDParameter);
+        }
+    
+        public virtual int SP_InsertPromoPriceInRange(Nullable<int> promoID, Nullable<double> priceFrom, Nullable<double> priceEnd)
+        {
+            var promoIDParameter = promoID.HasValue ?
+                new ObjectParameter("promoID", promoID) :
+                new ObjectParameter("promoID", typeof(int));
+    
+            var priceFromParameter = priceFrom.HasValue ?
+                new ObjectParameter("priceFrom", priceFrom) :
+                new ObjectParameter("priceFrom", typeof(double));
+    
+            var priceEndParameter = priceEnd.HasValue ?
+                new ObjectParameter("priceEnd", priceEnd) :
+                new ObjectParameter("priceEnd", typeof(double));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("SP_InsertPromoPriceInRange", promoIDParameter, priceFromParameter, priceEndParameter);
+        }
+    
+        public virtual int SP_InsertPromoProvider(Nullable<int> promoID, Nullable<int> providerID)
+        {
+            var promoIDParameter = promoID.HasValue ?
+                new ObjectParameter("promoID", promoID) :
+                new ObjectParameter("promoID", typeof(int));
+    
+            var providerIDParameter = providerID.HasValue ?
+                new ObjectParameter("providerID", providerID) :
+                new ObjectParameter("providerID", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("SP_InsertPromoProvider", promoIDParameter, providerIDParameter);
+        }
+    
+        public virtual int SP_InventoryProductNew(Nullable<int> categoryId, Nullable<int> providerID)
+        {
+            var categoryIdParameter = categoryId.HasValue ?
+                new ObjectParameter("categoryId", categoryId) :
+                new ObjectParameter("categoryId", typeof(int));
+    
+            var providerIDParameter = providerID.HasValue ?
+                new ObjectParameter("providerID", providerID) :
+                new ObjectParameter("providerID", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("SP_InventoryProductNew", categoryIdParameter, providerIDParameter);
+        }
+    
+        public virtual ObjectResult<SP_Profit_Result> SP_Profit(Nullable<int> type, Nullable<int> year, Nullable<int> month, string beginDate, string endDate, Nullable<int> categoryID, Nullable<int> providerID)
+        {
+            var typeParameter = type.HasValue ?
+                new ObjectParameter("type", type) :
+                new ObjectParameter("type", typeof(int));
+    
+            var yearParameter = year.HasValue ?
+                new ObjectParameter("year", year) :
+                new ObjectParameter("year", typeof(int));
+    
+            var monthParameter = month.HasValue ?
+                new ObjectParameter("month", month) :
+                new ObjectParameter("month", typeof(int));
+    
+            var beginDateParameter = beginDate != null ?
+                new ObjectParameter("beginDate", beginDate) :
+                new ObjectParameter("beginDate", typeof(string));
+    
+            var endDateParameter = endDate != null ?
+                new ObjectParameter("endDate", endDate) :
+                new ObjectParameter("endDate", typeof(string));
+    
+            var categoryIDParameter = categoryID.HasValue ?
+                new ObjectParameter("categoryID", categoryID) :
+                new ObjectParameter("categoryID", typeof(int));
+    
+            var providerIDParameter = providerID.HasValue ?
+                new ObjectParameter("providerID", providerID) :
+                new ObjectParameter("providerID", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_Profit_Result>("SP_Profit", typeParameter, yearParameter, monthParameter, beginDateParameter, endDateParameter, categoryIDParameter, providerIDParameter);
+        }
+    
+        public virtual int SP_ProfitDataMonthYear(Nullable<int> type, Nullable<int> year, Nullable<int> month, string beginDate, string endDate, Nullable<int> categoryID, Nullable<int> providerID)
+        {
+            var typeParameter = type.HasValue ?
+                new ObjectParameter("type", type) :
+                new ObjectParameter("type", typeof(int));
+    
+            var yearParameter = year.HasValue ?
+                new ObjectParameter("year", year) :
+                new ObjectParameter("year", typeof(int));
+    
+            var monthParameter = month.HasValue ?
+                new ObjectParameter("month", month) :
+                new ObjectParameter("month", typeof(int));
+    
+            var beginDateParameter = beginDate != null ?
+                new ObjectParameter("beginDate", beginDate) :
+                new ObjectParameter("beginDate", typeof(string));
+    
+            var endDateParameter = endDate != null ?
+                new ObjectParameter("endDate", endDate) :
+                new ObjectParameter("endDate", typeof(string));
+    
+            var categoryIDParameter = categoryID.HasValue ?
+                new ObjectParameter("categoryID", categoryID) :
+                new ObjectParameter("categoryID", typeof(int));
+    
+            var providerIDParameter = providerID.HasValue ?
+                new ObjectParameter("providerID", providerID) :
+                new ObjectParameter("providerID", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("SP_ProfitDataMonthYear", typeParameter, yearParameter, monthParameter, beginDateParameter, endDateParameter, categoryIDParameter, providerIDParameter);
+        }
+    
+        public virtual ObjectResult<SP_ReportImportCupon_Result> SP_ReportImportCupon(Nullable<int> importCuponId)
+        {
+            var importCuponIdParameter = importCuponId.HasValue ?
+                new ObjectParameter("importCuponId", importCuponId) :
+                new ObjectParameter("importCuponId", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_ReportImportCupon_Result>("SP_ReportImportCupon", importCuponIdParameter);
         }
     }
 }

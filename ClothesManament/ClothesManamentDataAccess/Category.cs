@@ -25,7 +25,7 @@ namespace ClothesManamentDataAccess
         public string detail { get; set; }
         public string imageUrl { get; set; }
         public string thumnail { get; set; }
-        public Nullable<byte> sex { get; set; }
+        public byte sex { get; set; }
         public Nullable<int> active { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

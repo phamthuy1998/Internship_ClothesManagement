@@ -291,6 +291,13 @@
         <item name="android:textSize">@dimen/text_size_11sp</item>
         <item name="android:fontFamily">@font/montserrat_regular</item>
     </style>
+    <style name="stroke_btn">
+        <item name="android:background">@drawable/bg_btn_stroke</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="android:letterSpacing">0.1</item>
+        <item name="android:textSize">@dimen/text_size_11sp</item>
+        <item name="android:fontFamily">@font/montserrat_regular</item>
+    </style>
 
     <style name="Button_Borderless_Bold">
         <item name="android:layout_width">match_parent</item>

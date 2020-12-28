@@ -13,6 +13,8 @@ class ProductInvoiceAdapter(
 ) :
     RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
+    private var canRatingCmt = false
+
     companion object {
         const val ITEM_CLICK = 1
         const val ITEM_WRITE_REVIEW = 2
@@ -28,6 +30,10 @@ class ProductInvoiceAdapter(
             false
         )
         return ItemViewHolder(binding)
+    }
+
+    fun setCanRating(canRating: Boolean) {
+        this.canRatingCmt = canRating
     }
 
     override fun getItemCount(): Int = products.size
@@ -50,6 +56,7 @@ class ProductInvoiceAdapter(
         fun bind(item: InvoiceProductDetail) {
             binding.apply {
                 this.item = item
+                this.canRating = canRatingCmt
                 binding.root.setOnClickListener { listener?.invoke(item, ITEM_CLICK) }
                 tvWriteReview.setOnClickListener { listener?.invoke(item, ITEM_WRITE_REVIEW) }
                 executePendingBindings()

@@ -98,6 +98,18 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/lineProduct" />
 
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvContent"
+            style="@style/normal_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/sb_size_8"
+            android:layout_marginBottom="@dimen/sb_size_2"
+            android:text="@string/cmt"
+            android:textColor="@color/gray_dark"
+            app:layout_constraintBottom_toTopOf="@id/edtComment"
+            app:layout_constraintStart_toStartOf="@id/edtComment" />
+
         <androidx.appcompat.widget.AppCompatEditText
             android:id="@+id/edtComment"
             style="@style/normal_text.EditText"
@@ -260,17 +272,37 @@
             app:layout_constraintStart_toStartOf="@id/ivImageVideo"
             app:layout_constraintTop_toTopOf="@id/ivImageVideo" />
 
+
         <com.ptithcm.ptshop.widget.LoadingButton
             android:id="@+id/btnAddReview"
             style="@style/black_btn"
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_margin="@dimen/layout_margin_32dp"
+            android:layout_margin="@dimen/padding_20dp"
             android:background="@drawable/button_selector"
             android:onClick="@{fragment::onClick}"
             app:isShowTextBehind="true"
             app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/btnDeleteReview"
+            app:layout_constraintHorizontal_chainStyle="packed"
+            app:layout_constraintStart_toStartOf="parent"
             app:text="@string/post" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btnDeleteReview"
+            style="@style/stroke_btn"
+            android:layout_width="0dp"
+            android:layout_marginEnd="@dimen/padding_20dp"
+            android:layout_marginBottom="@dimen/padding_20dp"
+            android:layout_height="wrap_content"
+            android:onClick="@{fragment::onClick}"
+            android:text="@string/delete"
+            app:isShowTextBehind="true"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_chainStyle="packed"
+            app:layout_constraintStart_toEndOf="@id/btnAddReview" />
+
 
         <LinearLayout
             android:id="@+id/layoutLoading"
@@ -280,7 +312,7 @@
             android:gravity="center_horizontal"
             android:orientation="horizontal"
             android:visibility="gone"
-            tools:visibility="visible">
+            tools:visibility="gone">
 
             <ProgressBar
                 android:layout_width="wrap_content"

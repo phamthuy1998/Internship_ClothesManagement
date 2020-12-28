@@ -80,6 +80,21 @@ namespace ClothesManagement.Controllers
             };
         }
 
+        [Route("api/getRatingById")]
+        [AcceptVerbs("GET")]
+        [HttpGet]
+        public async Task<ResponseObjectModel<SP_GetRatingById_Result>> getRatingById(int? ratingID = null)
+        {
+            var rating = (await Task.Run(() => entities.SP_GetRatingById(ratingID).FirstOrDefault()));
+
+            return new ResponseObjectModel<SP_GetRatingById_Result>()
+            {
+                message = "Lấy số đánh giá thành công",
+                status = true,
+                code = 200,
+                data = rating
+            };
+        }
 
         [Route("api/getRatingDetail")]
         [AcceptVerbs("GET")]
@@ -108,7 +123,7 @@ namespace ClothesManagement.Controllers
                 message = "Lấy số đánh giá thành công",
                 status = true,
                 code = 200,
-                data =int.Parse( check.ToString())
+                data = int.Parse(check.ToString())
             };
         }
 

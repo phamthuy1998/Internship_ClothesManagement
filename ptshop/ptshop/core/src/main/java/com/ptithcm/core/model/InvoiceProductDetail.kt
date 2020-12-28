@@ -8,6 +8,7 @@ data class InvoiceProductDetail(
     var invoiceId: Int?,
     var sizeId: Int?,
     var colorId: Int?,
+    var statusRating: Int?=0,
     var detail: String?,
     var id: Int?,
     var quantity: Int?,

@@ -21,10 +21,13 @@ import com.ptithcm.core.CoreApplication
 import com.ptithcm.core.model.InvoiceProductDetail
 import com.ptithcm.core.model.Rating
 import com.ptithcm.ptshop.R
+import com.ptithcm.ptshop.base.BaseActivity
 import com.ptithcm.ptshop.base.BaseFragment
 import com.ptithcm.ptshop.databinding.FragmentCreateReviewBinding
+import com.ptithcm.ptshop.databinding.LayoutPopUpBinding
 import com.ptithcm.ptshop.ext.*
 import com.ptithcm.ptshop.util.BitmapResolver
+import com.ptithcm.ptshop.util.PopUp
 import com.ptithcm.ptshop.view.MainActivity
 import com.ptithcm.ptshop.viewmodel.RatingViewModel
 import kotlinx.android.synthetic.main.activity_main.*
@@ -62,6 +65,7 @@ class CreateReviewFragment : BaseFragment<FragmentCreateReviewBinding>() {
     private var bitmap2: Bitmap? = null
     private var bitmapVideo: Bitmap? = null
     private var rating: Rating? = null
+    private var isViewRating: Boolean? = false
 
     var count = 0
 
@@ -76,14 +80,24 @@ class CreateReviewFragment : BaseFragment<FragmentCreateReviewBinding>() {
             productInvoice?.invoiceId ?: 0
         )
         ratingEdit = arguments?.get("rating") as Rating?
+        isViewRating = arguments?.get("isViewRating") as Boolean?
+
+        viewBinding.btnDeleteReview.visibility =
+            if (ratingEdit?.ratingID != null) View.VISIBLE else View.GONE
+
         if (ratingEdit != null)
             setDataRating()
+        else if (productInvoice?.statusRating != 0) {
+            viewModel.getRating(productInvoice?.statusRating ?: return)
+        }
         viewBinding.item = productInvoice
         viewBinding.fragment = this
         setupToolbar()
     }
 
     private fun setDataRating() {
+        viewBinding.btnDeleteReview.visibility =
+            if (ratingEdit?.ratingID != null) View.VISIBLE else View.GONE
         viewBinding.ratingBar.rating = ratingEdit?.rating?.toFloat() ?: 0F
         viewBinding.edtComment.setText(ratingEdit?.comment ?: "")
 
@@ -150,6 +164,12 @@ class CreateReviewFragment : BaseFragment<FragmentCreateReviewBinding>() {
                 messageHandler?.runMessageErrorHandler(getString(R.string.addFail))
             }
         })
+        viewModel.ratingResponse.observe(this, Observer {
+            if (it != null) {
+                ratingEdit = it
+                setDataRating()
+            }
+        })
         viewModel.updateRatingResult.observe(this, Observer {
             if (it.data ?: 0 > 0) {
                 messageHandler?.runMessageHandler(getString(R.string.addSuccess))
@@ -163,7 +183,8 @@ class CreateReviewFragment : BaseFragment<FragmentCreateReviewBinding>() {
             else viewBinding.layoutLoading.gone()
         })
         viewModel.error.observe(this, Observer {
-            messageHandler?.runMessageErrorHandler(it.first)
+            if (!it.first.isNullOrBlank())
+                messageHandler?.runMessageErrorHandler(it.first)
         })
 
         viewModel.urlImage1.observe(this, Observer {
@@ -250,7 +271,34 @@ class CreateReviewFragment : BaseFragment<FragmentCreateReviewBinding>() {
             R.id.btnAddReview -> {
                 checkData()
             }
+            R.id.btnDeleteReview -> {
+                delReview()
+            }
         }
+    }
+
+    private fun delReview() {
+        (requireActivity() as? BaseActivity<*>)?.showPopup(
+            PopUp(R.layout.layout_pop_up, messageQueue = { popupBinding ->
+                (popupBinding as? LayoutPopUpBinding)?.apply {
+                    title = getString(R.string.confirmDelQuestion)
+                    left = getString(R.string.ok)
+                    right = getString(R.string.cancel)
+                    btnOk.setOnClickListener {
+                        ratingEdit?.ratingID?.let { ratingID ->
+                            viewModel.delRating(ratingID)
+                        }
+                        (requireActivity() as? BaseActivity<*>)?.closePopup()
+                        (requireActivity() as? BaseActivity<*>)?.onBackPressed()
+                    }
+                    btnCancel.setOnClickListener {
+                        (requireActivity() as? BaseActivity<*>)?.closePopup()
+                    }
+                }
+
+            })
+        )
+
     }
 
     private fun checkNoImage(imageView: AppCompatImageView) = imageView.visibility == View.GONE

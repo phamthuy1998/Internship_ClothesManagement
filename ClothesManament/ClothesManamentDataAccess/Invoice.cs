@@ -22,16 +22,16 @@ namespace ClothesManamentDataAccess
     
         public int id { get; set; }
         public Nullable<System.DateTime> updateDate { get; set; }
-        public Nullable<System.DateTime> buyDate { get; set; }
+        public System.DateTime buyDate { get; set; }
         public string name { get; set; }
         public string phone { get; set; }
         public string address { get; set; }
         public string note { get; set; }
-        public Nullable<int> userID { get; set; }
-        public Nullable<int> statusOrderId { get; set; }
+        public int userID { get; set; }
+        public int statusOrderId { get; set; }
         public Nullable<int> employeeId { get; set; }
         public string payment { get; set; }
-        public Nullable<int> isPaid { get; set; }
+        public int isPaid { get; set; }
         public Nullable<System.DateTime> deliveryDate { get; set; }
         public Nullable<int> active { get; set; }
     

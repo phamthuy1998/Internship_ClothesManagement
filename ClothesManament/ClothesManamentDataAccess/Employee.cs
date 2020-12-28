@@ -31,7 +31,7 @@ namespace ClothesManamentDataAccess
         public Nullable<System.DateTime> dateBegin { get; set; }
         public Nullable<System.DateTime> birthday { get; set; }
         public Nullable<int> isWorking { get; set; }
-        public Nullable<int> idAccount { get; set; }
+        public int idAccount { get; set; }
         public Nullable<int> active { get; set; }
     
         public virtual Account Account { get; set; }
