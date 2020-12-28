@@ -345,6 +345,12 @@
     <Compile Include="ProductImageForm.Designer.cs">
       <DependentUpon>ProductImageForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="ProductNewForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ProductNewForm.Designer.cs">
+      <DependentUpon>ProductNewForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="ProductReport.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -400,6 +406,12 @@
     </Compile>
     <Compile Include="Role.cs">
       <DependentUpon>ClothesModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ShopDataForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ShopDataForm.Designer.cs">
+      <DependentUpon>ShopDataForm.cs</DependentUpon>
     </Compile>
     <Compile Include="ShopInfoForm.cs">
       <SubType>Form</SubType>
@@ -547,6 +559,9 @@
     <EmbeddedResource Include="ProductImageForm.resx">
       <DependentUpon>ProductImageForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="ProductNewForm.resx">
+      <DependentUpon>ProductNewForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ProductReport.resx">
       <DependentUpon>ProductReport.cs</DependentUpon>
     </EmbeddedResource>
@@ -578,6 +593,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="RevenueForm.resx">
       <DependentUpon>RevenueForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ShopDataForm.resx">
+      <DependentUpon>ShopDataForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ShopInfoForm.resx">
       <DependentUpon>ShopInfoForm.cs</DependentUpon>
@@ -688,6 +706,7 @@
     <None Include="Resources\category2.png" />
     <None Include="Resources\categories.png" />
     <None Include="Resources\inventory.png" />
+    <None Include="Resources\profits.png" />
     <Content Include="Resources\warehouse.png" />
     <None Include="Resources\warehouse1.png" />
     <Content Include="SqlServerTypes\readme.htm" />

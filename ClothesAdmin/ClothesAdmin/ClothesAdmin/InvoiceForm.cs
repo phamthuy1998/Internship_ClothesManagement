@@ -182,7 +182,8 @@ namespace ClothesAdmin
             {
                 btnChangeStatus.Enabled = true;
             }
-            else {
+            else
+            {
                 btnChangeStatus.Enabled = false;
             }
             if (statusOrderIdSpinEdit.Value == 1) btnCancelOrder.Enabled = true;
@@ -204,9 +205,9 @@ namespace ClothesAdmin
                 this.tableAdapterManager.UpdateAll(this.clothesDataSet);
                 Program.showToastSave();
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
-                MessageBox.Show("Error "+ex.Message, "Error", MessageBoxButtons.OK);
+                MessageBox.Show("Error " + ex.Message, "Error", MessageBoxButtons.OK);
 
             }
 
@@ -214,7 +215,14 @@ namespace ClothesAdmin
 
         private void btnCancelAddProvider_Click_1(object sender, EventArgs e)
         {
-            this.invoiceBindingSource.CancelEdit();
+            try
+            {
+                this.invoiceBindingSource.CancelEdit();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error ", "Error", MessageBoxButtons.OK);
+            }
         }
 
         private void btnExport_Click(object sender, EventArgs e)
@@ -271,7 +279,7 @@ namespace ClothesAdmin
 
         private void btnChangeStatus_Click(object sender, EventArgs e)
         {
-            statusOrderIdSpinEdit.Value = statusOrderIdSpinEdit.Value+1;
+            statusOrderIdSpinEdit.Value = statusOrderIdSpinEdit.Value + 1;
             employeeIdSpinEdit.Value = Int32.Parse(Program.accountLogin.idEmployee.ToString());
         }
 

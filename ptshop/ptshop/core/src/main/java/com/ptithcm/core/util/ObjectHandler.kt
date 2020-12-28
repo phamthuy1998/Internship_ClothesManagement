@@ -40,7 +40,7 @@ object ObjectHandler {
     //check quantity of a product in prefsUtil
     fun getQuantityProductClothesFromLocal(productId: Int?, sizeId: Int?, colorId: Int?): Int {
         val products = getProductsInCart()
-        return products?.firstOrNull { it.providerId == productId && it.quantityInCart?.sizeId == sizeId && it.quantityInCart?.colorID == colorId }?.quantityInCart?.quantity
+        return products?.firstOrNull { it.id == productId && it.quantityInCart?.sizeId == sizeId && it.quantityInCart?.colorID == colorId }?.quantityInCart?.quantity
             ?: 0
     }
 

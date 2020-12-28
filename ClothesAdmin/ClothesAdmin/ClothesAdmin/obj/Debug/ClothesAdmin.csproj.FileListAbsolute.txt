@@ -250,3 +250,5 @@ D:\internship\Internship_ClothesManagement\ClothesAdmin\ClothesAdmin\ClothesAdmi
 D:\internship\Internship_ClothesManagement\ClothesAdmin\ClothesAdmin\ClothesAdmin\obj\Debug\ClothesAdmin.ImportCuponReport.resources
 D:\internship\Internship_ClothesManagement\ClothesAdmin\ClothesAdmin\ClothesAdmin\obj\Debug\ClothesAdmin.InventoryReport.resources
 D:\internship\Internship_ClothesManagement\ClothesAdmin\ClothesAdmin\ClothesAdmin\obj\Debug\ClothesAdmin.ProfitReport.resources
+D:\internship\Internship_ClothesManagement\ClothesAdmin\ClothesAdmin\ClothesAdmin\obj\Debug\ClothesAdmin.ShopDataForm.resources
+D:\internship\Internship_ClothesManagement\ClothesAdmin\ClothesAdmin\ClothesAdmin\obj\Debug\ClothesAdmin.ProductNewForm.resources

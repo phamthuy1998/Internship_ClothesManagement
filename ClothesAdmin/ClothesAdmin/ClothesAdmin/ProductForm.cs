@@ -62,7 +62,7 @@ namespace ClothesAdmin
             // TODO: This line of code loads data into the 'clothesDataSet.Product' table. You can move, or remove it, as needed.
             this.productTableAdapter.FillByCategoryProvider(this.clothesDataSet.Product, categoryId, providerID);
         }
-        
+
         private void btnCloseForm_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
             this.Close();
@@ -76,6 +76,9 @@ namespace ClothesAdmin
 
         private void btnAddProvider_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
+            activeSpinEdit.Text = "1";
+            soldTextBox.Text = "0";
+            ratingTextBox.Text = "0";
             productBindingSource.AddNew();
             DateTime dateTime = DateTime.UtcNow.Date;
             addDateDateEdit.Text = dateTime.ToString("yyyy-MM-dd");
@@ -97,7 +100,7 @@ namespace ClothesAdmin
                     || promotionItemBindingSource.Count > 0)
                 {
                     MessageBox.Show("Product đã tồn tại ở bảng khác, không thể xóa, product sẽ được chuyển qua trạng thái đã xóa", "", MessageBoxButtons.OK);
-                    activeTextBox.Text = "0";
+                    activeSpinEdit.Text = "0";
                     this.Validate();
                     this.categoryBindingSource.EndEdit();
                     this.tableAdapterManager.UpdateAll(this.clothesDataSet);
@@ -111,7 +114,7 @@ namespace ClothesAdmin
                         //phải chạy lệnh del from where mới chính xác
                         productBindingSource.RemoveCurrent();
                         //đẩy dữ liệu về adapter
-                        this.categoryTableAdapter.Update(this.clothesDataSet.Category);
+                        this.productTableAdapter.Update(this.clothesDataSet.Product);
                         Program.showToastDel();
                     }
                     catch (Exception ex)
@@ -140,21 +143,21 @@ namespace ClothesAdmin
             catch (Exception ex) { }
         }
 
-        private void setImageThumbnail()
+        private async void setImageThumbnail()
         {
             if (String.IsNullOrEmpty(thumnailTextBox.Text))
             {
-                thumbnailProduct.Image = Properties.Resources.no_image;
+                await Task.Run(() => thumbnailProduct.Image = Properties.Resources.no_image);
             }
             else
             {
                 try
                 {
-                    var request = WebRequest.Create(thumnailTextBox.Text);
+                    var request = await Task.Run(() => WebRequest.Create(thumnailTextBox.Text));
                     using (var response = request.GetResponse())
                     using (var stream = response.GetResponseStream())
                         thumbnailProduct.Image = Bitmap.FromStream(stream);
-                    thumbnailProduct.ImageLocation = (thumnailTextBox.Text);
+                    await Task.Run(() => thumbnailProduct.ImageLocation = (thumnailTextBox.Text));
                 }
                 catch (Exception ex)
                 {
@@ -168,15 +171,17 @@ namespace ClothesAdmin
         {
 
         }
-        
+
         private void loadDataProduct()
         {
             if (cbCategory.Checked && cbProvider.Checked && cbbCategory.SelectedValue != null && cbbProvider.SelectedValue != null)
                 loadData(int.Parse(cbbProvider.SelectedValue.ToString()), int.Parse(cbbCategory.SelectedValue.ToString()));
             else if (cbCategory.Checked && !cbProvider.Checked && cbbCategory.SelectedValue != null)
                 loadData(0, int.Parse(cbbCategory.SelectedValue.ToString()));
+            else if (!cbCategory.Checked && cbProvider.Checked && providerComboBox.SelectedValue != null)
+                loadData(int.Parse(cbbProvider.SelectedValue.ToString()), 0);
             else loadData(0, 0);
-            
+
         }
 
         private void cbCategory_CheckedChanged(object sender, EventArgs e)
@@ -191,6 +196,10 @@ namespace ClothesAdmin
 
         private void btnSaveAddProvider_Click_1(object sender, EventArgs e)
         {
+            if (activeSpinEdit.Text == "") activeSpinEdit.Text= "1";
+            if (soldTextBox.Text == "") soldTextBox.Text = "0";
+            if (ratingTextBox.Text == "") ratingTextBox.Text = "0";
+
             try
             {
                 this.Validate();
@@ -216,7 +225,15 @@ namespace ClothesAdmin
 
         private void btnCancelAddProvider_Click_1(object sender, EventArgs e)
         {
-            productBindingSource.CancelEdit();
+            try
+            {
+                productBindingSource.CancelEdit();
+                setImageThumbnail();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error " + ex.Message, "Error", MessageBoxButtons.OK);
+            }
         }
 
         private void btnImageList_Click_1(object sender, EventArgs e)
@@ -268,22 +285,22 @@ namespace ClothesAdmin
                 MessageBox.Show("Chưa có hình ảnh, không thể upload", "THÔNG BÁO", MessageBoxButtons.OK);
                 return;
             }
-           
+
             // await the task to wait until upload completes and get the download url
             try
             {
                 var stream = new System.IO.MemoryStream();
-                thumbnailProduct.Image.Save(stream, ImageFormat.Jpeg);
+                await Task.Run(() => thumbnailProduct.Image.Save(stream, ImageFormat.Jpeg));
                 stream.Position = 0;
                 var task = new FirebaseStorage("ptshop-8b8b3.appspot.com")
                                 .Child("product")
                                 .Child("thumbnail_" + idTextBox.Text + ".jpg")
                                 .PutAsync(stream);
-                // Track progress of the upload
-                task.Progress.ProgressChanged += (s, ex) =>
-                {
-                    Console.WriteLine($"Progress: {ex.Percentage} %");
-                };
+                //// Track progress of the upload
+                //task.Progress.ProgressChanged += (s, ex) =>
+                //{
+                //    Console.WriteLine($"Progress: {ex.Percentage} %");
+                //};
 
                 var downloadUrl = await task;
                 thumnailTextBox.Text = downloadUrl;
@@ -296,15 +313,15 @@ namespace ClothesAdmin
             }
         }
 
-        private void btnChangeImg_LinkClicked_1(object sender, LinkLabelLinkClickedEventArgs e)
+        private async void btnChangeImg_LinkClicked_1(object sender, LinkLabelLinkClickedEventArgs e)
         {
             OpenFileDialog ofd = new OpenFileDialog();
             ofd.Title = "Select image";
             ofd.Filter = "Image Files(*.jpg|*.jpg|*.png|*.jpeg";
             if (ofd.ShowDialog() == DialogResult.OK)
             {
-                System.Drawing.Image img = new Bitmap(ofd.FileName);
-                thumbnailProduct.Image = img.GetThumbnailImage(351, 469, null, new IntPtr());
+                System.Drawing.Image img = await Task.Run(() => new Bitmap(ofd.FileName));
+                await Task.Run(() => thumbnailProduct.Image = img.GetThumbnailImage(351, 469, null, new IntPtr()));
             }
         }
 
@@ -330,5 +347,6 @@ namespace ClothesAdmin
             }
             catch (Exception ex) { }
         }
+
     }
 }

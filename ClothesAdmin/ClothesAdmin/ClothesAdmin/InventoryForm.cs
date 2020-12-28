@@ -31,12 +31,12 @@ namespace ClothesAdmin
 
         private void categoryComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            getData();
+           if(cbCategory.Checked) getData();
         }
 
         private void providerComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            getData();
+           if(cbProvider.Checked) getData();
         } 
 
         private void btnExport_Click(object sender, EventArgs e)

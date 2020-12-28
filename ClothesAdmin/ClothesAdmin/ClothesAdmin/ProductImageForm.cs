@@ -96,16 +96,30 @@ namespace ClothesAdmin
 
         private void btnSaveAddProvider_Click(object sender, EventArgs e)
         {
-            productIdTextBox.Text = productID.ToString();
-            this.Validate();
-            this.imageBindingSource.EndEdit();
-            this.tableAdapterManager.UpdateAll(this.clothesDataSet);
-            Program.showToastSave();
+            try
+            {
+                productIdTextBox.Text = productID.ToString();
+                this.Validate();
+                this.imageBindingSource.EndEdit();
+                this.tableAdapterManager.UpdateAll(this.clothesDataSet);
+                Program.showToastSave();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error " + ex.Message, "Error", MessageBoxButtons.OK);
+            }
         }
 
         private void btnCancelAddProvider_Click(object sender, EventArgs e)
         {
-            imageBindingSource.CancelEdit();
+            try
+            {
+                imageBindingSource.CancelEdit();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error " + ex.Message, "Error", MessageBoxButtons.OK);
+            }
         }
 
         private void btnCloseForm_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)

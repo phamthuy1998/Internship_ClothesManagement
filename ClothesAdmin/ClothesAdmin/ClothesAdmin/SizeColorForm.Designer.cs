@@ -35,7 +35,6 @@
             System.Windows.Forms.Label colorIDLabel;
             System.Windows.Forms.Label quantityLabel;
             System.Windows.Forms.Label imageUrlLabel;
-            System.Windows.Forms.Label activeLabel;
             System.Windows.Forms.Label label1;
             System.Windows.Forms.Label label2;
             System.Windows.Forms.Label label3;
@@ -70,7 +69,6 @@
             this.colcolorID = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colquantity = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colimageUrl = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colactive = new DevExpress.XtraGrid.Columns.GridColumn();
             this.panel2 = new System.Windows.Forms.Panel();
             this.btnCancelAddProvider = new System.Windows.Forms.Button();
             this.btnSaveAddProvider = new System.Windows.Forms.Button();
@@ -85,7 +83,6 @@
             this.colorIDTextBox = new System.Windows.Forms.TextBox();
             this.quantityTextBox = new System.Windows.Forms.TextBox();
             this.imageUrlTextBox = new System.Windows.Forms.TextBox();
-            this.activeTextBox = new System.Windows.Forms.TextBox();
             this.productTableAdapter = new ClothesAdmin.ClothesDataSetTableAdapters.ProductTableAdapter();
             this.sizeTableAdapter = new ClothesAdmin.ClothesDataSetTableAdapters.SizeTableAdapter();
             this.colorTableAdapter = new ClothesAdmin.ClothesDataSetTableAdapters.ColorTableAdapter();
@@ -98,7 +95,6 @@
             colorIDLabel = new System.Windows.Forms.Label();
             quantityLabel = new System.Windows.Forms.Label();
             imageUrlLabel = new System.Windows.Forms.Label();
-            activeLabel = new System.Windows.Forms.Label();
             label1 = new System.Windows.Forms.Label();
             label2 = new System.Windows.Forms.Label();
             label3 = new System.Windows.Forms.Label();
@@ -143,11 +139,6 @@
             // 
             resources.ApplyResources(imageUrlLabel, "imageUrlLabel");
             imageUrlLabel.Name = "imageUrlLabel";
-            // 
-            // activeLabel
-            // 
-            resources.ApplyResources(activeLabel, "activeLabel");
-            activeLabel.Name = "activeLabel";
             // 
             // label1
             // 
@@ -302,6 +293,8 @@
             this.tableAdapterManager.InvoiceItemTableAdapter = null;
             this.tableAdapterManager.InvoiceStatusTableAdapter = null;
             this.tableAdapterManager.InvoiceTableAdapter = null;
+            this.tableAdapterManager.NotificationDetailTableAdapter = null;
+            this.tableAdapterManager.NotificationTableAdapter = null;
             this.tableAdapterManager.ProductSizeColorTableAdapter = this.productSizeColorTableAdapter;
             this.tableAdapterManager.ProductTableAdapter = null;
             this.tableAdapterManager.PromotionItemTableAdapter = null;
@@ -310,8 +303,10 @@
             this.tableAdapterManager.QuestionTableAdapter = null;
             this.tableAdapterManager.RatingTableAdapter = null;
             this.tableAdapterManager.RoleTableAdapter = null;
+            this.tableAdapterManager.ShopDataTableAdapter = null;
             this.tableAdapterManager.ShopInfoTableAdapter = null;
             this.tableAdapterManager.SizeTableAdapter = null;
+            this.tableAdapterManager.TypeNotiTableAdapter = null;
             this.tableAdapterManager.UpdateOrder = ClothesAdmin.ClothesDataSetTableAdapters.TableAdapterManager.UpdateOrderOption.InsertUpdateDelete;
             // 
             // categoryTableAdapter
@@ -370,8 +365,7 @@
             this.colsizeId,
             this.colcolorID,
             this.colquantity,
-            this.colimageUrl,
-            this.colactive});
+            this.colimageUrl});
             this.gridView1.GridControl = this.productSizeColorGridControl;
             this.gridView1.Name = "gridView1";
             // 
@@ -415,14 +409,6 @@
             this.colimageUrl.OptionsColumn.AllowEdit = false;
             resources.ApplyResources(this.colimageUrl, "colimageUrl");
             // 
-            // colactive
-            // 
-            this.colactive.FieldName = "active";
-            this.colactive.MinWidth = 25;
-            this.colactive.Name = "colactive";
-            this.colactive.OptionsColumn.AllowEdit = false;
-            resources.ApplyResources(this.colactive, "colactive");
-            // 
             // panel2
             // 
             this.panel2.Controls.Add(this.btnCancelAddProvider);
@@ -443,8 +429,6 @@
             this.panel2.Controls.Add(this.quantityTextBox);
             this.panel2.Controls.Add(imageUrlLabel);
             this.panel2.Controls.Add(this.imageUrlTextBox);
-            this.panel2.Controls.Add(activeLabel);
-            this.panel2.Controls.Add(this.activeTextBox);
             resources.ApplyResources(this.panel2, "panel2");
             this.panel2.Name = "panel2";
             // 
@@ -543,12 +527,6 @@
             resources.ApplyResources(this.imageUrlTextBox, "imageUrlTextBox");
             this.imageUrlTextBox.Name = "imageUrlTextBox";
             // 
-            // activeTextBox
-            // 
-            this.activeTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.productSizeColorBindingSource, "active", true));
-            resources.ApplyResources(this.activeTextBox, "activeTextBox");
-            this.activeTextBox.Name = "activeTextBox";
-            // 
             // productTableAdapter
             // 
             this.productTableAdapter.ClearBeforeFill = true;
@@ -644,14 +622,12 @@
         private DevExpress.XtraGrid.Columns.GridColumn colcolorID;
         private DevExpress.XtraGrid.Columns.GridColumn colquantity;
         private DevExpress.XtraGrid.Columns.GridColumn colimageUrl;
-        private DevExpress.XtraGrid.Columns.GridColumn colactive;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.TextBox productIDTextBox;
         private System.Windows.Forms.TextBox sizeIdTextBox;
         private System.Windows.Forms.TextBox colorIDTextBox;
         private System.Windows.Forms.TextBox quantityTextBox;
         private System.Windows.Forms.TextBox imageUrlTextBox;
-        private System.Windows.Forms.TextBox activeTextBox;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.BindingSource productBindingSource;
         private ClothesDataSetTableAdapters.ProductTableAdapter productTableAdapter;

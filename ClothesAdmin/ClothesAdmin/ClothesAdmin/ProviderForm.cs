@@ -128,15 +128,29 @@ namespace ClothesAdmin
 
         private void btnCancelAddProvider_Click(object sender, EventArgs e)
         {
-            providerBindingSource.CancelEdit();
+            try
+            {
+                providerBindingSource.CancelEdit();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error " + ex.Message, "", MessageBoxButtons.OK);
+            }
         }
 
         private void btnSaveAddProvider_Click(object sender, EventArgs e)
         {
-            this.Validate();
-            this.providerBindingSource.EndEdit();
-            this.tableAdapterManager.UpdateAll(this.clothesDataSet);
-            Program.showToastSave();
+            try
+            {
+                this.Validate();
+                this.providerBindingSource.EndEdit();
+                this.tableAdapterManager.UpdateAll(this.clothesDataSet);
+                Program.showToastSave();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error add database: " + ex.Message, "", MessageBoxButtons.OK);
+            }
         }
 
         private void setImage()

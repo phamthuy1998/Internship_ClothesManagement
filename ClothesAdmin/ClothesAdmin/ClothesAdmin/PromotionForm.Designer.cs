@@ -38,10 +38,9 @@
             System.Windows.Forms.Label imageUrlLabel;
             System.Windows.Forms.Label activeLabel;
             System.Windows.Forms.Label typeLabel;
-            System.Windows.Forms.Label idProductLabel;
-            System.Windows.Forms.Label idPromoLabel;
-            System.Windows.Forms.Label label1;
             System.Windows.Forms.Label label2;
+            System.Windows.Forms.Label label3;
+            System.Windows.Forms.Label label4;
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(PromotionForm));
             this.barManager = new DevExpress.XtraBars.BarManager(this.components);
             this.bar2 = new DevExpress.XtraBars.Bar();
@@ -61,6 +60,7 @@
             this.addProductPromoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.deleteProductPromoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.reloadToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.clearAllProductToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.promotionItemBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.promotionBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.clothesDataSet = new ClothesAdmin.ClothesDataSet();
@@ -92,6 +92,18 @@
             this.imageUrlTextEdit = new DevExpress.XtraEditors.TextEdit();
             this.activeSpinEdit = new DevExpress.XtraEditors.SpinEdit();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.categoryID = new DevExpress.XtraEditors.SpinEdit();
+            this.providerID = new DevExpress.XtraEditors.SpinEdit();
+            this.radAddOne = new System.Windows.Forms.RadioButton();
+            this.priceTo = new DevExpress.XtraEditors.SpinEdit();
+            this.priceFrom = new DevExpress.XtraEditors.SpinEdit();
+            this.radPrice = new System.Windows.Forms.RadioButton();
+            this.providerComboBox = new System.Windows.Forms.ComboBox();
+            this.providerBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.categoryComboBox = new System.Windows.Forms.ComboBox();
+            this.categoryBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.radCategory = new System.Windows.Forms.RadioButton();
+            this.radProvider = new System.Windows.Forms.RadioButton();
             this.promotionComboBox = new System.Windows.Forms.ComboBox();
             this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
@@ -103,6 +115,8 @@
             this.tableAdapterManager = new ClothesAdmin.ClothesDataSetTableAdapters.TableAdapterManager();
             this.productTableAdapter = new ClothesAdmin.ClothesDataSetTableAdapters.ProductTableAdapter();
             this.promotionItemTableAdapter = new ClothesAdmin.ClothesDataSetTableAdapters.PromotionItemTableAdapter();
+            this.categoryTableAdapter = new ClothesAdmin.ClothesDataSetTableAdapters.CategoryTableAdapter();
+            this.providerTableAdapter = new ClothesAdmin.ClothesDataSetTableAdapters.ProviderTableAdapter();
             idLabel = new System.Windows.Forms.Label();
             descriptionLabel = new System.Windows.Forms.Label();
             nameLabel = new System.Windows.Forms.Label();
@@ -112,10 +126,9 @@
             imageUrlLabel = new System.Windows.Forms.Label();
             activeLabel = new System.Windows.Forms.Label();
             typeLabel = new System.Windows.Forms.Label();
-            idProductLabel = new System.Windows.Forms.Label();
-            idPromoLabel = new System.Windows.Forms.Label();
-            label1 = new System.Windows.Forms.Label();
             label2 = new System.Windows.Forms.Label();
+            label3 = new System.Windows.Forms.Label();
+            label4 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.barManager)).BeginInit();
             this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.promotionItemGridControl)).BeginInit();
@@ -137,6 +150,12 @@
             ((System.ComponentModel.ISupportInitialize)(this.imageUrlTextEdit.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.activeSpinEdit.Properties)).BeginInit();
             this.panel2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.categoryID.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.providerID.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.priceTo.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.priceFrom.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.providerBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.categoryBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.productBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.idProductSpinEdit.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.idPromoSpinEdit.Properties)).BeginInit();
@@ -223,41 +242,32 @@
             typeLabel.TabIndex = 16;
             typeLabel.Text = "Type";
             // 
-            // idProductLabel
-            // 
-            idProductLabel.AutoSize = true;
-            idProductLabel.Location = new System.Drawing.Point(550, 68);
-            idProductLabel.Name = "idProductLabel";
-            idProductLabel.Size = new System.Drawing.Size(74, 17);
-            idProductLabel.TabIndex = 0;
-            idProductLabel.Text = "Product ID";
-            // 
-            // idPromoLabel
-            // 
-            idPromoLabel.AutoSize = true;
-            idPromoLabel.Location = new System.Drawing.Point(540, 130);
-            idPromoLabel.Name = "idPromoLabel";
-            idPromoLabel.Size = new System.Drawing.Size(66, 17);
-            idPromoLabel.TabIndex = 2;
-            idPromoLabel.Text = "Promo ID";
-            // 
-            // label1
-            // 
-            label1.AutoSize = true;
-            label1.Location = new System.Drawing.Point(30, 69);
-            label1.Name = "label1";
-            label1.Size = new System.Drawing.Size(57, 17);
-            label1.TabIndex = 0;
-            label1.Text = "Product";
-            // 
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new System.Drawing.Point(30, 129);
+            label2.Location = new System.Drawing.Point(46, 24);
             label2.Name = "label2";
             label2.Size = new System.Drawing.Size(72, 17);
             label2.TabIndex = 0;
             label2.Text = "Promotion";
+            // 
+            // label3
+            // 
+            label3.AutoSize = true;
+            label3.Location = new System.Drawing.Point(555, 203);
+            label3.Name = "label3";
+            label3.Size = new System.Drawing.Size(60, 17);
+            label3.TabIndex = 70;
+            label3.Text = "To price";
+            // 
+            // label4
+            // 
+            label4.AutoSize = true;
+            label4.Location = new System.Drawing.Point(235, 203);
+            label4.Name = "label4";
+            label4.Size = new System.Drawing.Size(75, 17);
+            label4.TabIndex = 71;
+            label4.Text = "From price";
             // 
             // barManager
             // 
@@ -426,9 +436,10 @@
             this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.addProductPromoToolStripMenuItem,
             this.deleteProductPromoToolStripMenuItem,
-            this.reloadToolStripMenuItem});
+            this.reloadToolStripMenuItem,
+            this.clearAllProductToolStripMenuItem});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(232, 82);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(232, 108);
             // 
             // addProductPromoToolStripMenuItem
             // 
@@ -453,6 +464,14 @@
             this.reloadToolStripMenuItem.Size = new System.Drawing.Size(231, 26);
             this.reloadToolStripMenuItem.Text = "Reload ";
             this.reloadToolStripMenuItem.Click += new System.EventHandler(this.reloadToolStripMenuItem_Click);
+            // 
+            // clearAllProductToolStripMenuItem
+            // 
+            this.clearAllProductToolStripMenuItem.Image = global::ClothesAdmin.Properties.Resources.close;
+            this.clearAllProductToolStripMenuItem.Name = "clearAllProductToolStripMenuItem";
+            this.clearAllProductToolStripMenuItem.Size = new System.Drawing.Size(231, 26);
+            this.clearAllProductToolStripMenuItem.Text = "Clear all product";
+            this.clearAllProductToolStripMenuItem.Click += new System.EventHandler(this.clearAllProductToolStripMenuItem_Click);
             // 
             // promotionItemBindingSource
             // 
@@ -657,6 +676,7 @@
             // cbbType
             // 
             this.cbbType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbbType.Enabled = false;
             this.cbbType.FormattingEnabled = true;
             this.cbbType.Location = new System.Drawing.Point(507, 172);
             this.cbbType.Name = "cbbType";
@@ -786,6 +806,7 @@
             0,
             0,
             0});
+            this.activeSpinEdit.Enabled = false;
             this.activeSpinEdit.Location = new System.Drawing.Point(871, 211);
             this.activeSpinEdit.MenuManager = this.barManager;
             this.activeSpinEdit.Name = "activeSpinEdit";
@@ -797,15 +818,24 @@
             // panel2
             // 
             this.panel2.ContextMenuStrip = this.contextMenuStrip1;
+            this.panel2.Controls.Add(this.categoryID);
+            this.panel2.Controls.Add(this.providerID);
+            this.panel2.Controls.Add(label4);
+            this.panel2.Controls.Add(label3);
+            this.panel2.Controls.Add(this.radAddOne);
+            this.panel2.Controls.Add(this.priceTo);
+            this.panel2.Controls.Add(this.priceFrom);
+            this.panel2.Controls.Add(this.radPrice);
+            this.panel2.Controls.Add(this.providerComboBox);
+            this.panel2.Controls.Add(this.categoryComboBox);
+            this.panel2.Controls.Add(this.radCategory);
+            this.panel2.Controls.Add(this.radProvider);
             this.panel2.Controls.Add(this.promotionComboBox);
             this.panel2.Controls.Add(this.button1);
             this.panel2.Controls.Add(this.button2);
             this.panel2.Controls.Add(this.productComboBox);
             this.panel2.Controls.Add(label2);
-            this.panel2.Controls.Add(label1);
-            this.panel2.Controls.Add(idProductLabel);
             this.panel2.Controls.Add(this.idProductSpinEdit);
-            this.panel2.Controls.Add(idPromoLabel);
             this.panel2.Controls.Add(this.idPromoSpinEdit);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel2.Location = new System.Drawing.Point(1091, 409);
@@ -813,13 +843,168 @@
             this.panel2.Size = new System.Drawing.Size(843, 483);
             this.panel2.TabIndex = 3;
             // 
+            // categoryID
+            // 
+            this.categoryID.EditValue = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+            this.categoryID.Enabled = false;
+            this.categoryID.Location = new System.Drawing.Point(648, 139);
+            this.categoryID.Name = "categoryID";
+            this.categoryID.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.categoryID.Size = new System.Drawing.Size(125, 24);
+            this.categoryID.TabIndex = 72;
+            // 
+            // providerID
+            // 
+            this.providerID.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.promotionItemBindingSource, "idProduct", true));
+            this.providerID.EditValue = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.providerID.Enabled = false;
+            this.providerID.Location = new System.Drawing.Point(648, 82);
+            this.providerID.MenuManager = this.barManager;
+            this.providerID.Name = "providerID";
+            this.providerID.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.providerID.Properties.MaxValue = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.providerID.Properties.MinValue = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.providerID.Size = new System.Drawing.Size(125, 24);
+            this.providerID.TabIndex = 72;
+            // 
+            // radAddOne
+            // 
+            this.radAddOne.AutoSize = true;
+            this.radAddOne.Enabled = false;
+            this.radAddOne.Location = new System.Drawing.Point(40, 258);
+            this.radAddOne.Name = "radAddOne";
+            this.radAddOne.Size = new System.Drawing.Size(141, 21);
+            this.radAddOne.TabIndex = 68;
+            this.radAddOne.TabStop = true;
+            this.radAddOne.Text = "Add each product";
+            this.radAddOne.UseVisualStyleBackColor = true;
+            // 
+            // priceTo
+            // 
+            this.priceTo.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.promotionItemBindingSource, "idProduct", true));
+            this.priceTo.EditValue = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+            this.priceTo.Location = new System.Drawing.Point(648, 199);
+            this.priceTo.MenuManager = this.barManager;
+            this.priceTo.Name = "priceTo";
+            this.priceTo.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.priceTo.Size = new System.Drawing.Size(125, 24);
+            this.priceTo.TabIndex = 67;
+            // 
+            // priceFrom
+            // 
+            this.priceFrom.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.promotionItemBindingSource, "idProduct", true));
+            this.priceFrom.EditValue = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+            this.priceFrom.Location = new System.Drawing.Point(328, 200);
+            this.priceFrom.MenuManager = this.barManager;
+            this.priceFrom.Name = "priceFrom";
+            this.priceFrom.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.priceFrom.Size = new System.Drawing.Size(155, 24);
+            this.priceFrom.TabIndex = 66;
+            // 
+            // radPrice
+            // 
+            this.radPrice.AutoSize = true;
+            this.radPrice.Location = new System.Drawing.Point(40, 203);
+            this.radPrice.Name = "radPrice";
+            this.radPrice.Size = new System.Drawing.Size(61, 21);
+            this.radPrice.TabIndex = 65;
+            this.radPrice.TabStop = true;
+            this.radPrice.Text = "Price";
+            this.radPrice.UseVisualStyleBackColor = true;
+            // 
+            // providerComboBox
+            // 
+            this.providerComboBox.DataSource = this.providerBindingSource;
+            this.providerComboBox.DisplayMember = "brandName";
+            this.providerComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.providerComboBox.FormattingEnabled = true;
+            this.providerComboBox.Location = new System.Drawing.Point(238, 83);
+            this.providerComboBox.Name = "providerComboBox";
+            this.providerComboBox.Size = new System.Drawing.Size(364, 24);
+            this.providerComboBox.TabIndex = 62;
+            this.providerComboBox.ValueMember = "id";
+            this.providerComboBox.SelectedIndexChanged += new System.EventHandler(this.providerComboBox_SelectedIndexChanged);
+            // 
+            // providerBindingSource
+            // 
+            this.providerBindingSource.DataMember = "Provider";
+            this.providerBindingSource.DataSource = this.clothesDataSet;
+            // 
+            // categoryComboBox
+            // 
+            this.categoryComboBox.DataSource = this.categoryBindingSource;
+            this.categoryComboBox.DisplayMember = "name";
+            this.categoryComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.categoryComboBox.FormattingEnabled = true;
+            this.categoryComboBox.Location = new System.Drawing.Point(238, 140);
+            this.categoryComboBox.Name = "categoryComboBox";
+            this.categoryComboBox.Size = new System.Drawing.Size(364, 24);
+            this.categoryComboBox.TabIndex = 62;
+            this.categoryComboBox.ValueMember = "id";
+            this.categoryComboBox.SelectedIndexChanged += new System.EventHandler(this.categoryComboBox_SelectedIndexChanged);
+            // 
+            // categoryBindingSource
+            // 
+            this.categoryBindingSource.DataMember = "Category";
+            this.categoryBindingSource.DataSource = this.clothesDataSet;
+            // 
+            // radCategory
+            // 
+            this.radCategory.AutoSize = true;
+            this.radCategory.Location = new System.Drawing.Point(40, 141);
+            this.radCategory.Name = "radCategory";
+            this.radCategory.Size = new System.Drawing.Size(86, 21);
+            this.radCategory.TabIndex = 62;
+            this.radCategory.TabStop = true;
+            this.radCategory.Text = "Category";
+            this.radCategory.UseVisualStyleBackColor = true;
+            // 
+            // radProvider
+            // 
+            this.radProvider.AutoSize = true;
+            this.radProvider.Location = new System.Drawing.Point(40, 84);
+            this.radProvider.Name = "radProvider";
+            this.radProvider.Size = new System.Drawing.Size(82, 21);
+            this.radProvider.TabIndex = 61;
+            this.radProvider.TabStop = true;
+            this.radProvider.Text = "Provider";
+            this.radProvider.UseVisualStyleBackColor = true;
+            // 
             // promotionComboBox
             // 
             this.promotionComboBox.DisplayMember = "id";
             this.promotionComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.promotionComboBox.Enabled = false;
             this.promotionComboBox.FormattingEnabled = true;
-            this.promotionComboBox.Location = new System.Drawing.Point(122, 126);
+            this.promotionComboBox.Location = new System.Drawing.Point(138, 21);
             this.promotionComboBox.Name = "promotionComboBox";
             this.promotionComboBox.Size = new System.Drawing.Size(364, 24);
             this.promotionComboBox.TabIndex = 60;
@@ -831,7 +1016,7 @@
             this.button1.BackColor = System.Drawing.Color.White;
             this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button1.ForeColor = System.Drawing.Color.Crimson;
-            this.button1.Location = new System.Drawing.Point(428, 226);
+            this.button1.Location = new System.Drawing.Point(414, 328);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(123, 52);
             this.button1.TabIndex = 60;
@@ -844,7 +1029,7 @@
             this.button2.BackColor = System.Drawing.Color.White;
             this.button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button2.ForeColor = System.Drawing.Color.ForestGreen;
-            this.button2.Location = new System.Drawing.Point(210, 226);
+            this.button2.Location = new System.Drawing.Point(196, 328);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(123, 52);
             this.button2.TabIndex = 59;
@@ -857,8 +1042,9 @@
             this.productComboBox.DataSource = this.productBindingSource;
             this.productComboBox.DisplayMember = "title";
             this.productComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.productComboBox.Enabled = false;
             this.productComboBox.FormattingEnabled = true;
-            this.productComboBox.Location = new System.Drawing.Point(122, 66);
+            this.productComboBox.Location = new System.Drawing.Point(238, 257);
             this.productComboBox.Name = "productComboBox";
             this.productComboBox.Size = new System.Drawing.Size(364, 24);
             this.productComboBox.TabIndex = 4;
@@ -879,7 +1065,7 @@
             0,
             0});
             this.idProductSpinEdit.Enabled = false;
-            this.idProductSpinEdit.Location = new System.Drawing.Point(632, 65);
+            this.idProductSpinEdit.Location = new System.Drawing.Point(648, 257);
             this.idProductSpinEdit.MenuManager = this.barManager;
             this.idProductSpinEdit.Name = "idProductSpinEdit";
             this.idProductSpinEdit.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
@@ -896,7 +1082,8 @@
             0,
             0,
             0});
-            this.idPromoSpinEdit.Location = new System.Drawing.Point(632, 126);
+            this.idPromoSpinEdit.Enabled = false;
+            this.idPromoSpinEdit.Location = new System.Drawing.Point(557, 22);
             this.idPromoSpinEdit.MenuManager = this.barManager;
             this.idPromoSpinEdit.Name = "idPromoSpinEdit";
             this.idPromoSpinEdit.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
@@ -925,6 +1112,8 @@
             this.tableAdapterManager.InvoiceItemTableAdapter = null;
             this.tableAdapterManager.InvoiceStatusTableAdapter = null;
             this.tableAdapterManager.InvoiceTableAdapter = null;
+            this.tableAdapterManager.NotificationDetailTableAdapter = null;
+            this.tableAdapterManager.NotificationTableAdapter = null;
             this.tableAdapterManager.ProductSizeColorTableAdapter = null;
             this.tableAdapterManager.ProductTableAdapter = this.productTableAdapter;
             this.tableAdapterManager.PromotionItemTableAdapter = this.promotionItemTableAdapter;
@@ -933,8 +1122,10 @@
             this.tableAdapterManager.QuestionTableAdapter = null;
             this.tableAdapterManager.RatingTableAdapter = null;
             this.tableAdapterManager.RoleTableAdapter = null;
+            this.tableAdapterManager.ShopDataTableAdapter = null;
             this.tableAdapterManager.ShopInfoTableAdapter = null;
             this.tableAdapterManager.SizeTableAdapter = null;
+            this.tableAdapterManager.TypeNotiTableAdapter = null;
             this.tableAdapterManager.UpdateOrder = ClothesAdmin.ClothesDataSetTableAdapters.TableAdapterManager.UpdateOrderOption.InsertUpdateDelete;
             // 
             // productTableAdapter
@@ -944,6 +1135,14 @@
             // promotionItemTableAdapter
             // 
             this.promotionItemTableAdapter.ClearBeforeFill = true;
+            // 
+            // categoryTableAdapter
+            // 
+            this.categoryTableAdapter.ClearBeforeFill = true;
+            // 
+            // providerTableAdapter
+            // 
+            this.providerTableAdapter.ClearBeforeFill = true;
             // 
             // PromotionForm
             // 
@@ -981,6 +1180,12 @@
             ((System.ComponentModel.ISupportInitialize)(this.activeSpinEdit.Properties)).EndInit();
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.categoryID.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.providerID.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.priceTo.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.priceFrom.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.providerBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.categoryBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.productBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.idProductSpinEdit.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.idPromoSpinEdit.Properties)).EndInit();
@@ -1051,5 +1256,20 @@
         private System.Windows.Forms.ComboBox promotionComboBox;
         private System.Windows.Forms.ComboBox cbbType;
         private System.Windows.Forms.TextBox typeTextBox;
+        private System.Windows.Forms.RadioButton radCategory;
+        private System.Windows.Forms.RadioButton radProvider;
+        private System.Windows.Forms.BindingSource categoryBindingSource;
+        private ClothesDataSetTableAdapters.CategoryTableAdapter categoryTableAdapter;
+        private System.Windows.Forms.ComboBox categoryComboBox;
+        private System.Windows.Forms.BindingSource providerBindingSource;
+        private ClothesDataSetTableAdapters.ProviderTableAdapter providerTableAdapter;
+        private System.Windows.Forms.RadioButton radPrice;
+        private System.Windows.Forms.ComboBox providerComboBox;
+        private System.Windows.Forms.RadioButton radAddOne;
+        private DevExpress.XtraEditors.SpinEdit priceTo;
+        private DevExpress.XtraEditors.SpinEdit priceFrom;
+        private System.Windows.Forms.ToolStripMenuItem clearAllProductToolStripMenuItem;
+        private DevExpress.XtraEditors.SpinEdit categoryID;
+        private DevExpress.XtraEditors.SpinEdit providerID;
     }
 }

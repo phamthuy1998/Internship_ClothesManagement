@@ -56,10 +56,18 @@ namespace ClothesAdmin
                 MessageBox.Show("Please input color hexa!", "Error", MessageBoxButtons.OK);
                 return;
             }
-            this.Validate();
-            this.colorBindingSource.EndEdit();
-            this.tableAdapterManager.UpdateAll(this.clothesDataSet);
-            Program.showToastSave();
+            try
+            {
+                this.Validate();
+                this.colorBindingSource.EndEdit();
+                this.tableAdapterManager.UpdateAll(this.clothesDataSet);
+                Program.showToastSave();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error " + ex.Message, "Error", MessageBoxButtons.OK);
+            }
+
         }
 
         private void colorHexTextEdit_EditValueChanged(object sender, EventArgs e)
@@ -149,7 +157,14 @@ namespace ClothesAdmin
 
         private void btnCancelAddProvider_Click(object sender, EventArgs e)
         {
-            colorBindingSource.CancelEdit();
+            try
+            {
+                colorBindingSource.CancelEdit();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error " + ex.Message, "Error", MessageBoxButtons.OK);
+            }
         }
 
         private void cbbActive_SelectedIndexChanged(object sender, EventArgs e)

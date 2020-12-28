@@ -170,7 +170,14 @@ namespace ClothesAdmin
 
         private void btnCancelImport_Click(object sender, EventArgs e)
         {
-            this.importCouponBindingSource.CancelEdit();
+            try
+            {
+                this.importCouponBindingSource.CancelEdit();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error ", "Error", MessageBoxButtons.OK);
+            }
         }
 
         private void btnAddProvider_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
@@ -196,8 +203,15 @@ namespace ClothesAdmin
 
         private void btnCancelAddItem_Click(object sender, EventArgs e)
         {
-            addItem = false;
-            importCouponDetailBindingSource.CancelEdit();
+            try
+            {
+                addItem = false;
+                importCouponDetailBindingSource.CancelEdit();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error ", "Error", MessageBoxButtons.OK);
+            }
         }
 
         private void btnSaveAddItem_Click(object sender, EventArgs e)
@@ -246,7 +260,7 @@ namespace ClothesAdmin
                     this.tableAdapterManager.UpdateAll(this.clothesDataSet);
                     Program.showToastSave();
                 }
-                catch (Exception ex) { MessageBox.Show(ex.Message, "THÔNG BÁO", MessageBoxButtons.OK); }
+                catch (Exception ex) { MessageBox.Show("Error " + ex.Message, "Error", MessageBoxButtons.OK); }
 
             }
         }

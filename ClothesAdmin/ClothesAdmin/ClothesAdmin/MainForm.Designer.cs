@@ -109,6 +109,8 @@
             this.btnRevenue = new DevExpress.XtraBars.BarButtonItem();
             this.btnProfit = new DevExpress.XtraBars.BarButtonItem();
             this.btnWareHouse1 = new DevExpress.XtraBars.BarButtonItem();
+            this.barButtonItem19 = new DevExpress.XtraBars.BarButtonItem();
+            this.barButtonItem20 = new DevExpress.XtraBars.BarButtonItem();
             this.rbHome = new DevExpress.XtraBars.Ribbon.RibbonPage();
             this.ribbonPageGroup1 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.ribbonPageGroup4 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
@@ -126,6 +128,9 @@
             this.ribbonPageGroup15 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.ribbonPage1 = new DevExpress.XtraBars.Ribbon.RibbonPage();
             this.ribbonPageGroup11 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
+            this.rbShopInfo = new DevExpress.XtraBars.Ribbon.RibbonPage();
+            this.ribbonPageGroup16 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
+            this.ribbonPageGroup18 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.ribbonPage3 = new DevExpress.XtraBars.Ribbon.RibbonPage();
             this.ribbonPage5 = new DevExpress.XtraBars.Ribbon.RibbonPage();
             this.ribbonPage7 = new DevExpress.XtraBars.Ribbon.RibbonPage();
@@ -157,6 +162,8 @@
             this.barButtonItem14 = new DevExpress.XtraBars.BarButtonItem();
             this.barButtonItem16 = new DevExpress.XtraBars.BarButtonItem();
             this.barButtonItem17 = new DevExpress.XtraBars.BarButtonItem();
+            this.ribbonPageGroup17 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
+            this.barButtonItem18 = new DevExpress.XtraBars.BarButtonItem();
             firstNameLabel = new System.Windows.Forms.Label();
             lastNameLabel = new System.Windows.Forms.Label();
             phoneLabel = new System.Windows.Forms.Label();
@@ -344,16 +351,19 @@
             this.btnBackupRestore,
             this.btnRevenue,
             this.btnProfit,
-            this.btnWareHouse1});
+            this.btnWareHouse1,
+            this.barButtonItem19,
+            this.barButtonItem20});
             this.ribbon.Location = new System.Drawing.Point(0, 0);
             this.ribbon.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.ribbon.MaxItemId = 305;
+            this.ribbon.MaxItemId = 309;
             this.ribbon.Name = "ribbon";
             this.ribbon.OptionsCustomizationForm.FormIcon = ((System.Drawing.Icon)(resources.GetObject("resource.FormIcon")));
             this.ribbon.Pages.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPage[] {
             this.rbHome,
             this.rbSttatistic,
-            this.ribbonPage1});
+            this.ribbonPage1,
+            this.rbShopInfo});
             this.ribbon.ShowItemCaptionsInPageHeader = true;
             this.ribbon.Size = new System.Drawing.Size(1217, 194);
             this.ribbon.TransparentEditorsMode = DevExpress.Utils.DefaultBoolean.True;
@@ -557,7 +567,7 @@
             this.tvConfirmPass.Location = new System.Drawing.Point(323, 110);
             this.tvConfirmPass.Name = "tvConfirmPass";
             this.tvConfirmPass.PasswordChar = '*';
-            this.tvConfirmPass.Size = new System.Drawing.Size(233, 27);
+            this.tvConfirmPass.Size = new System.Drawing.Size(233, 22);
             this.tvConfirmPass.TabIndex = 21;
             // 
             // tvNewPass
@@ -565,7 +575,7 @@
             this.tvNewPass.Location = new System.Drawing.Point(323, 66);
             this.tvNewPass.Name = "tvNewPass";
             this.tvNewPass.PasswordChar = '*';
-            this.tvNewPass.Size = new System.Drawing.Size(233, 27);
+            this.tvNewPass.Size = new System.Drawing.Size(233, 22);
             this.tvNewPass.TabIndex = 21;
             // 
             // tvCurrentPass
@@ -573,7 +583,7 @@
             this.tvCurrentPass.Location = new System.Drawing.Point(323, 21);
             this.tvCurrentPass.Name = "tvCurrentPass";
             this.tvCurrentPass.PasswordChar = '*';
-            this.tvCurrentPass.Size = new System.Drawing.Size(233, 27);
+            this.tvCurrentPass.Size = new System.Drawing.Size(233, 22);
             this.tvCurrentPass.TabIndex = 21;
             // 
             // btnSaveSeting
@@ -857,6 +867,7 @@
             this.btnWarehouse.ImageOptions.Image = global::ClothesAdmin.Properties.Resources.warehouse;
             this.btnWarehouse.ImageOptions.LargeImage = global::ClothesAdmin.Properties.Resources.inventory;
             this.btnWarehouse.Name = "btnWarehouse";
+            this.btnWarehouse.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
             this.btnWarehouse.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnWarehouse_ItemClick);
             // 
             // btnEmployee
@@ -912,8 +923,24 @@
             // 
             this.btnWareHouse1.Caption = "Inventory";
             this.btnWareHouse1.Id = 304;
+            this.btnWareHouse1.ImageOptions.LargeImage = global::ClothesAdmin.Properties.Resources.inventory;
             this.btnWareHouse1.Name = "btnWareHouse1";
             this.btnWareHouse1.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnWareHouse1_ItemClick);
+            // 
+            // barButtonItem19
+            // 
+            this.barButtonItem19.Caption = "Shop Data";
+            this.barButtonItem19.Id = 305;
+            this.barButtonItem19.ImageOptions.LargeImage = global::ClothesAdmin.Properties.Resources.profits;
+            this.barButtonItem19.Name = "barButtonItem19";
+            this.barButtonItem19.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barButtonItem19_ItemClick);
+            // 
+            // barButtonItem20
+            // 
+            this.barButtonItem20.Caption = "Producy";
+            this.barButtonItem20.Id = 308;
+            this.barButtonItem20.Name = "barButtonItem20";
+            this.barButtonItem20.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barButtonItem20_ItemClick);
             // 
             // rbHome
             // 
@@ -975,9 +1002,10 @@
             // 
             // ribbonPageGroup9
             // 
-            this.ribbonPageGroup9.ItemLinks.Add(this.btnShopInfo);
+            this.ribbonPageGroup9.ItemLinks.Add(this.barButtonItem20);
             this.ribbonPageGroup9.Name = "ribbonPageGroup9";
             this.ribbonPageGroup9.Text = "                                                                ";
+            this.ribbonPageGroup9.Visible = false;
             // 
             // rbSttatistic
             // 
@@ -1035,6 +1063,26 @@
             this.ribbonPageGroup11.ItemLinks.Add(this.btnBackupRestore);
             this.ribbonPageGroup11.Name = "ribbonPageGroup11";
             this.ribbonPageGroup11.Text = "                                                                ";
+            // 
+            // rbShopInfo
+            // 
+            this.rbShopInfo.Groups.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPageGroup[] {
+            this.ribbonPageGroup16,
+            this.ribbonPageGroup18});
+            this.rbShopInfo.Name = "rbShopInfo";
+            this.rbShopInfo.Text = "Shop Info";
+            // 
+            // ribbonPageGroup16
+            // 
+            this.ribbonPageGroup16.ItemLinks.Add(this.btnShopInfo);
+            this.ribbonPageGroup16.Name = "ribbonPageGroup16";
+            this.ribbonPageGroup16.Text = "                                                                ";
+            // 
+            // ribbonPageGroup18
+            // 
+            this.ribbonPageGroup18.ItemLinks.Add(this.barButtonItem19);
+            this.ribbonPageGroup18.Name = "ribbonPageGroup18";
+            this.ribbonPageGroup18.Text = "                                                                ";
             // 
             // ribbonPage3
             // 
@@ -1155,6 +1203,7 @@
             this.tableAdapterManager.QuestionTableAdapter = null;
             this.tableAdapterManager.RatingTableAdapter = null;
             this.tableAdapterManager.RoleTableAdapter = null;
+            this.tableAdapterManager.ShopDataTableAdapter = null;
             this.tableAdapterManager.ShopInfoTableAdapter = null;
             this.tableAdapterManager.SizeTableAdapter = null;
             this.tableAdapterManager.TypeNotiTableAdapter = null;
@@ -1233,6 +1282,19 @@
             this.barButtonItem17.ImageOptions.Image = global::ClothesAdmin.Properties.Resources.warehouse;
             this.barButtonItem17.ImageOptions.LargeImage = global::ClothesAdmin.Properties.Resources.inventory;
             this.barButtonItem17.Name = "barButtonItem17";
+            // 
+            // ribbonPageGroup17
+            // 
+            this.ribbonPageGroup17.ItemLinks.Add(this.btnShopInfo);
+            this.ribbonPageGroup17.Name = "ribbonPageGroup17";
+            this.ribbonPageGroup17.Text = "                                                                ";
+            // 
+            // barButtonItem18
+            // 
+            this.barButtonItem18.Caption = "Shop Info";
+            this.barButtonItem18.Id = 298;
+            this.barButtonItem18.ImageOptions.LargeImage = global::ClothesAdmin.Properties.Resources.shop;
+            this.barButtonItem18.Name = "barButtonItem18";
             // 
             // MainForm
             // 
@@ -1405,5 +1467,12 @@
         private DevExpress.XtraBars.BarButtonItem barButtonItem14;
         private DevExpress.XtraBars.BarButtonItem barButtonItem16;
         private DevExpress.XtraBars.BarButtonItem barButtonItem17;
+        private DevExpress.XtraBars.BarButtonItem barButtonItem19;
+        private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroup16;
+        private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroup18;
+        private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroup17;
+        public DevExpress.XtraBars.BarButtonItem barButtonItem18;
+        public DevExpress.XtraBars.Ribbon.RibbonPage rbShopInfo;
+        private DevExpress.XtraBars.BarButtonItem barButtonItem20;
     }
 }

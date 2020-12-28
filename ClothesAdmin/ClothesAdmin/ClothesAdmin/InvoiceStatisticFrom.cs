@@ -53,7 +53,10 @@ namespace ClothesAdmin
                 this.invoiceTableAdapter.FillBy1(this.clothesDataSet.Invoice, Convert.ToInt16(cbbStatusOrder.SelectedValue), dateBegin.Text, dateEnd.Text);
                 showTotalInvoice();
             }
-            catch (Exception ex) { }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error "+ex.Message, "Error", MessageBoxButtons.OK);
+            }
         }
 
         private void showTotalPrice()

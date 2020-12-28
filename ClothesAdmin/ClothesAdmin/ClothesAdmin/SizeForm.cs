@@ -98,10 +98,17 @@ namespace ClothesAdmin
 
         private void btnSaveAddProvider_Click(object sender, EventArgs e)
         {
-            this.Validate();
-            this.sizeBindingSource.EndEdit();
-            this.tableAdapterManager.UpdateAll(this.clothesDataSet);
-            Program.showToastSave();
+            try
+            {
+                this.Validate();
+                this.sizeBindingSource.EndEdit();
+                this.tableAdapterManager.UpdateAll(this.clothesDataSet);
+                Program.showToastSave();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error " + ex.Message, "Error", MessageBoxButtons.OK);
+            }
         }
 
         private void btnCancelAddProvider_Click(object sender, EventArgs e)

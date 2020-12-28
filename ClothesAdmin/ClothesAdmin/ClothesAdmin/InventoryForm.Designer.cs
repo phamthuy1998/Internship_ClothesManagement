@@ -160,7 +160,7 @@
             this.barDockControl1.Location = new System.Drawing.Point(0, 0);
             this.barDockControl1.Manager = this.barManager;
             this.barDockControl1.Margin = new System.Windows.Forms.Padding(2);
-            this.barDockControl1.Size = new System.Drawing.Size(1464, 33);
+            this.barDockControl1.Size = new System.Drawing.Size(1464, 30);
             // 
             // barDockControl2
             // 
@@ -175,19 +175,19 @@
             // 
             this.barDockControl3.CausesValidation = false;
             this.barDockControl3.Dock = System.Windows.Forms.DockStyle.Left;
-            this.barDockControl3.Location = new System.Drawing.Point(0, 33);
+            this.barDockControl3.Location = new System.Drawing.Point(0, 30);
             this.barDockControl3.Manager = this.barManager;
             this.barDockControl3.Margin = new System.Windows.Forms.Padding(2);
-            this.barDockControl3.Size = new System.Drawing.Size(0, 612);
+            this.barDockControl3.Size = new System.Drawing.Size(0, 615);
             // 
             // barDockControl5
             // 
             this.barDockControl5.CausesValidation = false;
             this.barDockControl5.Dock = System.Windows.Forms.DockStyle.Right;
-            this.barDockControl5.Location = new System.Drawing.Point(1464, 33);
+            this.barDockControl5.Location = new System.Drawing.Point(1464, 30);
             this.barDockControl5.Manager = this.barManager;
             this.barDockControl5.Margin = new System.Windows.Forms.Padding(2);
-            this.barDockControl5.Size = new System.Drawing.Size(0, 612);
+            this.barDockControl5.Size = new System.Drawing.Size(0, 615);
             // 
             // btnDelProvider
             // 
@@ -222,7 +222,7 @@
             this.panel1.Controls.Add(label6);
             this.panel1.Controls.Add(label5);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel1.Location = new System.Drawing.Point(0, 33);
+            this.panel1.Location = new System.Drawing.Point(0, 30);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(1464, 82);
             this.panel1.TabIndex = 5;
@@ -337,6 +337,7 @@
             this.tableAdapterManager.QuestionTableAdapter = null;
             this.tableAdapterManager.RatingTableAdapter = null;
             this.tableAdapterManager.RoleTableAdapter = null;
+            this.tableAdapterManager.ShopDataTableAdapter = null;
             this.tableAdapterManager.ShopInfoTableAdapter = null;
             this.tableAdapterManager.SizeTableAdapter = null;
             this.tableAdapterManager.TypeNotiTableAdapter = null;
@@ -346,11 +347,11 @@
             // 
             this.sP_InventoryProductNewGridControl.DataSource = this.sP_InventoryProductNewBindingSource;
             this.sP_InventoryProductNewGridControl.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.sP_InventoryProductNewGridControl.Location = new System.Drawing.Point(0, 115);
+            this.sP_InventoryProductNewGridControl.Location = new System.Drawing.Point(0, 112);
             this.sP_InventoryProductNewGridControl.MainView = this.gridView1;
             this.sP_InventoryProductNewGridControl.MenuManager = this.barManager;
             this.sP_InventoryProductNewGridControl.Name = "sP_InventoryProductNewGridControl";
-            this.sP_InventoryProductNewGridControl.Size = new System.Drawing.Size(1464, 530);
+            this.sP_InventoryProductNewGridControl.Size = new System.Drawing.Size(1464, 533);
             this.sP_InventoryProductNewGridControl.TabIndex = 11;
             this.sP_InventoryProductNewGridControl.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridView1});

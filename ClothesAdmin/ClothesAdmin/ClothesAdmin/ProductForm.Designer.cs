@@ -29,24 +29,24 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.Label detailLabel;
-            System.Windows.Forms.Label idLabel;
-            System.Windows.Forms.Label titleLabel;
-            System.Windows.Forms.Label label1;
-            System.Windows.Forms.Label priceLabel;
-            System.Windows.Forms.Label categoryIDLabel;
-            System.Windows.Forms.Label ratingLabel;
-            System.Windows.Forms.Label activeLabel;
-            System.Windows.Forms.Label providerIdLabel;
-            System.Windows.Forms.Label thumnailLabel;
-            System.Windows.Forms.Label isNewLabel;
-            System.Windows.Forms.Label addDateLabel;
-            System.Windows.Forms.Label soldLabel;
-            System.Windows.Forms.Label c;
             System.Windows.Forms.Label label6;
             System.Windows.Forms.Label label5;
             System.Windows.Forms.Label lbCategory;
             System.Windows.Forms.Label lbProvider;
+            System.Windows.Forms.Label c;
+            System.Windows.Forms.Label soldLabel;
+            System.Windows.Forms.Label addDateLabel;
+            System.Windows.Forms.Label isNewLabel;
+            System.Windows.Forms.Label thumnailLabel;
+            System.Windows.Forms.Label providerIdLabel;
+            System.Windows.Forms.Label activeLabel;
+            System.Windows.Forms.Label ratingLabel;
+            System.Windows.Forms.Label categoryIDLabel;
+            System.Windows.Forms.Label priceLabel;
+            System.Windows.Forms.Label label1;
+            System.Windows.Forms.Label titleLabel;
+            System.Windows.Forms.Label idLabel;
+            System.Windows.Forms.Label detailLabel;
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ProductForm));
             this.defaultLookAndFeel1 = new DevExpress.LookAndFeel.DefaultLookAndFeel(this.components);
             this.barManager = new DevExpress.XtraBars.BarManager(this.components);
@@ -112,6 +112,8 @@
             this.coladdDate = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colsold = new DevExpress.XtraGrid.Columns.GridColumn();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.isNewSpinEdit = new DevExpress.XtraEditors.SpinEdit();
+            this.activeSpinEdit = new DevExpress.XtraEditors.SpinEdit();
             this.btnSaveImg = new System.Windows.Forms.Button();
             this.btnImageList = new System.Windows.Forms.Button();
             this.btnChangeImg = new System.Windows.Forms.LinkLabel();
@@ -128,29 +130,27 @@
             this.priceTextBox = new System.Windows.Forms.TextBox();
             this.categoryIDTextBox = new System.Windows.Forms.TextBox();
             this.ratingTextBox = new System.Windows.Forms.TextBox();
-            this.activeTextBox = new System.Windows.Forms.TextBox();
             this.providerIdTextBox = new System.Windows.Forms.TextBox();
             this.thumnailTextBox = new System.Windows.Forms.TextBox();
-            this.isNewTextBox = new System.Windows.Forms.TextBox();
             this.soldTextBox = new System.Windows.Forms.TextBox();
-            detailLabel = new System.Windows.Forms.Label();
-            idLabel = new System.Windows.Forms.Label();
-            titleLabel = new System.Windows.Forms.Label();
-            label1 = new System.Windows.Forms.Label();
-            priceLabel = new System.Windows.Forms.Label();
-            categoryIDLabel = new System.Windows.Forms.Label();
-            ratingLabel = new System.Windows.Forms.Label();
-            activeLabel = new System.Windows.Forms.Label();
-            providerIdLabel = new System.Windows.Forms.Label();
-            thumnailLabel = new System.Windows.Forms.Label();
-            isNewLabel = new System.Windows.Forms.Label();
-            addDateLabel = new System.Windows.Forms.Label();
-            soldLabel = new System.Windows.Forms.Label();
-            c = new System.Windows.Forms.Label();
             label6 = new System.Windows.Forms.Label();
             label5 = new System.Windows.Forms.Label();
             lbCategory = new System.Windows.Forms.Label();
             lbProvider = new System.Windows.Forms.Label();
+            c = new System.Windows.Forms.Label();
+            soldLabel = new System.Windows.Forms.Label();
+            addDateLabel = new System.Windows.Forms.Label();
+            isNewLabel = new System.Windows.Forms.Label();
+            thumnailLabel = new System.Windows.Forms.Label();
+            providerIdLabel = new System.Windows.Forms.Label();
+            activeLabel = new System.Windows.Forms.Label();
+            ratingLabel = new System.Windows.Forms.Label();
+            categoryIDLabel = new System.Windows.Forms.Label();
+            priceLabel = new System.Windows.Forms.Label();
+            label1 = new System.Windows.Forms.Label();
+            titleLabel = new System.Windows.Forms.Label();
+            idLabel = new System.Windows.Forms.Label();
+            detailLabel = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.barManager)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.productBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.clothesDataSet)).BeginInit();
@@ -169,137 +169,12 @@
             ((System.ComponentModel.ISupportInitialize)(this.productGridControl)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
             this.panel2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.isNewSpinEdit.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.activeSpinEdit.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.thumbnailProduct)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.addDateDateEdit.Properties.CalendarTimeProperties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.addDateDateEdit.Properties)).BeginInit();
             this.SuspendLayout();
-            // 
-            // detailLabel
-            // 
-            detailLabel.AutoSize = true;
-            detailLabel.Location = new System.Drawing.Point(52, 448);
-            detailLabel.Name = "detailLabel";
-            detailLabel.Size = new System.Drawing.Size(46, 17);
-            detailLabel.TabIndex = 49;
-            detailLabel.Text = "detail:";
-            // 
-            // idLabel
-            // 
-            idLabel.AutoSize = true;
-            idLabel.Location = new System.Drawing.Point(50, 90);
-            idLabel.Name = "idLabel";
-            idLabel.Size = new System.Drawing.Size(23, 17);
-            idLabel.TabIndex = 25;
-            idLabel.Text = "id:";
-            // 
-            // titleLabel
-            // 
-            titleLabel.AutoSize = true;
-            titleLabel.Location = new System.Drawing.Point(50, 132);
-            titleLabel.Name = "titleLabel";
-            titleLabel.Size = new System.Drawing.Size(35, 17);
-            titleLabel.TabIndex = 27;
-            titleLabel.Text = "Title";
-            // 
-            // label1
-            // 
-            label1.AutoSize = true;
-            label1.Location = new System.Drawing.Point(372, 168);
-            label1.Name = "label1";
-            label1.Size = new System.Drawing.Size(33, 17);
-            label1.TabIndex = 31;
-            label1.Text = "Vnđ";
-            // 
-            // priceLabel
-            // 
-            priceLabel.AutoSize = true;
-            priceLabel.Location = new System.Drawing.Point(50, 168);
-            priceLabel.Name = "priceLabel";
-            priceLabel.Size = new System.Drawing.Size(40, 17);
-            priceLabel.TabIndex = 31;
-            priceLabel.Text = "Price";
-            // 
-            // categoryIDLabel
-            // 
-            categoryIDLabel.AutoSize = true;
-            categoryIDLabel.Location = new System.Drawing.Point(50, 207);
-            categoryIDLabel.Name = "categoryIDLabel";
-            categoryIDLabel.Size = new System.Drawing.Size(65, 17);
-            categoryIDLabel.TabIndex = 33;
-            categoryIDLabel.Text = "Category";
-            // 
-            // ratingLabel
-            // 
-            ratingLabel.AutoSize = true;
-            ratingLabel.Location = new System.Drawing.Point(349, 405);
-            ratingLabel.Name = "ratingLabel";
-            ratingLabel.Size = new System.Drawing.Size(48, 17);
-            ratingLabel.TabIndex = 35;
-            ratingLabel.Text = "rating:";
-            // 
-            // activeLabel
-            // 
-            activeLabel.AutoSize = true;
-            activeLabel.Location = new System.Drawing.Point(349, 365);
-            activeLabel.Name = "activeLabel";
-            activeLabel.Size = new System.Drawing.Size(49, 17);
-            activeLabel.TabIndex = 37;
-            activeLabel.Text = "active:";
-            // 
-            // providerIdLabel
-            // 
-            providerIdLabel.AutoSize = true;
-            providerIdLabel.Location = new System.Drawing.Point(50, 251);
-            providerIdLabel.Name = "providerIdLabel";
-            providerIdLabel.Size = new System.Drawing.Size(61, 17);
-            providerIdLabel.TabIndex = 39;
-            providerIdLabel.Text = "Provider";
-            // 
-            // thumnailLabel
-            // 
-            thumnailLabel.AutoSize = true;
-            thumnailLabel.Location = new System.Drawing.Point(50, 287);
-            thumnailLabel.Name = "thumnailLabel";
-            thumnailLabel.Size = new System.Drawing.Size(74, 17);
-            thumnailLabel.TabIndex = 41;
-            thumnailLabel.Text = "Thumbnail";
-            // 
-            // isNewLabel
-            // 
-            isNewLabel.AutoSize = true;
-            isNewLabel.Location = new System.Drawing.Point(50, 326);
-            isNewLabel.Name = "isNewLabel";
-            isNewLabel.Size = new System.Drawing.Size(53, 17);
-            isNewLabel.TabIndex = 43;
-            isNewLabel.Text = "is New:";
-            // 
-            // addDateLabel
-            // 
-            addDateLabel.AutoSize = true;
-            addDateLabel.Location = new System.Drawing.Point(49, 366);
-            addDateLabel.Name = "addDateLabel";
-            addDateLabel.Size = new System.Drawing.Size(70, 17);
-            addDateLabel.TabIndex = 45;
-            addDateLabel.Text = "add Date:";
-            // 
-            // soldLabel
-            // 
-            soldLabel.AutoSize = true;
-            soldLabel.Location = new System.Drawing.Point(49, 405);
-            soldLabel.Name = "soldLabel";
-            soldLabel.Size = new System.Drawing.Size(38, 17);
-            soldLabel.TabIndex = 47;
-            soldLabel.Text = "sold:";
-            // 
-            // c
-            // 
-            c.AutoSize = true;
-            c.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            c.Location = new System.Drawing.Point(47, 21);
-            c.Name = "c";
-            c.Size = new System.Drawing.Size(212, 36);
-            c.TabIndex = 25;
-            c.Text = "Product detail";
             // 
             // label6
             // 
@@ -334,6 +209,133 @@
             lbProvider.Name = "lbProvider";
             lbProvider.Size = new System.Drawing.Size(0, 17);
             lbProvider.TabIndex = 82;
+            // 
+            // c
+            // 
+            c.AutoSize = true;
+            c.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            c.Location = new System.Drawing.Point(47, 21);
+            c.Name = "c";
+            c.Size = new System.Drawing.Size(212, 36);
+            c.TabIndex = 25;
+            c.Text = "Product detail";
+            // 
+            // soldLabel
+            // 
+            soldLabel.AutoSize = true;
+            soldLabel.Location = new System.Drawing.Point(49, 405);
+            soldLabel.Name = "soldLabel";
+            soldLabel.Size = new System.Drawing.Size(38, 17);
+            soldLabel.TabIndex = 47;
+            soldLabel.Text = "sold:";
+            // 
+            // addDateLabel
+            // 
+            addDateLabel.AutoSize = true;
+            addDateLabel.Location = new System.Drawing.Point(49, 366);
+            addDateLabel.Name = "addDateLabel";
+            addDateLabel.Size = new System.Drawing.Size(70, 17);
+            addDateLabel.TabIndex = 45;
+            addDateLabel.Text = "add Date:";
+            // 
+            // isNewLabel
+            // 
+            isNewLabel.AutoSize = true;
+            isNewLabel.Location = new System.Drawing.Point(50, 326);
+            isNewLabel.Name = "isNewLabel";
+            isNewLabel.Size = new System.Drawing.Size(53, 17);
+            isNewLabel.TabIndex = 43;
+            isNewLabel.Text = "is New:";
+            // 
+            // thumnailLabel
+            // 
+            thumnailLabel.AutoSize = true;
+            thumnailLabel.Location = new System.Drawing.Point(50, 287);
+            thumnailLabel.Name = "thumnailLabel";
+            thumnailLabel.Size = new System.Drawing.Size(74, 17);
+            thumnailLabel.TabIndex = 41;
+            thumnailLabel.Text = "Thumbnail";
+            // 
+            // providerIdLabel
+            // 
+            providerIdLabel.AutoSize = true;
+            providerIdLabel.Location = new System.Drawing.Point(50, 251);
+            providerIdLabel.Name = "providerIdLabel";
+            providerIdLabel.Size = new System.Drawing.Size(61, 17);
+            providerIdLabel.TabIndex = 39;
+            providerIdLabel.Text = "Provider";
+            // 
+            // activeLabel
+            // 
+            activeLabel.AutoSize = true;
+            activeLabel.Location = new System.Drawing.Point(349, 365);
+            activeLabel.Name = "activeLabel";
+            activeLabel.Size = new System.Drawing.Size(49, 17);
+            activeLabel.TabIndex = 37;
+            activeLabel.Text = "active:";
+            // 
+            // ratingLabel
+            // 
+            ratingLabel.AutoSize = true;
+            ratingLabel.Location = new System.Drawing.Point(349, 405);
+            ratingLabel.Name = "ratingLabel";
+            ratingLabel.Size = new System.Drawing.Size(48, 17);
+            ratingLabel.TabIndex = 35;
+            ratingLabel.Text = "rating:";
+            // 
+            // categoryIDLabel
+            // 
+            categoryIDLabel.AutoSize = true;
+            categoryIDLabel.Location = new System.Drawing.Point(50, 207);
+            categoryIDLabel.Name = "categoryIDLabel";
+            categoryIDLabel.Size = new System.Drawing.Size(65, 17);
+            categoryIDLabel.TabIndex = 33;
+            categoryIDLabel.Text = "Category";
+            // 
+            // priceLabel
+            // 
+            priceLabel.AutoSize = true;
+            priceLabel.Location = new System.Drawing.Point(50, 168);
+            priceLabel.Name = "priceLabel";
+            priceLabel.Size = new System.Drawing.Size(40, 17);
+            priceLabel.TabIndex = 31;
+            priceLabel.Text = "Price";
+            // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Location = new System.Drawing.Point(372, 168);
+            label1.Name = "label1";
+            label1.Size = new System.Drawing.Size(33, 17);
+            label1.TabIndex = 31;
+            label1.Text = "Vnđ";
+            // 
+            // titleLabel
+            // 
+            titleLabel.AutoSize = true;
+            titleLabel.Location = new System.Drawing.Point(50, 132);
+            titleLabel.Name = "titleLabel";
+            titleLabel.Size = new System.Drawing.Size(35, 17);
+            titleLabel.TabIndex = 27;
+            titleLabel.Text = "Title";
+            // 
+            // idLabel
+            // 
+            idLabel.AutoSize = true;
+            idLabel.Location = new System.Drawing.Point(50, 90);
+            idLabel.Name = "idLabel";
+            idLabel.Size = new System.Drawing.Size(23, 17);
+            idLabel.TabIndex = 25;
+            idLabel.Text = "id:";
+            // 
+            // detailLabel
+            // 
+            detailLabel.AutoSize = true;
+            detailLabel.Location = new System.Drawing.Point(52, 448);
+            detailLabel.Name = "detailLabel";
+            detailLabel.Size = new System.Drawing.Size(46, 17);
+            detailLabel.TabIndex = 49;
+            detailLabel.Text = "detail:";
             // 
             // defaultLookAndFeel1
             // 
@@ -509,6 +511,7 @@
             this.tableAdapterManager.QuestionTableAdapter = null;
             this.tableAdapterManager.RatingTableAdapter = null;
             this.tableAdapterManager.RoleTableAdapter = null;
+            this.tableAdapterManager.ShopDataTableAdapter = null;
             this.tableAdapterManager.ShopInfoTableAdapter = null;
             this.tableAdapterManager.SizeTableAdapter = null;
             this.tableAdapterManager.TypeNotiTableAdapter = null;
@@ -770,8 +773,11 @@
             this.colisNew,
             this.coladdDate,
             this.colsold});
+            this.gridView1.CustomizationFormBounds = new System.Drawing.Rectangle(1606, 705, 314, 325);
             this.gridView1.GridControl = this.productGridControl;
             this.gridView1.Name = "gridView1";
+            this.gridView1.SortInfo.AddRange(new DevExpress.XtraGrid.Columns.GridColumnSortInfo[] {
+            new DevExpress.XtraGrid.Columns.GridColumnSortInfo(this.colsold, DevExpress.Data.ColumnSortOrder.Descending)});
             // 
             // colid
             // 
@@ -781,7 +787,7 @@
             this.colid.OptionsColumn.AllowEdit = false;
             this.colid.Visible = true;
             this.colid.VisibleIndex = 0;
-            this.colid.Width = 94;
+            this.colid.Width = 87;
             // 
             // coltitle
             // 
@@ -791,7 +797,7 @@
             this.coltitle.OptionsColumn.AllowEdit = false;
             this.coltitle.Visible = true;
             this.coltitle.VisibleIndex = 1;
-            this.coltitle.Width = 94;
+            this.coltitle.Width = 164;
             // 
             // coldetail
             // 
@@ -801,7 +807,7 @@
             this.coldetail.OptionsColumn.AllowEdit = false;
             this.coldetail.Visible = true;
             this.coldetail.VisibleIndex = 2;
-            this.coldetail.Width = 94;
+            this.coldetail.Width = 71;
             // 
             // colprice
             // 
@@ -811,7 +817,7 @@
             this.colprice.OptionsColumn.AllowEdit = false;
             this.colprice.Visible = true;
             this.colprice.VisibleIndex = 3;
-            this.colprice.Width = 94;
+            this.colprice.Width = 66;
             // 
             // colcategoryID
             // 
@@ -821,7 +827,7 @@
             this.colcategoryID.OptionsColumn.AllowEdit = false;
             this.colcategoryID.Visible = true;
             this.colcategoryID.VisibleIndex = 4;
-            this.colcategoryID.Width = 94;
+            this.colcategoryID.Width = 66;
             // 
             // colrating
             // 
@@ -831,7 +837,7 @@
             this.colrating.OptionsColumn.AllowEdit = false;
             this.colrating.Visible = true;
             this.colrating.VisibleIndex = 5;
-            this.colrating.Width = 94;
+            this.colrating.Width = 66;
             // 
             // colactive
             // 
@@ -841,7 +847,7 @@
             this.colactive.OptionsColumn.AllowEdit = false;
             this.colactive.Visible = true;
             this.colactive.VisibleIndex = 6;
-            this.colactive.Width = 94;
+            this.colactive.Width = 66;
             // 
             // colproviderId
             // 
@@ -851,7 +857,7 @@
             this.colproviderId.OptionsColumn.AllowEdit = false;
             this.colproviderId.Visible = true;
             this.colproviderId.VisibleIndex = 7;
-            this.colproviderId.Width = 94;
+            this.colproviderId.Width = 83;
             // 
             // colthumnail
             // 
@@ -861,7 +867,7 @@
             this.colthumnail.OptionsColumn.AllowEdit = false;
             this.colthumnail.Visible = true;
             this.colthumnail.VisibleIndex = 8;
-            this.colthumnail.Width = 94;
+            this.colthumnail.Width = 90;
             // 
             // colisNew
             // 
@@ -871,7 +877,7 @@
             this.colisNew.OptionsColumn.AllowEdit = false;
             this.colisNew.Visible = true;
             this.colisNew.VisibleIndex = 9;
-            this.colisNew.Width = 94;
+            this.colisNew.Width = 34;
             // 
             // coladdDate
             // 
@@ -881,7 +887,7 @@
             this.coladdDate.OptionsColumn.AllowEdit = false;
             this.coladdDate.Visible = true;
             this.coladdDate.VisibleIndex = 10;
-            this.coladdDate.Width = 94;
+            this.coladdDate.Width = 60;
             // 
             // colsold
             // 
@@ -891,11 +897,13 @@
             this.colsold.OptionsColumn.AllowEdit = false;
             this.colsold.Visible = true;
             this.colsold.VisibleIndex = 11;
-            this.colsold.Width = 94;
+            this.colsold.Width = 74;
             // 
             // panel2
             // 
             this.panel2.AutoScroll = true;
+            this.panel2.Controls.Add(this.isNewSpinEdit);
+            this.panel2.Controls.Add(this.activeSpinEdit);
             this.panel2.Controls.Add(this.btnSaveImg);
             this.panel2.Controls.Add(this.btnImageList);
             this.panel2.Controls.Add(this.btnChangeImg);
@@ -920,13 +928,11 @@
             this.panel2.Controls.Add(ratingLabel);
             this.panel2.Controls.Add(this.ratingTextBox);
             this.panel2.Controls.Add(activeLabel);
-            this.panel2.Controls.Add(this.activeTextBox);
             this.panel2.Controls.Add(providerIdLabel);
             this.panel2.Controls.Add(this.providerIdTextBox);
             this.panel2.Controls.Add(thumnailLabel);
             this.panel2.Controls.Add(this.thumnailTextBox);
             this.panel2.Controls.Add(isNewLabel);
-            this.panel2.Controls.Add(this.isNewTextBox);
             this.panel2.Controls.Add(addDateLabel);
             this.panel2.Controls.Add(soldLabel);
             this.panel2.Controls.Add(this.soldTextBox);
@@ -936,6 +942,38 @@
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(977, 802);
             this.panel2.TabIndex = 0;
+            // 
+            // isNewSpinEdit
+            // 
+            this.isNewSpinEdit.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.productBindingSource, "isNew", true));
+            this.isNewSpinEdit.EditValue = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+            this.isNewSpinEdit.Location = new System.Drawing.Point(140, 322);
+            this.isNewSpinEdit.MenuManager = this.barManager;
+            this.isNewSpinEdit.Name = "isNewSpinEdit";
+            this.isNewSpinEdit.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.isNewSpinEdit.Size = new System.Drawing.Size(118, 24);
+            this.isNewSpinEdit.TabIndex = 64;
+            // 
+            // activeSpinEdit
+            // 
+            this.activeSpinEdit.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.productBindingSource, "active", true));
+            this.activeSpinEdit.EditValue = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+            this.activeSpinEdit.Location = new System.Drawing.Point(428, 362);
+            this.activeSpinEdit.MenuManager = this.barManager;
+            this.activeSpinEdit.Name = "activeSpinEdit";
+            this.activeSpinEdit.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.activeSpinEdit.Size = new System.Drawing.Size(105, 24);
+            this.activeSpinEdit.TabIndex = 63;
             // 
             // btnSaveImg
             // 
@@ -1123,14 +1161,6 @@
             this.ratingTextBox.Size = new System.Drawing.Size(104, 22);
             this.ratingTextBox.TabIndex = 36;
             // 
-            // activeTextBox
-            // 
-            this.activeTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.productBindingSource, "active", true));
-            this.activeTextBox.Location = new System.Drawing.Point(428, 362);
-            this.activeTextBox.Name = "activeTextBox";
-            this.activeTextBox.Size = new System.Drawing.Size(104, 22);
-            this.activeTextBox.TabIndex = 38;
-            // 
             // providerIdTextBox
             // 
             this.providerIdTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.productBindingSource, "providerId", true));
@@ -1147,14 +1177,6 @@
             this.thumnailTextBox.Size = new System.Drawing.Size(392, 22);
             this.thumnailTextBox.TabIndex = 42;
             this.thumnailTextBox.TextChanged += new System.EventHandler(this.thumnailTextBox_TextChanged_1);
-            // 
-            // isNewTextBox
-            // 
-            this.isNewTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.productBindingSource, "isNew", true));
-            this.isNewTextBox.Location = new System.Drawing.Point(140, 323);
-            this.isNewTextBox.Name = "isNewTextBox";
-            this.isNewTextBox.Size = new System.Drawing.Size(200, 22);
-            this.isNewTextBox.TabIndex = 44;
             // 
             // soldTextBox
             // 
@@ -1204,6 +1226,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).EndInit();
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.isNewSpinEdit.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.activeSpinEdit.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.thumbnailProduct)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.addDateDateEdit.Properties.CalendarTimeProperties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.addDateDateEdit.Properties)).EndInit();
@@ -1258,6 +1282,13 @@
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         private DevExpress.XtraGrid.GridControl productGridControl;
         private DevExpress.XtraGrid.Views.Grid.GridView gridView1;
+        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.CheckBox cbProvider;
+        private System.Windows.Forms.CheckBox cbCategory;
+        private System.Windows.Forms.ComboBox cbbProvider;
+        private System.Windows.Forms.ComboBox cbbCategory;
+        private System.Windows.Forms.BindingSource categoryBds;
+        private System.Windows.Forms.BindingSource providerBds;
         private DevExpress.XtraGrid.Columns.GridColumn colid;
         private DevExpress.XtraGrid.Columns.GridColumn coltitle;
         private DevExpress.XtraGrid.Columns.GridColumn coldetail;
@@ -1287,17 +1318,10 @@
         private System.Windows.Forms.TextBox priceTextBox;
         private System.Windows.Forms.TextBox categoryIDTextBox;
         private System.Windows.Forms.TextBox ratingTextBox;
-        private System.Windows.Forms.TextBox activeTextBox;
         private System.Windows.Forms.TextBox providerIdTextBox;
         private System.Windows.Forms.TextBox thumnailTextBox;
-        private System.Windows.Forms.TextBox isNewTextBox;
         private System.Windows.Forms.TextBox soldTextBox;
-        private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.CheckBox cbProvider;
-        private System.Windows.Forms.CheckBox cbCategory;
-        private System.Windows.Forms.ComboBox cbbProvider;
-        private System.Windows.Forms.ComboBox cbbCategory;
-        private System.Windows.Forms.BindingSource categoryBds;
-        private System.Windows.Forms.BindingSource providerBds;
+        private DevExpress.XtraEditors.SpinEdit isNewSpinEdit;
+        private DevExpress.XtraEditors.SpinEdit activeSpinEdit;
     }
 }

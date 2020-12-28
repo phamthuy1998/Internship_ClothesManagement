@@ -83,12 +83,12 @@ namespace ClothesAdmin
 
         private void categoryComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            loadData();
+           if(cbCategory.Checked) loadData();
         }
 
         private void providerComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            loadData();
+           if(cbProvider.Checked) loadData();
         }
 
         private void btnReloadProvider_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)

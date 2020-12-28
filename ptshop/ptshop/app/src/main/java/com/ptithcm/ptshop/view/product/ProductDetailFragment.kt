@@ -81,17 +81,16 @@ class ProductDetailFragment : BaseFragment<FragmentProductDetailBinding>() {
         if (product == null) viewBinding.btnAddToCard.disable()
     }
 
-    override fun bindViewModelOnce() {
-        shoppingViewModel.detailResult.observe(this, Observer {
-            productDetail = it
-//            viewBinding.item = productDetail
-            setUpToolBar()
-            bindProduct()
-            setUpViewPager()
-        })
-    }
-
     override fun bindViewModel() {
+        shoppingViewModel.detailResult.observe(this, Observer {
+            if (it != null) {
+                productDetail = it
+//            viewBinding.item = productDetail
+                setUpToolBar()
+                bindProduct()
+                setUpViewPager()
+            }
+        })
         wishListViewModel.addAndRemoveResult.observe(this, Observer {})
 
         shoppingViewModel.isLoading.observe(this, Observer {
@@ -332,7 +331,7 @@ class ProductDetailFragment : BaseFragment<FragmentProductDetailBinding>() {
             it.colorID == colorOption?.id && it.sizeId == sizeOption?.id
         }?.quantity ?: 0
         val quantityFromLocal = ObjectHandler.getQuantityProductClothesFromLocal(
-            product?.id,
+            productDetail?.id,
             sizeOption?.id,
             colorOption?.id
         )

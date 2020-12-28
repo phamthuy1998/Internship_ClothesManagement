@@ -88,17 +88,21 @@ namespace ClothesAdmin
                 Program.mainForm.tvName.Text = "Name: "+Program.accountLogin.name + " ";
                 Program.mainForm.tvRoleName.Text ="Role: "+ Program.accountLogin.roleName + " ";
                 Program.mainForm.tvIdEmployee.Text = "Employee Id: " + Program.accountLogin.idEmployee + " ";
+                // account is admin
                 if (Program.accountLogin.roleId ==1)
                 {
+                    Program.mainForm.rbShopInfo.Visible = true;
                     Program.mainForm.btnShopInfo.Visibility = BarItemVisibility.Always;
                     Program.mainForm.btnEmployee.Visibility = BarItemVisibility.Always;
-                    Program.mainForm.rbSttatistic.Visible = true;
+                    //Program.mainForm.rbSttatistic.Visible = true;
                 }
+                // account is employee
                 else if (Program.accountLogin.roleId == 2)
                 {
+                    Program.mainForm.rbShopInfo.Visible = false;
                     Program.mainForm.btnShopInfo.Visibility = BarItemVisibility.Never;
                     Program.mainForm.btnEmployee.Visibility = BarItemVisibility.Never;
-                    Program.mainForm.rbSttatistic.Visible = false;
+                    //Program.mainForm.rbSttatistic.Visible = false;
                 }
                 else{
                     MessageBox.Show("Sai thông tin đăng nhập, vui lòng kiểm tra lại", "", MessageBoxButtons.OK);

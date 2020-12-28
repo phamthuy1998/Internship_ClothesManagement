@@ -32,6 +32,8 @@ namespace ClothesAdmin
         private ProfitForm profitForm = null;
         private RevenueForm revenueForm = null;
         private InventoryForm inventoryForm = null;
+        private ShopDataForm shopData = null; 
+        private ProductNewForm productNewForm = null;
         private ProductStatisticForm productStatisticForm = null;
          private WarehouseFormcs warehouseFormcs = null;
         public MainForm()
@@ -515,6 +517,32 @@ namespace ClothesAdmin
                 inventoryForm = new InventoryForm();
                 inventoryForm.MdiParent = this;
                 inventoryForm.Show();
+            }
+            else form.Activate();
+        }
+
+        private void barButtonItem19_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            form = this.CheckExists(typeof(ShopDataForm));
+            if (form == null)
+            {
+                IsMdiContainer = true;
+                shopData = new ShopDataForm();
+                shopData.MdiParent = this;
+                shopData.Show();
+            }
+            else form.Activate();
+        }
+
+        private void barButtonItem20_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            form = this.CheckExists(typeof(ProductNewForm));
+            if (form == null)
+            {
+                IsMdiContainer = true;
+                productNewForm = new ProductNewForm();
+                productNewForm.MdiParent = this;
+                productNewForm.Show();
             }
             else form.Activate();
         }

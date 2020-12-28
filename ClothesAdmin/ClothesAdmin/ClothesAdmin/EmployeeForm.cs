@@ -81,99 +81,120 @@ namespace ClothesAdmin
 
         private void btnCancelAddProvider_Click(object sender, EventArgs e)
         {
-            isAdd = false;
-            this.Validate();
-            this.sP_GetAccEmployeeInfoBindingSource.CancelEdit();
-            this.sP_GetAllEmployeeBindingSource.CancelEdit();
+            try
+            {
+                isAdd = false;
+                this.Validate();
+                this.sP_GetAccEmployeeInfoBindingSource.CancelEdit();
+                this.sP_GetAllEmployeeBindingSource.CancelEdit();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error " + ex.Message, "Error", MessageBoxButtons.OK);
+            }
         }
 
         private void btnSaveAddProvider_Click(object sender, EventArgs e)
         {
             if (isAdd)
             {
-                String birthday = null, beginDate = null, endDate = null;
-                if (birthdayDateEdit.Text.Trim() == null)
-                    birthday = "'null'";
-                else
-                    birthday = "'" + birthdayDateEdit.EditValue.ToString() + "'";
+                try
+                {
+                    String birthday = null, beginDate = null, endDate = null;
+                    if (birthdayDateEdit.Text.Trim() == null)
+                        birthday = "'null'";
+                    else
+                        birthday = "'" + birthdayDateEdit.EditValue.ToString() + "'";
 
-                if (String.IsNullOrEmpty(dateBeginDateEdit.Text))
-                    beginDate = "'null'";
-                else
-                    beginDate = "'" + dateBeginDateEdit.EditValue.ToString() + "'";
+                    if (String.IsNullOrEmpty(dateBeginDateEdit.Text))
+                        beginDate = "'null'";
+                    else
+                        beginDate = "'" + dateBeginDateEdit.EditValue.ToString() + "'";
 
-                if (String.IsNullOrEmpty(dateEndDateEdit.Text))
-                    endDate = "'null'";
-                else
-                    endDate = "'" + dateEndDateEdit.EditValue.ToString() + "'";
+                    if (String.IsNullOrEmpty(dateEndDateEdit.Text))
+                        endDate = "'null'";
+                    else
+                        endDate = "'" + dateEndDateEdit.EditValue.ToString() + "'";
 
-                String sql = "EXEC SP_AddEmployee N'"
-                    + firstNameTextEdit.Text.Trim() + "', N'"
-                    + lastNameTextEdit.Text.Trim() + "', N'"
-                    + phoneTextEdit.Text.Trim() + "', N'"
-                    + addressTextEdit.Text.Trim() + "', N'"
-                    + avatarTextEdit.Text.Trim() + "', "
-                    + birthday + ", "
-                    + beginDate + ","
-                    + endDate + ", "
-                    + Convert.ToInt32(isWorkingSpinEdit.Value) + ", N'"
-                    + emailTextEdit.Text.Trim() + "',"
-                    + roleIdSpinEdit.Text.Trim() + ", N'"
-                    + passwordTextEdit.Text.Trim() + "', N'"
-                    + usernameTextEdit.Text.Trim() + "'";
-                Program.myReader = Program.ExecSqlDataReader(sql);
-                if (Program.myReader == null) return;
-                Program.myReader.Read();
-                if (Program.myReader == null) return;
-                int statusEdit = Program.myReader.GetInt32(0);
-                String message = Program.myReader.GetString(1);
-                MessageBox.Show(statusEdit + " " + message, "THÔNG BÁO", MessageBoxButtons.OK);
-                Program.showToastSave();
+                    String sql = "EXEC SP_AddEmployee N'"
+                        + firstNameTextEdit.Text.Trim() + "', N'"
+                        + lastNameTextEdit.Text.Trim() + "', N'"
+                        + phoneTextEdit.Text.Trim() + "', N'"
+                        + addressTextEdit.Text.Trim() + "', N'"
+                        + avatarTextEdit.Text.Trim() + "', "
+                        + birthday + ", "
+                        + beginDate + ","
+                        + endDate + ", "
+                        + Convert.ToInt32(isWorkingSpinEdit.Value) + ", N'"
+                        + emailTextEdit.Text.Trim() + "',"
+                        + roleIdSpinEdit.Text.Trim() + ", N'"
+                        + passwordTextEdit.Text.Trim() + "', N'"
+                        + usernameTextEdit.Text.Trim() + "'";
+                    Program.myReader = Program.ExecSqlDataReader(sql);
+                    if (Program.myReader == null) return;
+                    Program.myReader.Read();
+                    if (Program.myReader == null) return;
+                    int statusEdit = Program.myReader.GetInt32(0);
+                    String message = Program.myReader.GetString(1);
+                    MessageBox.Show(statusEdit + " " + message, "THÔNG BÁO", MessageBoxButtons.OK);
+                    Program.showToastSave();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Error " + ex.Message, "Error", MessageBoxButtons.OK);
+                }
             }
             else
             {
+                try
+                {
 
-                String birthday = null, beginDate = null, endDate = null;
-                if (birthdayDateEdit.Text.Trim() == null)
-                    birthday = "'null'";
-                else
-                    birthday = "'" + birthdayDateEdit.EditValue.ToString() + "'";
+                    String birthday = null, beginDate = null, endDate = null;
+                    if (birthdayDateEdit.Text.Trim() == null)
+                        birthday = "'null'";
+                    else
+                        birthday = "'" + birthdayDateEdit.EditValue.ToString() + "'";
 
-                if (String.IsNullOrEmpty(dateBeginDateEdit.Text))
-                    beginDate = "'null'";
-                else
-                    beginDate = "'" + dateBeginDateEdit.EditValue.ToString() + "'";
+                    if (String.IsNullOrEmpty(dateBeginDateEdit.Text))
+                        beginDate = "'null'";
+                    else
+                        beginDate = "'" + dateBeginDateEdit.EditValue.ToString() + "'";
 
-                if (String.IsNullOrEmpty(dateEndDateEdit.Text ))
-                    endDate = "'null'";
-                else
-                    endDate = "'" + dateEndDateEdit.EditValue.ToString() + "'";
+                    if (String.IsNullOrEmpty(dateEndDateEdit.Text))
+                        endDate = "'null'";
+                    else
+                        endDate = "'" + dateEndDateEdit.EditValue.ToString() + "'";
 
-                String sql = "EXEC SP_UpdateEmployee "
-                    + Convert.ToInt32(idSpinEdit.Value) + ", N'"
-                    + firstNameTextEdit.Text.Trim() + "', N'"
-                    + lastNameTextEdit.Text.Trim() + "', N'"
-                    + phoneTextEdit.Text.Trim() + "', N'"
-                    + addressTextEdit.Text.Trim() + "', N'"
-                    + avatarTextEdit.Text.Trim() + "', "
-                    + birthday + ", "
-                    + beginDate + ","
-                    + endDate + ", "
-                    + Convert.ToInt32(isWorkingSpinEdit.Value) + ", N'"
-                    + emailTextEdit.Text.Trim() + "',"
-                    + roleIdSpinEdit.Text.Trim() + ", N'"
-                    + passwordTextEdit.Text.Trim() + "', N'"
-                    + usernameTextEdit.Text.Trim() + "', "
-                    + idAccountSpinEdit.Text.Trim();
-                MessageBox.Show(sql, "sql", MessageBoxButtons.OK);
-                Program.myReader = Program.ExecSqlDataReader(sql);
-                if (Program.myReader == null) return;
-                Program.myReader.Read();
-                if (Program.myReader == null) return;
-                int statusEdit = Program.myReader.GetInt32(0);
-                String message = Program.myReader.GetString(1);
-                MessageBox.Show(statusEdit + " " + message, "THÔNG BÁO", MessageBoxButtons.OK);
-                Program.showToastUpdate();
+                    String sql = "EXEC SP_UpdateEmployee "
+                        + Convert.ToInt32(idSpinEdit.Value) + ", N'"
+                        + firstNameTextEdit.Text.Trim() + "', N'"
+                        + lastNameTextEdit.Text.Trim() + "', N'"
+                        + phoneTextEdit.Text.Trim() + "', N'"
+                        + addressTextEdit.Text.Trim() + "', N'"
+                        + avatarTextEdit.Text.Trim() + "', "
+                        + birthday + ", "
+                        + beginDate + ","
+                        + endDate + ", "
+                        + Convert.ToInt32(isWorkingSpinEdit.Value) + ", N'"
+                        + emailTextEdit.Text.Trim() + "',"
+                        + roleIdSpinEdit.Text.Trim() + ", N'"
+                        + passwordTextEdit.Text.Trim() + "', N'"
+                        + usernameTextEdit.Text.Trim() + "', "
+                        + idAccountSpinEdit.Text.Trim();
+                    MessageBox.Show(sql, "sql", MessageBoxButtons.OK);
+                    Program.myReader = Program.ExecSqlDataReader(sql);
+                    if (Program.myReader == null) return;
+                    Program.myReader.Read();
+                    if (Program.myReader == null) return;
+                    int statusEdit = Program.myReader.GetInt32(0);
+                    String message = Program.myReader.GetString(1);
+                    MessageBox.Show(statusEdit + " " + message, "THÔNG BÁO", MessageBoxButtons.OK);
+                    Program.showToastUpdate();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Error " + ex.Message, "Error", MessageBoxButtons.OK);
+                }
             }
         }
 
@@ -188,10 +209,17 @@ namespace ClothesAdmin
             {
                 if (MessageBox.Show("Bạn có chắc chắn muốn xóa " + ((DataRowView)this.sP_GetAllEmployeeBindingSource.Current).Row["firstName"].ToString() + "?", "", MessageBoxButtons.YesNo) == DialogResult.Yes)
                 {
-                    String sql = "EXEC SP_DelEmployee " + Convert.ToInt32(idSpinEdit.Value);
-                    Program.myReader = Program.ExecSqlDataReader(sql);
-                    loadData();
-                    Program.showToastDel();
+                    try
+                    {
+                        String sql = "EXEC SP_DelEmployee " + Convert.ToInt32(idSpinEdit.Value);
+                        Program.myReader = Program.ExecSqlDataReader(sql);
+                        loadData();
+                        Program.showToastDel();
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("Error ", "Error", MessageBoxButtons.OK);
+                    }
 
                 }
             }

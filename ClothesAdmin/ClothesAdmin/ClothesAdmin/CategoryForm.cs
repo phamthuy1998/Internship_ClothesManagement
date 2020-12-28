@@ -61,7 +61,7 @@ namespace ClothesAdmin
             cbbGender.DisplayMember = "Text";
             checkFirstTime = true;
             {
-                cbbGender.SelectedIndex = Int32.Parse( ((DataRowView)categoryBindingSource.Current).Row["sex"].ToString());
+                cbbGender.SelectedIndex = Int32.Parse(((DataRowView)categoryBindingSource.Current).Row["sex"].ToString());
                 checkFirstTime = false;
             }
             //try
@@ -90,7 +90,7 @@ namespace ClothesAdmin
                 MessageBox.Show("Please input thumbnail url for this category!", "Error", MessageBoxButtons.OK);
                 return;
             }
-            else if (sexSpinEdit.Text.ToString()=="")
+            else if (sexSpinEdit.Text.ToString() == "")
             {
                 MessageBox.Show("Please select gender!", "Error", MessageBoxButtons.OK);
                 return;
@@ -102,16 +102,30 @@ namespace ClothesAdmin
             }
             else
             {
-                this.Validate();
-                this.categoryBindingSource.EndEdit();
-                this.tableAdapterManager.UpdateAll(this.clothesDataSet);
-                Program.showToastSave();
+                try
+                {
+                    this.Validate();
+                    this.categoryBindingSource.EndEdit();
+                    this.tableAdapterManager.UpdateAll(this.clothesDataSet);
+                    Program.showToastSave();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Error " + ex.Message, "Error", MessageBoxButtons.OK);
+                }
             }
         }
 
         private void btnCancelAddProvider_Click(object sender, EventArgs e)
         {
-            this.categoryBindingSource.CancelEdit();
+            try
+            {
+                this.categoryBindingSource.CancelEdit();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error " + ex.Message, "Error", MessageBoxButtons.OK);
+            }
         }
 
         private void setIcon()

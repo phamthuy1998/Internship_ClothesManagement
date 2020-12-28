@@ -7,7 +7,6 @@ import kotlinx.android.parcel.Parcelize
 @Parcelize
 data class ProductClothesDetail(
     override var id: Int,
-    var active: Int?,
     var addDate: String?,
     var categoryID: Int?,
     var colors: List<Color>?,

@@ -61,6 +61,7 @@ namespace ClothesAdmin
         {
             try
             {
+                quantityTextBox.Text = "1";
                 productSizeColorBindingSource.AddNew();
                 sizeComboBox.SelectedIndex = -1;
                 colorComboBox.SelectedIndex = -1;
@@ -91,7 +92,6 @@ namespace ClothesAdmin
                     || importCouponDetailBindingSource.Count > 0)
                 {
                     MessageBox.Show("Product đã tồn tại ở bảng khác, không thể xóa, product sẽ được chuyển qua trạng thái đã xóa", "", MessageBoxButtons.OK);
-                    activeTextBox.Text = "0";
                     this.Validate();
                     this.productSizeColorBindingSource.EndEdit();
                     this.tableAdapterManager.UpdateAll(this.clothesDataSet);
@@ -129,6 +129,11 @@ namespace ClothesAdmin
         {
             try
             {
+                if (quantityTextBox.Text == "")
+                {
+                    quantityTextBox.Text = "0";
+                }
+             
                 this.Validate();
                 this.productSizeColorBindingSource.EndEdit();
                 this.tableAdapterManager.UpdateAll(this.clothesDataSet);
