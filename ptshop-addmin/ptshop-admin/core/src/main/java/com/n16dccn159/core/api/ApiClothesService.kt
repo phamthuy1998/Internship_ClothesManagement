@@ -105,8 +105,7 @@ interface ApiClothesService {
     suspend fun getAllInvoices(
         @Query("pageSize") pageSize: Int = 20,
         @Query("pageNumber") pageNumber: Int = 1,
-        @Query("statusId") statusId: Int,
-        @Query("accountId") accountId: Int? = CoreApplication.instance.account?.id
+        @Query("statusId") statusId: Int
     ): Response<ListResponse<Invoice>>
 
     @GET("/api/invoice-detail")

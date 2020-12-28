@@ -12,10 +12,8 @@
             android:id="@+id/swlRefresh"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/viewEdtQuestion"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.0"
-            tools:layout_editor_absoluteX="-82dp"
             tools:visibility="visible">
 
             <androidx.recyclerview.widget.RecyclerView
@@ -98,6 +96,74 @@
             android:visibility="gone"
             app:constraint_referenced_ids="tvNoReviews, imgNoRating"
             tools:visibility="gone" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvNoQuestions"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/padding_20dp"
+            android:drawableTop="@drawable/bg_empty"
+            android:gravity="center"
+            android:paddingHorizontal="@dimen/padding_20dp"
+            android:paddingVertical="@dimen/layout_margin_14dp"
+            android:text="@string/no_question"
+            android:textColor="@color/black_alpha"
+            android:visibility="gone"
+            app:layout_constraintBottom_toTopOf="@id/viewEdtQuestion"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#AAAAAA"
+            app:layout_constraintBottom_toTopOf="@id/viewEdtQuestion" />
+
+        <androidx.constraintlayout.widget.Group
+            android:id="@+id/groupWriteRating"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            app:constraint_referenced_ids="viewEdtQuestion,edtQuestion, btnSend "
+            tools:visibility="visible" />
+
+        <View
+            android:id="@+id/viewEdtQuestion"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:background="@color/white"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintHeight_percent="0.1" />
+
+        <androidx.appcompat.widget.AppCompatEditText
+            android:id="@+id/edtQuestion"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/padding_20dp"
+            android:background="@drawable/item_rounded_gray"
+            android:hint="@string/questions_hint"
+            android:inputType="text"
+            android:paddingHorizontal="@dimen/padding_20dp"
+            android:paddingVertical="@dimen/layout_margin_14dp"
+            android:textColor="@color/black"
+            app:layout_constraintBottom_toBottomOf="@id/viewEdtQuestion"
+            app:layout_constraintEnd_toStartOf="@id/btnSend"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@id/viewEdtQuestion" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/btnSend"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/layout_margin_10dp"
+            android:clickable="true"
+            android:focusable="true"
+            android:padding="@dimen/layout_margin_10dp"
+            android:src="@drawable/ic_send"
+            app:layout_constraintBottom_toBottomOf="@id/edtQuestion"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/edtQuestion" />
 
         <ProgressBar
             android:id="@+id/progressbar"

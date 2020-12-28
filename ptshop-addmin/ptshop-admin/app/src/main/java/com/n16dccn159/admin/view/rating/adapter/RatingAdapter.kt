@@ -8,14 +8,14 @@ import androidx.appcompat.widget.AppCompatImageView
 import androidx.appcompat.widget.PopupMenu
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
-import com.n16dccn159.core.model.Rating
-import com.n16dccn159.core.model.RatingAvg
-import com.n16dccn159.core.model.SubRating
 import com.n16dccn159.admin.R
 import com.n16dccn159.admin.databinding.ItemRatingStatisticBinding
 import com.n16dccn159.admin.databinding.LayoutRatingItemBinding
 import com.n16dccn159.admin.view.question.adapter.ITEM_DEL
 import com.n16dccn159.admin.view.question.adapter.ITEM_EDIT
+import com.n16dccn159.core.model.Rating
+import com.n16dccn159.core.model.RatingAvg
+import com.n16dccn159.core.model.SubRating
 import java.lang.reflect.Field
 import java.util.*
 
@@ -30,6 +30,7 @@ class RatingAdapter(
         private const val TYPE_ITEM = 1
         const val DATE_INPUT_FORMAT = "yyyy-MM-dd'T'HH:mm:ss+00:00"
         const val ITEM_IMAGE = 4
+        const val REPLY_CLICK = 5
     }
 
     private var ratingList = arrayListOf<Rating>()
@@ -94,10 +95,21 @@ class RatingAdapter(
         notifyItemChanged(ratingList.size - 1)
     }
 
-    fun addSubRating(rating: SubRating?, position: Int?) {
+    fun addSubRating(rating: Rating?, position: Int?) {
+        val subRating = SubRating().apply {
+            ratingID = rating?.ratingID
+            accountID = rating?.accountID
+            username = rating?.username
+            comment = rating?.comment
+            dateRating = rating?.dateRating
+            dateEdit = rating?.dateEdit
+            productID = rating?.productID
+            parentId = rating?.parentId
+
+        }
         if (position != null) {
             if (rating != null) {
-                ratingList[position].subComments?.add(rating)
+                ratingList[position].subComments?.add(subRating)
 
             }
             notifyItemChanged(position)
@@ -131,13 +143,16 @@ class RatingAdapter(
                 }
 
                 ivImage1.setOnClickListener {
-                    listener?.invoke(item, adapterPosition, ITEM_IMAGE, 0)
+                    listener?.invoke(questionItem, adapterPosition, ITEM_IMAGE, 0)
                 }
                 ivImage2.setOnClickListener {
-                    listener?.invoke(item, adapterPosition, ITEM_IMAGE, 1)
+                    listener?.invoke(questionItem, adapterPosition, ITEM_IMAGE, 1)
                 }
                 ivImageVideo.setOnClickListener {
-                    listener?.invoke(item, adapterPosition, ITEM_IMAGE, 2)
+                    listener?.invoke(questionItem, adapterPosition, ITEM_IMAGE, 2)
+                }
+                btnReply.setOnClickListener {
+                    listener?.invoke(questionItem, adapterPosition, REPLY_CLICK, null)
                 }
                 executePendingBindings()
             }
@@ -193,7 +208,7 @@ class RatingAdapter(
                     tvrating5.text = (ratingAvg?.rating5Count?.toInt() ?: 0).toString()
                     tvRating4.text = (ratingAvg?.rating4Count?.toInt() ?: 0).toString()
                     tvRating3.text = (ratingAvg?.rating3Count?.toInt() ?: 0).toString()
-                    tvRating2.text = (ratingAvg?.rating2Count ?.toInt()?: 0).toString()
+                    tvRating2.text = (ratingAvg?.rating2Count?.toInt() ?: 0).toString()
                     tvRating1.text = (ratingAvg?.rating1Count?.toInt() ?: 0).toString()
                     seekBar5.progress = ratingAvg?.rating5Percent ?: 0
                     seekBar4.progress = ratingAvg?.rating4Percent ?: 0

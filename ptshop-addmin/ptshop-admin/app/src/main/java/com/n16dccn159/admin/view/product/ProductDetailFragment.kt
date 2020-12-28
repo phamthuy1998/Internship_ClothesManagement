@@ -9,10 +9,6 @@ import androidx.appcompat.widget.AppCompatImageButton
 import androidx.core.content.ContextCompat
 import androidx.core.os.bundleOf
 import androidx.lifecycle.Observer
-import com.n16dccn159.core.model.ProductClothes
-import com.n16dccn159.core.model.ProductClothesDetail
-import com.n16dccn159.core.model.RatingProduct
-import com.n16dccn159.core.util.ObjectHandler
 import com.n16dccn159.admin.R
 import com.n16dccn159.admin.base.BaseActivity
 import com.n16dccn159.admin.base.BaseFragment
@@ -28,6 +24,10 @@ import com.n16dccn159.admin.viewmodel.QuestionsViewModel
 import com.n16dccn159.admin.viewmodel.RatingViewModel
 import com.n16dccn159.admin.viewmodel.ShoppingViewModel
 import com.n16dccn159.admin.viewmodel.WishListViewModel
+import com.n16dccn159.core.model.ProductClothes
+import com.n16dccn159.core.model.ProductClothesDetail
+import com.n16dccn159.core.model.RatingProduct
+import com.n16dccn159.core.util.ObjectHandler
 import kotlinx.android.synthetic.main.activity_main.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -78,20 +78,19 @@ class ProductDetailFragment : BaseFragment<FragmentProductDetailBinding>() {
         bindProduct()
         setUpToolBar()
         viewBinding.tvOriginPrice.paintFlags = Paint.STRIKE_THRU_TEXT_FLAG
-        if (product == null) viewBinding.btnAddToCard.disable()
-    }
-
-    override fun bindViewModelOnce() {
-        shoppingViewModel.detailResult.observe(this, Observer {
-            productDetail = it
-//            viewBinding.item = productDetail
-            setUpToolBar()
-            bindProduct()
-            setUpViewPager()
-        })
+       viewBinding.btnAddToCard.disable()
     }
 
     override fun bindViewModel() {
+        shoppingViewModel.detailResult.observe(this, Observer {
+            if (it != null) {
+                productDetail = it
+//            viewBinding.item = productDetail
+                setUpToolBar()
+                bindProduct()
+                setUpViewPager()
+            }
+        })
         wishListViewModel.addAndRemoveResult.observe(this, Observer {})
 
         shoppingViewModel.isLoading.observe(this, Observer {
@@ -332,7 +331,7 @@ class ProductDetailFragment : BaseFragment<FragmentProductDetailBinding>() {
             it.colorID == colorOption?.id && it.sizeId == sizeOption?.id
         }?.quantity ?: 0
         val quantityFromLocal = ObjectHandler.getQuantityProductClothesFromLocal(
-            product?.id,
+            productDetail?.id,
             sizeOption?.id,
             colorOption?.id
         )

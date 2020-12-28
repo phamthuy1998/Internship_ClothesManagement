@@ -131,6 +131,28 @@
             app:layout_constraintTop_toBottomOf="@id/tvReview"
             app:layout_constraintWidth_percent="0.28" />
 
+        <androidx.constraintlayout.widget.Barrier
+            android:id="@+id/barrierImage"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:barrierDirection="bottom"
+            app:constraint_referenced_ids="ivImage1, tvReview" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/btnReply"
+            style="@style/normal_text"
+            setVisible="@{item.subComments.size()==0}"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/padding_20dp"
+            android:layout_marginVertical="@dimen/layout_margin_10dp"
+            android:padding="@dimen/layout_margin_10dp"
+            android:text="@string/reply"
+            android:textAlignment="viewStart"
+            android:textColor="@color/blue"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/barrierImage" />
+
         <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/ivPlayVideo"
             isVisible="@{!item.videoIsNullOrEmpty()}"
@@ -146,7 +168,9 @@
             isVisible="@{item.getItemSubRatingWithPosition(0) != null}"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:constraint_referenced_ids="viewReply, tvUsernameReply, tvDateReply,tvReviewReply" />
+            android:visibility="gone"
+            app:constraint_referenced_ids="viewReply, tvUsernameReply, tvDateReply,tvReviewReply"
+            tools:visibility="visible" />
 
         <View
             android:id="@+id/viewReply"
@@ -157,7 +181,7 @@
             android:layout_marginEnd="@dimen/padding_20dp"
             android:background="@drawable/item_rounded_question_gray"
             app:layout_constraintBottom_toBottomOf="@id/tvReviewReply"
-            app:layout_constraintTop_toBottomOf="@id/ivImage1" />
+            app:layout_constraintTop_toBottomOf="@id/btnReply" />
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/tvUsernameReply"

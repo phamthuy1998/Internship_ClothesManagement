@@ -3,10 +3,6 @@ package com.n16dccn159.admin.view.rating
 import android.view.View
 import androidx.core.os.bundleOf
 import androidx.lifecycle.Observer
-import com.n16dccn159.core.CoreApplication
-import com.n16dccn159.core.model.ProductClothesDetail
-import com.n16dccn159.core.model.Rating
-import com.n16dccn159.core.model.RatingAvg
 import com.n16dccn159.admin.R
 import com.n16dccn159.admin.base.BaseActivity
 import com.n16dccn159.admin.base.BaseFragment
@@ -20,7 +16,12 @@ import com.n16dccn159.admin.view.question.adapter.ITEM_DEL
 import com.n16dccn159.admin.view.question.adapter.ITEM_EDIT
 import com.n16dccn159.admin.view.rating.adapter.RatingAdapter
 import com.n16dccn159.admin.view.rating.adapter.RatingAdapter.Companion.ITEM_IMAGE
+import com.n16dccn159.admin.view.rating.adapter.RatingAdapter.Companion.REPLY_CLICK
 import com.n16dccn159.admin.viewmodel.RatingViewModel
+import com.n16dccn159.core.CoreApplication
+import com.n16dccn159.core.model.ProductClothesDetail
+import com.n16dccn159.core.model.Rating
+import com.n16dccn159.core.model.RatingAvg
 import kotlinx.android.synthetic.main.activity_main.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -43,6 +44,14 @@ class RatingFragment : BaseFragment<FragmentRatingBinding>() {
             return fragment
         }
     }
+
+
+    private var productId: Int? = null
+    private var rating: Rating? = null
+    private var posAddSubQuestion: Int? = null
+    private var posUpdateQuestion: Int? = null
+    private var _parentQuestionID: Int? = null
+    private var editQuestion: Rating? = null
 
     private fun adapterEvent(
         item: Rating?,
@@ -96,6 +105,14 @@ class RatingFragment : BaseFragment<FragmentRatingBinding>() {
                     )
                 )
             }
+            REPLY_CLICK -> {
+                viewBinding.groupWriteRating.visible()
+                viewBinding.edtQuestion.setText("@ ${item?.username} ")
+                _parentQuestionID = item?.ratingID
+                posAddSubQuestion = position
+                requireActivity().showKeyBoard()
+                viewBinding.edtQuestion.setCursorEnd(viewBinding.edtQuestion.text.toString())
+            }
         }
     }
 
@@ -118,6 +135,50 @@ class RatingFragment : BaseFragment<FragmentRatingBinding>() {
         productDetail = arguments?.get("productDetail") as ProductClothesDetail?
         setupRecyclerview()
         refreshData()
+
+        var questionStr = ""
+        viewBinding.btnSend.setOnClickListener {
+            if (CoreApplication.instance.account?.id == null) {
+                navController.navigateAnimation(
+                    R.id.loginFragment,
+                    bundle = bundleOf("fromQuestionFragment" to true)
+                )
+                return@setOnClickListener
+            }
+            questionStr = viewBinding.edtQuestion.getTextTrim()
+            if (questionStr.isNotEmpty()) {
+                rating = Rating().apply {
+                    accountID = CoreApplication.instance.account?.id
+                    username = CoreApplication.instance.account?.username
+                    rating = null
+                    comment= questionStr
+                    productID = productId
+                    parentId = _parentQuestionID
+                }
+                if (editQuestion == null) {
+                    rating?.let { it1 -> viewModel.addRating(it1) }
+
+                    if (posAddSubQuestion == null) {
+                        rating?.let { it1 -> adapter.addQuestion(it1) }
+                    } else {
+                        adapter.addSubRating(rating, posAddSubQuestion)
+                    }
+                } else {
+                    editQuestion?.comment = questionStr
+                    editQuestion?.let { it1 -> viewModel.updateRating(it1) }
+                    posUpdateQuestion?.let { it1 -> adapter.notifyItemChanged(it1) }
+                    posUpdateQuestion = null
+                }
+
+                viewBinding.rvReview.smoothScrollToPosition(adapter.itemCount)
+            } else {
+                messageHandler?.runMessageErrorHandler(getString(R.string.error_empty, "Question"))
+            }
+            editQuestion = null
+            viewBinding.edtQuestion.setText("")
+        }
+
+
         /*   viewBinding.tvWriteReview.setOnClickListener {
                navController.navigateAnimation(
                    R.id.createReviewFragment,

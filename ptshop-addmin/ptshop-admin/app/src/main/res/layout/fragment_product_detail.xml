@@ -296,6 +296,7 @@
         <com.n16dccn159.admin.widget.LoadingButton
             android:id="@+id/btnAddToCard"
             style="@style/black_btn"
+
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/layout_margin_32dp"
@@ -305,6 +306,6 @@
             android:background="@drawable/button_selector"
             android:onClick="@{fragment::onClick}"
             app:isShowTextBehind="true"
-            app:text="@{hasQuantity ? @string/add_to_cart : isAvailable ? @string/out_of_stock : @string/unavailable}" />
+            app:text="@{hasQuantity ? @string/add_to_cart : isAvailable ? @string/out_of_stock : @string/out_of_stock}" />
     </LinearLayout>
 </layout>
